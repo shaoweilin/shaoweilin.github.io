@@ -1,0 +1,1609 @@
+// 
+// SINGULAR code for 
+// M. A. Cueto and S. Lin, "Tropical Secant Graphs of Monomial Curves."
+// (This code has not been checked for accuracy, use at your own risk.)
+//  
+// The commands
+// 
+//   LIB "tropsec.lib";
+//   intvec exps = 0,2,5,8,10;
+//   list gph = grobsec(exps);
+// 
+// gives a list gph such that:
+// 
+//   gph[1] is a list of all the coordinates of the nodes
+//   gph[2] is a list of the edges in the form "i,j,m" which 
+//          means the edge from node i to node j has weight m.
+//   gph[3] is a list of all the names of the nodes
+//   gph[4] is a list of all the names of the edges 
+//   gph[5] is a list of all the partial overlaps and internal 
+//          crossings predicted by the paper which makes it 
+//          a groebner tropical secant graph.
+// 
+// Lastly, if you try our example "0,30,45,55,78", it says "integer
+// overflow error" because I did not use large integers to program this
+// code but just standard integers (i.e. between -65536 and 65536). I
+// could rewrite my code to do that, but that would take time, so I
+// decided to leave it alone.
+// 
+// Shaowei
+// 16 May 2010
+// 
+
+
+LIB "polymake.lib";
+LIB "aksaka.lib";
+LIB "general.lib";
+LIB "linalg.lib";
+
+proc myconcat(intmat r1, intmat r2)
+{
+intmat newr1[nrows(r1)+1][ncols(r1)];
+newr1 = r1,r2;
+return(newr1);
+}
+ 
+proc gcdlist(intvec nn)
+{ 
+  int n = size(nn);
+  int gg;
+  if (n==1)
+  {
+    gg = nn[1];
+  }
+  else 
+  {
+    gg = gcd(nn[1], nn[2]);
+    for (int i = 3; i <= n; i++)
+    {  
+      gg=gcd(gg,nn[i]);
+    }
+  }
+  return(gg);
+}
+
+proc bintodec(intvec nn)
+{
+  int qq = 1;
+  int n = size(nn);
+  int bb = 0;
+  for (int i = 1; i<=n; i++)
+  {
+    bb= bb+ nn[i]*qq;
+    qq = qq*2;
+  }
+  return(bb);
+}
+
+proc dectobin(int dd, int n)
+{
+  intvec nn = (dd mod 2);
+  for (int i=2; i<= n; i++)
+  {
+    dd = dd div 2;
+    nn = nn, dd mod 2;
+  }
+  return(nn);
+}
+
+proc tropsec(intvec exps)
+{
+int haserror =0;
+int n = size(exps)-1;
+int i,j,k;
+
+if (size(exps)<5) 
+{
+haserror =1;
+print("ERROR: There are less than 5 exponents.");
+}
+if (exps[1]!=0) 
+{
+haserror =1;
+print("ERROR: First exponent is non-zero.");
+}
+if (gcdlist(exps)!=1)
+{
+haserror =1;
+print("ERROR: The gcd of the exponents is not 1.");
+}
+int hasincerror=0;
+for (i=1; i<=n; i++)
+{
+if ((exps[i+1] <= exps[i])&&(hasincerror==0))
+{
+haserror=1;
+hasincerror=1;
+print("ERROR: The exponents are not strictly increasing.");
+}
+}
+
+if (haserror==0)
+{
+intmat vv[1][n+1];
+vv[1,1] =1;
+intmat rays[1][n+1] = vv;  // D0
+vv[1,1] =0;
+
+for (i = 1; i <= n; i++)
+{
+  vv[1,i+1] = 1;
+  rays = myconcat(rays, vv); // Di
+  vv[1,i+1] = 0;
+}
+
+for (i =1; i < n; i++)
+{
+  for (j = i; j <= n; j++)
+  {
+    vv[1,j+1] = exps[i+1];
+  }
+  rays = myconcat(rays, vv);   // Ei
+}
+
+intvec dualexps = exps[n+1]:(n+1)-exps;
+intvec aa, bb; 
+intmat ee[1][3];
+aa = exps[2];
+bb = dualexps[3..n];
+intmat edges[1][3] = n+2, n+3, gcdlist(aa)*gcdlist(bb);
+for (i=2; i<=n-2;i++)
+{
+  aa = exps[2..i+1];
+  bb = dualexps[i+2..n];
+  ee = n+i+1, n+i+2, gcdlist(aa)*gcdlist(bb); 
+  edges = myconcat(edges, ee);
+}
+
+intvec expsj;
+intvec cc, dd;
+for (i=1; i<=n-1;i++)
+{ 
+  expsj = exps[i+1]:(n+1)-exps;
+  if (i==1)
+  {
+    aa = 0;
+    bb = 0;
+  }
+  else
+  {
+    aa = exps[2..i];
+    bb = expsj[i+2..n+1];
+  }
+  if (i==n-1)
+  {
+    cc = 0;
+    dd = 0;
+  }
+  else
+  {
+    cc = expsj[1..i];
+    dd = exps[i+2..n+1];
+  }
+  ee = i+1, n+i+1, gcd(gcdlist(aa)*gcdlist(bb), gcdlist(cc)*gcdlist(dd)); 
+  edges = myconcat(edges, ee);
+}
+
+int ftotal = 2^(n+1)-1;
+intmat fa[ftotal][n+1];
+intvec whatsleft;
+int findex;
+int firstnum;
+int isfirstnum;
+int er;
+int bgcd;
+ring R = 0, x, dp;
+
+// run through all arithmetic differences r
+// for each exponent exps[i],
+//   pick out all other exponents equiv to exps[i] mod r.
+//   remove the indices of these other exponents from whatsleft. 
+//   convert the incidence vector into binary
+
+for (int r=2; r<=exps[n+1]; r++)
+{
+  whatsleft = 1:(n+1);
+  for (i=1; i<=n+1; i++)
+  {
+    aa = 0:(n+1);
+    if (whatsleft[i] == 1)
+    {
+      aa[i] = 1;
+      for (j=i+1; j<=n+1; j++)
+      {
+        if (((exps[j]-exps[i]) mod r)==0)
+        {
+          aa[j] = 1;
+        }
+      }
+      findex = bintodec(aa);
+
+      // if the vector aa is not all ones or 1 one
+      // this computes the multiplicities
+
+      if ((findex!=ftotal)&&(sum(aa)!=1))    
+      {
+        bb = 0;
+        if (sum(aa) < n)
+        {
+          isfirstnum=1;
+          for (j=1; j<=n+1; j++)
+          {
+            if (aa[j] == 0)
+            { 
+              if (isfirstnum == 1)
+              { 
+                isfirstnum = 0;
+                firstnum = exps[j];
+              }
+              else
+              {
+                bb = bb, exps[j]-firstnum;
+              }
+            }
+          } 
+        }
+        er = int(euler(r));
+        bgcd = gcdlist(bb);
+        for (k=1; k<=n+1; k++)
+        {
+          if (aa[k]==1)
+          {
+            aa[k]=2;
+            cc = 0;
+            if (sum(aa) > 1)
+            {
+              isfirstnum=1;
+              for (j=1; j<=n+1; j++)
+              {
+                if (aa[j] == 1) 
+                {
+                  if (isfirstnum == 1)
+                  {
+                    isfirstnum = 0;
+                    firstnum = exps[j];
+                  }
+                  else
+                  {
+                    cc = cc, exps[j]-firstnum;
+                  }
+                }
+              }    
+            }
+            fa[findex,k] = fa[findex,k] + er*gcd(bgcd,gcdlist(cc));
+            aa[k]=1;
+          }
+        }
+      }
+      whatsleft = whatsleft-aa;
+    }
+  }
+}
+
+int hasedge;
+int curindex = nrows(rays);
+int rayindex;
+for (i=1; i<=ftotal; i++)
+{
+  hasedge=0;
+  rayindex = curindex+1;
+  if (i==ftotal-1) 
+  {
+    rayindex = n+2;
+  }
+  if (i==2^n-1)
+  {
+    rayindex = 2*n;
+  }
+  for (j=1; j<=n+1; j++)
+  {
+    if (fa[i,j]!=0)
+    {
+      hasedge=1;    
+      if ((i==ftotal-1)&&(j==2))
+      {
+      }
+      else {
+      if ((i==2^n-1)&&(j==n))
+      {
+      }
+      else
+      {
+        ee = rayindex, j, fa[i,j]/2;
+        edges = myconcat(edges,ee);
+      }
+      }
+      if ((fa[i,j] mod 2)!=0) {print("ERROR: FRACTIONAL MULTIPLICITY"); print(i); print(j);}
+    }
+  }
+  if (hasedge==1)
+  {
+    if (i==ftotal-1) 
+    {
+      edges[n-1,3] = edges[n-1,3] + fa[i,2]/2;
+    }
+    else {
+    if (i==2^n-1)
+    {
+      edges[2*n-3,3] = edges[2*n-3,3] + fa[i,n]/2;
+    }
+    else 
+    {
+      vv = dectobin(i,n+1);
+      rays = myconcat(rays, vv);  // Fa
+      curindex=curindex+1;
+    }
+    }
+  }
+}
+
+return(list(rays,edges));
+}
+else
+{
+return(list(0,0));
+}
+}
+
+
+
+proc grobsec(intvec exps)
+{
+int haserror =0;
+int n = size(exps)-1;
+int i,j,k;
+
+if (size(exps)<5) 
+{
+haserror =1;
+print("ERROR: There are less than 5 exponents.");
+}
+if (exps[1]!=0) 
+{
+haserror =1;
+print("ERROR: First exponent is non-zero.");
+}
+if (gcdlist(exps)!=1)
+{
+haserror =1;
+print("ERROR: The gcd of the exponents is not 1.");
+}
+int hasincerror=0;
+for (i=1; i<=n; i++)
+{
+if ((exps[i+1] <= exps[i])&&(hasincerror==0))
+{
+haserror=1;
+hasincerror=1;
+print("ERROR: The exponents are not strictly increasing.");
+}
+}
+
+if (haserror==0)
+{
+intmat vv[1][n+1];
+vv[1,1] =1;
+list raylabels = "D0";
+intmat rays[1][n+1] = vv;  // D0
+vv[1,1] =0;
+
+for (i = 1; i <= n; i++)
+{
+  vv[1,i+1] = 1;
+  raylabels = insert(raylabels, "D"+string(i),size(raylabels));
+  rays = myconcat(rays, vv); // Di
+  vv[1,i+1] = 0;
+}
+
+for (i =1; i < n; i++)
+{
+  for (j = i; j <= n; j++)
+  {
+    vv[1,j+1] = exps[i+1];
+  }
+  raylabels = insert(raylabels, "E"+string(i),size(raylabels));
+  rays = myconcat(rays, vv);   // Ei
+}
+
+intvec dualexps = exps[n+1]:(n+1)-exps;
+intvec aa, bb; 
+intmat ee[1][3];
+aa = exps[2];
+bb = dualexps[3..n];
+list edgelabels = "E1";
+intmat edges[1][3] = n+2, n+3, gcdlist(aa)*gcdlist(bb);
+for (i=2; i<=n-2;i++)
+{
+  aa = exps[2..i+1];
+  bb = dualexps[i+2..n];
+  ee = n+i+1, n+i+2, gcdlist(aa)*gcdlist(bb); 
+  edgelabels = insert(edgelabels, "E"+string(i),size(edgelabels));
+  edges = myconcat(edges, ee);
+}
+
+intvec cc, dd;
+// debug
+//intvec expsj;
+//intvec aa2,bb2,cc2,dd2;
+//int ans1, ans2;
+for (i=1; i<=n-1;i++)
+{ 
+// debug
+//expsj = exps[i+1]:(n+1)-exps;
+  if (i==1)
+  {
+    aa = 0;
+    bb = 0;
+// debug
+//aa2 = 0;
+//bb2 = 0;
+  }
+  else
+  {
+    aa = exps[2..i];
+    bb = dualexps[i+1..n];
+// debug
+//aa2 = exps[2..i];
+//bb2 = expsj[i+2..n+1];
+  }
+  if (i==n-1)
+  {
+    cc = 0;
+    dd = 0;
+// debug
+//cc2 = 0;
+//dd2 = 0;
+  }
+  else
+  {
+    cc = exps[2..i+1];
+    dd = dualexps[i+2..n];
+// debug
+//cc2 = expsj[1..i];
+//dd2 = exps[i+2..n+1];
+  }
+  ee = i+1, n+i+1, gcd(gcdlist(aa)*gcdlist(bb), gcdlist(cc)*gcdlist(dd)); 
+  edgelabels = insert(edgelabels, "D"+string(i),size(edgelabels));  
+  edges = myconcat(edges, ee);
+// debug
+//ans1 = gcd(gcdlist(aa)*gcdlist(bb), gcdlist(cc)*gcdlist(dd));
+//ans2 = gcd(gcdlist(aa2)*gcdlist(bb2), gcdlist(cc2)*gcdlist(dd2));
+//if (ans1!=ans2)
+//{ 
+//  print("There is a discrepancy in the calculation of multiplicities.");
+//}
+}
+
+int ftotal = 2^(n+1)-1;
+intmat fa[ftotal][n+1];
+intvec whatsleft;
+int findex;
+int firstnum;
+int isfirstnum;
+int er;
+int bgcd;
+ring R = 0, x, dp;
+
+// run through all arithmetic differences r
+// for each exponent exps[i],
+//   pick out all other exponents equiv to exps[i] mod r.
+//   remove the indices of these other exponents from whatsleft. 
+//   convert the incidence vector into binary
+
+for (int r=2; r<=exps[n+1]; r++)
+{
+  whatsleft = 1:(n+1);
+  for (i=1; i<=n+1; i++)
+  {
+    aa = 0:(n+1);
+    if (whatsleft[i] == 1)
+    {
+      aa[i] = 1;
+      for (j=i+1; j<=n+1; j++)
+      {
+        if (((exps[j]-exps[i]) mod r)==0)
+        {
+          aa[j] = 1;
+        }
+      }
+      findex = bintodec(aa);
+
+      // if the vector aa is not all ones or 1 one
+      // this computes the multiplicities
+
+      if ((findex!=ftotal)&&(sum(aa)!=1))    
+      {
+        bb = 0;
+        if (sum(aa) < n)
+        {
+          isfirstnum=1;
+          for (j=1; j<=n+1; j++)
+          {
+            if (aa[j] == 0)
+            { 
+              if (isfirstnum == 1)
+              { 
+                isfirstnum = 0;
+                firstnum = exps[j];
+              }
+              else
+              {
+                bb = bb, exps[j]-firstnum;
+              }
+            }
+          } 
+        }
+        er = int(euler(r));
+        bgcd = gcdlist(bb);
+        for (k=1; k<=n+1; k++)
+        {
+          if (aa[k]==1)
+          {
+            aa[k]=2;
+            cc = 0;
+            if (sum(aa) > 1)
+            {
+              isfirstnum=1;
+              for (j=1; j<=n+1; j++)
+              {
+                if (aa[j] == 1) 
+                {
+                  if (isfirstnum == 1)
+                  {
+                    isfirstnum = 0;
+                    firstnum = exps[j];
+                  }
+                  else
+                  {
+                    cc = cc, exps[j]-firstnum;
+                  }
+                }
+              }    
+            }
+            fa[findex,k] = fa[findex,k] + er*gcd(bgcd,gcdlist(cc));
+            aa[k]=1;
+          }
+        }
+      }
+      whatsleft = whatsleft-aa;
+    }
+  }
+}
+
+int hasedge;
+int curindex = nrows(rays);
+int rayindex;
+for (i=1; i<=ftotal; i++)
+{
+  hasedge=0;
+  rayindex = curindex+1;
+  if (i==ftotal-1) 
+  {
+    rayindex = n+2;
+  }
+  if (i==2^n-1)
+  {
+    rayindex = 2*n;
+  }
+  for (j=1; j<=n+1; j++)
+  {
+    if (fa[i,j]!=0)
+    {
+      hasedge=1;    
+      if ((i==ftotal-1)&&(j==2))
+      {
+        edgelabels[n-1]=edgelabels[n-1]+"/F"+string(dectobin(i,n+1))+":"+string(j-1);
+        edges[n-1,3] = edges[n-1,3] + fa[i,2]/2;
+      }
+      else {
+      if ((i==2^n-1)&&(j==n))
+      {
+        edgelabels[2*n-3]=edgelabels[2*n-3]+"/F"+string(dectobin(i,n+1))+":"+string(j-1);
+        edges[2*n-3,3] = edges[2*n-3,3] + fa[i,n]/2;
+      }
+      else
+      {
+        ee = rayindex, j, fa[i,j]/2;
+        edgelabels = insert(edgelabels, "F"+string(dectobin(i,n+1))+":"+string(j-1),size(edgelabels));  
+        edges = myconcat(edges,ee);
+      }
+      }
+      if ((fa[i,j] mod 2)!=0) {print("ERROR: FRACTIONAL MULTIPLICITY"); print(i); print(j);}
+    }
+  }
+  if (hasedge==1)
+  {
+    vv = dectobin(i,n+1);
+    if (i==ftotal-1) 
+    {
+      raylabels[n+2]=raylabels[n+2]+"/F"+string(vv);
+    }
+    else {
+    if (i==2^n-1)
+    {
+      raylabels[2*n]=raylabels[2*n]+"/F"+string(vv);
+    }
+    else 
+    {
+      raylabels = insert(raylabels, "F"+string(vv),size(raylabels));
+      rays = myconcat(rays, vv);  // Fa
+      curindex=curindex+1;
+    }
+    }
+  }
+}
+
+list intersectlist;
+
+if (n==5)
+{
+// Theorem 6.13 (i)
+if ((exps[5]+exps[2])==(exps[3]+exps[4]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F0,0,0,1,1,1:5", "F1,1,0,1,0,0:0", 2);
+ intersectlist=addintersection(intersectlist, edgelabels, "F0,0,1,0,1,1:5", "F1,1,1,0,0,0:0", 2);};
+
+// Theorem 6.13 (ii)
+if ((exps[2]+exps[6])==(exps[5]+exps[3]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,1,1,1,0,0:0", "F0,0,1,1,0,1:3", 2);};
+if ((exps[5]+exps[1])==(exps[2]+exps[4]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F0,0,1,1,1,1:5", "F1,0,1,1,0,0:2", 2);};
+if ((exps[2]+exps[6])==(exps[4]+exps[3]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,1,1,0,1,0:0", "F0,0,1,0,1,1:4", 2);};
+if ((exps[5]+exps[1])==(exps[3]+exps[4]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F0,1,0,1,1,1:5", "F1,1,0,1,0,0:1", 2);};
+if ((exps[2]+exps[5])==(exps[4]+exps[3]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,1,1,0,0,1:0", "F0,0,1,0,1,1:5", 2);};
+if ((exps[5]+exps[2])==(exps[3]+exps[4]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,0,0,1,1,1:5", "F1,1,0,1,0,0:0", 2);};
+if ((exps[2]+exps[6])==(exps[3]+exps[4]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,1,0,1,1,0:0", "F0,0,0,1,1,1:4", 2);};
+if ((exps[5]+exps[1])==(exps[4]+exps[3]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F0,1,1,0,1,1:5", "F1,1,1,0,0,0:1", 2);};
+if ((exps[2]+exps[5])==(exps[3]+exps[4]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,1,0,1,0,1:0", "F0,0,0,1,1,1:5", 2);};
+if ((exps[5]+exps[2])==(exps[4]+exps[3]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,0,1,0,1,1:5", "F1,1,1,0,0,0:0", 2);};
+
+// Theorem 6.13(iii)
+if ((exps[2]+exps[6])==(exps[5]+exps[3]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,1,1,1,0,0:0", "F1,0,1,1,0,1:3", 2);};
+if ((exps[5]+exps[1])==(exps[2]+exps[4]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F0,0,1,1,1,1:5", "F1,0,1,1,0,1:2", 2);};
+if ((exps[2]+exps[6])==(exps[4]+exps[3]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,1,1,0,1,0:0", "F1,0,1,0,1,1:4", 2);};
+if ((exps[5]+exps[1])==(exps[3]+exps[4]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F0,1,0,1,1,1:5", "F1,1,0,1,0,1:1", 2);};
+if ((exps[2]+exps[5])==(exps[4]+exps[3]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,1,1,0,0,1:0", "F1,0,1,0,1,1:5", 2);};
+if ((exps[5]+exps[2])==(exps[3]+exps[4]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,0,0,1,1,1:5", "F1,1,0,1,0,1:0", 2);};
+if ((exps[1]+exps[6])==(exps[5]+exps[3]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,1,1,1,0,0:1", "F0,1,1,1,0,1:3", 2);};
+if ((exps[6]+exps[1])==(exps[2]+exps[4]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F0,0,1,1,1,1:4", "F1,0,1,1,1,0:2", 2);};
+if ((exps[1]+exps[6])==(exps[4]+exps[3]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,1,1,0,1,0:1", "F0,1,1,0,1,1:4", 2);};
+if ((exps[6]+exps[1])==(exps[3]+exps[4]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F0,1,0,1,1,1:4", "F1,1,0,1,1,0:1", 2);};
+if ((exps[1]+exps[5])==(exps[4]+exps[3]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,1,1,0,0,1:1", "F0,1,1,0,1,1:5", 2);};
+if ((exps[6]+exps[2])==(exps[3]+exps[4]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,0,0,1,1,1:4", "F1,1,0,1,1,0:0", 2);};
+}
+
+// Lemma 7.3
+if ((n==4)&&((exps[5]-exps[3])*exps[2]==(exps[5]-exps[4])*exps[3]))
+{intersectlist=addintersection(intersectlist, edgelabels, "D2", "F0,1,1,1,0:2", 2);};
+if (exps[4]==(exps[2]+exps[3]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,1,0,0,1:4", "F0,1,0,1,1:4", 2);
+ intersectlist=addintersection(intersectlist, edgelabels, "F1,0,1,0,1:4", "F0,0,1,1,1:4", 2);};
+if (exps[5]==(exps[2]+exps[3]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,1,0,1,0:3", "F0,1,0,1,1:3", 2);
+ intersectlist=addintersection(intersectlist, edgelabels, "F1,0,1,1,0:3", "F0,0,1,1,1:3", 2);};
+if (exps[5]==(exps[2]+exps[4]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,1,1,0,0:2", "F0,1,1,0,1:2", 2);
+ intersectlist=addintersection(intersectlist, edgelabels, "F1,0,1,1,0:2", "F0,0,1,1,1:2", 2);};
+if (exps[5]==(exps[3]+exps[4]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,1,1,0,0:1", "F0,1,1,0,1:1", 2);
+ intersectlist=addintersection(intersectlist, edgelabels, "F1,1,0,1,0:1", "F0,1,0,1,1:1", 2);};
+if ((exps[2]+exps[5])==(exps[4]+exps[3]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,0,1,0,1:0", "F1,1,1,0,0:0", 2);
+ intersectlist=addintersection(intersectlist, edgelabels, "F1,0,0,1,1:0", "F1,1,0,1,0:0", 2);};
+
+if (n==4)
+{
+// Lemma 7.4(I,i)
+intersectlist=addintersection(intersectlist, edgelabels, "F0,0,1,1,0:3", "F1,1,1,1,0:0", 1);
+intersectlist=addintersection(intersectlist, edgelabels, "F0,0,1,0,1:4", "F1,1,1,0,1:0", 1);
+intersectlist=addintersection(intersectlist, edgelabels, "F0,0,0,1,1:4", "F1,1,0,1,1:0", 1);
+intersectlist=addintersection(intersectlist, edgelabels, "F1,1,0,0,0:0", "F1,1,0,1,1:4", 1);
+intersectlist=addintersection(intersectlist, edgelabels, "F1,0,1,0,0:0", "F1,0,1,1,1:4", 1);
+intersectlist=addintersection(intersectlist, edgelabels, "F0,1,1,0,0:1", "F0,1,1,1,1:4", 1);
+
+// Lemma 7.4(I,ii)
+if ((exps[3]+exps[4])>=(exps[2]+exps[5]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F0,0,1,0,1:2", "F1,1,1,0,0:0", 1);
+ intersectlist=addintersection(intersectlist, edgelabels, "F0,0,0,1,1:3", "F1,1,0,1,0:0", 1);};
+ intersectlist=addintersection(intersectlist, edgelabels, "F0,0,0,1,1:4", "F1,1,0,0,1:0", 1);
+if ((exps[2]+exps[3])<=exps[4])
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,0,1,0,0:2", "F0,0,1,1,1:4", 1);
+ intersectlist=addintersection(intersectlist, edgelabels, "F1,1,0,0,0:1", "F0,1,0,1,1:4", 1);};
+ intersectlist=addintersection(intersectlist, edgelabels, "F1,1,0,0,0:0", "F1,0,0,1,1:4", 1);
+
+// Lemma 7.4(I,iii)
+if ((exps[2]+exps[5])>=(exps[3]+exps[4]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F0,0,0,1,1:4", "F1,1,0,1,0:0", 1);
+ intersectlist=addintersection(intersectlist, edgelabels, "F0,0,1,0,1:4", "F1,1,1,0,0:0", 1);};
+if ((exps[2]+exps[3])>=exps[4])
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,1,0,0,0:0", "F0,1,0,1,1:4", 1);
+ intersectlist=addintersection(intersectlist, edgelabels, "F1,0,1,0,0:0", "F0,0,1,1,1:4", 1);};
+
+// Lemma 7.4(I,iv)
+intersectlist=addintersection(intersectlist, edgelabels, "F0,1,1,1,1:3", "F0,1,1,1,0:1", 1);
+intersectlist=addintersection(intersectlist, edgelabels, "F1,1,1,1,0:1", "F0,1,1,1,0:3", 1);
+intersectlist=addintersection(intersectlist, edgelabels, "F1,0,1,1,1:3", "F1,0,1,1,0:0", 1);
+intersectlist=addintersection(intersectlist, edgelabels, "F1,1,1,0,1:1", "F0,1,1,0,1:4", 1);
+intersectlist=addintersection(intersectlist, edgelabels, "F1,1,0,1,1:3", "F1,1,0,1,0:0", 1);
+intersectlist=addintersection(intersectlist, edgelabels, "F1,1,0,1,1:1", "F0,1,0,1,1:4", 1);
+intersectlist=addintersection(intersectlist, edgelabels, "F1,1,1,0,1:2", "F1,1,1,0,0:0", 1);
+intersectlist=addintersection(intersectlist, edgelabels, "F1,0,1,1,1:2", "F0,0,1,1,1:4", 1);
+intersectlist=addintersection(intersectlist, edgelabels, "F0,1,1,1,1:4", "F0,1,1,0,1:1", 1);
+intersectlist=addintersection(intersectlist, edgelabels, "F1,1,1,1,0:0", "F1,0,1,1,0:3", 1);
+intersectlist=addintersection(intersectlist, edgelabels, "F1,0,1,1,1:4", "F1,0,1,0,1:0", 1);
+intersectlist=addintersection(intersectlist, edgelabels, "F1,1,1,0,1:0", "F1,0,1,0,1:4", 1);
+intersectlist=addintersection(intersectlist, edgelabels, "F1,1,0,1,1:4", "F1,1,0,0,1:0", 1);
+intersectlist=addintersection(intersectlist, edgelabels, "F1,1,0,1,1:0", "F1,0,0,1,1:4", 1);
+
+// Lemma 7.4(I,v)
+if ((exps[3]+exps[4])<=(exps[5]+exps[2]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,0,1,0,1:4", "F1,1,1,0,0:0", 1);};
+if ((exps[3]+exps[2])>=(0+exps[4]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,0,1,0,1:0", "F0,0,1,1,1:4", 1);};
+if ((exps[3]+exps[4])<=(exps[5]+0))
+{intersectlist=addintersection(intersectlist, edgelabels, "F0,1,1,0,1:4", "F1,1,1,0,0:1", 1);};
+if ((exps[3]+exps[2])>=(0+exps[5]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,0,1,1,0:0", "F0,0,1,1,1:3", 1);};
+if ((exps[4]+exps[3])<=(exps[5]+exps[2]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,0,0,1,1:4", "F1,1,0,1,0:0", 1);};
+if ((exps[2]+exps[3])>=(0+exps[4]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,1,0,0,1:0", "F0,1,0,1,1:4", 1);};
+if ((exps[4]+exps[3])<=(exps[5]+0))
+{intersectlist=addintersection(intersectlist, edgelabels, "F0,1,0,1,1:4", "F1,1,0,1,0:1", 1);};
+if ((exps[2]+exps[3])>=(0+exps[5]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,1,0,1,0:0", "F0,1,0,1,1:3", 1);};
+if ((exps[4]+exps[2])<=(exps[5]+0))
+{intersectlist=addintersection(intersectlist, edgelabels, "F0,0,1,1,1:4", "F1,0,1,1,0:2", 1);};
+if ((exps[2]+exps[4])>=(0+exps[5]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,1,1,0,0:0", "F0,1,1,0,1:2", 1);};
+
+// Lemma 7.4(I,vi)
+if (((exps[4]+0)<=(exps[5]+exps[2]))&&((exps[5]+exps[2])<=(exps[4]+exps[3])))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,0,1,0,1:2", "F1,1,1,0,0:0", 1);};
+if (((exps[4]+exps[2])<=(exps[5]+0))&&((exps[5]+0)<=(exps[4]+exps[3])))
+{intersectlist=addintersection(intersectlist, edgelabels, "F0,1,1,0,1:2", "F1,1,1,0,0:1", 1);};
+if (((exps[3]+0)<=(exps[5]+exps[2]))&&((exps[5]+exps[2])<=(exps[3]+exps[4])))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,0,0,1,1:3", "F1,1,0,1,0:0", 1);};
+if (((exps[3]+exps[2])<=(exps[5]+0))&&((exps[5]+0)<=(exps[3]+exps[4])))
+{intersectlist=addintersection(intersectlist, edgelabels, "F0,1,0,1,1:3", "F1,1,0,1,0:1", 1);};
+if (((exps[2]+exps[3])<=(exps[5]+0))&&((exps[5]+0)<=(exps[2]+exps[4])))
+{intersectlist=addintersection(intersectlist, edgelabels, "F0,0,1,1,1:3", "F1,0,1,1,0:2", 1);};
+if (((exps[3]+0)<=(exps[4]+exps[2]))&&((exps[4]+exps[2])<=(exps[3]+exps[5])))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,0,0,1,1:4", "F1,1,0,0,1:0", 1);};
+if (((exps[3]+exps[2])<=(exps[4]+0))&&((exps[4]+0)<=(exps[3]+exps[5])))
+{intersectlist=addintersection(intersectlist, edgelabels, "F0,1,0,1,1:4", "F1,1,0,0,1:1", 1);};
+if (((exps[2]+exps[3])<=(exps[4]+0))&&((exps[4]+0)<=(exps[2]+exps[5])))
+{intersectlist=addintersection(intersectlist, edgelabels, "F0,0,1,1,1:4", "F1,0,1,0,1:2", 1);};
+
+// Lemma 7.4(I,vii)
+if ((exps[2]+exps[5])<=(exps[4]+exps[3]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,1,1,0,0:0", "F0,0,1,0,1:2", 1);};
+if ((exps[4]+0)>=(exps[2]+exps[3]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F0,0,1,1,1:4", "F1,0,1,0,0:2", 1);};
+if ((exps[2]+exps[5])<=(exps[3]+exps[4]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,1,0,1,0:0", "F0,0,0,1,1:3", 1);};
+if ((exps[4]+0)>=(exps[3]+exps[2]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F0,1,0,1,1:4", "F1,1,0,0,0:1", 1);};
+if ((exps[2]+exps[4])<=(exps[3]+exps[5]))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,1,0,0,1:0", "F0,0,0,1,1:4", 1);};
+if ((exps[4]+exps[2])>=(exps[3]+0))
+{intersectlist=addintersection(intersectlist, edgelabels, "F1,0,0,1,1:4", "F1,1,0,0,0:0", 1);};
+
+// Lemma 7.4(I,viii)
+intersectlist=addintersection(intersectlist, edgelabels, "F1,1,1,0,1:0", "F0,0,1,1,1:4", 1);
+intersectlist=addintersection(intersectlist, edgelabels, "F1,0,1,1,1:4", "F1,1,1,0,0:0", 1);
+intersectlist=addintersection(intersectlist, edgelabels, "F1,1,1,1,0:0", "F0,0,1,1,1:3", 1);
+intersectlist=addintersection(intersectlist, edgelabels, "F0,1,1,1,1:4", "F1,1,1,0,0:1", 1);
+
+// Lemma 7.4(I,ix)
+intersectlist=addintersection(intersectlist, edgelabels, "F1,0,1,1,1:4", "F1,1,1,0,1:0", 1);
+intersectlist=addintersection(intersectlist, edgelabels, "F0,1,1,1,1:4", "F1,1,1,0,1:1", 1);
+intersectlist=addintersection(intersectlist, edgelabels, "F1,0,1,1,1:3", "F1,1,1,1,0:0", 1);
+intersectlist=addintersection(intersectlist, edgelabels, "F0,1,1,1,1:3", "F1,1,1,1,0:1", 1);
+
+// Lemma 7.4(I,x)
+intersectlist=addintersection(intersectlist, edgelabels, "F0,0,1,1,1:4", "F1,1,1,0,0:0", 1);
+
+// Lemma 7.4(I,xi)
+intersectlist=addintersection(intersectlist, edgelabels, "F0,0,0,1,1:4", "F1,1,0,0,0:0", 1);
+
+// Theorem 7.4(II)
+//
+if (exps[2]*(exps[5]-exps[3])>=exps[3]*(exps[5]-exps[4]))
+{intersectlist=addintersection(intersectlist, edgelabels, "E2", "F0,1,1,1,0:2", 1);};
+if (exps[4]*(exps[3]-exps[2])>=exps[3]*(exps[5]-exps[2]))
+{intersectlist=addintersection(intersectlist, edgelabels, "E2", "F0,1,1,0,1:2", 1);};
+if (exps[5]*(exps[3]-exps[2])>=exps[3]*(exps[4]-exps[2]))
+{intersectlist=addintersection(intersectlist, edgelabels, "E1", "F0,1,1,1,0:2", 1);};
+if (exps[4]*(exps[3]-exps[2])>=exps[3]*(exps[5]-exps[2]))
+{intersectlist=addintersection(intersectlist, edgelabels, "E1", "F1,0,1,1,0:2", 1);};
+}
+
+return(list(rays,edges,raylabels,edgelabels,intersectlist));
+}
+else
+{
+list emptylist;
+return(list(0,0,emptylist,emptylist,emptylist));
+}
+}
+
+
+proc addintersection(list intersectlist, list edgelabels, string edge1, string edge2, int intersectdim)
+{
+  int i1 = findlabel(edgelabels,edge1);
+  int i2 = findlabel(edgelabels,edge2);
+  if (i1 > i2) {int itemp=i2; i2=i1; i1=itemp;};
+  if ((i1>0)&&(i2>0))
+  {intersectlist = insert(intersectlist,edgelabels[i1]+";"+edgelabels[i2]+";"+string(intersectdim));};
+  return(intersectlist);
+}
+
+
+
+proc findlabel(list labels, string mylabel)
+{
+for (int i=1; i<=size(labels); i++)
+{
+  if (find(labels[i],mylabel)>0)
+  {return(i);};
+}
+return(0);
+}
+
+
+
+proc intersectcones_polymake(intvec exps, list gph)
+{
+  intmat rays = gph[1];
+  intmat edges = gph[2];
+  int n = ncols(rays);
+  int m = nrows(edges);
+  intmat iprofile[m][m];
+  int edge1;
+  int edge2;
+  int i,j;
+  int quietsys;
+  intmat nf;
+  string facets;
+  string spineq;
+  string sp;
+  string vertices;
+  intmat vv;
+  string weirdcones;
+  string weirdfile;
+  intvec nicev;
+// 1,<m
+// edge1+1 m
+
+// filename
+weirdfile = "tropsec";
+for (i=1; i<=n; i++)
+{
+  weirdfile = weirdfile + string(exps[i]);
+}
+weirdfile = weirdfile +".txt";
+
+// printing exponents
+weirdcones = "exponents: 
+";
+for (i=1; i<=n; i++)
+{
+  weirdcones = weirdcones + string(exps[i])+ " ";
+}
+
+// printing vertices
+weirdcones = weirdcones + "
+
+vertices:
+";
+for (i=1; i<=nrows(rays); i++)
+{
+  weirdcones = weirdcones + string(i) + ". ";
+  for (j=1; j<=n; j++)
+  {
+    weirdcones = weirdcones + string(rays[i,j])+ " ";
+  }
+  weirdcones = weirdcones + "
+";
+}
+
+// printing edges and multiplicities
+weirdcones = weirdcones + "
+edges and multiplicites:
+";
+for (i=1; i<=nrows(edges); i++)
+{
+  weirdcones = weirdcones + string(i) + ". ";
+  for (j=1; j<=3; j++)
+  {
+    weirdcones = weirdcones + string(edges[i,j])+ " ";
+  }
+  weirdcones = weirdcones + "
+";
+}
+weirdcones = weirdcones + "
+";
+
+write(":w "+weirdfile, weirdcones);
+
+
+// running through all pairs of edges which do not share an endpoint
+for (edge1=1; edge1<m; edge1++)
+{
+for (edge2=edge1+1; edge2<=m; edge2++)
+{
+
+if ((edges[edge1,1]!=edges[edge2,1])&&
+    (edges[edge1,1]!=edges[edge2,2])&&
+    (edges[edge1,2]!=edges[edge2,1])&&
+    (edges[edge1,2]!=edges[edge2,2]))
+{
+print("edge1: "+string(edge1)+", edge2: "+string(edge2));
+
+
+ 
+  sp="_application polytope
+_version 2.2
+_type RationalPolytope
+
+POINTS
+1 ";
+  for (j=3;j<=n;j++)
+  {
+    sp=sp+string(0)+" ";
+  }
+  sp=sp+"
+0 ";
+  nicev = rays[edges[edge1,1],1..n];
+  nicev = nicerep(nicev,exps);
+  for (j=3;j<=n;j++)
+  {
+    sp=sp+string(nicev[j])+" ";
+  }
+  sp=sp+"
+0 ";
+  nicev = rays[edges[edge1,2],1..n];
+  nicev = nicerep(nicev,exps);
+  for (j=3;j<=n;j++)
+  {
+    sp=sp+string(nicev[j])+" ";
+  }
+  sp=sp+"
+";
+  write(":w /tmp/polytope1.polymake",sp);
+
+sp="_application polytope
+_version 2.2
+_type RationalPolytope
+
+POINTS
+1 ";
+  for (j=3;j<=n;j++)
+  {
+    sp=sp+string(0)+" ";
+  }
+  sp=sp+"
+0 ";
+  nicev = rays[edges[edge2,1],1..n];
+  nicev = nicerep(nicev,exps);
+  for (j=3;j<=n;j++)
+  {
+    sp=sp+string(nicev[j])+" ";
+  }
+  sp=sp+"
+0 ";
+  nicev = rays[edges[edge2,2],1..n];
+  nicev = nicerep(nicev,exps);
+  for (j=3;j<=n;j++)
+  {
+    sp=sp+string(nicev[j])+" ";
+  }
+  sp=sp+"
+";
+  write(":w /tmp/polytope2.polymake",sp);
+
+  quietsys=system("sh","cd /tmp; polymake polytope1.polymake FACETS > polytope1.output");
+  facets=read("/tmp/polytope1.output");
+  quietsys=system("sh","/bin/rm /tmp/polytope1.output");
+  nf=polymakeToIntmat(facets,"projective");
+
+  spineq="_application polytope
+_version 2.2
+_type RationalPolytope
+
+INEQUALITIES
+";
+  for (i=1;i<=nrows(nf);i++)
+  {
+    for (j=1;j<=n-1;j++)
+    {
+      spineq=spineq+string(nf[i,j])+" ";
+    }
+    spineq=spineq+"
+";
+  }  
+
+  quietsys=system("sh","cd /tmp; polymake polytope2.polymake FACETS > polytope2.output");
+  facets=read("/tmp/polytope2.output");
+  quietsys=system("sh","/bin/rm /tmp/polytope2.output");
+  nf=polymakeToIntmat(facets,"projective");
+
+  for (i=1;i<=nrows(nf);i++)
+  {
+    for (j=1;j<=n-1;j++)
+    {
+      spineq=spineq+string(nf[i,j])+" ";
+    }
+    spineq=spineq+"
+";
+  }  
+
+  spineq = spineq + "
+EQUATIONS
+";
+  quietsys=system("sh","cd /tmp; polymake polytope1.polymake AFFINE_HULL > polytope1.output");
+  facets=read("/tmp/polytope1.output");
+  quietsys=system("sh","/bin/rm /tmp/polytope1.output");
+  nf=polymakeToIntmat(facets,"projective");
+print("nf1");
+print(nf);
+  for (i=1;i<=nrows(nf);i++)
+  {
+    for (j=1;j<=n-1;j++)
+    {
+      spineq=spineq+string(nf[i,j])+" ";
+    }
+    spineq=spineq+"
+";
+  }  
+
+  quietsys=system("sh","cd /tmp; polymake polytope2.polymake AFFINE_HULL > polytope2.output");
+  facets=read("/tmp/polytope2.output");
+  quietsys=system("sh","/bin/rm /tmp/polytope2.output");
+  nf=polymakeToIntmat(facets,"projective");
+print("nf2");
+print(nf);
+  for (i=1;i<=nrows(nf);i++)
+  {
+    for (j=1;j<=n-1;j++)
+    {
+      spineq=spineq+string(nf[i,j])+" ";
+    }
+    spineq=spineq+"
+";
+  }  
+print("nf done");
+
+  write(":w /tmp/polytope.polymake",spineq);
+  quietsys=system("sh","cd /tmp; polymake polytope.polymake VERTICES > polytope.output");
+  vertices=read("/tmp/polytope.output");
+//  quietsys=system("sh","/bin/rm /tmp/polytope.output");
+  vv=polymakeToIntmat(vertices,"projective");
+
+  if (nrows(vv)>1) 
+  {
+    weirdcones = "";
+    print("edge1: "+string(edge1)+", edge2: "+string(edge2));
+    print(vv);
+    weirdcones = weirdcones + "
+edge1: "+string(edge1)+" - "+string(edges[edge1,1])+", "+string(edges[edge1,2])+"
+";
+    for (j=1; j<=n; j++)
+    {
+      weirdcones = weirdcones + string(rays[edges[edge1,1],j])+ " ";
+    }
+    weirdcones = weirdcones + "
+";
+    for (j=1; j<=n; j++)
+    {
+      weirdcones = weirdcones + string(rays[edges[edge1,2],j])+ " ";
+    }
+    weirdcones = weirdcones + "
+edge2: "+string(edge2)+" - "+string(edges[edge2,1])+", "+string(edges[edge2,2])+"
+";
+    for (j=1; j<=n; j++)
+    {
+      weirdcones = weirdcones + string(rays[edges[edge2,1],j])+ " ";
+    }
+    weirdcones = weirdcones + "
+";
+    for (j=1; j<=n; j++)
+    {
+      weirdcones = weirdcones + string(rays[edges[edge2,2],j])+ " ";
+    }
+    weirdcones = weirdcones + "
+intersection cone generated by:
+";
+    for (i=1; i<=nrows(vv); i++)
+    {
+      weirdcones = weirdcones + string(vv[i,1])+ " 0 0 ";
+      for (j=2; j<=n-1; j++)
+      {
+        weirdcones = weirdcones + string(vv[i,j])+ " ";
+      }
+      weirdcones = weirdcones + "
+";
+    }
+    write(":a "+weirdfile, weirdcones);   
+    iprofile[edge1,edge2]=nrows(vv);
+    iprofile[edge2,edge1]=nrows(vv);
+  }
+
+}
+}
+}
+
+write(":a "+weirdfile, "FINISHED");
+return(iprofile);
+
+}
+
+
+
+proc intersectcones(intvec exps, list gph)
+{
+  intmat rays = gph[1];
+  intmat edges = gph[2];
+  int n = ncols(rays);
+  int m = nrows(edges);
+  intmat iprofile[m][m];
+  int edge1;
+  int edge2;
+  int i,j;
+  int idim;
+  intvec ray1;
+  intvec ray2;
+  intvec niceray11;
+  intvec niceray12;
+  intvec niceray13;
+  intvec niceray21;
+  intvec niceray22;
+  intvec niceray23;
+  intvec ns;
+  string intersectstr;
+  string weirdcones;
+  string weirdfile;
+  string ret = "
+";
+  intvec nicev;
+  ring R = 0, x, dp;
+  matrix mm[4][3];
+// 1,<m
+// edge1+1 m
+
+if (n!=5) 
+{
+  print("The procedure 'intersectcones' only works for n=4.");
+}
+else
+{
+// filename
+weirdfile = "newtropsec";
+for (i=1; i<=n; i++) {weirdfile = weirdfile+string(exps[i]);};
+weirdfile = weirdfile +".txt";
+
+// printing exponents
+weirdcones = "exponents:"+ret;
+for (i=1; i<=n; i++) {weirdcones = weirdcones+string(exps[i])+" ";};
+
+// printing vertices
+weirdcones = weirdcones+ret+ret+"vertices:"+ret;
+for (i=1; i<=nrows(rays); i++)
+{
+  weirdcones = weirdcones+string(i)+". ";
+  for (j=1; j<=n; j++) {weirdcones = weirdcones+string(rays[i,j])+" ";};
+  weirdcones = weirdcones+ret;
+}
+
+// printing edges and multiplicities
+weirdcones = weirdcones+ret+"edges and multiplicites:"+ret;
+for (i=1; i<=nrows(edges); i++)
+{
+  weirdcones = weirdcones+string(i)+". ";
+  for (j=1; j<=3; j++) {weirdcones = weirdcones+string(edges[i,j])+" ";};
+  weirdcones = weirdcones+ret;
+}
+weirdcones = weirdcones+ret;
+
+write(":w "+weirdfile, weirdcones);
+
+
+// running through all pairs of edges which do not share an endpoint
+for (edge1=1; edge1<m; edge1++)
+{
+for (edge2=edge1+1; edge2<=m; edge2++)
+{
+
+//print("edge1: "+string(edge1)+", edge2: "+string(edge2));
+
+// check that both cones are 2 dimensional. This only works for n=5.
+ray1 = nicerep(intvec(rays[edges[edge1,1],1..n]),exps);
+ray2 = nicerep(intvec(rays[edges[edge1,2],1..n]),exps);
+niceray11 = ray1[3..n];
+niceray12 = ray2[3..n];
+niceray13 = crossprod(niceray11,niceray12);
+if (niceray13 == 0:(n-2)) {
+print("ERROR: Edge 1 is not 2-dimensional!");
+}
+ray1 = nicerep(intvec(rays[edges[edge2,1],1..n]),exps);
+ray2 = nicerep(intvec(rays[edges[edge2,2],1..n]),exps);
+niceray21 = ray1[3..n];
+niceray22 = ray2[3..n];
+niceray23 = crossprod(niceray21,niceray22);
+if (niceray23 == 0:(n-2)) {
+print("ERROR: Edge 2 is not 2-dimensional!");
+}
+
+intersectstr = "";
+mm = niceray11,niceray12,niceray21,niceray22;
+if (mat_rk(mm)==2) 
+{
+//print(mm);
+  if (raybtwn(niceray11,niceray21,niceray12)||
+      raybtwn(niceray11,niceray22,niceray12)||
+      raybtwn(niceray21,niceray11,niceray22)||
+      raybtwn(niceray21,niceray12,niceray22))
+  {
+    intersectstr = "2-dim";
+    idim=2;
+  };
+  if (((niceray11==niceray21)&&(niceray12==niceray22))||
+      ((niceray12==niceray21)&&(niceray11==niceray22)))
+  {
+    intersectstr = "2-dim";
+    idim=2;
+  };
+}
+if (mat_rk(mm)==3) 
+{
+
+if ((edges[edge1,1]!=edges[edge2,1])&&
+    (edges[edge1,1]!=edges[edge2,2])&&
+    (edges[edge1,2]!=edges[edge2,1])&&
+    (edges[edge1,2]!=edges[edge2,2]))
+{
+  ns = nullspace(niceray11,niceray12,niceray21,niceray22);
+  if (ns[1]>0) 
+  {
+    if ((ns[1]*ns[2]>=0)&&
+        (ns[1]*ns[3]<=0)&&
+        (ns[1]*ns[4]<=0))
+    {intersectstr="1-dim"; idim=1;
+//     print(intvecstring(niceray11)+" : "+
+//           intvecstring(niceray12)+" : "+
+//           intvecstring(niceray21)+" : "+
+//           intvecstring(niceray22));
+//     print(intvecstring(ns));
+    }
+  }
+  else
+  {
+    if (ns[2]>0) 
+    {
+      if ((ns[2]*ns[1]>=0)&&
+          (ns[2]*ns[3]<=0)&&
+          (ns[2]*ns[4]<=0))
+      {intersectstr="1-dim"; idim=1;
+//       print(intvecstring(niceray11)+" : "+
+//             intvecstring(niceray12)+" : "+
+//             intvecstring(niceray21)+" : "+
+//             intvecstring(niceray22));
+//       print(intvecstring(ns));
+      }
+    }
+  }
+}
+}
+
+
+  if (intersectstr!="") 
+  {
+    weirdcones = "";
+    weirdcones = weirdcones+ret+"edge1: "+string(edge1)+" - "
+                +string(edges[edge1,1])+", "+string(edges[edge1,2])+ret;
+    for (j=1; j<=n; j++) {weirdcones = weirdcones + string(rays[edges[edge1,1],j])+ " ";};
+    weirdcones = weirdcones+ret;
+    for (j=1; j<=n; j++) {weirdcones = weirdcones + string(rays[edges[edge1,2],j])+ " ";};
+    weirdcones = weirdcones+ret+"edge2: "+string(edge2)+" - "
+                +string(edges[edge2,1])+", "+string(edges[edge2,2])+ret;
+    for (j=1; j<=n; j++) {weirdcones = weirdcones + string(rays[edges[edge2,1],j])+ " ";};
+    weirdcones = weirdcones+ret;
+    for (j=1; j<=n; j++) {weirdcones = weirdcones + string(rays[edges[edge2,2],j])+ " ";};
+    weirdcones = weirdcones+ret+"intersection cone is "+intersectstr+ret;
+    write(":a "+weirdfile, weirdcones);
+    iprofile[edge1,edge2]=idim;
+    iprofile[edge2,edge1]=idim;
+  }
+
+}
+}
+
+write(":a "+weirdfile, "FINISHED");
+}
+
+return(iprofile);
+}
+
+proc nicerep(intvec v, intvec exps)
+{
+  v=v-v[1]*(1:size(exps));
+  v=exps[2]*v-v[2]*exps;
+  return(v);
+}
+
+proc crossprod(intvec a, intvec b)
+{
+  intvec c = 
+  a[2]*b[3]-a[3]*b[2],
+  -a[1]*b[3]+a[3]*b[1],
+  a[1]*b[2]-a[2]*b[1];
+  return(c);
+}
+
+proc raybtwn(intvec a, intvec b, intvec c)
+{
+int x,y;
+if ((a[1]*c[2]-a[2]*c[1])!=0)
+{ 
+  x = (c[2]*b[1] - c[1]*b[2])*(a[1]*c[2]-a[2]*c[1]);
+  y = (-a[2]*b[1] + a[1]*b[2])*(a[1]*c[2]-a[2]*c[1]);
+}
+else
+{
+  if ((a[1]*c[3]-a[3]*c[1])!=0)
+  { 
+    x = (c[3]*b[1] - c[1]*b[3])*(a[1]*c[3]-a[3]*c[1]);
+    y = (-a[3]*b[1] + a[1]*b[3])*(a[1]*c[3]-a[3]*c[1]);
+  }
+  else
+  {
+    x = (c[3]*b[2] - c[2]*b[3])*(a[2]*c[3]-a[3]*c[2]);
+    y = (-a[3]*b[2] + a[2]*b[3])*(a[2]*c[3]-a[3]*c[2]);
+  }
+}
+int flag=0;
+if ((x>0)&&(y>0)) {flag=1;};
+return(flag);
+}
+
+proc nullspace(intvec v11, intvec v12, intvec v21, intvec v22)
+{
+ring r1 = 0, (x,y,z,w), dp;
+ring r2 = 0, (a,b,c), dp;
+ideal i0 = 0;
+map f = r1, 
+v11[1]*a+v11[2]*b+v11[3]*c,
+v12[1]*a+v12[2]*b+v12[3]*c,
+v21[1]*a+v21[2]*b+v21[3]*c,
+v22[1]*a+v22[2]*b+v22[3]*c;
+setring r1;
+ideal i1 = preimage(r2,f,i0);
+poly ff = i1[1]+x^2+y^2+z^2+w^2;
+matrix nsx = coeffs(ff,x);
+matrix nsy = coeffs(ff,y);
+matrix nsz = coeffs(ff,z);
+matrix nsw = coeffs(ff,w);
+intvec ns = int(nsx[2,1]),int(nsy[2,1]),int(nsz[2,1]),int(nsw[2,1]);
+return(ns);
+}
+
+proc addstat(string a, string ap, string myord, string myineq, string ddstr)
+{
+  int j = find(myord, "j")-1;
+  int k = find(myord, "k")-1;
+  int i;
+  int n = size(myord);
+  string str1 = "";
+  for (i=1; i<=n; i++)
+  {
+    if (find(a,myord[i])>0) 
+    {
+      str1=str1+"1,";
+    }
+    else
+    {
+      str1=str1+"0,";
+    }
+  }
+  str1 = str1[1..(size(str1)-1)];
+  string str2 = "";
+  for (i=1; i<=n; i++)
+  {
+    if (find(ap,myord[i])>0) 
+    {
+      str2=str2+"1,";
+    }
+    else
+    {
+      str2=str2+"0,";
+    }
+  }
+  str2 = str2[1..(size(str2)-1)];
+  string str3 = "";
+  string str3p = "";
+  int mypos;
+  for (i=1; i<=size(myineq); i++)
+  {
+    mypos = find(myord,myineq[i]);
+    if (mypos>0) 
+    {
+      str3=str3+"exps["+string(mypos)+"]";
+      str3p=str3p+"exps["+string(n-mypos+1)+"]";
+    }
+    else
+    {
+      str3=str3+myineq[i];
+      if (myineq[i]=="<")
+      {
+      str3p=str3p+">";
+      }
+      else
+      {
+        if (myineq[i]==">")
+        {
+        str3p=str3p+"<";
+        }
+        else
+        {
+        str3p=str3p+myineq[i];
+        }
+      }
+    }
+  }
+if (myineq !="") 
+{
+  print("if ("+str3+")");
+  print("{intersectlist=addintersection(intersectlist, edgelabels, \"F"+str1+":"+string(j)+"\", \"F"+str2+":"+string(k)+"\", 1);};");
+if (ddstr =="+dual") 
+{
+  print("if ("+str3p+")");
+  print("{intersectlist=addintersection(intersectlist, edgelabels, \"F"+flipstr(str1)+":"+string(n-1-j)+"\", \"F"+flipstr(str2)+":"+string(n-1-k)+"\", 1);};");
+}
+}
+else
+{
+  print("intersectlist=addintersection(intersectlist, edgelabels, \"F"+str1+":"+string(j)+"\", \"F"+str2+":"+string(k)+"\", 1);");
+if (ddstr =="+dual") 
+{
+  print("intersectlist=addintersection(intersectlist, edgelabels, \"F"+flipstr(str1)+":"+string(n-1-j)+"\", \"F"+flipstr(str2)+":"+string(n-1-k)+"\", 1);");
+}
+}
+
+}
+
+proc flipstr(string a)
+{
+string b="";
+for (int i=1; i<=size(a); i++)
+{
+  b = b+a[size(a)-i+1];
+}
+return(b);
+}
+
+
+proc makeintersectionprofile(list intersectionlist, list edgelabels)
+{
+  int i, mypos1, mypos2, idim;
+  string edge1, edge2, curinter;
+  int m = size(edgelabels);
+  intmat iprofile[m][m];
+  int i1, i2;
+  for (i=1; i<=size(intersectionlist); i++)
+  {
+    curinter = intersectionlist[i];
+    mypos1 = find(curinter, ";", 1);
+    edge1 = curinter[1..(mypos1-1)];
+    mypos2 = find(curinter, ";", mypos1+1);
+    edge2 = curinter[(mypos1+1)..(mypos2-1)];
+    execute("idim = "+ curinter[(mypos2+1)..size(curinter)]+";");
+    i1 = findlabel(edgelabels,edge1);
+    i2 = findlabel(edgelabels,edge2);
+    iprofile[i1,i2] = idim;
+    iprofile[i2,i1] = idim;
+  }
+  return(iprofile);
+}
+
+proc makeintersectionprofilefromfile(intvec exps)
+{
+int i;
+int n = size(exps);
+string ret = "
+";
+
+// filename
+string weirdfile = "tropsec";
+for (i=1; i<=n; i++)
+{
+  weirdfile = weirdfile + string(exps[i]);
+}
+weirdfile = weirdfile +".txt";
+string myfile = read(weirdfile);
+
+// get number of edges;
+int myposstart = find(myfile, "multiplicites:");
+int myposend = find(myfile, "edge1:");
+int m = 0;
+int mypos = find(myfile, ".", myposstart);
+while ((mypos < myposend)&&(mypos > 0))
+{
+  m = m+1;
+  mypos = find(myfile, ".", mypos+1);
+}
+intmat iprofile[m][m];
+
+// get intersections
+mypos = find(myfile, "edge1:");
+int edge1, edge2, idim;
+string edge1str, edge2str;
+while (mypos > 0)
+{
+myposend = find(myfile, "-", mypos);
+edge1str = myfile[(mypos+7)..(myposend-2)];
+execute("edge1 = "+edge1str);
+
+mypos = find(myfile, "edge2:", myposend);
+myposend = find(myfile, "-", mypos);
+edge2str = myfile[(mypos+7)..(myposend-2)];
+execute("edge2 = "+edge2str);
+
+mypos = find(myfile, "by:", myposend);
+idim = -1;
+mypos = find(myfile, ret, mypos);
+while ((myfile[mypos+1]=="0")||(myfile[mypos+1]=="1"))
+{
+  idim=idim+1;
+  mypos = find(myfile, ret, mypos+1);
+}
+iprofile[edge1,edge2]=idim;
+iprofile[edge2,edge1]=idim;
+mypos = find(myfile, "edge1:", mypos);
+}
+
+return(iprofile);
+}
+
+
+proc printintersectionprofile(intmat ip)
+{
+int k,j;
+int m=nrows(ip);
+for (k=1; k<=m; k++)
+{
+for (j=k+1; j<=m; j++)
+{
+if (ip[k,j]!=0) {print(string(k)+" "+string(j)+" - "+string(ip[k,j]));};
+}
+}
+}
+
+proc intvecstring(intvec a)
+{
+string s = string(a[1]);
+for (int i=2;i<=size(a);i++)
+{
+  s=s+","+string(a[i]);
+}
+return(s);
+}

@@ -1,0 +1,122 @@
+html
+{
+	margin:0;
+	padding:0; 
+	text-align: center; 
+}
+
+body
+{
+	font-family: Verdana; 
+	font-size: 15px;
+}
+
+#wrapper 
+{ 
+	width: 760px;
+	margin: 11px auto; 
+	text-align: left;
+	padding: 5px;
+	border: 1px solid #3399CC;
+}
+
+#header
+{ 
+	background-color: #3399CC;
+	height: 40px;
+	color: white;
+	font-size: 30px;
+	font-family:  Georgia;
+	padding: 5px;
+	padding-left: 10px;
+}
+
+#description
+{
+	float: left;
+	width: 500px; 
+	padding-left: 15px;
+}
+
+#contact
+{
+	padding-left: 20px;
+}
+
+#picture
+{
+	float: right;
+	width: 200px; 
+	padding-right: 15px;
+}
+
+#picture img
+{
+	float: right;
+}
+
+#content
+{ 
+	clear: both;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 20px;
+}
+
+#content h1
+{
+	border-bottom: 1px solid #99CCCC;
+	font-size: 30px;
+	font-family: Verdana;
+	color: #3399CC;
+}
+
+#content h3
+{
+	border-bottom: 1px solid #99CCCC;
+	font-size: 15px;
+	font-family: Verdana;
+	color: #3399CC;
+}
+
+#content a
+{
+	text-decoration: none;
+	color: #3399CC;
+}
+
+#content a:hover
+{
+	border-bottom: 1px dashed #3399CC;
+	color: #000000;
+}
+
+#content desc
+{
+	float: right;
+	width: 600px
+}
+
+#pix
+{
+	float: left;
+	width: 60px; 
+	margin-right: 10px;
+}
+
+#pix img
+{	
+	float: left;
+}
+
+#footer
+{ 
+	font-size: 10px;
+	clear: both;
+	text-align: center;
+}
+
+#footer a
+{
+	text-decoration: none;
+}
