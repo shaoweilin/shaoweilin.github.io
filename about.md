@@ -6,8 +6,6 @@ permalink: /about/
 
 I am a mathematician working on the statistical learning theory of spiking neural networks and on dependent type theories for machine reasoning.
 
-### More Information
-
 [Vitae](https://shaoweilin.github.io/vitae.pdf)
 
 [PhD Thesis](https://shaoweilin.github.io/swthesis.pdf)
