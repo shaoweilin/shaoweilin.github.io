@@ -1,0 +1,1040 @@
+## Last Update: 12 June 2008
+
+with(combinat): 
+with(linalg):
+
+ArrayRowStart := proc(A::array) op(1,op(2, eval(A))[1]) end proc:
+ArrayRowEnd := proc(A::array) op(2,op(2, eval(A))[1]) end proc:
+ArrayColStart := proc(A::array) op(1,op(2, eval(A))[2]) end proc:
+ArrayColEnd := proc(A::array) op(2,op(2, eval(A))[2]) end proc:
+ArrayNumRows := proc(A::array) op(2,op(2, eval(A))[1])-op(1,op(2, eval(A))[1])+1 end proc:
+ArrayNumCols := proc(A::array) op(2,op(2, eval(A))[2])-op(1,op(2, eval(A))[2])+1 end proc:
+GetPoly := proc(f::array,v::list) 
+  local d,n,m,i;
+  d := op(2,op(2, eval(f))[2])-1:
+  n := op(2,op(2, eval(f))[1])-1:
+  m := array(1..d):
+  for i from 1 to d do m[i] := f[n+1,i]*2: od:
+  add(f[i,d+1]*mul(v[j]^f[i,j],j=1..d),i=1..n)+\
+  add(f[i,d+1]*mul(v[j]^(m[j]-f[i,j]),j=1..d),i=1..n)+\
+  f[n+1,d+1]*mul(v[j]^f[n+1,j],j=1..d)
+end proc:
+GetHalfPoly := proc(hh::polynom,varlist::list,AA::array,UU::list)
+  local curindex,nn,midflag,maxexp,lastexp,numterms,numvars,allequal,mydiff,\
+  varstring,gg,ff,ii,jj,myterm,mycoef,numexps,myvarexp,myvar,myexp,midcoef,opts,theinternaluse;
+  opts:= [args[5..-1]];
+  if hasoption(opts, internaluse, 'theinternaluse', 'opts') then
+    if (theinternaluse <> true) then theinternaluse := false: fi:
+  else 
+    theinternaluse:= false:
+  fi:
+  gg := hh;
+  numterms := nops(gg):
+  nn := ArrayNumCols(AA):
+  numvars := ArrayNumRows(AA):
+  if not(theinternaluse) then
+    gg := expand(gg*mul(varlist[ii]^2,ii=1..numvars)):
+    for ii from 1 to numvars do
+      gg := subs(varlist[ii]=x[ii],gg):
+    od:
+  else
+    gg := expand(gg*mul(x[ii]^2,ii=1..numvars)):
+  fi:
+  ff := array(1..floor(numterms/2)+1,1..(numvars+1)):
+  lastexp := [seq(0,ii=1..numvars)]:
+  midflag := false:
+  for ii from 1 to numvars do
+    maxexp := add(AA[ii,jj]*UU[jj],jj=1..nn):
+    if midflag then
+      lastexp[ii] := maxexp:
+    else
+      lastexp[ii] := floor(maxexp/2):
+      if maxexp mod 2 = 1 then midflag := true: fi:
+    fi:
+  od:
+  curindex := 0:
+  midcoef := 0:
+  for ii from 1 to numterms do
+    myterm := op(ii,gg):
+    mycoef := op(1,myterm):
+    curindex := curindex+1:
+    if nops(mycoef)=1 then
+      ff[curindex,numvars+1] := mycoef:
+    else
+      ff[curindex,numvars+1] := 1:
+    fi:
+    numexps := nops(myterm):
+    for jj from (numexps-numvars+1) to numexps do
+      myvarexp := op(jj,myterm):
+      myvar := op(1,op(1,myvarexp)):
+      myexp := op(2,myvarexp)-2:
+      ff[curindex,myvar] := myexp:
+    od:
+    allequal := true:
+    for jj from 1 to numvars do
+      mydiff := ff[curindex,jj]-lastexp[jj]:
+      if mydiff < 0 then
+        allequal := false:
+        jj := numvars+2:
+      elif mydiff > 0 then
+        curindex := curindex-1:
+        allequal := false:
+        jj := numvars+2:
+      fi:
+    od:
+    if not(midflag) and allequal then
+      midcoef := mycoef:
+      curindex := curindex-1:
+    fi:
+  od:
+  for ii from 1 to numvars do
+    maxexp := add(AA[ii,jj]*UU[jj],jj=1..nn):
+    ff[curindex+1,ii] := maxexp/2:
+  od:
+  ff[curindex+1,numvars+1] := midcoef:
+  return eval(ff):
+end proc:
+ToricNumRows := proc(s::list, t::list)
+  local i,k:
+  k := nops(s):
+  if (k <> nops(t)) then 
+    error("Parameters s,t are of different lengths."):
+  elif (k = 0) then
+    error("Parameters s,t are empty."):
+  fi:
+  add(t[i]+1,i=1..k);
+end proc:
+ToricNumCols := proc(s::list, t::list)
+  local opts,thereduced,i,k:
+  opts:= [args[3..-1]]:
+  if hasoption(opts, reduced, 'thereduced', 'opts') then
+    if (thereduced <> false) then thereduced := true: fi:
+  else 
+    thereduced:= true:
+  fi:
+  k := nops(s):
+  if (k <> nops(t)) then 
+    error("Parameters s,t are of different lengths."):
+  elif (k = 0) then
+    error("Parameters s,t are empty."):
+  fi:
+  if thereduced then
+    mul(binomial(s[i]+t[i],s[i]),i=1..k);
+  else
+    mul((t[i]+1)^s[i],i=1..k);
+  fi:
+end proc:
+ReducedVector := proc(s::list, t::list, U::list)
+  local k,oldlength,newlength,A,newU,curcol,i,j,r,redpart:
+  k := nops(s):
+  if (k <> nops(t)) then 
+    error("Parameters s,t are of different lengths."):
+  elif (k = 0) then
+    error("Parameters s,t are empty."):
+  fi:
+  oldlength := ToricNumCols(s,t,reduced=false):
+  newlength := ToricNumCols(s,t):
+  if nops(U)<>oldlength then
+    error("Data vector U has incorrect length."):
+  fi:  
+  A := ToricMatrix(s,t):
+  newU := []:
+  curcol := 0:
+  for i from 1 to newlength do
+    redpart := 1:
+    r := 1:
+    for j from 1 to k do
+      redpart := redpart*s[j]!/mul(A[x,i]!,x=r..r+t[j]):
+      r := r+t[j]+1:
+    od:
+    newU := [op(newU),add(U[j],j=curcol+1..curcol+redpart)]:
+    curcol := curcol+redpart:
+  od:
+  newU;
+end proc:
+NormConst := proc(s::list,t::list,UU::list)
+  local k,i,U,A,n,thereduced,N,rednorm,redpart,j,r: 
+  k := nops(s):
+  if (k <> nops(t)) then 
+    error("Parameters s,t are of different lengths."): 
+  elif (k = 0) then
+    error("Parameters s,t are empty."):
+  fi:
+  for i from 1 to k do
+    if not(type(s[i],posint)) then error("Parameter s has non-positive entries."): fi:
+    if not(type(t[i],nonnegint)) then error("Parameter t has negative entries."): fi:
+  od:
+  if nops(UU)=ToricNumCols(s,t) then
+    thereduced := true:
+    U := UU:
+  elif nops(UU)=ToricNumCols(s,t,reduced=false) then
+    thereduced := false:
+    U := ReducedVector(s,t,UU):
+  else
+    error("Data vector U has incorrect length."):
+  fi:
+  A := ToricMatrix(s,t):
+  n := ArrayNumCols(A):
+  for i from 1 to n do
+    if not(type(U[i],nonnegint)) then error("Data vector U has entries which are not non-negative integers."): fi:
+  od:
+  N := add(U[i], i=1..n):
+  rednorm := 1:
+  if thereduced then
+    for i from 1 to n do
+      redpart := 1:
+      r := 1:
+      for j from 1 to k do
+        redpart := redpart*s[j]!/mul(A[x,i]!,x=r..r+t[j]):
+        r := r+t[j]+1:
+      od:
+      rednorm := rednorm*redpart^U[i]:
+    od:
+  fi:
+  return rednorm*N!/mul(UU[i]!,i=1..nops(UU));
+end proc:
+
+##################################################
+
+ToricMatrix := proc(s::list, t::list)
+
+local curcol,goflag,numrow,numrow2,numcol,numcol2,sumleft,A,A2,i,j,k,m,r,x,thereduced,opts,numrepeat,moveon;
+
+opts:= [args[3..-1]];
+if hasoption(opts, reduced, 'thereduced', 'opts') then
+  if (thereduced <> false) then thereduced := true: fi:
+else 
+  thereduced:= true:
+fi:
+
+k := nops(s):
+if (k <> nops(t)) then 
+  error("Parameters s,t are of different lengths."):
+elif (k = 0) then
+  error("Parameters s,t are empty."):
+fi:
+for i from 1 to k do
+  if not(type(s[i],posint)) then error("Parameter s has non-positive entries."): fi:
+  if not(type(t[i],nonnegint)) then error("Parameter t has negative entries."): fi:
+od:
+
+numrow := 0:
+numcol := 1:
+for i from 1 to k do
+  curcol := 0:
+  numrow2 := numrow+t[i]+1:
+  if thereduced then
+    numcol2 := numcol*binomial(s[i]+t[i],s[i]):
+  else
+    numcol2 := numcol*(t[i]+1)^s[i]:
+  fi:
+  A2 := array(sparse,1..numrow2,1..numcol2):
+  for j from 1 to numcol do
+    x := array(sparse,0..t[i]):
+    x[0] := s[i]:
+    goflag := true:
+    numrepeat := 1:
+    while goflag do
+      curcol := curcol+1:
+      for m from 1 to numrow do
+        A2[m,curcol] := A[m,j]:
+      od:
+      for m from 0 to t[i] do
+        A2[numrow+m+1,curcol] := x[m]:
+      od:
+      if thereduced then
+        moveon := true:
+      else
+        numrepeat := numrepeat-1:
+        if (numrepeat<1) then 
+          moveon := true:
+        else
+          moveon := false:
+        fi:
+      fi:
+      if moveon then
+        if (x[t[i]]=s[i]) then
+          goflag := false:
+        else
+          r := t[i]-1:
+          while (x[r]=0) do r := r-1: end:
+          x[r] := x[r]-1:
+          sumleft := x[t[i]]:
+          x[t[i]] := 0:
+          x[r+1] := sumleft+1:
+          if not(thereduced) then 
+            numrepeat := s[i]!:
+            for m from 0 to t[i] do
+              numrepeat := numrepeat/x[m]!:
+            od:
+          fi:
+        fi:
+      fi:
+    end:
+  od:
+  A := eval(A2):
+  numrow := numrow2:
+  numcol := numcol2:
+od:
+return eval(A):
+
+end proc:
+
+##################################################
+
+SymbolicHalfPoly := proc(A::array,U::list)
+
+local thequiet,opts,d,n,g,f;
+opts:= [args[3..-1]];
+if hasoption(opts, quiet, 'thequiet', 'opts') then
+  if (thequiet <> false) then thequiet := true: fi:
+else
+  thequiet:= true:
+fi:
+
+d := op(2,op(2, eval(A))[1]):
+n := op(2,op(2, eval(A))[2]):
+if (n <> nops(U)) then
+  error("Width of matrix A does not match length of data vector U."):
+elif ((n = 0) or (d = 0)) then
+  error("Matrix A is empty."):
+fi:
+
+if not(thequiet) then print("Expanding integrand symbolically..."): fi:
+g := expand(mul((mul(x[j]^A[j,i],j=1..d)+1)^U[i],i=1..n)):
+if not(thequiet) then print("Extracting coefficients of expansion..."): fi:
+f := GetHalfPoly(g,[],A,U,internaluse=true):
+return eval(f):
+
+end proc:
+
+##################################################
+
+ExpandHalfPoly := proc(A::array,U::list)
+
+local opts,d,n,m,i,j,mm,mmm,P,x,k,Pindex,b,xmid,Pflag1,Pflag2,\
+      hmmm1,hmmm2,hbinom,Pindex0max,Pindex1max,cc,Pindex0,thequiet,\
+      xlast,jmid,Pindex1,Pindex2,r,flength,findex,f,newcc,ilast,mmmOrig;
+
+opts:= [args[3..-1]];
+if hasoption(opts, quiet, 'thequiet', 'opts') then
+  if (thequiet <> false) then thequiet := true: fi:
+else 
+  thequiet:= true:
+fi:
+
+d := op(2,op(2, eval(A))[1]):
+n := op(2,op(2, eval(A))[2]):
+if (n <> nops(U)) then 
+  error("Width of matrix A does not match length of data vector U."):
+elif ((n = 0) or (d = 0)) then
+  error("Matrix A is empty."):
+fi:
+
+m := array(1..d,1..n):
+for i from 1 to d do
+  m[i,1] := A[i,1]*U[1]:
+  for j from 2 to n do
+    m[i,j] := m[i,j-1]+A[i,j]*U[j]:
+  od:
+od:
+
+mm := array(1..d):
+mm[1] := 1:
+for i from 2 to d do
+  mm[i] := mm[i-1]*(m[i-1,n]+1):
+od:
+
+mmm := array(1..n):
+for j from 1 to n do
+  mmm[j] := add(mm[i]*m[i,j],i=1..d):
+od:
+
+mmmOrig := array(1..n):
+for j from 1 to n do
+  mmmOrig[j] := mul(m[k,j]+1,k=1..d)-1:
+od:
+
+P := array(sparse,0..1,0..floor(mmm[n]/2)):
+for x from 0 to floor(U[1]/2) do
+  P[0,add(mm[k]*A[k,1]*x,k=1..d)] := binomial(U[1],x):
+od:
+
+b := array(1..d):
+for i from 2 to n do
+  if not(thequiet) then print(i," out of ",n): fi:
+  xmid := false:
+  xlast := false:
+  Pflag1 := i mod 2:
+  Pflag2 := 1-Pflag1:
+  hmmm1 := floor(mmmOrig[i-1]/2):
+  hmmm2 := floor(mmm[i]/2):
+  hbinom := floor(U[i]/2):
+  Pindex0max := add(mm[k]*A[k,i]*U[i],k=1..d):
+  Pindex1max := mmm[i-1]:
+  for x from 0 to hbinom do
+    cc := binomial(U[i],x):
+    Pindex0 := add(mm[k]*A[k,i]*x,k=1..d):
+    b[1] := -1: for k from 2 to d do b[k] := 0: od:
+    if (x = hbinom) then 
+      xlast := true:
+      xmid := ((U[i] mod 2) = 0):
+    fi:
+    jmid := false:
+    for j from 0 to hmmm1 do
+      b[1] := b[1]+1:
+      r := 1:
+      while (b[r] > m[r,i-1]) do
+        b[r] := 0:
+        r := r+1:
+        b[r] := b[r]+1:
+      end:
+      Pindex1 := add(mm[k]*b[k],k=1..d):
+      if (P[Pflag1,Pindex1] <> 0) then
+        if (j = hmmm1) then 
+          jmid := ((mmmOrig[i-1] mod 2) = 0): 
+        fi:
+        Pindex2 := Pindex1+Pindex0:
+        newcc := cc*P[Pflag1,Pindex1]:
+        P[Pflag2,Pindex2] := P[Pflag2,Pindex2]+newcc:
+        if not(xmid or jmid) then
+          Pindex2 := Pindex1max-Pindex1+Pindex0:
+          if(Pindex2 <= hmmm2) then P[Pflag2,Pindex2] := P[Pflag2,Pindex2]+newcc: fi:
+          Pindex2 := Pindex1+Pindex0max-Pindex0:
+          if(Pindex2 <= hmmm2) then P[Pflag2,Pindex2] := P[Pflag2,Pindex2]+newcc: fi:
+        fi:
+        if xlast then P[Pflag1,Pindex1] := 0: fi:
+      fi:
+    od:
+  od:
+od:
+
+flength := 0:
+ilast := 0:
+for i from 0 to hmmm2 do
+  if (P[Pflag2,i] <> 0) then 
+    flength := flength+1: 
+    ilast := i:
+  fi:
+od:
+if (2*ilast <> mmm[n]) then
+  flength := flength+1: 
+fi:
+f := array(1..flength,1..(d+1)):
+b := array(sparse,1..d): 
+b[1] := -1:
+findex := 0:
+for i from 0 to hmmm2 do
+  b[1] := b[1]+1:
+  r := 1:
+  while (b[r] > m[r,n]) do
+    b[r] := 0:
+    r := r+1:
+    b[r] := b[r]+1:
+  end:
+  if (P[Pflag2,i] <> 0) then 
+    findex := findex+1:
+    f[findex,d+1] := P[Pflag2,i]:
+    for k from 1 to d do
+      f[findex,k] := b[k]:
+    od:
+  fi:
+od:
+if (2*ilast <> mmm[n]) then
+  findex := findex+1:
+  f[findex,d+1] := 0:
+  for k from 1 to d do
+    f[findex,k] := m[k,n]/2:
+  od:
+fi:
+return eval(f):
+
+end proc:
+
+##################################################
+
+IntegrateHalfPoly := proc(s::list,t::list,A::array,U::list,f::array)
+
+local k,d,n,r,maxm,maxmr,usum,m,mr,i,j,numerator,denominator,F,Fr,Fs,II,\
+      flength,partsum,rlast,x,btotal,y,midterm,c,oldlastexp,opts,thequiet,thejump;
+opts:= [args[6..-1]];
+if hasoption(opts, quiet, 'thequiet', 'opts') then
+  if (thequiet <> false) then thequiet := true: fi:
+else 
+  thequiet:= true:
+fi:
+if hasoption(opts, jump, 'thejump', 'opts') then
+  if not(type(thejump,posint)) then thejump := 1000: fi:
+else 
+  thejump:= 1000:
+fi:
+
+k := nops(s):
+d := op(2,op(2,eval(A))[1]):
+n := op(2,op(2,eval(A))[2]):
+
+if not(thequiet) then print("Precomputing factorials..."): fi:
+r := 0:
+maxm := 0;
+maxmr := 0:
+m := array(1..d):
+mr := array(1..k):
+usum := add(U[i],i=1..n):
+c := add(s[i],i=1..k):
+for i from 1 to k do
+  mr[i] := 0:
+  for j from 0 to t[i] do
+    r := r+1:
+    m[r] := add(A[r,x]*U[x],x=1..n):
+    if (m[r]>maxm) then maxm := m[r]: fi:
+    mr[i] := mr[i]+m[r]:
+  od:
+  if (mr[i]>maxmr) then maxmr := mr[i]: fi:
+od:
+
+numerator := 1:
+denominator := 1:
+F := array(1..d,0..floor(maxm/2)):
+for i from 1 to d do
+  numerator := numerator*ceil(m[i]/2)!:
+  F[i,0] := mul(x,x=(ceil(m[i]/2)+1)..m[i]):
+  for j from 1 to floor(m[i]/2) do
+    F[i,j] := F[i,j-1]*j/(m[i]-j+1):
+  od:
+od:
+
+Fr := array(1..k,0..floor(maxmr/2)):
+for i from 1 to k do
+  denominator := denominator*(ceil(mr[i]/2)+t[i])!*(mr[i]+t[i])!:
+  Fr[i,0] := mul(x,x=(t[i]+1)..(t[i]+ceil(mr[i]/2))):
+  for j from 1 to floor(mr[i]/2) do
+    Fr[i,j] := Fr[i,j-1]*(t[i]+mr[i]-j+1)/(t[i]+j):
+  od:
+od:
+
+Fs := array(0..floor(usum/2)):
+Fs[0] := mul(x,x=(ceil(usum/2)+1)..usum):
+denominator := denominator*Fs[0]*(usum+1):
+for i from 1 to floor(usum/2) do
+  Fs[i] := Fs[i-1]*i/(usum-i+1):
+od:
+
+if not(thequiet) then print("Computing Integral..."): fi:
+
+II := 0:
+midterm := 0:
+flength := op(2,op(2,eval(f))[1]):
+if (f[flength,d+1] <> 0) then
+  btotal := add(f[flength,j],j=1..d)/c:
+  midterm := f[flength,d+1]*Fs[min(btotal,usum-btotal)]:
+  r := 1:
+  for x from 1 to k do
+    btotal := add(f[flength,j],j=r..(r+t[x])):
+    midterm := midterm*mul(F[j,min(f[flength,j],m[j]-f[flength,j])],j=(r)..(r+t[x]))*Fr[x,min(btotal,mr[x]-btotal)]:
+    r := r+t[x]+1:
+  od:
+fi:
+partsum := array(sparse,0..d):
+btotal := add(f[1,j],j=1..d)/c:
+partsum[0] := f[1,d+1]*Fs[min(btotal,usum-btotal)]: 
+oldlastexp := f[flength,d]:
+f[flength,d] := -1:
+for i from 2 to flength do
+  if not(thequiet) then 
+    if (i mod thejump = 0) then print(i," out of ",flength): fi:
+  fi:
+  rlast := d:
+  while (f[i-1,rlast] = f[i,rlast]) do rlast := rlast-1: end:
+  r := 0:
+  for x from 1 to k do
+    r := r+1:
+    if (r > rlast) then break: fi:
+    btotal := add(f[i-1,j],j=r..(r+t[x])):
+    partsum[r] := partsum[r]+Fr[x,min(btotal,mr[x]-btotal)]*F[r,min(f[i-1,r],m[r]-f[i-1,r])]*partsum[r-1]:
+    partsum[r-1] := 0:
+    for y from 1 to t[x] do
+      r := r+1:
+      if (r > rlast) then break: fi:
+      partsum[r] := partsum[r]+F[r,min(f[i-1,r],m[r]-f[i-1,r])]*partsum[r-1]:
+      partsum[r-1] := 0:
+    od:
+  od:
+  if (i <> flength) then 
+    btotal := add(f[i,j],j=1..d)/c:
+    partsum[0] := f[i,d+1]*Fs[min(btotal,usum-btotal)]: 
+  fi:
+od:
+f[flength,d] := oldlastexp:
+II := 2*partsum[d]+midterm:
+return II*numerator/denominator*mul(t[i]!,i=1..k)^2:
+
+end proc:
+
+##################################################
+
+IntegrateHalfPolyDirichlet := proc(s::list,t::list,A::array,U::list,f::array,\
+                                   a::list,b::list,g::list)
+
+local k,d,n,r,maxm,maxmr,usum,m,mr,i,j,F,Fr,Fs,II,asum,bsum,gsum,opts,thefloat,thequiet,\
+      flength,partsum,rlast,x,btotal,y,midterm,c,oldlastexp,betaconst,thejump;
+opts:= [args[9..-1]];
+if hasoption(opts, quiet, 'thequiet', 'opts') then
+  if (thequiet <> false) then thequiet := true: fi:
+else 
+  thequiet:= true:
+fi:
+if hasoption(opts, float, 'thefloat', 'opts') then
+  if (thefloat <> true) then thefloat := false: fi:
+else 
+  thefloat:= false:
+fi:
+if hasoption(opts, jump, 'thejump', 'opts') then
+  if not(type(thejump,posint)) then thejump := 1000: fi:
+else 
+  thejump:= 1000:
+fi:
+
+k := nops(s):
+d := op(2,op(2,eval(A))[1]):
+n := op(2,op(2,eval(A))[2]):
+
+if not(thequiet) then print("Precomputing gamma functions..."): fi:
+r := 0:
+maxm := 0;
+maxmr := 0:
+m := array(1..d):
+mr := array(1..k):
+usum := add(U[i],i=1..n):
+c := add(s[i],i=1..k):
+for i from 1 to k do
+  mr[i] := 0:
+  for j from 0 to t[i] do
+    r := r+1:
+    m[r] := add(A[r,x]*U[x],x=1..n):
+    if (m[r]>maxm) then maxm := m[r]: fi:
+    mr[i] := mr[i]+m[r]:
+  od:
+  if (mr[i]>maxmr) then maxmr := mr[i]: fi:
+od:
+
+F := array(1..d,0..maxm):
+for i from 1 to d do
+  for j from 0 to m[i] do
+    F[i,j] := GAMMA(j+b[i])*GAMMA(m[i]-j+g[i]):
+    if thefloat then F[i,j] := evalf(F[i,j]): fi:
+  od:
+od:
+
+r := 1:
+Fr := array(1..k,0..maxmr):
+for i from 1 to k do
+  bsum := add(b[j],j=r..(r+t[i])):
+  gsum := add(g[j],j=r..(r+t[i])):
+  for j from 0 to mr[i] do
+    Fr[i,j] := 1/(GAMMA(j+bsum)*GAMMA(mr[i]-j+gsum)):
+    if thefloat then Fr[i,j] := evalf(Fr[i,j]): fi:
+  od:
+  r := r+t[i]+1:
+od:
+
+asum := a[1]+a[2]:
+Fs := array(0..usum):
+for i from 0 to usum do
+  Fs[i] := GAMMA(i+a[1])*GAMMA(usum-i+a[2])/GAMMA(usum+asum):
+  if thefloat then Fs[i] := evalf(Fs[i]): fi:
+od:
+
+if not(thequiet) then print("Computing Integral..."): fi:
+
+II := 0:
+midterm := 0:
+flength := op(2,op(2,eval(f))[1]):
+if (f[flength,d+1] <> 0) then
+  btotal := add(f[flength,j],j=1..d)/c:
+  midterm := f[flength,d+1]*Fs[btotal]:
+  r := 1:
+  for x from 1 to k do
+    btotal := add(f[flength,j],j=r..(r+t[x])):
+    midterm := midterm*mul(F[j,f[flength,j]],j=(r)..(r+t[x]))*Fr[x,btotal]:
+    r := r+t[x]+1:
+  od:
+fi:
+
+partsum := array(sparse,0..d):
+btotal := add(f[1,j],j=1..d)/c:
+partsum[0] := f[1,d+1]*Fs[btotal]: 
+oldlastexp := f[flength,d]:
+f[flength,d] := -1:
+for i from 2 to flength do
+  if not(thequiet) then 
+    if (i mod thejump = 0) then print(i," out of ",flength): fi:
+  fi:
+  rlast := d:
+  while (f[i-1,rlast] = f[i,rlast]) do rlast := rlast-1: end:
+  r := 0:
+  for x from 1 to k do
+    r := r+1:
+    if (r > rlast) then break: fi:
+    btotal := add(f[i-1,j],j=r..(r+t[x])):
+    partsum[r] := partsum[r]+Fr[x,btotal]*F[r,f[i-1,r]]*partsum[r-1]:
+    partsum[r-1] := 0:
+    for y from 1 to t[x] do
+      r := r+1:
+      if (r > rlast) then break: fi:
+      partsum[r] := partsum[r]+F[r,f[i-1,r]]*partsum[r-1]:
+      partsum[r-1] := 0:
+    od:
+  od:
+  if (i <> flength) then 
+    btotal := add(f[i,j],j=1..d)/c:
+    partsum[0] := f[i,d+1]*Fs[btotal]: 
+  fi:
+od:
+f[flength,d] := oldlastexp:
+II := 2*partsum[d]+midterm:
+betaconst := GAMMA(a[1]+a[2])/GAMMA(a[1])/GAMMA(a[2]):
+r := 1:
+for x from 1 to k do
+  betaconst := betaconst*GAMMA(add(b[j],j=r..(r+t[x])))/mul(GAMMA(b[j]),j=r..(r+t[x]))\
+              *GAMMA(add(g[j],j=r..(r+t[x])))/mul(GAMMA(g[j]),j=r..(r+t[x])):
+  r := r+t[x]+1:
+od:
+if thefloat then betaconst := evalf(betaconst): fi:
+return II*betaconst:
+
+end proc:
+
+##################################################
+
+IntegrateUnmixed := proc(s::list,t::list,A::array,U::list)
+  local d,n,k,N,b,i,j,ans,r:
+  d := ArrayNumRows(A):
+  n := ArrayNumCols(A):
+  k := nops(t):
+  N := add(U[i],i=1..n):
+  b := array(1..d):
+  for i from 1 to d do
+    b[i] := add(A[i,j]*U[j], j=1..n):
+  od:
+  ans := 1:
+  r := 1:
+  for i from 1 to k do
+    ans := ans*t[i]!*mul(b[j]!,j=r..r+t[i])/(s[i]*N+t[i])!:
+    r := r+t[i]+1:
+  od:
+  return ans:
+end proc:
+
+##################################################
+
+IntegrateUnmixedDirichlet := proc(s::list,t::list,A::array,U::list,bb::list)
+  local d,n,k,N,b,i,ans,j,r,bbsum,betaconst,thefloat,opts:
+  opts:= [args[6..-1]];
+  if hasoption(opts, float, 'thefloat', 'opts') then
+    if (thefloat <> true) then thefloat := false: fi:
+  else 
+    thefloat:= false:
+  fi:
+
+  d := ArrayNumRows(A):
+  n := ArrayNumCols(A):
+  k := nops(t):
+  N := add(U[i],i=1..n):
+  b := array(1..d):
+  for i from 1 to d do
+    b[i] := add(A[i,j]*U[j], j=1..n):
+  od:
+  ans := 1:
+  r := 1:
+  for i from 1 to k do
+    bbsum := add(bb[j],j=r..(r+t[i])):
+    ans := ans*mul(GAMMA(b[j]+bb[j]),j=r..r+t[i])/GAMMA(s[i]*N+bbsum):
+    r := r+t[i]+1:
+  od:
+  betaconst := 1:  
+  r := 1:
+  for i from 1 to k do
+    betaconst := betaconst*GAMMA(add(bb[j],j=r..(r+t[i])))/mul(GAMMA(bb[j]),j=r..(r+t[i])):
+    r := r+t[i]+1:
+  od:
+  ans := ans*betaconst:
+  if thefloat then
+    return evalf(ans):
+  else
+    return ans:
+  fi:
+end proc:
+
+##################################################
+
+ML := proc(s::list,t::list,UU::list)
+
+local A,f,aa,bb,gg,d,i,j,k,x,n,II,opts,N,thequiet,thereduced,\
+thefloat,thejump,thesymbolic,rednorm,r,redpart,U,themixed;
+opts:= [args[4..-1]];
+if hasoption(opts, quiet, 'thequiet', 'opts') then
+  if (thequiet <> false) then thequiet := true: fi:
+else 
+  thequiet:= true:
+fi:
+if hasoption(opts, float, 'thefloat', 'opts') then
+  if (thefloat <> true) then thefloat := false: fi:
+else 
+  thefloat:= false:
+fi:
+if hasoption(opts, jump, 'thejump', 'opts') then
+  if not(type(thejump,posint)) then thejump := 1000: fi:
+else 
+  thejump:= 1000:
+fi:
+if hasoption(opts, mixed, 'themixed', 'opts') then
+  if (themixed <> false) then themixed := true: fi:
+else 
+  themixed:= true:
+fi:
+if hasoption(opts, symbolic, 'thesymbolic', 'opts') then
+  if (thesymbolic <> true) then thesymbolic := false: fi:
+else
+  thesymbolic:= false:
+fi:
+
+k := nops(s):
+if (k <> nops(t)) then 
+  error("Parameters s,t are of different lengths."): 
+elif (k = 0) then
+  error("Parameters s,t are empty."):
+fi:
+for i from 1 to k do
+  if not(type(s[i],posint)) then error("Parameter s has non-positive entries."): fi:
+  if not(type(t[i],nonnegint)) then error("Parameter t has negative entries."): fi:
+od:
+if nops(UU)=ToricNumCols(s,t) then
+  thereduced := true:
+  U := UU:
+elif nops(UU)=ToricNumCols(s,t,reduced=false) then
+  thereduced := false:
+  U := ReducedVector(s,t,UU):
+else
+  error("Data vector U has incorrect length."):
+fi:
+A := ToricMatrix(s,t):
+d := op(2,op(2,eval(A))[1]):
+n := op(2,op(2,eval(A))[2]):
+for i from 1 to n do
+  if not(type(U[i],nonnegint)) then error("Data vector U has entries which are not non-negative integers."): fi:
+od:
+
+if thefloat then
+  aa := [1,1]:
+  bb := [seq(1,i=1..d)];
+  gg := [seq(1,i=1..d)];
+  if themixed then
+    if not(thequiet) then print("Expanding polynomial..."): fi:
+    if thesymbolic then
+      f := SymbolicHalfPoly(A,U,quiet=thequiet):
+    else
+      f := ExpandHalfPoly(A,U,quiet=thequiet):
+    fi:
+    II := IntegrateHalfPolyDirichlet(s,t,A,U,f,aa,bb,gg,float=thefloat,quiet=thequiet,jump=thejump);
+  else
+    II := IntegrateUnmixedDirichlet(s,t,A,U,bb,float=thefloat);
+  fi:
+else
+  if themixed then
+    if not(thequiet) then print("Expanding polynomial..."): fi:
+    if thesymbolic then
+      f := SymbolicHalfPoly(A,U,quiet=thequiet):
+    else
+      f := ExpandHalfPoly(A,U,quiet=thequiet):
+    fi:
+    II := IntegrateHalfPoly(s,t,A,U,f,quiet=thequiet,jump=thejump);
+  else
+    II := IntegrateUnmixed(s,t,A,U);
+  fi:
+fi:
+
+N := add(U[i], i=1..n):
+rednorm := 1:
+if thereduced then
+  for i from 1 to n do
+    redpart := 1:
+    r := 1:
+    for j from 1 to k do
+      redpart := redpart*s[j]!/mul(A[x,i]!,x=r..r+t[j]):
+      r := r+t[j]+1:
+    od:
+    rednorm := rednorm*redpart^U[i]:
+  od:
+fi:
+rednorm*N!/mul(UU[i]!,i=1..nops(UU))*II;
+
+end proc:
+
+##################################################
+
+MLDir := proc(s::list,t::list,UU::list,a::list,b::list,g::list)
+
+local A,f,i,j,k,x,n,II,opts,N,betaconst,d,thequiet,thefloat,\
+thereduced,thejump,rednorm,r,redpart,U,themixed,thesymbolic;
+opts:= [args[7..-1]];
+if hasoption(opts, quiet, 'thequiet', 'opts') then
+  if (thequiet <> false) then thequiet := true: fi:
+else 
+  thequiet:= true:
+fi:
+if hasoption(opts, float, 'thefloat', 'opts') then
+  if (thefloat <> true) then thefloat := false: fi:
+else 
+  thefloat:= false:
+fi:
+if hasoption(opts, jump, 'thejump', 'opts') then
+  if not(type(thejump,posint)) then thejump := 1000: fi:
+else 
+  thejump:= 1000:
+fi:
+if hasoption(opts, mixed, 'themixed', 'opts') then
+  if (themixed <> false) then themixed := true: fi:
+else 
+  themixed:= true
+fi:
+if hasoption(opts, symbolic, 'thesymbolic', 'opts') then
+  if (thesymbolic <> true) then thesymbolic := false: fi:
+else
+  thesymbolic:= false:
+fi:
+
+k := nops(s):
+if (k <> nops(t)) then 
+  error("Parameters s,t are of different lengths."): 
+elif (k = 0) then
+  error("Parameters s,t are empty."):
+fi:
+for i from 1 to k do
+  if not(type(s[i],posint)) then error("Parameter s has non-positive entries."): fi:
+  if not(type(t[i],nonnegint)) then error("Parameter t has negative entries."): fi:
+od:
+if nops(UU)=ToricNumCols(s,t) then
+  thereduced := true:
+  U := UU:
+elif nops(UU)=ToricNumCols(s,t,reduced=false) then
+  thereduced := false:
+  U := ReducedVector(s,t,UU):
+else
+  error("Data vector U has incorrect length."):
+fi:
+A := ToricMatrix(s,t):
+d := op(2,op(2,eval(A))[1]):
+n := op(2,op(2,eval(A))[2]):
+for i from 1 to n do
+  if not(type(U[i],nonnegint)) then error("Data vector U has entries which are not non-negative integers."): fi:
+od:
+if themixed then 
+  if (2 <> nops(a)) then 
+    error("Dirichlet prior parameter a is not of length 2."): 
+  elif (d <> nops(g)) then 
+    error("Dirichlet prior parameter g has the wrong length."):
+  fi:
+  for i from 1 to 2 do
+    if not(a[i]>0) then error("Dirichlet prior parameter a must be strictly positive."): fi:
+  od:
+  for i from 1 to d do
+    if not(g[i]>0) then error("Dirichlet prior parameter g must be strictly positive."): fi:
+  od:
+fi:
+if (d <> nops(b)) then 
+  error("Dirichlet prior parameter b has the wrong length."):
+fi:
+for i from 1 to d do
+  if not(b[i]>0) then error("Dirichlet prior parameter b must be strictly positive."): fi:
+od:
+
+if themixed then
+  if not(thequiet) then print("Expanding polynomial..."): fi:
+  if thesymbolic then
+    f := SymbolicHalfPoly(A,U,quiet=thequiet):
+  else
+    f := ExpandHalfPoly(A,U,quiet=thequiet):
+  fi:
+  II := IntegrateHalfPolyDirichlet(s,t,A,U,f,a,b,g,float=thefloat,quiet=thequiet,jump=thejump);
+else
+  II := IntegrateUnmixedDirichlet(s,t,A,U,b,float=thefloat):
+fi:
+
+N := add(U[i], i=1..n):
+rednorm := 1:
+if thereduced then
+  for i from 1 to n do
+    redpart := 1:
+    r := 1:
+    for j from 1 to k do
+      redpart := redpart*s[j]!/mul(A[x,i]!,x=r..r+t[j]):
+      r := r+t[j]+1:
+    od:
+    rednorm := rednorm*redpart^U[i]:
+  od:
+fi:
+rednorm*N!/mul(UU[i]!,i=1..nops(UU))*II;
+end proc:
+
+##################################################
+
+my_index := proc(Sub_A::array,j::integer,B::array,num_rank::integer)
+  local Bmn,Ind_Mat,s,k,m,n,re,HH;
+  Bmn := array(1..num_rank,1..num_rank):
+  Ind_Mat := array(1..num_rank,1..j):
+  for s from 1 to num_rank do
+  for k from 1 to j do
+    for m from 1 to num_rank do
+    for n from 1 to num_rank do
+      Bmn[m,n] := B[m,n]:
+      if (n=s) then Bmn[m,n] := Sub_A[m,k]: fi:
+    od:
+    od:
+    Ind_Mat[s,k] := det(Bmn)/det(B):
+  od:
+  od:
+  HH := ihermite(Ind_Mat):
+  re := mul(HH[k,k],k=1..j):
+  return re:
+end proc:
+
+NumTerms := proc(A::array,U::list)
+  local f,n,d,ans:
+  f := ExpandHalfPoly(A,U):
+  n := ArrayNumRows(f):
+  d := ArrayNumCols(f):
+  ans := 2*(n-1):
+  if f[n,d]<>0 then ans := ans+1: fi:
+  return ans:
+end proc:
+
+NumTermsBound := proc(A::array,U::list)
+  local num_rank,c,r,v,up,low,j,L,Sub_A,h,U0,HA,B,BL; 
+  num_rank := rank(A);
+  c := coldim(A):
+  r := rowdim(A):
+  if (nops(U)<>c) then error(`The size of U does not agree with the size of A`): fi:
+  HA := transpose(ihermite(transpose(A))):
+  v := [seq(i,i=1..num_rank)]:
+  for L in choose(r,num_rank) do
+    B := submatrix(HA,L,v):
+    if (rank(B)=num_rank) then BL:=L: break: fi: 
+  od:
+  up := 0:
+  low := 0:
+  for j from 1 to num_rank do
+    for L in choose(c,j) do
+      Sub_A := submatrix(A,BL,L):
+      if (rank(Sub_A)=j) then
+        U0 := mul(U[L[h]],h=1..j):
+        low := low+U0:
+        up := up+U0*my_index(Sub_A,j,B,num_rank):
+      fi:
+    od:
+  od:
+  low := low+1:
+  up := up+1:
+  return [low,up]:
+end proc:
+
+##################################################

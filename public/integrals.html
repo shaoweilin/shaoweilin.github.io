@@ -1,0 +1,224 @@
+<HTML>
+<body>
+<head>
+  <title>Marginal Likelihood Integrals for Mixtures of Independence Models</title>
+</head>
+
+<center>
+  <h1>Marginal Likelihood Integrals <br> for Mixtures of Independence Models</h1>
+  <b><font size="+1">
+    <a href="https://w3id.org/people/shaoweilin">Shaowei Lin</a>, 
+    <a href="http://math.berkeley.edu/~bernd/">Bernd Sturmfels</a>, and 
+    <a href="http://lsec.cc.ac.cn/~xuzq/">Zhiqiang Xu</a>
+  </font></b>
+</center>
+<br>
+<br>
+<br>
+<a href="http://www.azoft.com/people/seremina/edu/integrals-rom.html">View this
+page in Romanian</a> courtesy of <a
+  href="http://www.azoft.com/">azoft</a> <br>
+<a href="http://www.autoteiledirekt.de/science/marginalne-calki-prawdopodobienstwo-w-przypadku-mieszanin-modeli-niepodleglosciowych">View this
+page in Polish</a> courtesy of <a
+  href="http://autoersatzteile.de/blog/">Valeria Aleksandrova</a> <br>
+<a
+href="http://sciencelakes.com/marginale-sandsynlighed-integraler-for-blandinger-af-uafhaengighed-modeller/">View
+  this page in Danish</a> courtesy of <a href="http://sciencelakes.com/">ScienceLakes</a>
+
+<h2>Research Paper</h2>
+
+Our paper "Marginal Likelihood Integrals for Mixtures of Independence Models" can be found <a href="http://front.math.ucdavis.edu/0805.3602">here</a>.
+
+<h2>Maple Library</h2>
+
+The <tt>Maple</tt> library can be downloaded from <a href="integrals.lib">here</a>. To use it, put the file in your work directory and type the command
+<blockquote><tt>> read "integrals.lib";</tt></blockquote>
+when you start your maple session. 
+
+<h2>Toric Matrix</h2>
+
+Suppose our independence model is defined by parameters s<sub>1</sub>, ..., s<sub>k</sub> and t<sub>1</sub>, ..., t<sub>k</sub>. Let <tt>s</tt> and <tt>t</tt> be lists storing the parameters. The function 
+<blockquote><tt>ToricMatrix(s,t)</tt></blockquote>
+will produce an array storing the <i>reduced</i> matrix A, i.e. repeated columns are removed. Note that the columns of A are sorted lexicographically. For instance, the matrix A in Example 2.1 is given by
+<blockquote><tt>> A:=ToricMatrix([1,2],[1,1]);
+<br><br>
+<center>
+[1&nbsp&nbsp&nbsp 1&nbsp&nbsp&nbsp 1&nbsp&nbsp&nbsp 0&nbsp&nbsp&nbsp 0&nbsp&nbsp&nbsp 0]<br>
+[&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp]<br>
+[0&nbsp&nbsp&nbsp 0&nbsp&nbsp&nbsp 0&nbsp&nbsp&nbsp 1&nbsp&nbsp&nbsp 1&nbsp&nbsp&nbsp 1]<br>
+[&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp]<br>
+[2&nbsp&nbsp&nbsp 1&nbsp&nbsp&nbsp 0&nbsp&nbsp&nbsp 2&nbsp&nbsp&nbsp 1&nbsp&nbsp&nbsp 0]<br>
+[&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp]<br>
+[0&nbsp&nbsp&nbsp 1&nbsp&nbsp&nbsp 2&nbsp&nbsp&nbsp 0&nbsp&nbsp&nbsp 1&nbsp&nbsp&nbsp 2]
+</center></tt>
+</blockquote>
+To get the non-reduced matrix A, use the option "<tt>reduced=false</tt>". The following matrix is from Example 2.5.
+<blockquote><tt>> A:=ToricMatrix([4],[1],reduced=false);
+<br><br>
+<center>
+[4&nbsp&nbsp&nbsp 3&nbsp&nbsp&nbsp 3&nbsp&nbsp&nbsp 3&nbsp&nbsp&nbsp 3&nbsp&nbsp&nbsp 2&nbsp&nbsp&nbsp 2&nbsp&nbsp&nbsp 2&nbsp&nbsp&nbsp 2&nbsp&nbsp&nbsp 2&nbsp&nbsp&nbsp 2&nbsp&nbsp&nbsp 1&nbsp&nbsp&nbsp 1&nbsp&nbsp&nbsp 1&nbsp&nbsp&nbsp 1&nbsp&nbsp&nbsp 0]<br>
+[&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp]<br>
+[0&nbsp&nbsp&nbsp 1&nbsp&nbsp&nbsp 1&nbsp&nbsp&nbsp 1&nbsp&nbsp&nbsp 1&nbsp&nbsp&nbsp 2&nbsp&nbsp&nbsp 2&nbsp&nbsp&nbsp 2&nbsp&nbsp&nbsp 2&nbsp&nbsp&nbsp 2&nbsp&nbsp&nbsp 2&nbsp&nbsp&nbsp 3&nbsp&nbsp&nbsp 3&nbsp&nbsp&nbsp 3&nbsp&nbsp&nbsp 3&nbsp&nbsp&nbsp 4]<br>
+</center></tt>
+</blockquote>
+
+<h2>Marginal Likelihood for Mixture Model</h2>
+
+Let <tt>U</tt> be a list storing the data vector. Make sure that the <i>i</i>-th entry of <tt>U</tt> corresponds with the <i>i</i>-th column of the matrix <tt>A</tt> produced by the function <tt>ToricMatrix</tt>. Then, the marginal likelihood for the data vector <tt>U</tt> with respect to the mixture model is given by
+<blockquote><tt>ML(s,t,U)</tt></blockquote>
+where the output depends on whether <tt>U</tt> is a reduced or non-reduced data vector. To understand the difference between the two, we study the coin toss example in Example 2.5. Suppose we have the data vector
+<blockquote><tt>
+(U<sub>0000</sub>,U<sub>0001</sub>,U<sub>0010</sub>,...,U<sub>1111</sub>) = (51,4,4,5,5,12,12,12,12,12,13,6,6,6,7,75).
+</tt></blockquote>
+Note that the reduced form of this data vector is 
+<blockquote><tt>
+(U<sub>0</sub>,U<sub>1</sub>,U<sub>2</sub>,U<sub>3</sub>,U<sub>4</sub>) = (51,18,73,25,75).
+</tt></blockquote>
+Then, the marginal likelihood of the non-reduced data vector <tt>(U<sub>0000</sub>,U<sub>0001</sub>,...,U<sub>1111</sub>)</tt> is 
+<blockquote><tt>ML([4],[1],[51,4,4,5,5,12,12,12,12,12,13,6,6,6,7,75])</tt></blockquote>
+which is approximately 0.2857408184x10<sup>-30</sup>. It is given by the formula
+<blockquote><tt>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 242!<br>
+---------------------------------------- I<br>
+51!4!4!5!5!12!12!12!12!12!13!6!6!6!7!75!<br>
+</tt></blockquote>
+where <tt>I</tt> is the integral (21) in the paper. Meanwhile, the marginal likelihood of the reduced data vector <tt>(U<sub>0</sub>,U<sub>1</sub>,U<sub>2</sub>,U<sub>3</sub>,U<sub>4</sub>)</tt> is the sum of all marginal likelihoods of data vectors <tt>(U<sub>0000</sub>,U<sub>0001</sub>,...,U<sub>1111</sub>)</tt> which reduce to the given reduced data vector. We compute it with
+<blockquote><tt>ML([4],[1],[51,18,73,25,75])</tt></blockquote>
+which is approximately 0.7788716339x10<sup>-22</sup>. It is given by the formula
+<blockquote><tt>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 242!<br>
+--------------- 4<sup>18</sup> 6<sup>73</sup> 4<sup>25</sup> I<br>
+51!18!73!25!75!<br>
+</tt></blockquote>
+Note that the difference between the two marginal likelihoods is only due to the normalizing constants. 
+
+<h2>Dirichlet Priors</h2>
+
+To compute marginal likelihoods with Dirichlet priors &alpha;, &beta; and &gamma;, we use the function
+<blockquote><tt>MLDir(s,t,U,a,b,g)</tt></blockquote>
+where <tt>a</tt>, <tt>b</tt> and <tt>g</tt> are lists representing &alpha;, &beta; and &gamma respectively. Note that <tt>a</tt>, <tt>b</tt> and <tt>g</tt> are of length 2, <tt>d</tt> and <tt>d</tt> respectively where <tt>d</tt> is the number of rows in the toric matrix <tt>A</tt>, and that their entries must be positive.
+
+<h2>Marginal Likelihood for Independence Model</h2>
+
+The marginal likelihood for the independence model can be computed with the option "<tt>mixed=false</tt>".
+<blockquote>
+<tt>ML(s,t,U,mixed=false)</tt><br>
+<tt>MLDir(s,t,U,[],b,[],mixed=false)</tt>
+</blockquote>
+Note that for the function <tt>MLDir</tt>, one needs to put dummy lists such as "<tt>[]</tt>" in the place of the the parameters <tt>a</tt> and <tt>g</tt>, as shown above. 
+
+<h2>Bayes Factor</h2>
+
+To compute the Bayes factor mentioned in Corollary 5.4 of the paper, simply evaluate
+<blockquote>
+<tt>ML(s,t,U)/ML(s,t,U,mixed=false)</tt><br>
+<tt>MLDir(s,t,U,a,b,g)/MLDir(s,t,U,[],b,[],mixed=false)</tt>
+</blockquote>
+
+<h2>Other Options</h2>
+
+The functions <tt>ML</tt> and <tt>MLDir</tt> have the following additional options:
+<ol>
+<li>
+<tt>symbolic = true / false</tt> (default: <tt>false</tt>)
+<blockquote>Tells the function whether to use the symbolic expansion algorithm described in Section 4.2 of the paper. This algorithm may be faster when the expanded integrand has relatively few terms.</blockquote>
+</li>
+<li>
+<tt>float = true / false</tt> (default: <tt>false</tt>)
+<blockquote>Tells the function whether to compute the integral with floating point arithmetic or with exact rational number arithmetic. Use the variable <tt>Digits</tt> to control the precision of the calculations. For instance, the command <tt>Digits := 50;</tt> sets the precision to 50 decimal digits. Note that when computing marginal likelihoods with non-integer Dirichlet prior parameters, the <tt>float</tt> option is automatically set to <tt>true</tt>. </blockquote>
+</li>
+<li><tt>quiet = true / false</tt> (default: <tt>true</tt>)
+<blockquote>Tells the function to withhold or print out the progress of the computation respectively. Useful when the computation takes several hours or days. Use the command <tt>interface(quiet = true)</tt> to turn off the system's memory and time print-out.</blockquote>
+</li>
+<li>
+<tt>jump = </tt><i>positive integer</i> (default: <tt>1000</tt>)
+<blockquote>Used in conjunction with the option <tt>quiet = false</tt>. This variable tells the function how frequent the progress print-outs should be made. It is the number of terms of the integral formula which are summed up before a progress print-out is made. </blockquote>
+</li>
+</ol>
+
+<h2>Convenience Functions</h2>
+
+The library has some useful convenience functions. 
+<ol>
+<li><tt>ToricNumRows(s,t)</tt>, <tt>ToricNumCols(s,t)</tt>
+<blockquote>
+Returns <tt>d</tt> and <tt>n</tt>, the number of rows and cols respectively for the reduced matrix of the independence model defined by parameters <tt>s</tt> and <tt>t</tt>. Use the option "<tt>reduced=false</tt>" to compute the same for the non-reduced matrix. 
+</blockquote>
+</li>
+<li><tt>ReducedVector(s,t,U)</tt>
+<blockquote>
+Returns the reduced data vector for an unreduced data vector <tt>U</tt> of the independence model with parameters <tt>s</tt> and <tt>t</tt>.
+</blockquote>
+</li>
+<li><tt>NumTerms(A,U)</tt>
+<blockquote>Returns the number of terms in the expansion of the integrand defined by <tt>A</tt> and <tt>U</tt>.</blockquote>
+</li>
+<li><tt>NumTermsBound(A,U)</tt>
+<blockquote>Returns a list <tt>[l,u]</tt> where <tt>l</tt> and <tt>u</tt> are the lower and upper bounds given in Theorem 3.5 for the number of terms in the expansion of the integrand defined by <tt>A</tt> and <tt>U</tt>.</blockquote>
+</li>
+<li><tt>ExpandHalfPoly(A,U)</tt>
+<blockquote>Because of Proposition 3.2(1), only half the terms of every polynomial are stored. This function expands the integrand defined by <tt>A</tt> and <tt>U</tt>, and returns the result in an array as a "half-polynomial". Each row of the array corresponds to a term in the expansion, and the columns store the exponents and coefficient of each term. In particular, the coefficients are stored in the last column. </blockquote>
+</li>
+<li><tt>GetPoly(f,<i>[var list]</i>)</tt>
+<blockquote>This function takes an array <tt>f</tt> storing a half-polynomial as described previously, and returns the standard full polynomial that <tt>f</tt> represents in the variables <tt><i>[var list]</i></tt>. For example,
+<blockquote><tt>
+> A:= ToricMatrix([2],[1]): <br>
+> f:= ExpandHalfPoly(A,[1,1,1]): <br>
+> GetPoly(f,[x,y]);<br>
+<br>
+<center>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 3&nbsp&nbsp&nbsp&nbsp&nbsp 3&nbsp 3&nbsp&nbsp&nbsp&nbsp&nbsp 3&nbsp&nbsp&nbsp 2&nbsp 2&nbsp&nbsp&nbsp 2&nbsp <br>
+g := 1 + x&nbsp + x y + x&nbsp y + x&nbsp y&nbsp + x y&nbsp + x&nbsp y&nbsp + y&nbsp&nbsp&nbsp
+</center><br>
+> factor(g); <br>
+<br>
+<center>
+2&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <br>
+(y&nbsp + 1) (x&nbsp + 1) (x y + 1)
+<center>
+</blockquote></tt>
+</blockquote>
+</li>
+<li><tt>GetHalfPoly(f,<i>[var list]</i>,A,U)</tt>
+<blockquote>This function takes an full polynomial <tt>f</tt> coming from the expansion of the integrand defined by the matrix <tt>A</tt> and data <tt>U</tt>, and returns an array storing the half polynomial. The variables in <tt><i>[var list]</i></tt> must be single-character alphabets <tt>a</tt>, <tt>b</tt>, <tt>c</tt>, <tt>d</tt>, ..., <tt>w</tt>, <tt>x</tt>, <tt>y</tt>, <tt>z</tt>. </blockquote>
+</li>
+<li><tt>NormConst(s,t,U)</tt>
+<blockquote>Calculates the normalizing constant for the marginal likelihood of the data <tt>U</tt> in the mixture model with parameters <tt>s</tt> and <tt>t</tt>. In particular, it checks if <tt>U</tt> is a reduced data vector and returns the corresponding normalizing constant.</blockquote>
+</li>
+<li><tt>ArrayNumRows(A)</tt>, <tt>ArrayNumCols(A)</tt>
+<blockquote>
+Takes an array <tt>A</tt> and returns the number of rows and the number of cols it has respectively. For instance, you can use these functions to find the number of terms and variables in a half polynomial.
+</blockquote>
+</li>
+</ol>
+<h2>Examples</h2>
+
+The following are some examples from the paper:
+<ol>
+<li>Coin Toss (see Example 2.1)
+<blockquote>
+<tt>ML([4],[1],[51,18,73,25,75]);</tt>
+</blockquote>
+</li>
+<li>100 Swiss Francs (see Section 1)
+<blockquote>
+<tt>ML([1,1],[3,3],[4,2,2,2,2,4,2,2,2,2,4,2,2,2,2,4]);</tt>
+</blockquote>
+</li>
+<li>Schizophrenic Patients (see Section 5)
+<blockquote>
+<tt>ML([1,1],[2,2],[43,16,3,6,11,10,9,18,16]);</tt>
+</blockquote>
+</li>
+</ol>
+
+<h2>Suggestions and Bugs</h2>
+
+If you find any bugs in the code or have any comments or suggestions, please do not hesitate to contact Shaowei Lin. His email address is <blockquote><tt>shaowei [at] math [dot] berkeley [dot] edu</tt></blockquote>
+
+<br>
+<br>
+
+Last Updated: 14 Sep 2008
+</body>
+</HTML>
