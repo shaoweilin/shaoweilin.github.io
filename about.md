@@ -18,6 +18,8 @@ I am a mathematician working on the statistical learning theory of spiking neura
 
 [PhD Thesis](https://w3id.org/people/shaoweilin/public/swthesis.pdf)
 
+[Singular Learning](https://w3id.org/people/shaoweilin/singular/)
+
 [Google Scholar](http://scholar.google.com.sg/citations?user=jCYmZFEAAAAJ&hl=en&sortby=pubdate)
 
 [ResearchGate](https://www.researchgate.net/profile/Shaowei_Lin)
