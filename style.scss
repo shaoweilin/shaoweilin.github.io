@@ -142,15 +142,23 @@ img {
     clear: both;
 }
 
+table, th, td {
+   border: 1px solid black;
+}
+
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
 }
 
 td,
 th {
-    padding: 5px;
-    vertical-align: top;
+	padding: 5px;
+	vertical-align: top;
 }
 
 /*********************/
