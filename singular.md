@@ -18,8 +18,8 @@ Some personal resources for understanding and applying singular learning theory.
 
 My slides and problem sets on Singular Learning Theory from the [Motivic Invariants and Singularities](http://www3.nd.edu/~cmnd/programs/mis2013/) workshop at the Center for Mathematics at Notre Dame (May 2013).
 
-| 1 | Statistical Learning Theory | [Slides](https://w3id.org/people/shaoweilin/public/cmnd1SLT.pdf) | [Problems](https://w3id.org/people/shaoweilin/public/cmnd1prob.pdf) |
-| 2 | Real Log Canonical Threshold | [Slides](https://w3id.org/people/shaoweilin/public/cmnd2RLCT.pdf) | [Problems](https://w3id.org/people/shaoweilin/public/cmnd2prob.pdf) |
-| 3 | Singularities in Graphical Models | [Slides](https://w3id.org/people/shaoweilin/public/cmnd3GM.pdf) | [Problems](https://w3id.org/people/shaoweilin/public/cmnd3prob.pdf) |
-| 4 | Blow-ups and Zeta Functions | [Notes](https://w3id.org/people/shaoweilin/public/cmnd4notes.pdf) | |
+| Statistical Learning Theory | [Slides](https://w3id.org/people/shaoweilin/public/cmnd1SLT.pdf) | [Problems](https://w3id.org/people/shaoweilin/public/cmnd1prob.pdf) |
+| Real Log Canonical Threshold | [Slides](https://w3id.org/people/shaoweilin/public/cmnd2RLCT.pdf) | [Problems](https://w3id.org/people/shaoweilin/public/cmnd2prob.pdf) |
+| Singularities in Graphical Models | [Slides](https://w3id.org/people/shaoweilin/public/cmnd3GM.pdf) | [Problems](https://w3id.org/people/shaoweilin/public/cmnd3prob.pdf) |
+| Blow-ups and Zeta Functions | [Notes](https://w3id.org/people/shaoweilin/public/cmnd4notes.pdf) | |
 
