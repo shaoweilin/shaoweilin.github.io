@@ -8,7 +8,7 @@ I am a mathematician working on the statistical learning theory of spiking neura
 
 Permalink https://w3id.org/people/shaoweilin
 
-ORCID 0000-0002-8176-8868.html
+ORCID 0000-0002-8176-8868
 
 ### Biography
 
