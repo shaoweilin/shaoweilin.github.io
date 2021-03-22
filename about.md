@@ -6,7 +6,7 @@ permalink: /about/
 
 I am a mathematician working on the statistical learning theory of spiking neural networks and on dependent type theories for machine reasoning.
 
-Permalink [https://w3id.org/people/shaoweilin](https://w3id.org/people/shaoweilin)
+PURL [https://w3id.org/people/shaoweilin](https://w3id.org/people/shaoweilin)
 
 ORCID [0000-0002-8176-8868](https://orcid.org/0000-0002-8176-8868)
 
@@ -34,17 +34,17 @@ ORCID [0000-0002-8176-8868](https://orcid.org/0000-0002-8176-8868)
 
 ### Software
 
-[[Website](http://www.math.uiuc.edu/Macaulay2/doc/Macaulay2-1.4/share/doc/Macaulay2/GraphicalModels/html/index.html)] Graphical Models Package for Macaulay2
+[Graphical Models](http://www.math.uiuc.edu/Macaulay2/doc/Macaulay2-1.4/share/doc/Macaulay2/GraphicalModels/html/index.html)
 
-[[Website](https://w3id.org/people/shaoweilin/public/tropsec.html)] Tropical Secant Graphs of Monomial Curves
+[Tropical Secants](https://w3id.org/people/shaoweilin/public/tropsec.html)
 
-[[Website](https://w3id.org/people/shaoweilin/public/rlct.html)] Asymptotic Approximation of Marginal Likelihood Integrals
+[Integral Asymptotics](https://w3id.org/people/shaoweilin/public/rlct.html)
 
-[[Website](https://w3id.org/people/shaoweilin/public/minors.html)] Polynomial Relations among Principal Minors of a 4×4 Matrix
+[Principal Minors](https://w3id.org/people/shaoweilin/public/minors.html)
 
-[[Website](https://w3id.org/people/shaoweilin/public/integrals.html)] Exact Evaluation of Marginal Likelihood Integrals.
+[Exact Integration](https://w3id.org/people/shaoweilin/public/integrals.html)
 
-[[Website](https://w3id.org/people/shaoweilin/public/legendrian.html)] Studying Legendrian Invariants with FrontLeg.
+[Legendrian Knots](https://w3id.org/people/shaoweilin/public/legendrian.html)
 
 ### Contact
 
