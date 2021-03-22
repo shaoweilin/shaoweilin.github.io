@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Processes I : Relative Entropy
+title: Processes I - Relative Entropy
 ---
 
 We derive a distributed learning algorithm for spiking neural networks with latent variables that minimizes some natural notion of relative entropy and provably converges over time. We will model these spiking neural networks with stochastic processes: both discrete-time and continuous-time processes, with or without latent variables.
