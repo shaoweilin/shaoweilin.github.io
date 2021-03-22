@@ -34,5 +34,5 @@ To find the best model distribution $$ P_\theta$$ for approximation the true dis
 
 $$ \tag{TA} \displaystyle \lim_{T\rightarrow \infty} \frac{1}{T} H_{Q_*\Vert P_\theta}(X_{0\ldots T}).$$
 
-In equation [(TA)](https://shaoweilin.github.io/processes-relative-entropy/#mjx-eqn-TA), we see this.
+In equation ([TA](https://shaoweilin.github.io/processes-relative-entropy/#mjx-eqn-TA)), we see this.
 
