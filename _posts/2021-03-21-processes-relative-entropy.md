@@ -32,7 +32,6 @@ $$ \tag{RN}
 
 To find the best model distribution $$ P_\theta$$ for approximation the true distribution $$ Q_*$$, we will minimize this relative entropy with respect to $$ \theta$$. As the time horizon $$ T$$ tends to infinity, we may also consider minimizing the limit of the time-averaged relative entropy
 
-$$ \tag{TA} \displaystyle \lim_{T\rightarrow \infty} \frac{1}{T} H_{Q_*\Vert P_\theta}(X_{0\ldots T}).$$
+$$ \tag{LM} \displaystyle \lim_{T\rightarrow \infty} \frac{1}{T} H_{Q_*\Vert P_\theta}(X_{0\ldots T}).$$
 
-In equation ([TA](https://shaoweilin.github.io/processes-relative-entropy/#mjx-eqn-TA)), we see this.
-
+Testing a link to equation ([RN](https://shaoweilin.github.io/processes-relative-entropy/#mjx-eqn-RN)).
