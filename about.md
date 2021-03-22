@@ -6,9 +6,9 @@ permalink: /about/
 
 I am a mathematician working on the statistical learning theory of spiking neural networks and on dependent type theories for machine reasoning.
 
-Permalink https://w3id.org/people/shaoweilin
+Permalink [https://w3id.org/people/shaoweilin](https://w3id.org/people/shaoweilin)
 
-ORCID 0000-0002-8176-8868
+ORCID [0000-0002-8176-8868](https://orcid.org/0000-0002-8176-8868)
 
 ### Biography
 
