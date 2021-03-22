@@ -27,7 +27,7 @@ Let the true distribution of $$ \{X_t\}$$ be given by some path measure $$ Q_*(\
 
 Because we have absolute continuity, the Radon-Nikodym derivative $$ dQ_*/dP_\theta$$ exists, and we may define the time-averaged relative entropy
 
-$$ \begin{equation} \tag{RN} label{RN}
+$$ \begin{equation} \tag{RN} \label{RN}
 \displaystyle \frac{1}{T} H_{Q_*\Vert P_\theta}(X_{0\ldots T}) = \frac{1}{T} \int \log \frac{dQ_*}{dP_\theta} dQ_*. \end{equation}$$
 
 To find the best model distribution $$ P_\theta$$ for approximation the true distribution $$ Q_*$$, we will minimize this relative entropy with respect to $$ \theta$$. As the time horizon $$ T$$ tends to infinity, we may also consider minimizing the limit of the time-averaged relative entropy
