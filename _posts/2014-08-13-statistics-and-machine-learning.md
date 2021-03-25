@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Boltzmann Machines and Hierarchical Models
+title: Statistics and Machine Learning
 ---
 
 Below are some introductory texts for probability, statistics, machine learning and statistical learning theory. They are sorted according to difficulty, so you can find a book that is suitable for where you are and what you need.
@@ -29,7 +29,7 @@ Below are some introductory texts for probability, statistics, machine learning 
 
 8. Mathematical Statistics - Jun Shao
 
-The textbook (5B) covers the most of the topics in machine learning in detail. If you are interested in online machine learning classes, here are some interesting ones.
+The textbook (5b) covers the most of the topics in machine learning in detail. If you are interested in online machine learning classes, here are some interesting ones.
 
 * [Coursera - Machine Learning](https://www.coursera.org/course/ml)
 * [Coursera - Neural Networks](https://www.coursera.org/course/neuralnets)
