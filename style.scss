@@ -151,12 +151,7 @@ table {
 	border-spacing: 0;
 }
 
-tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
-
-td,
-th {
+td {
 	padding: 5px;
 	vertical-align: top;
 }
