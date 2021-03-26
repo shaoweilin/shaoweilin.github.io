@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Boltzmann Machines and Hierarchical Models
+title: Boltzmann machines and hierarchical models
 ---
 
 The [restricted Boltzmann machine](http://en.wikipedia.org/wiki/Restricted_Boltzmann_machine) (RBM) is a key statistical model used in [deep learning](http://en.wikipedia.org/wiki/Deep_learning). They are special form of Boltzmann machines where the underlying graph is a bipartite graph. Personally, I am more interested in [Boltzmann machines](http://en.wikipedia.org/wiki/Boltzmann_machine) because they represent a class of discrete [energy models](http://www.cs.nyu.edu/~yann/research/ebm/) where the energy is quadratic. The dynamics of the model bears a lot of resemblance to those of [Hopfield networks](http://en.wikipedia.org/wiki/Hopfield_network) and [Ising models](http://en.wikipedia.org/wiki/Ising_model). As an aside, normal distributions are continuous energy models where the energy is quadratic and positive definite. 

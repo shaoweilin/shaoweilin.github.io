@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Statistics and Machine Learning
+title: Statistics and machine learning
 ---
 
 Below are some introductory texts for probability, statistics, machine learning and statistical learning theory. They are sorted roughly according to difficulty, so you can find a book that is suitable for where you are and what you need.
