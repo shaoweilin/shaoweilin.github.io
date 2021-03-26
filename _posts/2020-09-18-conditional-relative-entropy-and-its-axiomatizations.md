@@ -9,23 +9,23 @@ This post is a continuation from our series on [spiking networks, path integrals
 
 ### What is conditional relative entropy?
 
-Suppose we have two random variables $$X, Y$$ and probability measures $$P, Q$$ on $$\Omega$$. We are interested in how far the model conditional $$P_{Y|X}$$ is to the true conditional $$Q_{Y|X}$$ on average over $$Q_X$$, and we want to ignore the model marginal $$P_X$$.  
+Suppose we have two random variables $$X, Y$$ and probability measures $$P, Q$$ on $$\Omega$$. We are interested in how far the model conditional $$P_{Y\vert X}$$ is to the true conditional $$Q_{Y\vert X}$$ on average over $$Q_X$$, and we want to ignore the model marginal $$P_X$$.  
 
-Let $$P_{XY}, Q_{XY}$$ be the induced joint distributions for $$X, Y$$. We first construct a distribution $$R_{XY}$$ which has the same conditional distribution $$R_{Y|X} = P_{Y|X}$$ as the model but has a marginal $$R_X = Q_X$$ equal to that of the true distribution [Gray11]. Namely,
+Let $$P_{XY}, Q_{XY}$$ be the induced joint distributions for $$X, Y$$. We first construct a distribution $$R_{XY}$$ which has the same conditional distribution $$R_{Y\vert X} = P_{Y\vert X}$$ as the model but has a marginal $$R_X = Q_X$$ equal to that of the true distribution [Gray11]. Namely,
 
-$$R_{XY}(F \times G) = \int_F P_{Y|X}(G|x) dQ_X(x)$$
+$$R_{XY}(F \times G) = \int_F P_{Y\vert X}(G\vert x) dQ_X(x)$$
 
 where $$F$$ and $$G$$ are measurable sets over the state spaces of $$X$$ and $$Y$$ respectively.
 
 We then define the _conditional relative entropy_ to be
 
-$$H_{Q\Vert P}(Y|X) = H_{Q_{XY} \Vert R_{XY}}.$$
+$$H_{Q\Vert P}(Y\vert X) = H_{Q_{XY} \Vert R_{XY}}.$$
 
 In the case where the corresponding densities are well-defined, we have
 
-$$\begin{array}{rl} H_{Q\Vert P}(Y|X) &= \int \int q(y|x) \log \frac{q(y|x)}{p(y|x)}\, dy \,q(x)dx \\ & \\ &= \int \int q(y, x) \log \frac{q(y|x)}{p(y|x)} \,dy\, dx \end{array}.$$
+$$\begin{array}{rl} H_{Q\Vert P}(Y\vert X) &= \int \int q(y\vert x) \log \frac{q(y\vert x)}{p(y\vert x)}\, dy \,q(x)dx \\ & \\ &= \int \int q(y, x) \log \frac{q(y\vert x)}{p(y\vert x)} \,dy\, dx \end{array}.$$
 
-which is the relative entropy to $$q(y|x)$$ from $$p(y|x)$$ averaged over $$q(x)$$.
+which is the relative entropy to $$q(y\vert x)$$ from $$p(y\vert x)$$ averaged over $$q(x)$$.
 
 ### Whats is the chain rule for conditional relative entropy?
 
@@ -33,7 +33,7 @@ In statistics and machine learning, we often think of $$Q$$ as a true distributi
 
 To uncover the truth, it makes strategic sense to study different facets $$X, Y$$ of reality, and to build up reality one facet at a time. For example, we may want to know how far our model is to reality in modeling $$X$$ and focus on modeling $$X$$, before moving on to what our model says about both $$X, Y$$. The chain rule of conditional relative entropy says that the divergence of our model to reality for $$X, Y$$ is simply the sum of the divergences for $$X$$ and for $$Y \vert X$$:
 
-$$\tag{CR} H_{Q\Vert P}(Y, X) = H_{Q\Vert P}(Y|X) + H_{Q\Vert P}(X).$$
+$$\tag{CR} H_{Q\Vert P}(Y, X) = H_{Q\Vert P}(Y\vert X) + H_{Q\Vert P}(X).$$
 
 Therefore, to get a good model of $$X, Y$$, we could attempt to minimize the divergences for $$X$$ and for $$Y \vert X$$ in parallel.
 
@@ -43,17 +43,17 @@ Just as the entropy of a random variable $$X$$ with distribution $$P_X$$ can be 
 
 Given random variables $$X, Y$$ with joint distribution $$P_{XY}$$, we define the conditional entropy of $$Y \vert X$$ as
 
-$$H(Y|X) = H_{P_{XY,XY}\Vert P_{XY} \times P_{XY}}(Y|X)$$
+$$H(Y\vert X) = H_{P_{XY,XY}\Vert P_{XY} \times P_{XY}}(Y\vert X)$$
 
 the conditional relative entropy of $$Y \vert X$$ to the dependent distribution $$P_{XY} \times P_{XY}$$ from the independent distribution $$P_{XY,XY}.$$
 
 According to the chain rule of conditional relative entropy,
 
-$$H_{P_{XY,XY}\Vert P_{XY} \times P_{XY}}(Y, X) = H_{P_{XY,XY}\Vert P_{XY} \times P_{XY}}(Y|X) + H_{P_{XY,XY}\Vert P_{XY} \times P_{XY}}(X).$$
+$$H_{P_{XY,XY}\Vert P_{XY} \times P_{XY}}(Y, X) = H_{P_{XY,XY}\Vert P_{XY} \times P_{XY}}(Y\vert X) + H_{P_{XY,XY}\Vert P_{XY} \times P_{XY}}(X).$$
 
-By the definition of entropy in our [introduction](https://shaoweilin.wordpress.com/2020/09/08/building-foundations-of-information-theory-on-relative-entropy/), the first and third terms are the entropies $$H(Y,X)$$ and $$H(X)$$ respectively, while the second term is the conditional entropy $$H(Y|X)$$. Thus, we recover the classical chain rule for conditional entropy
+By the definition of entropy in our [introduction](https://shaoweilin.wordpress.com/2020/09/08/building-foundations-of-information-theory-on-relative-entropy/), the first and third terms are the entropies $$H(Y,X)$$ and $$H(X)$$ respectively, while the second term is the conditional entropy $$H(Y\vert X)$$. Thus, we recover the classical chain rule for conditional entropy
 
-$$H(Y,X) = H(Y|X) +H(X).$$
+$$H(Y,X) = H(Y\vert X) +H(X).$$
 
 ### Is there an axiomatization of conditional entropy?
 
@@ -65,7 +65,7 @@ Given a measured space $$(\Omega, \mathcal{B}, P)$$, a finite measurable functio
 
 In this case, the conditional entropy of $$Y \vert X$$ is
 
-$$\begin{array}{rl} H(Y|X) &= H(Y,X)-H(X)\\ & \\ &= H(Y) - H(X) \\ & \\ &= - T\displaystyle\sum_{y} \bar{P}_Y(y) \log \bar{P}_Y(y) + T\displaystyle \sum_{x} \bar{P}_X(x) \log \bar{P}_X(x) \\ & \\&= -\displaystyle \sum_{y} P_Y(y) \log P_Y(y) + \displaystyle\sum_{x} P_X(x) \log P_X(x) \end{array}$$
+$$\begin{array}{rl} H(Y\vert X) &= H(Y,X)-H(X)\\ & \\ &= H(Y) - H(X) \\ & \\ &= - T\displaystyle\sum_{y} \bar{P}_Y(y) \log \bar{P}_Y(y) + T\displaystyle \sum_{x} \bar{P}_X(x) \log \bar{P}_X(x) \\ & \\&= -\displaystyle \sum_{y} P_Y(y) \log P_Y(y) + \displaystyle\sum_{x} P_X(x) \log P_X(x) \end{array}$$
 
 where $$T$$ is the total measure of $$P$$, and $$\bar{P}_X = P_X/T$$ and $$\bar{P}_Y = P_Y/T$$ are probability measures.
 
