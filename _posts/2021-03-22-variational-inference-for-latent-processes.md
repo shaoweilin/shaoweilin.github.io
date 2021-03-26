@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Process learning with relative entropy
+title: Variational inference for latent processes
 ---
 
 ### How do we train a latent process without prescience or probing?
