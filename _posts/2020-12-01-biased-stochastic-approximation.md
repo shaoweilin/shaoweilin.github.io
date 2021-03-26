@@ -1,4 +1,3 @@
 ---
 layout: post
-title: Motivic relative entropy
----
+title: Biased stochastic approximation
