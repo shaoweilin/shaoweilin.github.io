@@ -1,4 +1,4 @@
 ---
 layout: post
-title: Conditional relative entropy and its axiomatizations
+title: Building foundations of information theory on relative entropy
 ---
