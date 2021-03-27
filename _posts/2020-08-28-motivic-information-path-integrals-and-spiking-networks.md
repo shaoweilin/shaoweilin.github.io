@@ -9,7 +9,7 @@ I'm writing a series of articles that will explore the connections between these
 
 1. [Building foundations of information theory on relative entropy](https://shaoweilin.github.io/building-foundations-of-information-theory-on-relative-entropy/)
 2. [Conditional relative entropy and its axiomizations](https://shaoweilin.github.io/conditional-relative-entropy-and-its-axiomatizations/)
-3. [Zeta functions, Mellin transforms and the Gelfand-Leray forms](https://shaoweilin.github.io/zeta-functions-mellin-transforms-and-the-gelfand-leray-form/)
+3. [Zeta functions, Mellin transforms and the Gelfand-Leray form](https://shaoweilin.github.io/zeta-functions-mellin-transforms-and-the-gelfand-leray-form/)
 4. [Motivic relative entropy](https://shaoweilin.github.io/motivic-relative-entropy/)
 
 ### Path Integrals
