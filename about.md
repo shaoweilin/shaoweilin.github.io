@@ -12,7 +12,7 @@ ORCID [0000-0002-8176-8868](https://orcid.org/0000-0002-8176-8868)
 
 ### Biography
 
-[Vitae](https://w3id.org/people/shaoweilin/public/vitae.pdf)
+[Curriculum Vitae](https://w3id.org/people/shaoweilin/public/vitae.pdf)
 
 [LinkedIn](https://www.linkedin.com/in/shaoweilin)
 
@@ -22,7 +22,7 @@ ORCID [0000-0002-8176-8868](https://orcid.org/0000-0002-8176-8868)
 
 [ResearchGate](https://www.researchgate.net/profile/Shaowei_Lin)
 
-[Preprints](https://arxiv.org/a/0000-0002-8176-8868.html)
+[arXiv Preprints](https://arxiv.org/a/0000-0002-8176-8868.html)
 
 ### Writings
 
@@ -30,7 +30,7 @@ ORCID [0000-0002-8176-8868](https://orcid.org/0000-0002-8176-8868)
 
 [Singular Learning](https://shaoweilin.github.io/singular/)
 
-[Blog](https://shaoweilin.wordpress.com/)
+[Research Blog](https://shaoweilin.wordpress.com/)
 
 ### Software
 
