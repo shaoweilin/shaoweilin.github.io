@@ -3,6 +3,8 @@ layout: post
 title: Variational inference for latent processes
 ---
 
+We introduce a variational objective, which is a form of relative entropy, for learning processes with latent variables. We discuss natural constraints on the variational parameter and the consequences of these constraints on learning.
+
 ### How do we train a latent process without prescience or probing?
 
 In the training of hidden Markov models, the Baum-Welch algorithm or forward-backward algorithm is often used. It requires knowledge of the visible process from the start to the end of the time interval. An algorithm that only uses the visible process from the start to the present is called an online learning algorithm.

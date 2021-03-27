@@ -3,6 +3,8 @@ layout: post
 title: Biased stochastic approximation for latent processes
 ---
 
+We apply biased stochastic approximation to optimize the variational objective for latent processes. Using this technique, we prove under some regularity conditions that the learning algorithm converges to a local minima.
+
 ### How do we train a Markov process using biased stochastic approximation?
 
 In [KMMW19], the authors studied biased stochastic approximation in the case where the stochastic updates are Markovian.
