@@ -5,7 +5,7 @@ title: Machine learning with relative entropy
 
 We will reframe some common machine learning paradigms, such as maximum likelihood, stochastic gradients, stochastic approximation and variational inference, in terms of relative entropy.
 
-This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.wordpress.com/2020/08/28/spiking-networks-path-integrals-and-motivic-information/).
+This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/).
 
 ### What is a statistical model?
 
@@ -114,7 +114,7 @@ $$H_{Q \Vert P_\theta}(X)$$ to the true distribution $$Q(X)$$ from the model dis
 
 $$q(Z,X) = q(Z\vert X) Q(X).$$
 
-By the [chain rule](https://shaoweilin.wordpress.com/2020/09/18/conditional-relative-entropy-and-its-axiomatizations/) for relative entropy,
+By the chain rule ([CR](https://shaoweilin.github.io/conditional-relative-entropy-and-its-axiomatizations/#mjx-eqn-CR)) for relative entropy,
 
 $$\begin{array}{rl} H_{q\Vert P_\theta}(Z, X) &= H_{q\Vert P_\theta}(Z\vert X) + H_{q\Vert P_\theta}(X) \\& \\&= H_{q\Vert P_\theta}(Z\vert X) + H_{Q\Vert P_\theta}(X) .\end{array}$$
 

@@ -5,7 +5,7 @@ title: Biased stochastic approximation
 
 We explore the convergence of continuous-time ordinary differential equations and their discrete-time analogs, such as stochastic approximation and gradient descent, through the lens of Lyapunov theory [Bottou98, LR15]. From this perspective, we will study biased stochastic approximation [KMMW19] where the expectation of the stochastic updates conditioned on the past (which we call the _conditional expectation_) is not the same as the expectation of the stochastic updates under the stationary distribution (which we call the _total expectation_).
 
-This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.wordpress.com/2020/08/28/spiking-networks-path-integrals-and-motivic-information/).
+This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/).
 
 ### Continuous-time dynamics
 

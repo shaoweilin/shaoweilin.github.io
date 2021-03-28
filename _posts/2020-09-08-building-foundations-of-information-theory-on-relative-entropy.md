@@ -7,7 +7,7 @@ The relative entropy (or Kullback-Leibler divergence) is an important object in 
 
 In this article, we emphasize that the relative entropy is fundamental in the sense that all other interesting information-theoretic objects may be derived from it. We also outline how relative entropy can be defined without probability mass functions or probability density functions, or even in the absence of absolute continuity.
 
-This is the first post in our series on [spiking networks, path integrals and motivic information](https://shaoweilin.wordpress.com/2020/08/28/spiking-networks-path-integrals-and-motivic-information/).
+This is the first post in our series on [spiking networks, path integrals and motivic information](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/).
 
 ### Why build foundations of information theory on relative entropy?
 

@@ -5,7 +5,7 @@ title: Motivic relative entropy
 
 So far, our definition of relative entropy studies the divergence between real-valued measures. In this post, we will explore motivic measures which take values more generally in some ring $$R$$, and have some fun applying motivic relative entropy to zeta functions.
 
-This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.wordpress.com/2020/08/28/spiking-networks-path-integrals-and-motivic-information/).
+This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/).
 
 ### How do we define measures which are not real-valued?
 
@@ -77,7 +77,7 @@ where the sum is over some set $$\mathcal{C}$$ of objects, we define a distribut
 
 $$P(z,i) = \displaystyle \frac{e^{-z \varepsilon(i)}}{Z(z)}.$$
 
-For example, the [Hasse-Weil zeta function](https://shaoweilin.wordpress.com/2020/10/05/zeta-functions-mellin-transforms-and-the-gelfand-leray-form/) of a variety $$V$$ over a finite field $$\mathbb{F}_q$$ may be written as
+For example, the [Hasse-Weil zeta function](https://shaoweilin.github.io/zeta-functions-mellin-transforms-and-the-gelfand-leray-form/) of a variety $$V$$ over a finite field $$\mathbb{F}_q$$ may be written as
 
 $$Z_V(z) = \displaystyle \sum_{\alpha \in \mathcal{C}_V} e^{-z \deg(\alpha) \log q},$$
 
@@ -89,7 +89,7 @@ is therefore
 
 $$H_V(z) = \left(1- z \frac{d}{dz} \right) \log Z_V(z).$$
 
-[Recall](https://shaoweilin.wordpress.com/2020/10/05/zeta-functions-mellin-transforms-and-the-gelfand-leray-form/) that
+[Recall](https://shaoweilin.github.io/zeta-functions-mellin-transforms-and-the-gelfand-leray-form/) that
 
 $$\log Z_V(z) = \displaystyle \sum_{m \geq 1} \frac{\#V(\mathbb{F}_{q^m})}{m}q^{-zm} $$
 

@@ -5,7 +5,7 @@ title: Path integrals and continuous-time Markov chains
 
 We give an introduction to continuous-time Markov chains, and define path measures for these objects.
 
-This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.wordpress.com/2020/08/28/spiking-networks-path-integrals-and-motivic-information/).
+This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/).
 
 ### What is a stochastic process?
 

@@ -5,7 +5,7 @@ title: Conditional relative entropy and its axiomatizations
 
 In this post, we will study the conditional form of relative entropy. We will also look at how conditional relative entropy can be axiomatized and extended to non-real-valued measures.
 
-This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.wordpress.com/2020/08/28/spiking-networks-path-integrals-and-motivic-information/).
+This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/).
 
 ### What is conditional relative entropy?
 
@@ -51,13 +51,13 @@ According to the chain rule of conditional relative entropy,
 
 $$H_{P_{XY,XY}\Vert P_{XY} \times P_{XY}}(Y, X) = H_{P_{XY,XY}\Vert P_{XY} \times P_{XY}}(Y\vert X) + H_{P_{XY,XY}\Vert P_{XY} \times P_{XY}}(X).$$
 
-By the definition of entropy in our [introduction](https://shaoweilin.wordpress.com/2020/09/08/building-foundations-of-information-theory-on-relative-entropy/), the first and third terms are the entropies $$H(Y,X)$$ and $$H(X)$$ respectively, while the second term is the conditional entropy $$H(Y\vert X)$$. Thus, we recover the classical chain rule for conditional entropy
+By the definition of entropy in our [introduction](https://shaoweilin.github.io/building-foundations-of-information-theory-on-relative-entropy/), the first and third terms are the entropies $$H(Y,X)$$ and $$H(X)$$ respectively, while the second term is the conditional entropy $$H(Y\vert X)$$. Thus, we recover the classical chain rule for conditional entropy
 
 $$H(Y,X) = H(Y\vert X) +H(X).$$
 
 ### Is there an axiomatization of conditional entropy?
 
-As described in our [previous post](https://shaoweilin.wordpress.com/2020/09/08/building-foundations-of-information-theory-on-relative-entropy/), we allow the total measures of $$P, Q$$ to be different from one, but we require their total measures to be the same.
+As described in our [previous post](https://shaoweilin.github.io/building-foundations-of-information-theory-on-relative-entropy/), we allow the total measures of $$P, Q$$ to be different from one, but we require their total measures to be the same.
 
 We start with an axiomatizations of conditional entropy with the hope of deriving axiomatizations of conditional relative entropy. I like the following categorical view of conditional entropy [Baez11]. I've taken the liberty of rewriting it in our notations.
 

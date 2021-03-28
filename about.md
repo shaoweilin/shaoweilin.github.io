@@ -30,8 +30,6 @@ ORCID [0000-0002-8176-8868](https://orcid.org/0000-0002-8176-8868)
 
 [Singular Learning](https://shaoweilin.github.io/singular/)
 
-[Research Blog](https://shaoweilin.wordpress.com/)
-
 ### Software
 
 [Graphical Models](http://www.math.uiuc.edu/Macaulay2/doc/Macaulay2-1.4/share/doc/Macaulay2/GraphicalModels/html/index.html)

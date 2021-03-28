@@ -17,7 +17,7 @@ The outline of this article is as follows.
 
 In (1) and (2), we give a general overview of information-theoretic approaches to training stochastic processes. In (3), we zoom in on stochastic processes with latent variables, and measure how the lack of knowledge of the future affects online learning. In (4), we explore online algorithms involving biased stochastic approximation which may be seen as generalizations of classical expectation maximization. In (5), we zoom in on latent processes which are Markovian, and derive conditions that lead to convergence of the biased stochastic approximation.
 
-This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.wordpress.com/2020/08/28/spiking-networks-path-integrals-and-motivic-information/).
+This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/).
 
 ### How do we train a stochastic process using relative entropy?
 
@@ -72,3 +72,11 @@ where $$ *$$ is the inner product in some appropriate Hilbert space and
 $$ \displaystyle \frac{\partial}{\partial X_{0\ldots s}} F (X_{0\ldots s})$$
 
 is the functional derivative of a path function $$ F$$ with respect to the path $$ X_{0\ldots s}.$$ We will formalize the Hilbert space and functional derivative in another article.
+
+### References
+
+[Leroux92] Leroux, Brian G. "Maximum-likelihood estimation for hidden Markov models." _Stochastic processes and their applications_ 40, no. 1 (1992): 127-143.
+
+[Sato01] Sato, Masa-Aki. "Online model selection based on the variational Bayes." _Neural computation_ 13, no. 7 (2001): 1649-1681.
+
+[KMMW19] Karimi, Belhal, Blazej Miasojedow, Éric Moulines, and Hoi-To Wai. "Non-asymptotic analysis of biased stochastic approximation scheme." _arXiv preprint arXiv:1902.00629_ (2019).

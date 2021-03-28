@@ -61,7 +61,7 @@ $$ \displaystyle \frac{d\theta}{dt} = - \eta_t \frac{d}{d\theta} \frac{d}{ds}H_{
 
 that are driven by the derivative of the relative entropy rate.
 
-We will now derive sufficient conditions on the model and true distributions for applying the convergence [theorem](https://shaoweilin.wordpress.com/2020/12/01/biased-stochastic-approximation/) for biased stochastic approximation.
+We will now derive sufficient conditions on the model and true distributions for applying the convergence [theorem](https://shaoweilin.github.io/biased-stochastic-approximation/) for biased stochastic approximation.
 
 Let $$ \{W_n\}$$ be the $$ Q_n$$-controlled Markov process with
 
@@ -97,7 +97,7 @@ Therefore, the mean field satisfies
 
 $$ g(Q_n, \theta_n) = \displaystyle \frac{\partial V}{\partial \theta}(Q_n, \theta_n),$$
 
-so assumptions A1 and A2 of the [convergence theorem](https://shaoweilin.wordpress.com/2020/12/15/training-spiking-neural-networks-with-latent-variables/) are automatically satisfied.
+so assumptions A1 and A2 of the [convergence theorem](https://shaoweilin.github.io/biased-stochastic-approximation/) are automatically satisfied.
 
 Now, keeping $$ \theta$$ fixed, let us minimize $$ V(Q,\theta)$$ over $$ Q \in \Delta_\mathcal{M}$$ so that we may update $$ Q_n$$. In the training algorithm, we can think of $$ Q_n(Z_{t+1}\vert Z_t, X_t)$$ as the functional parameter or distribution controlling a sampler that spits out possible explanations $$ Z_{t+1}$$ of the observations $$ X_t$$ based on prior knowledge $$ Z_t.$$
 
