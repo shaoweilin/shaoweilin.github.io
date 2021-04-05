@@ -48,8 +48,9 @@ Since LF is just a meta-language for specifying object languages, consistency is
 
 A universe $$U : \textbf{Type}$$ can be thought of as syntactic category that puts a collection of LF-kinds into a neat package after the LF-kinds have been defined. For example, suppose we have LF-kinds
 
-*   $$Nat \text{ kind}$$
-*   $$Bool \text{ kind}$$
+$$Nat \text{ kind}$$
+
+$$Bool \text{ kind}$$
 
 Instead of putting the LF-constants $$nat$$ and $$bool$$  in $$\textbf{Type}$$, we could package them in $$U$$ so $$nat : El(U)$$ and $$bool : El(U)$$ while $$U : \textbf{Type}$$. We will need a new lifting operator $$T$$, so that $$T(nat) : \textbf{Type}, T(bool) : \textbf{Type}$$ and $$Nat = El(T(nat)), Bool = El(T(bool))$$.  Every LF-constant representing a type eventually lifts up to some LF-kind. Thus, we can think of universe management as a way of organizing a large collection of LF-kinds to retain consistency, among other goals.
 
