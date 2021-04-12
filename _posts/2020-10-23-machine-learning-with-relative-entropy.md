@@ -166,25 +166,25 @@ $$\begin{array}{rl} H_{Q\Vert P}(Z, X) = H_{Q\Vert P}(Z\vert X) + H_{Q_*\Vert P}
 
 In this sum, the second term is a constant that does not depend on the parameter $$Q(Z\vert X).$$ The first term expands to
 
-$$\begin{array}{rl}  H_{Q\Vert P}(Z\vert X) &= \displaystyle \int Q(X) \int Q(Z\vert X) \log \frac{Q(Z\vert X)}{P(Z|X)} \,dZ \,dX \\ &= \displaystyle \int Q(Z\vert X_*) \log \frac{Q(Z\vert X_*)}{P(Z|X_*)} \,dZ \end{array}
+$$\begin{array}{rl}  H_{Q\Vert P}(Z\vert X) &= \displaystyle \int Q(X) \int Q(Z\vert X) \log \frac{Q(Z\vert X)}{P(Z\vert X)} \,dZ \,dX \\ &= \displaystyle \int Q(Z\vert X_*) \log \frac{Q(Z\vert X_*)}{P(Z\vert X_*)} \,dZ \end{array}
 $$
 
 which is minimized precisely when $$Q(Z\vert X_*) = P(Z\vert X_*).$$
 
-Often, we only want to consider distributions $$Q(Z|X)$$ which approximate the posterior $$P(Z|X)$$ and have good computational properties. For example, we may want to store $$Q(Z|X)$$ efficiently in a low-dimensional space, or we may want to compute $$Q(Z|X)$$ quickly as a composition of simple functions. Through variational inference, we may find this approximation by 
+Often, we only want to consider distributions $$Q(Z\vert X)$$ which approximate the posterior $$P(Z\vert X)$$ and have good computational properties. For example, we may want to store $$Q(Z\vert X)$$ efficiently in a low-dimensional space, or we may want to compute $$Q(Z\vert X)$$ quickly as a composition of simple functions. Through variational inference, we may find this approximation by 
 optimizing over a smaller space $$\Delta'$$ of distributions with the desired computational properties. 
 
-In the context of Bayesian statistics, the variational parameter $$Q(Z|X)$$ is a computationally-efficient approximation of the model posterior $$P(Z|X).$$
+In the context of Bayesian statistics, the variational parameter $$Q(Z\vert X)$$ is a computationally-efficient approximation of the model posterior $$P(Z\vert X).$$
 
-A second context we may consider is the goal of learning the true distribution $$Q_*(X).$$ We solve this problem by proposing two models - a generative model $$P(Z,X)$$ whose marginal $$P(X)$$ approximates $$Q_*(X),$$ and a discriminative model $$Q(Z,X) = Q_*(X)Q(Z|X)$$ which factors through $$Q_*(X).$$ 
+A second context we may consider is the goal of learning the true distribution $$Q_*(X).$$ We solve this problem by proposing two models - a generative model $$P(Z,X)$$ whose marginal $$P(X)$$ approximates $$Q_*(X),$$ and a discriminative model $$Q(Z,X) = Q_*(X)Q(Z\vert X)$$ which factors through $$Q_*(X).$$ 
 
-Variational inference is then a joint search over the space of pairs of models. It provides bounds on the distance to $$Q_*(X)$$ from $$P(X),$$ and it limits the search to computationally efficient discriminative models $$Q(Z|X)$$ and computationally efficient generative models $$P(Z,X).$$ Variational inference also supplies a distribution $$Q(Z|X)$$ for approximate inference of $$Z$$ from $$X,$$ and a distribution $$P(Z,X)$$ for approximate sampling from $$Q_*(X).$$
+Variational inference is then a joint search over the space of pairs of models. It provides bounds on the distance to $$Q_*(X)$$ from $$P(X),$$ and it limits the search to computationally efficient discriminative models $$Q(Z\vert X)$$ and computationally efficient generative models $$P(Z,X).$$ Variational inference also supplies a distribution $$Q(Z\vert X)$$ for approximate inference of $$Z$$ from $$X,$$ and a distribution $$P(Z,X)$$ for approximate sampling from $$Q_*(X).$$
 
 In this context, the variational parameter $$Q(Z\vert X)$$ is therefore interpreted as a disciminative computational model trained on the true distribution.
 
 A third context we may consider is the goal of optimizing a distance function over some rough low-dimensional landscape. The distance to $$Q_*(X)$$ from $$P(X)$$ is minimized over the space $$\Delta$$ of pairs of models $$(Q_*(X),P(X))$$ where the first component $$Q_*(X)$$ is fixed and the second component $$P(X)$$ is the marginalization of some joint distribution $$P(Z,X).$$ 
 
-Variational inference overcomes the roughness of the low-dimensional landscape by lifting the optimization problem to a higher dimensional space where the landscape is smoother. It considers instead the distance to $$Q(Z,X) = Q_*(X)Q(Z|X)$$ from $$P(Z,X)$$ which is minimized over the space $$\Delta'$$ of pairs of models $$(Q(Z,X),P(Z,X)).$$ This space $$\Delta'$$ is of a higher dimension than the original space $$\Delta$$, and could be infinite-dimensional if $$Q(Z|X)$$ is variational. 
+Variational inference overcomes the roughness of the low-dimensional landscape by lifting the optimization problem to a higher dimensional space where the landscape is smoother. It considers instead the distance to $$Q(Z,X) = Q_*(X)Q(Z\vert X)$$ from $$P(Z,X)$$ which is minimized over the space $$\Delta'$$ of pairs of models $$(Q(Z,X),P(Z,X)).$$ This space $$\Delta'$$ is of a higher dimension than the original space $$\Delta$$, and could be infinite-dimensional if $$Q(Z\vert X)$$ is variational. 
 
 In this context, the variational parameter $$Q(Z\vert X)$$ enables us to lift $$Q_*(X)$$ from the base space of distributions on $$X$$ to a section $$Q(Z,X)$$ in the bundle of distributions on $$(Z,X)$$.
 
