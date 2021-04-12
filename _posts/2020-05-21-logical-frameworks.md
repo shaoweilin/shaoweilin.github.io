@@ -16,11 +16,11 @@ Hence, LF may be thought of as a meta-language for judgments. Here, the $$X_i$$ 
 
 The logical theory or type theory that we describe with LF will be called the _object language_.
 
-We will be using the presentation in [Luo06], the paper where Unified Type Theory (UTT) was introduced. This presentation sticks closely to the original logical framework by Martin-Lof. Do note, however, that since Martin-Lof's framework, there has been newer versions such as Canonical LF which incorporates signatures and canonical forms. We follow the presentation in [Luo06] to keep this introduction simple.
+We will be using the presentation in [L06], the paper where Unified Type Theory (UTT) was introduced. This presentation sticks closely to the original logical framework by Martin-Lof. Do note, however, that since Martin-Lof's framework, there has been newer versions such as Canonical LF which incorporates signatures and canonical forms. We follow the presentation in [L06] to keep this introduction simple.
 
 ### What are the rules of LF?
 
-We first present the rules [Luo06] before describing their semantics.
+We first present the rules [L06] before describing their semantics.
 
 ![logical-framework-rules](https://shaoweilin.github.io/images/logical-framework-rules.png)
 
@@ -48,8 +48,9 @@ Since LF is just a meta-language for specifying object languages, consistency is
 
 A universe $$U : \textbf{Type}$$ can be thought of as syntactic category that puts a collection of LF-kinds into a neat package after the LF-kinds have been defined. For example, suppose we have LF-kinds
 
-*   $$Nat \text{ kind}$$
-*   $$Bool \text{ kind}$$
+$$Nat \text{ kind}$$
+
+$$Bool \text{ kind}$$
 
 Instead of putting the LF-constants $$nat$$ and $$bool$$  in $$\textbf{Type}$$, we could package them in $$U$$ so $$nat : El(U)$$ and $$bool : El(U)$$ while $$U : \textbf{Type}$$. We will need a new lifting operator $$T$$, so that $$T(nat) : \textbf{Type}, T(bool) : \textbf{Type}$$ and $$Nat = El(T(nat)), Bool = El(T(bool))$$.  Every LF-constant representing a type eventually lifts up to some LF-kind. Thus, we can think of universe management as a way of organizing a large collection of LF-kinds to retain consistency, among other goals.
 
@@ -57,7 +58,7 @@ Instead of putting the LF-constants $$nat$$ and $$bool$$  in $$\textbf{Type}$$,
 
 In more recent logical frameworks, signatures have also been introduced in addition to contexts. These signature store constants which may be expanded to longer terms by definition.
 
-We also want the logical framework to faithfully represent types from the object language. In other words, object types in the object language should have a corresponding LF-kind in the logical framework. However, there could be several LF-kinds mapping the same object type, because of eta-conversions, such as $$\text{suc}$$ and $$[x:Nat](\text{suc } x)$$ both mapping to the successor function in the object language. The unique LF-representation would be called a _canonical form_. To solve this problem, LF-kinds are constrained to only contain _LF-families_, and LF-families contain LF-objects. The judgments are refined to be of the following forms [Harper12].
+We also want the logical framework to faithfully represent types from the object language. In other words, object types in the object language should have a corresponding LF-kind in the logical framework. However, there could be several LF-kinds mapping the same object type, because of eta-conversions, such as $$\text{suc}$$ and $$[x:Nat](\text{suc } x)$$ both mapping to the successor function in the object language. The unique LF-representation would be called a _canonical form_. To solve this problem, LF-kinds are constrained to only contain _LF-families_, and LF-families contain LF-objects. The judgments are refined to be of the following forms [H12].
 
 * signatures $$\Sigma \vdash$$ and equality $$\Sigma = \Sigma' \vdash$$
 * contexts $$\Gamma \vdash_\Sigma$$ and equality $$\Gamma = \Gamma' \vdash_\Sigma$$
@@ -71,14 +72,20 @@ These recent frameworks also have bidirectional type-checking. More precisely, i
 
 ### Should we use LF's type-checking capabilities to perform type-checks for the object language?
 
-This is known as the _analytic presentation_ of the object language, as opposed to the _syntactic presentation_ of the object language [Harper12]. Analytic presentations are useful for computations, but they cause problems when we are trying to prove certain properties of the object language. In particular, when there are certain definitional equalities such as beta or eta reductions in the object language, we will need to represent them as equalities of the logical framework, so that type checking can proceed correctly. However, such representations make it difficult to prove properties of the object language that depend on these equalities. A hybrid syntactic-analytic approach is also possible, where we represent equalities using identity types.
+This is known as the _analytic presentation_ of the object language, as opposed to the _syntactic presentation_ of the object language [H12]. Analytic presentations are useful for computations, but they cause problems when we are trying to prove certain properties of the object language. In particular, when there are certain definitional equalities such as beta or eta reductions in the object language, we will need to represent them as equalities of the logical framework, so that type checking can proceed correctly. However, such representations make it difficult to prove properties of the object language that depend on these equalities. A hybrid syntactic-analytic approach is also possible, where we represent equalities using identity types.
+
+### What about equations satisfied by the generators of the object language?
+
+Robert Harper has some notes about a _semantic logical framework_ that allows for such equations [H21].
 
 ### References
 
-[Luo06] Zhaohui Luo, "[A unifying theory of dependent types: the schematic approach](https://www.researchgate.net/publication/225233240_A_unifying_theory_of_dependent_types_the_schematic_approach)," Logical Foundations of Computer Science, 2006\. DOI: 10.1007/BFb0023883
+[L06] Zhaohui Luo, "[A unifying theory of dependent types: the schematic approach](https://www.researchgate.net/publication/225233240_A_unifying_theory_of_dependent_types_the_schematic_approach)," Logical Foundations of Computer Science, 2006\. DOI: 10.1007/BFb0023883
 
 [HHP93] Harper R, Honsell F, Plotkin G. [A framework for defining logics.](http://homepages.inf.ed.ac.uk/gdp/publications/Framework_Def_Log.pdf) Journal of the ACM (JACM). 1993 Jan 2;40(1):143-84.
 
-[Harper12] Harper R, _[Notes on logical frameworks](http://www.cs.cmu.edu/~rwh/papers/lfias/lf.pdf)_, 2012.
+[H12] Harper R, _[Notes on logical frameworks](http://www.cs.cmu.edu/~rwh/papers/lfias/lf.pdf)_, 2012.
+
+[H21] Harper, Robert. "[A Semantic Logical Framework](http://www.cs.cmu.edu/~rwh/papers/slf/slf.pdf)." _Unpublished draft. Dec.(cit. on p.)_ (2020). 
 
 [nLab20] [https://ncatlab.org/nlab/show/logical+framework](https://ncatlab.org/nlab/show/logical+framework), retrieved 2020.
