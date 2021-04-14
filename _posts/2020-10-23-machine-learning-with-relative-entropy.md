@@ -186,7 +186,7 @@ A third context we may consider is the goal of optimizing a distance function ov
 
 Variational inference overcomes the roughness of the low-dimensional landscape by lifting the optimization problem to a higher dimensional space where the landscape is smoother. It considers instead the distance to $$Q(Z,X) = Q_*(X)Q(Z\vert X)$$ from $$P(Z,X)$$ which is minimized over the space $$\Delta'$$ of pairs of models $$(Q(Z,X),P(Z,X)).$$ This space $$\Delta'$$ is of a higher dimension than the original space $$\Delta$$, and could be infinite-dimensional if $$Q(Z\vert X)$$ is variational. 
 
-In this context, the variational parameter $$Q(Z\vert X)$$ enables us to lift $$Q_*(X)$$ from the base space of distributions on $$X$$ to a section $$Q(Z,X)$$ in the bundle of distributions on $$(Z,X)$$.
+In this context, instead of projecting $$P(Z,X)$$ to the base space of distributions on $$X$$ and optimizing the distance between $$Q_*(X)$$ and $$P(X)$$ in the base space, the variational parameter $$Q(Z\vert X)$$ enables us to lift $$Q_*(X)$$ from the base space to a section $$Q(Z,X)$$ in the bundle of distributions on $$(Z,X)$$ so that we can optimize the distance between $$Q(Z,X)$$ and $$P(Z,X).$$
 
 ### References
 
