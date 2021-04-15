@@ -3,7 +3,63 @@ layout: post
 title: Biased stochastic approximation for latent processes
 ---
 
-We apply biased stochastic approximation to optimize the variational objective for latent processes. Using this technique, we prove under some regularity conditions that the learning algorithm converges to a local minima.
+We apply biased stochastic approximation to optimize the variational objective for latent Markov processes. Using this technique, we prove under some regularity conditions that the learning algorithm converges to a local minima.
+
+We will be using biased stochastic approximation [KMMW19] where the stochastic updates are dependent on the past but the conditional expectation of the stochastic updates given the past is not equal to the mean field. These biased stochastic approximation schemes generalize the classical expectation maximization algorithm [KMMW19].
+
+This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/).
+
+### How do we derive an online learning algorithm for latent processes?
+
+We now focus on minimizing $$ H_{Q\Vert P_\theta}(Z_{0\ldots T},X_{0\ldots T})$$ over $$ Q \in \Delta_\mathcal{C}$$ and $$ \theta \in \Theta.$$ We first explore the problem in discrete time, before discussing the analogous results in continuous time.
+
+To derive an online learning algorithm, one strategy is to minimize relative entropies conditioned on data that has been observed up to the current time. Consider the following decomposition of the relative entropy objective by chain rule
+
+$$ \begin{array}{rl} & H_{Q\Vert P_\theta}(Z_{0\ldots n},X_{0\ldots n}) \\ & \\ &= H_{Q\Vert P_\theta}(Z_{0},X_{0}) \\ & \\ & \quad + H_{Q\Vert P_\theta}(Z_1, X_1 \vert Z_{0},X_{0}) + \cdots \\ & \\ & \quad + H_{Q\Vert P_\theta}(Z_n, X_n \vert Z_{0\ldots (n-1)},X_{0\ldots (n-1)}). \end{array}$$
+
+To minimize the relative entropy objective, we adopt the following heuristic that iteratively solves for the functional parameters $$ Q(Z_{i+1} \vert Z_{0\ldots i}, X_{0\ldots i})$$ and model distribution $$ P_\theta.$$ First, we pick some initial distribution $$ Q(Z_0)$$ and initial model distribution $$ P_{\theta_0}.$$ Then, for $$ n = 0, 1, \ldots,$$ we repeat the next two steps.
+
+<span style="text-decoration:underline;">Step 1</span>. Fixing the functional parameters $$ Q(Z_{i+1} \vert Z_{0\ldots i}, X_{0\ldots i})$$ for $$ i = 0, \ldots, n-1$$ and model distribution $$ P_{\theta_n},$$ find a functional parameter $$ Q(Z_{n+1} \vert Z_{0\ldots n}, X_{0\ldots n})$$ to minimize $$ H_{Q\Vert P_{\theta_n}}(Z_{n+1}, X_{n+1} \vert Z_{0\ldots n},X_{0\ldots n}).$$
+
+Now, because $$ Z_{n+1}$$ and $$ X_{n+1}$$ are conditionally independent given the past,
+
+$$ \begin{array}{rl} &H_{Q\Vert P_{\theta_n}}(Z_{n+1}, X_{n+1} \vert Z_{0\ldots n},X_{0\ldots n}) \\ & \\ &= H_{Q\Vert P_{\theta_n}}(Z_{n+1} \vert Z_{0\ldots n},X_{0\ldots n}) + H_{Q\Vert P_{\theta_n}}(X_{n+1} \vert Z_{0\ldots n},X_{0\ldots n}). \end{array}$$
+
+The second term is independent of $$ Q(Z_{n+1} \vert Z_{0\ldots n}, X_{0\ldots n}),$$ and the first term vanishes when
+
+$$ Q(Z_{n+1} \vert Z_{0\ldots n}, X_{0\ldots n}) = P_{\theta_n}(Z_{n+1} \vert Z_{0\ldots n}, X_{0\ldots n}).$$
+
+<span style="text-decoration:underline;">Step</span> 2\. Fixing the functional parameters $$ Q(Z_{i+1} \vert Z_{0\ldots i}, X_{0\ldots i})$$ for $$ i = 0, \ldots, n,$$ find a model distribution $$ P_{\theta}$$ to minimize $$ H_{Q\Vert P_{\theta}}(Z_{n+1}, X_{n+1} \vert Z_{0\ldots n},X_{0\ldots n})$$.
+
+We pursue this objective using the gradient update
+
+$$ \displaystyle \theta_{n+1} = \theta_n - \eta_{n+1} \frac{d}{d\theta} H_{Q\Vert P_\theta}(Z_{n+1}, X_{n+1} \vert Z_{0\ldots n},X_{0\ldots n}).$$
+
+where $$ \eta_{n+1}$$ is the learning rate. Because
+
+$$ \begin{array}{rl} & H_{Q\Vert P_\theta}(Z_{n+1}, X_{n+1} \vert Z_{0\ldots n},X_{0\ldots n}) \\ & \\ & = \mathbb{E}_{Q(Z_{0\ldots (n+1)},X_{0\ldots (n+1)})} [\log Q(Z_{n+1}, X_{n+1} \vert Z_{0\ldots n},X_{0\ldots n})] \\ & \\ & \quad - \mathbb{E}_{Q(Z_{0\ldots (n+1)},X_{0\ldots (n+1)})} [\log P_\theta(Z_{n+1}, X_{n+1} \vert Z_{0\ldots n},X_{0\ldots n})], \end{array}$$
+
+and $$ Q$$ is fixed, the first term is a constant so the gradient update becomes
+
+$$ \displaystyle - \mathbb{E}_{Q(Z_{0\ldots (n+1)},X_{0\ldots (n+1)})} \left[\left.\frac{d}{d\theta} \log P_\theta(Z_{n+1}, X_{n+1} \vert Z_{0\ldots n},X_{0\ldots n})\right\vert _{\theta = \theta_n}\right].$$
+
+Moreover, we could derive a stochastic approximation of the above procedure by sampling $$ Z_{n+1}$$ and $$ X_{n+1}$$ in Step 1 and replacing the gradient update in Step 2 with a one-sample approximation. Specifically, we have
+
+$$ X_{n+1} \sim Q_*(X_{n+1} \vert X_{0\ldots n})$$
+
+$$ Z_{n+1} \sim Q_n(Z_{n+1} \vert Z_{0\ldots n}, X_{0\ldots n})$$
+
+$$ \displaystyle \theta_{n+1} = \theta_n + \eta_{n+1} \left.\frac{d}{d\theta} \log P_\theta(Z_{n+1}, X_{n+1} \vert Z_{0\ldots n},X_{0\ldots n}) \right\vert _{\theta = \theta_n}$$
+
+$$ \begin{array}{rl} & Q_{n+1}(Z_{n+2} \vert Z_{0\ldots (n+1)}, X_{0\ldots (n+1)}) \\ & \\ & = P_{\theta_n}(Z_{n+2} \vert Z_{0\ldots (n+1)}, X_{0\ldots (n+1)}). \end{array}$$
+
+Unfortunately, this online stochastic approximation only makes one pass through the decomposition of the relative entropy $$ H_{Q\Vert P_\theta}(Z_{0\ldots n},X_{0\ldots n}),$$ so we cannot apply the standard stochastic approximation theory of Robbins and Monro with relative entropy as the optimization objective.
+
+However, ergodic theory tells that
+
+$$ \displaystyle \lim_{n\rightarrow \infty} \frac{1}{n} H_{Q \Vert P}(Z_{0 \ldots n}, X_{0 \ldots n}) = \lim_{n\rightarrow \infty} H_{Q \Vert P}(Z_{n+1}, X_{n+1} \vert Z_{0 \ldots n}, X_{0 \ldots n})$$
+
+so the online updates may be thought of as multiple passes at optimizing the relative entropy rate. The derivative of this relative entropy rate will be the mean field of the stochastic approximations, while the stochastic updates will be biased estimates of this mean field where the bias depends on the past $$ Z_{0\ldots n}, X_{0\ldots n}.$$
 
 ### How do we train a Markov process using biased stochastic approximation?
 
