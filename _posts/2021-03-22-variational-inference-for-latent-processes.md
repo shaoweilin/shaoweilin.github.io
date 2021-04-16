@@ -79,6 +79,22 @@ When minimizing over the subspace $$\Delta_\mathcal{C},$$ the entropy gap $$H_{Q
 
 Biological spiking networks need to work with the constraint of not knowing the future. For the remainder of this series, we will also work with this constraint by minimizing the joint relative entropy $$H_{Q\Vert P_\theta}(Z_{0\ldots T},X_{0\ldots T})$$ over extensions $$Q \in \Delta_\mathcal{C}$$ and parameters $$\theta \in \Theta$$, instead of the visible relative entropy $$H_{Q_*\Vert P_\theta}(X_{0\ldots T})$$.
 
+### How do we perform variational inference with limited memory?
+
+As before, let $$ \Delta_{\mathcal{C}}$$ be the set of all path measures $$ Q$$ on $$ \{ (Z_t, X_t) \}$$ where $$ Z_t$$ and $$ X_t$$ are conditionally independent given their past and where each $$ X_t$$ is conditionally independent of $$ Z_{0\ldots (t-1)}$$ given its own past $$ X_{0\ldots (t-1)}.$$ We will further consider a subspace $$ \Delta_\mathcal{M} \subset \Delta_\mathcal{C}$$ of distributions which are Markov. Note that our model $$ \{ P_\theta \}$$ need not fill the subspace $$ \Delta_\mathcal{M}.$$
+
+Our goal is to train the model by minimizing the limit of the time-averaged relative entropy
+
+$$ V(Q,\theta) = \displaystyle \lim_{T \rightarrow \infty} \frac{1}{T} H_{Q \Vert P_\theta}(Z_{0\ldots T},X_{0\ldots T})$$
+
+over $$ Q \in \Delta_\mathcal{M}$$ and $$ \theta \in \Theta.$$ Compared to minimizing this objective for $$ Q$$ over the larger space $$ \Delta_\mathcal{C},$$ we will incur an additional cost due to the Markov constraint. We can think of this cost as the cost of _limited memory_ since the Markov property only allows us to remember the most recent state $$ (Z_t, X_t)$$ as opposed to the full history $$ Z_{0\ldots t}, X_{0\ldots t}.$$
+
+With this Markov constraint, the optimal distribution $$ Q$$ in Step 1 of the algorithm in the previous section will no longer satisfy
+
+$$ Q(Z_{n+1} \vert Z_{0\ldots n}, X_{0\ldots n}) = P_{\theta_n}(Z_{n+1} \vert Z_{0\ldots n}, X_{0\ldots n}).$$
+
+Instead, we assume some functional updates $$ Q_{n+1} = F(Q_n, \theta_{n+1})$$ in addition to the $$ \theta_n$$ updates to tackle the optimization problem in Step 1\.
+
 ### References
 
 [Leroux92] Leroux, Brian G. "Maximum-likelihood estimation for hidden Markov models." _Stochastic processes and their applications_ 40, no. 1 (1992): 127-143.
