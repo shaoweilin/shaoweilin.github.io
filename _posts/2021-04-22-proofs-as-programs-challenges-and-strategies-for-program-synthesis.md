@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Proofs as programs - Challenges and strategies for program synthesis
+title: Proofs as programs - challenges and strategies for program synthesis
 ---
 
 ### Abstract

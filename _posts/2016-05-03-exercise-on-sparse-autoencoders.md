@@ -1,7 +1,9 @@
 ---
 layout: post
-title: Exercise 1 - Sparse autoencoders
+title: Exercise on sparse autoencoders
 ---
+
+### Exercise 1
 
 This exercise is the first of several posts I am writing, for those who want a mathematical and hands-on introduction to deep neural networks.
 
