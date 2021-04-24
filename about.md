@@ -30,6 +30,16 @@ ORCID [0000-0002-8176-8868](https://orcid.org/0000-0002-8176-8868)
 
 [Singular Learning](https://shaoweilin.github.io/singular/)
 
+### Selected Talks
+
+[Proofs as programs](https://shaoweilin.github.io/proofs-as-programs-challenges-and-strategies-for-program-synthesis/)
+
+[Neural-symbolic reasoning](https://shaoweilin.github.io/machine-reasoning-and-deep-spiking-networks/)
+
+[Internet of things](https://shaoweilin.github.io/artificial-general-intelligence-for-the-internet-of-things/)
+
+[Singular learning](https://shaoweilin.github.io/studying-model-asymptotics-with-singular-learning-theory/)
+
 ### Software
 
 [Graphical Models](http://www.math.uiuc.edu/Macaulay2/doc/Macaulay2-1.4/share/doc/Macaulay2/GraphicalModels/html/index.html)
