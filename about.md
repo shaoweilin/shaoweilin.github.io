@@ -30,7 +30,7 @@ ORCID [0000-0002-8176-8868](https://orcid.org/0000-0002-8176-8868)
 
 [Singular Learning](https://shaoweilin.github.io/singular/)
 
-### Selected Talks
+### Talks
 
 [Proofs as programs](https://shaoweilin.github.io/proofs-as-programs-challenges-and-strategies-for-program-synthesis/)
 
