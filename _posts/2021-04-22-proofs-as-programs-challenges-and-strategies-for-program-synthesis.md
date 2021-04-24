@@ -12,4 +12,3 @@ The Curry-Howard correspondence between proofs and programs suggests that we can
 [Slides](https://w3id.org/people/shaoweilin/public/20210422-topos.pdf)
 
 [YouTube](https://www.youtube.com/watch?v=cEdoG9h-pYg)
-
