@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Proofs as programs - challenges and strategies for program synthesis
+title: Machine reasoning and deep spiking networks
 ---
 
 ### Abstract
