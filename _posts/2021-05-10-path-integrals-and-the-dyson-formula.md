@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Path integals and the Dyson formula
+excerpt_separator: <!--more-->
 ---
 
 One of the deepest results in quantum field theory, to me, is the Dyson formula. It describes the solution to the differential equation
@@ -11,7 +12,10 @@ in terms of the exponential of the path integral of the operator $$A(t)$$,
 
 $$ X(t) = \mathcal{T}\exp \left(\int_0^t A(s) ds \right) X(0). $$
 
-where $$\mathcal{T}$$ is the time-ordering operator. The proof of this formula is given by Picard integration and iterated integrals [B13].
+where $$\mathcal{T}$$ is the time-ordering operator. 
+<!--more-->
+
+The proof of this formula is given by Picard integration and iterated integrals [B13].
 
 In cases where the path integral of the operator is not convergent or well-defined, I think that this formula can be quoted formally as the definition of the exponentiation of the path integral. 
 
