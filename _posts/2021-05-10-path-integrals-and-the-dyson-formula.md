@@ -9,9 +9,9 @@ $$ \frac{d}{dt} X(t) = A(t)X(t) $$
 
 in terms of the exponential of the path integral of the operator $$A(t)$$,
 
-$$ X(t) = \exp \left(\int_0^t A(s) ds \right) X(0). $$
+$$ X(t) = \mathcal{T}\exp \left(\int_0^t A(s) ds \right) X(0). $$
 
-The proof of this formula is given by Picard integration and iterated integrals [B13].
+where $$\mathcal{T}$$ is the time-ordering operator. The proof of this formula is given by Picard integration and iterated integrals [B13].
 
 In cases where the path integral of the operator is not convergent or well-defined, I think that this formula can be quoted formally as the definition of the exponentiation of the path integral. 
 
@@ -24,7 +24,7 @@ There should also be a generalization of the Dyson formula to co-ends in categor
 
 ### References
 
-[B13] BROWN, FRANCIS. "[Iterated integrals in quantum ﬁeld theory](http://math.bu.edu/people/dkreimer/houches/ColumbiaNotes7.pdf)." _Geometric and Topological Methods for Quantum Field Theory: Proceedings of the 2009 Villa de Leyva Summer School_ (2013): 188.
+[B13] Brown, Francis. "[Iterated integrals in quantum ﬁeld theory](http://math.bu.edu/people/dkreimer/houches/ColumbiaNotes7.pdf)." _Geometric and Topological Methods for Quantum Field Theory: Proceedings of the 2009 Villa de Leyva Summer School_ (2013): 188.
 
 [N21] https://ncatlab.org/nlab/show/Dyson+formula
 
