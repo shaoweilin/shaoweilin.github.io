@@ -1,3 +1,4 @@
 {
-  "mdmath.delimiters": "kramdown"
+  "mdmath.delimiters": "kramdown",
+  "markdown.preview.scrollEditorWithPreview": false
 }

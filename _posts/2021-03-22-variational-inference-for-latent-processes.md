@@ -23,7 +23,7 @@ as $$Q$$ varies over some space of extended distributions.
 
 The form of variational inference we are considering here is necessarily passive. This means that the true distribution $$Q_*(X_{0\ldots T})$$ is unaffected by the learning agent's estimates of the states of the latent variables $$Z_{0\ldots T}.$$ 
 
-However, it is possible to design variational methods for models where the estimates of the latent variables have an effect on the observed data, such as in active learning, reinforcement learning or partially-ordered Markov decision processes. The estimates could lead a learning agent to effect some change on the environment which then affects the observed data. Unfortunately, we will not be considering this active form of variational inference here.
+However, it is possible to design variational methods for models where the estimates of the latent variables have an effect on the observed data, such as in active learning, reinforcement learning or partially-ordered Markov decision processes. The estimates could lead a learning agent to effect some change on the environment which then affects the observed data. Unfortunately, we will not be considering this active form of variational inference here. A complete understanding of biological intelligence must however analyze the active case.
 
 In our passive form of variational inference, the most general case for the space of joint path distributions $$Q(Z_{0\ldots T}, X_{0\ldots T})$$ is the unconstrained space $$\Delta$$ where $$Q$$ factors as 
 
@@ -47,29 +47,40 @@ $$Q(Z_{0\ldots T}, X_{0\ldots T}) = Q_*(X_{0\ldots T}) Q(Z_{0\ldots T}\vert X_{0
 
 in the unconstrained space $$\Delta.$$ In the discrete time case, we may decompose the discriminative model $$Q(Z_{0\ldots T}\vert X_{0\ldots T})$$ as
 
-$$\begin{array}{rl} & Q(Z_{0\ldots T}\vert X_{0\ldots T}) \\ & \\ & =  Q(Z_0 \vert X_{0\ldots T}) \\ & \\ & \quad  Q(Z_1 \vert Z_0,X_{0\ldots T}) \cdots \\ & \\ & \quad Q(Z_T \vert Z_{0\ldots (T-1)}, X_{0\ldots T}). \end{array}$$
+$$\begin{array}{rl} Q(Z_{0\ldots T}\vert X_{0\ldots T}) & =  Q(Z_0 \vert X_{0\ldots T}) \\ & \\ & \quad  Q(Z_1 \vert Z_0,X_{0\ldots T}) \cdots \\ & \\ & \quad Q(Z_T \vert Z_{0\ldots (T-1)}, X_{0\ldots T}). \end{array}$$
 
 Each of the factors in the decomposition are unconstrained, so inference for each variable $$Z_t$$ could depend on observations from the entire visible process $$X_{0\ldots T}.$$ Therefore, optimizing over the unconstrained space $$\Delta$$ corresponds to a form of offline learning where the entropy gap $$H_{Q\Vert P}(Z_{0\ldots T}\vert X_{0\ldots T})$$ vanishes.
 
-For computational reasons, we may require that the discriminative model performs inference on $$Z_t$$ using only observations $$X_{0\ldots (t-1)}$$ from the past. To enforce this, we could assume that $$Z_t$$ and $$X_t$$ are conditionally independent given their past. In discrete-time, this means that 
+For computational reasons, we may require that the discriminative model performs inference on $$Z_t$$ using only observations $$X_{0\ldots (t-1)}$$ from the past. We shall assume that $$Q(Z_{0\ldots T}\vert X_{0\ldots T})$$ has a factorization
 
-$$Q(Z_{t+1}\vert  X_{t+1}, Z_{0\ldots t}, X_{0\ldots t}) = Q(Z_{t+1} \vert Z_{0\ldots t}, X_{0\ldots t})$$
+$$\begin{array}{rl} Q(Z_{0\ldots T}\vert X_{0\ldots T}) & = Q(Z_0) \\ & \\ & \quad Q(Z_1 \vert Z_0,X_0) \cdots \\ & \\ & \quad Q(Z_T \vert Z_{0\ldots (T-1)}, X_{0\ldots (T-1)}) \end{array}$$
 
-and vice versa. In continuous time, the analogous property is
-
-$$Q(Z_{t\ldots t+\delta}\vert  X_{t\ldots t+\delta}, Z_{0\ldots t}, X_{0\ldots t}) \rightarrow Q(Z_{t\ldots t+\delta} \vert Z_{0\ldots t}, X_{0\ldots t})$$
-
-as $$\delta \rightarrow 0$$ from above. 
-
-Another way to state this requirement is to say that $$Z_t$$ does not lie in the causal cone of $$X_t$$ and vice versa. There are relationships to [causal conditions](https://en.wikipedia.org/wiki/Causality_conditions), [causal structures](https://en.wikipedia.org/wiki/Causal_structure) (continuous space) and [causal sets](https://en.wikipedia.org/wiki/Causal_sets) (discrete space) but we will not be exploring them in this article.
-
-Now, let $$\Delta_\mathcal{C} \subset \Delta$$ be the subspace of distributions where the variables $$Z_t$$ and $$X_t$$ are conditionally independent given their past. Here, the subscript $$\mathcal{C}$$ denotes the causal constraints on the distributions. Each $$Q \in \Delta_\mathcal{C}$$ has a decomposition
-
-$$\begin{array}{rl} & Q(Z_{0\ldots T}\vert X_{0\ldots T}) \\ & \\ & = Q(Z_0) \\ & \\ & \quad Q(Z_1 \vert Z_0,X_0) \cdots \\ & \\ & \quad Q(Z_T \vert Z_{0\ldots (T-1)}, X_{0\ldots (T-1)}). \end{array}$$
+and let $$\Delta_\mathcal{C} \subset \Delta$$ be the subspace of distributions $$Q(Z_{0\ldots T}, X_{0\ldots T})$$ with this property.  Here, the subscript $$\mathcal{C}$$ denotes that we have causal constraints on the distributions. 
 
 We may think of these factors as functionals (because they are functions of paths) parametrizing the space $$\Delta_\mathcal{C}$$ of distributions. 
 
 In continuous time, the above decomposition of $$Q \in \Delta_\mathcal{C}$$ can be written in terms of exponentials of integrals of transition rates, giving us some system of Kolmogorov equations.
+
+From this factorization, we can deduce by marginalization that for all $$t$$,
+
+$$\begin{array}{rl} Q(Z_{0\ldots t}, X_{0\ldots t}) & = Q(X_{0\ldots t}) Q(Z_0) \\ & \\ & \quad Q(Z_1 \vert Z_0,X_0) \cdots \\ & \\ & \quad Q(Z_t \vert Z_{0\ldots (t-1)}, X_{0\ldots (t-1)}) \end{array}$$
+
+and consequently, 
+
+$$\begin{array}{rl}  Q(Z_{t+1}, X_{t+1} \vert Z_{0\ldots t}, X_{0\ldots t}) & = \displaystyle \frac{ Q(Z_{0\ldots (t+1)}, X_{0\ldots (t+1)}) }{ Q(Z_{0\ldots t}, X_{0\ldots t}) } \\ & \\ & = Q( X_{t+1} \vert X_{0\ldots t}) Q(Z_{t+1} \vert Z_{0\ldots t}, X_{0\ldots t}).\end{array}$$
+
+This implies that $$Z_t$$ and $$X_t$$ are conditionally independent given their past. In discrete-time, this means that 
+
+$$Q(Z_{t+1}, X_{t+1} \vert Z_{0\ldots t}, X_{0\ldots t}) =  Q(Z_{t+1} \vert Z_{0\ldots t}, X_{0\ldots t}) Q(X_{t+1} \vert Z_{0\ldots t}, X_{0\ldots t})$$
+
+and vice versa. In continuous time, the analogous property is
+
+$$Q(Z_{t\ldots t+\delta}, X_{t\ldots t+\delta} \vert Z_{0\ldots t}, X_{0\ldots t}) \rightarrow Q(Z_{t\ldots t+\delta} \vert Z_{0\ldots t}, X_{0\ldots t}) Q(X_{t\ldots t+\delta} \vert Z_{0\ldots t}, X_{0\ldots t})$$
+
+as $$\delta \rightarrow 0$$ from above. 
+
+Another way to state this requirement is to say that $$Z_t$$ does not lie in the causal cone of $$X_t$$ and vice versa. There are interesting connections to [causal conditions](https://en.wikipedia.org/wiki/Causality_conditions) (classification of space-time manifolds), [causal structures](https://en.wikipedia.org/wiki/Causal_structure) (relationships between points on a continuous space) and [causal sets](https://en.wikipedia.org/wiki/Causal_sets) (relationships between points on a discrete space) but we will not be exploring them in this article.
+
 
 If $$Z_t$$ and $$X_t$$ are conditionally independent given their past for both the discriminative model $$Q(Z,X)$$ and the generative model $$P(Z,X)$$, then in discrete time, the chain rule for relative entropy simplifies to
 
@@ -85,26 +96,21 @@ $$\displaystyle \frac{d}{ds}f(z(s),x(s)) =\frac{dz}{ds} \frac{\partial}{\partial
 
 Online learning involves minimizing over the subspace $$\Delta_\mathcal{C},$$ where the discriminative factors $$Q(Z_t \vert Z_{0\ldots (t-1)}, X_{0\ldots (t-1)})$$ depend only on information from the past. When optimizing over $$\Delta_\mathcal{C},$$ the entropy gap $$H_{Q\Vert P}(Z_{0\ldots T}\vert X_{0\ldots T})$$ might not vanish. Loosely, the gap represents _the cost of not knowing the future_. Indeed, if $$Z_t$$ and $$X_t$$ are not conditionally independent given their past, then any dependence must come from the future. Since the gap vanishes when we optimize over distributions that allow such kinds of dependence, the future must be furnishing information for closing this gap.
 
-Biological spiking networks need to work with the constraint of not knowing the future. For the remainder of this series, we will also work with this constraint by minimizing the joint relative entropy $$H_{Q\Vert P}(Z_{0\ldots T},X_{0\ldots T})$$ over extensions $$Q \in \Delta_\mathcal{C}$$ and parameters $$\theta \in \Theta$$, instead of the visible relative entropy $$H_{Q_*\Vert P}(X_{0\ldots T})$$.
-
 ### How do we perform variational inference with limited memory?
 
-Suppose now that both the discriminative model 
+Suppose now that computationally, both the discriminative model and the generative model have limited memory. More precisely, the models cannot store the full histories $$Z_{0\ldots t}, X_{0\ldots t}$$ but they can recall the most recent states $$Z_t, X_t$$ so the distributions satisfy the Markov property. Hence, $$Q(Z_{0\ldots T}\vert X_{0\ldots T})$$ has a factorization
 
+$$\begin{array}{rl} Q(Z_{0\ldots T}\vert X_{0\ldots T}) & = Q(Z_0) \\ & \\ & \quad Q(Z_1 \vert Z_0,X_0) \cdots \\ & \\ & \quad Q(Z_T \vert Z_{T-1}, X_{T-1}). \end{array}$$
 
-As before, let $$ \Delta_{\mathcal{C}}$$ be the set of all path measures $$ Q$$ on $$ \{ (Z_t, X_t) \}$$ where $$ Z_t$$ and $$ X_t$$ are conditionally independent given their past and where each $$ X_t$$ is conditionally independent of $$ Z_{0\ldots (t-1)}$$ given its own past $$ X_{0\ldots (t-1)}.$$ We will further consider a subspace $$ \Delta_\mathcal{M} \subset \Delta_\mathcal{C}$$ of distributions which are Markov. Note that our model $$ \{ P \}$$ need not fill the subspace $$ \Delta_\mathcal{M}.$$
+and let $$\Delta_\mathcal{M} \subset \Delta_\mathcal{C}$$ be the subspace of distributions $$Q(Z_{0\ldots T} \vert X_{0\ldots T})$$ with this property.  
 
-Our goal is to train the model by minimizing the limit of the time-averaged relative entropy
+Our goal is to train the model by minimizing the limit of the time-averaged relative entropy or relative entropy rate
 
-$$ V(Q,\theta) = \displaystyle \lim_{T \rightarrow \infty} \frac{1}{T} H_{Q \Vert P}(Z_{0\ldots T},X_{0\ldots T})$$
+$$\begin{array}{rl}  V(Q,\theta) &= \displaystyle \lim_{T \rightarrow \infty} \frac{1}{T} H_{Q \Vert P}(Z_{0\ldots T},X_{0\ldots T}) \\ & \\ & \displaystyle = \lim_{T\rightarrow \infty} \frac{d}{dT}H_{Q \Vert P}(Z_{0\ldots T}, X_{0\ldots T}) \end{array}$$
 
-over $$ Q \in \Delta_\mathcal{M}$$ and $$ \theta \in \Theta.$$ Compared to minimizing this objective for $$ Q$$ over the larger space $$ \Delta_\mathcal{C},$$ we will incur an additional cost due to the Markov constraint. We can think of this cost as the cost of _limited memory_ since the Markov property only allows us to remember the most recent state $$ (Z_t, X_t)$$ as opposed to the full history $$ Z_{0\ldots t}, X_{0\ldots t}.$$
+over $$ Q \in \Delta_\mathcal{M}$$ and $$ \theta \in \Theta.$$ Compared to minimizing this objective for $$ Q$$ over the larger space $$ \Delta_\mathcal{C},$$ we will incur an additional cost due to the Markov constraint. We can think of this cost as the cost of _limited memory_.
 
-With this Markov constraint, the optimal distribution $$ Q$$ in Step 1 of the algorithm in the previous section will no longer satisfy
-
-$$ Q(Z_{n+1} \vert Z_{0\ldots n}, X_{0\ldots n}) = P_{\theta_n}(Z_{n+1} \vert Z_{0\ldots n}, X_{0\ldots n}).$$
-
-Instead, we assume some functional updates $$ Q_{n+1} = F(Q_n, \theta_{n+1})$$ in addition to the $$ \theta_n$$ updates to tackle the optimization problem in Step 1\.
+Biological spiking networks need to work with the constraint of not knowing the future and having limited memory. For the remainder of this series, we will also work with this constraint by minimizing the relative entropy rate over extensions $$Q \in \Delta_\mathcal{M}$$ and parameters $$\theta \in \Theta$$.
 
 ### References
 
