@@ -51,7 +51,13 @@ $$ \displaystyle \lim_{T\rightarrow \infty} \frac{1}{T} H_{Q \Vert P}(X_{0\ldots
 
 This gives us an asymptotic relationship between relative entropy and relative entropy rate.
 
-Hence, to learn a strongly-stationary stochastic process, instead of minimizing the relative entropy to $$ Q_*$$ from $$ P_\theta$$, we may minimize their relative entropy rate. We will make this idea rigorous later in the article.
+Hence, to learn a strongly-stationary stochastic process, instead of minimizing the relative entropy to $$ Q_*$$ from $$ P_\theta$$, we may minimize their relative entropy rate. We will assume strong stationarity for the rest of this series.
+
+In the case where we do not have strong stationarity, it will be hard to guarantee convergence of the learning algorithm. Greedily minimizing the terms $$H_{Q \Vert P}(X_t \vert X_{0\ldots (t-1)})$$ of the decomposition
+
+$$ \begin{array}{rl} H_{Q \Vert P}(X_{0\ldots n}) &= H_{Q \Vert P}(X_n \vert X_{0\ldots (n-1)}) \\ & \\ & \quad + H_{Q \Vert P}(X_{n-1} \vert X_{0\ldots (n-2)}) \\ & \\ & \quad + \cdots + H_{Q \Vert P}(X_1 \vert X_0) +H_{Q \Vert P}( X_0). \end{array}$$
+
+may not help in minimizing the asymptotic time-averaged relative entropy, since a parameter update to reduce $$H_{Q \Vert P}(X_t \vert X_{0\ldots (t-1)})$$ may cause earlier terms $$H_{Q \Vert P}(X_s \vert X_{0\ldots (s-1)}), s < t,$$ to increase more than the amount reduced. Getting this balance to work with stochastic updates is tricky and will require some kind of stationarity as well as new mathematical techniques from the field of biased stochastic approximation.
 
 Note that the relative entropy rate does not depend on the initial distributions $$ Q(X_0)$$ and $$ P(X_0).$$ Therefore, by using the time-averaged relative entropy (or equivalently the relative entropy rate) as the learning objective, we are declaring that our main focus is learning the transition kernel of the true distribution.
 

@@ -11,7 +11,9 @@ This post is a continuation from our series on [spiking networks, path integral
 
 Suppose that we have two processes -- an observed $$X_t \in \mathcal{X},$$ and a latent or hidden process $$Z_t \in \mathcal{Z}$$. Let $$Q_*(X_{0\ldots T})$$ be the true distribution of the visible process $$X_{0\ldots T}$$. Recall that our goal is to find a generative model $$P(Z,X)$$ that minimizes the relative entropy
 
-$$\displaystyle H_{Q_*\Vert P}(X_{0\ldots T}).$$
+$$\displaystyle H_{Q_*\Vert P}(X_{0\ldots T})$$
+
+(or equivalently the relative entropy rate if we assume strong stationarity.)
 
 [Previously](https://shaoweilin.github.io/machine-learning-with-relative-entropy/), we discussed how this optimization problem over the space of distributions on $$X$$ may be lifted to an optimization problem over the space of distributions on $$(Z,X)$$ using variational inference. In particular, we will be considering different spaces of joint distributions $$Q(Z,X)$$ which extend the true distribution $$Q_*(X)$$, and attempt to minimize the joint relative entropy
 
@@ -110,7 +112,7 @@ $$\begin{array}{rl}  V(Q,\theta) &= \displaystyle \lim_{T \rightarrow \infty} \f
 
 over $$ Q \in \Delta_\mathcal{M}$$ and $$ \theta \in \Theta.$$ Compared to minimizing this objective for $$ Q$$ over the larger space $$ \Delta_\mathcal{C},$$ we will incur an additional cost due to the Markov constraint. We can think of this cost as the cost of _limited memory_.
 
-Biological spiking networks need to work with the constraint of not knowing the future and having limited memory. For the remainder of this series, we will also work with this constraint by minimizing the relative entropy rate over extensions $$Q \in \Delta_\mathcal{M}$$ and parameters $$\theta \in \Theta$$.
+Biological spiking networks need to work with the constraint of not knowing the future and having limited memory. For the remainder of this series, we will also work with this constraint by minimizing the time-averaged relative entropy or relative entropy rate over extensions $$Q \in \Delta_\mathcal{M}$$ and parameters $$\theta \in \Theta$$.
 
 ### References
 
