@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Path integals and the Dyson formula
+title: Path integrals and the Dyson formula
 excerpt_separator: <!--more-->
 ---
 
