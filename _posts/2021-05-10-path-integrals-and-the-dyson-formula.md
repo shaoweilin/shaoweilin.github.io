@@ -11,7 +11,7 @@ $$ i\frac{\partial}{\partial t} \Psi(t) = A(t)\Psi(t) $$
 in terms of the exponential of the path integral of the operator $$A(t)$$,
 
 $$\begin{array}{rl} \Psi(t) & = U(t,0) \, \Psi(0) \\ & \\
-U(t,0) & =  \mathcal{T}\exp \left\{ i\int_0^t A(s) ds \right\} \end{array} $$
+U(t,0) & = \displaystyle \mathcal{T}\exp \left\{ i\int_0^t A(s) ds \right\} \end{array} $$
 
 where $$\mathcal{T}$$ is the time-ordering operator. Here, $$U(t,0)$$ is known as the time-evolution operator. 
 <!--more-->
