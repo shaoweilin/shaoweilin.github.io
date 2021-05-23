@@ -13,7 +13,7 @@ in terms of the exponential of the path integral of the operator $$A(t)$$,
 $$\begin{array}{rl} \Psi(t) & = U(t,0) \, \Psi(0) \\ & \\
 U(t,0) & = \displaystyle \mathcal{T}\exp \left\{ i\int_0^t A(s) ds \right\} \end{array} $$
 
-where $$\mathcal{T}$$ is the time-ordering operator. Here, $$U(t,0)$$ is known as the time-evolution operator. 
+where $$\mathcal{T}$$ is the time-ordering operator. Here, $$U(t,0)$$ is known as the _time-evolution operator_. 
 <!--more-->
 
 The proof of this formula is given by Picard integration and iterated integrals [B13].
@@ -25,7 +25,7 @@ $$ \begin{array}{rl}
 K(y,t; x,0) & = \displaystyle \int \exp\left\{iS(q,\dot{q})\right\} Dq \\ & \\ &  = \langle y \vert \, U(t,0)  \, \vert x\rangle\end{array}
 $$
 
-where $$\psi(y,t)$$ is the value of the state vector $$\Psi(t)$$ at position $$y,$$ $$\int Dq$$ is an integral over all paths $$q$$ from $$x$$ to $$y$$, and $$S(q,\dot{q})$$ is the action of the path $$q.$$ Here, $$K(y,t;x,0)$$ is known as the kernel or propagator.
+where $$\psi(y,t)$$ is the value of the state vector $$\Psi(t)$$ at position $$y,$$ $$\int Dq$$ is an integral over all paths $$q$$ from $$x$$ to $$y$$, and $$S(q,\dot{q})$$ is the action of the path $$q.$$ Here, $$K(y,t;x,0)$$ is known as the _kernel_ or _propagator_.
 
 The time-ordered exponential in the Dyson series can be related to the Feynman path integral by viewing the Hamiltonian operators in a von Neumann infinite tensor product Hilbert space [G17].
 
