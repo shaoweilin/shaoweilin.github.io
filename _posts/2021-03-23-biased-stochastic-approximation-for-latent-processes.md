@@ -9,25 +9,27 @@ We will be using biased stochastic approximation [KMMW19] where the stochastic u
 
 This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/).
 
-### How do we derive an online learning algorithm for latent processes?
+### What is the general intuition behind online learning for latent processes?
 
-We now focus on minimizing $$ H_{Q\Vert P_\theta}(Z_{0\ldots T},X_{0\ldots T})$$ over $$ Q \in \Delta_\mathcal{C}$$ and $$ \theta \in \Theta.$$ We first explore the problem in discrete time, before discussing the analogous results in continuous time.
+We now focus on minimizing the relative entropy rate over $$ Q \in \Delta_\mathcal{M}$$ and $$ \theta \in \Theta.$$ We assume that the model $$P_\theta$$ has the Markov property and that each $$Z_t$$ and $$X_t$$ are conditionally independent given their past. We also assume that $$Q := Q_\lambda$$ is parametrized by $$\lambda \in \Lambda.$$ We first explore the problem in discrete time, before discussing the analogous results in continuous time.
 
-To derive an online learning algorithm, one strategy is to minimize relative entropies conditioned on data that has been observed up to the current time. Consider the following decomposition of the relative entropy objective by chain rule
+The discrete time analogue of the relative entropy rate under our Markov setting is the conditional relative entropy $$H_{Q \Vert P}(Z_{n+1}, X_{n+1} \vert Z_{n}, X_{n}).$$
 
-$$ \begin{array}{rl} & H_{Q\Vert P_\theta}(Z_{0\ldots n},X_{0\ldots n}) \\ & \\ &= H_{Q\Vert P_\theta}(Z_{0},X_{0}) \\ & \\ & \quad + H_{Q\Vert P_\theta}(Z_1, X_1 \vert Z_{0},X_{0}) + \cdots \\ & \\ & \quad + H_{Q\Vert P_\theta}(Z_n, X_n \vert Z_{0\ldots (n-1)},X_{0\ldots (n-1)}). \end{array}$$
+To minimize the conditional relative entropy objective, we adopt an approach similar to the expectation-maximization (EM) or exponential-mixture (em) [algorithm](https://shaoweilin.github.io/machine-learning-with-relative-entropy/). More precisely, we iteratively optimize for the functional parameters $$ Q(Z_{i+1} \vert Z_{i}, X_{i})$$ and for the model distribution $$ P_\theta$$ while holding the other constant. 
 
-To minimize the relative entropy objective, we adopt the following heuristic that iteratively solves for the functional parameters $$ Q(Z_{i+1} \vert Z_{0\ldots i}, X_{0\ldots i})$$ and model distribution $$ P_\theta.$$ First, we pick some initial distribution $$ Q(Z_0)$$ and initial model distribution $$ P_{\theta_0}.$$ Then, for $$ n = 0, 1, \ldots,$$ we repeat the next two steps.
+First, we pick some initial distribution $$ Q(Z_0)$$ and initial model distribution $$ P_{\theta_0}.$$ Then, for $$ n = 0, 1, \ldots,$$ we repeat the next two steps.
 
-<span style="text-decoration:underline;">Step 1</span>. Fixing the functional parameters $$ Q(Z_{i+1} \vert Z_{0\ldots i}, X_{0\ldots i})$$ for $$ i = 0, \ldots, n-1$$ and model distribution $$ P_{\theta_n},$$ find a functional parameter $$ Q(Z_{n+1} \vert Z_{0\ldots n}, X_{0\ldots n})$$ to minimize $$ H_{Q\Vert P_{\theta_n}}(Z_{n+1}, X_{n+1} \vert Z_{0\ldots n},X_{0\ldots n}).$$
+<span style="text-decoration:underline;">Step 1</span>. Fixing the model distribution $$ P_{\theta_n},$$ find a functional parameter $$ Q(Z_{n+1} \vert Z_{n}, X_{n})$$ to minimize $$ H_{Q\Vert P_{\theta_n}}(Z_{n+1}, X_{n+1} \vert Z_{ n},X_{n}).$$
 
 Now, because $$ Z_{n+1}$$ and $$ X_{n+1}$$ are conditionally independent given the past,
 
-$$ \begin{array}{rl} &H_{Q\Vert P_{\theta_n}}(Z_{n+1}, X_{n+1} \vert Z_{0\ldots n},X_{0\ldots n}) \\ & \\ &= H_{Q\Vert P_{\theta_n}}(Z_{n+1} \vert Z_{0\ldots n},X_{0\ldots n}) + H_{Q\Vert P_{\theta_n}}(X_{n+1} \vert Z_{0\ldots n},X_{0\ldots n}). \end{array}$$
+$$ \begin{array}{rl} &H_{Q\Vert P_{\theta_n}}(Z_{n+1}, X_{n+1} \vert Z_{n},X_{n}) \\ & \\ &= H_{Q\Vert P_{\theta_n}}(Z_{n+1} \vert Z_{n},X_{n}) + H_{Q\Vert P_{\theta_n}}(X_{n+1} \vert Z_{n},X_{n}). \end{array}$$
 
-The second term is independent of $$ Q(Z_{n+1} \vert Z_{0\ldots n}, X_{0\ldots n}),$$ and the first term vanishes when
+The second term is independent of $$ Q(Z_{n+1} \vert Z_{n}, X_{n})$$ because it depends only on the true distribution $$Q_*(X_{0\ldots n}).$$ 
 
-$$ Q(Z_{n+1} \vert Z_{0\ldots n}, X_{0\ldots n}) = P_{\theta_n}(Z_{n+1} \vert Z_{0\ldots n}, X_{0\ldots n}).$$
+We update the parameter $$\lambda$$ using the gradient
+
+$$ \lambda_{n+1} = \displaystyle \lambda_n - \eta_{n+1} \frac{d}{d\lambda} H_{Q\Vert P_{\theta_n}}(Z_{n+1} \vert Z_{n},X_{n}).$$
 
 <span style="text-decoration:underline;">Step</span> 2\. Fixing the functional parameters $$ Q(Z_{i+1} \vert Z_{0\ldots i}, X_{0\ldots i})$$ for $$ i = 0, \ldots, n,$$ find a model distribution $$ P_{\theta}$$ to minimize $$ H_{Q\Vert P_{\theta}}(Z_{n+1}, X_{n+1} \vert Z_{0\ldots n},X_{0\ldots n})$$.
 
@@ -61,7 +63,7 @@ $$ \displaystyle \lim_{n\rightarrow \infty} \frac{1}{n} H_{Q \Vert P}(Z_{0 \ldot
 
 so the online updates may be thought of as multiple passes at optimizing the relative entropy rate. The derivative of this relative entropy rate will be the mean field of the stochastic approximations, while the stochastic updates will be biased estimates of this mean field where the bias depends on the past $$ Z_{0\ldots n}, X_{0\ldots n}.$$
 
-### How do we train a Markov process using biased stochastic approximation?
+### How do we prove convergence using biased stochastic approximation?
 
 In [KMMW19], the authors studied biased stochastic approximation in the case where the stochastic updates are Markovian.
 

@@ -112,6 +112,8 @@ $$\begin{array}{rl}  V(Q,\theta) &= \displaystyle \lim_{T \rightarrow \infty} \f
 
 over $$ Q \in \Delta_\mathcal{M}$$ and $$ \theta \in \Theta.$$ Compared to minimizing this objective for $$ Q$$ over the larger space $$ \Delta_\mathcal{C},$$ we will incur an additional cost due to the Markov constraint. We can think of this cost as the cost of _limited memory_.
 
+Of course, the recent state $$Z_t$$ can also be used to store copies of older states $$Z_{t-1}, Z_{t-2}, \ldots$$ but because the dimension of $$Z_t$$ is finite, only a limited number of those states can be stored. A smarter way is to store compressed versions of those states, or only store pertinent information about those states. 
+
 Biological spiking networks need to work with the constraint of not knowing the future and having limited memory. For the remainder of this series, we will also work with this constraint by minimizing the time-averaged relative entropy or relative entropy rate over extensions $$Q \in \Delta_\mathcal{M}$$ and parameters $$\theta \in \Theta$$.
 
 ### References
