@@ -11,25 +11,94 @@ This post is a continuation from our series on [spiking networks, path integral
 
 ### What is the general intuition behind online learning for latent processes?
 
-We now focus on minimizing the relative entropy rate over $$ Q \in \Delta_\mathcal{M}$$ and $$ \theta \in \Theta.$$ We assume that the model $$P_\theta$$ has the Markov property and that each $$Z_t$$ and $$X_t$$ are conditionally independent given their past. We also assume that $$Q := Q_\lambda$$ is parametrized by $$\lambda \in \Lambda.$$ We first explore the problem in discrete time, before discussing the analogous results in continuous time.
+We assume that the model $$P_\theta, \theta \in \Theta,$$ is in $$\Delta_\mathcal{M}$$, i.e. it has the Markov property and each $$Z_t$$ and $$X_t$$ are conditionally independent given their past. We assume that our variational distribution $$Q_\lambda$$ is parameterized by $$\lambda \in \Lambda$$ and that it also lies in $$\Delta_\mathcal{M}.$$
 
-The discrete time analogue of the relative entropy rate under our Markov setting is the conditional relative entropy $$H_{Q \Vert P}(Z_{n+1}, X_{n+1} \vert Z_{n}, X_{n}).$$
+We now focus on minimizing the relative entropy rate over $$Q_\lambda \in \Delta_\mathcal{M}$$ and $$P_\theta \in \Delta_\mathcal{M}.$$  We first explore the problem in discrete time, before discussing the analogous results in continuous time.
 
-To minimize the conditional relative entropy objective, we adopt an approach similar to the expectation-maximization (EM) or exponential-mixture (em) [algorithm](https://shaoweilin.github.io/machine-learning-with-relative-entropy/). More precisely, we iteratively optimize for the functional parameters $$ Q(Z_{i+1} \vert Z_{i}, X_{i})$$ and for the model distribution $$ P_\theta$$ while holding the other constant. 
+The discrete time analogue of the relative entropy rate under our Markov setting is the asymptotic conditional relative entropy $$\lim_{n \rightarrow \infty} H_{Q \Vert P}(Z_{n+1}, X_{n+1} \vert Z_{n}, X_{n}).$$
+
+We assume that $$Q_\lambda$$ has a stationary distribution $$\bar{\pi}_\lambda,$$ and let $$\bar{Q}_\lambda$$ be the distribution of a Markov chain that has the same transition probabilities as $$Q\lambda$$ but has the initial distribution $$\bar{\pi}_\lambda.$$ Then,
+
+$$\lim_{n \rightarrow \infty} H_{Q_\lambda \Vert P_\theta}(Z_{n+1}, X_{n+1} \vert Z_{n}, X_{n}) = H_{\bar{Q}_\lambda \Vert \bar{P}_\theta}(Z_{1}, X_{1} \vert Z_{0}, X_{0})$$
+
+where $$\bar{P}_\theta$$ is the distribution of any Markov chain that has the same transition probabilities as $$P_\theta.$$ The initial distribution of $$\bar{P}_\theta$$ does not matter in the above conditional relative entropy.
+
+To minimize the conditional relative entropy objective, we adopt an approach similar to the expectation-maximization (EM) or exponential-mixture (em) [algorithm](https://shaoweilin.github.io/machine-learning-with-relative-entropy/). More precisely, we iteratively optimize for the variational distribution $$Q_\lambda$$ and for the model distribution $$ P_\theta$$ while holding the other constant. 
 
 First, we pick some initial distribution $$ Q(Z_0)$$ and initial model distribution $$ P_{\theta_0}.$$ Then, for $$ n = 0, 1, \ldots,$$ we repeat the next two steps.
 
-<span style="text-decoration:underline;">Step 1</span>. Fixing the model distribution $$ P_{\theta_n},$$ find a functional parameter $$ Q(Z_{n+1} \vert Z_{n}, X_{n})$$ to minimize $$ H_{Q\Vert P_{\theta_n}}(Z_{n+1}, X_{n+1} \vert Z_{ n},X_{n}).$$
+<span style="text-decoration:underline;">Step 1</span>. Fixing the model distribution $$ P_{\theta_n},$$ minimize $$H_{\bar{Q}_\lambda \Vert \bar{P}_\theta}(Z_{1}, X_{1} \vert Z_{0}, X_{0})$$ over the functional parameter $$ Q_\lambda.$$
 
-Now, because $$ Z_{n+1}$$ and $$ X_{n+1}$$ are conditionally independent given the past,
+Now, because $$ Z_{1}$$ and $$ X_{1}$$ are conditionally independent given the past,
 
-$$ \begin{array}{rl} &H_{Q\Vert P_{\theta_n}}(Z_{n+1}, X_{n+1} \vert Z_{n},X_{n}) \\ & \\ &= H_{Q\Vert P_{\theta_n}}(Z_{n+1} \vert Z_{n},X_{n}) + H_{Q\Vert P_{\theta_n}}(X_{n+1} \vert Z_{n},X_{n}). \end{array}$$
+$$ \begin{array}{rl} & H_{\bar{Q}_\lambda \Vert \bar{P}_\theta}(Z_{1}, X_{1} \vert Z_{0}, X_{0}) \\ & \\ &= H_{\bar{Q}_\lambda \Vert \bar{P}_\theta}(Z_{1} \vert Z_{0}, X_{0}) + H_{\bar{Q}_\lambda \Vert \bar{P}_\theta}(X_{1} \vert Z_{0}, X_{0}). \end{array}$$
 
-The second term is independent of $$ Q(Z_{n+1} \vert Z_{n}, X_{n})$$ because it depends only on the true distribution $$Q_*(X_{0\ldots n}).$$ 
+The second term is independent of $$\lambda$$ because it depends only on the true distribution $$Q_*$$ of the observables. 
 
 We update the parameter $$\lambda$$ using the gradient
 
-$$ \lambda_{n+1} = \displaystyle \lambda_n - \eta_{n+1} \frac{d}{d\lambda} H_{Q\Vert P_{\theta_n}}(Z_{n+1} \vert Z_{n},X_{n}).$$
+$$ \lambda_{n+1} = \displaystyle \lambda_n - \eta_{n+1} \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert \bar{P}_\theta}(Z_{1} \vert Z_{0}, X_{0}) .$$
+
+Now,
+
+$$ \begin{array}{rl} & 
+\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert \bar{P}_\theta}(Z_{1} \vert Z_{0}, X_{0}) 
+\\ & \\ &= 
+\displaystyle \frac{d}{d\lambda} \int \bar{\pi}_\lambda(dZ_0,dX_0) \int Q_\lambda(dZ_1|Z_0,X_0) \log \frac{Q_\lambda(Z_1 \vert Z_0,X_0)}{P_\theta(Z_1 \vert Z_0,X_0)} 
+\\ & \\ & = 
+\displaystyle  \int  \frac{d}{d\lambda} \bar{\pi}_\lambda(dZ_0,dX_0) \int Q_\lambda(dZ_1 |Z_0,X_0) \log \frac{Q_\lambda(Z_1|Z_0,X_0)}{P_\theta(Z_1|Z_0,X_0)} 
+\\ & \\ & 
+\quad +  \displaystyle \int \bar{\pi}_\lambda(dZ_0,dX_0) \int \frac{d}{d\lambda} Q_\lambda(dZ_1 |Z_0,X_0) \log \frac{Q_\lambda(Z_1|Z_0,X_0)}{P_\theta(Z_1|Z_0,X_0)} 
+\\ & \\ & 
+\quad + \displaystyle  \int \bar{\pi}_\lambda(dZ_0,dX_0) \int Q_\lambda(dZ_1 |Z_0,X_0) \frac{d}{d\lambda} \log \frac{Q_\lambda(Z_1|Z_0,X_0)}{P_\theta(Z_1|Z_0,X_0)}
+. \end{array}$$
+
+The third term equals 
+
+$$ \begin{array}{rl} &
+\displaystyle \int \bar{\pi}_\lambda(dZ_0,dX_0)  \int Q_\lambda(dZ_1 |Z_0,X_0) \frac{\frac{d}{d\lambda} Q_\lambda(Z_1|Z_0,X_0)}{Q_\lambda(Z_1|Z_0,X_0)} \\ & \\ & = \displaystyle \int \bar{\pi}_\lambda(dZ_0,dX_0) \frac{d}{d\lambda}\int Q_\lambda(dZ_1|Z_0,X_0) \\ & \\ & = \displaystyle \int \bar{\pi}_\lambda(dZ_0,dX_0) \frac{d}{d\lambda} 1 \\ & \\ & = 0. \end{array}$$
+
+The second terms equals
+
+$$ \begin{array}{rl} &
+\displaystyle \int \bar{\pi}_\lambda(dZ_0,dX_0) \int  Q_\lambda(dZ_1 |Z_0,X_0) \,\,\times \\ &  \\ & \quad \displaystyle \left(\log \frac{Q_\lambda(Z_1|Z_0,X_0)}{P_\theta(Z_1|Z_0,X_0)}\right) \frac{d}{d\lambda} \log Q_\lambda(dZ_1 |Z_0,X_0)
+\\ & \\ &
+= \displaystyle \lim_{T \rightarrow \infty} \mathbb{E}_{Q_\lambda} \Bigg[ \left(\log \frac{Q_\lambda(Z_{T+1}|Z_T,X_T)}{P_\theta(Z_{T+1}|Z_T,X_T)}\right) \frac{d}{d\lambda} \log Q_\lambda(dZ_{T+1} |Z_T,X_T) \Bigg]
+. \end{array}$$
+
+To simplify the first term, we note from [BB1] that the integral of a function $$r(Z,X)$$ with respect to the derivative of the stationary distribution can be written as
+
+$$ \begin{array}{rl} &
+\displaystyle \int r(Z_0,X_0) \frac{d}{d\lambda} \bar{\pi}_\lambda(dZ_0,dX_0) 
+\\ & \\ &
+= \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T \int \bar{\pi}_\lambda(dZ_0,dX_0) \int  \prod_{i=0}^{t} Q_\lambda(dZ_{i+1},dX_{i+1}|Z_i,X_i)     \,\,\times
+\\ & \\ &
+\quad \quad \displaystyle  r(Z_{t+1},X_{t+1}) \left( \frac{d}{d\lambda} \log Q_\lambda(Z_1, X_1 |Z_0,X_0) \right) 
+\\ & \\ &
+= \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T \int \bar{\pi}_\lambda(dZ_{T-t},dX_{T-t}) \int  \prod_{i=T-t}^{T} Q_\lambda(dZ_{i+1},dX_{i+1}|Z_i,X_i)   
+\\ & \\ &
+\quad \quad \displaystyle  r(Z_{T+1}, X_{T+1}) \frac{d}{d\lambda} \log Q_\lambda(Z_{T-t+1},X_{T-t+1} | Z_{T-t},X_{T-t})
+\\ & \\ &
+= \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T \mathbb{E}_{Q_\lambda} \left[ r(Z_{T+1}, X_{T+1})  \frac{d}{d\lambda} \log Q_\lambda(Z_{T-t+1},X_{T-t+1} | Z_{T-t},X_{T-t}) \right]
+\\ & \\ &
+= \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda} \left[ r(Z_{T+1}, X_{T+1}) \sum_{t=0}^T \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1},X_{t+1} | Z_{t},X_{t}) \right]
+. \end{array}$$
+
+Consequently, the first term becomes
+
+$$ \begin{array}{rl} &
+\displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda} \Bigg[ \left( \log \frac{Q_\lambda(Z_{T+2}|Z_{T+1},X_{T+1})}{P_\theta(Z_{T+2}|Z_{T+1},X_{T+1})} \right) \,\,\times 
+\\ & \\ & \quad\quad \displaystyle \sum_{t=0}^T \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1},X_{t+1} | Z_{t},X_{t}) \Bigg]
+. \end{array}$$
+
+Combining this with the second term, we derive the gradient 
+
+$$ \begin{array}{rl} &
+\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert \bar{P}_\theta}(Z_{1} \vert Z_{0}, X_{0}) 
+\\ & \\ &
+= \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda} \Bigg[ \left( \log \frac{Q_\lambda(Z_{T+2}|Z_{T+1},X_{T+1})}{P_\theta(Z_{T+2}|Z_{T+1},X_{T+1})} \right) \,\,\times 
+\\ & \\ & \quad\quad \displaystyle \sum_{t=0}^{T+1} \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1},X_{t+1} | Z_{t},X_{t}) \Bigg]
+. \end{array}$$
 
 <span style="text-decoration:underline;">Step</span> 2\. Fixing the functional parameters $$ Q(Z_{i+1} \vert Z_{0\ldots i}, X_{0\ldots i})$$ for $$ i = 0, \ldots, n,$$ find a model distribution $$ P_{\theta}$$ to minimize $$ H_{Q\Vert P_{\theta}}(Z_{n+1}, X_{n+1} \vert Z_{0\ldots n},X_{0\ldots n})$$.
 
@@ -240,6 +309,8 @@ for $$ 0 \leq k \leq n,$$ using step sizes $$ \eta_k = \eta_0 k^{-1/2}$$ for suf
 $$ \mathbb{E}(\Vert g(Q_N, \theta_N) \Vert^2) = O(\log n / \sqrt{n} ).$$
 
 ### References
+
+[BB01] Baxter, Jonathan, and Peter L. Bartlett. "Infinite-horizon policy-gradient estimation." _Journal of Artificial Intelligence Research_ 15 (2001): 319-350.
 
 [Leroux92] Leroux, Brian G. "Maximum-likelihood estimation for hidden Markov models." _Stochastic processes and their applications_ 40, no. 1 (1992): 127-143.
 
