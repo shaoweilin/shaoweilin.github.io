@@ -10,26 +10,21 @@ PURL [https://w3id.org/people/shaoweilin](https://w3id.org/people/shaoweilin)
 
 ORCID [0000-0002-8176-8868](https://orcid.org/0000-0002-8176-8868)
 
-# H1
-## H2
-### H3
-#### H4
-##### H5
-###### H6
-
 ----
+
 **Theorem.** Test test.
+
 ----
 
 
 
-### Biography
+## Biography
 
 [Curriculum Vitae](https://w3id.org/people/shaoweilin/public/vitae.pdf)
 
 [LinkedIn](https://www.linkedin.com/in/shaoweilin)
 
-### Publications
+## Publications
 
 [Google Scholar](http://scholar.google.com.sg/citations?user=jCYmZFEAAAAJ&hl=en&sortby=pubdate)
 
@@ -37,13 +32,13 @@ ORCID [0000-0002-8176-8868](https://orcid.org/0000-0002-8176-8868)
 
 [arXiv Preprints](https://arxiv.org/a/0000-0002-8176-8868.html)
 
-### Writings
+## Writings
 
 [PhD Thesis](https://w3id.org/people/shaoweilin/public/swthesis.pdf)
 
 [Singular Learning](https://shaoweilin.github.io/singular/)
 
-### Talks
+## Talks
 
 [Proofs as programs](https://shaoweilin.github.io/proofs-as-programs-challenges-and-strategies-for-program-synthesis/)
 
@@ -53,7 +48,7 @@ ORCID [0000-0002-8176-8868](https://orcid.org/0000-0002-8176-8868)
 
 [Singular learning](https://shaoweilin.github.io/studying-model-asymptotics-with-singular-learning-theory/)
 
-### Software
+## Software
 
 [Graphical Models](http://www.math.uiuc.edu/Macaulay2/doc/Macaulay2-1.4/share/doc/Macaulay2/GraphicalModels/html/index.html)
 
@@ -67,6 +62,6 @@ ORCID [0000-0002-8176-8868](https://orcid.org/0000-0002-8176-8868)
 
 [Legendrian Knots](https://w3id.org/people/shaoweilin/public/legendrian.html)
 
-### Contact
+## Contact
 
 shaoweilin × research + gmail × com
