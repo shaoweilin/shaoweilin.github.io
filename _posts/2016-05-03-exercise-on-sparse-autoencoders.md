@@ -3,7 +3,7 @@ layout: post
 title: Exercise on sparse autoencoders
 ---
 
-### Exercise 1
+## Exercise 1
 This exercise is the first of several posts I am writing, for those who want a mathematical and hands-on introduction to deep neural networks.
 
 1. Read the series of notes on the topic of "Sparse Autoencoder" in the [UFLDL Tutorial](http://deeplearning.stanford.edu/wiki/index.php/UFLDL_Tutorial).

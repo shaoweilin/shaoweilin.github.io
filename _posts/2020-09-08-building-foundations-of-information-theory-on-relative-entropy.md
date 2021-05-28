@@ -9,13 +9,13 @@ In this article, we emphasize that the relative entropy is fundamental in the se
 
 This is the first post in our series on [spiking networks, path integrals and motivic information](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/).
 
-### Why build foundations of information theory on relative entropy?
+## Why build foundations of information theory on relative entropy?
 
 Firstly, we want to show that relative entropy is the "right way" to think about machine learning problems. Many methods like max entropy or max likelihood can be framed in terms of min relative entropy. We can then use this reformulation to derive more robust learning algorithms (e.g. stochastic gradients) and we can prove asymptotic properties of these algorithms more easily. We will also be using (conditional) relative entropy to derive variational learning algorithms for statistical models with hidden variables. All of these will be explained in a later post.
 
 The second reason is because we will be extending relative entropy to take values in a motivic ring so as to get motivic information theory. This then allows us to write down path integrals that don't run into convergence issues.
 
-### What is relative entropy?
+## What is relative entropy?
 
 Given probability measures $$P, Q$$ on a finite state space $$\{1, \ldots, n\},$$ the relative entropy to $$Q$$ from $$P$$ is the sum
 
@@ -27,7 +27,7 @@ $$\displaystyle H_{Q\Vert P} = \int q(x) \log \frac{q(x)}{p(x)}\, dx.$$
 
 It is not difficult to show that $$H_{Q\Vert P} \geq 0$$ for all probability measures $$P, Q$$ with equality if and only if $$P = Q$$ almost everywhere.
 
-### How do we derive entropy from relative entropy?
+## How do we derive entropy from relative entropy?
 
 Classical textbooks for information theory define the relative entropy in terms of entropy (and cross entropy). We could choose instead to think of the relative entropy as the fundamental object, and entropy as a special case [Gray11, Chodrow17].
 
@@ -63,7 +63,7 @@ Using the relative entropy of the uniform distribution to $$P_X$$ as the "right 
 
 In many interesting problems, the uniform distribution is not well-defined, so this second definition of entropy in terms of relative entropy will not make sense. We will then revert to the first definition as the relative entropy to the dependent distribution from the independent distribution.
 
-### How do we define relative entropy without densities?
+## How do we define relative entropy without densities?
 
 In our definition of relative entropy, the densities $$p(x) = dP/dx$$ and $$q(x) = dQ/dx$$ are Radon-Nikodym derivatives which exist if and only if $$P$$ and $$Q$$ are absolutely continuous with respect to the Lebesgue measure on $$\mathbb{R}^n.$$ However, there are many important applications where this assumption is not true, such as in the case of path measures for stochastic processes.
 
@@ -79,7 +79,7 @@ $$\displaystyle \frac{dQ}{dP} = \displaystyle \frac{dQ}{dx}/\frac{dP}{dx}$$
 
 arising from the chain rule for Radon-Nikodym derivatives, we get the earlier definition of the relative entropy in terms of densities.
 
-### How do we define relative entropy without absolute continuity?
+## How do we define relative entropy without absolute continuity?
 
 When $$Q$$ is not absolutely continuous with respect to $$P,$$ the Radon-Nikodym derivative $$dQ/dP$$ does not exist and the above definition of $$H_{Q\Vert P}$$ does not make sense. To extend the definition, we consider the relative entropy of a partition of $$\Omega$$ [Gray11].
 
@@ -99,7 +99,7 @@ $$H_{Q\Vert P}(X) = H_{Q_X \Vert P_X}.$$
 
 When $$Q$$ is not absolutely continuous with respect to $$P,$$ we can show that this definition tells us that the relative entropy is infinite.
 
-### How do we define relative entropy when the total measure is not one?
+## How do we define relative entropy when the total measure is not one?
 
 Let us assume that both $$P, Q$$ have the same total measure $$T$$ which is not necessarily equal to one. Let $$\bar{P} = P/T$$ and $$\bar{Q}= Q/T$$ be the respective probability measures. We define
 
@@ -109,7 +109,7 @@ Then, a simple calculation shows that
 
 $$H_{Q\Vert P} = T H_{\bar{Q}\Vert \bar{P}}.$$
 
-### How do we define relative entropy when the total measures of $$P, Q$$ are not the same?
+## How do we define relative entropy when the total measures of $$P, Q$$ are not the same?
 
 The short answer is Don't. It does not make sense to compare two measures with different total measures.
 
@@ -133,7 +133,7 @@ $$\begin{array}{rl} H_{Q\Vert P} &= T_P-T_Q+\displaystyle\sum_{i=1}^{n} T_Q \bar
 
 We see that the value of $$H_{Q\Vert P}$$ depends on the measures $$P, Q$$ only through the classical relative entropy $$H_{\bar{Q}\Vert \bar{P}}$$, so we do not gain anything new. Relative entropy is only meaningful for understanding the distance between two measures that distribute the same total measure differently.
 
-### References
+## References
 
 [Gray11] Gray, Robert M. _Entropy and information theory_. Springer Science & Business Media, 2011.
 

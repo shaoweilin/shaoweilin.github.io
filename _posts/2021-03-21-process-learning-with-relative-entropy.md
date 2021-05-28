@@ -11,7 +11,7 @@ The actual process that generates the data could possibly be different from the 
 
 This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/).
 
-### How do we train a stochastic process using relative entropy?
+## How do we train a stochastic process using relative entropy?
 
 Suppose that we have a stochastic process $$ \{X_t\}$$ where $$ X: I \rightarrow \mathcal{X}$$ is a map from some time interval $$ I \subset \mathbb{R}$$ to some countable state space $$ \mathcal{X}$$. If $$ I$$ is the continuous interval $$ [0, T],$$ then $$ X$$ is a continuous-time stochastic process. If $$ I$$ is the discrete interval $$ \{0, 1, \ldots, T\},$$ then $$ X$$ is a discrete-time stochastic process.
 
@@ -25,7 +25,7 @@ To find the best model distribution $$ P_\theta$$ for approximation the true dis
 
 $$\displaystyle \lim_{T\rightarrow \infty} \frac{1}{T} H_{Q_*\Vert P_\theta}(X_{0\ldots T}).$$
 
-### How do we train a stochastic process using relative entropy rate?
+## How do we train a stochastic process using relative entropy rate?
 
 In discrete time, by the chain rule ([CR](https://shaoweilin.github.io/conditional-relative-entropy-and-its-axiomatizations/#mjx-eqn-CR)), the relative entropy decomposes into the sum
 
@@ -71,7 +71,7 @@ $$ \displaystyle \frac{\partial}{\partial X_{0\ldots s}} F (X_{0\ldots s})$$
 
 is the functional derivative of a path function $$ F$$ with respect to the path $$ X_{0\ldots s}.$$ We will formalize the Hilbert space and functional derivative in another article.
 
-### References
+## References
 
 [Leroux92] Leroux, Brian G. "Maximum-likelihood estimation for hidden Markov models." _Stochastic processes and their applications_ 40, no. 1 (1992): 127-143.
 

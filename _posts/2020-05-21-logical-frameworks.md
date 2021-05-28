@@ -5,7 +5,7 @@ title: Logical frameworks
 
 Logical frameworks are formal meta-languages for specifying different kinds of object theories (e.g. logical theories and type theories).
 
-### What is LF?
+## What is LF?
 
 LF is a logical framework [HHP93] that formalizes Martin-Lof's logical framework and is itself based on type theory. It was designed to unify similarities between two forms of judgments.
 
@@ -18,7 +18,7 @@ The logical theory or type theory that we describe with LF will be called the _
 
 We will be using the presentation in [L06], the paper where Unified Type Theory (UTT) was introduced. This presentation sticks closely to the original logical framework by Martin-Lof. Do note, however, that since Martin-Lof's framework, there has been newer versions such as Canonical LF which incorporates signatures and canonical forms. We follow the presentation in [L06] to keep this introduction simple.
 
-### What are the rules of LF?
+## What are the rules of LF?
 
 We first present the rules [L06] before describing their semantics.
 
@@ -40,11 +40,11 @@ There is a special LF-kind called $$\textbf{Type}$$ which is the LF-kind of all 
 
 From the rules, it is interesting that dependent product kinds are all that is needed to specify the logical framework [nLab20].
 
-### Is LF consistent?
+## Is LF consistent?
 
 Since LF is just a meta-language for specifying object languages, consistency is not a concern at the level of the framework, but only relevant at the level of the object language. Moreover, it is not possible to define consistency for LF in the same way we define consistency for object languages via the ability to construct a term of the empty type.
 
-### What role do universes play in the object languages of LF?
+## What role do universes play in the object languages of LF?
 
 A universe $$U : \textbf{Type}$$ can be thought of as syntactic category that puts a collection of LF-kinds into a neat package after the LF-kinds have been defined. For example, suppose we have LF-kinds
 
@@ -54,7 +54,7 @@ $$Bool \text{ kind}$$
 
 Instead of putting the LF-constants $$nat$$ and $$bool$$  in $$\textbf{Type}$$, we could package them in $$U$$ so $$nat : El(U)$$ and $$bool : El(U)$$ while $$U : \textbf{Type}$$. We will need a new lifting operator $$T$$, so that $$T(nat) : \textbf{Type}, T(bool) : \textbf{Type}$$ and $$Nat = El(T(nat)), Bool = El(T(bool))$$.  Every LF-constant representing a type eventually lifts up to some LF-kind. Thus, we can think of universe management as a way of organizing a large collection of LF-kinds to retain consistency, among other goals.
 
-### What issues does LF have, and how do recent extensions of LF deal with them?
+## What issues does LF have, and how do recent extensions of LF deal with them?
 
 In more recent logical frameworks, signatures have also been introduced in addition to contexts. These signature store constants which may be expanded to longer terms by definition.
 
@@ -70,15 +70,15 @@ Of course, these judgments are not enough to solve the problem of canonical form
 
 These recent frameworks also have bidirectional type-checking. More precisely, instead of just having the judgement $$a:A$$, we have judgements $$a \Rightarrow A$$ (when A is not given, we may infer that the type of $$a$$ is $$A$$) and $$a \Leftarrow A$$ (when A is given, we verify that $$a$$ is of type $$A$$).
 
-### Should we use LF's type-checking capabilities to perform type-checks for the object language?
+## Should we use LF's type-checking capabilities to perform type-checks for the object language?
 
 This is known as the _analytic presentation_ of the object language, as opposed to the _syntactic presentation_ of the object language [H12]. Analytic presentations are useful for computations, but they cause problems when we are trying to prove certain properties of the object language. In particular, when there are certain definitional equalities such as beta or eta reductions in the object language, we will need to represent them as equalities of the logical framework, so that type checking can proceed correctly. However, such representations make it difficult to prove properties of the object language that depend on these equalities. A hybrid syntactic-analytic approach is also possible, where we represent equalities using identity types.
 
-### What about equations satisfied by the generators of the object language?
+## What about equations satisfied by the generators of the object language?
 
 Robert Harper has some notes about a _semantic logical framework_ that allows for such equations [H21].
 
-### References
+## References
 
 [L06] Zhaohui Luo, "[A unifying theory of dependent types: the schematic approach](https://www.researchgate.net/publication/225233240_A_unifying_theory_of_dependent_types_the_schematic_approach)," Logical Foundations of Computer Science, 2006\. DOI: 10.1007/BFb0023883
 

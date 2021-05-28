@@ -9,7 +9,7 @@ We will be using biased stochastic approximation [KMMW19] where the stochastic u
 
 This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/).
 
-### What is the general intuition behind online learning for latent processes?
+## What is the general intuition behind online learning for latent processes?
 
 We assume that the model $$P_\theta, \theta \in \Theta,$$ is in $$\Delta_\mathcal{M}$$, i.e. it has the Markov property and each $$Z_t$$ and $$X_t$$ are conditionally independent given their past. We assume that our variational distribution $$Q_\lambda$$ is parameterized by $$\lambda \in \Lambda$$ and that it also lies in $$\Delta_\mathcal{M}.$$
 
@@ -132,7 +132,7 @@ $$ \displaystyle \lim_{n\rightarrow \infty} \frac{1}{n} H_{Q \Vert P}(Z_{0 \ldot
 
 so the online updates may be thought of as multiple passes at optimizing the relative entropy rate. The derivative of this relative entropy rate will be the mean field of the stochastic approximations, while the stochastic updates will be biased estimates of this mean field where the bias depends on the past $$ Z_{0\ldots n}, X_{0\ldots n}.$$
 
-### How do we prove convergence using biased stochastic approximation?
+## How do we prove convergence using biased stochastic approximation?
 
 In [KMMW19], the authors studied biased stochastic approximation in the case where the stochastic updates are Markovian.
 
@@ -309,7 +309,7 @@ for $$ 0 \leq k \leq n,$$ using step sizes $$ \eta_k = \eta_0 k^{-1/2}$$ for suf
 
 $$ \mathbb{E}(\Vert g(Q_N, \theta_N) \Vert^2) = O(\log n / \sqrt{n} ).$$
 
-### References
+## References
 
 [BB01] Baxter, Jonathan, and Peter L. Bartlett. "Infinite-horizon policy-gradient estimation." _Journal of Artificial Intelligence Research_ 15 (2001): 319-350.
 

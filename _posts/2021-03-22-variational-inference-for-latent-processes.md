@@ -7,7 +7,7 @@ We introduce a variational objective, which is a form of relative entropy, for l
 
 This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/).
 
-### How do we apply variational inference to latent processes?
+## How do we apply variational inference to latent processes?
 
 Suppose that we have two processes -- an observed $$X_t \in \mathcal{X},$$ and a latent or hidden process $$Z_t \in \mathcal{Z}$$. Let $$Q_*(X_{0\ldots T})$$ be the true distribution of the visible process $$X_{0\ldots T}$$. Recall that our goal is to find a generative model $$P(Z,X)$$ that minimizes the relative entropy
 
@@ -21,7 +21,7 @@ $$H_{Q\Vert P}(Z_{0\ldots T},X_{0\ldots T})$$
 
 as $$Q$$ varies over some space of extended distributions.
 
-### Is variational inference necessarily passive?
+## Is variational inference necessarily passive?
 
 The form of variational inference we are considering here is necessarily passive. This means that the true distribution $$Q_*(X_{0\ldots T})$$ is unaffected by the learning agent's estimates of the states of the latent variables $$Z_{0\ldots T}.$$ 
 
@@ -39,7 +39,7 @@ $$H_{Q\Vert P}(Z_{0\ldots T},X_{0\ldots T}) = H_{Q\Vert P}(Z_{0\ldots T}\vert  X
 
 so a minimum value for $$H_{Q\Vert P}(Z_{0\ldots T},X_{0\ldots T})$$ will be a lower bound for the minimum value for $$H_{Q_*\Vert P}(X_{0\ldots T}).$$ As shown [previously](https://shaoweilin.github.io/machine-learning-with-relative-entropy/), when minimizing with $$Q$$ varying over the unconstrained space $$\Delta$$, the gap $$H_{Q\Vert P}(Z_{0\ldots T}\vert X_{0\ldots T})$$ in the bound vanishes.
 
-### How do we perform online learning on latent processes?
+## How do we perform online learning on latent processes?
 
 In the training of hidden Markov models, the Baum-Welch algorithm or forward-backward algorithm is often used. It requires knowledge of the visible process from the start to the end of the time interval. An algorithm that only uses the visible process from the start to the present is called an _online_ learning algorithm. Otherwise, the learning algorithm is said to be _offline_.
 
@@ -98,7 +98,7 @@ $$\displaystyle \frac{d}{ds}f(z(s),x(s)) =\frac{dz}{ds} \frac{\partial}{\partial
 
 Online learning involves minimizing over the subspace $$\Delta_\mathcal{C},$$ where the discriminative factors $$Q(Z_t \vert Z_{0\ldots (t-1)}, X_{0\ldots (t-1)})$$ depend only on information from the past. When optimizing over $$\Delta_\mathcal{C},$$ the entropy gap $$H_{Q\Vert P}(Z_{0\ldots T}\vert X_{0\ldots T})$$ might not vanish. Loosely, the gap represents _the cost of not knowing the future_. Indeed, if $$Z_t$$ and $$X_t$$ are not conditionally independent given their past, then any dependence must come from the future. Since the gap vanishes when we optimize over distributions that allow such kinds of dependence, the future must be furnishing information for closing this gap.
 
-### How do we perform variational inference with limited memory?
+## How do we perform variational inference with limited memory?
 
 Suppose now that computationally, both the discriminative model and the generative model have limited memory. More precisely, the models cannot store the full histories $$Z_{0\ldots t}, X_{0\ldots t}$$ but they can recall the most recent states $$Z_t, X_t$$ so the distributions satisfy the Markov property. Hence, $$Q(Z_{0\ldots T}\vert X_{0\ldots T})$$ has a factorization
 
@@ -116,7 +116,7 @@ Of course, the recent state $$Z_t$$ can also be used to store copies of older st
 
 Biological spiking networks need to work with the constraint of not knowing the future and having limited memory. For the remainder of this series, we will also work with this constraint by minimizing the time-averaged relative entropy or relative entropy rate over extensions $$Q \in \Delta_\mathcal{M}$$ and parameters $$\theta \in \Theta$$.
 
-### References
+## References
 
 [Leroux92] Leroux, Brian G. "Maximum-likelihood estimation for hidden Markov models." _Stochastic processes and their applications_ 40, no. 1 (1992): 127-143.
 

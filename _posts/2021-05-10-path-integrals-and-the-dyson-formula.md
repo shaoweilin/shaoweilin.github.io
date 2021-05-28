@@ -38,7 +38,7 @@ It would be interesting to study the Dyson formula through the algebraic lens of
 There should also be a generalization of the Dyson formula or the path integral to coends in category theory.
 
 
-### References
+## References
 
 [B13] Brown, Francis. "[Iterated integrals in quantum ﬁeld theory](http://math.bu.edu/people/dkreimer/houches/ColumbiaNotes7.pdf)." _Geometric and Topological Methods for Quantum Field Theory: Proceedings of the 2009 Villa de Leyva Summer School_ (2013): 188.
 

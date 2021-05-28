@@ -7,7 +7,7 @@ We give an introduction to continuous-time Markov chains, and define path measur
 
 This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/).
 
-### What is a stochastic process?
+## What is a stochastic process?
 
 A stochastic process [AMB17] on a measure space $$(\Omega, \mathcal{A},P)$$ indexed by a set $$I$$ is a family $$\{X_t \}_{t \in I}$$ of random variables $$X_t : \Omega \rightarrow R$$ on $$\Omega,$$ where $$(R$$ is some measure space. This allows us to compute _finite joint distributions_ of the form
 
@@ -15,7 +15,7 @@ $$P(\{\omega \in \Omega \vert X_{t_1}(\omega) \in \mathcal{A}_1, \ldots, X_{t_n}
 
 for some finite set $$\{t_1, \ldots, t_n\}$$ of indices and some measurable subsets $$\mathcal{A}_1, \ldots, \mathcal{A}_n$$ of $$R.$$
 
-### What is a path measure and a path integral?
+## What is a path measure and a path integral?
 
 A priori, a stochastic process is just a collection of random variables for which we write down finite joint distributions. How do we define a path through these random variables? Is there a space of paths imbued with a measure $$\mu$$ that is consistent with the finite joint distributions?
 
@@ -47,7 +47,7 @@ $$\int_{R^I} f(\gamma) d\mu(\gamma) = \int_{R^n} F(x_1, \ldots, x_n) d\mu_J(x_1,
 
 The path integral of any measurable function $$g : R^I \rightarrow \mathbb{C}$$ is then defined as the limit of path integrals of cylinder functions that converge to $$g$$.
 
-### What is a continuous-time Markov chain?
+## What is a continuous-time Markov chain?
 
 A _continuous-time Markov chain_ (CTMC) is a stationary stochastic process $$X(t)$$ with finite or countable state space $$\mathcal{X}$$ in continuous time $$t \in [0, \infty)$$ that satisfies the Markov property, i.e.
 
@@ -83,7 +83,7 @@ $$\mathbb{P}(X(t) = y \vert X(s) = x ) = (e^{(t-s)\Gamma})_{xy}.$$
 
 The Kolmogorov extension theorem then allows us to define a path measure on the path space $$\mathcal{X}^{[0,\infty)}$$ as well as path integrals with respect to this path measure.
 
-### What is a line integral along a path?
+## What is a line integral along a path?
 
 Given a path measure $$\mu$$, the path integral
 
@@ -157,7 +157,7 @@ $$J(t) = \displaystyle \frac{d}{dt} \int_{0 \leq S(\gamma) \leq t} f(\gamma) D\g
 
 This Gelfand-Leray function is similar to the [density of states](https://en.wikipedia.org/wiki/Density_of_states) studied in solid state physics and condensed matter physics. It integrates the path function $$f(\gamma)$$ over all paths having a fixed energy $$S(\gamma)=t$$.
 
-### References
+## References
 
 [AM11] Albeverio, Sergio, and Sonia Mazzucchi. "Path integral: mathematical aspects." _Scholarpedia_ 6, no. 1 (2011): 8832.
 
