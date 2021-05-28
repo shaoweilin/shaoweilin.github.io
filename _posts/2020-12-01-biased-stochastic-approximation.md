@@ -231,37 +231,41 @@ The above discussion then proceeds with this inequality as the starting point.
 
 To summarize, we have the following convergence result for biased stochastic approximation [KMMW19], starting with some regularity conditions.
 
-<span style="text-decoration:underline;">A0 (Descent over functional parameter</span>). For all $$Q \in \Delta$$ and $$\eta \in \mathcal{H},$$
+----
+
+**A0 (Descent over functional parameter).** For all $$Q \in \Delta$$ and $$\eta \in \mathcal{H},$$
 
 $$V(F(Q,\eta), \eta) \leq V(Q,\eta).$$
 
-<span style="text-decoration:underline;">A1 (Relation between Lyapunov gradient and mean field</span>). For all $$Q \in \Delta$$ and $$\eta \in \mathcal{H},$$ there exists $$c_0 \geq 0, c_1 \geq 0$$ such that
+**A1 (Relation between Lyapunov gradient and mean field).** For all $$Q \in \Delta$$ and $$\eta \in \mathcal{H},$$ there exists $$c_0 \geq 0, c_1 \geq 0$$ such that
 
 $$\displaystyle c_0 + c_1 \left\langle \frac{\partial V}{\partial \eta}(Q,\eta) , h(Q, \eta) \right\rangle \geq \Vert h(Q,\eta) \Vert^2.$$
 
-<span style="text-decoration:underline;">A2 (Relation between Lyapunov value and mean field</span>). For all $$Q \in \Delta$$ and $$\eta \in \mathcal{H},$$ there exists $$d_0 \geq 0, d_1 \geq 0$$ such that
+**A2 (Relation between Lyapunov value and mean field).** For all $$Q \in \Delta$$ and $$\eta \in \mathcal{H},$$ there exists $$d_0 \geq 0, d_1 \geq 0$$ such that
 
 $$\displaystyle d_0 + d_1 \Vert h(Q,\eta) \Vert \geq \left\Vert \frac{\partial V}{\partial \eta}(Q,\eta) \right\Vert.$$
 
-<span style="text-decoration:underline;">A3 ($$\ell$$-smoothness of Lyapunov function</span>). There exists $$\ell < \infty$$ such that for all $$Q \in \Delta$$ and $$\eta, \eta' \in \mathcal{H},$$
+**A3 ($$\ell$$-smoothness of Lyapunov function).** There exists $$\ell < \infty$$ such that for all $$Q \in \Delta$$ and $$\eta, \eta' \in \mathcal{H},$$
 
 $$\displaystyle \left\Vert \frac{\partial V}{\partial \eta}(Q,\eta) - \frac{\partial V}{\partial \eta}(Q,\eta') \right\Vert \leq \ell \Vert \eta - \eta' \Vert.$$
 
-<span style="text-decoration:underline;">A4 (Solution of Poisson equation</span>). There exists a Borel measurable function $$\hat{H} :\Delta \times \mathcal{H} \times \mathcal{X} \rightarrow \mathcal{H}$$ where for each $$Q \in \Delta$$ and $$\eta \in \mathcal{H},$$
+**A4 (Solution of Poisson equation).** There exists a Borel measurable function $$\hat{H} :\Delta \times \mathcal{H} \times \mathcal{X} \rightarrow \mathcal{H}$$ where for each $$Q \in \Delta$$ and $$\eta \in \mathcal{H},$$
 
 $$L_{Q,\eta} \hat{H}_{Q,\eta}(x) = E_{Q,\eta}(x).$$
 
-<span style="text-decoration:underline;">A5 (Regularity of solution of Poisson equation</span>). There exists $$\ell_0, \ell_1 < \infty$$ such that for all $$Q \in \Delta, \eta, \eta' \in \mathcal{H}, x \in \mathcal{X},$$
+**A5 (Regularity of solution of Poisson equation).** There exists $$\ell_0, \ell_1 < \infty$$ such that for all $$Q \in \Delta, \eta, \eta' \in \mathcal{H}, x \in \mathcal{X},$$
 
 $$\Vert \hat{H}_{Q,\eta} (x) \Vert \leq \ell_0, \quad \Vert P_{Q,\eta} \hat{H}_{Q,\eta}(x) \Vert \leq \ell_0,$$
 
 $$\Vert P_{Q,\eta} \hat{H}_{Q,\eta}(x) - P_{Q,\eta'} \hat{H}_{Q,\eta'} (x) \Vert \leq \ell_1 \Vert \eta - \eta' \Vert.$$
 
-<span style="text-decoration:underline;">A6 (Boundedness of correction term</span>). There exists $$\sigma < \infty$$ such that for all $$Q \in \Delta, \eta \in \mathcal{H}, x \in \mathcal{X},$$
+**A6 (Boundedness of correction term).** There exists $$\sigma < \infty$$ such that for all $$Q \in \Delta, \eta \in \mathcal{H}, x \in \mathcal{X},$$
 
 $$\Vert E_{Q,\eta} (x) \Vert \leq \sigma.$$
 
-<span style="text-decoration:underline;">Theorem (Convergence of Biased Stochastic Approximation</span>). Suppose that we have parameter updates
+----
+
+**Theorem (Convergence of Biased Stochastic Approximation).** Suppose that we have parameter updates
 
 $$\eta_{k+1} = \eta_{k} - \gamma_{k+1} H_{Q_k,\eta_k}(X_{k+1})$$
 
@@ -276,6 +280,8 @@ $$\mathbb{E}(\Vert h(Q_N, \eta_N) \Vert^2) = O(c_0 + \log n / \sqrt{n} ).$$
 Note that $$h(Q_N, \eta_N)$$ varies like $$\frac{\partial V}{\partial \eta}(Q,\eta)$$ so we are guaranteed convergence only to a critical point of the Lyapunov function $$V(Q, \eta)$$ with respect to $$\eta.$$
 
 To ensure convergence to a critical point of $$V(Q, \eta)$$ with respect to $$Q,$$ we will need to extend the above analysis to measure the descent of $$V(Q, \eta)$$ during the $$Q$$-update against the functional derivative $$\frac{\partial V}{\partial Q}(Q,\eta).$$
+
+----
 
 ## References
 

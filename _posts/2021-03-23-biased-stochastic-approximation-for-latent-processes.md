@@ -27,7 +27,7 @@ To minimize the conditional relative entropy objective, we adopt an approach sim
 
 First, we pick some initial distribution $$ Q(Z_0)$$ and initial model distribution $$ P_{\theta_0}.$$ Then, for $$ n = 0, 1, \ldots,$$ we repeat the next two steps.
 
-<span style="text-decoration:underline;">Step 1</span>. Fixing the model distribution $$ P_{\theta_n},$$ minimize $$H_{\bar{Q}_\lambda \Vert \bar{P}_\theta}(Z_{1}, X_{1} \vert Z_{0}, X_{0})$$ over the functional parameter $$ Q_\lambda.$$
+**Step 1.** Fixing the model distribution $$ P_{\theta_n},$$ minimize $$H_{\bar{Q}_\lambda \Vert \bar{P}_\theta}(Z_{1}, X_{1} \vert Z_{0}, X_{0})$$ over the functional parameter $$ Q_\lambda.$$
 
 Now, because $$ Z_{1}$$ and $$ X_{1}$$ are conditionally independent given the past,
 
@@ -100,7 +100,7 @@ $$ \begin{array}{rl} &
 \\ & \\ & \quad\quad \displaystyle \sum_{t=0}^{T+1} \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1},X_{t+1} | Z_{t},X_{t}) \Bigg]
 . \end{array}$$
 
-<span style="text-decoration:underline;">Step</span> 2\. Fixing the functional parameters $$ Q(Z_{i+1} \vert Z_{0\ldots i}, X_{0\ldots i})$$ for $$ i = 0, \ldots, n,$$ find a model distribution $$ P_{\theta}$$ to minimize $$ H_{Q\Vert P_{\theta}}(Z_{n+1}, X_{n+1} \vert Z_{0\ldots n},X_{0\ldots n})$$.
+**Step 2.** Fixing the functional parameters $$ Q(Z_{i+1} \vert Z_{0\ldots i}, X_{0\ldots i})$$ for $$ i = 0, \ldots, n,$$ find a model distribution $$ P_{\theta}$$ to minimize $$ H_{Q\Vert P_{\theta}}(Z_{n+1}, X_{n+1} \vert Z_{0\ldots n},X_{0\ldots n})$$.
 
 We pursue this objective using the gradient update
 
@@ -272,28 +272,31 @@ $$ \begin{array}{rl} V(Q,\theta) &= H_{\mathcal{M}(\mathcal{P}_{Q},\bar{\pi}_{Q}
 
 We impose the following regularity conditions.
 
-C1 (Stationarity)
-: For all $$ Q \in \Delta_\mathcal{M}, \theta \in \Theta,$$ the Markov kernel $$ \mathcal{P}_{F(Q,\theta)}$$ has a unique stationary distribution $$ \bar{\pi}_{F(Q,\theta)}$$
+----
 
-<span style="text-decoration:underline;">C2 (Exploitation and Exploration</span>). For all $$ Q \in \Delta_\mathcal{M}, \theta \in \Theta,$$
+**C1 (Stationarity).** For all $$ Q \in \Delta_\mathcal{M}, \theta \in \Theta,$$ the Markov kernel $$ \mathcal{P}_{F(Q,\theta)}$$ has a unique stationary distribution $$ \bar{\pi}_{F(Q,\theta)}$$
+
+**C2 (Exploitation and Exploration).** For all $$ Q \in \Delta_\mathcal{M}, \theta \in \Theta,$$
 
 $$ V(F(Q, \theta),\theta) \leq V(Q,\theta).$$
 
-<span style="text-decoration:underline;">C3 ($$ \ell$$-smoothness</span>). There exists $$ \ell < \infty$$ such that for all $$ Q \in \Delta_\mathcal{M}, \theta, \theta' \in \Theta,$$
+**C3 ($$ \ell$$-smoothness).** There exists $$ \ell < \infty$$ such that for all $$ Q \in \Delta_\mathcal{M}, \theta, \theta' \in \Theta,$$
 
 $$ \displaystyle \left\Vert \frac{\partial V}{\partial \theta}(Q,\theta) - \frac{\partial V}{\partial \theta}(Q,\theta') \right\Vert \leq \ell \Vert \eta - \eta' \Vert.$$
 
-<span style="text-decoration:underline;">C4 (Regularity of solution of Poisson equation</span>). There exists $$ \ell_0, \ell_1 < \infty$$ such that for all $$ Q \in \Delta_\mathcal{M}, \theta, \theta' \in \Theta, w \in \mathcal{W},$$
+**C4 (Regularity of solution of Poisson equation).** There exists $$ \ell_0, \ell_1 < \infty$$ such that for all $$ Q \in \Delta_\mathcal{M}, \theta, \theta' \in \Theta, w \in \mathcal{W},$$
 
 $$ \Vert \hat{E}_{Q, \theta} (w) \Vert \leq \ell_0, \quad \Vert \mathcal{P}_{Q,\eta} \hat{E}_{Q,\theta}(w) \Vert \leq \ell_0,$$
 
 $$ \Vert \mathcal{P}_{Q,\theta} \hat{E}_{Q,\theta}(w) - \mathcal{P}_{Q,\theta'} \hat{E}_{Q,\theta'} (w) \Vert \leq \ell_1 \Vert \theta - \theta' \Vert.$$
 
-<span style="text-decoration:underline;">C5 (Boundedness of correction term</span>). There exists $$ \sigma < \infty$$ such that for all $$ Q \in \Delta_\mathcal{M}, \theta \in \Theta, w \in \mathcal{W},$$
+**C5 (Boundedness of correction term).** There exists $$ \sigma < \infty$$ such that for all $$ Q \in \Delta_\mathcal{M}, \theta \in \Theta, w \in \mathcal{W},$$
 
 $$ \Vert E_{Q,\theta} (w) \Vert \leq \sigma.$$
 
-<span style="text-decoration:underline;">Theorem (Convergence of Biased Stochastic Approximation</span>). Suppose that we have state updates
+----
+
+**Theorem (Convergence of Biased Stochastic Approximation).** Suppose that we have state updates
 
 $$ (Y_{k+1}, U_{k+1}) \sim Q_*(Y_{k+1}, U_{k+1} \vert Y_k, U_k),$$
 
@@ -308,6 +311,8 @@ $$ Q_{k+1} = F(Q_k, \theta_{k+1}).$$
 for $$ 0 \leq k \leq n,$$ using step sizes $$ \eta_k = \eta_0 k^{-1/2}$$ for sufficiently small $$ \eta_0 \geq 0,$$ and using a random stop time $$ 0 \leq N \leq n$$ with $$ \mathbb{P}(N = l) := (\sum_{k=0}^n \eta_{k+1})^{-1} \eta_{l+1}.$$ Then assuming C1-C5, we have
 
 $$ \mathbb{E}(\Vert g(Q_N, \theta_N) \Vert^2) = O(\log n / \sqrt{n} ).$$
+
+----
 
 ## References
 
