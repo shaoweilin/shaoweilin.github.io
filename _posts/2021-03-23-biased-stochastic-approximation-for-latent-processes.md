@@ -66,23 +66,7 @@ $$ \begin{array}{rl} &
 = \displaystyle \lim_{T \rightarrow \infty} \mathbb{E}_{Q_\lambda} \Bigg[ \left(\log \frac{Q_\lambda(Z_{T+1}|Z_T,X_T)}{P_\theta(Z_{T+1}|Z_T,X_T)}\right) \frac{d}{d\lambda} \log Q_\lambda(dZ_{T+1} |Z_T,X_T) \Bigg]
 . \end{array}$$
 
-To simplify the first term, we note from [BB1] that the integral of a function $$r(Z,X)$$ with respect to the derivative of the stationary distribution can be written as
-
-$$ \begin{array}{rl} &
-\displaystyle \int r(Z_0,X_0) \frac{d}{d\lambda} \bar{\pi}_\lambda(dZ_0,dX_0) 
-\\ & \\ &
-= \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T \int \bar{\pi}_\lambda(dZ_0,dX_0) \int  \prod_{i=0}^{t} Q_\lambda(dZ_{i+1},dX_{i+1}|Z_i,X_i)     \,\,\times
-\\ & \\ &
-\quad \quad \displaystyle  r(Z_{t+1},X_{t+1}) \left( \frac{d}{d\lambda} \log Q_\lambda(Z_1, X_1 |Z_0,X_0) \right) 
-\\ & \\ &
-= \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T \int \bar{\pi}_\lambda(dZ_{T-t},dX_{T-t}) \int  \prod_{i=T-t}^{T} Q_\lambda(dZ_{i+1},dX_{i+1}|Z_i,X_i)   
-\\ & \\ &
-\quad \quad \displaystyle  r(Z_{T+1}, X_{T+1}) \frac{d}{d\lambda} \log Q_\lambda(Z_{T-t+1},X_{T-t+1} | Z_{T-t},X_{T-t})
-\\ & \\ &
-= \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T \mathbb{E}_{Q_\lambda} \left[ r(Z_{T+1}, X_{T+1})  \frac{d}{d\lambda} \log Q_\lambda(Z_{T-t+1},X_{T-t+1} | Z_{T-t},X_{T-t}) \right]
-\\ & \\ &
-= \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda} \left[ r(Z_{T+1}, X_{T+1}) \sum_{t=0}^T \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1},X_{t+1} | Z_{t},X_{t}) \right]
-. \end{array}$$
+To simplify the first term, 
 
 Consequently, the first term becomes
 
@@ -314,12 +298,32 @@ $$ \mathbb{E}(\Vert g(Q_N, \theta_N) \Vert^2) = O(\log n / \sqrt{n} ).$$
 
 ----
 
+## [Appendix: Derivative of the stationary distribution](#derivative-stationary-distribution)
+
+We note from [BB1] and [KMMW19] that the integral of a function $$r(Z,X)$$ with respect to the derivative of the stationary distribution can be written as
+
+$$ \begin{array}{rl} &
+\displaystyle \int r(Z_0,X_0) \frac{d}{d\lambda} \bar{\pi}_\lambda(dZ_0,dX_0) 
+\\ & \\ &
+= \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T \int \bar{\pi}_\lambda(dZ_0,dX_0) \int  \prod_{i=0}^{t} Q_\lambda(dZ_{i+1},dX_{i+1}|Z_i,X_i)     \,\,\times
+\\ & \\ &
+\quad \quad \displaystyle  r(Z_{t+1},X_{t+1}) \left( \frac{d}{d\lambda} \log Q_\lambda(Z_1, X_1 |Z_0,X_0) \right) 
+\\ & \\ &
+= \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T \int \bar{\pi}_\lambda(dZ_{T-t},dX_{T-t}) \int  \prod_{i=T-t}^{T} Q_\lambda(dZ_{i+1},dX_{i+1}|Z_i,X_i)   
+\\ & \\ &
+\quad \quad \displaystyle  r(Z_{T+1}, X_{T+1}) \frac{d}{d\lambda} \log Q_\lambda(Z_{T-t+1},X_{T-t+1} | Z_{T-t},X_{T-t})
+\\ & \\ &
+= \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T \mathbb{E}_{Q_\lambda} \left[ r(Z_{T+1}, X_{T+1})  \frac{d}{d\lambda} \log Q_\lambda(Z_{T-t+1},X_{T-t+1} | Z_{T-t},X_{T-t}) \right]
+\\ & \\ &
+= \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda} \left[ r(Z_{T+1}, X_{T+1}) \sum_{t=0}^T \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1},X_{t+1} | Z_{t},X_{t}) \right]
+. \end{array}$$
+
 ## References
 
 [BB01] Baxter, Jonathan, and Peter L. Bartlett. "Infinite-horizon policy-gradient estimation." _Journal of Artificial Intelligence Research_ 15 (2001): 319-350.
 
-[Leroux92] Leroux, Brian G. "Maximum-likelihood estimation for hidden Markov models." _Stochastic processes and their applications_ 40, no. 1 (1992): 127-143.
+[L92] Leroux, Brian G. "Maximum-likelihood estimation for hidden Markov models." _Stochastic processes and their applications_ 40, no. 1 (1992): 127-143.
 
-[Sato01] Sato, Masa-Aki. "Online model selection based on the variational Bayes." _Neural computation_ 13, no. 7 (2001): 1649-1681.
+[S01] Sato, Masa-Aki. "Online model selection based on the variational Bayes." _Neural computation_ 13, no. 7 (2001): 1649-1681.
 
 [KMMW19] Karimi, Belhal, Blazej Miasojedow, Éric Moulines, and Hoi-To Wai. "Non-asymptotic analysis of biased stochastic approximation scheme." _arXiv preprint arXiv:1902.00629_ (2019).
