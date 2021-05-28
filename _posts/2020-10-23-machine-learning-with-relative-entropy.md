@@ -9,7 +9,7 @@ This post is a continuation from our series on [spiking networks, path integral
 
 ## What is a statistical model?
 
-Given a measurable space $$(\Omega, \mathcal{B})$$, let $$\Delta_\Omega$$ denote the set of distributions or probability measures on $$\Omega$$. A statistical model is a family of distributions
+Given a measurable space $$(\Omega, \mathcal{B})$$, let $$\Delta_\Omega$$ denote the set of distributions or probability measures on $$\Omega$$. A statistical model is a family $$\{P_\theta\}$$ of distributions
 
 $$P_\theta : \Delta_{\Omega}, \quad \theta\in \Theta$$
 
@@ -23,7 +23,7 @@ Finding the best model is a common problem not just in machine learning but also
 
 Finding the simplest explanation is easier said than done. We want to explain the observed data well, but we do not want to overfit the data. At the same time, we also do not want a model that is too overly simplistic, e.g. the uniform distribution. Many modern strategies use a complexity score or regularizer that penalizes the model based on the number of parameters or the dimension of the model. However, the choice of regularizer can seem rather arbitrary at times.
 
-If we have access to the true distribution $$Q_* \in \Delta_\Omega,$$ life would be a lot easier. We could try to measure the distance of a model $$P_\theta$$ to the true distribution, and attempt to minimize this distance. A natural choice for the distance is the relative entropy to $$Q_*$$ from $$P_\theta$$. 
+If we have access to the true distribution $$Q_* \in \Delta_\Omega,$$ life would be a lot easier. We could try to measure the distance of a model distribution $$P_\theta$$ to the true distribution, and attempt to minimize this distance. A natural choice for the distance is the relative entropy to $$Q_*$$ from $$P_\theta$$. 
 
 We may also interpret the relative entropy as the average number of informational bits required to encode data from true distribution using the model, up to some additive constant (see Minimum Description Length, Kolmogorov Complexity and Stochastic Complexity for related concepts). Therefore, minimizing relative entropy is beneficial from the computational resource management point of view.
 
@@ -87,11 +87,11 @@ Applying stochastic optimization to relative entropy minimization, we may let
 
 $$\displaystyle G = \log \frac{dP_\theta}{dM}$$
 
-where $$P_\theta$$ and $$M$$ were defined above for stochastic gradients. As a result, we get a proof that the stochastic gradient algorithm is consistent, i.e. the parameter updates $$\theta_n$$ tend to the true parameter $$\theta^*$$. Stronger results may be attained if the model $$P_\theta$$ satisfy additional regularity conditions.
+where $$P_\theta$$ and $$M$$ were defined above for stochastic gradients. As a result, we get a proof that the stochastic gradient algorithm is consistent, i.e. the parameter updates $$\theta_n$$ tend to the true parameter $$\theta^*$$. Stronger results may be attained if the model distributions $$P_\theta$$ satisfy additional regularity conditions.
 
 ## How do we frame variational inference in terms of relative entropy?
 
-A latent variable is a random variable for which we have no data. A latent variable model is a statistical model $$P_\theta$$ with some observed variable $$X$$ and some latent variable $$Z$$. The marginal distribution of $$X$$ is given by the integral
+A latent variable is a random variable for which we have no data. A latent variable model is a statistical model $$\{P_\theta\}$$ with some observed variable $$X$$ and some latent variable $$Z$$. The marginal distribution of $$X$$ is given by the integral
 
 $$P_\theta(X) = \int P_\theta(X,Z) dZ.$$
 
@@ -140,7 +140,7 @@ Moreover, we may perform alternating minimization:
 2.  holding $$Q$$ constant while minimizing over $$\theta$$;
 3.  repeat.
 
-In information geometry [A95], the first step is called _exponential projection_ (e-projection) while the second step is called _mixture projection_ (m-projection) (of the log-likelihood, as opposed to minimization of the relative entropy). This _exponential-mixture algorithm_ (em algorithm) is also related to the _Expectation-Maximization algorithm_ (EM algorithm) [DLR77].
+In information geometry [A95], the first step is called _exponential projection_ (e-projection) while the second step is called _mixture projection_ (m-projection) (of the log-likelihood, as opposed to minimization of the relative entropy). This _exponential-mixture algorithm_ (em algorithm) is also related to the _expectation-maximization algorithm_ (EM algorithm) [DLR77].
 
 Sometimes, the variational parameter $$Q(Z\vert X)$$ is constrained to a space of tractable conditional distributions, or a space of distributions for which the maximization step has an exact solution. In these cases, the optimal value of $$H_{Q\Vert P_\theta}(Z, X)$$ may not equal the optimal value of $$H_{Q_* \Vert P_\theta}(X)$$, but it will be an upper bound to the latter. The em algorithm becomes an approximate inference technique, because it minimizes an upper bound and not the desired relative entropy itself.
 
@@ -149,6 +149,8 @@ From a computational point of view, gaining efficiency in inference at the cost 
 ## How do we interpret the variational parameter $$Q(Z\vert X)$$?
 
 We consider a variety of contexts where the interpretations of $$Q(Z\vert X)$$ are different.
+
+### Context of Bayesian statistics
 
 Historically, variational inference was introduced [JGJS99] to approximate posterior distributions in the context of Bayesian statistics, as an alternative to Markov chain Monte Carlo methods [BKM17]. 
 
@@ -176,17 +178,21 @@ optimizing over a smaller space $$\Delta'$$ of distributions with the desired co
 
 In the context of Bayesian statistics, the variational parameter $$Q(Z\vert X)$$ is a computationally-efficient approximation of the model posterior $$P(Z\vert X).$$
 
-A second context we may consider is the goal of learning the true distribution $$Q_*(X).$$ We solve this problem by proposing two models - a generative model $$P(Z,X)$$ whose marginal $$P(X)$$ approximates $$Q_*(X),$$ and a discriminative model $$Q(Z,X) = Q_*(X)Q(Z\vert X)$$ which factors through $$Q_*(X).$$ 
+### Context of statistical learning
 
-Variational inference is then a joint search over the space of pairs of models. It provides bounds on the distance to $$Q_*(X)$$ from $$P(X),$$ and it limits the search to computationally efficient discriminative models $$Q(Z\vert X)$$ and computationally efficient generative models $$P(Z,X).$$ Variational inference also supplies a distribution $$Q(Z\vert X)$$ for approximate inference of $$Z$$ from $$X,$$ and a distribution $$P(Z,X)$$ for approximate sampling from $$Q_*(X).$$
+A second context we may consider is the goal of learning the true distribution $$Q_*(X).$$ We solve this problem by proposing two models - a generative model $$\{P(Z,X)\}$$ where the marginals $$P(X)$$ _approximates_ $$Q_*(X),$$ and a discriminative model $$\{Q(Z\vert X)\}$$. From the discriminative model, we define joint distributions $$Q(Z,X) = Q_*(X)Q(Z\vert X)$$ which factor through the true distribution $$Q_*(X).$$ Note that the marginal $$Q(X)$$ _equals_ the true distribution $$Q_*(X)$$. Abusing terminology, we will also call $$\{Q(Z,X)\}$$ a _discriminative_ model.
+
+Variational inference is then a joint search over the space of pairs of models. It provides bounds on the distance to $$Q_*(X)$$ from $$P(X),$$ and it limits the search to computationally efficient discriminative models $$\{Q(Z, X)\}$$ and computationally efficient generative models $$\{P(Z,X)\}.$$ Variational inference also supplies a distribution $$Q(Z\vert X)$$ for approximate inference of $$Z$$ from $$X,$$ and a distribution $$P(Z,X)$$ for approximate sampling from $$Q_*(X).$$
 
 In this context, the variational parameter $$Q(Z\vert X)$$ is therefore interpreted as a disciminative computational model trained on the true distribution.
 
-A third context we may consider is the goal of optimizing a distance function over some rough low-dimensional landscape. The distance to $$Q_*(X)$$ from $$P(X)$$ is minimized over the space $$\Delta$$ of pairs of models $$(Q_*(X),P(X))$$ where the first component $$Q_*(X)$$ is fixed and the second component $$P(X)$$ is the marginalization of some joint distribution $$P(Z,X).$$ 
+### Context of optimization
 
-Variational inference overcomes the roughness of the low-dimensional landscape by lifting the optimization problem to a higher dimensional space where the landscape is smoother. It considers instead the distance to $$Q(Z,X) = Q_*(X)Q(Z\vert X)$$ from $$P(Z,X)$$ which is minimized over the space $$\Delta'$$ of pairs of models $$(Q(Z,X),P(Z,X)).$$ This space $$\Delta'$$ is of a higher dimension than the original space $$\Delta$$, and could be infinite-dimensional if $$Q(Z\vert X)$$ is variational. 
+A third context we may consider is the goal of optimizing a distance function over some rough low-dimensional landscape. The distance to $$Q_*(X)$$ from $$P(X)$$ is minimized over the space $$\Lambda$$ of pairs of distributions $$(Q_*(X),P(X))$$ where the first component $$Q_*(X)$$ is fixed and the second component $$P(X)$$ is the marginalization of some joint distribution $$P(Z,X).$$ 
 
-In this context, instead of projecting $$P(Z,X)$$ to the base space of distributions on $$X$$ and optimizing the distance between $$Q_*(X)$$ and $$P(X)$$ in the base space, the variational parameter $$Q(Z\vert X)$$ enables us to lift $$Q_*(X)$$ from the base space to a section $$Q(Z,X)$$ in the bundle of distributions on $$(Z,X)$$ so that we can optimize the distance between $$Q(Z,X)$$ and $$P(Z,X).$$
+Variational inference overcomes the roughness of the low-dimensional landscape by lifting the optimization problem to a higher dimensional space where the landscape is smoother. It considers instead the distance to $$Q(Z,X) = Q_*(X)Q(Z\vert X)$$ from $$P(Z,X)$$ which is minimized over the space $$\Lambda'$$ of pairs of distributions $$(Q(Z,X),P(Z,X)).$$ This space $$\Lambda'$$ is of a higher dimension than the original space $$\Lambda$$, and could be infinite-dimensional if $$Q(Z\vert X)$$ is variational. 
+
+In this context, instead of projecting $$P(Z,X)$$ to the base space of distributions on $$X$$ and optimizing the distance between $$Q_*(X)$$ and $$P(X)$$ in the base space, the disciminative model distribution $$Q(Z\vert X)$$ enables us to lift $$Q_*(X)$$ from the base space to a section $$Q(Z,X)$$ in the bundle of distributions on $$(Z,X)$$ so that we can optimize the distance between $$Q(Z,X)$$ and $$P(Z,X).$$
 
 ## References
 
