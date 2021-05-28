@@ -298,7 +298,7 @@ $$ \mathbb{E}(\Vert g(Q_N, \theta_N) \Vert^2) = O(\log n / \sqrt{n} ).$$
 
 ----
 
-## [](#derivative-stationary-distribution) Appendix: Derivative of the stationary distribution
+## Appendix: Derivative of the stationary distribution
 
 We note from [BB1] and [KMMW19] that the integral of a function $$r(Z,X)$$ with respect to the derivative of the stationary distribution can be written as
 
