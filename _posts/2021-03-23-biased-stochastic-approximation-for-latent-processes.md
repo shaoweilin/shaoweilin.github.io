@@ -272,7 +272,8 @@ $$ \begin{array}{rl} V(Q,\theta) &= H_{\mathcal{M}(\mathcal{P}_{Q},\bar{\pi}_{Q}
 
 We impose the following regularity conditions.
 
-<span style="text-decoration:underline;">C1 (Stationarity</span>). For all $$ Q \in \Delta_\mathcal{M}, \theta \in \Theta,$$ the Markov kernel $$ \mathcal{P}_{F(Q,\theta)}$$ has a unique stationary distribution $$ \bar{\pi}_{F(Q,\theta)}$$
+C1 (Stationarity)
+: For all $$ Q \in \Delta_\mathcal{M}, \theta \in \Theta,$$ the Markov kernel $$ \mathcal{P}_{F(Q,\theta)}$$ has a unique stationary distribution $$ \bar{\pi}_{F(Q,\theta)}$$
 
 <span style="text-decoration:underline;">C2 (Exploitation and Exploration</span>). For all $$ Q \in \Delta_\mathcal{M}, \theta \in \Theta,$$
 
