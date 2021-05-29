@@ -11,7 +11,37 @@ This post is a continuation from our series on [spiking networks, path integral
 
 ## What is the general intuition behind online learning for latent processes?
 
-We assume that the generative model $$\{P_\theta : \theta \in \Theta\}$$ is in $$\Delta_\mathcal{M}$$, i.e. it has the Markov property and each $$Z_t$$ and $$X_t$$ are conditionally independent given their past. We assume that our discriminative model $$\{Q_\lambda : \lambda \in \Lambda\}$$ is parameterized by $$\lambda$$ and that it also lies in $$\Delta_\mathcal{M}.$$
+As [before](https://shaoweilin.github.io/variational-inference-for-latent-processes/), we assume that the universe is a Markov process $$\{X_t\},$$ and let its true distribution be the path measure $$Q_*.$$
+
+Suppose that we have a parametric discriminative model $$\{Q_\lambda : \lambda \in \Lambda\}$$ and a parametric generative model $$\{P_\theta : \theta \in \Theta\}$$ where the distributions $$Q_\lambda$$ and $$P_\theta$$ are path measures on some joint process $$\{(Z_t, X_t)\}.$$ The random variables $$Z_t$$ represent computational states in this discriminative-generative model.
+
+We assume that in both models, the distributions are Markov and each $$Z_t$$ and $$X_t$$ are conditionally independent given their past.  We also assume that marginals $$Q(X_{0\ldots T})$$ of the discriminative model distributions $$Q_\lambda(Z_{0 \ldots T}, X_{0\ldots T})$$ are all equal to the true distribution $$Q_*(X_{0\ldots T}).$$
+ 
+For our model, we consider a Markov process $$\{ (Z_t, X_t) \}$$ with a family of joint path measures $$P_\theta = \mathcal{M}(\mathcal{P}_\theta, \pi_\theta)$$ on $$\{ (Z_t, X_t) \},$$ where $$\mathcal{P}_\theta$$ and $$\pi_\theta$$ denote the Markov kernel and initial distribution. Since $$X_t = (Y_t, U_t)$$ with $$Y_t$$ hidden and $$U_t$$ observed, we require
+
+$$\begin{array}{rl} & P_\theta(Z_{t+1}, Y_{t+1}, U_{t+1} \vert Z_t, Y_t, U_t) \\ & \\ & = Q_*(Y_{t+1} \vert Y_t, U_t) P_\theta(Z_{t+1} \vert Z_t, U_t) P_\theta(X_{t+1} \vert Z_t, U_t) \end{array}$$
+
+so the parameter $$\theta$$ controls only the distribution on $$\{(Z_t, U_t)\}.$$
+
+As before, let $$\Delta_{\mathcal{C}}$$ be the set of all path measures $$Q$$ on $$\{ (Z_t, X_t) \}$$ where $$Z_t$$ and $$X_t$$ are conditionally independent given their past and where each $$X_t$$ is conditionally independent of $$Z_{0\ldots (t-1)}$$ given its own past $$X_{0\ldots (t-1)}.$$ We will further consider a subspace $$\Delta_\mathcal{M} \subset \Delta_\mathcal{C}$$ of distributions which are Markov. Note that our model $$\{ P_\theta \}$$ need not fill the subspace $$\Delta_\mathcal{M}.$$
+
+Our goal is to train the model by minimizing the limit of the time-averaged relative entropy
+
+$$V(Q,\theta) = \displaystyle \lim_{T \rightarrow \infty} \frac{1}{T} H_{Q \Vert P_\theta}(Z_{0\ldots T},X_{0\ldots T})$$
+
+over $$Q \in \Delta_\mathcal{M}$$ and $$\theta \in \Theta.$$ Compared to minimizing this objective for $$Q$$ over the larger space $$\Delta_\mathcal{C},$$ we will incur an additional cost due to the Markov constraint. We can think of this cost as the cost of _limited memory_ since the Markov property only allows us to remember the most recent state $$(Z_t, X_t)$$ as opposed to the full history $$Z_{0\ldots t}, X_{0\ldots t}.$$
+
+With this Markov constraint, the optimal distribution $$Q$$ in Step 1 of the algorithm in the previous section will no longer satisfy
+
+$$Q(Z_{n+1} \vert Z_{0\ldots n}, X_{0\ldots n}) = P_{\theta_n}(Z_{n+1} \vert Z_{0\ldots n}, X_{0\ldots n}).$$
+
+Instead, we assume some discriminative model updates $$Q_{n+1} = F(Q_n, \theta_{n+1})$$ in addition to the generative model updates to $$P_{\theta_n}$$ to tackle the optimization problem in Step 1\.
+
+
+
+
+
+Suppose the generative model $$\{P_\theta : \theta \in \Theta\}$$ and the discriminative model $$\{Q_\lambda :\lambda \in \Lambda\}$$ are parametric. 
 
 We now focus on minimizing the relative entropy rate over $$Q_\lambda \in \Delta_\mathcal{M}$$ and $$P_\theta \in \Delta_\mathcal{M}.$$  We first explore the problem in discrete time, before discussing the analogous results in continuous time.
 
@@ -29,7 +59,7 @@ First, we pick some initial generative model distribution $$P_{\theta_0}$$ and d
 
 ----
 
-**Step 1 (discriminative model update).** Fixing the generative model distribution $$P_{\theta_n},$$ minimize $$H_{\bar{Q}_\lambda \Vert \bar{P_{\theta_n}}(Z_{1}, X_{1} \vert Z_{0}, X_{0})$$ over discriminative model distributions $$Q_\lambda.$$
+**Step 1 (discriminative model update).** Fixing the generative model distribution $$P_{\theta_n},$$ minimize $$H_{\bar{Q}_\lambda \Vert \bar{P}_{\theta_n}}(Z_{1}, X_{1} \vert Z_{0}, X_{0})$$ over discriminative model distributions $$Q_\lambda.$$
 
 Because $$Z_{1}$$ and $$X_{1}$$ are conditionally independent given the past,
 
@@ -99,28 +129,6 @@ The derivative of this relative entropy rate will be the mean field of the stoch
 ## How do we prove convergence using biased stochastic approximation?
 
 In [KMMW19], the authors studied biased stochastic approximation in the case where the stochastic updates are Markovian.
-
-Suppose that the environment is a Markov process $$\{ X_t \} = \{ (Y_t, U_t) \}$$ where only $$U_t$$ is observed, and let the true distribution be the joint path measure $$Q_*$$ on $$(Y_t, U_t)$$. We write $$Q_* = \mathcal{M}(\mathcal{P}_{Q_*}, \pi_{Q_*})$$ where $$\mathcal{P}_{Q_*}$$ is the Markov kernel and $$\pi_{Q_*}$$ is the initial distribution.
-
-For our model, we consider a Markov process $$\{ (Z_t, X_t) \}$$ with a family of joint path measures $$P_\theta = \mathcal{M}(\mathcal{P}_\theta, \pi_\theta)$$ on $$\{ (Z_t, X_t) \},$$ where $$\mathcal{P}_\theta$$ and $$\pi_\theta$$ denote the Markov kernel and initial distribution. Since $$X_t = (Y_t, U_t)$$ with $$Y_t$$ hidden and $$U_t$$ observed, we require
-
-$$\begin{array}{rl} & P_\theta(Z_{t+1}, Y_{t+1}, U_{t+1} \vert Z_t, Y_t, U_t) \\ & \\ & = Q_*(Y_{t+1} \vert Y_t, U_t) P_\theta(Z_{t+1} \vert Z_t, U_t) P_\theta(X_{t+1} \vert Z_t, U_t) \end{array}$$
-
-so the parameter $$\theta$$ controls only the distribution on $$\{(Z_t, U_t)\}.$$
-
-As before, let $$\Delta_{\mathcal{C}}$$ be the set of all path measures $$Q$$ on $$\{ (Z_t, X_t) \}$$ where $$Z_t$$ and $$X_t$$ are conditionally independent given their past and where each $$X_t$$ is conditionally independent of $$Z_{0\ldots (t-1)}$$ given its own past $$X_{0\ldots (t-1)}.$$ We will further consider a subspace $$\Delta_\mathcal{M} \subset \Delta_\mathcal{C}$$ of distributions which are Markov. Note that our model $$\{ P_\theta \}$$ need not fill the subspace $$\Delta_\mathcal{M}.$$
-
-Our goal is to train the model by minimizing the limit of the time-averaged relative entropy
-
-$$V(Q,\theta) = \displaystyle \lim_{T \rightarrow \infty} \frac{1}{T} H_{Q \Vert P_\theta}(Z_{0\ldots T},X_{0\ldots T})$$
-
-over $$Q \in \Delta_\mathcal{M}$$ and $$\theta \in \Theta.$$ Compared to minimizing this objective for $$Q$$ over the larger space $$\Delta_\mathcal{C},$$ we will incur an additional cost due to the Markov constraint. We can think of this cost as the cost of _limited memory_ since the Markov property only allows us to remember the most recent state $$(Z_t, X_t)$$ as opposed to the full history $$Z_{0\ldots t}, X_{0\ldots t}.$$
-
-With this Markov constraint, the optimal distribution $$Q$$ in Step 1 of the algorithm in the previous section will no longer satisfy
-
-$$Q(Z_{n+1} \vert Z_{0\ldots n}, X_{0\ldots n}) = P_{\theta_n}(Z_{n+1} \vert Z_{0\ldots n}, X_{0\ldots n}).$$
-
-Instead, we assume some discriminative model updates $$Q_{n+1} = F(Q_n, \theta_{n+1})$$ in addition to the generative model updates to $$P_{\theta_n}$$ to tackle the optimization problem in Step 1\.
 
 In discrete time, to find the optimal model distribution $$P_\theta,$$ we apply the biased stochastic approximation scheme from the previous section. First, we initialize $$\theta_0$$ and $$Q_0$$ randomly, and sample
 
