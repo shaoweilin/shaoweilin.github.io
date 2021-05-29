@@ -121,9 +121,9 @@ In the mathematical analysis, it will be semantically convenient to assume that 
 
 The latent process $$Z_{0\ldots T}$$ will not represent the states of unobserved particles in the universe; rather, it will represent states of computation in the discriminative model $$Q(Z,X)$$ and generative model $$P(Z,X).$$ 
 
-Of course, not every particle will be observed for inference by the discriminative model - we impose this constraint by writing down discriminative models $$Q(Z|X)$$ which do not compute with the states of those unobserved particles. Similarly, the unobserved particle will not be modeled by the generative model - we impose this constraint by fixing a trivial distribution (e.g. assigning probability one to some fixed state) to the states of the unobserved particles.
+Of course, not every particle will be observed for inference by the discriminative model - we impose this constraint by writing down discriminative models $$Q(Z\vert X)$$ which do not compute with the states of those unobserved particles. Similarly, the unobserved particle will not be modeled by the generative model - we impose this constraint by fixing a trivial distribution (e.g. assigning probability one to some fixed state) to the states of the unobserved particles.
 
-Such constraints on the discriminative model could cause the entropy gap $$H_{Q\Vert P}(Z_{0\ldots T}\vert  X_{0\ldots T})$$ to increase yet again. We can think of this increase as the cost of _limited sensing_.
+Such constraints on the discriminative model [could](https://shaoweilin.github.io/variational-inference-for-latent-processes/#remark-cost-of-limited-sensing) cause the entropy gap $$H_{Q\Vert P}(Z_{0\ldots T}\vert  X_{0\ldots T})$$ to increase yet again. We can think of this increase as the cost of _limited sensing_.
 
 The reason we say that this Markov assumption is _semantically convenient_ is as follows. We could alternatively model the universe as a joint process $$X_{0\ldots T}, U_{0\ldots T}$$ where $$X_{0\ldots T}$$ is observed and $$U_{0\ldots T}$$ is unobserved. However, the mathematical analysis becomes notationally complicated because of the need to write down both processes. It is easier to subsume the distinction between observed and unobserved within the discriminative model distribution $$Q$$ and generative model distribution $$P.$$
 
@@ -145,6 +145,7 @@ Let $$X^{(o)}_t$$ and $$X^{(u)}_t$$ be the observed and unobserved components of
 
 $$P(Z_{0\ldots T} \vert X^{(o)}_{0\ldots T}, X^{(u)}_{0\ldots T}) = P(Z_{0\ldots T} \vert X^{(o)}_{0\ldots T}).$$
 
+When $$P$$ is fixed, the entropy gap $$H_{Q\Vert P}(Z_{0\ldots T}\vert  X_{0\ldots T})$$ is minimized when $$Q(Z_{0\ldots T}\vert  X_{0\ldots T})$$ is as close to $$P(Z_{0\ldots T} \vert X_{0\ldots T}) = P(Z_{0\ldots T} \vert X^{(o)}_{0\ldots T})$$ as possible. Therefore, restricting $$Z_{0\ldots T}$$ to depend only on the observables $$X^{(o)}_{0\ldots T}$$ under $$Q$$ as opposed to all of $$X_{0\ldots T}$$ will not cause the entropy gap to increase. The gap will increase however if $$Q$$ is forced to infer $$Z_{0\ldots T}$$ from a strict subset of $$X^{(o)}_{0\ldots T}.$$
 
 ## References
 
