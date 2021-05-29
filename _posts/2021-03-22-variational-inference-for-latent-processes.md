@@ -141,11 +141,11 @@ Biological spiking networks need to work with the constraints of not knowing the
 
 ## Remark: Cost of limited sensing 
 
-Let $$X^{(o)}_t$$ and $$X^{(u)}_t$$ be the observed and unobserved components of each $$X_t.$$ Suppose the generative model $$P(Z_{0\ldots T},X_{0\ldots T})$$ assigns probability one to some fixed path of $$\{X^{(u)}_t\}.$$ It follows that the variables $$X^{(u)}_t$$ cannot provide us with any information about the states $$Z_t$$ under $$P,$$ so 
+Let $$V_t$$ and $$U_t$$ be the observed and unobserved components of each $$X_t.$$ Suppose the generative model $$P(Z_{0\ldots T},X_{0\ldots T})$$ assigns probability one to some fixed path of $$\{U_t\}.$$ It follows that the variables $$U_t$$ cannot provide us with any information about the states $$Z_t$$ under $$P,$$ so 
 
-$$P(Z_{0\ldots T} \vert X^{(o)}_{0\ldots T}, X^{(u)}_{0\ldots T}) = P(Z_{0\ldots T} \vert X^{(o)}_{0\ldots T}).$$
+$$P(Z_{0\ldots T} \vert V_{0\ldots T}, U_{0\ldots T}) = P(Z_{0\ldots T} \vert V_{0\ldots T}).$$
 
-When $$P$$ is fixed, the entropy gap $$H_{Q\Vert P}(Z_{0\ldots T}\vert  X_{0\ldots T})$$ is minimized when $$Q(Z_{0\ldots T}\vert  X_{0\ldots T})$$ is as close to $$P(Z_{0\ldots T} \vert X_{0\ldots T}) = P(Z_{0\ldots T} \vert X^{(o)}_{0\ldots T})$$ as possible. Therefore, restricting $$Z_{0\ldots T}$$ to depend only on the observables $$X^{(o)}_{0\ldots T}$$ under $$Q$$ as opposed to all of $$X_{0\ldots T}$$ will not cause the entropy gap to increase. The gap will increase however if $$Q$$ is forced to infer $$Z_{0\ldots T}$$ from a strict subset of $$X^{(o)}_{0\ldots T}.$$
+When $$P$$ is fixed, the entropy gap $$H_{Q\Vert P}(Z_{0\ldots T}\vert  X_{0\ldots T})$$ is minimized when $$Q(Z_{0\ldots T}\vert  X_{0\ldots T})$$ is as close to $$P(Z_{0\ldots T} \vert X_{0\ldots T}) = P(Z_{0\ldots T} \vert V_{0\ldots T})$$ as possible. Therefore, restricting $$Z_{0\ldots T}$$ to depend only on the observables $$V_{0\ldots T}$$ under $$Q$$ as opposed to all of $$X_{0\ldots T}$$ will not cause the entropy gap to increase. The gap will increase however if $$Q$$ is forced to infer $$Z_{0\ldots T}$$ from a strict subset of $$V_{0\ldots T}.$$
 
 ## References
 
