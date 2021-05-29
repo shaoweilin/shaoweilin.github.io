@@ -3,7 +3,12 @@ layout: post
 title: Variational inference for latent processes
 ---
 
-We introduce a information-theoretic objective, which is a form of relative entropy between a discriminative model and a generative model, for learning processes with latent variables. We discuss natural constraints on the discriminative and generative models, and the consequences of these constraints on passive/active learning and online/offline learning with limited/unlimited memory.
+We introduce a information-theoretic objective, which is a form of relative entropy between a discriminative model and a generative model, for learning processes with latent variables. We discuss natural constraints on the discriminative and generative models, and the consequences of these constraints on:
+
+- passive/active learning;
+- online/offline learning; 
+- learning with limited/unlimited memory;
+- learning with limited/unlimited sensing.
 
 This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/).
 
@@ -99,21 +104,40 @@ Online learning involves minimizing over the subspace $$\Delta_\mathcal{C},$$ wh
 
 ## How do we perform variational inference with limited memory?
 
-Suppose now that computationally, both the discriminative model and the generative model have limited memory. More precisely, the models cannot store the full histories $$Z_{0\ldots t}, X_{0\ldots t}$$ but they can recall the most recent states $$Z_t, X_t$$ so the distributions satisfy the Markov property. Hence, $$Q(Z_{0\ldots T}\vert X_{0\ldots T})$$ has a factorization
+Suppose now that computationally, both the discriminative model and the generative model have limited memory. More precisely, the models cannot store the full histories $$Z_{0\ldots t}, X_{0\ldots t}$$ but they can recall the most recent states $$Z_t, X_t$$ so conditioned on the observed data, the distributions satisfy the Markov property. Hence, $$Q(Z_{0\ldots T}\vert X_{0\ldots T})$$ has a factorization
 
 $$\begin{array}{rl} Q(Z_{0\ldots T}\vert X_{0\ldots T}) & = Q(Z_0) \\ & \\ & \quad Q(Z_1 \vert Z_0,X_0) \cdots \\ & \\ & \quad Q(Z_T \vert Z_{T-1}, X_{T-1}). \end{array}$$
 
 and let $$\Delta_\mathcal{M} \subset \Delta_\mathcal{C}$$ be the subspace of distributions that arise from $$Q(Z_{0\ldots T} \vert X_{0\ldots T})$$ with this property.  
 
-Our goal is to train the model by minimizing the limit of the time-averaged relative entropy or relative entropy rate
-
-$$\begin{array}{rl}  V(Q,\theta) &= \displaystyle \lim_{T \rightarrow \infty} \frac{1}{T} H_{Q \Vert P}(Z_{0\ldots T},X_{0\ldots T}) \\ & \\ & \displaystyle = \lim_{T\rightarrow \infty} \frac{d}{dT}H_{Q \Vert P}(Z_{0\ldots T}, X_{0\ldots T}) \end{array}$$
-
-over $$ Q \in \Delta_\mathcal{M}$$ and $$ \theta \in \Theta.$$ Compared to minimizing this objective for $$ Q$$ over the larger space $$ \Delta_\mathcal{C},$$ we will incur an additional cost due to the Markov constraint. We can think of this cost as the cost of _limited memory_.
+Compared to minimizing the objective $$H_{Q\Vert P}(Z_{0\ldots T},X_{0\ldots T})$$ for $$Q$$ over the larger space $$\Delta_\mathcal{C},$$ we will incur an additional increase in the entropy gap $$H_{Q\Vert P}(Z_{0\ldots T}\vert  X_{0\ldots T})$$ due to the Markov constraint. We can think of this increase as the cost of _limited memory_.
 
 Of course, the recent state $$Z_t$$ can also be used to store copies of older states $$Z_{t-1}, Z_{t-2}, \ldots$$ but because the dimension of $$Z_t$$ is finite, only a limited number of those states can be stored. A smarter way is to store compressed versions of those states, or only store pertinent information about those states. 
 
-Biological spiking networks need to work with the constraint of not knowing the future and having limited memory. For the remainder of this series, we will also work with this constraint by minimizing the time-averaged relative entropy or relative entropy rate over extensions $$Q \in \Delta_\mathcal{M}$$ and parameters $$\theta \in \Theta$$.
+
+## How do we perform variational inference with limited sensing?
+
+In the mathematical analysis, it will be semantically convenient to assume that the process $$X_{0\ldots T}$$ represents the history of _every particle in the universe_ and that it is a Markov process. 
+
+The latent process $$Z_{0\ldots T}$$ will not represent the states of unobserved particles in the universe; rather, it will represent states of computation in the discriminative model $$Q(Z,X)$$ and generative model $$P(Z,X).$$ 
+
+Of course, not every particle will be observed for inference by the discriminative model - we impose this constraint by writing down discriminative models $$Q(Z|X)$$ which do not compute with the states of those unobserved particles. Similarly, the unobserved particle will not be modeled by the generative model - we impose this constraint by fixing a trivial distribution (e.g. assigning probability one to some fixed state) to the states of the unobserved particles.
+
+Such constraints on the discriminative model will cause the entropy gap $$H_{Q\Vert P}(Z_{0\ldots T}\vert  X_{0\ldots T})$$ to increase yet again. We can think of this increase as the cost of _limited sensing_.
+
+The reason we say that this Markov assumption is _semantically convenient_ is as follows. We could alternatively model the universe as a joint process $$X_{0\ldots T}, U_{0\ldots T}$$ where $$X_{0\ldots T}$$ is observed and $$U_{0\ldots T}$$ is unobserved. However, the mathematical analysis becomes notationally complicated because of the need to write down both processes. It is easier to subsume the distinction between observed and unobserved within the discriminative model distribution $$Q$$ and generative model distribution $$P.$$
+
+Under this Markov assumption and under mild regularity conditions, the time-averaged relative entropy will be equal to the relative entropy rate.
+
+$$\begin{array}{rl}  V(Q,P) &= \displaystyle \lim_{T \rightarrow \infty} \frac{1}{T} H_{Q \Vert P}(Z_{0\ldots T},X_{0\ldots T}) \\ & \\ & \displaystyle = \lim_{T\rightarrow \infty} \frac{d}{dT}H_{Q \Vert P}(Z_{0\ldots T}, X_{0\ldots T}) \end{array}$$
+
+The discrete time analogue of the relative entropy rate under this Markov setting is the asymptotic conditional relative entropy 
+
+$$\lim_{n\rightarrow \infty} H_{Q \Vert P}(Z_{n+1},X_{n+1}\vert Z_n, X_n).$$
+
+Our goal is therefore to train the model by minimizing the relative entropy rate or conditional relative entropy over Markov models $$\{Q \}$$ and $$\{ P_\theta \}$$ using methods from variational inference.
+
+Biological spiking networks need to work with the constraints of not knowing the future and having limited memory and sensing. For the remainder of this series, we will also work with these constraints.
 
 ## References
 

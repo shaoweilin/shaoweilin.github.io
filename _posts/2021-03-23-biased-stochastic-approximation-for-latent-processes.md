@@ -3,7 +3,7 @@ layout: post
 title: Biased stochastic approximation for latent processes
 ---
 
-We apply biased stochastic approximation to optimize a relative entropy objective for latent Markov processes. Using this technique, we prove under some regularity conditions that the learning algorithm converges to a local minima.
+We apply biased stochastic approximation and variational inference to optimize a relative entropy objective for latent Markov processes. Using this technique, we prove under some regularity conditions that the learning algorithm converges to a local minima.
 
 We will be using biased stochastic approximation [KMMW19] where the stochastic updates are dependent on the past but the conditional expectation of the stochastic updates given the past is not equal to the mean field. These biased stochastic approximation schemes generalize the classical expectation maximization algorithm [KMMW19].
 
@@ -11,7 +11,7 @@ This post is a continuation from our series on [spiking networks, path integral
 
 ## What is the general intuition behind online learning for latent processes?
 
-We assume that the generative model $$\{P_\theta : \theta \in \Theta\}$$ is in $$\Delta_\mathcal{M}$$, i.e. it has the Markov property and each $$Z_t$$ and $$X_t$$ are conditionally independent given their past. We assume that our discriminative model $$\{Q_\lambda\}$$ is parameterized by $$\lambda \in \Lambda$$ and that it also lies in $$\Delta_\mathcal{M}.$$
+We assume that the generative model $$\{P_\theta : \theta \in \Theta\}$$ is in $$\Delta_\mathcal{M}$$, i.e. it has the Markov property and each $$Z_t$$ and $$X_t$$ are conditionally independent given their past. We assume that our discriminative model $$\{Q_\lambda : \lambda \in \Lambda\}$$ is parameterized by $$\lambda$$ and that it also lies in $$\Delta_\mathcal{M}.$$
 
 We now focus on minimizing the relative entropy rate over $$Q_\lambda \in \Delta_\mathcal{M}$$ and $$P_\theta \in \Delta_\mathcal{M}.$$  We first explore the problem in discrete time, before discussing the analogous results in continuous time.
 
@@ -29,7 +29,7 @@ First, we pick some initial generative model distribution $$P_{\theta_0}$$ and d
 
 ----
 
-**Step 1 (discriminative  model update).** Fixing the generative model distribution $$P_{\theta_n},$$ minimize $$H_{\bar{Q}_\lambda \Vert \bar{P}_{\theta_n}}(Z_{1}, X_{1} \vert Z_{0}, X_{0})$$ over discriminative model distributions $$Q_\lambda.$$
+**Step 1 (discriminative model update).** Fixing the generative model distribution $$P_{\theta_n},$$ minimize $$H_{\bar{Q}_\lambda \Vert \bar{P_{\theta_n}}(Z_{1}, X_{1} \vert Z_{0}, X_{0})$$ over discriminative model distributions $$Q_\lambda.$$
 
 Because $$Z_{1}$$ and $$X_{1}$$ are conditionally independent given the past,
 
@@ -41,7 +41,7 @@ We update the parameter $$\lambda$$ using the gradient
 
 $$\lambda_{n+1} = \displaystyle \lambda_n - \eta_{n+1} \left.\frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert \bar{P}_{\theta_n}}(Z_{1} \vert Z_{0}, X_{0})\right\vert _{\lambda = \lambda_n}$$
 
-where 
+where, as shown in the [appendix](https://shaoweilin.github.io/biased-stochastic-approximation-for-latent-processes/#appendix-discriminative-model-update), we have
 
 $$\begin{array}{rl} &
 \displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert \bar{P}_\theta}(Z_{1} \vert Z_{0}, X_{0}) 
@@ -80,9 +80,9 @@ $$\displaystyle \theta_{n+1} = \theta_n + \eta_{n+1} \mathbb{E}_{\bar{Q}_{\lambd
 
 ----
 
-Moreover, we could derive a stochastic approximation of the above two-step procedure by sampling $$Z_{n+1}$$ and $$X_{n+1}$$ from $$Q_{\lambda_{n+1}}(Z_{n+1}, X_{n+1} \vert Z_{n},X_{n})$$
+Moreover, we could derive a stochastic approximation of the above two-step procedure by sampling $$Z_{n+1}$$ and $$X_{n+1}$$ from $$Q_{\lambda_{n+1}}(Z_{n+1}, X_{n+1} \vert Z_{n},X_{n}).$$
 
-and replacing the gradient update in Step 2 with a one-sample approximation. Specifically, we have
+Specifically, we have
 
 $$X_{n+1} \sim Q_*(X_{n+1} \vert X_{0\ldots n})$$
 
@@ -92,13 +92,9 @@ $$\displaystyle \theta_{n+1} = \theta_n + \eta_{n+1} \left.\frac{d}{d\theta} \lo
 
 $$\begin{array}{rl} & Q_{n+1}(Z_{n+2} \vert Z_{0\ldots (n+1)}, X_{0\ldots (n+1)}) \\ & \\ & = P_{\theta_n}(Z_{n+2} \vert Z_{0\ldots (n+1)}, X_{0\ldots (n+1)}). \end{array}$$
 
-Unfortunately, this online stochastic approximation only makes one pass through the decomposition of the relative entropy $$H_{Q\Vert P_\theta}(Z_{0\ldots n},X_{0\ldots n}),$$ so we cannot apply the standard stochastic approximation theory of Robbins and Monro with relative entropy as the optimization objective.
 
-However, ergodic theory tells that
+The derivative of this relative entropy rate will be the mean field of the stochastic approximations, while the stochastic updates will be biased estimates of this mean field where the bias depends on the past $$Z_{0\ldots n}, X_{0\ldots n}.$$ Unfortunately, we cannot apply the standard stochastic approximation theory of Robbins and Monro with relative entropy as the optimization objective because of this bias.
 
-$$\displaystyle \lim_{n\rightarrow \infty} \frac{1}{n} H_{Q \Vert P}(Z_{0 \ldots n}, X_{0 \ldots n}) = \lim_{n\rightarrow \infty} H_{Q \Vert P}(Z_{n+1}, X_{n+1} \vert Z_{0 \ldots n}, X_{0 \ldots n})$$
-
-so the online updates may be thought of as multiple passes at optimizing the relative entropy rate. The derivative of this relative entropy rate will be the mean field of the stochastic approximations, while the stochastic updates will be biased estimates of this mean field where the bias depends on the past $$Z_{0\ldots n}, X_{0\ldots n}.$$
 
 ## How do we prove convergence using biased stochastic approximation?
 
@@ -124,7 +120,7 @@ With this Markov constraint, the optimal distribution $$Q$$ in Step 1 of the alg
 
 $$Q(Z_{n+1} \vert Z_{0\ldots n}, X_{0\ldots n}) = P_{\theta_n}(Z_{n+1} \vert Z_{0\ldots n}, X_{0\ldots n}).$$
 
-Instead, we assume some functional updates $$Q_{n+1} = F(Q_n, \theta_{n+1})$$ in addition to the $$\theta_n$$ updates to tackle the optimization problem in Step 1\.
+Instead, we assume some discriminative model updates $$Q_{n+1} = F(Q_n, \theta_{n+1})$$ in addition to the generative model updates to $$P_{\theta_n}$$ to tackle the optimization problem in Step 1\.
 
 In discrete time, to find the optimal model distribution $$P_\theta,$$ we apply the biased stochastic approximation scheme from the previous section. First, we initialize $$\theta_0$$ and $$Q_0$$ randomly, and sample
 
@@ -194,7 +190,7 @@ $$g(Q_n, \theta_n) = \displaystyle \frac{\partial V}{\partial \theta}(Q_n, \thet
 
 so assumptions A1 and A2 of the [convergence theorem](https://shaoweilin.github.io/biased-stochastic-approximation/) are automatically satisfied.
 
-Now, keeping $$\theta$$ fixed, let us minimize $$V(Q,\theta)$$ over $$Q \in \Delta_\mathcal{M}$$ so that we may update $$Q_n$$. In the training algorithm, we can think of $$Q_n(Z_{t+1}\vert Z_t, X_t)$$ as the functional parameter or distribution controlling a sampler that spits out possible explanations $$Z_{t+1}$$ of the observations $$X_t$$ based on prior knowledge $$Z_t.$$
+Now, keeping $$\theta$$ fixed, let us minimize $$V(Q,\theta)$$ over $$Q \in \Delta_\mathcal{M}$$ so that we may update $$Q_n$$. In the training algorithm, $$Q_n(Z_{t+1}\vert Z_t, X_t)$$ is the discriminative model distribution that spits out possible explanations $$Z_{t+1}$$ of the observations $$X_t$$ based on prior knowledge $$Z_t.$$
 
 Since
 
@@ -290,22 +286,22 @@ $$\frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert \bar{P}_\theta}(Z_{1} \vert Z_{0},
 
 used in the discriminative model update.
 
-We start with the following formula from [BB1] and [KMMW19] for the integral of a function $$r(Z,X)$$ with respect to the derivative of the stationary distribution $$\bar{\pi}_\lambda$$.
+We start with the following formula from [BB1] and [KMMW19] for the integral of a function $$r(Y)$$ with respect to the derivative of the stationary distribution $$\bar{\pi}_\lambda(Y)$$.
 
 $$\begin{array}{rl} &
-\displaystyle \int r(Z_0,X_0) \frac{d}{d\lambda} \bar{\pi}_\lambda(dZ_0,dX_0) 
+\displaystyle \int r(Y) \frac{d}{d\lambda} \bar{\pi}_\lambda(dY) 
 \\ & \\ &
-= \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T \int \bar{\pi}_\lambda(dZ_0,dX_0) \int  \prod_{i=0}^{t} Q_\lambda(dZ_{i+1},dX_{i+1}\vert Z_i,X_i)     \,\,\times
+= \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T \int \bar{\pi}_\lambda(dY_0) \int  \prod_{i=0}^{t} Q_\lambda(dY_{i+1}\vert Y_i)     \,\,\times
 \\ & \\ &
-\quad \quad \displaystyle  r(Z_{t+1},X_{t+1}) \left( \frac{d}{d\lambda} \log Q_\lambda(Z_1, X_1 \vert Z_0,X_0) \right) 
+\quad \quad \displaystyle  r(Y_{t+1}) \frac{d}{d\lambda} \log Q_\lambda(Y_1 \vert Y_0)  
 \\ & \\ &
-= \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T \int \bar{\pi}_\lambda(dZ_{T-t},dX_{T-t}) \int  \prod_{i=T-t}^{T} Q_\lambda(dZ_{i+1},dX_{i+1}\vert Z_i,X_i)   
+= \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T \int \bar{\pi}_\lambda(dY_{T-t}) \int  \prod_{i=T-t}^{T} Q_\lambda(dY_{i+1}\vert Y_i)   
 \\ & \\ &
-\quad \quad \displaystyle  r(Z_{T+1}, X_{T+1}) \frac{d}{d\lambda} \log Q_\lambda(Z_{T-t+1},X_{T-t+1} \vert  Z_{T-t},X_{T-t})
+\quad \quad \displaystyle  r(Y_{T+1}) \frac{d}{d\lambda} \log Q_\lambda(Y_{T-t+1} \vert Y_{T-t})
 \\ & \\ &
-= \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T \mathbb{E}_{Q_\lambda(Z_{0..(T+1)},X_{0..(T+1)})} \left[ r(Z_{T+1}, X_{T+1})  \frac{d}{d\lambda} \log Q_\lambda(Z_{T-t+1},X_{T-t+1} \vert  Z_{T-t},X_{T-t}) \right]
+= \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T \mathbb{E}_{Q_\lambda(Y_{0..(T+1)})} \left[ r(Y_{T+1})  \frac{d}{d\lambda} \log Q_\lambda(Y_{T-t+1} \vert  Y_{T-t}) \right]
 \\ & \\ &
-= \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+1)},X_{0..(T+1)})} \left[ r(Z_{T+1}, X_{T+1}) \sum_{t=0}^T \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1},X_{t+1} \vert  Z_{t},X_{t}) \right]
+= \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Y_{0..(T+1)})} \left[ r(Y_{T+1}) \sum_{t=0}^T \frac{d}{d\lambda} \log Q_\lambda(Y_{t+1} \vert Y_{t}) \right]
 . \end{array}$$
 
 We now derive the discriminative model update. By the product rule,
@@ -345,9 +341,12 @@ $$\begin{array}{rl} &
 \\ & \\ & =
 \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+2)},X_{0..(T+2)})} \Bigg[ \left( \log \frac{Q_\lambda(Z_{T+2}\vert Z_{T+1},X_{T+1})}{P_\theta(Z_{T+2}\vert Z_{T+1},X_{T+1})} \right) \,\,\times 
 \\ & \\ & \quad\quad \displaystyle \sum_{t=0}^T \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1},X_{t+1} \vert  Z_{t},X_{t}) \Bigg]
-. \end{array}$$
+\\ & \\ & =
+\displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+2)},X_{0..(T+2)})} \Bigg[ \left( \log \frac{Q_\lambda(Z_{T+2}\vert Z_{T+1},X_{T+1})}{P_\theta(Z_{T+2}\vert Z_{T+1},X_{T+1})} \right) \,\,\times 
+\\ & \\ & \quad\quad \displaystyle \sum_{t=0}^T \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \Bigg]
+\end{array}$$
 
-Combining this with the second term and observing that
+where the last equality follows because
 
 $$
 \begin{array}{rl} &
@@ -355,11 +354,11 @@ $$
 \\ & \\ &
 = \displaystyle \frac{d}{d\lambda} \left( \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) + \log Q_*(X_{t+1} \vert X_t) \right)
 \\ & \\ &
-= \displaystyle \frac{d}{d\lambda}  \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) ,
-\end{array}
+= \displaystyle \frac{d}{d\lambda}  \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t})
+. \end{array}
 $$
 
-we derive the gradient 
+Combining this with the second term, we get the gradient 
 
 $$\begin{array}{rl} &
 \displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert \bar{P}_\theta}(Z_{1} \vert Z_{0}, X_{0}) 

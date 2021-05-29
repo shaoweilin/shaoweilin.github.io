@@ -41,7 +41,7 @@ $$ \begin{array}{rl} &\displaystyle \frac{d}{ds}H_{Q \Vert P} (X_{0\ldots s}) \\
 
 is also known as the _relative entropy rate_ of $$ X_t$$. The differential operator acting on the function $$ H_{Q \Vert P}$$ of the path $$ X_{0\ldots s}$$ may be seen as a generalization of the infinitesimal generator for Markov processes.
 
-In fact, using Kingman's subadditive ergodic theory [L92], we can show that under strong stationarity conditions,
+In fact, using Kingman's subadditive ergodic theory [L92], we can show that under mild regularity conditions,
 
 $$ \displaystyle \lim_{n\rightarrow \infty} \frac{1}{n} H_{Q \Vert P}(X_{0\ldots n}) = \lim_{n\rightarrow \infty} H_{Q \Vert P}(X_n \vert X_{0\ldots (n-1)}).$$
 
