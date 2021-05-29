@@ -5,7 +5,7 @@ title: Biased stochastic approximation for latent processes
 
 We apply biased stochastic approximation and variational inference to optimize a relative entropy objective for latent Markov processes. Using this technique, we prove under some regularity conditions that the learning algorithm converges to a local minima.
 
-We will be using biased stochastic approximation [KMMW19] where the stochastic updates are dependent on the past but the conditional expectation of the stochastic updates given the past is not equal to the mean field. These biased stochastic approximation schemes generalize the classical expectation maximization algorithm [KMMW19].
+We will be using [biased stochastic approximation](https://shaoweilin.github.io/biased-stochastic-approximation/) [KMMW19] where the stochastic updates are dependent on the past but the conditional expectation of the stochastic updates given the past is not equal to the mean field. These biased stochastic approximation schemes generalize the classical expectation maximization algorithm [KMMW19].
 
 This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/).
 
@@ -17,41 +17,21 @@ Suppose that we have a parametric discriminative model $$\{Q_\lambda : \lambda \
 
 We assume that in both models, the distributions are Markov and each $$Z_t$$ and $$X_t$$ are conditionally independent given their past.  We also assume that marginals $$Q(X_{0\ldots T})$$ of the discriminative model distributions $$Q_\lambda(Z_{0 \ldots T}, X_{0\ldots T})$$ are all equal to the true distribution $$Q_*(X_{0\ldots T}).$$
  
-For our model, we consider a Markov process $$\{ (Z_t, X_t) \}$$ with a family of joint path measures $$P_\theta = \mathcal{M}(\mathcal{P}_\theta, \pi_\theta)$$ on $$\{ (Z_t, X_t) \},$$ where $$\mathcal{P}_\theta$$ and $$\pi_\theta$$ denote the Markov kernel and initial distribution. Since $$X_t = (Y_t, U_t)$$ with $$Y_t$$ hidden and $$U_t$$ observed, we require
+Some parts of universe $$\{X_t\}$$ are observed and other parts are unobserved. We will impose these conditions by putting constraints on the structure of the models $$\{Q_\lambda\}$$ and $$\{P_\theta\}$$, as described in this [article](https://shaoweilin.github.io/variational-inference-for-latent-processes/). 
 
-$$\begin{array}{rl} & P_\theta(Z_{t+1}, Y_{t+1}, U_{t+1} \vert Z_t, Y_t, U_t) \\ & \\ & = Q_*(Y_{t+1} \vert Y_t, U_t) P_\theta(Z_{t+1} \vert Z_t, U_t) P_\theta(X_{t+1} \vert Z_t, U_t) \end{array}$$
+Our goal is to train the models by minimizing the asymptotic relative entropy rate (continuous time) 
 
-so the parameter $$\theta$$ controls only the distribution on $$\{(Z_t, U_t)\}.$$
+$$\lim_{T\rightarrow \infty} \frac{d}{dT}H_{Q \Vert P}(Z_{0\ldots T}, X_{0\ldots T})$$
 
-As before, let $$\Delta_{\mathcal{C}}$$ be the set of all path measures $$Q$$ on $$\{ (Z_t, X_t) \}$$ where $$Z_t$$ and $$X_t$$ are conditionally independent given their past and where each $$X_t$$ is conditionally independent of $$Z_{0\ldots (t-1)}$$ given its own past $$X_{0\ldots (t-1)}.$$ We will further consider a subspace $$\Delta_\mathcal{M} \subset \Delta_\mathcal{C}$$ of distributions which are Markov. Note that our model $$\{ P_\theta \}$$ need not fill the subspace $$\Delta_\mathcal{M}.$$
+or asymptotic conditional relative entropy (discrete time)
 
-Our goal is to train the model by minimizing the limit of the time-averaged relative entropy
+$$\lim_{n \rightarrow \infty} H_{Q \Vert P}(Z_{n+1}, X_{n+1} \vert Z_{n}, X_{n}).$$
 
-$$V(Q,\theta) = \displaystyle \lim_{T \rightarrow \infty} \frac{1}{T} H_{Q \Vert P_\theta}(Z_{0\ldots T},X_{0\ldots T})$$
-
-over $$Q \in \Delta_\mathcal{M}$$ and $$\theta \in \Theta.$$ Compared to minimizing this objective for $$Q$$ over the larger space $$\Delta_\mathcal{C},$$ we will incur an additional cost due to the Markov constraint. We can think of this cost as the cost of _limited memory_ since the Markov property only allows us to remember the most recent state $$(Z_t, X_t)$$ as opposed to the full history $$Z_{0\ldots t}, X_{0\ldots t}.$$
-
-With this Markov constraint, the optimal distribution $$Q$$ in Step 1 of the algorithm in the previous section will no longer satisfy
-
-$$Q(Z_{n+1} \vert Z_{0\ldots n}, X_{0\ldots n}) = P_{\theta_n}(Z_{n+1} \vert Z_{0\ldots n}, X_{0\ldots n}).$$
-
-Instead, we assume some discriminative model updates $$Q_{n+1} = F(Q_n, \theta_{n+1})$$ in addition to the generative model updates to $$P_{\theta_n}$$ to tackle the optimization problem in Step 1\.
-
-
-
-
-
-Suppose the generative model $$\{P_\theta : \theta \in \Theta\}$$ and the discriminative model $$\{Q_\lambda :\lambda \in \Lambda\}$$ are parametric. 
-
-We now focus on minimizing the relative entropy rate over $$Q_\lambda \in \Delta_\mathcal{M}$$ and $$P_\theta \in \Delta_\mathcal{M}.$$  We first explore the problem in discrete time, before discussing the analogous results in continuous time.
-
-The discrete time analogue of the relative entropy rate under our Markov setting is the asymptotic conditional relative entropy $$\lim_{n \rightarrow \infty} H_{Q \Vert P}(Z_{n+1}, X_{n+1} \vert Z_{n}, X_{n}).$$
+over $$\{Q_\lambda\}$$ and $$\{P_\theta\}$$. We first explore the problem in discrete time, before discussing the analogous results in continuous time.
 
 We assume that $$Q_\lambda$$ has a stationary distribution $$\bar{\pi}_\lambda,$$ and let $$\bar{Q}_\lambda$$ be the distribution of a Markov chain that has the same transition probabilities as $$Q_\lambda$$ but has the initial distribution $$\bar{\pi}_\lambda.$$ Then,
 
-$$\lim_{n \rightarrow \infty} H_{Q_\lambda \Vert P_\theta}(Z_{n+1}, X_{n+1} \vert Z_{n}, X_{n}) = H_{\bar{Q}_\lambda \Vert \bar{P}_\theta}(Z_{1}, X_{1} \vert Z_{0}, X_{0})$$
-
-where $$\bar{P}_\theta$$ is the distribution of any Markov chain that has the same transition probabilities as $$P_\theta.$$ The initial distribution of $$\bar{P}_\theta$$ does not matter in the above conditional relative entropy.
+$$\lim_{n \rightarrow \infty} H_{Q_\lambda \Vert P_\theta}(Z_{n+1}, X_{n+1} \vert Z_{n}, X_{n}) = H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{1}, X_{1} \vert Z_{0}, X_{0}).$$
 
 To minimize the conditional relative entropy objective, we adopt an approach similar to the expectation-maximization (EM) or exponential-mixture (em) [algorithm](https://shaoweilin.github.io/machine-learning-with-relative-entropy/). More precisely, we iteratively optimize for the discriminative model distribution $$Q_\lambda$$ and for the generative model distribution $$P_\theta$$ while holding the other constant. 
 
@@ -59,22 +39,50 @@ First, we pick some initial generative model distribution $$P_{\theta_0}$$ and d
 
 ----
 
-**Step 1 (discriminative model update).** Fixing the generative model distribution $$P_{\theta_n},$$ minimize $$H_{\bar{Q}_\lambda \Vert \bar{P}_{\theta_n}}(Z_{1}, X_{1} \vert Z_{0}, X_{0})$$ over discriminative model distributions $$Q_\lambda.$$
+**Step 1 (generative model update).** Fixing the discriminative model distribution $$Q_{\lambda_{n}}(Z_{1} \vert Z_{0}, X_{0}),$$ minimize $$H_{\bar{Q}_{\lambda_{n}}\Vert P_{\theta}}(Z_{1}, X_{1} \vert Z_{0}, X_{0})$$ over generative model distributions $$P_{\theta}$$.
+
+By definition,
+
+$$\begin{array}{rl} & 
+H_{\bar{Q}_{\lambda_{n}}\Vert P_{\theta}}(Z_{1}, X_{1} \vert Z_{0}, X_{0})
+\\ & \\ & = 
+\mathbb{E}_{\bar{Q}_{\lambda_{n}}} [\log Q_{\lambda_{n}}(Z_{1}, X_{1} \vert Z_{0},X_{0})] 
+\\ & \\ & 
+\quad - \mathbb{E}_{\bar{Q}_{\lambda_{n}}} [\log P_\theta(Z_{1}, X_{1} \vert Z_{0},X_{0})], 
+\end{array}$$
+
+where we note that the first term is independent of $$\theta$$.
+
+We update the parameter $$\theta$$ using the gradient
+
+$$\displaystyle \theta_{n+1} = \theta_n + \eta_{n+1} \mathbb{E}_{\bar{Q}_{\lambda_{n}}} \left[\left.\frac{d}{d\theta} \log P_\theta(Z_{1}, X_{1} \vert Z_{0},X_{0})\right\vert _{\theta = \theta_n}\right].$$
+
+where we can also write
+
+$$ \begin{array}{rl} &
+\displaystyle \mathbb{E}_{\bar{Q}_{\lambda}} \left[\left.\frac{d}{d\theta} \log P_\theta(Z_{1}, X_{1} \vert Z_{0},X_{0})\right\vert _{\theta = \theta_n}\right]
+\\ & \\ & =
+\displaystyle
+\lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+1)},X_{0..(T+1)})} \left[ \left.\frac{d}{d\theta} \log P_\theta(Z_{T+1}, X_{T+1} \vert Z_{T},X_{T})\right\vert _{\theta = \theta_n} \right]
+. \end{array}
+$$
+
+**Step 2 (discriminative model update).** Fixing the generative model distribution $$P_{\theta_{n+1}},$$ minimize $$H_{\bar{Q}_\lambda \Vert P_{\theta_{n+1}}}(Z_{1}, X_{1} \vert Z_{0}, X_{0})$$ over discriminative model distributions $$Q_\lambda.$$
 
 Because $$Z_{1}$$ and $$X_{1}$$ are conditionally independent given the past,
 
-$$\begin{array}{rl} & H_{\bar{Q}_\lambda \Vert \bar{P}_\theta}(Z_{1}, X_{1} \vert Z_{0}, X_{0}) \\ & \\ &= H_{\bar{Q}_\lambda \Vert \bar{P}_\theta}(Z_{1} \vert Z_{0}, X_{0}) + H_{\bar{Q}_\lambda \Vert \bar{P}_\theta}(X_{1} \vert Z_{0}, X_{0}). \end{array}$$
+$$\begin{array}{rl} & H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{1}, X_{1} \vert Z_{0}, X_{0}) \\ & \\ &= H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{1} \vert Z_{0}, X_{0}) + H_{\bar{Q}_\lambda \Vert P_\theta}(X_{1} \vert Z_{0}, X_{0}). \end{array}$$
 
 The second term is independent of $$\lambda$$ because it depends only on the true distribution $$Q_*$$ of the observables. 
 
 We update the parameter $$\lambda$$ using the gradient
 
-$$\lambda_{n+1} = \displaystyle \lambda_n - \eta_{n+1} \left.\frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert \bar{P}_{\theta_n}}(Z_{1} \vert Z_{0}, X_{0})\right\vert _{\lambda = \lambda_n}$$
+$$\lambda_{n+1} = \displaystyle \lambda_n - \eta_{n+1} \left.\frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_{\theta_{n+1}}}(Z_{1} \vert Z_{0}, X_{0})\right\vert _{\lambda = \lambda_n}$$
 
 where, as shown in the [appendix](https://shaoweilin.github.io/biased-stochastic-approximation-for-latent-processes/#appendix-discriminative-model-update), we have
 
 $$\begin{array}{rl} &
-\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert \bar{P}_\theta}(Z_{1} \vert Z_{0}, X_{0}) 
+\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{1} \vert Z_{0}, X_{0}) 
 \\ & \\ &
 = \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+1)},X_{0..(T+1)})} \Bigg[ \left( \log \frac{Q_\lambda(Z_{T+1}\vert Z_{T},X_{T})}{P_\theta(Z_{T+1}\vert Z_{T},X_{T})} \right) \,\,\times 
 \\ & \\ & \quad\quad \displaystyle \sum_{t=0}^{T} \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \Bigg]
@@ -83,52 +91,37 @@ $$\begin{array}{rl} &
 Following [BB1] and [KMMW19], we approximate this gradient with the following numerically stable estimator
 
 $$\begin{array}{rl} &
-\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert \bar{P}_\theta}(Z_{1} \vert Z_{0}, X_{0}) 
+\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{1} \vert Z_{0}, X_{0}) 
 \\ & \\ & \approx 
 \displaystyle \left( \log \frac{Q_\lambda(Z_{T+1}\vert Z_{T},X_{T})}{P_\theta(Z_{T+1}\vert Z_{T},X_{T})} \right) \sum_{t=0}^{T} \gamma^{T-t} \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t})
 . \end{array}$$
 
-where $$0 < \gamma < 1$$ is a discount factor, $$T$$ is sufficiently large and $$Z_{0\ldots (T+1)}, X_{0\ldots (T+1)}$$ is drawn from $$Q_{\lambda_n}.$$
-
-**Step 2 (generative model update).** Fixing the discriminative model distribution $$Q_{\lambda_{n+1}}(Z_{1} \vert Z_{0}, X_{0}),$$ minimize $$H_{\bar{Q}_{\lambda_{n+1}}\Vert \bar{P}_{\theta}}(Z_{1}, X_{1} \vert Z_{0}, X_{0})$$ over generative model distributions $$P_{\theta}$$.
-
-By definition,
-
-$$\begin{array}{rl} & 
-H_{\bar{Q}_{\lambda_{n+1}}\Vert \bar{P}_{\theta}}(Z_{1}, X_{1} \vert Z_{0}, X_{0})
-\\ & \\ & = 
-\mathbb{E}_{\bar{Q}_{\lambda_{n+1}}} [\log Q_{\lambda_{n+1}}(Z_{1}, X_{1} \vert Z_{0},X_{0})] 
-\\ & \\ & 
-\quad - \mathbb{E}_{\bar{Q}_{\lambda_{n+1}}} [\log P_\theta(Z_{1}, X_{1} \vert Z_{0},X_{0})], 
-\end{array}$$
-
-where we note that the first term is independent of $$\theta$$.
-
-We update the parameter $$\theta$$ using the gradient
-
-$$\displaystyle \theta_{n+1} = \theta_n + \eta_{n+1} \mathbb{E}_{\bar{Q}_{\lambda_{n+1}}} \left[\left.\frac{d}{d\theta} \log P_\theta(Z_{1}, X_{1} \vert Z_{0},X_{0})\right\vert _{\theta = \theta_n}\right].$$
+where $$0 < \gamma < 1$$ is a discount factor, $$T$$ is sufficiently large and $$Z_{0\ldots (T+1)}, X_{0\ldots (T+1)}$$ is drawn from $$Q_{\lambda}.$$
 
 ----
 
-Moreover, we could derive a stochastic approximation of the above two-step procedure by sampling $$Z_{n+1}$$ and $$X_{n+1}$$ from $$Q_{\lambda_{n+1}}(Z_{n+1}, X_{n+1} \vert Z_{n},X_{n}).$$
+Moreover, we could implement the following stochastic approximation of the above two-step procedure. 
 
-Specifically, we have
+$$\displaystyle \theta_{n+1} = \theta_n + \eta_{n+1} \left.\frac{d}{d\theta} \log P_\theta(Z_{n}, X_{n} \vert Z_{n-1},X_{n-1}) \right\vert _{\theta = \theta_n}$$
 
-$$X_{n+1} \sim Q_*(X_{n+1} \vert X_{0\ldots n})$$
+$$\displaystyle G_{n+1} = \gamma G_n + \left.\frac{d}{d\lambda} \log Q_{\lambda}(Z_{n} \vert  Z_{n-1},X_{n-1})\right|_{\lambda=\lambda_n}$$
 
-$$Z_{n+1} \sim Q_n(Z_{n+1} \vert Z_{0\ldots n}, X_{0\ldots n})$$
+$$\displaystyle F_{n+1} = \log \frac{Q_{\lambda_n}(Z_{n}\vert Z_{n-1},X_{n-1})}{P_{\theta_{n+1}}(Z_{n}\vert Z_{n-1},X_{n-1})}$$
 
-$$\displaystyle \theta_{n+1} = \theta_n + \eta_{n+1} \left.\frac{d}{d\theta} \log P_\theta(Z_{n+1}, X_{n+1} \vert Z_{0\ldots n},X_{0\ldots n}) \right\vert _{\theta = \theta_n}$$
+$$\displaystyle \lambda_{n+1} = \lambda_n - \eta_{n+1} G_{n+1} F_{n+1}$$ 
 
-$$\begin{array}{rl} & Q_{n+1}(Z_{n+2} \vert Z_{0\ldots (n+1)}, X_{0\ldots (n+1)}) \\ & \\ & = P_{\theta_n}(Z_{n+2} \vert Z_{0\ldots (n+1)}, X_{0\ldots (n+1)}). \end{array}$$
+$$\displaystyle X_{n+1} \sim Q_*(X_{n+1} \vert X_{n})$$
 
+$$\displaystyle Z_{n+1} \sim Q_{\lambda_{n+1}}(Z_{n+1} \vert Z_{n}, X_{n})$$
 
-The derivative of this relative entropy rate will be the mean field of the stochastic approximations, while the stochastic updates will be biased estimates of this mean field where the bias depends on the past $$Z_{0\ldots n}, X_{0\ldots n}.$$ Unfortunately, we cannot apply the standard stochastic approximation theory of Robbins and Monro with relative entropy as the optimization objective because of this bias.
+Before we make some preliminary observations about this stochastic approximation, let us introduce some terminology. Given $$(Z_{n-1}, X_{n-1}),$$ suppose we sample $$(Z_n, X_n)$$ from $$Q_\lambda(Z_n,X_n \vert Z_{n-1}, X_{n-1}).$$ The _conditional expectation_ of a function $$r(Z_n, X_n, Z_{n-1}, X_{n-1})$$ is the expectation of $$r$$ conditioned on some given values of $$(Z_{n-1}, X_{n-1}).$$ The _mean field_ or _total expectation_ of $$r$$ is the expectation of its conditional expectation over the stationary distribution $$\bar{\pi}_\lambda$$ on $$(Z_{n-1}, X_{n-1}).$$
+
+In the above stochastic approximation, the mean fields of the updates for $$\theta_{n}$$ and $$\lambda_n$$ are precisely (possibly discounted versions of) the corresponding derivatives of $$H_{\bar{Q}_\lambda \Vert P_{\theta}}(Z_{1}, X_{1} \vert Z_{0}, X_{0}).$$ However, the conditional expectations of the updates depend on $$(Z_{n-1}, X_{n-1})$$ and are not necessarily equal to their mean fields. In this case, we say that the stochastic approximation is _biased_.
 
 
 ## How do we prove convergence using biased stochastic approximation?
 
-In [KMMW19], the authors studied biased stochastic approximation in the case where the stochastic updates are Markovian.
+To prove the convergence of our [biased stochastic approximation](https://shaoweilin.github.io/biased-stochastic-approximation/), we cannot apply the standard unbiased stochastic approximation theory of Robbins and Monro. We can however apply the work of [KMMW19] which gives some guarantees for biased stochastic approximation involving Markov updates.
 
 In discrete time, to find the optimal model distribution $$P_\theta,$$ we apply the biased stochastic approximation scheme from the previous section. First, we initialize $$\theta_0$$ and $$Q_0$$ randomly, and sample
 
@@ -290,7 +283,7 @@ $$\mathbb{E}(\Vert g(Q_N, \theta_N) \Vert^2) = O(\log n / \sqrt{n} ).$$
 
 In this appendix, we derive the gradient
 
-$$\frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert \bar{P}_\theta}(Z_{1} \vert Z_{0}, X_{0})$$
+$$\frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{1} \vert Z_{0}, X_{0})$$
 
 used in the discriminative model update.
 
@@ -315,7 +308,7 @@ $$\begin{array}{rl} &
 We now derive the discriminative model update. By the product rule,
 
 $$\begin{array}{rl} & 
-\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert \bar{P}_\theta}(Z_{1} \vert Z_{0}, X_{0}) 
+\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{1} \vert Z_{0}, X_{0}) 
 \\ & \\ &= 
 \displaystyle \frac{d}{d\lambda} \int \bar{\pi}_\lambda(dZ_0,dX_0) \int Q_\lambda(dZ_1\vert Z_0,X_0) \log \frac{Q_\lambda(Z_1 \vert Z_0,X_0)}{P_\theta(Z_1 \vert Z_0,X_0)} 
 \\ & \\ & = 
@@ -369,7 +362,7 @@ $$
 Combining this with the second term, we get the gradient 
 
 $$\begin{array}{rl} &
-\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert \bar{P}_\theta}(Z_{1} \vert Z_{0}, X_{0}) 
+\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{1} \vert Z_{0}, X_{0}) 
 \\ & \\ &
 = \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+2)},X_{0..(T+2)})} \Bigg[ \left( \log \frac{Q_\lambda(Z_{T+2}\vert Z_{T+1},X_{T+1})}{P_\theta(Z_{T+2}\vert Z_{T+1},X_{T+1})} \right) \,\,\times 
 \\ & \\ & \quad\quad \displaystyle \sum_{t=0}^{T+1} \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \Bigg]
