@@ -9,7 +9,7 @@ We will be using [biased](https://shaoweilin.github.io/biased-stochastic-approxi
 
 This post is a continuation from our [series](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 
-## What is the general intuition behind online learning for latent processes?
+## What do we assume about the true distribution, the model and the learning objective?
 
 As [before](https://shaoweilin.github.io/variational-inference-for-latent-processes/), we assume that the universe is a Markov process $$\{X_t\},$$ and let its true distribution be the path measure $$Q_*.$$
 
@@ -32,6 +32,8 @@ over $$\{Q_\lambda\}$$ and $$\{P_\theta\}$$. We first explore the problem in dis
 We assume that $$Q_\lambda$$ has a stationary distribution $$\bar{\pi}_\lambda,$$ and let $$\bar{Q}_\lambda$$ be the distribution of a Markov chain that has the same transition probabilities as $$Q_\lambda$$ but has the initial distribution $$\bar{\pi}_\lambda.$$ Then,
 
 $$\lim_{n \rightarrow \infty} H_{Q_\lambda \Vert P_\theta}(Z_{n+1}, X_{n+1} \vert Z_{n}, X_{n}) = H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{1}, X_{1} \vert Z_{0}, X_{0}).$$
+
+## What is the general intuition behind online learning for latent processes?
 
 To minimize the conditional relative entropy objective, we adopt an approach similar to the expectation-maximization (EM) or exponential-mixture (em) [algorithm](https://shaoweilin.github.io/machine-learning-with-relative-entropy/). More precisely, we iteratively optimize for the discriminative model distribution $$Q_\lambda$$ and for the generative model distribution $$P_\theta$$ while holding the other constant. 
 
@@ -100,7 +102,9 @@ where $$0 < \gamma < 1$$ is a discount factor, $$T$$ is sufficiently large and $
 
 ----
 
-Moreover, we could implement the following stochastic approximation of the above two-step procedure. 
+## Is there a stochastic approximation of the above procedure?
+
+The above two-step procedure has the following stochastic approximation. 
 
 $$\displaystyle \theta_{n+1} = \theta_n + \eta_{n+1} \left.\frac{d}{d\theta} \log P_\theta(Z_{n}, X_{n} \vert Z_{n-1},X_{n-1}) \right\vert _{\theta = \theta_n}$$
 
@@ -126,17 +130,11 @@ In continuous time, the mean fields will be derivatives of relative entropy rate
 
 To prove the convergence of our [biased](https://shaoweilin.github.io/biased-stochastic-approximation/) stochastic approximation, we cannot apply the standard unbiased stochastic approximation theory of Robbins and Monro. We can however apply the work of [KMMW19] which gives some guarantees for biased stochastic approximation involving Markov updates.
 
-We will now derive sufficient conditions on the model and true distributions for applying the convergence [theorem](https://shaoweilin.github.io/biased-stochastic-approximation/) for biased stochastic approximation.
+We will now derive sufficient conditions for the [convergence](https://shaoweilin.github.io/biased-stochastic-approximation/#theorem-convergence-of-biased-stochastic-approximation) of biased stochastic approximation.
 
-Let $$\{W_n\}$$ be the $$Q_n$$-controlled Markov process with
+First, we observe that $$\{(Z_n,X_n)\}$$ is a $$Q_{\lambda_n}$$-controlled Markov process with
 
-$$W_0 = (Z_0, X_0, -, -),$$
-
-$$\begin{array}{rl} W_{n+1} & = (Z_{n+1},X_{n+1}, Z_n, X_n) \\ & \\ & \in \mathcal{W} := \mathcal{Z} \times \mathcal{X} \times \mathcal{Z} \times \mathcal{X} \end{array}$$
-
-for all $$n \geq 0,$$ whose distribution $$P_{Q_n,\theta_n}$$ is given by
-
-$$P_{Q_n,\theta_n}(W_{n+1} \vert W_n) = Q_n (Z_{n+1}, X_{n+1} \vert Z_n, X_n). $$
+$$(Z_n,X_n) \sim Q_{\lambda_n} (Z_{n}, X_{n} \vert Z_{n-1}, X_{n-1}) = Q_*(X_n \vert X_{n-1}) Q_{\lambda_n}(Z_n \vert Z_{n-1}, X_{n-1}). $$
 
 We write the parameter updates as
 

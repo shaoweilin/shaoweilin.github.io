@@ -265,7 +265,7 @@ $$\Vert E_{Q,\eta} (x) \Vert \leq \sigma.$$
 
 ----
 
-**Theorem (Convergence of Biased Stochastic Approximation).** Suppose that we have parameter updates
+**<a id="theorem-convergence-of-biased-stochastic-approximation"></a>Theorem (Convergence of Biased Stochastic Approximation).** Suppose that we have parameter updates
 
 $$\eta_{k+1} = \eta_{k} - \gamma_{k+1} H_{Q_k,\eta_k}(X_{k+1})$$
 
