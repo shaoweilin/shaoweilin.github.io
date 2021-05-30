@@ -57,7 +57,7 @@ $$\theta(t) = \displaystyle \sum_{\lambda} m_\lambda e^{- \lambda t}.$$
 
 However, I do not know if the theta function can be expressed as the Gelfand-Leray function of a differential form with respect to an energy function.
 
-Zeta functions are also useful for defining infinite products [Manin95]
+Zeta functions are also useful for defining infinite products [M95]
 
 $$Z = \displaystyle \prod_\lambda \lambda^{m_\lambda}$$
 
@@ -79,7 +79,7 @@ In statistical learning, given a prior $$\omega = \psi(w)dw$$ on the parameters 
 
 $$J(t) = \displaystyle \frac{d}{dt} \int_{0 \leq K(w) \leq t} \psi(w) dw$$
 
-is called the state density function [Watanabe09].
+is called the state density function [W09].
 
 The zeta function of the statistical model is
 
@@ -89,7 +89,7 @@ which (up to some linear change of variable in $$z$$) is the Mellin transform of
 
 ## Number Theory
 
-In number theory, we have the notorious Riemann zeta function which becomes more interesting [Baez05] if we write it as
+In number theory, we have the notorious Riemann zeta function which becomes more interesting [B05] if we write it as
 
 $$\zeta(z) = \displaystyle \sum_{n=1}^\infty \left(n^2\right)^{-\frac{z}{2}}.$$
 
@@ -109,7 +109,7 @@ $$\Lambda(z) = \Lambda(1-z)$$
 
 where $$\Lambda(z) = 2^{-1/2}\pi^{-z/2}\Gamma(z/2)\zeta(z).$$
 
-The function $$\Lambda(z)$$ itself can be written [Deninger91] as the infinite product
+The function $$\Lambda(z)$$ itself can be written [D91] as the infinite product
 
 $$(\frac{z}{2\pi})(\frac{z-1}{2\pi})\Lambda(z) = \prod_\rho \frac{z-\rho}{2\pi}$$
 
@@ -143,12 +143,12 @@ which is in turn expressible using another zeta function and theta function.
 
 [AGV88] Arnold, V. I., S. M. Gusein-Zade, and A. N. Varchenko. "Elementary integrals and the resolution of singularities of the phase." In _Singularities of Differentiable Maps_, pp. 215-232\. Birkhäuser Boston, 1988.
 
-[Baez05] Baez, John. _This Week's Finds in Mathematical Physics_ [week 217](http://math.ucr.edu/home/baez/week217.html), 2005.
+[B05] Baez, John. _This Week's Finds in Mathematical Physics_ [week 217](http://math.ucr.edu/home/baez/week217.html), 2005.
 
-[Deninger91] Deninger, Christopher. "On the Γ-factors attached to motives." _Inventiones mathematicae_ 104, no. 1 (1991): 245-261.
+[D91] Deninger, Christopher. "On the Γ-factors attached to motives." _Inventiones mathematicae_ 104, no. 1 (1991): 245-261.
 
-[Manin95] Manin, Yuri. "Lectures on zeta functions and motives." _Astérisque_ 228 (1995): 121-163.
+[M95] Manin, Yuri. "Lectures on zeta functions and motives." _Astérisque_ 228 (1995): 121-163.
 
-[Marcolli10] Marcolli, Matilde. _Feynman motives_. World Scientific, 2010.
+[M10] Marcolli, Matilde. _Feynman motives_. World Scientific, 2010.
 
-[Watanabe09] Watanabe, Sumio. _Algebraic geometry and statistical learning theory_. Vol. 25\. Cambridge university press, 2009.
+[W09] Watanabe, Sumio. _Algebraic geometry and statistical learning theory_. Vol. 25\. Cambridge university press, 2009.

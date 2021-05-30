@@ -128,15 +128,13 @@ In continuous time, the mean fields will be derivatives of relative entropy rate
 
 ## How do we prove convergence using biased stochastic approximation?
 
-To prove the convergence of our [biased](https://shaoweilin.github.io/biased-stochastic-approximation/) stochastic approximation, we cannot apply the standard unbiased stochastic approximation theory of Robbins and Monro. We can however apply the work of [KMMW19] which gives some guarantees for biased stochastic approximation involving Markov updates.
-
-We will now derive sufficient conditions for the [convergence](https://shaoweilin.github.io/biased-stochastic-approximation/#theorem-convergence-of-biased-stochastic-approximation) of biased stochastic approximation.
+To prove the convergence of our [biased](https://shaoweilin.github.io/biased-stochastic-approximation/) stochastic approximation, we cannot apply the standard unbiased stochastic approximation theory of Robbins and Monro. We can however apply the work of [KMMW19] which gives some guarantees for biased stochastic approximation involving Markov updates. In this section, we will now derive sufficient conditions for the [convergence](https://shaoweilin.github.io/biased-stochastic-approximation/#theorem-convergence-of-biased-stochastic-approximation) of our biased stochastic approximation.
 
 First, we note that $$\{(Z_n,X_n)\}$$ is a $$Q_{\lambda_n}$$-controlled Markov process with
 
 $$(Z_n,X_n) \sim Q_{\lambda_n} (Z_{n}, X_{n} \vert Z_{n-1}, X_{n-1}) = Q_*(X_n \vert X_{n-1}) Q_{\lambda_n}(Z_n \vert Z_{n-1}, X_{n-1}). $$
 
-Suppose that the Markov kernel $$\mathcal{P}_{Q_n}$$ of $$Q_n$$ has a unique stationary distribution $$\bar{\pi}_{Q_n}.$$ The mean field of $$G_{Q_n, \theta_n}(W_{n+1})$$ is given by
+The mean field of $$G_{Q_n, \theta_n}(W_{n+1})$$ is given by
 
 $$\begin{array}{rl} g(Q_n,\theta_n) & =- \displaystyle \int \bar{\pi}_{Q_n} (dZ_0, dX_0) Q_n(dZ_1, dX_1 \vert Z_0, X_0) \\ & \\ & \quad \displaystyle \left. \frac{d}{d\theta}\log P_\theta(Z_{1}, X_{1} \vert Z_0, X_0) \right|_{\theta = \theta_n} \\ & \\ & = \displaystyle \frac{d}{d\theta} \int \bar{\pi}_{Q_n} (dZ_0, dX_0) Q_n(dZ_1, dX_1 \vert Z_0, X_0) \\ & \\ & \quad \displaystyle \left. \log \frac{Q_n(Z_{1}, X_{1} \vert Z_0, X_0)}{\mathcal{P}_\theta(Z_{1}, X_{1} \vert Z_0, X_0)}\right|_{\theta = \theta_n} \\ & \\ & = \displaystyle \left. \frac{d}{d\theta} H_{\mathcal{M}(\mathcal{P}_{Q_n},\bar{\pi}_{Q_n}) \Vert \mathcal{M}(\mathcal{P}_\theta, -)} (Z_{1}, X_{1} \vert Z_0, X_0) \right|_{\theta = \theta_n} \end{array}$$
 

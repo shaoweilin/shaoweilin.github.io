@@ -55,7 +55,7 @@ $$\begin{array}{rl} H(X) &= H_{P_{XX} \Vert P_X\times P_X} \\ & \\ &= \displayst
 
 the relative entropy to $$P_{XX}$$ from $$P_X\times P_X.$$ Therefore, entropy measures the amount of information gained when we learn that two random variables $$X_1, X_2$$ previously believed to be completely independent are actually completely dependent.
 
-A different view of the relationship between entropy and relative entropy starts with the observation that Shannon's formula for discrete entropy does not behave well when we take its limit to get a formula for continuous entropy. Jaynes proposed a correction called the limiting density of discrete points (LDDP) that is defined as the negative relative entropy to $$P_X$$ from the uniform distribution [Jaynes57]. In the discrete case, the LDDP works out to be
+A different view of the relationship between entropy and relative entropy starts with the observation that Shannon's formula for discrete entropy does not behave well when we take its limit to get a formula for continuous entropy. Jaynes proposed a correction called the limiting density of discrete points (LDDP) that is defined as the negative relative entropy to $$P_X$$ from the uniform distribution [J57]. In the discrete case, the LDDP works out to be
 
 $$\displaystyle \sum_{i=1}^{n} P_X(i) \log \frac{P_X(i)}{1/n} = \log n - H(X).$$
 
@@ -81,7 +81,7 @@ arising from the chain rule for Radon-Nikodym derivatives, we get the earlier de
 
 ## How do we define relative entropy without absolute continuity?
 
-When $$Q$$ is not absolutely continuous with respect to $$P,$$ the Radon-Nikodym derivative $$dQ/dP$$ does not exist and the above definition of $$H_{Q\Vert P}$$ does not make sense. To extend the definition, we consider the relative entropy of a partition of $$\Omega$$ [Gray11].
+When $$Q$$ is not absolutely continuous with respect to $$P,$$ the Radon-Nikodym derivative $$dQ/dP$$ does not exist and the above definition of $$H_{Q\Vert P}$$ does not make sense. To extend the definition, we consider the relative entropy of a partition of $$\Omega$$ [G11].
 
 Let $$(\Omega, \mathcal{B})$$ be a measurable space and let $$P, Q$$ be two probability measures on this space. For finite partitions $$\mathcal{W}=\left\{ \mathcal{W}_1, \ldots, \mathcal{W}_k \right\}$$ of $$\Omega$$, we define
 
@@ -135,8 +135,8 @@ We see that the value of $$H_{Q\Vert P}$$ depends on the measures $$P, Q$$ only 
 
 ## References
 
-[Gray11] Gray, Robert M. _Entropy and information theory_. Springer Science & Business Media, 2011.
+[G11] Gray, Robert M. _Entropy and information theory_. Springer Science & Business Media, 2011.
 
-[Chodrow17] Chodrow, Philip. "Divergence, entropy, information: An opinionated introduction to information theory." _arXiv preprint arXiv:1708.07459_ (2017).
+[C17] Chodrow, Philip. "Divergence, entropy, information: An opinionated introduction to information theory." _arXiv preprint arXiv:1708.07459_ (2017).
 
-[Jaynes57] Jaynes, Edwin T. "Information theory and statistical mechanics." _Physical review_ 106, no. 4 (1957): 620.
+[J57] Jaynes, Edwin T. "Information theory and statistical mechanics." _Physical review_ 106, no. 4 (1957): 620.

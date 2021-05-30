@@ -147,7 +147,7 @@ Taking limits as $$t \rightarrow \infty$$ and observing that under strong ergodi
 
 The strategy for integrals of functions of discrete-time stochastic processes works in a similar way, where solutions to the Poisson equation provide martingales whose expected values vanish. We will use this strategy for analyzing biased stochastic approximation algorithms.
 
-In a future article, we will explore martingales, stochastic integrals and the Poisson equation through the lens of regularity structures [Hairer14].
+In a future article, we will explore martingales, stochastic integrals and the Poisson equation through the lens of regularity structures [H14].
 
 ## Biased updates
 
@@ -254,14 +254,14 @@ $$\mathbb{E}(\Vert h(\eta_N) \Vert^2) = O(c_0 + \log n / \sqrt{n} ).$$
 
 ## References
 
-[Bottou98] Bottou, Léon. "Online learning and stochastic approximations." _On-line learning in neural networks_ 17, no. 9 (1998): 142.
+[B98] Bottou, Léon. "Online learning and stochastic approximations." _On-line learning in neural networks_ 17, no. 9 (1998): 142.
 
 [CCG11] Cattiaux, Patrick, Djalil Chafai, and Arnaud Guillin. "Central limit theorems for additive functionals of ergodic Markov diffusions processes." _arXiv preprint arXiv:1104.2198_ (2011).
 
-[Hairer14] Hairer, Martin. “A theory of regularity structures.” _Inventiones mathematicae_ 198, no. 2 (2014): 269-504.
+[H14] Hairer, Martin. “A theory of regularity structures.” _Inventiones mathematicae_ 198, no. 2 (2014): 269-504.
 
 [KMMW19] Karimi, Belhal, Blazej Miasojedow, Éric Moulines, and Hoi-To Wai. “Non-asymptotic analysis of biased stochastic approximation scheme.” _arXiv preprint arXiv:1902.00629_ (2019).
 
 [LR15] Li, Yingshen, Mark Rowland. "Stochastic Approximation Theory." [slides](http://yingzhenli.net/home/pdf/SA.pdf) (2015).
 
-[Oksendal13] Oksendal, Bernt. _Stochastic differential equations: an introduction with applications_. Springer Science & Business Media, 2013.
+[O13] Oksendal, Bernt. _Stochastic differential equations: an introduction with applications_. Springer Science & Business Media, 2013.

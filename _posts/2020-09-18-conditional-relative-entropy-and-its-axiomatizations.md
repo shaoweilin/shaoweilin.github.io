@@ -11,7 +11,7 @@ This post is a continuation from our [series](https://shaoweilin.github.io/motiv
 
 Suppose we have two random variables $$X, Y$$ and probability measures $$P, Q$$ on $$\Omega$$. We are interested in how far the model conditional $$P_{Y\vert X}$$ is to the true conditional $$Q_{Y\vert X}$$ on average over $$Q_X$$, and we want to ignore the model marginal $$P_X$$.  
 
-Let $$P_{XY}, Q_{XY}$$ be the induced joint distributions for $$X, Y$$. We first construct a distribution $$R_{XY}$$ which has the same conditional distribution $$R_{Y\vert X} = P_{Y\vert X}$$ as the model but has a marginal $$R_X = Q_X$$ equal to that of the true distribution [Gray11]. Namely,
+Let $$P_{XY}, Q_{XY}$$ be the induced joint distributions for $$X, Y$$. We first construct a distribution $$R_{XY}$$ which has the same conditional distribution $$R_{Y\vert X} = P_{Y\vert X}$$ as the model but has a marginal $$R_X = Q_X$$ equal to that of the true distribution [G11]. Namely,
 
 $$R_{XY}(F \times G) = \int_F P_{Y\vert X}(G\vert x) dQ_X(x)$$
 
@@ -59,7 +59,7 @@ $$H(Y,X) = H(Y\vert X) +H(X).$$
 
 As described in our [previous post](https://shaoweilin.github.io/building-foundations-of-information-theory-on-relative-entropy/), we allow the total measures of $$P, Q$$ to be different from one, but we require their total measures to be the same.
 
-We start with an axiomatizations of conditional entropy with the hope of deriving axiomatizations of conditional relative entropy. I like the following categorical view of conditional entropy [Baez11]. I've taken the liberty of rewriting it in our notations.
+We start with an axiomatizations of conditional entropy with the hope of deriving axiomatizations of conditional relative entropy. I like the following categorical view of conditional entropy [B11]. I've taken the liberty of rewriting it in our notations.
 
 Given a measured space $$(\Omega, \mathcal{B}, P)$$, a finite measurable function $$Y : \Omega \rightarrow S_Y$$ and a morphism $$f :S_Y \rightarrow S_X$$ between finite sets, let $$X = f \circ Y$$ and let $$P_Y, P_X$$ be the induced measures on $$S_Y, S_X$$.
 
@@ -104,6 +104,6 @@ where $$T$$ is the total measure of $$P_X$$.
 
 ## References
 
-[Baez11] Baez, John C., Tobias Fritz, and Tom Leinster. "A characterization of entropy in terms of information loss." _Entropy_ 13, no. 11 (2011): 1945-1957.
+[B11] Baez, John C., Tobias Fritz, and Tom Leinster. "A characterization of entropy in terms of information loss." _Entropy_ 13, no. 11 (2011): 1945-1957.
 
-[Gray11] Gray, Robert M. _Entropy and information theory_. Springer Science & Business Media, 2011.
+[G11] Gray, Robert M. _Entropy and information theory_. Springer Science & Business Media, 2011.

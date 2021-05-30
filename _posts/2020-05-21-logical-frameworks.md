@@ -38,7 +38,7 @@ There are five forms of judgments in LF.
 
 There is a special LF-kind called $$\textbf{Type}$$ which is the LF-kind of all LF-types. There is a Tarski operator $$El$$ that lifts an LF-type $$\Gamma \vdash A : \textbf{Type}$$ to an LF-kind $$\Gamma \vdash El(A) \text{ kind}$$. We will omit this lifting operator when it is obvious from the expression.
 
-From the rules, it is interesting that dependent product kinds are all that is needed to specify the logical framework [nLab20].
+From the rules, it is interesting that dependent product kinds are all that is needed to specify the logical framework [n20].
 
 ## Is LF consistent?
 
@@ -88,4 +88,4 @@ Robert Harper has some notes about a _semantic logical framework_ that allows fo
 
 [H21] Harper, Robert. "[A Semantic Logical Framework](http://www.cs.cmu.edu/~rwh/papers/slf/slf.pdf)." _Unpublished draft. Dec.(cit. on p.)_ (2020). 
 
-[nLab20] [https://ncatlab.org/nlab/show/logical+framework](https://ncatlab.org/nlab/show/logical+framework), retrieved 2020.
+[n20] [https://ncatlab.org/nlab/show/logical+framework](https://ncatlab.org/nlab/show/logical+framework), retrieved 2020.

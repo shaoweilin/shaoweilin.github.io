@@ -37,11 +37,11 @@ In many categories, the coproduct is just the disjoint union and the product is 
 
 It should also be possible to extend these Grothendieck rings to universes of types, with respect to equivalences, dependent sums and dependent products over these types.
 
-It may seem advantageous to work directly in the Grothendieck ring $$K_0(\mathcal{C})$$ rather than with the motivic measure $$\mu : K_0(\mathcal{C}) \rightarrow R.$$ However, the Grothendieck ring is often not well-understood. For example, it was only discovered fairly recently that the Grothendieck ring of varieties $$K_0(\mathcal{V}_k)$$ has zero-divisors [Poonen02]. On the other hand, a motivic measure lets us tease out a particular aspect of the Grothendieck ring.
+It may seem advantageous to work directly in the Grothendieck ring $$K_0(\mathcal{C})$$ rather than with the motivic measure $$\mu : K_0(\mathcal{C}) \rightarrow R.$$ However, the Grothendieck ring is often not well-understood. For example, it was only discovered fairly recently that the Grothendieck ring of varieties $$K_0(\mathcal{V}_k)$$ has zero-divisors [P02]. On the other hand, a motivic measure lets us tease out a particular aspect of the Grothendieck ring.
 
 ## How do we define the entropy of a variety with respect to its zeta function?
 
-We follow the work of [Marcolli19] and rewrite her results in our notation.
+We follow the work of [M19] and rewrite her results in our notation.
 
 Recall that in thermodynamics, given a system with finitely many states, the Boltzmann distribution defines the probability of a state $$i$$ as
 
@@ -191,10 +191,10 @@ $$H_{P_Y \Vert P_X \circ f^*}(t) =\displaystyle \log \frac{Z_X(t)}{Z_Y(t)} - (\d
 
 ## References
 
-[Hales05] Hales, Thomas. "What is motivic measure?." _Bulletin of the American Mathematical Society_ 42, no. 2 (2005): 119-135.
+[H05] Hales, Thomas. "What is motivic measure?." _Bulletin of the American Mathematical Society_ 42, no. 2 (2005): 119-135.
 
-[Marcolli19] Marcolli, Matilde. "Motivic information." Bollettino dell'Unione Matematica Italiana 12, no. 1-2 (2019): 19-41.
+[M19] Marcolli, Matilde. "Motivic information." Bollettino dell'Unione Matematica Italiana 12, no. 1-2 (2019): 19-41.
 
-[Poonen02] Poonen, Bjorn. "The Grothendieck ring of varieties is not a domain." _arXiv preprint math/0204306_ (2002).
+[P02] Poonen, Bjorn. "The Grothendieck ring of varieties is not a domain." _arXiv preprint math/0204306_ (2002).
 
-[Scanlon09] Scanlon, Thomas. "[Motivic Integration: An outsider’s tutorial](https://math.berkeley.edu/~scanlon/papers/scanlon_durham_motivic_integration_outsiders_tutorial.pdf)," 2009.
+[S09] Scanlon, Thomas. "[Motivic Integration: An outsider’s tutorial](https://math.berkeley.edu/~scanlon/papers/scanlon_durham_motivic_integration_outsiders_tutorial.pdf)," 2009.

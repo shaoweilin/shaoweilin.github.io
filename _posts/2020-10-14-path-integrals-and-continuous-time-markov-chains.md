@@ -141,7 +141,7 @@ Of course, these path integrals are not well-defined in the Lebesgue sense and s
 
 There has been a lot of work [AM11, AMB17] in the last few decades on formalizing these path measures and path integrals.
 
-Most notable was the breakthrough on understanding line integrals such as $$S(\gamma)$$ driven by a fixed path $$\gamma$$, using Martin Hairer's theory of regularity structures which was inspired by rough path theory [Hairer14]. Path integrals of these line integrals over some path measure can then be defined formally using the Lyon-Ito map from rough path theory without a need to define any densities with respect to a "Lebesgue path measure" [Inahama16]. Thus, line integrals and path integrals are decoupled.
+Most notable was the breakthrough on understanding line integrals such as $$S(\gamma)$$ driven by a fixed path $$\gamma$$, using Martin Hairer's theory of regularity structures which was inspired by rough path theory [H14]. Path integrals of these line integrals over some path measure can then be defined formally using the Lyon-Ito map from rough path theory without a need to define any densities with respect to a "Lebesgue path measure" [I16]. Thus, line integrals and path integrals are decoupled.
 
 Absorbing the normalization constant $$Z^{-1}$$ into the action $$S(\gamma)$$ for convenience, the path integral
 
@@ -163,16 +163,16 @@ This Gelfand-Leray function is similar to the [density of states](https://en.wik
 
 [AMB17] Albeverio, Sergio, Sonia Mazzucchi, and Zdzislaw Brzezniak. "Probabilistic integrals: Mathematical aspects." _Scholarpedia_ 12, no. 5 (2017): 10429.
 
-[Hairer14] Hairer, Martin. "A theory of regularity structures." _Inventiones mathematicae_ 198, no. 2 (2014): 269-504.
+[H14] Hairer, Martin. "A theory of regularity structures." _Inventiones mathematicae_ 198, no. 2 (2014): 269-504.
 
-[Inahama16] Inahama, Yuzuru. "Rough path theory and stochastic calculus." _arXiv preprint arXiv:1602.03255_ (2016).
+[I16] Inahama, Yuzuru. "Rough path theory and stochastic calculus." _arXiv preprint arXiv:1602.03255_ (2016).
 
 [MHTG16] Matthews, Alexander G. de G., James Hensman, Richard Turner, and Zoubin Ghahramani. "On sparse variational methods and the Kullback-Leibler divergence between stochastic processes." _Journal of Machine Learning Research_ 51 (2016): 231-239.
 
 [WF17] Weber, Markus F., and Erwin Frey. "Master equations and the theory of stochastic path integrals." _Reports on Progress in Physics_ 80, no. 4 (2017): 046601.
 
-[Vardi85] M.Y. Vardi, “Automatic Verification of Probabilistic Concurrent  
+[V85] M.Y. Vardi, “Automatic Verification of Probabilistic Concurrent  
 Finite State Programs,” Proc. Ann. Symp. Foundations of Computer  
 Science, pp. 327-338, 1985.
 
-[ZinnJustin09] Zinn-Justin, Jean. "Path integral." _Scholarpedia_ 4, no. 2 (2009): 8674.
+[Z09] Zinn-Justin, Jean. "Path integral." _Scholarpedia_ 4, no. 2 (2009): 8674.
