@@ -5,7 +5,7 @@ title: Motivic relative entropy
 
 So far, our definition of relative entropy studies the divergence between real-valued measures. In this post, we will explore motivic measures which take values more generally in some ring $$R$$, and have some fun applying motivic relative entropy to zeta functions.
 
-This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/).
+This post is a continuation from our [series](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 
 ## How do we define measures which are not real-valued?
 

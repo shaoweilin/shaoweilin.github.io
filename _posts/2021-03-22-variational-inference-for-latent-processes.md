@@ -10,7 +10,7 @@ We introduce a information-theoretic objective, which is a form of relative entr
 - learning with limited/unlimited memory;
 - learning with limited/unlimited sensing.
 
-This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/).
+This post is a continuation from our [series](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 
 ## How do we apply variational inference to latent processes?
 

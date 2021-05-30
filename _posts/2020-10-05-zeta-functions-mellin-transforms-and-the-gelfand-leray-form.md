@@ -5,7 +5,7 @@ title: Zeta functions, Mellin transforms and the Gelfand-Leray form
 
 We outline the similarities between zeta functions appearing in number theory and in statistical learning.
 
-This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/).
+This post is a continuation from our [series](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 
 ## Gelfand-Leray functions
 

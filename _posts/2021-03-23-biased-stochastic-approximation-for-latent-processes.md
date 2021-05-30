@@ -5,9 +5,9 @@ title: Biased stochastic approximation for latent processes
 
 We apply biased stochastic approximation and variational inference to optimize a relative entropy objective for latent Markov processes. Using this technique, we prove under some regularity conditions that the learning algorithm converges to a local minima.
 
-We will be using [biased stochastic approximation](https://shaoweilin.github.io/biased-stochastic-approximation/) [KMMW19] where the stochastic updates are dependent on the past but the conditional expectation of the stochastic updates given the past is not equal to the mean field. These biased stochastic approximation schemes generalize the classical expectation maximization algorithm [KMMW19].
+We will be using [biased](https://shaoweilin.github.io/biased-stochastic-approximation/) stochastic approximation [KMMW19] where the stochastic updates are dependent on the past but the conditional expectation of the stochastic updates given the past is not equal to the mean field. These biased stochastic approximation schemes generalize the classical expectation maximization algorithm [KMMW19].
 
-This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/).
+This post is a continuation from our [series](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 
 ## What is the general intuition behind online learning for latent processes?
 
@@ -114,44 +114,17 @@ $$\displaystyle X_{n+1} \sim Q_*(X_{n+1} \vert X_{n})$$
 
 $$\displaystyle Z_{n+1} \sim Q_{\lambda_{n+1}}(Z_{n+1} \vert Z_{n}, X_{n})$$
 
+In continuous time, the above updates will become differential equations. The samples $$Z_t$$ would be driven by a Poisson process, and the transition probabilities appearing in the updates for $$\theta_t$$, $$G_t$$ and $$F_t$$ would be replaced by transition rates. 
+
 Before we make some preliminary observations about this stochastic approximation, let us introduce some terminology. Given $$(Z_{n-1}, X_{n-1}),$$ suppose we sample $$(Z_n, X_n)$$ from $$Q_\lambda(Z_n,X_n \vert Z_{n-1}, X_{n-1}).$$ The _conditional expectation_ of a function $$r(Z_n, X_n, Z_{n-1}, X_{n-1})$$ is the expectation of $$r$$ conditioned on some given values of $$(Z_{n-1}, X_{n-1}).$$ The _mean field_ or _total expectation_ of $$r$$ is the expectation of its conditional expectation over the stationary distribution $$\bar{\pi}_\lambda$$ on $$(Z_{n-1}, X_{n-1}).$$
 
-In the above stochastic approximation, the mean fields of the updates for $$\theta_{n}$$ and $$\lambda_n$$ are precisely (possibly discounted versions of) the corresponding derivatives of $$H_{\bar{Q}_\lambda \Vert P_{\theta}}(Z_{1}, X_{1} \vert Z_{0}, X_{0}).$$ However, the conditional expectations of the updates depend on $$(Z_{n-1}, X_{n-1})$$ and are not necessarily equal to their mean fields. In this case, we say that the stochastic approximation is _biased_.
+In the above stochastic approximation, the mean fields of the updates for $$\theta_{n}$$ and $$\lambda_n$$ are (possibly discounted versions of) the corresponding derivatives of $$H_{\bar{Q}_\lambda \Vert P_{\theta}}(Z_{1}, X_{1} \vert Z_{0}, X_{0}).$$ However, the conditional expectations of the updates depend on $$(Z_{n-1}, X_{n-1})$$ and are not necessarily equal to their mean fields. In this case, we say that the stochastic approximation is _biased_.
 
+In continuous time, the mean fields will be derivatives of relative entropy rates. The conditional expectations which depend on the current states $$(Z_t,X_t)$$ will be biased estimates of the mean fields.
 
 ## How do we prove convergence using biased stochastic approximation?
 
-To prove the convergence of our [biased stochastic approximation](https://shaoweilin.github.io/biased-stochastic-approximation/), we cannot apply the standard unbiased stochastic approximation theory of Robbins and Monro. We can however apply the work of [KMMW19] which gives some guarantees for biased stochastic approximation involving Markov updates.
-
-In discrete time, to find the optimal model distribution $$P_\theta,$$ we apply the biased stochastic approximation scheme from the previous section. First, we initialize $$\theta_0$$ and $$Q_0$$ randomly, and sample
-
-$$(Y_0, U_0) \sim Q_*(Y_0, U_0),$$
-
-$$Z_0 \sim P_{\theta_0}(Z_0).$$
-
-Then, for all $$n \geq 0,$$
-
-$$(Y_{n+1}, U_{n+1}) \sim Q_*(Y_{n+1}, U_{n+1} \vert Y_n, U_n),$$
-
-$$Z_{n+1} \sim Q_n(Z_{n+1} \vert Z_n, U_n),$$
-
-$$\begin{array}{rl} \displaystyle \theta_{n+1} &= \displaystyle \theta_n + \eta_{n+1} \left. \frac{d}{d\theta} \log P_\theta(Z_{n+1}, U_{n+1} \vert Z_n, U_n) \right|_{\theta = \theta_n}, \end{array}$$
-
-$$Q_{n+1} = F(Q_n, \theta_{n+1}).$$
-
-Here, each $$Y_n$$ is unobserved and is not used in the $$\theta_n$$ updates, but we write it out explicitly above for use in our convergence analysis.
-
-Note that in the previous section, the proposed update $$F(Q,\theta) \in \Delta_\mathcal{M}$$ was the distribution defined by
-
-$$\begin{array}{rl} & F(Q,\theta)(Z_{0\ldots T}, X_{0\ldots T}) \\ & \\ & = Q_*(X_0) P_\theta(Z_0) \\ & \\ & \quad Q_*(X_1 \vert X_0) P_\theta(Z_1 \vert Z_0, U_0) \cdots \\ & \\ & \quad Q_*(X_T \vert X_{T-1}) P_\theta(Z_T \vert Z_{T-1}, U_{T-1}). \end{array}$$
-
-This update depends only on $$Q_*$$ but not on $$Q$$. In general, we could consider more elaborate updates which do depend on $$Q.$$
-
-In continuous time, the above biased stochastic approximation scheme becomes a Markov process where the true distribution is time-homogeneous but the model distribution is time-inhomogeneous. The Markov kernel $$\mathcal{P}_\theta$$ of the model distribution changes with continuous-time parameter updates
-
-$$\displaystyle \frac{d\theta}{dt} = - \eta_t \frac{d}{d\theta} \frac{d}{ds}H_{Q \Vert P_\theta} (Z_{0\ldots s}, X_{0\ldots s})$$
-
-that are driven by the derivative of the relative entropy rate.
+To prove the convergence of our [biased](https://shaoweilin.github.io/biased-stochastic-approximation/) stochastic approximation, we cannot apply the standard unbiased stochastic approximation theory of Robbins and Monro. We can however apply the work of [KMMW19] which gives some guarantees for biased stochastic approximation involving Markov updates.
 
 We will now derive sufficient conditions on the model and true distributions for applying the convergence [theorem](https://shaoweilin.github.io/biased-stochastic-approximation/) for biased stochastic approximation.
 

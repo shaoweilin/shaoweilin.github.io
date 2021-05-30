@@ -9,7 +9,7 @@ In this article, we give a general overview of information-theoretic approaches 
 
 The actual process that generates the data could possibly be different from the model that we are training on the data. This problem is called model misspecification, which we are not addressing in this series. Our goal is to find a distribution in the model that fits the data well according to some sensible metric.
 
-This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/).
+This post is a continuation from our [series](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 
 ## How do we train a stochastic process using relative entropy?
 

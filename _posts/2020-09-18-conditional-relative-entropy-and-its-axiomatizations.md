@@ -5,7 +5,7 @@ title: Conditional relative entropy and its axiomatizations
 
 In this post, we will study the conditional form of relative entropy. We will also look at how conditional relative entropy can be axiomatized and extended to non-real-valued measures.
 
-This post is a continuation from our series on [spiking networks, path integrals and motivic information](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/).
+This post is a continuation from our [series](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 
 ## What is conditional relative entropy?
 
