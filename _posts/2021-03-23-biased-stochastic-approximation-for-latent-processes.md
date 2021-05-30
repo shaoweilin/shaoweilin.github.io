@@ -132,17 +132,9 @@ To prove the convergence of our [biased](https://shaoweilin.github.io/biased-sto
 
 We will now derive sufficient conditions for the [convergence](https://shaoweilin.github.io/biased-stochastic-approximation/#theorem-convergence-of-biased-stochastic-approximation) of biased stochastic approximation.
 
-First, we observe that $$\{(Z_n,X_n)\}$$ is a $$Q_{\lambda_n}$$-controlled Markov process with
+First, we note that $$\{(Z_n,X_n)\}$$ is a $$Q_{\lambda_n}$$-controlled Markov process with
 
 $$(Z_n,X_n) \sim Q_{\lambda_n} (Z_{n}, X_{n} \vert Z_{n-1}, X_{n-1}) = Q_*(X_n \vert X_{n-1}) Q_{\lambda_n}(Z_n \vert Z_{n-1}, X_{n-1}). $$
-
-We write the parameter updates as
-
-$$\displaystyle \theta_{n+1} = \theta_n - \eta_{n+1} G_{Q_n, \theta_n}(W_{n+1}),$$
-
-$$G_{Q_n, \theta_n}(W_{n+1}) = \displaystyle -\left. \frac{d}{d\theta} \log P_\theta(Z_{n+1}, X_{n+1} \vert Z_n, X_n) \right|_{\theta = \theta_n},$$
-
-$$Q_{n+1} = F(Q_n, \theta_{n+1}).$$
 
 Suppose that the Markov kernel $$\mathcal{P}_{Q_n}$$ of $$Q_n$$ has a unique stationary distribution $$\bar{\pi}_{Q_n}.$$ The mean field of $$G_{Q_n, \theta_n}(W_{n+1})$$ is given by
 

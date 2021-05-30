@@ -209,77 +209,46 @@ Here, the expressions $$S_0$$ and $$S_1$$ arise naturally from the application o
 
 The expressions $$S_2,$$ $$S_3$$ and $$S_4$$ are correction terms coming from updates to the parameters and step sizes, and they can be bounded by some suitable assumptions on the regularity of $$P_\eta \hat{H}_\eta(x),$$ $$\nabla V (\eta)$$ and $$\gamma_{n}$$ respectively.
 
-## Variational inference
+To summarize, we have the following convergence result for biased stochastic approximation [KMMW19], starting with some regularity conditions. Note that $$h(\eta)$$ varies like $$\frac{\partial V}{\partial \eta}(\eta)$$ so we are guaranteed convergence only to a critical point of the Lyapunov function $$V(\eta).$$
 
-We now tweak the above discussion slightly to make the theory more usable in variational inference. Suppose we have a Lyapunov function $$V(Q, \eta)$$ that depends on some (possibly functional) parameter $$Q \in \Delta$$ and some finite-dimensional parameter $$\eta \in \mathcal{H}.$$ Suppose that we have updates
-
-$$\eta_{n+1} = \eta_{n} - \gamma_{n+1} H_{Q_n,\eta_n}(X_{n+1})$$
-
-$$Q_{n+1} = F(Q_n, \eta_{n+1})$$
-
-where the stochastic process $$\{X_{n}\}$$ is controlled by parameters $$Q_n, \eta_n,$$ and the update $$F(Q,\eta)$$ is deterministic. We assume that for all $$Q \in \Delta, \eta \in \mathcal{H}$$, the $$(Q, \eta)$$-controlled process has a unique stationary distribution $$\pi_{Q,\eta}.$$ Let $$h(Q,\eta)$$ be the mean field of $$H_{Q,\eta}(X)$$ under this stationary distribution.
-
-Suppose that the update $$Q_{n+1} = F(Q_n, \eta_{n+1})$$ does not cause the Lyapunov function to increase, i.e. $$V(Q_{n+1}, \eta_{n+1}) \leq V(Q_n, \eta_{n+1})$$. Suppose also that the family $$V(Q, \eta)$$ is uniformly $$\ell$$-smooth over $$\eta$$ with
-
-$$\left\Vert \displaystyle \frac{\partial V}{\partial \eta}(Q,\eta')- \frac{\partial V}{\partial \eta}(Q,\eta) \right\Vert \leq \ell \Vert \eta' - \eta \Vert$$
-
-for all $$Q \in \Delta$$ and all $$\eta', \eta \in \mathcal{H}.$$ Consequently, if the domain $$\mathcal{H}$$ is convex,
-
-$$\begin{array}{rl} \displaystyle & V(Q_{n+1}, \eta_{n+1}) \\ & \\ & \leq V(Q_n,\eta_{n+1}) \\ & \\ & \displaystyle \leq V(Q_n,\eta_n) + \left\langle \frac{\partial V}{\partial \eta}(Q_n,\eta_n), \eta_{n+1}-\eta_n \right\rangle + \frac{\ell}{2}\Vert \eta_{n+1}-\eta_n \Vert^2 . \end{array}$$
-
-The above discussion then proceeds with this inequality as the starting point.
-
-To summarize, we have the following convergence result for biased stochastic approximation [KMMW19], starting with some regularity conditions.
 
 ----
 
-**A0 (Descent over functional parameter).** For all $$Q \in \Delta$$ and $$\eta \in \mathcal{H},$$
+**A1 (Relation between Lyapunov gradient and mean field).** There exists $$c_0 \geq 0, c_1 \geq 0$$ such that for all $$\eta \in \mathcal{H},$$
 
-$$V(F(Q,\eta), \eta) \leq V(Q,\eta).$$
+$$\displaystyle c_0 + c_1 \left\langle \frac{\partial V}{\partial \eta}(\eta) , h(\eta) \right\rangle \geq \Vert h(\eta) \Vert^2.$$
 
-**A1 (Relation between Lyapunov gradient and mean field).** For all $$Q \in \Delta$$ and $$\eta \in \mathcal{H},$$ there exists $$c_0 \geq 0, c_1 \geq 0$$ such that
+**A2 (Relation between Lyapunov value and mean field).** There exists $$d_0 \geq 0, d_1 \geq 0$$ such that for all $$\eta \in \mathcal{H},$$
 
-$$\displaystyle c_0 + c_1 \left\langle \frac{\partial V}{\partial \eta}(Q,\eta) , h(Q, \eta) \right\rangle \geq \Vert h(Q,\eta) \Vert^2.$$
+$$\displaystyle d_0 + d_1 \Vert h(\eta) \Vert \geq \left\Vert \frac{\partial V}{\partial \eta}(\eta) \right\Vert.$$
 
-**A2 (Relation between Lyapunov value and mean field).** For all $$Q \in \Delta$$ and $$\eta \in \mathcal{H},$$ there exists $$d_0 \geq 0, d_1 \geq 0$$ such that
+**A3 ($$\ell$$-smoothness of Lyapunov function).** There exists $$\ell < \infty$$ such that for all $$\eta, \eta' \in \mathcal{H},$$
 
-$$\displaystyle d_0 + d_1 \Vert h(Q,\eta) \Vert \geq \left\Vert \frac{\partial V}{\partial \eta}(Q,\eta) \right\Vert.$$
+$$\displaystyle \left\Vert \frac{\partial V}{\partial \eta}(\eta) - \frac{\partial V}{\partial \eta}(\eta') \right\Vert \leq \ell \Vert \eta - \eta' \Vert.$$
 
-**A3 ($$\ell$$-smoothness of Lyapunov function).** There exists $$\ell < \infty$$ such that for all $$Q \in \Delta$$ and $$\eta, \eta' \in \mathcal{H},$$
+**A4 (Solution of Poisson equation).** There exists a Borel measurable function $$\hat{H} : \mathcal{H} \times \mathcal{X} \rightarrow \mathcal{H}$$ such that for all $$\eta \in \mathcal{H}, x \in \mathcal{X}$$
 
-$$\displaystyle \left\Vert \frac{\partial V}{\partial \eta}(Q,\eta) - \frac{\partial V}{\partial \eta}(Q,\eta') \right\Vert \leq \ell \Vert \eta - \eta' \Vert.$$
+$$L_{\eta} \hat{H}_{\eta}(x) = E_{\eta}(x).$$
 
-**A4 (Solution of Poisson equation).** There exists a Borel measurable function $$\hat{H} :\Delta \times \mathcal{H} \times \mathcal{X} \rightarrow \mathcal{H}$$ where for each $$Q \in \Delta$$ and $$\eta \in \mathcal{H},$$
+**A5 (Regularity of solution of Poisson equation).** There exists $$\ell_0, \ell_1 < \infty$$ such that for all $$\eta, \eta' \in \mathcal{H}, x \in \mathcal{X},$$
 
-$$L_{Q,\eta} \hat{H}_{Q,\eta}(x) = E_{Q,\eta}(x).$$
+$$\Vert \hat{H}_{\eta} (x) \Vert \leq \ell_0, \quad \Vert P_{\eta} \hat{H}_{\eta}(x) \Vert \leq \ell_0,$$
 
-**A5 (Regularity of solution of Poisson equation).** There exists $$\ell_0, \ell_1 < \infty$$ such that for all $$Q \in \Delta, \eta, \eta' \in \mathcal{H}, x \in \mathcal{X},$$
+$$\Vert P_{\eta} \hat{H}_{\eta}(x) - P_{\eta'} \hat{H}_{\eta'} (x) \Vert \leq \ell_1 \Vert \eta - \eta' \Vert.$$
 
-$$\Vert \hat{H}_{Q,\eta} (x) \Vert \leq \ell_0, \quad \Vert P_{Q,\eta} \hat{H}_{Q,\eta}(x) \Vert \leq \ell_0,$$
+**A6 (Boundedness of correction term).** There exists $$\sigma < \infty$$ such that for all $$\eta \in \mathcal{H}, x \in \mathcal{X},$$
 
-$$\Vert P_{Q,\eta} \hat{H}_{Q,\eta}(x) - P_{Q,\eta'} \hat{H}_{Q,\eta'} (x) \Vert \leq \ell_1 \Vert \eta - \eta' \Vert.$$
-
-**A6 (Boundedness of correction term).** There exists $$\sigma < \infty$$ such that for all $$Q \in \Delta, \eta \in \mathcal{H}, x \in \mathcal{X},$$
-
-$$\Vert E_{Q,\eta} (x) \Vert \leq \sigma.$$
+$$\Vert E_{\eta} (x) \Vert \leq \sigma.$$
 
 ----
 
 **<a id="theorem-convergence-of-biased-stochastic-approximation"></a>Theorem (Convergence of Biased Stochastic Approximation).** Suppose that we have parameter updates
 
-$$\eta_{k+1} = \eta_{k} - \gamma_{k+1} H_{Q_k,\eta_k}(X_{k+1})$$
-
-$$Q_{k+1} = F(Q_k, \eta_{k+1})$$
+$$\eta_{k+1} = \eta_{k} - \gamma_{k+1} H_{\eta_k}(X_{k+1})$$
 
 for $$0 \leq k \leq n,$$ using step sizes $$\gamma_k = \gamma_0 k^{-1/2}$$ for sufficiently small $$\gamma_0 \geq 0,$$ and using a random stop time $$0 \leq N \leq n$$ with $$\mathbb{P}(N = l) := (\sum_{k=0}^n \gamma_{k+1})^{-1} \gamma_{l+1}.$$ Then assuming A1-A6, we have
 
-$$\mathbb{E}(\Vert h(Q_N, \eta_N) \Vert^2) = O(c_0 + \log n / \sqrt{n} ).$$
-
-* * *
-
-Note that $$h(Q_N, \eta_N)$$ varies like $$\frac{\partial V}{\partial \eta}(Q,\eta)$$ so we are guaranteed convergence only to a critical point of the Lyapunov function $$V(Q, \eta)$$ with respect to $$\eta.$$
-
-To ensure convergence to a critical point of $$V(Q, \eta)$$ with respect to $$Q,$$ we will need to extend the above analysis to measure the descent of $$V(Q, \eta)$$ during the $$Q$$-update against the functional derivative $$\frac{\partial V}{\partial Q}(Q,\eta).$$
+$$\mathbb{E}(\Vert h(\eta_N) \Vert^2) = O(c_0 + \log n / \sqrt{n} ).$$
 
 ----
 
