@@ -12,3 +12,12 @@ The Curry-Howard correspondence between proofs and programs suggests that we can
 [Slides](https://w3id.org/people/shaoweilin/public/20210422-topos.pdf)
 
 [YouTube](https://www.youtube.com/watch?v=cEdoG9h-pYg)
+
+## Notes
+In this talk, I spell out the mathematical foundations for program synthesis in terms of dependent type theory, based on the Curry-Howard correspondence between proofs and programs. This introductory material is described using more layman terms in an earlier [talk](https://shaoweilin.github.io/artificial-general-intelligence-for-the-internet-of-things/).
+
+I discuss joint work with my PhD student Zhangsheng Lai and collaborator Liang-Ze Wong on knowledge graphs.
+
+I also discuss joint work with my PhD student Jin-Xing Lim and collaborators Georgios Piliouras and Barnabe Monnot on collaborative theorem proving via blockchain. 
+
+One interesting example involves synthesizing different sorting algorithms, such as insertion sort, merge sort and quick sort. I will relate it to the problem of transport between equivalent types (e.g. binary and unary numbers), or from a subtype to its supertype (e.g. lists to binary trees).
