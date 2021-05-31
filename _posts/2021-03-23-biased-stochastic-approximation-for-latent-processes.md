@@ -304,7 +304,7 @@ In this appendix, we derive the gradient
 
 $$\frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{1} , X_1 \vert Z_{0}, X_{0})$$
 
-used in the discriminative model update.
+used in the discriminative model update. The methods used are similar to those employed in the policy gradient theorem [BB01].
 
 We start with the following formula from [BB1] and [KMMW19] for the integral of a function $$r(Y)$$ with respect to the derivative of the stationary distribution $$\bar{\pi}_\lambda(Y)$$.
 
