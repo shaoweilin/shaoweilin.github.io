@@ -83,7 +83,10 @@ $$\begin{array}{rl}
 \displaystyle g_\lambda(\lambda_n,\theta_{n+1}) & =
 \displaystyle \sum_{t=0}^\infty \sum_{w',w} \bar{\pi}_{\lambda_n}(w) Q_{\lambda_n}^t(w'\vert w) \,\,\times
 \\ & \\ & \quad \quad
-\displaystyle \gamma^t \left( \log \frac{Q_{\lambda_n}(w'_1 \vert w'_3,w'_4)}{P_{\theta_{n+1}}(w'_1 \vert w'_3,w'_4)} \right) \left.\frac{d}{d\lambda} \log Q_\lambda(w_1 \vert  w_3,w_4) \right\vert_{\lambda=\lambda_n}
+\displaystyle \gamma^t \left( \log \frac{Q_{\lambda_n}(w'_1 \vert w'_3,w'_4)}{P_{\theta_{n+1}}(w'_1 \vert w'_3,w'_4)} - \log P_{\theta_{n+1}}(w'_2 \vert w'_3, w'_4) -\xi \right) \,\,\times 
+\\ & \\ & \quad \quad
+\displaystyle
+\left.\frac{d}{d\lambda} \log Q_\lambda(w_1 \vert  w_3,w_4) \right\vert_{\lambda=\lambda_n}
 \\ & \\ & \approx
 \displaystyle \frac{d}{d\lambda}V(\lambda_n,\theta_{n+1}) 
 \end{array}$$
@@ -91,6 +94,8 @@ $$\begin{array}{rl}
 where $$Q^t_\lambda$$ denotes the transition probabilities after $$t$$ steps of the Markov chain with distribution $$Q_\lambda.$$
 
 ## What are the Poisson equations here?
+
+**TODO**
 
 Therefore, the mean field satisfies
 
