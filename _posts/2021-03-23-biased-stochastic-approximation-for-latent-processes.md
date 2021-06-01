@@ -3,9 +3,7 @@ layout: post
 title: Biased stochastic approximation for latent processes
 ---
 
-We apply biased stochastic approximation and variational inference to optimize a relative entropy objective for latent Markov processes. Using this technique, we prove under some regularity conditions that the learning algorithm converges to a local minima.
-
-We will be using [biased](https://shaoweilin.github.io/biased-stochastic-approximation/) stochastic approximation [KMMW19] where the stochastic updates are dependent on the past but the conditional expectation of the stochastic updates given the past is not equal to the mean field. These biased stochastic approximation schemes generalize the classical expectation maximization algorithm [KMMW19].
+We apply biased stochastic approximation and variational inference to optimize a relative entropy objective for latent Markov processes. We will be using [biased](https://shaoweilin.github.io/biased-stochastic-approximation/) stochastic approximation [KMMW19] where the stochastic updates are dependent on the past but the conditional expectation of the stochastic updates given the past is not equal to the mean field. These biased stochastic approximation schemes generalize the classical expectation maximization algorithm [KMMW19].
 
 This post is a continuation from our [series](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 
@@ -13,7 +11,7 @@ This post is a continuation from our [series](https://shaoweilin.github.io/motiv
 
 As [before](https://shaoweilin.github.io/variational-inference-for-latent-processes/), we assume that the universe is a Markov process $$\{X_t\},$$ and let its true distribution be the path measure $$Q_*.$$
 
-Suppose that we have a parametric discriminative model $$\{Q_\lambda : \lambda \in \Lambda\}$$ and a parametric generative model $$\{P_\theta : \theta \in \Theta\}$$ where the distributions $$Q_\lambda$$ and $$P_\theta$$ are path measures on some joint process $$\{(Z_t, X_t)\}.$$ The random variables $$Z_t$$ represent computational states in this discriminative-generative model.
+Suppose that we have a parametric discriminative model $$\{Q_\lambda : \lambda \in \Lambda\}$$ and a parametric generative model $$\{P_\theta : \theta \in \Theta\}$$ where the distributions $$Q_\lambda$$ and $$P_\theta$$ are path measures on some joint process $$\{(Z_t, X_t)\}.$$ The random variables $$Z_t$$ represent computational states in this discriminative-generative model. We can also interpret the $$Z_t$$ as sample beliefs from belief distributions $$Q_\lambda(Z_t\vert Z_{t-1},X_{t-1}).$$
 
 We assume that in both models, the distributions are Markov and each $$Z_t$$ and $$X_t$$ are conditionally independent given their past.  We also assume that marginals $$Q(X_{0\ldots T})$$ of the discriminative model distributions $$Q_\lambda(Z_{0 \ldots T}, X_{0\ldots T})$$ are all equal to the true distribution $$Q_*(X_{0\ldots T}).$$
  
@@ -31,7 +29,7 @@ over $$\{Q_\lambda\}$$ and $$\{P_\theta\}$$. We first explore the problem in dis
 
 We assume that $$Q_\lambda$$ has a stationary distribution $$\bar{\pi}_\lambda,$$ and let $$\bar{Q}_\lambda$$ be the distribution of a Markov chain that has the same transition probabilities as $$Q_\lambda$$ but has the initial distribution $$\bar{\pi}_\lambda.$$ Then,
 
-$$\lim_{n \rightarrow \infty} H_{Q_\lambda \Vert P_\theta}(Z_{n+1}, X_{n+1} \vert Z_{n}, X_{n}) = H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{1}, X_{1} \vert Z_{0}, X_{0}).$$
+$$\lim_{n \rightarrow \infty} H_{Q_\lambda \Vert P_\theta}(Z_{n+1}, X_{n+1} \vert Z_{n}, X_{n}) = H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0).$$
 
 ## What is the general intuition behind online learning for latent processes?
 
@@ -41,44 +39,44 @@ First, we pick some initial generative model distribution $$P_{\theta_0}$$ and d
 
 ----
 
-**Step 1 (generative model update).** Fixing the discriminative model distribution $$Q_{\lambda_{n}}(Z_{1} \vert Z_{0}, X_{0}),$$ minimize $$H_{\bar{Q}_{\lambda_{n}}\Vert P_{\theta}}(Z_{1}, X_{1} \vert Z_{0}, X_{0})$$ over generative model distributions $$P_{\theta}$$.
+**Step 1 (generative model update).** Fixing the discriminative model distribution $$Q_{\lambda_{n}}(Z_1 \vert Z_0, X_0),$$ minimize $$H_{\bar{Q}_{\lambda_{n}}\Vert P_{\theta}}(Z_1, X_1 \vert Z_0, X_0)$$ over generative model distributions $$P_{\theta}$$.
 
 By definition,
 
 $$\begin{array}{rl} & 
-H_{\bar{Q}_{\lambda_{n}}\Vert P_{\theta}}(Z_{1}, X_{1} \vert Z_{0}, X_{0})
+H_{\bar{Q}_{\lambda_{n}}\Vert P_{\theta}}(Z_1, X_1 \vert Z_0, X_0)
 \\ & \\ & = 
-\mathbb{E}_{\bar{Q}_{\lambda_{n}}} [\log Q_{\lambda_{n}}(Z_{1}, X_{1} \vert Z_{0},X_{0})] 
+\mathbb{E}_{\bar{Q}_{\lambda_{n}}} [\log Q_{\lambda_{n}}(Z_1, X_1 \vert Z_0,X_0)] 
 \\ & \\ & 
-\quad - \mathbb{E}_{\bar{Q}_{\lambda_{n}}} [\log P_\theta(Z_{1}, X_{1} \vert Z_{0},X_{0})], 
+\quad - \mathbb{E}_{\bar{Q}_{\lambda_{n}}} [\log P_\theta(Z_1, X_1 \vert Z_0,X_0)], 
 \end{array}$$
 
 where we note that the first term is independent of $$\theta$$.
 
 We update the parameter $$\theta$$ using the gradient
 
-$$\displaystyle \theta_{n+1} = \theta_n + \eta_{n+1} \mathbb{E}_{\bar{Q}_{\lambda_{n}}} \left[\left.\frac{d}{d\theta} \log P_\theta(Z_{1}, X_{1} \vert Z_{0},X_{0})\right\vert _{\theta = \theta_n}\right].$$
+$$\displaystyle \theta_{n+1} = \theta_n + \eta_{n+1} \mathbb{E}_{\bar{Q}_{\lambda_{n}}} \left[\left.\frac{d}{d\theta} \log P_\theta(Z_1, X_1 \vert Z_0,X_0)\right\vert _{\theta = \theta_n}\right].$$
 
 where we can also write
 
 $$ \begin{array}{rl} &
-\displaystyle \mathbb{E}_{\bar{Q}_{\lambda}} \left[\left.\frac{d}{d\theta} \log P_\theta(Z_{1}, X_{1} \vert Z_{0},X_{0})\right\vert _{\theta = \theta_n}\right]
+\displaystyle \mathbb{E}_{\bar{Q}_{\lambda}} \left[\left.\frac{d}{d\theta} \log P_\theta(Z_1, X_1 \vert Z_0,X_0)\right\vert _{\theta = \theta_n}\right]
 \\ & \\ & =
 \displaystyle
 \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+1)},X_{0..(T+1)})} \left[ \left.\frac{d}{d\theta} \log P_\theta(Z_{T+1}, X_{T+1} \vert Z_{T},X_{T})\right\vert _{\theta = \theta_n} \right]
 . \end{array}
 $$
 
-**Step 2 (discriminative model update).** Fixing the generative model distribution $$P_{\theta_{n+1}},$$ minimize $$H_{\bar{Q}_\lambda \Vert P_{\theta_{n+1}}}(Z_{1}, X_{1} \vert Z_{0}, X_{0})$$ over discriminative model distributions $$Q_\lambda.$$
+**Step 2 (discriminative model update).** Fixing the generative model distribution $$P_{\theta_{n+1}},$$ minimize $$H_{\bar{Q}_\lambda \Vert P_{\theta_{n+1}}}(Z_1, X_1 \vert Z_0, X_0)$$ over discriminative model distributions $$Q_\lambda.$$
 
 We update the parameter $$\lambda$$ using the gradient
 
-$$\lambda_{n+1} = \displaystyle \lambda_n - \eta_{n+1} \left.\frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_{\theta_{n+1}}}(Z_{1} , X_1 \vert Z_{0}, X_{0})\right\vert _{\lambda = \lambda_n}$$
+$$\lambda_{n+1} = \displaystyle \lambda_n - \eta_{n+1} \left.\frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_{\theta_{n+1}}}(Z_1 , X_1 \vert Z_0, X_0)\right\vert _{\lambda = \lambda_n}$$
 
 where, as shown in the [appendix](https://shaoweilin.github.io/biased-stochastic-approximation-for-latent-processes/#appendix-discriminative-model-update), we have
 
 $$\begin{array}{rl} &
-\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{1}, X_1 \vert Z_{0}, X_{0}) 
+\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0) 
 \\ & \\ &
 = \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+1)},X_{0..(T+1)})} \Bigg[ \left( \log \frac{Q_\lambda(Z_{T+1}, X_{T+1}\vert Z_{T},X_{T})}{P_\theta(Z_{T+1},X_{T+1}\vert Z_{T},X_{T})} \right) \,\,\times 
 \\ & \\ & \quad\quad \displaystyle \sum_{t=0}^{T} \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \Bigg]
@@ -87,9 +85,9 @@ $$\begin{array}{rl} &
 Following [BB1] and [KMMW19], we approximate this gradient with the following numerically stable estimator
 
 $$\begin{array}{rl} &
-\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{1} \vert Z_{0}, X_{0}) 
+\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0) 
 \\ & \\ & \approx 
-\displaystyle \left( \log \frac{Q_\lambda(Z_{T+1}\vert Z_{T},X_{T})}{P_\theta(Z_{T+1}\vert Z_{T},X_{T})} \right) \sum_{t=0}^{T} \gamma^{T-t} \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t})
+\displaystyle \left( \log \frac{Q_\lambda(Z_{T+1},X_{T+1}\vert Z_{T},X_{T})}{P_\theta(Z_{T+1},X_{T+1}\vert Z_{T},X_{T})} \right) \sum_{t=0}^{T} \gamma^{T-t} \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t})
 . \end{array}$$
 
 where $$0 < \gamma < 1$$ is a discount factor, $$T$$ is sufficiently large and $$Z_{0\ldots (T+1)}, X_{0\ldots (T+1)}$$ is drawn from $$Q_{\lambda}.$$
@@ -98,13 +96,37 @@ where $$0 < \gamma < 1$$ is a discount factor, $$T$$ is sufficiently large and $
 
 ## Is there a stochastic approximation of the above procedure?
 
-The above two-step procedure has the following stochastic approximation. 
+In the above twp-step procedure, the term
+
+$$\begin{array}{rl} &
+\displaystyle \log \frac{Q_\lambda(Z_{T+1},X_{T+1}\vert Z_{T},X_{T})}{P_\theta(Z_{T+1},X_{T+1}\vert Z_{T},X_{T})} 
+\\ & \\ & =
+\displaystyle \log \frac{Q_\lambda(Z_{T+1}\vert Z_{T},X_{T})}{P_\theta(Z_{T+1}\vert Z_{T},X_{T})} + \log \frac{Q_\lambda(X_{T+1}\vert Z_{T},X_{T})}{P_\theta(X_{T+1}\vert Z_{T},X_{T})} 
+\\ & \\ & =
+\displaystyle \log \frac{Q_\lambda(Z_{T+1}\vert Z_{T},X_{T})}{P_\theta(Z_{T+1}\vert Z_{T},X_{T})} -  \log P_\theta(X_{T+1}\vert Z_{T},X_{T}) + \log Q_*(X_{T+1}\vert X_{T})
+. \end{array}$$
+
+cannot be evaluated because it depends on the true distribution $$Q_*.$$ Fortunately, this term only scales the discriminative model update; it does not change the direction of the update. 
+
+Nonetheless, let us study the asymptotic time-average of the logarithm of the true distribution. Under mild regularity conditions, we have the ergodic relationship
+
+$$
+-\lim_{T\rightarrow \infty} \frac{1}{T} \sum_{t=0}^T \log Q_*(X_{t+1}\vert X_{t})
+= 
+-\int \bar{\pi}_*(dX_0)Q_*(dX_1|X_0) \log Q_*(X_1|X_0)
+$$
+
+where $$\bar{\pi}_*$$ is the stationary distribution of $$Q_*.$$ Let $$\bar{Q}_*$$ be the distribution of the _true stationary process_ with initial distribution $$\bar{\pi}_*$$ and transition probabilies $$Q_*.$$ The asymptotic time-average is therefore the _conditional entropy_ of $$X_1$$ given $$X_0$$ under the true stationary process. 
+
+Let $$\xi$$ be an estimate of this true conditional entropy. Even if we have a poor estimate, it only affects the scale of the discriminative model update and not its direction.
+
+Now, the above two-step procedure has the following stochastic approximation. 
 
 $$\displaystyle \theta_{n+1} = \theta_n + \eta_{n+1} \left.\frac{d}{d\theta} \log P_\theta(Z_{n}, X_{n} \vert Z_{n-1},X_{n-1}) \right\vert _{\theta = \theta_n}$$
 
 $$\displaystyle \alpha_{n+1} = \gamma \alpha_n + \left.\frac{d}{d\lambda} \log Q_{\lambda}(Z_{n} \vert  Z_{n-1},X_{n-1})\right\vert _{\lambda=\lambda_n}$$
 
-$$\displaystyle \beta_{n+1} = \log \frac{Q_{\lambda_n}(Z_{n}\vert Z_{n-1},X_{n-1})}{P_{\theta_{n+1}}(Z_{n}\vert Z_{n-1},X_{n-1})}$$
+$$\displaystyle \beta_{n+1} =  \log \frac{Q_{\lambda_n}(Z_{n}\vert Z_{n-1},X_{n-1})}{P_{\theta_{n+1}}(Z_{n}\vert Z_{n-1},X_{n-1})} - \log P_{\theta_{n+1}}(X_{n}\vert Z_{n-1},X_{n-1}) -\xi$$
 
 $$\displaystyle \lambda_{n+1} = \lambda_n - \eta_{n+1} \alpha_{n+1} \beta_{n+1}$$ 
 
@@ -116,193 +138,70 @@ In continuous time, the above updates will become differential equations. The sa
 
 Before we make some preliminary observations about this stochastic approximation, let us introduce some terminology. Given $$(Z_{n-1}, X_{n-1}),$$ suppose we sample $$(Z_n, X_n)$$ from $$Q_\lambda(Z_n,X_n \vert Z_{n-1}, X_{n-1}).$$ The _conditional expectation_ of a function $$r(Z_n, X_n, Z_{n-1}, X_{n-1})$$ is the expectation of $$r$$ conditioned on some given values of $$(Z_{n-1}, X_{n-1}).$$ The _mean field_ or _total expectation_ of $$r$$ is the expectation of its conditional expectation over the stationary distribution $$\bar{\pi}_\lambda$$ on $$(Z_{n-1}, X_{n-1}).$$
 
-In the above stochastic approximation, the mean fields of the updates for $$\theta_{n}$$ and $$\lambda_n$$ are (possibly discounted versions of) the corresponding derivatives of $$H_{\bar{Q}_\lambda \Vert P_{\theta}}(Z_{1}, X_{1} \vert Z_{0}, X_{0}).$$ However, the conditional expectations of the updates depend on $$(Z_{n-1}, X_{n-1})$$ and are not necessarily equal to their mean fields. In this case, we say that the stochastic approximation is _biased_.
+In the above stochastic approximation, the mean fields of the updates for $$\theta_{n}$$ and $$\lambda_n$$ are (possibly discounted versions of) the corresponding derivatives of $$H_{\bar{Q}_\lambda \Vert P_{\theta}}(Z_1, X_1 \vert Z_0, X_0).$$ However, the conditional expectations of the updates depend on $$(Z_{n-1}, X_{n-1})$$ and are not necessarily equal to their mean fields. In this case, we say that the stochastic approximation is _biased_.
 
 In continuous time, the mean fields will be derivatives of relative entropy rates. The conditional expectations which depend on the current states $$(Z_t,X_t)$$ will be biased estimates of the mean fields.
 
-**TODO**
-
-We don't know the true distribution, but fortunately the approximate gradient is proportional to the true gradient. The scaling factor should depend on how close the generative model is to the true distribution. If it is far, then we need to set a higher scaling factor. Towards the end of training, if the generative model is close to the true distribution, then the scaling factor decreases.
-
 ## How can we interpret the discriminative model update?
 
-Because $$Z_{1}$$ and $$X_{1}$$ are conditionally independent given the past,
+For a fixed generative model $$P_\theta,$$ the discriminative model update looks for a distribution $$Q_\lambda(Z_n\vert Z_{n-1},X_{n-1})$$ that minimizes the learning objective $$H_{\bar{Q}_\lambda \Vert P_\theta}(Z_n, X_n \vert Z_{n-1}, X_{n-1}).$$ Intuitively, we can think of the update as looking for good belief $$Z_n$$ given the previous belief $$Z_{n-1}$$ and observation $$X_{n-1}.$$
 
-$$\begin{array}{rl} & H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{1}, X_{1} \vert Z_{0}, X_{0}) \\ & \\ &= H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{1} \vert Z_{0}, X_{0}) + H_{\bar{Q}_\lambda \Vert P_\theta}(X_{1} \vert Z_{0}, X_{0}). \end{array}$$
+Because $$Z_n$$ and $$X_n$$ are conditionally independent given the past, the learning objective decomposes as a sum of two terms.
 
-**TODO**
+$$\begin{array}{rl} & H_{\bar{Q}_\lambda \Vert P_\theta}(Z_n, X_n \vert Z_{n-1}, X_{n-1}) \\ & \\ &= H_{\bar{Q}_\lambda \Vert P_\theta}(Z_n \vert Z_{n-1}, X_{n-1}) + H_{\bar{Q}_\lambda \Vert P_\theta}(X_n \vert Z_{n-1}, X_{n-1}) \end{array}$$
 
-In traditional machine learning, the second term is independent of $$\lambda$$ because it depends only on the true distribution $$Q_*$$ of the observables. However, in our case, it is not independent.
+The first term vanishes when 
 
-Since
+$$ Q_\lambda(Z_n \vert Z_{n-1}, X_{n-1}) = P_\theta(Z_n \vert Z_{n-1}, X_{n-1}).$$
+
+This term shows that the discriminative model update tends to _exploit_ the generative model $$P_\theta(Z_n\vert Z_{n-1}, X_{n-1})$$ in generating a belief $$Z_n.$$ 
+
+The second term vanishes when $$Q_\lambda(X_n\vert Z_{n-1},X_{n-1}) = Q_*(X_n\vert X_{n-1})$$ equals $$P_\theta(X_n\vert Z_{n-1},X_{n-1}),$$ but this is clearly impossible because the true distribution is fixed. 
+
+Instead, note that (after a change of indices)
 
 $$\begin{array}{rl} & 
-H_{\mathcal{M}(\mathcal{P}_{Q},\bar{\pi}_{Q}) \Vert \mathcal{M}(\mathcal{P}_\theta, -)} (X_{1} \vert Z_0, X_0) 
+H_{\bar{Q}_\lambda \Vert P_\theta}(X_{n+1} \vert Z_n, X_n) 
 \\ & \\ & = 
-\displaystyle \int \bar{\pi}_{Q} (dX_0) \bar{\pi}_{Q} (dZ_0 \vert X_0) H_{Q_*(X_1 \vert X_0) \Vert \mathcal{P}_\theta(X_1 \vert Z_0, X_0)} (X_{1}) , \end{array}$$
-
-where $$\bar{\pi}_Q$$ is the stationary distribution for the true distribution $$Q$$ on $$\{X_t\}$$, we may extinguish the first term by setting
-
-$$Q(Z_1 \vert Z_0, X_0) = P_\theta(Z_1 \vert Z_0, X_0)$$
-
-which was proposed in the previous section. This first term represents the sampler's incentive to _exploit_ the current model distribution $$P_\theta(Z_1 \vert Z_0, X_0)$$ for most likely explanations of the observations.
-
-As for the second term, it decreases if for each $$X_0$$, we assign a larger weight $$\bar{\pi}_{Q}(dZ_0 \vert X_0)$$ to $$Z_0$$ where the relative entropy $$H_{Q_*(X_1 \vert X_0) \Vert \mathcal{P}_\theta(X_1 \vert Z_0, X_0)} (X_{1})$$ is smaller. In other words, the second term shrinks if for each observation $$X_0,$$ the stationary distribution assigns a larger probability to hidden states $$Z_0$$ which can explain the next observation $$X_1$$ under the given model distribution $$P_\theta.$$ This second term represents the sampler's incentive to _explore_ new explanations which fit the observations better as evaluated by $$P_\theta(X_1 \vert Z_0, X_0)$$, even if those new explanations are less probable under $$P_\theta(Z_1 \vert Z_0, X_0)$$.
-
-
-In the previous section, we chose a sampler $$F(-,\theta)$$ which has a strong tendency to exploit. In practical applications, the design of a good sampler $$F(Q,\theta)$$ may depend on the application, or on some additional mechanism to compare predictions against explanations, or on some kind of curriculum to guide the learning machine so that it may arrive quickly at the most useful explanations.
-
-
-## How do we prove convergence using biased stochastic approximation?
-
-To prove the convergence of our [biased](https://shaoweilin.github.io/biased-stochastic-approximation/) stochastic approximation, we cannot apply the standard unbiased stochastic approximation theory of Robbins and Monro. We can however apply the work of [KMMW19] which gives some guarantees for biased stochastic approximation involving Markov updates. In this section, we will now derive sufficient conditions for the [convergence](https://shaoweilin.github.io/biased-stochastic-approximation/#theorem-convergence-of-biased-stochastic-approximation) of our biased stochastic approximation.
-
-First, let $$W_n$$ denote 
-
-$$W_n = (W_{n1}, W_{n2}, W_{n3}, W_{n4}) := (Z_n,X_n,Z_{n-1},X_{n-1}).$$
-
-Then $$W_n$$ is a $$\lambda$$-controlled Markov process. Abusing notation, we write the distribution of $$W_n$$ as
-
-$$ \begin{array}{rl} & \displaystyle 
-Q_\lambda(W_{n+1} \vert W_n) 
-\\ & \\ & = \displaystyle
-Q_\lambda\left((\,Z_{n+1},X_{n+1},Z_n,X_n)\, \vert\, (Z_n,X_n,Z_{n-1},X_{n-1}) \, \right)
-\\ & \\ & = \displaystyle
-Q_*(X_{n+1}\vert X_n) Q_\lambda(Z_{n+1}\vert Z_n, X_n)
-. \end{array}
-$$
-
-Our Lyapunov function is the learning objective
-
-$$ \displaystyle
-V(\lambda,\theta) := H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{1}, X_{1} \vert Z_{0}, X_{0}).
-$$
-
-We write the stochastic updates as
-
-$$ \begin{array}{rl} 
-\displaystyle \theta_{n+1} & 
-\displaystyle = \theta_n - \eta_{n+1} G_\theta(W_n;\lambda_n,\theta_n)
-\\ & \\ 
-\displaystyle \lambda_{n+1} & 
-\displaystyle = \lambda_n - \eta_{n+1} G_\lambda(W_n;\lambda_n,\theta_{n+1})
-\\ & \\
-W_{n+1} &\sim \mathbb{P}(W_{n+1} \vert W_n; \lambda_{n+1}).
-\end{array}
-$$
-
-where using $$\alpha_n, \beta_n$$ defined previously we have
-
-$$\begin{array}{rl} 
-\displaystyle G_\theta(W_n;\lambda_n,\theta_n) &= 
-\displaystyle - \left. \frac{d}{d\theta} \log P_\theta(Z_{n}, X_{n} \vert Z_{n-1},X_{n-1}) \right\vert _{\theta = \theta_n}
-\\ & \\
-\displaystyle G_\lambda(W_n;\lambda_n,\theta_{n+1}) &= 
-\displaystyle \alpha_{n+1}\beta_{n+1}
-. \end{array}$$
-
-The mean fields of the updates are given by
-
-$$\begin{array}{rl} 
-\displaystyle g_\theta(\lambda_n, \theta_n) & =
-\displaystyle - \sum_w \bar{\pi}_{\lambda_n}(w) \left. \frac{d}{d\theta} \log P_\theta(w_1, w_2 \vert w_3,w_4) \right\vert _{\theta = \theta_n}
-\\ & \\ & =
-\displaystyle \frac{d}{d\theta}V(\lambda_n,\theta_n) 
-\\ & \\
-\displaystyle g_\lambda(\lambda_n,\theta_{n+1}) & =
-\displaystyle \sum_{t=0}^\infty \sum_{w',w} \bar{\pi}_{\lambda_n}(w) Q_{\lambda_n}^t(w'\vert w) \,\,\times
-\\ & \\ & \quad \quad
-\displaystyle \gamma^t \left( \log \frac{Q_{\lambda_n}(w'_1 \vert w'_3,w'_4)}{P_{\theta_{n+1}}(w'_1 \vert w'_3,w'_4)} \right) \left.\frac{d}{d\lambda} \log Q_\lambda(w_1 \vert  w_3,w_4) \right\vert_{\lambda=\lambda_n}
-\\ & \\ & \approx
-\displaystyle \frac{d}{d\lambda}V(\lambda_n,\theta_{n+1}) 
+\displaystyle \int \bar{\pi}_*(dX_n) \bar{\pi}_\lambda(dZ_n\vert dX_n) H_{Q_*(X_{n+1} \vert X_n) \Vert \mathcal{P}_\theta(X_{n+1} \vert Z_n, X_n)} (X_{n+1})
 \end{array}$$
 
-where $$Q^t_\lambda$$ denotes the transition probabilities after $$t$$ steps of the Markov chain with distribution $$Q_\lambda.$$
+so the parameter $$\lambda$$ has an effect only on the stationary transition $$\bar{\pi}_\lambda(dZ_n\vert dX_n).$$ Thus, in the long run, the discriminative model update tends to pair beliefs $$Z_n$$ with the current $$X_n$$ such that the generative model $$P_\theta(X_{n+1} \vert Z_n, X_n)$$ is able to effectively guess the next state $$X_{n+1}$$ under $$Q_*(X_{n+1}\vert X_n).$$ In simpler words, the discriminative model update tends to _explore_ good beliefs $$Z_n$$ for predicting the next observation $$X_{n+1}$$. 
 
-**TODO**
+Note that the above two tendencies to _exploit_ and _explore_ could be in conflict with each other. For example, at the start of the training regime, the generative model $$P_\theta$$ is often a poor fit for the observations. In exploiting the bad generative model, the discriminative model update may end up with a belief $$Z_n$$ that poorly predicts the next observation $$X_{n+1}$$, where the prediction $$P_\theta(X_{n+1}\vert Z_n, X_n)$$ was made under this same generative model. However, by exploring beliefs $$Z_n$$ that well predict the next observation under the generative model, the discriminative model update is giving feedback which the generative model update can use for strengthening the useful parts of the generative model. More precisely, the generative model update will make these useful beliefs more likely under $$P_\theta(Z_n\vert Z_{n-1}, X_{n-1})$$ so that they can be exploited at the next discriminative model update.
 
-Therefore, the mean field satisfies
+In the long run, when the generative model is a good fit for the observations, the tendencies to exploit and to explore will be more in tune with each other. This is because beliefs generated by the model $$P_\theta(Z_n\vert Z_{n-1}, X_{n-1})$$ will also be useful for predicting the next state $$P_\theta(X_{n+1}\vert Z_n,X_n).$$
 
-$$g(Q_n, \theta_n) = \displaystyle \frac{\partial V}{\partial \theta}(Q_n, \theta_n),$$
+Explicitly, the exploitative part of the discriminative model update is estimated by
 
-so assumptions A1 and A2 of the [convergence theorem](https://shaoweilin.github.io/biased-stochastic-approximation/) are automatically satisfied.
+$$
+\displaystyle  \left( \log \frac{Q_\lambda(Z_{T+1}\vert Z_{T},X_{T})}{P_\theta(Z_{T+1}\vert Z_{T},X_{T})} \right) \sum_{t=0}^{T}\gamma^{T-t} \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t})
+$$
+
+while the explorative part is estimated by
+
+$$
+\displaystyle  \left( \log \frac{Q_*(X_{T+1}\vert X_{T})}{P_\theta(X_{T+1}\vert Z_{T},X_{T})} \right) \sum_{t=0}^{T} \gamma^{T-t} \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) .
+$$
+
+The explorative update is large when $$Q_*(X_{T+1}\vert X_{T})$$ and $$P_\theta(X_{T+1}\vert Z_{T},X_{T})$$ are far apart.
 
 
-We now study the Poisson equation
+In the stochastic approximation, the explorative part is controlled by
 
-$$L_{Q,\theta} \hat{E}_{Q, \theta} (w_0) = E_{Q,\theta}(w_0)$$
+$$
+\alpha_{n+2} \,(- \log P_{\theta_{n+2}}(X_{n+1}\vert Z_{n},X_{n}) -\xi)
+$$
 
-where $$w_0 = (z_1, x_1, z_0, x_0),$$
+where $$\xi$$ is a fixed estimate of the true conditional entropy. When $$X_{n+1}$$ is too likely or too unlikely given $$(Z_{n}, X_{n})$$, there will be a big difference between the negative log-likelihood $$- \log P_{\theta_{n+2}}(X_{n+1}\vert Z_{n},X_{n})$$ and the threshold $$\xi.$$ This will generate a strong signal response in the learning system to correct the discrepancy. 
 
-$$\begin{array}{rl} E_{Q,\theta}(w_0) & = \displaystyle - g(Q,\theta) - \frac{d}{d\theta}\log P_\theta(z_{1}, x_{1} \vert z_0, x_0) \\ & \\ & = - \displaystyle  \frac{d}{d\theta} \Big( V(Q,\theta)+ \log P_\theta(z_{1}, x_{1} \vert z_0, x_0) \Big) , \end{array} $$
-
-$$L_{Q,\theta} \hat{E}_{Q, \theta} (w_0) = \mathcal{P}_{Q,\theta} \hat{E}_{Q, \theta} (w_0)- \hat{E}_{Q, \theta} (w_0).$$
-
-The solution of the Poisson equation is given by
-
-$$\hat{E}_{Q, \theta} (w_0) = - \displaystyle \lim_{n \rightarrow \infty} \sum_{k=0}^n \mathcal{P}_{Q,\theta}^k E_{Q,\theta}(w_0).$$
-
-We observe that
-
-$$\begin{array}{rl} & \mathcal{P}_{Q,\theta} E_{Q,\theta}(w_0) \\ & \\ & = \displaystyle -\frac{d}{d\theta} \Bigg( V(Q,\theta) - \int Q(dZ_2, dX_2 \vert z_1, x_1) \log \frac{Q(Z_{2}, X_{2} \vert z_1, x_1)}{P_\theta(Z_{2}, X_{2} \vert z_1, x_1)} \Bigg) \\ & \\ & = \displaystyle - \frac{d}{d\theta} \Big( H_{\mathcal{M}(\mathcal{P}_{Q},\bar{\pi}_{Q}) \Vert \mathcal{M}(\mathcal{P}_\theta, -)} (Z_{1}, X_{1} \vert Z_0, X_0) \\ & \\ & \qquad \qquad - H_{\mathcal{M}(\mathcal{P}_{Q},\pi_{z_1, x_1}) \Vert \mathcal{M}(\mathcal{P}_\theta, -)} (Z_1, X_1 \vert Z_0, X_0) \Big) \end{array}$$
-
-where $$\pi_{z_1, x_1}$$ is the initial distribution with $$Z_1 = z_1, X_1 = x_1$$ almost surely. Then,
-
-$$\begin{array}{rl} & \mathcal{P}_{Q,\theta} \hat{E}_{Q, \theta} (w_0) \\ & \\ & = E_{Q,\theta}(w_0) + \hat{E}_{Q, \theta} (w_0) \\ & \\ & = - \displaystyle \lim_{n \rightarrow \infty} \sum_{k=0}^{n-1} \mathcal{P}_{Q,\theta}^{k+1} E_{Q,\theta}(w_0) \\ & \\ & = \displaystyle \lim_{n \rightarrow \infty} \frac{d}{d\theta} \Big( \sum_{k=0}^{n-1} H_{\mathcal{M}(\mathcal{P}_{Q},\bar{\pi}_{Q}) \Vert \mathcal{M}(\mathcal{P}_\theta, -)} (Z_{k+1}, X_{k+1} \vert Z_k, X_k) \\ & \\ & \quad \displaystyle - \sum_{k=0}^{n-1} H_{\mathcal{M}(\mathcal{P}_{Q},\pi_{z_1, x_1}) \Vert \mathcal{M}(\mathcal{P}_\theta, -)} (Z_{k+1}, X_{k+1} \vert Z_k, X_k) \Big) \\ & \\ & = \displaystyle \lim_{n \rightarrow \infty} \frac{d}{d\theta} \Big( H_{\mathcal{M}(\mathcal{P}_{Q},\bar{\pi}_{Q}) \Vert \mathcal{M}(\mathcal{P}_\theta, -)} (Z_{n}, X_{n} \vert Z_0, X_0) \\ & \\ & \quad \displaystyle - H_{\mathcal{M}(\mathcal{P}_{Q},\pi_{z_1, x_1}) \Vert \mathcal{M}(\mathcal{P}_\theta, -)} (Z_{n}, X_{n} \vert Z_0, X_0) \Big) \end{array}$$
-
-Bringing them all together,
-
-$$\begin{array}{rl} V(Q,\theta) &= H_{\mathcal{M}(\mathcal{P}_{Q},\bar{\pi}_{Q}) \Vert \mathcal{M}(\mathcal{P}_\theta, -)} (Z_{1}, X_{1} \vert Z_0, X_0) \\ & \\ g(Q, \theta) & = \displaystyle \frac{\partial V}{\partial \theta}(Q, \theta) \\ & \\ E_{Q,\theta}(w_0) & = - \displaystyle  \frac{d}{d\theta} \Big( V(Q,\theta)+ \log P_\theta(z_{1}, x_{1} \vert z_0, x_0) \Big) \\ & \\ \mathcal{P}_{Q,\theta} \hat{E}_{Q, \theta} (w_0) & = \displaystyle \lim_{n \rightarrow \infty} \frac{d}{d\theta} \Big( H_{\mathcal{M}(\mathcal{P}_{Q},\bar{\pi}_{Q}) \Vert \mathcal{M}(\mathcal{P}_\theta, -)} (Z_{n}, X_{n} \vert Z_0, X_0) \\ & \\ & \quad \displaystyle - H_{\mathcal{M}(\mathcal{P}_{Q},\pi_{z_1, x_1}) \Vert \mathcal{M}(\mathcal{P}_\theta, -)} (Z_{n}, X_{n} \vert Z_0, X_0) \Big) \\ & \\ \hat{E}_{Q, \theta} (w_0) & = \mathcal{P}_{Q,\theta} \hat{E}_{Q, \theta} (w_0) - E_{Q,\theta}(w_0) \end{array}$$
-
-We impose the following regularity conditions.
-
-----
-
-**C1 (Stationarity).** For all $$Q \in \Delta_\mathcal{M}, \theta \in \Theta,$$ the Markov kernel $$\mathcal{P}_{F(Q,\theta)}$$ has a unique stationary distribution $$\bar{\pi}_{F(Q,\theta)}$$
-
-**C2 (Exploitation and Exploration).** For all $$Q \in \Delta_\mathcal{M}, \theta \in \Theta,$$
-
-$$V(F(Q, \theta),\theta) \leq V(Q,\theta).$$
-
-**C3 ($$\ell$$-smoothness).** There exists $$\ell < \infty$$ such that for all $$Q \in \Delta_\mathcal{M}, \theta, \theta' \in \Theta,$$
-
-$$\displaystyle \left\Vert \frac{\partial V}{\partial \theta}(Q,\theta) - \frac{\partial V}{\partial \theta}(Q,\theta') \right\Vert \leq \ell \Vert \eta - \eta' \Vert.$$
-
-**C4 (Regularity of solution of Poisson equation).** There exists $$\ell_0, \ell_1 < \infty$$ such that for all $$Q \in \Delta_\mathcal{M}, \theta, \theta' \in \Theta, w \in \mathcal{W},$$
-
-$$\Vert \hat{E}_{Q, \theta} (w) \Vert \leq \ell_0, \quad \Vert \mathcal{P}_{Q,\eta} \hat{E}_{Q,\theta}(w) \Vert \leq \ell_0,$$
-
-$$\Vert \mathcal{P}_{Q,\theta} \hat{E}_{Q,\theta}(w) - \mathcal{P}_{Q,\theta'} \hat{E}_{Q,\theta'} (w) \Vert \leq \ell_1 \Vert \theta - \theta' \Vert.$$
-
-**C5 (Boundedness of correction term).** There exists $$\sigma < \infty$$ such that for all $$Q \in \Delta_\mathcal{M}, \theta \in \Theta, w \in \mathcal{W},$$
-
-$$\Vert E_{Q,\theta} (w) \Vert \leq \sigma.$$
-
-----
-
-**Theorem (Convergence of Biased Stochastic Approximation).** Suppose that we have state updates
-
-$$(Y_{k+1}, U_{k+1}) \sim Q_*(Y_{k+1}, U_{k+1} \vert Y_k, U_k),$$
-
-$$Z_{k+1} \sim Q_k(Z_{k+1} \vert Z_k, U_k),$$
-
-and parameter updates
-
-$$\begin{array}{rl} \displaystyle \theta_{k+1} &= \displaystyle \theta_k + \eta_{k+1} \left. \frac{d}{d\theta} \log P_\theta(Z_{k+1}, U_{k+1} \vert Z_k, U_k) \right\vert _{\theta = \theta_k}, \end{array}$$
-
-$$Q_{k+1} = F(Q_k, \theta_{k+1}).$$
-
-for $$0 \leq k \leq n,$$ using step sizes $$\eta_k = \eta_0 k^{-1/2}$$ for sufficiently small $$\eta_0 \geq 0,$$ and using a random stop time $$0 \leq N \leq n$$ with $$\mathbb{P}(N = l) := (\sum_{k=0}^n \eta_{k+1})^{-1} \eta_{l+1}.$$ Then assuming C1-C5, we have
-
-$$\mathbb{E}(\Vert g(Q_N, \theta_N) \Vert^2) = O(\log n / \sqrt{n} ).$$
-
-----
+In [JG14], this strong signal was called _novelty_ or _surprise_. The authors hypothesized that biological neural networks could implement this signal using neuromodulation.
 
 ## Appendix: Discriminative model update
 
 In this appendix, we derive the gradient
 
-$$\frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{1} , X_1 \vert Z_{0}, X_{0})$$
+$$\frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1 , X_1 \vert Z_0, X_0)$$
 
 used in the discriminative model update. The methods used are similar to those employed in the policy gradient theorem [BB01].
 
@@ -324,52 +223,55 @@ $$\begin{array}{rl} &
 = \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Y_{0..(T+1)})} \left[ r(Y_{T+1}) \sum_{t=0}^T \frac{d}{d\lambda} \log Q_\lambda(Y_{t+1} \vert Y_{t}) \right]
 . \end{array}$$
 
-We now derive the discriminative model update. By the product rule,
+We now derive the discriminative model update. Let $$Y_n$$ denote $$(Z_n,X_n).$$ By the product rule,
 
 $$\begin{array}{rl} & 
-\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{1}, X_1 \vert Z_{0}, X_{0}) 
+\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Y_1 \vert Y_0) 
 \\ & \\ &= 
-\displaystyle \frac{d}{d\lambda} \int \bar{\pi}_\lambda(dZ_0,dX_0) \int Q_\lambda(dZ_1, dX_1\vert Z_0,X_0) \log \frac{Q_\lambda(Z_1, X_1 \vert Z_0,X_0)}{P_\theta(Z_1, X_1 \vert Z_0,X_0)} 
+\displaystyle \frac{d}{d\lambda} \int \bar{\pi}_\lambda(dY_0) \int Q_\lambda(dY_1\vert Y_0) \log \frac{Q_\lambda(Y_1 \vert Y_0)}{P_\theta(Y_1 \vert Y_0)} 
 \\ & \\ & = 
-\displaystyle  \int  \frac{d}{d\lambda} \bar{\pi}_\lambda(dZ_0,dX_0) \int Q_\lambda(dZ_1 ,dX_1\vert Z_0,X_0) \log \frac{Q_\lambda(Z_1,X_1\vert Z_0,X_0)}{P_\theta(Z_1,X_1\vert Z_0,X_0)} 
+\displaystyle  \int  \frac{d}{d\lambda} \bar{\pi}_\lambda(dY_0) \int Q_\lambda(dY_1\vert Y_0) \log \frac{Q_\lambda(Y_1\vert Y_0)}{P_\theta(Y_1\vert Y_0)} 
 \\ & \\ & 
-\quad +  \displaystyle \int \bar{\pi}_\lambda(dZ_0,dX_0) \int \frac{d}{d\lambda} Q_\lambda(dZ_1 ,dX_1\vert Z_0,X_0) \log \frac{Q_\lambda(Z_1,X_1\vert Z_0,X_0)}{P_\theta(Z_1,X_1\vert Z_0,X_0)} 
+\quad +  \displaystyle \int \bar{\pi}_\lambda(dY_0) \int \frac{d}{d\lambda} Q_\lambda(dY_1\vert Y_0) \log \frac{Q_\lambda(Y_1\vert Y_0)}{P_\theta(Y_1\vert Y_0)} 
 \\ & \\ & 
-\quad + \displaystyle  \int \bar{\pi}_\lambda(dZ_0,dX_0) \int Q_\lambda(dZ_1 ,dX_1\vert Z_0,X_0) \frac{d}{d\lambda} \log \frac{Q_\lambda(Z_1,X_1\vert Z_0,X_0)}{P_\theta(Z_1,X_1\vert Z_0,X_0)}
+\quad + \displaystyle  \int \bar{\pi}_\lambda(dY_0) \int Q_\lambda(dY_1\vert Y_0) \frac{d}{d\lambda} \log \frac{Q_\lambda(Y_1\vert Y_0)}{P_\theta(Y_1\vert Y_0)}
 . \end{array}$$
 
 The third term equals 
 
 $$\begin{array}{rl} &
-\displaystyle \int \bar{\pi}_\lambda(dZ_0,dX_0)  \int Q_\lambda(dZ_1, dX_1 \vert Z_0,X_0) \frac{\frac{d}{d\lambda} Q_\lambda(Z_1,X_1\vert Z_0,X_0)}{Q_\lambda(Z_1,X_1\vert Z_0,X_0)} \\ & \\ & = \displaystyle \int \bar{\pi}_\lambda(dZ_0,dX_0) \frac{d}{d\lambda}\int Q_\lambda(dZ_1,dX_1\vert Z_0,X_0) \\ & \\ & = \displaystyle \int \bar{\pi}_\lambda(dZ_0,dX_0) \frac{d}{d\lambda} 1 \\ & \\ & = 0. \end{array}$$
+\displaystyle \int \bar{\pi}_\lambda(dY_0)  \int Q_\lambda(dY_1 \vert Y_0) \frac{\frac{d}{d\lambda} Q_\lambda(Y_1\vert Y_0)}{Q_\lambda(Y_1\vert Y_0)} 
+\\ & \\ & = 
+\displaystyle \int \bar{\pi}_\lambda(dY_0) \frac{d}{d\lambda}\int Q_\lambda(dY_1\vert Y_0) 
+\\ & \\ & = 
+\displaystyle \int \bar{\pi}_\lambda(dY_0) \frac{d}{d\lambda} 1 
+\\ & \\ & = 
+0. \end{array}$$
 
 The second terms equals
 
 $$\begin{array}{rl} &
-\displaystyle \int \bar{\pi}_\lambda(dZ_0,dX_0) \int  Q_\lambda(dZ_1,dX_1 \vert Z_0,X_0) \,\,\times \\ &  \\ & \quad \displaystyle \left(\log \frac{Q_\lambda(Z_1,X_1\vert Z_0,X_0)}{P_\theta(Z_1,X_1\vert Z_0,X_0)}\right) \frac{\frac{d}{d\lambda} \log Q_\lambda(Z_1,X_1 \vert Z_0,X_0)}{ Q_\lambda(Z_1,X_1 \vert Z_0,X_0)}
+\displaystyle \int \bar{\pi}_\lambda(dY_0) \int  Q_\lambda(dY_1 \vert Y_0)  \left(\log \frac{Q_\lambda(Y_1\vert Y_0)}{P_\theta(Y_1\vert Y_0)}\right) \frac{\frac{d}{d\lambda} \log Q_\lambda(Y_1 \vert Y_0)}{ Q_\lambda(Y_1 \vert Y_0)}
 \\ & \\ &
-= \displaystyle \int \bar{\pi}_\lambda(dZ_0,dX_0) \int  Q_\lambda(dZ_1 ,dX_1\vert Z_0,X_0) \,\,\times \\ &  \\ & \quad \displaystyle \left(\log \frac{Q_\lambda(Z_1,X_1\vert Z_0,X_0)}{P_\theta(Z_1,X_1\vert Z_0,X_0)}\right) \frac{d}{d\lambda} \log Q_\lambda(Z_1,X_1 \vert Z_0,X_0)
+= \displaystyle \int \bar{\pi}_\lambda(dY_0) \int  Q_\lambda(dY_1\vert Y_0)  \left(\log \frac{Q_\lambda(Y_1\vert Y_0)}{P_\theta(Y_1\vert Y_0)}\right) \frac{d}{d\lambda} \log Q_\lambda(Y_1 \vert Y_0)
 \\ & \\ &
-= \displaystyle \lim_{T \rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+1)},X_{0..(T+1)})} \Bigg[ \left(\log \frac{Q_\lambda(Z_{T+1},X_{T+1}\vert Z_T,X_T)}{P_\theta(Z_{T+1},X_{T+1}\vert Z_T,X_T)}\right) \frac{d}{d\lambda} \log Q_\lambda(dZ_{T+1},dX_{T+1} \vert Z_T,X_T) \Bigg]
+= \displaystyle \lim_{T \rightarrow \infty} \mathbb{E}_{Q_\lambda(Y_{0..(T+1)})} \Bigg[ \left(\log \frac{Q_\lambda(Y_{T+1}\vert Y_T)}{P_\theta(Y_{T+1}\vert Y_T)}\right) \frac{d}{d\lambda} \log Q_\lambda(dY_{T+1} \vert Y_T) \Bigg]
 . \end{array}$$
 
 Taking derivatives of the stationary distribution, the first term becomes
 
 $$\begin{array}{rl} &
-\displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+1)},X_{0..(T+1)})} \Bigg[ \int Q_\lambda(dZ_{T+2},dX_{T+2}\vert Z_{T+1},X_{T+1}) \log \frac{Q_\lambda(Z_{T+2},X_{T+2} \vert Z_{T+1},X_{T+1})}{P_\theta(Z_{T+2},X_{T+2} \vert Z_{T+1},X_{T+1})} \,\,\times 
-\\ & \\ & \quad\quad \displaystyle \sum_{t=0}^T \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1},X_{t+1} \vert  Z_{t},X_{t}) \Bigg]
+\displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Y_{0..(T+1)})} \Bigg[ \int Q_\lambda(dY_{T+2}\vert Y_{T+1}) \left(\log \frac{Q_\lambda(Y_{T+2} \vert Y_{T+1})}{P_\theta(Y_{T+2} \vert Y_{T+1})} \right)\sum_{t=0}^T \frac{d}{d\lambda} \log Q_\lambda(Y_{t+1}\vert  Y_{t}) \Bigg]
 \\ & \\ & =
-\displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+2)},X_{0..(T+2)})} \Bigg[ \left( \log \frac{Q_\lambda(Z_{T+2},X_{T+2}\vert Z_{T+1},X_{T+1})}{P_\theta(Z_{T+2},X_{T+2}\vert Z_{T+1},X_{T+1})} \right) \,\,\times 
-\\ & \\ & \quad\quad \displaystyle \sum_{t=0}^T \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1},X_{t+1} \vert  Z_{t},X_{t}) \Bigg]
+\displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Y_{0..(T+2)})} \Bigg[ \left( \log \frac{Q_\lambda(Y_{T+2}\vert Y_{T+1})}{P_\theta(Y_{T+2}\vert Y_{T+1})} \right) \sum_{t=0}^T \frac{d}{d\lambda} \log Q_\lambda(Y_{t+1} \vert  Y_{t}) \Bigg]
 \end{array}$$
 
 Combining this with the second term, we get 
 
 $$\begin{array}{rl} &
-\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{1},X_1 \vert Z_{0}, X_{0}) 
+\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Y_1 \vert Y_0) 
 \\ & \\ &
-= \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+2)},X_{0..(T+2)})} \Bigg[ \left( \log \frac{Q_\lambda(Z_{T+2},X_{T+2}\vert Z_{T+1},X_{T+1})}{P_\theta(Z_{T+2},X_{T+2}\vert Z_{T+1},X_{T+1})} \right) \,\,\times 
-\\ & \\ & \quad\quad \displaystyle \sum_{t=0}^{T+1} \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} ,X_{T+2} \vert  Z_{t},X_{t}) \Bigg]
+= \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Y_{0..(T+2)})} \Bigg[ \left( \log \frac{Q_\lambda(Y_{T+2}\vert Y_{T+1})}{P_\theta(Y_{T+2}\vert Y_{T+1})} \right)  \sum_{t=0}^{T+1} \frac{d}{d\lambda} \log Q_\lambda(Y_{t+1} \vert  Y_{t}) \Bigg]
 . \end{array}$$
 
 Lastly, because 
@@ -378,27 +280,29 @@ $$
 \begin{array}{rl} &
 \displaystyle \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1},X_{t+1} \vert  Z_{t},X_{t}) 
 \\ & \\ &
-= \displaystyle \frac{d}{d\lambda} \left( \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) + \log Q_*(X_{t+1} \vert X_t) \right)
+= \displaystyle \frac{d}{d\lambda} \Big( \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) + \log Q_*(X_{t+1} \vert X_t) \Big)
 \\ & \\ &
 = \displaystyle \frac{d}{d\lambda}  \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t})
 , \end{array}
 $$
 
-the gradient simplifies to
+the gradient simplifies (after a change of indices) to
 
 $$\begin{array}{rl} &
-\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{1},X_1 \vert Z_{0}, X_{0}) 
+\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1,X_1 \vert Z_0,X_0) 
 \\ & \\ & = 
-\displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+2)},X_{0..(T+2)})} \Bigg[ \left( \log \frac{Q_\lambda(Z_{T+2},X_{T+2}\vert Z_{T+1},X_{T+1})}{P_\theta(Z_{T+2},X_{T+2}\vert Z_{T+1},X_{T+1})} \right) \,\,\times 
-\\ & \\ & \quad\quad \displaystyle \sum_{t=0}^T \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \Bigg]
+\displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+1)},X_{0..(T+1)})} \Bigg[ \left( \log \frac{Q_\lambda(Z_{T+1},X_{T+1}\vert Z_T,X_T)}{P_\theta(Z_{T+1},X_{T+1}\vert Z_T,X_T)} \right)  \sum_{t=0}^T \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \Bigg]
 . \end{array}$$
 
 ## References
 
 [BB01] Baxter, Jonathan, and Peter L. Bartlett. "Infinite-horizon policy-gradient estimation." _Journal of Artificial Intelligence Research_ 15 (2001): 319-350.
 
+[JG14] Jimenez Rezende, Danilo, and Wulfram Gerstner. "Stochastic variational learning in recurrent spiking networks." _Frontiers in computational neuroscience_ 8 (2014): 38.
+
+[KMMW19] Karimi, Belhal, Blazej Miasojedow, Éric Moulines, and Hoi-To Wai. "Non-asymptotic analysis of biased stochastic approximation scheme." _arXiv preprint arXiv:1902.00629_ (2019).
+
 [L92] Leroux, Brian G. "Maximum-likelihood estimation for hidden Markov models." _Stochastic processes and their applications_ 40, no. 1 (1992): 127-143.
 
 [S01] Sato, Masa-Aki. "Online model selection based on the variational Bayes." _Neural computation_ 13, no. 7 (2001): 1649-1681.
 
-[KMMW19] Karimi, Belhal, Blazej Miasojedow, Éric Moulines, and Hoi-To Wai. "Non-asymptotic analysis of biased stochastic approximation scheme." _arXiv preprint arXiv:1902.00629_ (2019).
