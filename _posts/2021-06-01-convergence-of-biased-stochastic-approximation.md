@@ -117,6 +117,7 @@ Similar to a previous [analysis](https://shaoweilin.github.io/biased-stochastic-
 $$
 \displaystyle \mathbb{E}\left[\left\Vert g_\theta(\lambda_N, \theta_N) \right\Vert^2\right] + \mathbb{E}\left[\left\Vert g_\lambda(\lambda_N,\theta_{N+1}) \right\Vert^2\right] \leq C(T) \rightarrow 0 
 $$
+
 as $$T \rightarrow \infty,$$ where the expectations are taken over stochastic updates in the stochastic approximation and over the random stopping time. 
 
 Sometimes, it is not possible to prove convergence of the above upper bound to zero because of certain relaxations (e.g. discounted gradient updates) in the stochastic approximation. Instead, we may prove that the upper bound converges to some positive constant.
@@ -185,15 +186,6 @@ then we can bound $$\sum_{n=0}^T \eta_{n+1}\left\Vert g_\lambda(\lambda_n,\theta
 Bounding the above two terms will require solutions of the Poisson equations for $$E_\lambda(W_n; \lambda_n,\theta_{n+1})$$ and $$E_\theta(W_n; \lambda_n,\theta_{n}).$$
 
 ## What are the corresponding Poisson equations?
-
-**TODO**
-
-Therefore, the mean field satisfies
-
-$$g(Q_n, \theta_n) = \displaystyle \frac{\partial V}{\partial \theta}(Q_n, \theta_n),$$
-
-so assumptions A1 and A2 of the [convergence theorem](https://shaoweilin.github.io/biased-stochastic-approximation/) are automatically satisfied.
-
 
 We now study the Poisson equation
 
