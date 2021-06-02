@@ -93,7 +93,98 @@ $$\begin{array}{rl}
 
 where $$Q^t_\lambda$$ denotes the transition probabilities after $$t$$ steps of the Markov chain with distribution $$Q_\lambda.$$
 
-## What are the Poisson equations here?
+From the mean fields, we have the following correction terms. 
+
+$$\begin{array}{rl} 
+\displaystyle E_\theta(W_n;\lambda_n,\theta_n) &= 
+\displaystyle G_\theta(W_n;\lambda_n,\theta_n) - g_\theta(\lambda_n, \theta_n)
+\\ & \\
+\displaystyle E_\lambda(W_n;\lambda_n,\theta_{n+1}) &= 
+\displaystyle G_\lambda(W_n;\lambda_n,\theta_{n+1}) - g_\lambda(\lambda_n,\theta_{n+1})
+. \end{array}$$
+
+Note that the _total expectation_ (with respect to the stationary distribution $$\bar{\pi}_\lambda$$ on $$W_n$$) of each correction terms is zero by definition. On the other hand, if the _conditional expectation_ (given the past $$W_{n-1}, \ldots, W_0$$) is zero, then the stochastic approximation is _unbiased_. Otherwise, the stochastic approximation is biases, which is the case for our problem. 
+
+
+## How do we prove convergence?
+
+Given a computation time limit $$T > 0$$ and learning rates $$\eta_1, \ldots, \eta_{T+1},$$ a common assumption [KMMW19] for the termination of the stochastic approximation is to have a random stopping time $$N \in \{0,\ldots, T\}$$ satisfying
+
+$$\displaystyle \mathbb{P}[N=k] \quad \propto \quad \eta_{k+1}.$$
+
+Similar to a previous [analysis](https://shaoweilin.github.io/biased-stochastic-approximation/#theorem-convergence-of-biased-stochastic-approximation), our goal is to find an upper bound such that
+
+$$
+\displaystyle \mathbb{E}\left[\left\Vert g_\theta(\lambda_N, \theta_N) \right\Vert^2\right] + \mathbb{E}\left[\left\Vert g_\lambda(\lambda_N,\theta_{N+1}) \right\Vert^2\right] \leq C(T) \rightarrow 0 
+$$
+as $$T \rightarrow \infty,$$ where the expectations are taken over stochastic updates in the stochastic approximation and over the random stopping time. 
+
+Sometimes, it is not possible to prove convergence of the above upper bound to zero because of certain relaxations (e.g. discounted gradient updates) in the stochastic approximation. Instead, we may prove that the upper bound converges to some positive constant.
+
+Either way, we get some control on the mean and variance of the lengths $$\left\Vert g_\theta(\lambda_N, \theta_N) \right\Vert$$ and $$\left\Vert g_\lambda(\lambda_N,\theta_{N+1}) \right\Vert$$ of the mean fields or total expectations of the stochastic updates, despite the fact that the parameters $$\theta_n$$ and $$\lambda_n$$ are continually fluctuating because of the stochastic updates.
+
+Note that by definition
+
+$$
+\mathbb{E}\left[\left\Vert g_\theta(\lambda_N, \theta_N) \right\Vert^2\right] = \frac{\sum_{n=0}^T \eta_{n+1} \mathbb{E}\left[ \left\Vert g_\theta(\lambda_n, \theta_n) \right\Vert^2 \right]}{\sum_{n=0}^T \eta_{n+1}},
+$$
+
+$$
+\mathbb{E}\left[\left\Vert g_\lambda(\lambda_N, \theta_{N+1}) \right\Vert^2\right] = \frac{\sum_{n=0}^T \eta_{n+1} \mathbb{E}\left[ \left\Vert g_\lambda(\lambda_n, \theta_{n+1}) \right\Vert^2 \right]}{\sum_{n=0}^T \eta_{n+1}}.
+$$
+
+Following the previous [analysis](https://shaoweilin.github.io/biased-stochastic-approximation/#theorem-convergence-of-biased-stochastic-approximation), the proof starts with the $$\ell$$-smoothness of $$V(\lambda,\theta)$$ which implies 
+
+$$\begin{array}{rl} &
+\displaystyle
+V(\lambda_{n+1},\eta_{n+1}) - V(\lambda_n,\theta_n) 
+\\ & \\ & \leq  
+\displaystyle -\eta_{n+1}\left\langle \frac{d}{d\lambda} V(\lambda_n,\theta_{n+1}) , G_\lambda(W_n; \lambda_n,\theta_{n+1}) \right\rangle
+\\ & \\ & \quad
+\displaystyle -\eta_{n+1}\left\langle \frac{d}{d\theta} V(\lambda_n,\theta_n) , G_\theta(W_n; \lambda_n,\theta_{n}) \right\rangle
+\\ & \\ & \quad
+\displaystyle + \frac{\ell}{2} \eta_{n+1}^2 \left( \left\Vert G_\lambda(W_n; \lambda_n,\theta_{n+1}) \right\Vert^2 + \left\Vert G_\theta(W_n; \lambda_n,\theta_n) \right\Vert^2 \right)
+.\end{array}
+$$
+
+We now substitute the mean fields and correction terms. After some rearranging and summing from $$n=0$$ to $$n=T$$, we have
+
+$$\begin{array}{rl} &
+\displaystyle
+\sum_{n=0}^T \eta_{n+1}\left\langle \frac{d}{d\lambda} V(\lambda_n,\theta_{n+1}) , g_\lambda(\lambda_n,\theta_{n+1}) \right\rangle
+\\ & \\ & +
+\displaystyle
+\sum_{n=0}^T \eta_{n+1}\left\langle \frac{d}{d\theta} V(\lambda_n,\theta_n) , g_\theta(\lambda_n,\theta_{n}) \right\rangle 
+\\ & \\ & \leq  
+V(\lambda_{0},\eta_{0}) - V(\lambda_{T+1},\theta_{T+1})
+\\ & \\ & \quad
+\displaystyle -\eta_{n+1}\left\langle \frac{d}{d\lambda} V(\lambda_n,\theta_{n+1}) , \sum_{n=0}^T E_\lambda(W_n; \lambda_n,\theta_{n+1}) \right\rangle
+\\ & \\ & \quad
+\displaystyle -\eta_{n+1}\left\langle \frac{d}{d\theta} V(\lambda_n,\theta_n) , \sum_{n=0}^T E_\theta(W_n; \lambda_n,\theta_{n}) \right\rangle
+\\ & \\ & \quad
+\displaystyle + \frac{\ell}{2} \eta_{n+1}^2 \sum_{n=0}^T \left( \left\Vert g_\lambda(\lambda_n,\theta_{n+1}) \right\Vert^2 + \left\Vert E_\lambda(W_n; \lambda_n,\theta_{n+1}) \right\Vert^2 \right)
+\\ & \\ & \quad
+\displaystyle + \frac{\ell}{2} \eta_{n+1}^2 \sum_{n=0}^T \left( \left\Vert g_\theta(\lambda_n,\theta_{n}) \right\Vert^2 + \left\Vert E_\theta(W_n; \lambda_n,\theta_n) \right\Vert^2 \right)
+.\end{array}
+$$
+
+The left-hand-side of the inequality can be bounded below by some affine function of $$\left\Vert g_\lambda(\lambda_n,\theta_{n+1}) \right\Vert^2$$ and $$ \left\Vert g_\theta(\lambda_n,\theta_{n}) \right\Vert^2.$$ On the right-hand-side of the inequality, we may assume that the Lyapunov difference $$V(\lambda_{0},\eta_{0}) - V(\lambda_{T+1},\theta_{T+1})$$ and the squared corrections $$\left\Vert E_\lambda(W_n; \lambda_n,\theta_{n+1}) \right\Vert^2$$ and $$\left\Vert E_\theta(W_n; \lambda_n,\theta_n) \right\Vert^2$$ are bounded above by constants. 
+
+Overall, if we also have control over the terms
+
+$$
+\displaystyle \left\langle \frac{d}{d\lambda} V(\lambda_n,\theta_{n+1}) , \sum_{n=0}^T E_\lambda(W_n; \lambda_n,\theta_{n+1}) \right\rangle,
+$$
+
+$$
+\displaystyle \left\langle \frac{d}{d\theta} V(\lambda_n,\theta_n) , \sum_{n=0}^T E_\theta(W_n; \lambda_n,\theta_{n}) \right\rangle,
+$$
+
+then we can bound $$\sum_{n=0}^T \eta_{n+1}\left\Vert g_\lambda(\lambda_n,\theta_{n+1}) \right\Vert^2$$ and $$\sum_{n=0}^T \eta_{n+1} \left\Vert g_\theta(\lambda_n,\theta_{n}) \right\Vert^2,$$ which in turn gives us a bound on $$ \mathbb{E}[\left\Vert g_\theta(\lambda_N, \theta_N) \right\Vert^2] + \mathbb{E}[\left\Vert g_\lambda(\lambda_N,\theta_{N+1}) \right\Vert^2].$$
+
+Bounding the above two terms will require solutions of the Poisson equations for $$E_\lambda(W_n; \lambda_n,\theta_{n+1})$$ and $$E_\theta(W_n; \lambda_n,\theta_{n}).$$
+
+## What are the corresponding Poisson equations?
 
 **TODO**
 
