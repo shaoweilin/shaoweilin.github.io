@@ -24,7 +24,7 @@ If the value of $$V(\eta(t))$$ along any path $$\eta : \mathbb{R} \rightarrow \m
 
 Suppose $$V$$ is $$C^1$$-smooth and near each point $$\eta$$ it has the expansion
 
-$$V(\eta') = V(\eta) + \langle \nabla V(\eta), \eta'-\eta \rangle + O(\Vert \eta'-\eta \Vert^2)$$.
+$$V(\eta') = V(\eta) + \langle \nabla V(\eta), \eta'-\eta \rangle + O(\Vert \eta'-\eta \Vert^2).$$
 
 In continuous-time, the updates $$\eta'-\eta$$ are infinitesimal, so the change in $$V$$ is dominated by the first order term. Therefore, if $$0 < \langle \nabla V(\eta), h(\eta) \rangle$$ for all $$\eta : \mathcal{H}$$ away from the zeros of $$h,$$ then $$V$$ is a Lyapunov function for the dynamical system.
 
