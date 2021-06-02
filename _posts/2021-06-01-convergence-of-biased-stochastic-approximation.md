@@ -78,7 +78,7 @@ $$\begin{array}{rl}
 \displaystyle g_\theta(\lambda_n, \theta_n) & =
 \displaystyle - \sum_w \bar{\pi}_{\lambda_n}(w) \left. \frac{d}{d\theta} \log P_\theta(w_1, w_2 \vert w_3,w_4) \right\vert _{\theta = \theta_n}
 \\ & \\ & =
-\displaystyle \frac{d}{d\theta}V(\lambda_n,\theta_n) 
+\displaystyle \frac{\partial}{\partial\theta}V(\lambda_n,\theta_n) 
 \\ & \\
 \displaystyle g_\lambda(\lambda_n,\theta_{n+1}) & =
 \displaystyle \sum_{t=0}^\infty \sum_{w',w} \bar{\pi}_{\lambda_n}(w) Q_{\lambda_n}^t(w'\vert w) \,\,\times
@@ -88,7 +88,7 @@ $$\begin{array}{rl}
 \displaystyle
 \left.\frac{d}{d\lambda} \log Q_\lambda(w_1 \vert  w_3,w_4) \right\vert_{\lambda=\lambda_n}
 \\ & \\ & \approx
-\displaystyle \frac{d}{d\lambda}V(\lambda_n,\theta_{n+1}) 
+\displaystyle \frac{\partial}{\partial\lambda}V(\lambda_n,\theta_{n+1}) 
 \end{array}$$
 
 where $$Q^t_\lambda$$ denotes the transition probabilities after $$t$$ steps of the Markov chain with distribution $$Q_\lambda.$$
@@ -140,9 +140,9 @@ $$\begin{array}{rl} &
 \displaystyle
 V(\lambda_{n+1},\eta_{n+1}) - V(\lambda_n,\theta_n) 
 \\ & \\ & \leq  
-\displaystyle -\eta_{n+1}\left\langle \frac{d}{d\lambda} V(\lambda_n,\theta_{n+1}) , G_\lambda(W_n; \lambda_n,\theta_{n+1}) \right\rangle
+\displaystyle -\eta_{n+1}\left\langle \frac{\partial}{\partial\lambda} V(\lambda_n,\theta_{n+1}) , G_\lambda(W_n; \lambda_n,\theta_{n+1}) \right\rangle
 \\ & \\ & \quad
-\displaystyle -\eta_{n+1}\left\langle \frac{d}{d\theta} V(\lambda_n,\theta_n) , G_\theta(W_n; \lambda_n,\theta_{n}) \right\rangle
+\displaystyle -\eta_{n+1}\left\langle \frac{\partial}{\partial\theta} V(\lambda_n,\theta_n) , G_\theta(W_n; \lambda_n,\theta_{n}) \right\rangle
 \\ & \\ & \quad
 \displaystyle + \frac{\ell}{2} \eta_{n+1}^2 \left( \left\Vert G_\lambda(W_n; \lambda_n,\theta_{n+1}) \right\Vert^2 + \left\Vert G_\theta(W_n; \lambda_n,\theta_n) \right\Vert^2 \right)
 .\end{array}
@@ -152,16 +152,16 @@ We now substitute the mean fields and correction terms. After some rearranging a
 
 $$\begin{array}{rl} &
 \displaystyle
-\sum_{n=0}^T \eta_{n+1}\left\langle \frac{d}{d\lambda} V(\lambda_n,\theta_{n+1}) , g_\lambda(\lambda_n,\theta_{n+1}) \right\rangle
+\sum_{n=0}^T \eta_{n+1}\left\langle \frac{\partial}{\partial\lambda} V(\lambda_n,\theta_{n+1}) , g_\lambda(\lambda_n,\theta_{n+1}) \right\rangle
 \\ & \\ & +
 \displaystyle
-\sum_{n=0}^T \eta_{n+1}\left\langle \frac{d}{d\theta} V(\lambda_n,\theta_n) , g_\theta(\lambda_n,\theta_{n}) \right\rangle 
+\sum_{n=0}^T \eta_{n+1}\left\langle \frac{\partial}{\partial\theta} V(\lambda_n,\theta_n) , g_\theta(\lambda_n,\theta_{n}) \right\rangle 
 \\ & \\ & \leq  
 V(\lambda_{0},\eta_{0}) - V(\lambda_{T+1},\theta_{T+1})
 \\ & \\ & \quad
-\displaystyle -\eta_{n+1}\left\langle \frac{d}{d\lambda} V(\lambda_n,\theta_{n+1}) , \sum_{n=0}^T E_\lambda(W_n; \lambda_n,\theta_{n+1}) \right\rangle
+\displaystyle -\eta_{n+1}\left\langle \frac{\partial}{\partial\lambda} V(\lambda_n,\theta_{n+1}) , \sum_{n=0}^T E_\lambda(W_n; \lambda_n,\theta_{n+1}) \right\rangle
 \\ & \\ & \quad
-\displaystyle -\eta_{n+1}\left\langle \frac{d}{d\theta} V(\lambda_n,\theta_n) , \sum_{n=0}^T E_\theta(W_n; \lambda_n,\theta_{n}) \right\rangle
+\displaystyle -\eta_{n+1}\left\langle \frac{\partial}{\partial\theta} V(\lambda_n,\theta_n) , \sum_{n=0}^T E_\theta(W_n; \lambda_n,\theta_{n}) \right\rangle
 \\ & \\ & \quad
 \displaystyle + \frac{\ell}{2} \eta_{n+1}^2 \sum_{n=0}^T \left( \left\Vert g_\lambda(\lambda_n,\theta_{n+1}) \right\Vert^2 + \left\Vert E_\lambda(W_n; \lambda_n,\theta_{n+1}) \right\Vert^2 \right)
 \\ & \\ & \quad
@@ -174,11 +174,11 @@ The left-hand-side of the inequality can be bounded below by some affine functio
 Overall, if we also have control over the terms
 
 $$
-\displaystyle \left\langle \frac{d}{d\lambda} V(\lambda_n,\theta_{n+1}) , \sum_{n=0}^T E_\lambda(W_n; \lambda_n,\theta_{n+1}) \right\rangle,
+\displaystyle \left\langle \frac{\partial}{\partial\lambda} V(\lambda_n,\theta_{n+1}) , \sum_{n=0}^T E_\lambda(W_n; \lambda_n,\theta_{n+1}) \right\rangle,
 $$
 
 $$
-\displaystyle \left\langle \frac{d}{d\theta} V(\lambda_n,\theta_n) , \sum_{n=0}^T E_\theta(W_n; \lambda_n,\theta_{n}) \right\rangle,
+\displaystyle \left\langle \frac{\partial}{\partial\theta} V(\lambda_n,\theta_n) , \sum_{n=0}^T E_\theta(W_n; \lambda_n,\theta_{n}) \right\rangle,
 $$
 
 then we can bound $$\sum_{n=0}^T \eta_{n+1}\left\Vert g_\lambda(\lambda_n,\theta_{n+1}) \right\Vert^2$$ and $$\sum_{n=0}^T \eta_{n+1} \left\Vert g_\theta(\lambda_n,\theta_{n}) \right\Vert^2,$$ which in turn gives us a bound on $$ \mathbb{E}[\left\Vert g_\theta(\lambda_N, \theta_N) \right\Vert^2] + \mathbb{E}[\left\Vert g_\lambda(\lambda_N,\theta_{N+1}) \right\Vert^2].$$
@@ -187,31 +187,80 @@ Bounding the above two terms will require solutions of the Poisson equations for
 
 ## What are the corresponding Poisson equations?
 
-We now study the Poisson equation
+We study the first Poisson equation
 
-$$L_{Q,\theta} \hat{E}_{Q, \theta} (w_0) = E_{Q,\theta}(w_0)$$
+$$L_{\lambda} \hat{E}_{\theta} (w_0; \lambda,\theta) = E_{\theta}(w_0; \lambda,\theta)$$
 
 where $$w_0 = (z_1, x_1, z_0, x_0),$$
 
-$$\begin{array}{rl} E_{Q,\theta}(w_0) & = \displaystyle - g(Q,\theta) - \frac{d}{d\theta}\log P_\theta(z_1, x_1 \vert z_0, x_0) \\ & \\ & = - \displaystyle  \frac{d}{d\theta} \Big( V(Q,\theta)+ \log P_\theta(z_1, x_1 \vert z_0, x_0) \Big) , \end{array} $$
-
-$$L_{Q,\theta} \hat{E}_{Q, \theta} (w_0) = \mathcal{P}_{Q,\theta} \hat{E}_{Q, \theta} (w_0)- \hat{E}_{Q, \theta} (w_0).$$
+$$L_{\lambda} \hat{E}_{\theta} (w_0;\lambda,\theta) = Q_{\lambda} \hat{E}_{\theta} (w_0;\lambda,\theta)- \hat{E}_{\theta} (w_0;\lambda,\theta).$$
 
 The solution of the Poisson equation is given by
 
-$$\hat{E}_{Q, \theta} (w_0) = - \displaystyle \lim_{n \rightarrow \infty} \sum_{k=0}^n \mathcal{P}_{Q,\theta}^k E_{Q,\theta}(w_0).$$
+$$\hat{E}_{\theta} (w_0;\lambda,\theta) = - \displaystyle \sum_{t=0}^\infty Q_{\lambda}^t E_{\theta}(w_0;\lambda,\theta).$$
 
-We observe that
+Now, let us write
 
-$$\begin{array}{rl} & \mathcal{P}_{Q,\theta} E_{Q,\theta}(w_0) \\ & \\ & = \displaystyle -\frac{d}{d\theta} \Bigg( V(Q,\theta) - \int Q(dZ_2, dX_2 \vert z_1, x_1) \log \frac{Q(Z_{2}, X_{2} \vert z_1, x_1)}{P_\theta(Z_{2}, X_{2} \vert z_1, x_1)} \Bigg) \\ & \\ & = \displaystyle - \frac{d}{d\theta} \Big( H_{\mathcal{M}(\mathcal{P}_{Q},\bar{\pi}_{Q}) \Vert \mathcal{M}(\mathcal{P}_\theta, -)} (Z_1, X_1 \vert Z_0, X_0) \\ & \\ & \qquad \qquad - H_{\mathcal{M}(\mathcal{P}_{Q},\pi_{z_1, x_1}) \Vert \mathcal{M}(\mathcal{P}_\theta, -)} (Z_1, X_1 \vert Z_0, X_0) \Big) \end{array}$$
+$$ \displaystyle
+E_{\theta}(w_0; \lambda,\theta) = -  \frac{\partial}{\partial\theta} \left( H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0) - \log \frac{Q_\lambda(z_1,x_1\vert z_0, x_0)}{P_\theta(z_1,x_1 \vert z_0,x_0)} \right).
+$$
 
-where $$\pi_{z_1, x_1}$$ is the initial distribution with $$Z_1 = z_1, X_1 = x_1$$ almost surely. Then,
+It follows that for $$t \geq 1,$$
 
-$$\begin{array}{rl} & \mathcal{P}_{Q,\theta} \hat{E}_{Q, \theta} (w_0) \\ & \\ & = E_{Q,\theta}(w_0) + \hat{E}_{Q, \theta} (w_0) \\ & \\ & = - \displaystyle \lim_{n \rightarrow \infty} \sum_{k=0}^{n-1} \mathcal{P}_{Q,\theta}^{k+1} E_{Q,\theta}(w_0) \\ & \\ & = \displaystyle \lim_{n \rightarrow \infty} \frac{d}{d\theta} \Big( \sum_{k=0}^{n-1} H_{\mathcal{M}(\mathcal{P}_{Q},\bar{\pi}_{Q}) \Vert \mathcal{M}(\mathcal{P}_\theta, -)} (Z_{k+1}, X_{k+1} \vert Z_k, X_k) \\ & \\ & \quad \displaystyle - \sum_{k=0}^{n-1} H_{\mathcal{M}(\mathcal{P}_{Q},\pi_{z_1, x_1}) \Vert \mathcal{M}(\mathcal{P}_\theta, -)} (Z_{k+1}, X_{k+1} \vert Z_k, X_k) \Big) \\ & \\ & = \displaystyle \lim_{n \rightarrow \infty} \frac{d}{d\theta} \Big( H_{\mathcal{M}(\mathcal{P}_{Q},\bar{\pi}_{Q}) \Vert \mathcal{M}(\mathcal{P}_\theta, -)} (Z_{n}, X_{n} \vert Z_0, X_0) \\ & \\ & \quad \displaystyle - H_{\mathcal{M}(\mathcal{P}_{Q},\pi_{z_1, x_1}) \Vert \mathcal{M}(\mathcal{P}_\theta, -)} (Z_{n}, X_{n} \vert Z_0, X_0) \Big) \end{array}$$
+$$\begin{array}{rl} & 
+\displaystyle Q_\lambda^t E_{\theta}(w_0;\lambda,\theta) 
+\\ & \\ & = 
+\displaystyle -\frac{\partial}{\partial\theta} \Bigg( H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0) 
+\\ & \\ & \quad
+\displaystyle - \int \hat{Q}_\lambda(dZ_0,dX_0)\hat{Q}_\lambda^t(dZ_{t}, dX_{t} \vert Z_0, X_0) \log \frac{\hat{Q}_\lambda(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})}{P_\theta(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})} \Bigg) 
+\\ & \\ & = 
+\displaystyle - \frac{\partial}{\partial\theta} \left( H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})  - H_{\hat{Q}_\lambda \Vert P_\theta}(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})  \right) \end{array}$$
+
+where $$\hat{Q}_\lambda$$ is the distribution of the Markov chain that initializes $$(Z_0,X_0)$$ with the state $$(z_1, x_1)$$ and has transition probabilities $$Q_\lambda.$$ Therefore,
+
+$$\begin{array}{rl} & 
+\displaystyle
+Q_{\lambda} \hat{E}_{\theta} (w_0;\lambda,\theta)
+\\ & \\ & = 
+\displaystyle
+- \sum_{t=1}^{\infty} Q_\lambda^{t} E_{\theta}(w_0;\lambda,\theta)  
+\\ & \\ & = 
+\displaystyle \lim_{T \rightarrow \infty} \frac{\partial}{\partial\theta} \Big( \sum_{t=1}^{T} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})
+\\ & \\ & \quad
+ \displaystyle - \sum_{t=1}^{T}  H_{\hat{Q}_\lambda \Vert P_\theta}(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1}) \Big) 
+ \\ & \\ & = 
+ \displaystyle \lim_{T \rightarrow \infty} \frac{\partial}{\partial\theta} \Big( H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) -  H_{\hat{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) \Big) 
+\end{array}$$
+
+where the last equality follows from the chain rule for conditional relative entropy. 
+
+As for the second Poisson equation
+
+$$L_{\lambda} \hat{E}_{\lambda} (w_0; \lambda,\theta) = E_{\lambda}(w_0; \lambda,\theta)$$
+
+its solution is
+
+$$\hat{E}_{\lambda} (w_0;\lambda,\theta) = - \displaystyle \sum_{t=0}^\infty Q_{\lambda}^t E_{\lambda}(w_0;\lambda,\theta).$$
 
 Bringing them all together,
 
-$$\begin{array}{rl} V(Q,\theta) &= H_{\mathcal{M}(\mathcal{P}_{Q},\bar{\pi}_{Q}) \Vert \mathcal{M}(\mathcal{P}_\theta, -)} (Z_1, X_1 \vert Z_0, X_0) \\ & \\ g(Q, \theta) & = \displaystyle \frac{\partial V}{\partial \theta}(Q, \theta) \\ & \\ E_{Q,\theta}(w_0) & = - \displaystyle  \frac{d}{d\theta} \Big( V(Q,\theta)+ \log P_\theta(z_1, x_1 \vert z_0, x_0) \Big) \\ & \\ \mathcal{P}_{Q,\theta} \hat{E}_{Q, \theta} (w_0) & = \displaystyle \lim_{n \rightarrow \infty} \frac{d}{d\theta} \Big( H_{\mathcal{M}(\mathcal{P}_{Q},\bar{\pi}_{Q}) \Vert \mathcal{M}(\mathcal{P}_\theta, -)} (Z_{n}, X_{n} \vert Z_0, X_0) \\ & \\ & \quad \displaystyle - H_{\mathcal{M}(\mathcal{P}_{Q},\pi_{z_1, x_1}) \Vert \mathcal{M}(\mathcal{P}_\theta, -)} (Z_{n}, X_{n} \vert Z_0, X_0) \Big) \\ & \\ \hat{E}_{Q, \theta} (w_0) & = \mathcal{P}_{Q,\theta} \hat{E}_{Q, \theta} (w_0) - E_{Q,\theta}(w_0) \end{array}$$
+$$\begin{array}{rl}
+V(\lambda,\theta) &= H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0) 
+\\ & \\ 
+g_\theta(\lambda, \theta) & = 
+\displaystyle \frac{\partial}{\partial \theta} V(\lambda, \theta) 
+\\ & \\ 
+E_{\theta} (w_0;\lambda,\theta) & = 
+\displaystyle - \frac{\partial}{\partial\theta} \Big( V(\lambda,\theta)+ \log P_\theta(z_1, x_1 \vert z_0, x_0) \Big) 
+\\ & \\ 
+Q_{\lambda} \hat{E}_{\theta} (w_0;\lambda,\theta) & =
+\displaystyle \lim_{T \rightarrow \infty} \frac{\partial}{\partial\theta} \Big( H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0})  
+\\ & \\ & \qquad \qquad 
+\displaystyle -  H_{\hat{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) \Big)
+\\ & \\ 
+\hat{E}_{\theta} (w_0;\lambda,\theta) & = 
+Q_{\lambda} \hat{E}_{\theta} (w_0;\lambda,\theta) - E_{\theta} (w_0;\lambda,\theta) 
+\end{array}$$
 
 We impose the following regularity conditions.
 
