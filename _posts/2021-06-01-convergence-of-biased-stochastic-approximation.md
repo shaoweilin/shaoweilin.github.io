@@ -30,7 +30,7 @@ We [recall](https://shaoweilin.github.io/biased-stochastic-approximation-for-lat
 
 ----
 
-**C1 (Markov property and stationarity).** Under the true distribution $$Q_*,$$ the process $$\{X_t\}$$ is Markov. Under each $$Q_\lambda$$ and each $$P_\theta,$$ the process $$\{(Z_t, X_t)\}$$ is Markov, and $$Z_t$$ and $$X_t$$ are independent given their past. The true distribution $$Q_*$$ has a stationary distribution $$\bar{\pi}_*,$$ and each discriminative model distribution $$Q_\lambda$$ has a stationary distribution $$\bar{\pi}_\lambda.$$
+**C1 (Markov property and stationarity).** Under the true distribution $$Q_*,$$ the process $$\{X_t\}$$ is Markov. Under each $$Q_\lambda$$ and each $$P_\theta,$$ the process $$\{(Z_t, X_t)\}$$ is Markov, and $$Z_t$$ and $$X_t$$ are independent given their past. The true distribution $$Q_*$$ has a stationary distribution $$\bar{\pi}_*,$$ and each $$Q_\lambda$$ has a stationary distribution $$\bar{\pi}_\lambda.$$
 
 ----
 
