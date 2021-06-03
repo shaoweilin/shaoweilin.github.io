@@ -210,7 +210,9 @@ where $$\hat{\xi}$$ is a fixed estimate of the true conditional entropy. When $$
 
 In [JG14], this strong signal was called _novelty_ or _surprise_. The authors hypothesized that biological neural networks could implement this signal using neuromodulation.
 
-**TODO: Attention-gated backpropagation**
+In [PBR20], a reinforcement learning scheme for training multilayer neural networks was derived. To implement the weight updates, besides computing the usual feedforward signals, the scheme also computes feedback signals using feedback connections, a global modulating signal representing the reward prediction error, and a local gating signal representing top-down attention. The resulting weight updates are Hebbian. 
+
+While there are many interesting similarities between their scheme and our algorithm, one major difference is that we do not require the feedback weights to be the same as the feedforward weights. In our algorithm, the feedback weights are represented by the parameter $$\lambda$$ and the feedforward weights by $$\theta$$. At the end of training,  the feedback weights will tend towards the feedforward weights because of the tendency to exploit. However, tying the weights together at the start of training could be detrimental to learning due to the need of the neural network to explore.
 
 ## Appendix: Discriminative model update
 
@@ -318,6 +320,8 @@ $$\begin{array}{rl} &
 [KMMW19] Karimi, Belhal, Blazej Miasojedow, Éric Moulines, and Hoi-To Wai. "Non-asymptotic analysis of biased stochastic approximation scheme." _arXiv preprint arXiv:1902.00629_ (2019).
 
 [L92] Leroux, Brian G. "Maximum-likelihood estimation for hidden Markov models." _Stochastic processes and their applications_ 40, no. 1 (1992): 127-143.
+
+[PBR20] Pozzi, Isabella, Sander Bohte, and Pieter Roelfsema. "Attention-Gated Brain Propagation: How the brain can implement reward-based error backpropagation." _Advances in Neural Information Processing Systems_ 33 (2020).
 
 [S01] Sato, Masa-Aki. "Online model selection based on the variational Bayes." _Neural computation_ 13, no. 7 (2001): 1649-1681.
 
