@@ -125,9 +125,9 @@ More [precisely](https://shaoweilin.github.io/building-foundations-of-informatio
 
 $$\bar{Q}_* \!\times\!\bar{Q}_* (X_1, X_1',X_0) = \bar{\pi}_*(X_0) Q_*(X_1 \vert X_0) Q_*(X_1'\vert X_0),$$
 
-$$\bar{Q}_{**} (X_1, X_1', X_0) = \bar{\pi}_*(X_0) Q_*(X_1 \vert X_0) \,\bm{1}(X_1 = X_1').$$
+$$\bar{Q}_{**} (X_1, X_1', X_0) = \bar{\pi}_*(X_0) Q_*(X_1 \vert X_0) \,\mathbf{1}(X_1 = X_1').$$
 
-where $$\bm{1}(X_1 = X_1')$$ is the indicator function that ensures that $$X_1$$ and $$X_1'$$ are copies of each other. Then, the true conditional entropy is
+where $$\mathbf{1}(X_1 = X_1')$$ is the indicator function that ensures that $$X_1$$ and $$X_1'$$ are copies of each other. Then, the true conditional entropy is
 
 $$
 \xi = H_{\bar{Q}_{**} \Vert \bar{Q}_* \!\times\! \bar{Q}_*} (X_1 \vert X_0).
