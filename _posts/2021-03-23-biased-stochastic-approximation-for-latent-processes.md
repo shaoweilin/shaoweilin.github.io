@@ -82,16 +82,6 @@ $$\begin{array}{rl} &
 \\ & \\ & \quad\quad \displaystyle \sum_{t=0}^{T} \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \Bigg]
 . \end{array}$$
 
-Following [BB1] and [KMMW19], we approximate this gradient with the following numerically stable estimator
-
-$$\begin{array}{rl} &
-\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0) 
-\\ & \\ & \approx 
-\displaystyle \left( \log \frac{Q_\lambda(Z_{T+1},X_{T+1}\vert Z_{T},X_{T})}{P_\theta(Z_{T+1},X_{T+1}\vert Z_{T},X_{T})} \right) \sum_{t=0}^{T} \gamma^{T-t} \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t})
-. \end{array}$$
-
-where $$0 < \gamma < 1$$ is a discount factor, $$T$$ is sufficiently large and $$Z_{0\ldots (T+1)}, X_{0\ldots (T+1)}$$ is drawn from $$Q_{\lambda}.$$
-
 ----
 
 ## Is there a stochastic approximation of the above procedure?
@@ -145,13 +135,13 @@ $$\displaystyle X_{n+1} \sim Q_*(X_{n+1} \vert X_{n})$$
 
 $$\displaystyle Z_{n+1} \sim Q_{\lambda_{n+1}}(Z_{n+1} \vert Z_{n}, X_{n})$$
 
-$$\displaystyle \alpha_{n+1} = \gamma \alpha_n + \left.\frac{d}{d\lambda} \log Q_{\lambda}(Z_{n+1} \vert  Z_{n},X_{n})\right\vert _{\lambda=\lambda_{n+1}}$$
+$$\displaystyle \alpha_{n+1} = \alpha_n + \left.\frac{d}{d\lambda} \log Q_{\lambda}(Z_{n+1} \vert  Z_{n},X_{n})\right\vert _{\lambda=\lambda_{n+1}}$$
 
 In continuous time, the above updates will become differential equations. The samples $$Z_t$$ would be driven by a Poisson process, and the transition probabilities appearing in the updates for $$\theta_t$$, $$\alpha_t$$ and $$\beta_t$$ would be replaced by transition rates. 
 
 Before we make some preliminary observations about this stochastic approximation, let us introduce some terminology. Given $$(Z_{n-1}, X_{n-1}),$$ suppose we sample $$(Z_n, X_n)$$ from $$Q_\lambda(Z_n,X_n \vert Z_{n-1}, X_{n-1}).$$ The _conditional expectation_ of a function $$r(Z_n, X_n, Z_{n-1}, X_{n-1})$$ is the expectation of $$r$$ conditioned on some given values of $$(Z_{n-1}, X_{n-1}).$$ The _mean field_ or _total expectation_ of $$r$$ is the expectation of its conditional expectation over the stationary distribution $$\bar{\pi}_\lambda$$ on $$(Z_{n-1}, X_{n-1}).$$
 
-In the above stochastic approximation, the mean fields of the updates for $$\theta_{n}$$ and $$\lambda_n$$ are (possibly discounted versions of) the corresponding derivatives of $$H_{\bar{Q}_\lambda \Vert P_{\theta}}(Z_1, X_1 \vert Z_0, X_0).$$ However, the conditional expectations of the updates depend on $$(Z_{n-1}, X_{n-1})$$ and are not necessarily equal to their mean fields. In this case, we say that the stochastic approximation is _biased_.
+If the conditional expectations of the updates are independent of $$(Z_{n-1}, X_{n-1})$$, then they will be equal to their mean fields. In this case, we say that the stochastic approximation is _unbiased_. On the other hand, if the conditional expectations depend on $$(Z_{n-1}, X_{n-1})$$, we say that the stochastic approximation is _biased_.
 
 In continuous time, the mean fields will be derivatives of relative entropy rates. The conditional expectations which depend on the current states $$(Z_t,X_t)$$ will be biased estimates of the mean fields.
 
@@ -188,13 +178,13 @@ In the long run, when the generative model is a good fit for the observations, t
 Explicitly, the exploitative part of the discriminative model update is estimated by
 
 $$
-\displaystyle  \left( \log \frac{Q_\lambda(Z_{T+1}\vert Z_{T},X_{T})}{P_\theta(Z_{T+1}\vert Z_{T},X_{T})} \right) \sum_{t=0}^{T}\gamma^{T-t} \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t})
+\displaystyle  \left( \log \frac{Q_\lambda(Z_{T+1}\vert Z_{T},X_{T})}{P_\theta(Z_{T+1}\vert Z_{T},X_{T})} \right) \sum_{t=0}^{T} \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t})
 $$
 
 while the explorative part is estimated by
 
 $$
-\displaystyle  \left( \log \frac{Q_*(X_{T+1}\vert X_{T})}{P_\theta(X_{T+1}\vert Z_{T},X_{T})} \right) \sum_{t=0}^{T} \gamma^{T-t} \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) .
+\displaystyle  \left( \log \frac{Q_*(X_{T+1}\vert X_{T})}{P_\theta(X_{T+1}\vert Z_{T},X_{T})} \right) \sum_{t=0}^{T} \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) .
 $$
 
 The explorative update is large when $$Q_*(X_{T+1}\vert X_{T})$$ and $$P_\theta(X_{T+1}\vert Z_{T},X_{T})$$ are far apart.
