@@ -101,38 +101,51 @@ In the above twp-step procedure, the term
 $$\begin{array}{rl} &
 \displaystyle \log \frac{Q_\lambda(Z_{T+1},X_{T+1}\vert Z_{T},X_{T})}{P_\theta(Z_{T+1},X_{T+1}\vert Z_{T},X_{T})} 
 \\ & \\ & =
-\displaystyle \log \frac{Q_\lambda(Z_{T+1}\vert Z_{T},X_{T})}{P_\theta(Z_{T+1}\vert Z_{T},X_{T})} + \log \frac{Q_\lambda(X_{T+1}\vert Z_{T},X_{T})}{P_\theta(X_{T+1}\vert Z_{T},X_{T})} 
-\\ & \\ & =
-\displaystyle \log \frac{Q_\lambda(Z_{T+1}\vert Z_{T},X_{T})}{P_\theta(Z_{T+1}\vert Z_{T},X_{T})} -  \log P_\theta(X_{T+1}\vert Z_{T},X_{T}) + \log Q_*(X_{T+1}\vert X_{T})
+\displaystyle \log \frac{Q_\lambda(Z_{T+1}\vert Z_{T},X_{T})}{P_\theta(Z_{T+1}, X_{T+1}\vert Z_{T},X_{T})} + \log Q_*(X_{T+1}\vert X_{T})
 . \end{array}$$
 
-cannot be evaluated because it depends on the true distribution $$Q_*.$$ Fortunately, this term only scales the discriminative model update; it does not change the direction of the update. 
+cannot be evaluated because it depends on the true distribution $$Q_*.$$ Fortunately, this term only scales the discriminative model update; it does not change the direction of the update. We will then replace the unknown $$\log Q_*(X_{T+1}\vert X_{T})$$ with an estimate.
 
-Nonetheless, let us study the asymptotic time-average of the logarithm of the true distribution. Under mild regularity conditions, we have the ergodic relationship
+Suppose we study the asymptotic time-average 
 
 $$
--\lim_{T\rightarrow \infty} \frac{1}{T} \sum_{t=0}^T \log Q_*(X_{t+1}\vert X_{t})
-= 
+\xi = -\lim_{T\rightarrow \infty} \frac{1}{T} \sum_{t=0}^T \log Q_*(X_{t+1}\vert X_{t})
+$$
+
+of the negative log-transition of the true distribution. Under mild regularity conditions, we have the ergodic relationship
+
+$$
+\xi = 
 -\int \bar{\pi}_*(dX_0)Q_*(dX_1|X_0) \log Q_*(X_1|X_0)
 $$
 
-where $$\bar{\pi}_*$$ is the stationary distribution of $$Q_*.$$ Let $$\bar{Q}_*$$ be the distribution of the _true stationary process_ with initial distribution $$\bar{\pi}_*$$ and transition probabilies $$Q_*.$$ The asymptotic time-average is therefore the _conditional entropy_ of $$X_1$$ given $$X_0$$ under the true stationary process. 
+where $$\bar{\pi}_*$$ is the stationary distribution of $$Q_*.$$ Let $$\bar{Q}_*$$ be the distribution of the _true stationary process_ with initial distribution $$\bar{\pi}_*$$ and transition probabilies $$Q_*.$$ The asymptotic time-average $$\xi$$ is therefore the _true conditional entropy_ of $$X_1$$ given $$X_0$$ under the true stationary process. 
 
-Let $$\xi$$ be an estimate of this true conditional entropy. Even if we have a poor estimate, it only affects the scale of the discriminative model update and not its direction.
+More [precisely](https://shaoweilin.github.io/building-foundations-of-information-theory-on-relative-entropy/#how-do-we-derive-entropy-from-relative-entropy), given random variables $$X_0, X_1, X_1',$$ we construct two distributions, namely
+
+$$\bar{Q}_* \!\times\!\bar{Q}_* (X_1, X_1',X_0) = \bar{\pi}_*(X_0) Q_*(X_1 \vert X_0) Q_*(X_1'\vert X_0),$$
+
+$$\bar{Q}_{**} (X_1, X_1', X_0) = \bar{\pi}_*(X_0) Q_*(X_1 \vert X_0) \,\bm{1}(X_1 = X_1').$$
+
+where $$\bm{1}(X_1 = X_1')$$ is the indicator function that ensures that $$X_1$$ and $$X_1'$$ are copies of each other. Then, the true conditional entropy is
+
+$$
+\xi = H_{\bar{Q}_{**} \Vert \bar{Q}_* \!\times\! \bar{Q}_*} (X_1 \vert X_0).
+$$
+
+Let $$\hat{\xi}$$ be an estimate of this true conditional entropy. 
 
 Now, the above two-step procedure has the following stochastic approximation. 
 
 $$\displaystyle \theta_{n+1} = \theta_n + \eta_{n+1} \left.\frac{d}{d\theta} \log P_\theta(Z_{n}, X_{n} \vert Z_{n-1},X_{n-1}) \right\vert _{\theta = \theta_n}$$
 
-$$\displaystyle \alpha_{n+1} = \gamma \alpha_n + \left.\frac{d}{d\lambda} \log Q_{\lambda}(Z_{n} \vert  Z_{n-1},X_{n-1})\right\vert _{\lambda=\lambda_n}$$
-
-$$\displaystyle \beta_{n+1} =  \log \frac{Q_{\lambda_n}(Z_{n}\vert Z_{n-1},X_{n-1})}{P_{\theta_{n+1}}(Z_{n}\vert Z_{n-1},X_{n-1})} - \log P_{\theta_{n+1}}(X_{n}\vert Z_{n-1},X_{n-1}) -\xi$$
-
-$$\displaystyle \lambda_{n+1} = \lambda_n - \eta_{n+1} \alpha_{n+1} \beta_{n+1}$$ 
+$$\displaystyle \lambda_{n+1} = \lambda_n - \eta_{n+1} \alpha_{n} \left( \log \frac{Q_{\lambda_n}(Z_{n}\vert Z_{n-1},X_{n-1})}{P_{\theta_{n+1}}(Z_{n},X_{n}\vert Z_{n-1},X_{n-1})} -\hat{\xi} \right)$$ 
 
 $$\displaystyle X_{n+1} \sim Q_*(X_{n+1} \vert X_{n})$$
 
 $$\displaystyle Z_{n+1} \sim Q_{\lambda_{n+1}}(Z_{n+1} \vert Z_{n}, X_{n})$$
+
+$$\displaystyle \alpha_{n+1} = \gamma \alpha_n + \left.\frac{d}{d\lambda} \log Q_{\lambda}(Z_{n+1} \vert  Z_{n},X_{n})\right\vert _{\lambda=\lambda_{n+1}}$$
 
 In continuous time, the above updates will become differential equations. The samples $$Z_t$$ would be driven by a Poisson process, and the transition probabilities appearing in the updates for $$\theta_t$$, $$\alpha_t$$ and $$\beta_t$$ would be replaced by transition rates. 
 
@@ -190,12 +203,14 @@ The explorative update is large when $$Q_*(X_{T+1}\vert X_{T})$$ and $$P_\theta(
 In the stochastic approximation, the explorative part is controlled by
 
 $$
-\alpha_{n+2} \,(- \log P_{\theta_{n+2}}(X_{n+1}\vert Z_{n},X_{n}) -\xi)
+\alpha_{n+2} \,(- \log P_{\theta_{n+2}}(X_{n+1}\vert Z_{n},X_{n}) -\hat{\xi})
 $$
 
-where $$\xi$$ is a fixed estimate of the true conditional entropy. When $$X_{n+1}$$ is too likely or too unlikely given $$(Z_{n}, X_{n})$$, there will be a big difference between the negative log-likelihood $$- \log P_{\theta_{n+2}}(X_{n+1}\vert Z_{n},X_{n})$$ and the threshold $$\xi.$$ This will generate a strong signal response in the learning system to correct the discrepancy. 
+where $$\hat{\xi}$$ is a fixed estimate of the true conditional entropy. When $$X_{n+1}$$ is too likely or too unlikely given $$(Z_{n}, X_{n})$$, there will be a big difference between the negative log-likelihood $$- \log P_{\theta_{n+2}}(X_{n+1}\vert Z_{n},X_{n})$$ and the threshold $$\hat{\xi}.$$ This will generate a strong signal response in the learning system to correct the discrepancy. 
 
 In [JG14], this strong signal was called _novelty_ or _surprise_. The authors hypothesized that biological neural networks could implement this signal using neuromodulation.
+
+**TODO: Attention-gated backpropagation**
 
 ## Appendix: Discriminative model update
 

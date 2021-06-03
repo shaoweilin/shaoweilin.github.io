@@ -214,11 +214,11 @@ To summarize, we have the following convergence result for biased stochastic app
 
 ----
 
-**A1 (Relation between Lyapunov gradient and mean field).** There exists $$c_0 \geq 0, c_1 \geq 0$$ such that for all $$\eta \in \mathcal{H},$$
+**A1 (Direction of mean field).** There exists $$c_0 \geq 0, c_1 \geq 0$$ such that for all $$\eta \in \mathcal{H},$$
 
 $$\displaystyle c_0 + c_1 \left\langle \frac{\partial V}{\partial \eta}(\eta) , h(\eta) \right\rangle \geq \Vert h(\eta) \Vert^2.$$
 
-**A2 (Relation between Lyapunov value and mean field).** There exists $$d_0 \geq 0, d_1 \geq 0$$ such that for all $$\eta \in \mathcal{H},$$
+**A2 (Length of mean field).** There exists $$d_0 \geq 0, d_1 \geq 0$$ such that for all $$\eta \in \mathcal{H},$$
 
 $$\displaystyle d_0 + d_1 \Vert h(\eta) \Vert \geq \left\Vert \frac{\partial V}{\partial \eta}(\eta) \right\Vert.$$
 
@@ -230,13 +230,13 @@ $$\displaystyle \left\Vert \frac{\partial V}{\partial \eta}(\eta) - \frac{\parti
 
 $$L_{\eta} \hat{H}_{\eta}(x) = E_{\eta}(x).$$
 
-**A5 (Regularity of solution of Poisson equation).** There exists $$\ell_0, \ell_1 < \infty$$ such that for all $$\eta, \eta' \in \mathcal{H}, x \in \mathcal{X},$$
+**A5 (Regularity of solution).** There exists $$\ell_0, \ell_1 < \infty$$ such that for all $$\eta, \eta' \in \mathcal{H}, x \in \mathcal{X},$$
 
 $$\Vert \hat{H}_{\eta} (x) \Vert \leq \ell_0, \quad \Vert P_{\eta} \hat{H}_{\eta}(x) \Vert \leq \ell_0,$$
 
 $$\Vert P_{\eta} \hat{H}_{\eta}(x) - P_{\eta'} \hat{H}_{\eta'} (x) \Vert \leq \ell_1 \Vert \eta - \eta' \Vert.$$
 
-**A6 (Boundedness of correction term).** There exists $$\sigma < \infty$$ such that for all $$\eta \in \mathcal{H}, x \in \mathcal{X},$$
+**A6 (Correction bound).** There exists $$\sigma < \infty$$ such that for all $$\eta \in \mathcal{H}, x \in \mathcal{X},$$
 
 $$\Vert E_{\eta} (x) \Vert \leq \sigma.$$
 
