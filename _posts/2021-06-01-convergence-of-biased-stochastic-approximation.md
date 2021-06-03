@@ -143,7 +143,7 @@ First, we make some common assumptions about the step sizes and the stop time fo
 
 ----
 
-**C5 (Step sizes and stop time).** For all $$k \geq 1,$$ the step sizes are given by
+**<a id="assumption-step-sizes-and-stop-time"></a>C5 (Step sizes and stop time).** For all $$k \geq 1,$$ the step sizes are given by
 
 $$\eta_k = \eta_1 k^{-1/2}$$
 
@@ -355,7 +355,7 @@ we have
 
 $$\mathbb{E}\left[\left\Vert g_\theta(\lambda_N, \theta_N) \right\Vert^2\right] + \mathbb{E}\left[\left\Vert g_\lambda(\lambda_N,\theta_{N+1}) \right\Vert^2\right] = O(c_0 + \log T / \sqrt{T} )$$
 
-where $$c_0$$ was defined in assumption [C3](#assumption-direction-of-mean-field).
+where $$c_0$$ and $$T$$ were defined in [C3](#assumption-direction-of-mean-field) and [C5](#assumption-step-sizes-and-stop-time) respectively.
 
 ----
 
