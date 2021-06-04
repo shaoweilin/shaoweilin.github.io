@@ -80,7 +80,7 @@ $$ \begin{array}{rl}
 \displaystyle \lambda_{n+1} & 
 \displaystyle = \lambda_n - \eta_{n+1} G_\lambda(W_n;\lambda_n,\theta_{n+1})
 \\ & \\
-W_{n+1} &\sim \mathbb{P}(W_{n+1} \vert W_n; \lambda_{n+1}).
+W_{n+1} &\sim Q_{\lambda_{n+1}}(W_{n+1} \vert W_n).
 \end{array}
 $$
 
