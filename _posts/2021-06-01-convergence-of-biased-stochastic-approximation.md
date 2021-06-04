@@ -312,10 +312,10 @@ a candidate solution is
 
 $$\hat{E}_{\lambda} (w_0;\lambda,\theta) = - \displaystyle \sum_{t=0}^\infty Q_{\lambda}^t E_{\lambda}(w_0;\lambda,\theta).$$
 
-Now, as shown in the appendix, for all $$t \geq 1,$$
+Now, as shown in the [appendix](https://shaoweilin.github.io/convergence-of-biased-stochastic-approximation/#appendix--poisson-equation-for-discriminative-model-update), for all $$t \geq 1,$$
 
 $$\begin{array}{rl} & 
-\displaystyle Q_\lambda^t G_{\theta}(w_0;\lambda,\theta) 
+\displaystyle Q_\lambda^t G_{\lambda}(w_0;\lambda,\theta) 
 \\ & \\ & = 
 \left( H_{\hat{Q}_\lambda\Vert P_\theta}(Z_t,X_t\vert Z_{t-1},X_{t-1}) + H_{\hat{Q}_*}(X_t\vert X_{t-1}) - \hat{\xi} \right) \alpha_1
 \\ & \\ & \quad 
@@ -326,21 +326,19 @@ Therefore,
 
 $$\begin{array}{rl} & 
 \displaystyle
-Q_{\lambda} \hat{E}_{\theta} (w_0;\lambda,\theta)
+Q_{\lambda} \hat{E}_{\lambda} (w_0;\lambda,\theta)
 \\ & \\ & = 
 \displaystyle
--\lim_{T \rightarrow \infty} \sum_{t=1}^{T} Q_\lambda^{t} E_{\theta}(w_0;\lambda,\theta)  
+\lim_{T \rightarrow \infty} \sum_{t=1}^{T} g_{\lambda}(w_0;\lambda,\theta)- Q_\lambda^{t}G_{\lambda}(w_0;\lambda,\theta) 
 \\ & \\ & = 
-\displaystyle
-- \lim_{T \rightarrow \infty} \sum_{t=1}^{T} Q_\lambda^{t} \left(G_{\theta}(w_0;\lambda,\theta)-g_{\theta}(w_0;\lambda,\theta)  \right)
-\\ & \\ & = 
-\displaystyle
-\lim_{T \rightarrow \infty} \sum_{t=1}^{T} g_{\theta}(w_0;\lambda,\theta)- Q_\lambda^{t}G_{\theta}(w_0;\lambda,\theta) 
-\\ & \\ & = 
-\displaystyle \lim_{T \rightarrow \infty} \frac{\partial}{\partial\theta} \Big( \sum_{t=1}^{T} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})
+\displaystyle \lim_{T \rightarrow \infty} \frac{\partial}{\partial\lambda} \Big( \sum_{t=1}^{T} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})
  - \sum_{t=1}^{T}  H_{\hat{Q}_\lambda \Vert P_\theta}(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1}) \Big) 
+ \\ & \\ & \quad \quad
+ \displaystyle - \left( \sum_{t=1}^{T}  H_{\hat{Q}_\lambda\Vert P_\theta}(Z_t,X_t\vert Z_{t-1},X_{t-1}) + \sum_{t=1}^{T} H_{\hat{Q}_*}(X_t\vert X_{t-1}) - T \hat{\xi} \right) \alpha_1
  \\ & \\ & = 
- \displaystyle \lim_{T \rightarrow \infty} \frac{\partial}{\partial\theta} \Big( H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) -  H_{\hat{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) \Big) 
+ \displaystyle \lim_{T \rightarrow \infty} \frac{\partial}{\partial\lambda} \Big( H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) -  H_{\hat{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) \Big) 
+ \\ & \\ & \quad \quad
+ \displaystyle - \left( H_{\hat{Q}_\lambda\Vert P_\theta}(Z_T,X_T\vert Z_0,X_0) +  H_{\hat{Q}_*}(X_T\vert X_0) - T \hat{\xi} \right) \alpha_1
 \end{array}$$
 
 Bringing them all together,
@@ -351,15 +349,29 @@ V(\lambda,\theta) &= H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0)
 g_\theta(\lambda, \theta) & = 
 \displaystyle \frac{\partial V}{\partial \theta}(\lambda, \theta) 
 \\ & \\ 
+g_\lambda(\lambda, \theta) & = 
+\displaystyle \frac{\partial V}{\partial \lambda}(\lambda, \theta) 
+\\ & \\ 
 E_{\theta} (w;\lambda,\theta) & = 
 \displaystyle - \frac{\partial}{\partial\theta} \Big( V(\lambda,\theta)+ \log P_\theta(z_1, x_1 \vert z_0, x_0) \Big) 
 \\ & \\ 
+E_\lambda(w;\lambda,\theta) &= 
+\displaystyle \alpha_1 \left( \log \frac{Q_{\lambda}(z_1\vert z_0,x_0)}{P_{\theta}(z_1,x_1\vert z_0,x_0)} -\hat{\xi} \right) - \frac{\partial V}{\partial \lambda}(\lambda, \theta) 
+\\ & \\
 Q_{\lambda} \hat{E}_{\theta} (w;\lambda,\theta) & =
 \displaystyle \lim_{T \rightarrow \infty} \frac{\partial}{\partial\theta} \Big( H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0})  
 -  H_{\hat{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) \Big)
 \\ & \\ 
+Q_{\lambda} \hat{E}_{\lambda} (w;\lambda,\theta) & = 
+ \displaystyle \lim_{T \rightarrow \infty} \frac{\partial}{\partial\lambda} \Big( H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) -  H_{\hat{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) \Big) 
+ \\ & \\ & \quad \quad
+ \displaystyle - \left( H_{\hat{Q}_\lambda\Vert P_\theta}(Z_T,X_T\vert Z_0,X_0) +  H_{\hat{Q}_*}(X_T\vert X_0) - T \hat{\xi} \right) \alpha_1
+\\ & \\ 
 \hat{E}_{\theta} (w;\lambda,\theta) & = 
-Q_{\lambda} \hat{E}_{\theta} (w;\lambda,\theta) - E_{\theta} (w;\lambda,\theta) 
+Q_{\lambda} \hat{E}_{\theta} (w;\lambda,\theta) - E_{\theta} (w;\lambda,\theta)
+\\ & \\ 
+\hat{E}_{\lambda} (w;\lambda,\theta) & = 
+Q_{\lambda} \hat{E}_{\lambda} (w;\lambda,\theta) - E_{\lambda} (w;\lambda,\theta) 
 \end{array}$$
 
 
@@ -414,7 +426,7 @@ In this section, we derive the terms $$Q_\lambda^t G_{\lambda}(w_0;\lambda,\thet
 Given $$w_0 = (z_1, x_1, z_0, x_0,\alpha_1),$$ for all $$t \geq 1$$ we have
 
 $$\begin{array}{rl} & 
-\displaystyle Q_\lambda^t G_{\theta}(w_0;\lambda,\theta) 
+\displaystyle Q_\lambda^t G_{\lambda}(w_0;\lambda,\theta) 
 \\ & \\ & = 
 \displaystyle \int \hat{Q}_\lambda(dZ_0,dX_0)Q_\lambda^t(dZ_{t}, dX_{t} \vert Z_0, X_0) 
 \\ & \\ & \quad \quad 
@@ -487,7 +499,7 @@ $$\begin{array}{rl} &
 Therefore, 
 
 $$\begin{array}{rl} & 
-\displaystyle Q_\lambda^t G_{\theta}(w_0;\lambda,\theta) 
+\displaystyle Q_\lambda^t G_{\lambda}(w_0;\lambda,\theta) 
 \\ & \\ & = 
 \left( H_{\hat{Q}_\lambda\Vert P_\theta}(Z_t,X_t\vert Z_{t-1},X_{t-1}) + H_{\hat{Q}_*}(X_t\vert X_{t-1}) - \hat{\xi} \right) \alpha_1
 \\ & \\ & \quad 
