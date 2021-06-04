@@ -60,7 +60,7 @@ $$ \displaystyle
 V(\lambda,\theta) := H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0).
 $$
 
-We assume some standard regularity condition on $$V(\lambda,\theta).$$
+Note that this Lyapunov function is bounded below by zero, because it is a form of relative entropy. We assume some standard regularity condition on $$V(\lambda,\theta).$$
 
 ----
 **C2 ($$\ell$$-smoothness).** There exists $$\ell < \infty$$ such that for all $$\lambda,\lambda' \in \Lambda$$ and $$\theta, \theta' \in \Theta,$$
