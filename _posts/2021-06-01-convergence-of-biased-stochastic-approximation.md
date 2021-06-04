@@ -16,7 +16,7 @@ $$\displaystyle X_{n+1} \sim Q_*(X_{n+1} \vert X_{n})$$
 
 $$\displaystyle Z_{n+1} \sim Q_{\lambda_{n+1}}(Z_{n+1} \vert Z_{n}, X_{n})$$
 
-$$\displaystyle \alpha_{n+1} = \gamma \alpha_n + \left.\frac{d}{d\lambda} \log Q_{\lambda}(Z_{n+1} \vert  Z_{n},X_{n})\right\vert _{\lambda=\lambda_{n+1}}$$
+$$\displaystyle \alpha_{n+1} = \alpha_n + \left.\frac{d}{d\lambda} \log Q_{\lambda}(Z_{n+1} \vert  Z_{n},X_{n})\right\vert _{\lambda=\lambda_{n+1}}$$
 
 This post is a continuation from our [series](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 
@@ -52,7 +52,7 @@ $$
 
 where we require
 
-$$\alpha_{n+1} = \gamma \alpha_n + \frac{d}{d\lambda} \log Q_{\lambda}(Z_{n+1} \vert  Z_{n},X_{n}).$$
+$$\alpha_{n+1} = \alpha_n + \frac{d}{d\lambda} \log Q_{\lambda}(Z_{n+1} \vert  Z_{n},X_{n}).$$
 
 Our Lyapunov function is the learning objective
 
@@ -104,25 +104,45 @@ $$\begin{array}{rl}
 \\ & \\
 \displaystyle g_\lambda(\lambda_n,\theta_{n+1}) & =
 \displaystyle
-\lim_{T\rightarrow \infty} \mathbb{E}_{Q_{\lambda_n}} \Bigg[ \left( \log \frac{Q_{\lambda_n}(Z_{T+1}\vert Z_{T},X_{T})}{P_{\theta_{n+1}}(Z_{T+1},X_{T+1}\vert Z_{T},X_{T})} -\hat{\xi}\right) \,\,\times 
-\\ & \\ & \quad\quad \displaystyle \sum_{t=0}^{T} \gamma^{T-t} \left. \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \right\vert_{\lambda=\lambda_n} \Bigg]
-\\ & \\ & \approx
+\lim_{T\rightarrow \infty} \mathbb{E}_{Q_{\lambda_n}} \Bigg[ \left( \log \frac{Q_{\lambda_n}(Z_{T+1}\vert Z_{T},X_{T})}{P_{\theta_{n+1}}(Z_{T+1},X_{T+1}\vert Z_{T},X_{T})} -\hat{\xi}\right) 
+\\ & \\ & \quad\quad \displaystyle \times \sum_{t=0}^{T} \left. \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \right\vert_{\lambda=\lambda_n} \Bigg]
+\\ & \\ & =
+\displaystyle
+\lim_{T\rightarrow \infty} \mathbb{E}_{Q_{\lambda_n}} \Bigg[ \left( \log \frac{Q_{\lambda_n}(Z_{T+1},X_{T+1}\vert Z_{T},X_{T})}{P_{\theta_{n+1}}(Z_{T+1},X_{T+1}\vert Z_{T},X_{T})} -\log Q_*(X_{T+1}\vert X_T) - \hat{\xi}\right)  
+\\ & \\ & \quad\quad 
+\displaystyle \times \sum_{t=0}^{T} \left. \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \right\vert_{\lambda=\lambda_n} \Bigg]
+\\ & \\ & =
+\displaystyle \frac{\partial V}{\partial\lambda}(\lambda_n,\theta_{n+1}) 
++ \lim_{T\rightarrow \infty} \mathbb{E}_{Q_{\lambda_n}} \Bigg[ \left( -\log Q_*(X_{T+1}\vert X_T) - \hat{\xi} \right) 
+\\ & \\ & \quad \quad
+\displaystyle \times \sum_{t=0}^{T} \left. \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \right\vert_{\lambda=\lambda_n} \Bigg]
+\\ & \\ & =
 \displaystyle \frac{\partial V}{\partial\lambda}(\lambda_n,\theta_{n+1}) 
 . \end{array}$$
 
-Because the mean field $$g_\lambda(\lambda,\theta)$$ is not exactly equal to the gradient of Lyapunov function $$V(\lambda,\theta),$$ we need some assumptions to align its behavior with the Lyapunov gradient.
+where the last equality follows from a [formula](https://shaoweilin.github.io/biased-stochastic-approximation-for-latent-processes/#appendix-discriminative-model-update) for integrals over the derivative of a stationary distribution:
 
-----
+$$ \begin{array}{rl} &
+\displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_{\lambda_n}} \Bigg[ \left( -\log Q_*(X_{T+1}\vert X_T) - \hat{\xi} \right) \sum_{t=0}^{T} \left. \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \right\vert_{\lambda=\lambda_n} \Bigg]
+\\ & \\ & =
+\displaystyle \frac{\partial }{\partial\lambda} \int \bar{\pi}_\lambda(dZ_0,dX_0) Q_\lambda(dZ_1,dX_1\vert Z_0,X_0) \left( -\log Q_*(X_{1}\vert X_0) - \hat{\xi} \right)
+\\ & \\ & =
+\displaystyle \frac{\partial }{\partial\lambda} \int \bar{\pi}_*(dX_0) \bar{\pi}_\lambda(dZ_0\vert X_0) Q_*(dX_1\vert X_0)Q_\lambda(dZ_1\vert Z_0,X_0) \left( -\log Q_*(X_{1}\vert X_0) - \hat{\xi} \right)
+\\ & \\ & =
+\displaystyle \frac{\partial }{\partial\lambda} \int \bar{\pi}_*(dX_0) Q_*(dX_1\vert X_0)\left( -\log Q_*(X_{1}\vert X_0) - \hat{\xi} \right)
+\\ & \\ & =
+0 . \end{array}$$
 
-**<a id="assumption-direction-of-mean-field"></a>C3 (Direction of mean field).** There exists $$c_0, c_1 \geq 0$$ such that for all $$\lambda \in \Lambda$$ and $$\theta \in \Theta,$$
+It should not be surprising that terms depending only on the $$X_t$$ drop out of the mean field, because the mean field involves an integral over the _derivative_ of a stationary distribution with respect to $$\lambda$$ but the distribution of the $$X_t$$ is independent of $$\lambda.$$ The situation is similar to that of the following simplified example.
 
-$$\displaystyle c_0 + c_1 \left\langle \frac{\partial V}{\partial \lambda}(\lambda,\theta) , g_\lambda(\lambda,\theta) \right\rangle \geq \Vert g_\lambda(\lambda,\theta) \Vert^2.$$
-
-**C4 (Length of mean field).** There exists $$d_0, d_1 \geq 0$$ such that for all $$\lambda \in \Lambda$$ and $$\theta \in \Theta,$$
-
-$$\displaystyle d_0 + d_1 \Vert g_\lambda(\lambda,\theta) \Vert \geq \left\Vert \frac{\partial V}{\partial \lambda}(\lambda,\theta) \right\Vert.$$
-
-----
+$$ \begin{array}{rl} &
+\displaystyle \int r(X) \,\frac{d }{d\lambda} \bar{\pi}_\lambda(dZ\vert X)\bar{\pi}(dX)  
+\\ & \\ & =
+\displaystyle \int \bar{\pi}(dX) r(X) \, \frac{d}{d\lambda} \int  \bar{\pi}_\lambda (dZ\vert X) 
+\\ & \\ & =
+\displaystyle \int \bar{\pi}(dX) r(X) \,  \frac{d}{d\lambda} 1 
+\\ & \\ & =
+0 . \end{array}$$
 
 From the mean fields, we have the following correction terms. 
 
@@ -134,7 +154,7 @@ $$\begin{array}{rl}
 \displaystyle G_\lambda(W_n;\lambda_n,\theta_{n+1}) - g_\lambda(\lambda_n,\theta_{n+1})
 . \end{array}$$
 
-Note that the _total expectation_ (with respect to the stationary distribution $$\bar{\pi}_\lambda$$ on $$W_n$$) of each correction terms is zero by definition. On the other hand, if the _conditional expectation_ (given the past $$W_{n-1}, \ldots, W_0$$) is zero, then the stochastic approximation is _unbiased_. Otherwise, the stochastic approximation is biases, which is the case for our problem. 
+Note that the _total expectation_ (with respect to the stationary distribution $$\bar{\pi}_\lambda$$ on $$W_n$$) of each correction terms is zero by definition. On the other hand, if the _conditional expectation_ (given the past $$W_{n-1}, \ldots, W_0$$) is zero, then the stochastic approximation is _unbiased_. Otherwise, the stochastic approximation is _biased_, which is the case for our problem. 
 
 
 ## How do we prove convergence?
@@ -143,7 +163,7 @@ First, we make some common assumptions about the step sizes and the stop time fo
 
 ----
 
-**<a id="assumption-step-sizes-and-stop-time"></a>C5 (Step sizes and stop time).** For all $$k \geq 1,$$ the step sizes are given by
+**<a id="assumption-step-sizes-and-stop-time"></a>C3 (Step sizes and stop time).** For all $$k \geq 1,$$ the step sizes are given by
 
 $$\eta_k = \eta_1 k^{-1/2}$$
 
@@ -161,7 +181,7 @@ $$
 
 as $$T \rightarrow \infty,$$ where the expectations are taken over stochastic updates in the stochastic approximation and over the random stopping time. 
 
-Sometimes, it is not possible to prove convergence of the above upper bound to zero because of certain relaxations (e.g. discounted gradient updates) in the stochastic approximation. Instead, we may prove that the upper bound converges to some positive constant.
+Sometimes, it is not possible to prove convergence of the above upper bound to zero because of certain relaxations (e.g. estimating the true conditional entropy) in the stochastic approximation. Instead, we may prove that the upper bound converges to some positive constant.
 
 Either way, we get some control on the mean and variance of the lengths $$\left\Vert g_\theta(\lambda_N, \theta_N) \right\Vert$$ and $$\left\Vert g_\lambda(\lambda_N,\theta_{N+1}) \right\Vert$$ of the mean fields or total expectations of the stochastic updates, despite the fact that the parameters $$\theta_n$$ and $$\lambda_n$$ are continually fluctuating because of the stochastic updates.
 
@@ -214,7 +234,7 @@ The left-hand-side of the inequality can be bounded below by some affine functio
 
 ----
 
-**C6 (Correction bound).** There exists $$\sigma < \infty$$ such that for all $$\lambda \in \Lambda, \theta \in \Theta, w \in \mathcal{W},$$
+**C4 (Correction bound).** There exists $$\sigma < \infty$$ such that for all $$\lambda \in \Lambda, \theta \in \Theta, w \in \mathcal{W},$$
 
 $$\Vert E_\lambda(w; \lambda,\theta) \Vert \leq \sigma,$$
 
@@ -242,7 +262,7 @@ We study the first Poisson equation
 
 $$L_{\lambda} \hat{E}_{\theta} (w_0; \lambda,\theta) = E_{\theta}(w_0; \lambda,\theta)$$
 
-where $$w_0 = (z_1, x_1, z_0, x_0),$$
+where $$w_0 = (z_1, x_1, z_0, x_0,\alpha_1),$$
 
 $$L_{\lambda} \hat{E}_{\theta} (w_0;\lambda,\theta) = Q_{\lambda} \hat{E}_{\theta} (w_0;\lambda,\theta)- \hat{E}_{\theta} (w_0;\lambda,\theta).$$
 
@@ -252,22 +272,14 @@ $$\hat{E}_{\theta} (w_0;\lambda,\theta) = - \displaystyle \sum_{t=0}^\infty Q_{\
 
 where $$Q^t_\lambda$$ denotes $$t$$ applications of the Markov kernel $$Q_\lambda.$$
 
-Now, let us write
-
-$$ \displaystyle
-E_{\theta}(w_0; \lambda,\theta) = -  \frac{\partial}{\partial\theta} \left( H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0) - \log \frac{Q_\lambda(z_1,x_1\vert z_0, x_0)}{P_\theta(z_1,x_1 \vert z_0,x_0)} \right).
-$$
-
-It follows that for $$t \geq 1,$$
+Now, for all $$t \geq 1,$$
 
 $$\begin{array}{rl} & 
-\displaystyle Q_\lambda^t E_{\theta}(w_0;\lambda,\theta) 
+\displaystyle Q_\lambda^t G_{\theta}(w_0;\lambda,\theta) 
 \\ & \\ & = 
-\displaystyle -\frac{\partial}{\partial\theta} \Bigg( H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0) 
-\\ & \\ & \quad
-\displaystyle - \int \hat{Q}_\lambda(dZ_0,dX_0)\hat{Q}_\lambda^t(dZ_{t}, dX_{t} \vert Z_0, X_0) \log \frac{\hat{Q}_\lambda(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})}{P_\theta(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})} \Bigg) 
+\displaystyle \frac{\partial}{\partial\theta} \int \hat{Q}_\lambda(dZ_0,dX_0)\hat{Q}_\lambda^t(dZ_{t}, dX_{t} \vert Z_0, X_0) \log \frac{\hat{Q}_\lambda(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})}{P_\theta(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})} 
 \\ & \\ & = 
-\displaystyle - \frac{\partial}{\partial\theta} \left( H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})  - H_{\hat{Q}_\lambda \Vert P_\theta}(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})  \right) \end{array}$$
+\displaystyle \frac{\partial}{\partial\theta}  H_{\hat{Q}_\lambda \Vert P_\theta}(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})  \end{array}$$
 
 where $$\hat{Q}_\lambda$$ is the distribution of the Markov chain that initializes $$(Z_0,X_0)$$ with the state $$(z_1, x_1)$$ and has transition probabilities $$Q_\lambda.$$ Therefore,
 
@@ -276,7 +288,13 @@ $$\begin{array}{rl} &
 Q_{\lambda} \hat{E}_{\theta} (w_0;\lambda,\theta)
 \\ & \\ & = 
 \displaystyle
-- \sum_{t=1}^{\infty} Q_\lambda^{t} E_{\theta}(w_0;\lambda,\theta)  
+-\lim_{T \rightarrow \infty} \sum_{t=1}^{T} Q_\lambda^{t} E_{\theta}(w_0;\lambda,\theta)  
+\\ & \\ & = 
+\displaystyle
+- \lim_{T \rightarrow \infty} \sum_{t=1}^{T} Q_\lambda^{t} \left(G_{\theta}(w_0;\lambda,\theta)-g_{\theta}(w_0;\lambda,\theta)  \right)
+\\ & \\ & = 
+\displaystyle
+\lim_{T \rightarrow \infty} \sum_{t=1}^{T} g_{\theta}(w_0;\lambda,\theta)- Q_\lambda^{t}G_{\theta}(w_0;\lambda,\theta) 
 \\ & \\ & = 
 \displaystyle \lim_{T \rightarrow \infty} \frac{\partial}{\partial\theta} \Big( \sum_{t=1}^{T} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})
  - \sum_{t=1}^{T}  H_{\hat{Q}_\lambda \Vert P_\theta}(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1}) \Big) 
@@ -285,6 +303,45 @@ Q_{\lambda} \hat{E}_{\theta} (w_0;\lambda,\theta)
 \end{array}$$
 
 where the last equality follows from the chain rule for conditional relative entropy. 
+
+As for the second Poisson equation
+
+$$L_{\lambda} \hat{E}_{\lambda} (w_0; \lambda,\theta) = E_{\lambda}(w_0; \lambda,\theta)$$
+
+a candidate solution is
+
+$$\hat{E}_{\lambda} (w_0;\lambda,\theta) = - \displaystyle \sum_{t=0}^\infty Q_{\lambda}^t E_{\lambda}(w_0;\lambda,\theta).$$
+
+Now, as shown in the appendix, for all $$t \geq 1,$$
+
+$$\begin{array}{rl} & 
+\displaystyle Q_\lambda^t G_{\theta}(w_0;\lambda,\theta) 
+\\ & \\ & = 
+\left( H_{\hat{Q}_\lambda\Vert P_\theta}(Z_t,X_t\vert Z_{t-1},X_{t-1}) + H_{\hat{Q}_*}(X_t\vert X_{t-1}) - \hat{\xi} \right) \alpha_1
+\\ & \\ & \quad 
+\displaystyle + \frac{\partial}{\partial \lambda} H_{\hat{Q}_\lambda\Vert P_\theta}(Z_t,X_t\vert Z_{t-1},X_{t-1})
+. \end{array}$$
+
+Therefore, 
+
+$$\begin{array}{rl} & 
+\displaystyle
+Q_{\lambda} \hat{E}_{\theta} (w_0;\lambda,\theta)
+\\ & \\ & = 
+\displaystyle
+-\lim_{T \rightarrow \infty} \sum_{t=1}^{T} Q_\lambda^{t} E_{\theta}(w_0;\lambda,\theta)  
+\\ & \\ & = 
+\displaystyle
+- \lim_{T \rightarrow \infty} \sum_{t=1}^{T} Q_\lambda^{t} \left(G_{\theta}(w_0;\lambda,\theta)-g_{\theta}(w_0;\lambda,\theta)  \right)
+\\ & \\ & = 
+\displaystyle
+\lim_{T \rightarrow \infty} \sum_{t=1}^{T} g_{\theta}(w_0;\lambda,\theta)- Q_\lambda^{t}G_{\theta}(w_0;\lambda,\theta) 
+\\ & \\ & = 
+\displaystyle \lim_{T \rightarrow \infty} \frac{\partial}{\partial\theta} \Big( \sum_{t=1}^{T} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})
+ - \sum_{t=1}^{T}  H_{\hat{Q}_\lambda \Vert P_\theta}(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1}) \Big) 
+ \\ & \\ & = 
+ \displaystyle \lim_{T \rightarrow \infty} \frac{\partial}{\partial\theta} \Big( H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) -  H_{\hat{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) \Big) 
+\end{array}$$
 
 Bringing them all together,
 
@@ -305,28 +362,19 @@ Q_{\lambda} \hat{E}_{\theta} (w;\lambda,\theta) & =
 Q_{\lambda} \hat{E}_{\theta} (w;\lambda,\theta) - E_{\theta} (w;\lambda,\theta) 
 \end{array}$$
 
-As for the second Poisson equation
-
-$$L_{\lambda} \hat{E}_{\lambda} (w_0; \lambda,\theta) = E_{\lambda}(w_0; \lambda,\theta)$$
-
-a candidate solution is
-
-$$\hat{E}_{\lambda} (w_0;\lambda,\theta) = - \displaystyle \sum_{t=0}^\infty Q_{\lambda}^t E_{\lambda}(w_0;\lambda,\theta).$$
-
-**TODO**
 
 We impose the following regularity conditions.
 
 ----
-**C7 (Solution of Poisson equation).** The functions $$\hat{E}_\lambda : \mathcal{W} \times \Lambda \times \Theta \rightarrow \Lambda$$ and $$\hat{E}_\theta : \mathcal{W} \times \Lambda \times \Theta \rightarrow \Theta$$ given by
+**C5 (Solution of Poisson equation).** The limits 
 
-$$\hat{E}_{\lambda} (w;\lambda,\theta) = - \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T Q_{\lambda}^t E_{\lambda}(w;\lambda,\theta),$$
+$$Q_\lambda\hat{E}_\lambda : \mathcal{W} \times \Lambda \times \Theta \rightarrow \Lambda $$ 
 
-$$\hat{E}_{\theta} (w;\lambda,\theta) = - \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T Q_{\lambda}^t E_{\theta}(w;\lambda,\theta)$$
+$$Q_\lambda\hat{E}_\theta : \mathcal{W} \times \Lambda \times \Theta \rightarrow \Theta$$ 
 
-are measurable and well-defined.
+are well-defined and measurable.
 
-**C8 (Regularity of solution).** There exists $$\ell_0, \ell_1 < \infty$$ such that for all $$\lambda,\lambda' \in \Lambda$$ and $$\theta, \theta' \in \Theta$$ and $$w \in \mathcal{W},$$
+**C6 (Regularity of solution).** There exists $$\ell_0, \ell_1 < \infty$$ such that for all $$\lambda,\lambda' \in \Lambda$$ and $$\theta, \theta' \in \Theta$$ and $$w \in \mathcal{W},$$
 
 $$\Vert \hat{E}_{\lambda} (w;\lambda,\theta) \Vert \leq \ell_0, \quad \Vert Q_\lambda \hat{E}_{\lambda} (w;\lambda,\theta)  \Vert \leq \ell_0,$$
 
@@ -348,16 +396,103 @@ $$\displaystyle X_{n+1} \sim Q_*(X_{n+1} \vert X_{n})$$
 
 $$\displaystyle Z_{n+1} \sim Q_{\lambda_{n+1}}(Z_{n+1} \vert Z_{n}, X_{n})$$
 
-$$\displaystyle \alpha_{n+1} = \gamma \alpha_n + \left.\frac{d}{d\lambda} \log Q_{\lambda}(Z_{n+1} \vert  Z_{n},X_{n})\right\vert _{\lambda=\lambda_{n+1}}.$$
+$$\displaystyle \alpha_{n+1} = \alpha_n + \left.\frac{d}{d\lambda} \log Q_{\lambda}(Z_{n+1} \vert  Z_{n},X_{n})\right\vert _{\lambda=\lambda_{n+1}}.$$
 
-Then assuming C1-C8 and sufficiently small initial step size $$\eta_1,$$
+Then assuming C1-C6 and sufficiently small initial step size $$\eta_1,$$
 we have
 
-$$\mathbb{E}\left[\left\Vert g_\theta(\lambda_N, \theta_N) \right\Vert^2\right] + \mathbb{E}\left[\left\Vert g_\lambda(\lambda_N,\theta_{N+1}) \right\Vert^2\right] = O(c_0 + \log T / \sqrt{T} )$$
+$$\mathbb{E}\left[\left\Vert g_\theta(\lambda_N, \theta_N) \right\Vert^2\right] + \mathbb{E}\left[\left\Vert g_\lambda(\lambda_N,\theta_{N+1}) \right\Vert^2\right] = O(\log T / \sqrt{T} )$$
 
-where $$c_0$$ and $$T$$ were defined in [C3](#assumption-direction-of-mean-field) and [C5](#assumption-step-sizes-and-stop-time) respectively.
+where the maximum time $$T$$ was defined in [C3](#assumption-step-sizes-and-stop-time).
 
 ----
+
+## Appendix : Poisson equation for discriminative model update
+
+In this section, we derive the terms $$Q_\lambda^t G_{\lambda}(w_0;\lambda,\theta)$$ appearing in our candidate solution to the Poisson equation for the discriminative model update.
+
+Given $$w_0 = (z_1, x_1, z_0, x_0,\alpha_1),$$ for all $$t \geq 1$$ we have
+
+$$\begin{array}{rl} & 
+\displaystyle Q_\lambda^t G_{\theta}(w_0;\lambda,\theta) 
+\\ & \\ & = 
+\displaystyle \int \hat{Q}_\lambda(dZ_0,dX_0)Q_\lambda^t(dZ_{t}, dX_{t} \vert Z_0, X_0) 
+\\ & \\ & \quad \quad 
+\displaystyle \times \left(\log \frac{Q_\lambda(Z_{t}, X_t \vert Z_{t-1}, X_{t-1})}{P_\theta(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})} - \log Q_*(X_t\vert X_{t-1}) -\hat{\xi}\right)
+\\ & \\ & \quad \quad 
+\displaystyle \times \left( \alpha_1 + \sum_{s=1}^t \frac{d}{d\lambda} \log Q_\lambda(Z_{s}\vert Z_{s-1}, X_{s-1} ) \right)
+. \end{array}$$
+
+
+We observe that
+
+$$ \begin{array}{rl} & 
+\displaystyle \int \hat{Q}_\lambda(dZ_0,dX_0) Q_\lambda^t(dZ_{t}, dX_{t} \vert Z_0, X_0) \left(\log \frac{Q_\lambda(Z_{t}, X_t \vert Z_{t-1}, X_{t-1})}{P_\theta(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})} \right) 
+\\ & \\ & = 
+\displaystyle H_{\hat{Q}_\lambda\Vert P_\theta}(Z_t,X_t\vert Z_{t-1},X_{t-1})
+\end{array}$$
+
+and that
+
+$$\begin{array}{rl} & 
+\displaystyle \int \hat{Q}_\lambda(dZ_0,dX_0) Q_\lambda^t(dZ_{t}, dX_{t} \vert Z_0, X_0) \left(- \log Q_*(X_t\vert X_{t-1}) -\hat{\xi} \right) 
+\\ & \\ & = 
+\displaystyle
+\int \hat{Q}_*(dX_0) Q_*^t(dX_t\vert X_0) \left(- \log Q_*(X_t\vert X_{t-1}) -\hat{\xi} \right) 
+\\ & \\ & =
+H_{\hat{Q}_*}(X_t\vert X_{t-1}) - \hat{\xi}
+. \end{array}$$
+
+where $$\hat{Q}_*$$ is the distribution of the Markov chain that initializes $$X_0$$ with the state $$x_1$$ and has transition probabilities $$Q_*,$$ and $$H_{\hat{Q}_*}$$ is the [conditional entropy](https://shaoweilin.github.io/building-foundations-of-information-theory-on-relative-entropy/#how-do-we-derive-entropy-from-relative-entropy).
+
+We also note that
+
+$$\begin{array}{rl} &
+\displaystyle
+\frac{\partial}{\partial \lambda} H_{\hat{Q}_\lambda\Vert P_\theta}(Z_t,X_t\vert Z_{t-1},X_{t-1})
+\\ & \\ & =
+\displaystyle \int \hat{Q}_\lambda(dZ_0,dX_0) \left(\frac{\partial}{\partial \lambda}Q_\lambda^t(dZ_{t}, dX_{t} \vert Z_0, X_0) \right) \log \frac{Q_\lambda(Z_{t}, X_t \vert Z_{t-1}, X_{t-1})}{P_\theta(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})} 
+\\ & \\ & \quad
+\displaystyle + \int \hat{Q}_\lambda(dZ_0,dX_0) Q_\lambda^t(dZ_{t}, dX_{t} \vert Z_0, X_0) \left(\frac{\partial}{\partial \lambda} \log \frac{Q_\lambda(Z_{t}, X_t \vert Z_{t-1}, X_{t-1})}{P_\theta(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})} \right)
+\\ & \\ & =
+\displaystyle \int \hat{Q}_\lambda(dZ_0,dX_0)  \left(Q_\lambda^t(dZ_{t}, dX_{t} \vert Z_0, X_0)\sum_{s=1}^t \frac{d}{d\lambda} \log Q_\lambda(Z_{s},X_s\vert Z_{s-1}, X_{s-1} ) \right)
+\\ & \\ & \quad \quad 
+\displaystyle \times 
+\left(\log \frac{Q_\lambda(Z_{t}, X_t \vert Z_{t-1}, X_{t-1})}{P_\theta(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})} \right)
+\\ & \\ & \quad
+\displaystyle + \int \hat{Q}_\lambda(dZ_0,dX_0) Q_\lambda^{t-1}(dZ_{t-1}, dX_{t-1} \vert Z_0, X_0) \left(\frac{d}{d \lambda} \int Q_\lambda(dZ_{t}, dX_t \vert Z_{t-1}, X_{t-1}) \right)
+\\ & \\ & =
+\displaystyle \int \hat{Q}_\lambda(dZ_0,dX_0)Q_\lambda^t(dZ_{t}, dX_{t} \vert Z_0, X_0) \left(\log \frac{Q_\lambda(Z_{t}, X_t \vert Z_{t-1}, X_{t-1})}{P_\theta(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})} \right)
+\\ & \\ & \quad \quad 
+\displaystyle \times \left(\sum_{s=1}^t \frac{d}{d\lambda} \log Q_\lambda(Z_{s}\vert Z_{s-1}, X_{s-1} ) \right)
+. \end{array}$$
+
+Lastly, 
+
+$$\begin{array}{rl} &
+\displaystyle \int \hat{Q}_\lambda(dZ_0,dX_0) \left( Q_\lambda^t(dZ_{t}, dX_{t} \vert Z_0, X_0) \sum_{s=1}^t \frac{d}{d\lambda} \log Q_\lambda(Z_{s}\vert Z_{s-1}, X_{s-1} ) \right)
+\\ & \\ & \quad \quad 
+\displaystyle \times \left( - \log Q_*(X_t\vert X_{t-1}) -\hat{\xi}\right)
+\\ & \\ & =
+\displaystyle 
+\frac{d}{d\lambda} \int
+\hat{Q}_\lambda(dZ_0,dX_0)  Q_\lambda^t(dZ_{t}, dX_{t} \vert Z_0, X_0)  \left( - \log Q_*(X_t\vert X_{t-1}) -\hat{\xi}\right)
+\\ & \\ & =
+\displaystyle 
+\frac{d}{d\lambda} \int
+\hat{Q}_*(dX_0)  Q_*^t( dX_{t} \vert X_0)  \left( - \log Q_*(X_t\vert X_{t-1}) -\hat{\xi}\right)
+\\ & \\ & =
+0 . \end{array}$$
+
+Therefore, 
+
+$$\begin{array}{rl} & 
+\displaystyle Q_\lambda^t G_{\theta}(w_0;\lambda,\theta) 
+\\ & \\ & = 
+\left( H_{\hat{Q}_\lambda\Vert P_\theta}(Z_t,X_t\vert Z_{t-1},X_{t-1}) + H_{\hat{Q}_*}(X_t\vert X_{t-1}) - \hat{\xi} \right) \alpha_1
+\\ & \\ & \quad 
+\displaystyle + \frac{\partial}{\partial \lambda} H_{\hat{Q}_\lambda\Vert P_\theta}(Z_t,X_t\vert Z_{t-1},X_{t-1})
+. \end{array}$$
 
 ## References
 
@@ -370,4 +505,3 @@ where $$c_0$$ and $$T$$ were defined in [C3](#assumption-direction-of-mean-field
 [L92] Leroux, Brian G. "Maximum-likelihood estimation for hidden Markov models." _Stochastic processes and their applications_ 40, no. 1 (1992): 127-143.
 
 [S01] Sato, Masa-Aki. "Online model selection based on the variational Bayes." _Neural computation_ 13, no. 7 (2001): 1649-1681.
-

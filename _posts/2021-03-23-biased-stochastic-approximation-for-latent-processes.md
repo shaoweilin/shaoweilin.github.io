@@ -78,8 +78,8 @@ where, as shown in the [appendix](https://shaoweilin.github.io/biased-stochastic
 $$\begin{array}{rl} &
 \displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0) 
 \\ & \\ &
-= \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+1)},X_{0..(T+1)})} \Bigg[ \left( \log \frac{Q_\lambda(Z_{T+1}, X_{T+1}\vert Z_{T},X_{T})}{P_\theta(Z_{T+1},X_{T+1}\vert Z_{T},X_{T})} \right) \,\,\times 
-\\ & \\ & \quad\quad \displaystyle \sum_{t=0}^{T} \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \Bigg]
+= \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+1)},X_{0..(T+1)})} \Bigg[ \left( \log \frac{Q_\lambda(Z_{T+1}, X_{T+1}\vert Z_{T},X_{T})}{P_\theta(Z_{T+1},X_{T+1}\vert Z_{T},X_{T})} \right)
+\\ & \\ & \quad\quad \displaystyle \times \sum_{t=0}^{T} \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \Bigg]
 . \end{array}$$
 
 ----
@@ -212,74 +212,73 @@ $$\frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1 , X_1 \vert Z_0, X_0
 
 used in the discriminative model update. The methods used are similar to those employed in the policy gradient theorem [BB01].
 
-We start with the following formula from [BB1] and [KMMW19] for the integral of a function $$r(Y)$$ with respect to the derivative of the stationary distribution $$\bar{\pi}_\lambda(Y)$$.
+We start with the following formula from [BB1] and [KMMW19] for the integral of a function $$r(W)$$ with respect to the derivative of the stationary distribution $$\bar{\pi}_\lambda(W)$$.
 
 $$\begin{array}{rl} &
-\displaystyle \int r(Y) \frac{d}{d\lambda} \bar{\pi}_\lambda(dY) 
+\displaystyle \int r(W) \frac{d}{d\lambda} \bar{\pi}_\lambda(dW) 
 \\ & \\ &
-= \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T \int \bar{\pi}_\lambda(dY_0) \int  \prod_{i=0}^{t} Q_\lambda(dY_{i+1}\vert Y_i)     \,\,\times
+= \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T \int \bar{\pi}_\lambda(dW_0) \int  \prod_{i=0}^{t} Q_\lambda(dW_{i+1}\vert W_i)    
 \\ & \\ &
-\quad \quad \displaystyle  r(Y_{t+1}) \frac{d}{d\lambda} \log Q_\lambda(Y_1 \vert Y_0)  
+\quad \quad \displaystyle \times\,\, r(W_{t+1}) \frac{d}{d\lambda} \log Q_\lambda(W_1 \vert W_0)  
 \\ & \\ &
-= \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T \int \bar{\pi}_\lambda(dY_{T-t}) \int  \prod_{i=T-t}^{T} Q_\lambda(dY_{i+1}\vert Y_i)   
+= \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T \int \bar{\pi}_\lambda(dW_{T-t}) \int  \prod_{i=T-t}^{T} Q_\lambda(dW_{i+1}\vert W_i)   
 \\ & \\ &
-\quad \quad \displaystyle  r(Y_{T+1}) \frac{d}{d\lambda} \log Q_\lambda(Y_{T-t+1} \vert Y_{T-t})
+\quad \quad \displaystyle  \times \,\, r(W_{T+1}) \frac{d}{d\lambda} \log Q_\lambda(W_{T-t+1} \vert W_{T-t})
 \\ & \\ &
-= \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T \mathbb{E}_{Q_\lambda(Y_{0..(T+1)})} \left[ r(Y_{T+1})  \frac{d}{d\lambda} \log Q_\lambda(Y_{T-t+1} \vert  Y_{T-t}) \right]
+= \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T \mathbb{E}_{Q_\lambda(W_{0..(T+1)})} \left[ r(W_{T+1})  \frac{d}{d\lambda} \log Q_\lambda(W_{T-t+1} \vert  W_{T-t}) \right]
 \\ & \\ &
-= \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Y_{0..(T+1)})} \left[ r(Y_{T+1}) \sum_{t=0}^T \frac{d}{d\lambda} \log Q_\lambda(Y_{t+1} \vert Y_{t}) \right]
+= \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(W_{0..(T+1)})} \left[ r(W_{T+1}) \sum_{t=0}^T \frac{d}{d\lambda} \log Q_\lambda(W_{t+1} \vert W_{t}) \right]
 . \end{array}$$
 
-We now derive the discriminative model update. Let $$Y_n$$ denote $$(Z_n,X_n).$$ By the product rule,
+We now derive the discriminative model update. Let $$\{W_n\}$$ denote the Markov chain $$\{(Z_{n+1},X_{n+1},Z_{n},X_{n})\}.$$ Abusing notation, we write the distribution of $$W_n$$ as 
+
+$$ \begin{array}{rl} & \displaystyle 
+Q_\lambda(W_{n} \vert W_{n-1}) 
+\\ & \\ & = \displaystyle
+Q_\lambda\left((\,Z_{n+1},X_{n+1},Z_n,X_n)\, \vert\, (Z_n,X_n,Z_{n-1},X_{n-1}) \, \right)
+\\ & \\ & = \displaystyle
+Q_\lambda(Z_{n+1},X_{n+1}\vert Z_n, X_n)
+\end{array} $$
+
+and its stationary distribution as
+
+$$ \begin{array}{rl} & \displaystyle 
+\bar{\pi}_\lambda(W_0) 
+\\ & \\ & = \displaystyle
+\bar{\pi}_\lambda(Z_{1},X_{1},Z_0,X_0)
+\\ & \\ & = \displaystyle
+\bar{\pi}_\lambda(Z_0,X_0) Q_\lambda(Z_1,X_1\vert Z_0, X_0)
+. \end{array} $$
+
+By the product rule,
 
 $$\begin{array}{rl} & 
-\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Y_1 \vert Y_0) 
+\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1,X_1 \vert Z_0,X_0) 
 \\ & \\ &= 
-\displaystyle \frac{d}{d\lambda} \int \bar{\pi}_\lambda(dY_0) \int Q_\lambda(dY_1\vert Y_0) \log \frac{Q_\lambda(Y_1 \vert Y_0)}{P_\theta(Y_1 \vert Y_0)} 
+\displaystyle \frac{d}{d\lambda} \int \left(\log \frac{Q_\lambda(Z_1,X_1 \vert Z_0,X_0)}{P_\theta(Z_1,X_1 \vert Z_0,X_0)} \right) \bar{\pi}_\lambda(dZ_1,dX_1,dZ_0,dX_0) 
 \\ & \\ & = 
-\displaystyle  \int  \frac{d}{d\lambda} \bar{\pi}_\lambda(dY_0) \int Q_\lambda(dY_1\vert Y_0) \log \frac{Q_\lambda(Y_1\vert Y_0)}{P_\theta(Y_1\vert Y_0)} 
+\displaystyle  \int \left( \frac{d}{d\lambda} \log \frac{Q_\lambda(Z_1,X_1 \vert Z_0,X_0)}{P_\theta(Z_1,X_1 \vert Z_0,X_0)} \right)  \bar{\pi}_\lambda(dZ_1,dX_1,dZ_0,dX_0)
 \\ & \\ & 
-\quad +  \displaystyle \int \bar{\pi}_\lambda(dY_0) \int \frac{d}{d\lambda} Q_\lambda(dY_1\vert Y_0) \log \frac{Q_\lambda(Y_1\vert Y_0)}{P_\theta(Y_1\vert Y_0)} 
-\\ & \\ & 
-\quad + \displaystyle  \int \bar{\pi}_\lambda(dY_0) \int Q_\lambda(dY_1\vert Y_0) \frac{d}{d\lambda} \log \frac{Q_\lambda(Y_1\vert Y_0)}{P_\theta(Y_1\vert Y_0)}
+\quad + \displaystyle  \int\left( \log \frac{Q_\lambda(Z_1,X_1 \vert Z_0,X_0)}{P_\theta(Z_1,X_1 \vert Z_0,X_0)} \right) \frac{d}{d\lambda} \bar{\pi}_\lambda(dZ_1,dX_1,dZ_0,dX_0) 
 . \end{array}$$
 
-The third term equals 
+The first term equals 
 
 $$\begin{array}{rl} &
-\displaystyle \int \bar{\pi}_\lambda(dY_0)  \int Q_\lambda(dY_1 \vert Y_0) \frac{\frac{d}{d\lambda} Q_\lambda(Y_1\vert Y_0)}{Q_\lambda(Y_1\vert Y_0)} 
+\displaystyle \int \frac{\frac{d}{d\lambda} Q_\lambda(Z_1,X_1\vert Z_0,X_0)}{Q_\lambda(Z_1,X_1\vert Z_0,X_0)} Q_\lambda(dZ_1,dX_1 \vert Z_0,X_0)  \bar{\pi}_\lambda(dZ_0,dX_0) 
 \\ & \\ & = 
-\displaystyle \int \bar{\pi}_\lambda(dY_0) \frac{d}{d\lambda}\int Q_\lambda(dY_1\vert Y_0) 
+\displaystyle \int \left( \int \frac{d}{d\lambda} Q_\lambda(dZ_1,dX_1\vert Z_0,X_0) \right) \bar{\pi}_\lambda(dZ_0,dX_0)
 \\ & \\ & = 
-\displaystyle \int \bar{\pi}_\lambda(dY_0) \frac{d}{d\lambda} 1 
+\displaystyle \int \left( \frac{d}{d\lambda}\int Q_\lambda(dZ_1,dX_1\vert Z_0,X_0) \right) \bar{\pi}_\lambda(dZ_0,dX_0)
+\\ & \\ & = \int
+\displaystyle \left( \frac{d}{d\lambda} 1 \right)  \bar{\pi}_\lambda(dZ_0,dX_0)
 \\ & \\ & = 
 0. \end{array}$$
 
-The second terms equals
+Taking derivatives of the stationary distribution, the second term becomes
 
-$$\begin{array}{rl} &
-\displaystyle \int \bar{\pi}_\lambda(dY_0) \int  Q_\lambda(dY_1 \vert Y_0)  \left(\log \frac{Q_\lambda(Y_1\vert Y_0)}{P_\theta(Y_1\vert Y_0)}\right) \frac{\frac{d}{d\lambda} \log Q_\lambda(Y_1 \vert Y_0)}{ Q_\lambda(Y_1 \vert Y_0)}
-\\ & \\ &
-= \displaystyle \int \bar{\pi}_\lambda(dY_0) \int  Q_\lambda(dY_1\vert Y_0)  \left(\log \frac{Q_\lambda(Y_1\vert Y_0)}{P_\theta(Y_1\vert Y_0)}\right) \frac{d}{d\lambda} \log Q_\lambda(Y_1 \vert Y_0)
-\\ & \\ &
-= \displaystyle \lim_{T \rightarrow \infty} \mathbb{E}_{Q_\lambda(Y_{0..(T+1)})} \Bigg[ \left(\log \frac{Q_\lambda(Y_{T+1}\vert Y_T)}{P_\theta(Y_{T+1}\vert Y_T)}\right) \frac{d}{d\lambda} \log Q_\lambda(dY_{T+1} \vert Y_T) \Bigg]
-. \end{array}$$
-
-Taking derivatives of the stationary distribution, the first term becomes
-
-$$\begin{array}{rl} &
-\displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Y_{0..(T+1)})} \Bigg[ \int Q_\lambda(dY_{T+2}\vert Y_{T+1}) \left(\log \frac{Q_\lambda(Y_{T+2} \vert Y_{T+1})}{P_\theta(Y_{T+2} \vert Y_{T+1})} \right)\sum_{t=0}^T \frac{d}{d\lambda} \log Q_\lambda(Y_{t+1}\vert  Y_{t}) \Bigg]
-\\ & \\ & =
-\displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Y_{0..(T+2)})} \Bigg[ \left( \log \frac{Q_\lambda(Y_{T+2}\vert Y_{T+1})}{P_\theta(Y_{T+2}\vert Y_{T+1})} \right) \sum_{t=0}^T \frac{d}{d\lambda} \log Q_\lambda(Y_{t+1} \vert  Y_{t}) \Bigg]
-\end{array}$$
-
-Combining this with the second term, we get 
-
-$$\begin{array}{rl} &
-\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Y_1 \vert Y_0) 
-\\ & \\ &
-= \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Y_{0..(T+2)})} \Bigg[ \left( \log \frac{Q_\lambda(Y_{T+2}\vert Y_{T+1})}{P_\theta(Y_{T+2}\vert Y_{T+1})} \right)  \sum_{t=0}^{T+1} \frac{d}{d\lambda} \log Q_\lambda(Y_{t+1} \vert  Y_{t}) \Bigg]
-. \end{array}$$
+$$\displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+2)},X_{0..(T+2)})} \Bigg[ \left( \log \frac{Q_\lambda(Z_{T+2},X_{T+2}\vert Z_{T+1},X_{T+1})}{P_\theta(Z_{T+2},X_{T+2}\vert Z_{T+1},X_{T+1})} \right) \sum_{t=1}^T \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1},X_{t+1} \vert  Z_t,X_t) \Bigg].
+$$
 
 Lastly, because 
 
@@ -298,9 +297,12 @@ the gradient simplifies (after a change of indices) to
 $$\begin{array}{rl} &
 \displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1,X_1 \vert Z_0,X_0) 
 \\ & \\ & = 
+\displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+1)},X_{0..(T+1)})} \Bigg[ \left( \log \frac{Q_\lambda(Z_{T+1},X_{T+1}\vert Z_T,X_T)}{P_\theta(Z_{T+1},X_{T+1}\vert Z_T,X_T)} \right)  \sum_{t=1}^T \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \Bigg]
+\\ & \\ & = 
 \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+1)},X_{0..(T+1)})} \Bigg[ \left( \log \frac{Q_\lambda(Z_{T+1},X_{T+1}\vert Z_T,X_T)}{P_\theta(Z_{T+1},X_{T+1}\vert Z_T,X_T)} \right)  \sum_{t=0}^T \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \Bigg]
-. \end{array}$$
+\end{array}$$
 
+where the last equality follows because the limit does not depend on the initial distribution of $$(Z_0, X_0).$$
 ## References
 
 [BB01] Baxter, Jonathan, and Peter L. Bartlett. "Infinite-horizon policy-gradient estimation." _Journal of Artificial Intelligence Research_ 15 (2001): 319-350.

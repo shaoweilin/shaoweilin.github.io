@@ -33,7 +33,7 @@ Classical textbooks for information theory define the relative entropy in terms 
 
 Let $$X$$ be a random variable with values in the measurable space $$(\Omega, \mathcal{B})$$, and let $$P_X$$ be its distribution. For discrete state spaces $$\Omega$$, the entropy of $$X$$ is defined as
 
-$$H(X) = - \displaystyle \sum_{i=1}^{n} P_X(i) \log P_X(i).$$
+$$H_{P_X}(X) = - \displaystyle \sum_{i=1}^{n} P_X(i) \log P_X(i).$$
 
 In general, for any measurable space $$(\Omega, \mathcal{B})$$, we now construct two extreme measures on the product space $$(\Omega \times \Omega, \mathcal{B} \otimes \mathcal{B})$$.
 
@@ -51,7 +51,7 @@ for all $$F,G \in \mathcal{B}$$. When $$\Omega$$ is finite, $$P_{XX}(x_1,x_2)$$ 
 
 The entropy of $$X$$ may be then defined as
 
-$$\begin{array}{rl} H(X) &= H_{P_{XX} \Vert P_X\times P_X} \\ & \\ &= \displaystyle \sum_{i,j} P_{XX}(i,j) \log \frac{P_{XX}(i,j)}{P_X(i)P_X(j)} \\ & \\ &= \displaystyle \sum_{i} P_{X}(i) \log \frac{P_{X}(i)}{P_X(i)P_X(i)} \\ & \\ &= -\displaystyle \sum_{i} P_X(i) \log P_X(i), \end{array}$$
+$$\begin{array}{rl} H_{P_X}(X) &= H_{P_{XX} \Vert P_X\times P_X} \\ & \\ &= \displaystyle \sum_{i,j} P_{XX}(i,j) \log \frac{P_{XX}(i,j)}{P_X(i)P_X(j)} \\ & \\ &= \displaystyle \sum_{i} P_{X}(i) \log \frac{P_{X}(i)}{P_X(i)P_X(i)} \\ & \\ &= -\displaystyle \sum_{i} P_X(i) \log P_X(i), \end{array}$$
 
 the relative entropy to $$P_{XX}$$ from $$P_X\times P_X.$$ Therefore, entropy measures the amount of information gained when we learn that two random variables $$X_1, X_2$$ previously believed to be completely independent are actually completely dependent.
 
