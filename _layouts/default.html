@@ -33,11 +33,13 @@
             <p class="site-description">{{ site.description }}</p>
           </div>
 
-          <form action="https://www.google.com/search" class="searchform" method="get" name="searchform" target="_blank">
-            <input name="sitesearch" type="hidden" value="shaoweilin.github.io">
-            <input autocomplete="on" class="form-control search" name="q" placeholder="Search this site" required="required"  type="text">
-            <button class="button" type="submit">Search</button>
-          </form>
+          <nav>
+            <form action="https://www.google.com/search" class="searchform" method="get" name="searchform" target="_blank">
+              <input name="sitesearch" type="hidden" value="shaoweilin.github.io">
+              <input autocomplete="on" class="form-control search" name="q" placeholder="Search this site" required="required"  type="text">
+              <button class="button" type="submit">Search</button>
+            </form>
+          </nav>
           
           <nav>
             <a href="{{ site.baseurl }}/posts">Posts</a>
