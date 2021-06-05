@@ -24,3 +24,4 @@ I'm writing a series of articles that will explore the connections between these
 2. [Variational inference for latent processes](https://shaoweilin.github.io/variational-inference-for-latent-processes/)
 3. [Biased stochastic approximation for latent processes](https://shaoweilin.github.io/biased-stochastic-approximation-for-latent-processes/)
 4. [Convergence of biased stochastic approximation](https://shaoweilin.github.io/convergence-of-biased-stochastic-approximation/)
+5. [Spiking neural networks](https://shaoweilin.github.io/spiking-neural-networks/)
