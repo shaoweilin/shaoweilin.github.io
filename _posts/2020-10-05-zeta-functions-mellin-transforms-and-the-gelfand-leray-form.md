@@ -13,7 +13,7 @@ Let $$\omega$$ be a volume form or a form resulting from a measure on some space
 
 $$df \wedge \phi = \omega.$$
 
-We will denote $$\phi$$ by $$\omega /df$$. See [[AGV99]](#ref-AGV99) and [[M10 §4]](#ref-M10) for expositions about the Gelfand-Leray form.
+We will denote $$\phi$$ by $$\omega /df$$. See [[AGV88]](#ref-AGV88) and [[M10 §4]](#ref-M10) for expositions about the Gelfand-Leray form.
 
 The _Gelfand-Leray function_ is
 
