@@ -74,7 +74,3 @@ is the functional derivative of a path function $$ F$$ with respect to the path 
 ## References
 
 <a id="ref-L92"></a>[[L92]](#ref-L92) Leroux, Brian G. "Maximum-likelihood estimation for hidden Markov models." _Stochastic processes and their applications_ 40, no. 1 (1992): 127-143.
-
-<a id="ref-S01"></a>[[S01]](#ref-S01) Sato, Masa-Aki. "Online model selection based on the variational Bayes." _Neural computation_ 13, no. 7 (2001): 1649-1681.
-
-<a id="ref-KMMW19"></a>[[KMMW19]](#ref-KMMW19) Karimi, Belhal, Blazej Miasojedow, Éric Moulines, and Hoi-To Wai. "Non-asymptotic analysis of biased stochastic approximation scheme." _arXiv preprint arXiv:1902.00629_ (2019).

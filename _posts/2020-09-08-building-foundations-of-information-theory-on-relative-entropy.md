@@ -29,7 +29,7 @@ It is not difficult to show that $$H_{Q\Vert P} \geq 0$$ for all probability mea
 
 ## How do we derive entropy from relative entropy?
 
-Classical textbooks for information theory define the relative entropy in terms of entropy (and cross entropy). We could choose instead to think of the relative entropy as the fundamental object, and entropy as a special case [Gray11, Chodrow17].
+Classical textbooks for information theory define the relative entropy in terms of entropy (and cross entropy). We could choose instead to think of the relative entropy as the fundamental object, and entropy as a special case [[G11]](#ref-G11), [[C17]](#ref-C17).
 
 Let $$X$$ be a random variable with values in the measurable space $$(\Omega, \mathcal{B})$$, and let $$P_X$$ be its distribution. For discrete state spaces $$\Omega$$, the entropy of $$X$$ is defined as
 

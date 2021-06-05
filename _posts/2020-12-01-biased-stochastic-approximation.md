@@ -3,7 +3,7 @@ layout: post
 title: Biased stochastic approximation
 ---
 
-We explore the convergence of continuous-time ordinary differential equations and their discrete-time analogs, such as stochastic approximation and gradient descent, through the lens of Lyapunov theory [Bottou98, LR15]. From this perspective, we will study biased stochastic approximation [[KMMW19]](#ref-KMMW19) where the expectation of the stochastic updates conditioned on the past (which we call the _conditional expectation_) is not the same as the expectation of the stochastic updates under the stationary distribution (which we call the _total expectation_).
+We explore the convergence of continuous-time ordinary differential equations and their discrete-time analogs, such as stochastic approximation and gradient descent, through the lens of Lyapunov theory [[B98]](#ref-B98) [[LR15]](#ref-LR15). From this perspective, we will study biased stochastic approximation [[KMMW19]](#ref-KMMW19) where the expectation of the stochastic updates conditioned on the past (which we call the _conditional expectation_) is not the same as the expectation of the stochastic updates under the stationary distribution (which we call the _total expectation_).
 
 This post is a continuation from our [series](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 
@@ -113,7 +113,7 @@ Then, one can show that
 
 $$\displaystyle \int_0^t Lg(X_s) ds = g(X_t) - g(X_0) - \int_0^t \sum_{i} \frac{\partial g}{\partial x_i}(X_s) \sigma_i (X_s) dB_s,$$
 
-thanks to the Itô formula [Oksendal13, Lemma 7.3.2].
+thanks to the Itô formula [[O13 Lemma 7.3.2]](#ref-O13).
 
 The last term
 

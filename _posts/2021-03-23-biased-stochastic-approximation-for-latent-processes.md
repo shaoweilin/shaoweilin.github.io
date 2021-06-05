@@ -212,7 +212,7 @@ $$\frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1 , X_1 \vert Z_0, X_0
 
 used in the discriminative model update. The methods used are similar to those employed in the policy gradient theorem [[BB01]](#ref-BB01).
 
-We start with the following formula from [[BB1]](#ref-BB1) and [[KMMW19]](#ref-KMMW19) for the integral of a function $$r(W)$$ with respect to the derivative of the stationary distribution $$\bar{\pi}_\lambda(W)$$.
+We start with the following formula from [[BB01]](#ref-BB01) and [[KMMW19]](#ref-KMMW19) for the integral of a function $$r(W)$$ with respect to the derivative of the stationary distribution $$\bar{\pi}_\lambda(W)$$.
 
 $$\begin{array}{rl} &
 \displaystyle \int r(W) \frac{d}{d\lambda} \bar{\pi}_\lambda(dW) 
