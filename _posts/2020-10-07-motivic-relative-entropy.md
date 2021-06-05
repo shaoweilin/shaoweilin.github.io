@@ -149,7 +149,7 @@ Note that the different measures discussed above should not be confused with eac
 
 ## What is the relative entropy of morphisms between algebraic varieties?
 
-We consider the relative entropy of proper morphisms and flat morphisms as described in [Marcolli19, $$\S 4.5 - \S 4.7$$].
+We consider the relative entropy of proper morphisms and flat morphisms as described in [[M19 §4.5-§4.7]](#ref-M19).
 
 First, for each variety $$V$$, we define $$P_V(t)$$ be the distribution on $$\mathcal{C}_V$$ given by
 
