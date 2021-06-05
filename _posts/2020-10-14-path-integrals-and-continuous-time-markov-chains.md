@@ -9,7 +9,7 @@ This post is a continuation from our [series](https://shaoweilin.github.io/motiv
 
 ## What is a stochastic process?
 
-A stochastic process [AMB17] on a measure space $$(\Omega, \mathcal{A},P)$$ indexed by a set $$I$$ is a family $$\{X_t \}_{t \in I}$$ of random variables $$X_t : \Omega \rightarrow R$$ on $$\Omega,$$ where $$(R$$ is some measure space. This allows us to compute _finite joint distributions_ of the form
+A stochastic process [[AMB17]](#ref-AMB17) on a measure space $$(\Omega, \mathcal{A},P)$$ indexed by a set $$I$$ is a family $$\{X_t \}_{t \in I}$$ of random variables $$X_t : \Omega \rightarrow R$$ on $$\Omega,$$ where $$(R$$ is some measure space. This allows us to compute _finite joint distributions_ of the form
 
 $$P(\{\omega \in \Omega \vert X_{t_1}(\omega) \in \mathcal{A}_1, \ldots, X_{t_n}(\omega) \in \mathcal{A}_n\})$$
 
@@ -141,7 +141,7 @@ Of course, these path integrals are not well-defined in the Lebesgue sense and s
 
 There has been a lot of work [AM11, AMB17] in the last few decades on formalizing these path measures and path integrals.
 
-Most notable was the breakthrough on understanding line integrals such as $$S(\gamma)$$ driven by a fixed path $$\gamma$$, using Martin Hairer's theory of regularity structures which was inspired by rough path theory [H14]. Path integrals of these line integrals over some path measure can then be defined formally using the Lyon-Ito map from rough path theory without a need to define any densities with respect to a "Lebesgue path measure" [I16]. Thus, line integrals and path integrals are decoupled.
+Most notable was the breakthrough on understanding line integrals such as $$S(\gamma)$$ driven by a fixed path $$\gamma$$, using Martin Hairer's theory of regularity structures which was inspired by rough path theory [[H14]](#ref-H14). Path integrals of these line integrals over some path measure can then be defined formally using the Lyon-Ito map from rough path theory without a need to define any densities with respect to a "Lebesgue path measure" [[I16]](#ref-I16). Thus, line integrals and path integrals are decoupled.
 
 Absorbing the normalization constant $$Z^{-1}$$ into the action $$S(\gamma)$$ for convenience, the path integral
 
@@ -157,22 +157,57 @@ $$J(t) = \displaystyle \frac{d}{dt} \int_{0 \leq S(\gamma) \leq t} f(\gamma) D\g
 
 This Gelfand-Leray function is similar to the [density of states](https://en.wikipedia.org/wiki/Density_of_states) studied in solid state physics and condensed matter physics. It integrates the path function $$f(\gamma)$$ over all paths having a fixed energy $$S(\gamma)=t$$.
 
+## How can we approximate a continuous-time Markov chain with a discrete-time Markov chain?
+
+There are roughly two ways of approximating a continuous-time Markov chain with one that is discrete-time. The first is to let the discrete timings represent the timings of observations. The second is to let the discrete timings represent the timings of transitions.
+
+For the first way involving observation timings, one naïve approach is to make observations at regular intervals, such as what we did for path integrals in the previous section. The problem with this approach is that limits of integrals often do not behave well when we let the time interval tend to zero.
+
+Alternatively, within a time interval $$[0,T],$$ we may assume that the observations occur with Poisson rate $$\lambda,$$ i.e. we have an average of $$\lambda$$ observations in a unit time interval. Consequently, the probability that there are $$N$$ observations is
+
+$$
+\mathbb{P}[N=n] = \displaystyle e^{-\lambda T} \frac{(\lambda T)^n}{n!}.
+$$
+
+Given $$N,$$ we then choose $$N$$ observations uniformly within the interval $$[0,T].$$ The probabilities of particular observations at these $$N$$ timings are then given by the cylinder probabilities described earlier in this article.
+
+As we let the observation rate $$\lambda$$ tend to infinity, we get better approximations of the continuous-time Markov chain and the limits of integrals should also behave well. This strategy also works well for path integrals in relativistic quantum theory [[GZ02 §5]](#ref-GZ02).
+
+The second way involving transition timings works only when each state $$X(t)$$ of the stochastic process is unchanging for some nonzero time interval. This is true for continuous-time Markov chains with finite or countable state space $$\mathcal{X}$$. In our discussion, we will trivially allow transitions to be from a state $$x$$ back to itself for the sake of generality. 
+
+Suppose that the Markov chain with state $$X(t) = x \in \mathcal{X}$$ at time $$t$$ has a Poisson rate $$F_{xy}$$ of transitioning to some state $$y \in \mathcal{X},$$ where $$y$$ is allowed to be equal to $$x.$$ Then, the rate transition matrix $$(\Gamma_{xy})$$ has entries $$\Gamma_{xy} = F_{xy}$$ for $$y \neq x$$, and $$\Gamma_{xx} = -\sum_{y\neq x} F_{xy}$$ otherwise. At state $$x$$, the Poisson rate to any transition event is
+
+$$ \displaystyle \lambda_x = \sum_{y} F_{xy} $$
+
+and the transition probabilities for the next state $$y$$ are
+
+$$\displaystyle P_{xy} = \frac{F_{xy}}{\sum_y F{xy}} = \frac{F_{xy}}{\lambda_x}.$$
+
+This second approach involving transition timings is suitable when we are simulating a continuous-time learning algorithm on machines with discrete processor clocks. The machine will keep track of transitions in the learning system, and approximate the continuous-time learning updates between the transitions with discrete-time updates.
+
+
+
+
+
+
 ## References
 
-[AM11] Albeverio, Sergio, and Sonia Mazzucchi. "Path integral: mathematical aspects." _Scholarpedia_ 6, no. 1 (2011): 8832.
+<a id="ref-AM11"></a>[[AM11]](#ref-AM11) Albeverio, Sergio, and Sonia Mazzucchi. "Path integral: mathematical aspects." _Scholarpedia_ 6, no. 1 (2011): 8832.
 
-[AMB17] Albeverio, Sergio, Sonia Mazzucchi, and Zdzislaw Brzezniak. "Probabilistic integrals: Mathematical aspects." _Scholarpedia_ 12, no. 5 (2017): 10429.
+<a id="ref-AMB17"></a>[[AMB17]](#ref-AMB17) Albeverio, Sergio, Sonia Mazzucchi, and Zdzislaw Brzezniak. "Probabilistic integrals: Mathematical aspects." _Scholarpedia_ 12, no. 5 (2017): 10429.
 
-[H14] Hairer, Martin. "A theory of regularity structures." _Inventiones mathematicae_ 198, no. 2 (2014): 269-504.
+<a id="ref-GZ02"></a>[[GZ02]](#ref-GZ02) Gill, Tepper L., and W. W. Zachary. "Foundations for relativistic quantum theory. I. Feynman’s operator calculus and the Dyson conjectures." _Journal of Mathematical Physics_ 43, no. 1 (2002): 69-93.
 
-[I16] Inahama, Yuzuru. "Rough path theory and stochastic calculus." _arXiv preprint arXiv:1602.03255_ (2016).
+<a id="ref-H14"></a>[[H14]](#ref-H14) Hairer, Martin. "A theory of regularity structures." _Inventiones mathematicae_ 198, no. 2 (2014): 269-504.
 
-[MHTG16] Matthews, Alexander G. de G., James Hensman, Richard Turner, and Zoubin Ghahramani. "On sparse variational methods and the Kullback-Leibler divergence between stochastic processes." _Journal of Machine Learning Research_ 51 (2016): 231-239.
+<a id="ref-I16"></a>[[I16]](#ref-I16) Inahama, Yuzuru. "Rough path theory and stochastic calculus." _arXiv preprint arXiv:1602.03255_ (2016).
 
-[WF17] Weber, Markus F., and Erwin Frey. "Master equations and the theory of stochastic path integrals." _Reports on Progress in Physics_ 80, no. 4 (2017): 046601.
+<a id="ref-MHTG16"></a>[[MHTG16]](#ref-MHTG16) Matthews, Alexander G. de G., James Hensman, Richard Turner, and Zoubin Ghahramani. "On sparse variational methods and the Kullback-Leibler divergence between stochastic processes." _Journal of Machine Learning Research_ 51 (2016): 231-239.
 
-[V85] M.Y. Vardi, “Automatic Verification of Probabilistic Concurrent  
+<a id="ref-WF17"></a>[[WF17]](#ref-WF17) Weber, Markus F., and Erwin Frey. "Master equations and the theory of stochastic path integrals." _Reports on Progress in Physics_ 80, no. 4 (2017): 046601.
+
+<a id="ref-V85"></a>[[V85]](#ref-V85) M.Y. Vardi, “Automatic Verification of Probabilistic Concurrent  
 Finite State Programs,” Proc. Ann. Symp. Foundations of Computer  
 Science, pp. 327-338, 1985.
 
-[Z09] Zinn-Justin, Jean. "Path integral." _Scholarpedia_ 4, no. 2 (2009): 8674.
+<a id="ref-Z09"></a>[[Z09]](#ref-Z09) Zinn-Justin, Jean. "Path integral." _Scholarpedia_ 4, no. 2 (2009): 8674.

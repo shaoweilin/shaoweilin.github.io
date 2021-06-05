@@ -41,7 +41,7 @@ $$\displaystyle \mathbb{E}_{X\sim Q_*} \left[ \log P_\theta(X) \right] = \frac{1
 
 where $$\mathcal{D}$$ is a finite i.i.d. sample of $$Q_*$$. This approximation is called the _log -likelihood_ of the data set $$\mathcal{D}$$. The best model parameter $$\hat{\theta}$$ may be estimated by maximizing the log-likelihood. The resulting algorithm is known as the _maximum likelihood_ method.
 
-If the true distribution can be represented by $$Q_* = P_{\theta^*}$$ for some parameter $$\theta^*,$$ it can be shown that as the sample size grows to infinity, the estimated parameter $$\hat{\theta}$$ converges quickly to the true parameter $$\theta^*.$$ The asymptotic behavior of the maximum likelihood method is analyzed in [W09].
+If the true distribution can be represented by $$Q_* = P_{\theta^*}$$ for some parameter $$\theta^*,$$ it can be shown that as the sample size grows to infinity, the estimated parameter $$\hat{\theta}$$ converges quickly to the true parameter $$\theta^*.$$ The asymptotic behavior of the maximum likelihood method is analyzed in [[W09]](#ref-W09).
 
 ## Second method (stochastic gradient)
 
@@ -55,7 +55,7 @@ $$\displaystyle \mathbb{E}_{X\sim Q_*} \left[ \frac{d}{d\theta} \log P_\theta(X)
 
 where the _batch_ $$\mathcal{B}$$ is a finite i.i.d. sample of $$Q_*$$. This approximation is called the _score_. We often sample batches of a small fixed size with replacement from a large data set $$\mathcal{D}$$ and perform gradient ascent via the batch score. The resulting algorithm is known as the _stochastic gradient_ method.
 
-Batch stochastic gradients have a regularizing effect on the estimator $$\hat{\theta}$$ as compared to the gradient of the log-likelihood of the full data set. They ensure that the estimator does not get stuck in a local minima of the log-likelihood function, which corresponds to overfitting of the model to the full data set. The asymptotic behavior of the stochastic gradient method is analyzed in [W09].
+Batch stochastic gradients have a regularizing effect on the estimator $$\hat{\theta}$$ as compared to the gradient of the log-likelihood of the full data set. They ensure that the estimator does not get stuck in a local minima of the log-likelihood function, which corresponds to overfitting of the model to the full data set. The asymptotic behavior of the stochastic gradient method is analyzed in [[W09]](#ref-W09).
 
 ## How do we apply stochastic approximation via relative entropy?
 
@@ -140,7 +140,7 @@ Moreover, we may perform alternating minimization:
 2.  holding $$Q$$ constant while minimizing over $$\theta$$;
 3.  repeat.
 
-In information geometry [A95], the first step is called _exponential projection_ (e-projection) while the second step is called _mixture projection_ (m-projection) (of the log-likelihood, as opposed to minimization of the relative entropy). This _exponential-mixture algorithm_ (em algorithm) is also related to the _expectation-maximization algorithm_ (EM algorithm) [DLR77].
+In information geometry [[A95]](#ref-A95), the first step is called _exponential projection_ (e-projection) while the second step is called _mixture projection_ (m-projection) (of the log-likelihood, as opposed to minimization of the relative entropy). This _exponential-mixture algorithm_ (em algorithm) is also related to the _expectation-maximization algorithm_ (EM algorithm) [[DLR77]](#ref-DLR77).
 
 Sometimes, the variational parameter $$Q(Z\vert X)$$ is constrained to a space of tractable conditional distributions, or a space of distributions for which the maximization step has an exact solution. In these cases, the optimal value of $$H_{Q\Vert P_\theta}(Z, X)$$ may not equal the optimal value of $$H_{Q_* \Vert P_\theta}(X)$$, but it will be an upper bound to the latter. The em algorithm becomes an approximate inference technique, because it minimizes an upper bound and not the desired relative entropy itself.
 
@@ -152,7 +152,7 @@ We consider a variety of contexts where the interpretations of $$Q(Z\vert X)$$ a
 
 ### Context of Bayesian statistics
 
-Historically, variational inference was introduced [JGJS99] to approximate posterior distributions in the context of Bayesian statistics, as an alternative to Markov chain Monte Carlo methods [BKM17]. 
+Historically, variational inference was introduced [[JGJS99]](#ref-JGJS99) to approximate posterior distributions in the context of Bayesian statistics, as an alternative to Markov chain Monte Carlo methods [[BKM17]](#ref-BKM17). 
 
 Suppose we have a distribution $$P(X\vert Z)$$ and prior $$P(Z)$$ for some observed variable $$X$$ and some latent variable $$Z.$$ The goal is to find the posterior distribution $$P(Z\vert X_*)$$ given some data $$X_*.$$ 
 
@@ -196,15 +196,15 @@ In this context, instead of projecting $$P(Z,X)$$ to the base space of distribut
 
 ## References
 
-[A95] Amari, Shun-ichi. "Information geometry of the EM and em algorithms for neural networks." _Neural networks_ 8, no. 9 (1995): 1379-1408.
+<a id="ref-A95"></a>[[A95]](#ref-A95) Amari, Shun-ichi. "Information geometry of the EM and em algorithms for neural networks." _Neural networks_ 8, no. 9 (1995): 1379-1408.
 
-[BKM17] Blei, David M., Alp Kucukelbir, and Jon D. McAuliffe. "Variational inference: A review for statisticians." _Journal of the American statistical Association_ 112, no. 518 (2017): 859-877.
+<a id="ref-BKM17"></a>[[BKM17]](#ref-BKM17) Blei, David M., Alp Kucukelbir, and Jon D. McAuliffe. "Variational inference: A review for statisticians." _Journal of the American statistical Association_ 112, no. 518 (2017): 859-877.
 
-[DLR77] Dempster, Arthur P., Nan M. Laird, and Donald B. Rubin. "Maximum likelihood from incomplete data via the EM algorithm." _Journal of the Royal Statistical Society: Series B (Methodological)_ 39, no. 1 (1977): 1-22.
+<a id="ref-DLR77"></a>[[DLR77]](#ref-DLR77) Dempster, Arthur P., Nan M. Laird, and Donald B. Rubin. "Maximum likelihood from incomplete data via the EM algorithm." _Journal of the Royal Statistical Society: Series B (Methodological)_ 39, no. 1 (1977): 1-22.
 
-[JGJS99] Jordan, Michael I., Zoubin Ghahramani, Tommi S. Jaakkola, and Lawrence K. Saul. "An introduction to variational methods for graphical models." _Machine learning_ 37, no. 2 (1999): 183-233.
+<a id="ref-JGJS99"></a>[[JGJS99]](#ref-JGJS99) Jordan, Michael I., Zoubin Ghahramani, Tommi S. Jaakkola, and Lawrence K. Saul. "An introduction to variational methods for graphical models." _Machine learning_ 37, no. 2 (1999): 183-233.
 
-[W09] Watanabe, Sumio. _Algebraic geometry and statistical learning theory_. Vol. 25\. Cambridge university press, 2009.
+<a id="ref-W09"></a>[[W09]](#ref-W09) Watanabe, Sumio. _Algebraic geometry and statistical learning theory_. Vol. 25\. Cambridge university press, 2009.
 
 
 

@@ -3,7 +3,7 @@ layout: post
 title: Biased stochastic approximation for latent processes
 ---
 
-We apply biased stochastic approximation and variational inference to optimize a relative entropy objective for latent Markov processes. We will be using [biased](https://shaoweilin.github.io/biased-stochastic-approximation/) stochastic approximation [KMMW19] where the stochastic updates are dependent on the past but the conditional expectation of the stochastic updates given the past is not equal to the mean field. These biased stochastic approximation schemes generalize the classical expectation maximization algorithm [KMMW19].
+We apply biased stochastic approximation and variational inference to optimize a relative entropy objective for latent Markov processes. We will be using [biased](https://shaoweilin.github.io/biased-stochastic-approximation/) stochastic approximation [[KMMW19]](#ref-KMMW19) where the stochastic updates are dependent on the past but the conditional expectation of the stochastic updates given the past is not equal to the mean field. These biased stochastic approximation schemes generalize the classical expectation maximization algorithm [[KMMW19]](#ref-KMMW19).
 
 This post is a continuation from our [series](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 
@@ -198,9 +198,9 @@ $$
 
 where $$\hat{\xi}$$ is a fixed estimate of the true conditional entropy. When $$X_{n+1}$$ is too likely or too unlikely given $$(Z_{n}, X_{n})$$, there will be a big difference between the negative log-likelihood $$- \log P_{\theta_{n+2}}(X_{n+1}\vert Z_{n},X_{n})$$ and the threshold $$\hat{\xi}.$$ This will generate a strong signal response in the learning system to correct the discrepancy. 
 
-In [JG14], this strong signal was called _novelty_ or _surprise_. The authors hypothesized that biological neural networks could implement this signal using neuromodulation.
+In [[JG14]](#ref-JG14), this strong signal was called _novelty_ or _surprise_. The authors hypothesized that biological neural networks could implement this signal using neuromodulation.
 
-In [PBR20], a reinforcement learning scheme for training multilayer neural networks was derived. To implement the weight updates, besides computing the usual feedforward signals, the scheme also computes feedback signals using feedback connections, a global modulating signal representing the reward prediction error, and a local gating signal representing top-down attention. The resulting weight updates are Hebbian. 
+In [[PBR20]](#ref-PBR20), a reinforcement learning scheme for training multilayer neural networks was derived. To implement the weight updates, besides computing the usual feedforward signals, the scheme also computes feedback signals using feedback connections, a global modulating signal representing the reward prediction error, and a local gating signal representing top-down attention. The resulting weight updates are Hebbian. 
 
 While there are many interesting similarities between their scheme and our algorithm, one major difference is that we do not require the feedback weights to be the same as the feedforward weights. In our algorithm, the feedback weights are represented by the parameter $$\lambda$$ and the feedforward weights by $$\theta$$. At the end of training,  the feedback weights will tend towards the feedforward weights because of the tendency to exploit. However, tying the weights together at the start of training could be detrimental to learning due to the need of the neural network to explore.
 
@@ -210,9 +210,9 @@ In this appendix, we derive the gradient
 
 $$\frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1 , X_1 \vert Z_0, X_0)$$
 
-used in the discriminative model update. The methods used are similar to those employed in the policy gradient theorem [BB01].
+used in the discriminative model update. The methods used are similar to those employed in the policy gradient theorem [[BB01]](#ref-BB01).
 
-We start with the following formula from [BB1] and [KMMW19] for the integral of a function $$r(W)$$ with respect to the derivative of the stationary distribution $$\bar{\pi}_\lambda(W)$$.
+We start with the following formula from [[BB1]](#ref-BB1) and [[KMMW19]](#ref-KMMW19) for the integral of a function $$r(W)$$ with respect to the derivative of the stationary distribution $$\bar{\pi}_\lambda(W)$$.
 
 $$\begin{array}{rl} &
 \displaystyle \int r(W) \frac{d}{d\lambda} \bar{\pi}_\lambda(dW) 
@@ -303,17 +303,13 @@ $$\begin{array}{rl} &
 \end{array}$$
 
 where the last equality follows because the limit does not depend on the initial distribution of $$(Z_0, X_0).$$
+
 ## References
 
-[BB01] Baxter, Jonathan, and Peter L. Bartlett. "Infinite-horizon policy-gradient estimation." _Journal of Artificial Intelligence Research_ 15 (2001): 319-350.
+<a id="ref-BB01"></a>[[BB01]](#ref-BB01) Baxter, Jonathan, and Peter L. Bartlett. "Infinite-horizon policy-gradient estimation." _Journal of Artificial Intelligence Research_ 15 (2001): 319-350.
 
-[JG14] Jimenez Rezende, Danilo, and Wulfram Gerstner. "Stochastic variational learning in recurrent spiking networks." _Frontiers in computational neuroscience_ 8 (2014): 38.
+<a id="ref-JG14"></a>[[JG14]](#ref-JG14) Jimenez Rezende, Danilo, and Wulfram Gerstner. "Stochastic variational learning in recurrent spiking networks." _Frontiers in computational neuroscience_ 8 (2014): 38.
 
-[KMMW19] Karimi, Belhal, Blazej Miasojedow, Éric Moulines, and Hoi-To Wai. "Non-asymptotic analysis of biased stochastic approximation scheme." _arXiv preprint arXiv:1902.00629_ (2019).
+<a id="ref-KMMW19"></a>[[KMMW19]](#ref-KMMW19) Karimi, Belhal, Blazej Miasojedow, Éric Moulines, and Hoi-To Wai. "Non-asymptotic analysis of biased stochastic approximation scheme." _arXiv preprint arXiv:1902.00629_ (2019).
 
-[L92] Leroux, Brian G. "Maximum-likelihood estimation for hidden Markov models." _Stochastic processes and their applications_ 40, no. 1 (1992): 127-143.
-
-[PBR20] Pozzi, Isabella, Sander Bohte, and Pieter Roelfsema. "Attention-Gated Brain Propagation: How the brain can implement reward-based error backpropagation." _Advances in Neural Information Processing Systems_ 33 (2020).
-
-[S01] Sato, Masa-Aki. "Online model selection based on the variational Bayes." _Neural computation_ 13, no. 7 (2001): 1649-1681.
-
+<a id="ref-PBR20"></a>[[PBR20]](#ref-PBR20) Pozzi, Isabella, Sander Bohte, and Pieter Roelfsema. "Attention-Gated Brain Propagation: How the brain can implement reward-based error backpropagation." _Advances in Neural Information Processing Systems_ 33 (2020).

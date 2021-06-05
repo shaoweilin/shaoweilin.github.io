@@ -41,7 +41,7 @@ $$ \begin{array}{rl} &\displaystyle \frac{d}{ds}H_{Q \Vert P} (X_{0\ldots s}) \\
 
 is also known as the _relative entropy rate_ of $$ X_t$$. The differential operator acting on the function $$ H_{Q \Vert P}$$ of the path $$ X_{0\ldots s}$$ may be seen as a generalization of the infinitesimal generator for Markov processes.
 
-In fact, using Kingman's subadditive ergodic theory [L92], we can show that under mild regularity conditions,
+In fact, using Kingman's subadditive ergodic theory [[L92]](#ref-L92), we can show that under mild regularity conditions,
 
 $$ \displaystyle \lim_{n\rightarrow \infty} \frac{1}{n} H_{Q \Vert P}(X_{0\ldots n}) = \lim_{n\rightarrow \infty} H_{Q \Vert P}(X_n \vert X_{0\ldots (n-1)}).$$
 
@@ -73,8 +73,8 @@ is the functional derivative of a path function $$ F$$ with respect to the path 
 
 ## References
 
-[L92] Leroux, Brian G. "Maximum-likelihood estimation for hidden Markov models." _Stochastic processes and their applications_ 40, no. 1 (1992): 127-143.
+<a id="ref-L92"></a>[[L92]](#ref-L92) Leroux, Brian G. "Maximum-likelihood estimation for hidden Markov models." _Stochastic processes and their applications_ 40, no. 1 (1992): 127-143.
 
-[S01] Sato, Masa-Aki. "Online model selection based on the variational Bayes." _Neural computation_ 13, no. 7 (2001): 1649-1681.
+<a id="ref-S01"></a>[[S01]](#ref-S01) Sato, Masa-Aki. "Online model selection based on the variational Bayes." _Neural computation_ 13, no. 7 (2001): 1649-1681.
 
-[KMMW19] Karimi, Belhal, Blazej Miasojedow, Éric Moulines, and Hoi-To Wai. "Non-asymptotic analysis of biased stochastic approximation scheme." _arXiv preprint arXiv:1902.00629_ (2019).
+<a id="ref-KMMW19"></a>[[KMMW19]](#ref-KMMW19) Karimi, Belhal, Blazej Miasojedow, Éric Moulines, and Hoi-To Wai. "Non-asymptotic analysis of biased stochastic approximation scheme." _arXiv preprint arXiv:1902.00629_ (2019).

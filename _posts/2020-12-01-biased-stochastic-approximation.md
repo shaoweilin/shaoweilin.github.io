@@ -3,7 +3,7 @@ layout: post
 title: Biased stochastic approximation
 ---
 
-We explore the convergence of continuous-time ordinary differential equations and their discrete-time analogs, such as stochastic approximation and gradient descent, through the lens of Lyapunov theory [Bottou98, LR15]. From this perspective, we will study biased stochastic approximation [KMMW19] where the expectation of the stochastic updates conditioned on the past (which we call the _conditional expectation_) is not the same as the expectation of the stochastic updates under the stationary distribution (which we call the _total expectation_).
+We explore the convergence of continuous-time ordinary differential equations and their discrete-time analogs, such as stochastic approximation and gradient descent, through the lens of Lyapunov theory [Bottou98, LR15]. From this perspective, we will study biased stochastic approximation [[KMMW19]](#ref-KMMW19) where the expectation of the stochastic updates conditioned on the past (which we call the _conditional expectation_) is not the same as the expectation of the stochastic updates under the stationary distribution (which we call the _total expectation_).
 
 This post is a continuation from our [series](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 
@@ -99,7 +99,7 @@ $$\mathbb{E}[ H_t \vert  \mathcal{F}_s] = H_s.$$
 
 Note that this condition implies that for discrete time stochastic processes, the expectation of the _martingale difference_ $$E_{n+1} = H_{n+1} - H_n$$ conditioned on $$\mathcal{F}_n$$ is zero.
 
-Martingales play an important role in stochastic integration [CCG11]. For example, let $$\{X_t\}_{0\leq t}$$ be a continuous-time stochastic process driven by Brownian motion, e.g.
+Martingales play an important role in stochastic integration [[CCG11]](#ref-CCG11). For example, let $$\{X_t\}_{0\leq t}$$ be a continuous-time stochastic process driven by Brownian motion, e.g.
 
 $$dX_t = b(X_t) dt + \sigma(X_t) dB_t$$
 
@@ -139,7 +139,7 @@ Under some regularity conditions on $$\{X_t\}$$ and assuming that the total expe
 
 $$\displaystyle g(x) = - \int_0^\infty P^s f(x) ds$$
 
-if the integral is well-defined [CCG11]. Indeed, if $$Lg = f,$$ then
+if the integral is well-defined [[CCG11]](#ref-CCG11). Indeed, if $$Lg = f,$$ then
 
 $$\begin{array}{rl} P^t g(x) - g(x) &= \displaystyle \int_0^t \partial_s P^s g(x) ds \\ & \\ & = \displaystyle \int_0^t L P^s g (x) ds \\ & \\ & = \displaystyle \int_0^t P^s Lg(x) ds = \displaystyle \int_0^t P^s f(x) ds. \end{array}$$
 
@@ -147,7 +147,7 @@ Taking limits as $$t \rightarrow \infty$$ and observing that under strong ergodi
 
 The strategy for integrals of functions of discrete-time stochastic processes works in a similar way, where solutions to the Poisson equation provide martingales whose expected values vanish. We will use this strategy for analyzing biased stochastic approximation algorithms.
 
-In a future article, we will explore martingales, stochastic integrals and the Poisson equation through the lens of regularity structures [H14].
+In a future article, we will explore martingales, stochastic integrals and the Poisson equation through the lens of regularity structures [[H14]](#ref-H14).
 
 ## Biased updates
 
@@ -177,7 +177,7 @@ as before. We will primarily be interested in the stochastic integral
 
 $$\displaystyle \sum_{k=0}^n E_{\eta_k}(X_{k+1}).$$
 
-For simplicity, we first fix the parameters $$\eta_n = \eta$$ for all $$n$$ and drop the subscripts $$\eta$$ in notations such as $$E_\eta,$$ $$P_\eta$$ and $$L_\eta$$. Later, we will generalize the approach to the case with parameter updates [KMMW19].
+For simplicity, we first fix the parameters $$\eta_n = \eta$$ for all $$n$$ and drop the subscripts $$\eta$$ in notations such as $$E_\eta,$$ $$P_\eta$$ and $$L_\eta$$. Later, we will generalize the approach to the case with parameter updates [[KMMW19]](#ref-KMMW19).
 
 Suppose that we have a solution $$\hat{H}$$ to the Poisson equation $$L \hat{H} = E.$$ Then
 
@@ -209,7 +209,7 @@ Here, the expressions $$S_0$$ and $$S_1$$ arise naturally from the application o
 
 The expressions $$S_2,$$ $$S_3$$ and $$S_4$$ are correction terms coming from updates to the parameters and step sizes, and they can be bounded by some suitable assumptions on the regularity of $$P_\eta \hat{H}_\eta(x),$$ $$\nabla V (\eta)$$ and $$\gamma_{n}$$ respectively.
 
-To summarize, we have the following convergence result for biased stochastic approximation [KMMW19], starting with some regularity conditions. Note that $$h(\eta)$$ varies like $$\frac{\partial V}{\partial \eta}(\eta)$$ so we are guaranteed convergence only to a critical point of the Lyapunov function $$V(\eta).$$
+To summarize, we have the following convergence result for biased stochastic approximation [[KMMW19]](#ref-KMMW19), starting with some regularity conditions. Note that $$h(\eta)$$ varies like $$\frac{\partial V}{\partial \eta}(\eta)$$ so we are guaranteed convergence only to a critical point of the Lyapunov function $$V(\eta).$$
 
 
 ----
@@ -254,14 +254,14 @@ $$\mathbb{E}(\Vert h(\eta_N) \Vert^2) = O(c_0 + \log n / \sqrt{n} ).$$
 
 ## References
 
-[B98] Bottou, Léon. "Online learning and stochastic approximations." _On-line learning in neural networks_ 17, no. 9 (1998): 142.
+<a id="ref-B98"></a>[[B98]](#ref-B98) Bottou, Léon. "Online learning and stochastic approximations." _On-line learning in neural networks_ 17, no. 9 (1998): 142.
 
-[CCG11] Cattiaux, Patrick, Djalil Chafai, and Arnaud Guillin. "Central limit theorems for additive functionals of ergodic Markov diffusions processes." _arXiv preprint arXiv:1104.2198_ (2011).
+<a id="ref-CCG11"></a>[[CCG11]](#ref-CCG11) Cattiaux, Patrick, Djalil Chafai, and Arnaud Guillin. "Central limit theorems for additive functionals of ergodic Markov diffusions processes." _arXiv preprint arXiv:1104.2198_ (2011).
 
-[H14] Hairer, Martin. “A theory of regularity structures.” _Inventiones mathematicae_ 198, no. 2 (2014): 269-504.
+<a id="ref-H14"></a>[[H14]](#ref-H14) Hairer, Martin. “A theory of regularity structures.” _Inventiones mathematicae_ 198, no. 2 (2014): 269-504.
 
-[KMMW19] Karimi, Belhal, Blazej Miasojedow, Éric Moulines, and Hoi-To Wai. “Non-asymptotic analysis of biased stochastic approximation scheme.” _arXiv preprint arXiv:1902.00629_ (2019).
+<a id="ref-KMMW19"></a>[[KMMW19]](#ref-KMMW19) Karimi, Belhal, Blazej Miasojedow, Éric Moulines, and Hoi-To Wai. “Non-asymptotic analysis of biased stochastic approximation scheme.” _arXiv preprint arXiv:1902.00629_ (2019).
 
-[LR15] Li, Yingshen, Mark Rowland. "Stochastic Approximation Theory." [slides](http://yingzhenli.net/home/pdf/SA.pdf) (2015).
+<a id="ref-LR15"></a>[[LR15]](#ref-LR15) Li, Yingshen, Mark Rowland. "Stochastic Approximation Theory." [slides](http://yingzhenli.net/home/pdf/SA.pdf) (2015).
 
-[O13] Oksendal, Bernt. _Stochastic differential equations: an introduction with applications_. Springer Science & Business Media, 2013.
+<a id="ref-O13"></a>[[O13]](#ref-O13) Oksendal, Bernt. _Stochastic differential equations: an introduction with applications_. Springer Science & Business Media, 2013.
