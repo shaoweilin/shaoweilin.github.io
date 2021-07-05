@@ -60,6 +60,8 @@ $$ \displaystyle
 V(\lambda,\theta) := H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0).
 $$
 
+where $$\bar{Q}_\lambda$$ is the Markov chain with initial distribution $$\bar{\pi}_\lambda$$ and the same transition probabilities as $$Q_\lambda.$$
+
 Note that this Lyapunov function is bounded below by zero, because it is a form of relative entropy. We assume some standard regularity condition on $$V(\lambda,\theta).$$
 
 ----

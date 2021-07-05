@@ -166,7 +166,7 @@ Instead, note that (after a change of indices)
 $$\begin{array}{rl} & 
 H_{\bar{Q}_\lambda \Vert P_\theta}(X_{n+1} \vert Z_n, X_n) 
 \\ & \\ & = 
-\displaystyle \int \bar{\pi}_*(dX_n) \bar{\pi}_\lambda(dZ_n\vert dX_n) H_{Q_*(X_{n+1} \vert X_n) \Vert \mathcal{P}_\theta(X_{n+1} \vert Z_n, X_n)} (X_{n+1})
+\displaystyle \int \bar{\pi}_*(dX_n) \bar{\pi}_\lambda(dZ_n\vert X_n) H_{Q_*(X_{n+1} \vert X_n) \Vert \mathcal{P}_\theta(X_{n+1} \vert Z_n, X_n)} (X_{n+1})
 \end{array}$$
 
 so the parameter $$\lambda$$ has an effect only on the stationary transition $$\bar{\pi}_\lambda(dZ_n\vert dX_n).$$ Thus, in the long run, the discriminative model update tends to pair beliefs $$Z_n$$ with the current $$X_n$$ such that the generative model $$P_\theta(X_{n+1} \vert Z_n, X_n)$$ is able to effectively guess the next state $$X_{n+1}$$ under $$Q_*(X_{n+1}\vert X_n).$$ In simpler words, the discriminative model update tends to _explore_ good beliefs $$Z_n$$ for predicting the next observation $$X_{n+1}$$. 
