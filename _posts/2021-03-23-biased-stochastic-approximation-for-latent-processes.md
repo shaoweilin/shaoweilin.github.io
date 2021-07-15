@@ -106,7 +106,7 @@ of the negative log-transition of the true distribution. Under mild regularity c
 
 $$
 \xi = 
--\int \bar{\pi}_*(dX_0)Q_*(dX_1|X_0) \log Q_*(X_1|X_0)
+-\int \bar{\pi}_*(dX_0)Q_*(dX_1\vert X_0) \log Q_*(X_1\vert X_0)
 $$
 
 where $$\bar{\pi}_*$$ is the stationary distribution of $$Q_*.$$ Let $$\bar{Q}_*$$ be the distribution of the _true stationary process_ with initial distribution $$\bar{\pi}_*$$ and transition probabilies $$Q_*.$$ The asymptotic time-average $$\xi$$ is therefore the _true conditional entropy_ of $$X_1$$ given $$X_0$$ under the true stationary process. 
@@ -198,7 +198,7 @@ $$
 
 where $$\hat{\xi}$$ is a fixed estimate of the true conditional entropy. When $$X_{n+1}$$ is too likely or too unlikely given $$(Z_{n}, X_{n})$$, there will be a big difference between the negative log-likelihood $$- \log P_{\theta_{n+2}}(X_{n+1}\vert Z_{n},X_{n})$$ and the threshold $$\hat{\xi}.$$ This will generate a strong signal response in the learning system to correct the discrepancy. 
 
-In [[JG14]](#ref-JG14), this strong signal was called _novelty_ or _surprise_. The authors hypothesized that biological neural networks could implement this signal using neuromodulation.
+In [[RG14]](#ref-RG14), this strong signal was called _novelty_ or _surprise_. The authors hypothesized that biological neural networks could implement this signal using neuromodulation.
 
 In [[PBR20]](#ref-PBR20), a reinforcement learning scheme for training multilayer neural networks was derived. To implement the weight updates, besides computing the usual feedforward signals, the scheme also computes feedback signals using feedback connections, a global modulating signal representing the reward prediction error, and a local gating signal representing top-down attention. The resulting weight updates are Hebbian. 
 
@@ -308,7 +308,7 @@ where the last equality follows because the limit does not depend on the initial
 
 <a id="ref-BB01"></a>[[BB01]](#ref-BB01) Baxter, Jonathan, and Peter L. Bartlett. "Infinite-horizon policy-gradient estimation." _Journal of Artificial Intelligence Research_ 15 (2001): 319-350.
 
-<a id="ref-JG14"></a>[[JG14]](#ref-JG14) Jimenez Rezende, Danilo, and Wulfram Gerstner. "Stochastic variational learning in recurrent spiking networks." _Frontiers in computational neuroscience_ 8 (2014): 38.
+<a id="ref-RG14"></a>[[RG14]](#ref-RG14) Rezende, Danilo Jimenez, and Wulfram Gerstner. "Stochastic variational learning in recurrent spiking networks." _Frontiers in computational neuroscience_ 8 (2014): 38.
 
 <a id="ref-KMMW19"></a>[[KMMW19]](#ref-KMMW19) Karimi, Belhal, Blazej Miasojedow, Éric Moulines, and Hoi-To Wai. "Non-asymptotic analysis of biased stochastic approximation scheme." _arXiv preprint arXiv:1902.00629_ (2019).
 

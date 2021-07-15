@@ -13,7 +13,7 @@ This post is a continuation from our [series](https://shaoweilin.github.io/motiv
 
 ## How do we train a stochastic process using relative entropy?
 
-Suppose that we have a stochastic process $$ \{X_t\}$$ where $$ X: I \rightarrow \mathcal{X}$$ is a map from some time interval $$ I \subset \mathbb{R}$$ to some countable state space $$ \mathcal{X}$$. If $$ I$$ is the continuous interval $$ [0, T],$$ then $$ X$$ is a continuous-time stochastic process. If $$ I$$ is the discrete interval $$ \{0, 1, \ldots, T\},$$ then $$ X$$ is a discrete-time stochastic process.
+Suppose that we have a stochastic process $$ \{X_t\}$$ where $$ X: I \rightarrow \mathcal{X}$$ is a map from some time interval $$ I \subset \mathbb{R}$$ to some state space $$ \mathcal{X}$$. If $$ I$$ is the continuous interval $$ [0, T],$$ then $$ X$$ is a continuous-time stochastic process. If $$ I$$ is the discrete interval $$ \{0, 1, \ldots, T\},$$ then $$ X$$ is a discrete-time stochastic process.
 
 Let the true distribution of $$ \{X_t\}$$ be given by some path measure $$ Q_*(\gamma)$$ over paths $$ \gamma : I \rightarrow R$$. Suppose that we have a model or a family of path measures $$ P_\theta(\gamma)$$ parametrized by $$ \theta \in \Theta.$$ We also assume absolute continuity for our model, i.e. $$ Q_* \ll P_\theta$$ for all $$ \theta$$. This assumption is trivially satisfied if each model distribution assigns a non-zero measure to every cylinder in the sigma-algebra of our path space. Let $$ X_{a\ldots b}$$ denote the stochastic process over the interval $$ [a,b]$$, i.e. the family $$ \{X_t\}_{t \in [a,b]}.$$
 
