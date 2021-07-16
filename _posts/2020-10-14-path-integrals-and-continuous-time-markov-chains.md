@@ -47,49 +47,13 @@ $$\int_{R^I} f(\gamma) d\mu(\gamma) = \int_{R^n} F(x_1, \ldots, x_n) d\mu_J(x_1,
 
 The path integral of any measurable function $$g : R^I \rightarrow \mathbb{C}$$ is then defined as the limit of path integrals of cylinder functions that converge to $$g$$.
 
-## What is a continuous-time Markov chain?
-
-A _continuous-time Markov chain_ (CTMC) is a stationary stochastic process $$X(t)$$ with finite or countable state space $$\mathcal{X}$$ in continuous time $$t \in [0, \infty)$$ that satisfies the Markov property, i.e.
-
-$$\displaystyle\begin{array}{rl} & \mathbb{P}(X(t_{n+1}) = x_{n+1} \vert X(t_{n}) = x_{n}, \ldots, X(t_{0}) = x_{0} ) \\ & \\ & \quad = \mathbb{P}(X(t_{n+1}) = x_{n+1} \vert X(t_{n}) = x_{n} ) \end{array}$$
-
-for all times $$t_0 \leq \ldots \leq t_{n+1}$$ and states $$x_0, \ldots, x_{n+1}.$$ Here, we say that a stochastic process is _stationary_ if the joint distribution of any collection $$X_{t_1}, \ldots, X_{t_n}$$ of random variables does not change when the indices $$t_1, \ldots, t_n$$ are shifted to any $$t_1+\delta, \ldots, t_n+\delta$$.
-
-The finite joint distribution of a CTMC can be written as a product of conditional probabilities and an initial distribution:
-
-$$\displaystyle \begin{array}{rl} & \mathbb{P}( X(t_{n}) = x_{n}, \ldots, X(t_{0}) = x_{0} ) = \\ & \\ & \quad \mathbb{P}(X(t_{n}) = x_{n} \vert X(t_{n-1}) = x_{n-1} ) \cdots \\ & \\ & \quad \mathbb{P}(X(t_{1}) = x_{1} \vert X(t_{0}) = x_{0} ) \mathbb{P}( X(t_{0}) = x_{0} ). \end{array}$$
-
-The limit
-
-$$\Gamma_{xy} = \displaystyle \lim_{\delta \rightarrow 0} \frac{\mathbb{P}(X(t+\delta) = y \vert X(t) = x ) +\mathbb{I}_{x=y}}{\delta}$$
-
-is the _transition rate_ from state $$x$$ to state $$y$$, where $$\mathbb{I}$$ is the indicator function. This limit does not depend on the time $$t$$ because the stochastic process is stationary. The (possibly infinite-dimensional) matrix $$\Gamma = (\Gamma_{xy})_{x,y \in \mathcal{X}}$$ is called the _transition rate matrix_. Note that $$\Gamma_{xx} = -\sum_{y\neq x} \Gamma_{xy}$$ because the probabilities $$\mathbb{P}(X(t+\delta) = y \vert X(t) = x )$$ sum to one as $$y$$ varies over all the states.
-
-The dynamics of the CTMC is completely determined by the initial distribution and the transition rate matrix. Indeed, let $$p(t) = (p(t)_x)_{x \in \mathcal{X}}$$ with
-
-$$p(t)_x = P(X_t = x)$$
-
-be the (possibly infinite-dimensional) vector of state probabilities. Then, $$p(t)$$ satisfies the _forward equation_
-
-$$\displaystyle \frac{d}{dt} p(t) = \Gamma p(t)$$
-
-whose solution is given in terms of the matrix exponential
-
-$$\displaystyle p(t) = e^{t\Gamma} p(0)$$
-
-and the transition probabilities for $$t \geq s$$ are given by
-
-$$\mathbb{P}(X(t) = y \vert X(s) = x ) = (e^{(t-s)\Gamma})_{xy}.$$
-
-The Kolmogorov extension theorem then allows us to define a path measure on the path space $$\mathcal{X}^{[0,\infty)}$$ as well as path integrals with respect to this path measure.
-
 ## What is a line integral along a path?
 
 Given a path measure $$\mu$$, the path integral
 
 $$\displaystyle \int_{R^I} f(\gamma) d\mu(\gamma)$$
 
-may often be written (informally) as
+may often be written (informally) in the form
 
 $$\displaystyle \int_{R^I} e^{-S(\gamma)} D\gamma$$
 
@@ -157,6 +121,42 @@ $$J(t) = \displaystyle \frac{d}{dt} \int_{0 \leq S(\gamma) \leq t} f(\gamma) D\g
 
 This Gelfand-Leray function is similar to the [density of states](https://en.wikipedia.org/wiki/Density_of_states) studied in solid state physics and condensed matter physics. It integrates the path function $$f(\gamma)$$ over all paths having a fixed energy $$S(\gamma)=t$$.
 
+## What is a (discrete-space) continuous-time Markov chain?
+
+A _continuous-time Markov chain_ (CTMC) is a stationary stochastic process $$X(t)$$ with finite or countable state space $$\mathcal{X}$$ in continuous time $$t \in [0, \infty)$$ that satisfies the Markov property, i.e.
+
+$$\displaystyle\begin{array}{rl} & \mathbb{P}(X(t_{n+1}) = x_{n+1} \vert X(t_{n}) = x_{n}, \ldots, X(t_{0}) = x_{0} ) \\ & \\ & \quad = \mathbb{P}(X(t_{n+1}) = x_{n+1} \vert X(t_{n}) = x_{n} ) \end{array}$$
+
+for all times $$t_0 \leq \ldots \leq t_{n+1}$$ and states $$x_0, \ldots, x_{n+1}.$$ Here, we say that a stochastic process is _stationary_ if the joint distribution of any collection $$X_{t_1}, \ldots, X_{t_n}$$ of random variables does not change when the indices $$t_1, \ldots, t_n$$ are shifted to any $$t_1+\delta, \ldots, t_n+\delta$$.
+
+The finite joint distribution of a CTMC can be written as a product of conditional probabilities and an initial distribution:
+
+$$\displaystyle \begin{array}{rl} & \mathbb{P}( X(t_{n}) = x_{n}, \ldots, X(t_{0}) = x_{0} ) = \\ & \\ & \quad \mathbb{P}(X(t_{n}) = x_{n} \vert X(t_{n-1}) = x_{n-1} ) \cdots \\ & \\ & \quad \mathbb{P}(X(t_{1}) = x_{1} \vert X(t_{0}) = x_{0} ) \mathbb{P}( X(t_{0}) = x_{0} ). \end{array}$$
+
+The limit
+
+$$\Gamma_{xy} = \displaystyle \lim_{\delta \rightarrow 0} \frac{\mathbb{P}(X(t+\delta) = y \vert X(t) = x ) +\mathbb{I}_{x=y}}{\delta}$$
+
+is the _transition rate_ from state $$x$$ to state $$y$$, where $$\mathbb{I}$$ is the indicator function. This limit does not depend on the time $$t$$ because the stochastic process is stationary. The (possibly infinite-dimensional) matrix $$\Gamma = (\Gamma_{xy})_{x,y \in \mathcal{X}}$$ is called the _transition rate matrix_. Note that $$\Gamma_{xx} = -\sum_{y\neq x} \Gamma_{xy}$$ because the probabilities $$\mathbb{P}(X(t+\delta) = y \vert X(t) = x )$$ sum to one as $$y$$ varies over all the states.
+
+The dynamics of the CTMC is completely determined by the initial distribution and the transition rate matrix. Indeed, let $$p(t) = (p(t)_x)_{x \in \mathcal{X}}$$ with
+
+$$p(t)_x = P(X(t) = x)$$
+
+be the (possibly infinite-dimensional) vector of state probabilities. Then, $$p(t)$$ satisfies the _forward equation_
+
+$$\displaystyle \frac{d}{dt} p(t) = \Gamma p(t)$$
+
+whose solution is given in terms of the matrix exponential
+
+$$\displaystyle p(t) = e^{t\Gamma} p(0)$$
+
+and the transition probabilities for $$t \geq s$$ are given by
+
+$$\mathbb{P}(X(t) = y \vert X(s) = x ) = (e^{(t-s)\Gamma})_{xy}.$$
+
+The Kolmogorov extension theorem then allows us to define a path measure on the path space $$\mathcal{X}^{[0,\infty)}$$ as well as path integrals with respect to this path measure.
+
 ## How can we approximate a continuous-time Markov chain with a discrete-time Markov chain?
 
 There are roughly two ways of approximating a continuous-time Markov chain with one that is discrete-time. The first is to let the discrete timings represent the timings of observations. The second is to let the discrete timings represent the timings of transitions.
@@ -185,9 +185,35 @@ $$\displaystyle P_{xy} = \frac{F_{xy}}{\sum_y F{xy}} = \frac{F_{xy}}{\lambda_x}.
 
 This second approach involving transition timings is suitable when we are simulating a continuous-time learning algorithm on machines with discrete processor clocks. The machine will keep track of transitions in the learning system, and approximate the continuous-time learning updates between the transitions with discrete-time updates.
 
+## What are continuous-space continuous-time Markov chains?
 
+We follow the treatment in [[LL06]](#ref-LL06). We start by defining _kernels_ which are analogous to transition rates in discrete-space continuous-time Markov chains. The kernel value $$\Gamma(x,B)$$ represents the instantaneous rate of transiting from $$x$$ to the subset $$B.$$ 
 
+Let $$(\mathcal{X},\mathcal{B})$$ be a measurable space. A function $$\Gamma: \mathcal{X} \times \mathcal{B} \rightarrow \mathbb{R} \cup \{-\infty,\infty \}$$ is a _kernel of a continuous-time Markov chain on a continuous space $$\mathcal{X}$$_ if
 
+1. for each fixed $$x \in \mathcal{X},$$ the function $$\Gamma(x,\,\cdot\,)$$ is a signed measure on $$\mathcal{B};$$ and for each fixed $$B \in \mathcal{B},$$ the function $$\Gamma(\,\cdot\, , B)$$ is a real-valued measurable function on $$\mathcal{X};$$
+
+2. we have $$\Gamma(x,B) \leq 0$$ when $$x \in B;$$ and $$0 \leq \Gamma(x,B) < \infty$$ when $$x \notin B;$$
+
+3. when $$B = \bigcup_{i=1}^\infty A_i$$ and $$A_i \cap A_j = \emptyset$$ for all $$i \neq j,$$ we have
+
+$$\displaystyle \Gamma(x,B) = \sum_{i=1}^\infty \Gamma(x,A_i).$$
+
+Next, we define the transition probabilities of a continuous-space continuous-time Markov chain $$X(t)$$ with kernel $$\Gamma$$. Let us denote
+
+$$P(x,B,t) = \mathbb{P}(X(t)\in B \vert X(0)=x)$$
+
+so for each fixed $$x \in \mathcal{X},$$ $$P(x,\,\cdot\,,t)$$ is a probability measure on $$\mathcal{B}.$$
+
+We assume 
+
+$$P(x,B,0) = \mathbb{I}_{x \in B}$$ 
+
+where $$\mathbb{I}$$ is the indicator function. We then define $$P(x,B,t)$$ to be the solution of the following Kolmogorov forward and backward differential equations.
+
+$$\frac{\partial}{\partial t}P(x,B,t) = \int_0^\infty \Gamma(x,dy)P(y,B,t)$$
+
+$$\frac{\partial}{\partial t}P(x,B,t) = \int_0^\infty P(x,dy,t)\Gamma(y,B)$$
 
 
 ## References
@@ -201,3 +227,5 @@ This second approach involving transition timings is suitable when we are simula
 <a id="ref-H14"></a>[[H14]](#ref-H14) Hairer, Martin. "A theory of regularity structures." _Inventiones mathematicae_ 198, no. 2 (2014): 269-504.
 
 <a id="ref-I16"></a>[[I16]](#ref-I16) Inahama, Yuzuru. "Rough path theory and stochastic calculus." _arXiv preprint arXiv:1602.03255_ (2016).
+
+<a id="ref-LL06"></a>[[LL06]](#ref-LL06) Li, Quan-Lin, and Chuang Lin. "Continuous-time QBD processes with continuous phase variable." _Computers & Mathematics with Applications_ 52, no. 10-11 (2006): 1483-1510.
