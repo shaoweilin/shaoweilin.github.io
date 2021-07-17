@@ -111,7 +111,7 @@ $$
 
 where $$\bar{\pi}_*$$ is the stationary distribution of $$Q_*.$$ Let $$\bar{Q}_*$$ be the distribution of the _true stationary process_ with initial distribution $$\bar{\pi}_*$$ and transition probabilies $$Q_*.$$ The asymptotic time-average $$\xi$$ is therefore the _true conditional entropy_ of $$X_1$$ given $$X_0$$ under the true stationary process. 
 
-More [precisely](https://shaoweilin.github.io/building-foundations-of-information-theory-on-relative-entropy/#how-do-we-derive-entropy-from-relative-entropy), given random variables $$X_0, X_1, X_1',$$ we construct two distributions, namely
+More [precisely](https://shaoweilin.github.io/building-foundations-of-information-theory-on-relative-information/#how-do-we-derive-entropy-from-relative-entropy), given random variables $$X_0, X_1, X_1',$$ we construct two distributions, namely
 
 $$\bar{Q}_* \!\times\!\bar{Q}_* (X_1, X_1',X_0) = \bar{\pi}_*(X_0) Q_*(X_1 \vert X_0) Q_*(X_1'\vert X_0),$$
 
