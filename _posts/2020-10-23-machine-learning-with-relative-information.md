@@ -208,7 +208,7 @@ Moreover, instead of calling $$Q(Z\vert X)$$ the _variational_ parameter, I prop
 
 ## Why should we consider mutable variables rather than latent variables?
 
-We say that a random variable is _mutable_ in a parametric model if we are able to control its distribution by changing the parameters. Otherwise, we say that the random variable is _immutable_. For example, in the discriminative model $$Q_\theta(Z,X) =Q_\theta(Z|X)Q_*(X)$$ parametrized/controlled by $$\theta,$$ the true distribution $$Q_*(X)$$ of $$X$$ is fixed so $$X$$ is immutable. On the other hand, the distribution of $$Z$$ may be controlled by $$\theta,$$ so $$Z$$ is mutable.
+We say that a random variable is _mutable_ in a parametric model if we are able to control its distribution by changing the parameters. Otherwise, we say that the random variable is _immutable_. For example, in the discriminative model $$Q_\theta(Z,X) =Q_\theta(Z \vert X)Q_*(X)$$ parametrized/controlled by $$\theta,$$ the true distribution $$Q_*(X)$$ of $$X$$ is fixed so $$X$$ is immutable. On the other hand, the distribution of $$Z$$ may be controlled by $$\theta,$$ so $$Z$$ is mutable.
 
 In relative inference, we shall classify each variable as either mutable or immutable, depending on their mutability in the discriminative model $$Q(Z,X).$$ All the formulas and propositions which we will be studying shall depend only on mutability and not observability, in which we distinguish between observed variables and latent variables. 
 
