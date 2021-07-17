@@ -3,9 +3,9 @@ layout: post
 title: Process learning with relative information
 ---
 
-Over the next few articles, we will derive a distributed learning algorithm for spiking neural networks with latent variables that minimizes some natural notion of relative information and provably converges over time. We will model these spiking neural networks with stochastic processes: both discrete-time and continuous-time processes, with or without latent variables.
+Over the next few articles, we will derive a distributed learning algorithm for spiking neural networks with [mutable](https://shaoweilin.github.io/machine-learning-with-relative-information/#why-should-we-consider-mutable-variables-rather-than-latent-variables) variables that minimizes some natural notion of relative information and provably converges over time. We will model these spiking neural networks with stochastic processes: both discrete-time and continuous-time processes, with or without mutable variables.
 
-In this article, we give a general overview of information-theoretic approaches to training stochastic processes, while postponing discussions about issues that arise from latent variables.
+In this article, we give a general overview of information-theoretic approaches to training stochastic processes, while postponing discussions about issues that arise from mutable variables.
 
 The actual process that generates the data could possibly be different from the model that we are training on the data. This problem is called model misspecification, which we are not addressing in this series. Our goal is to find a distribution in the model that fits the data well according to some sensible metric.
 
