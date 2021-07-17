@@ -194,6 +194,18 @@ Variational inference overcomes the roughness of the low-dimensional landscape b
 
 In this context, instead of projecting $$P(Z,X)$$ to the base space of distributions on $$X$$ and optimizing the distance between $$Q_*(X)$$ and $$P(X)$$ in the base space, the disciminative model distribution $$Q(Z\vert X)$$ enables us to lift $$Q_*(X)$$ from the base space to a section $$Q(Z,X)$$ in the bundle of distributions on $$(Z,X)$$ so that we can optimize the distance between $$Q(Z,X)$$ and $$P(Z,X).$$
 
+## Why do we need a better name for variational inference?
+
+In the statistical learning community, variational inference is sometimes called _approximate inference_ because we are inferring the latent $$Z$$ from the observed $$X$$ and approximating the Bayes posterior $$P(Z|X)$$ by solving an variational optimization problem over a space of functions $$Q(Z|X).$$ For the same reason, it is also called _variational Bayes_.
+
+In recent work, such as with variational autoencoders, the optimization is performed not over an infinite-dimensional variational space of functions but over a finite-dimensional parametric space of functions. It seems strange to continue using the word _variational_ in describing these techniques.
+
+In other work, the goal has shifted away from inferring the Bayes posterior to inferring model parameters that give the best approximation of the true distribution. Here, it seems strange to continue using the word _Bayes_ in describing these approaches.
+
+Since the goal at hand is still inference and since all of these methods hinge on the use of relative information, specifically on measuring the information loss between the discriminative model and the generative model, I propose that we use the name _relative inference_ instead. 
+
+Moreover, instead of calling $$Q(Z|X)$$ the _variational_ parameter, I propose calling it and the related joint distribution $$Q(Z,X) = Q(Z|X)Q_*(X)$$ the _discriminative_ model, to distinguish it from the generative model $$P(Z,X).$$
+
 ## References
 
 <a id="ref-A95"></a>[[A95]](#ref-A95) Amari, Shun-ichi. "Information geometry of the EM and em algorithms for neural networks." _Neural networks_ 8, no. 9 (1995): 1379-1408.
