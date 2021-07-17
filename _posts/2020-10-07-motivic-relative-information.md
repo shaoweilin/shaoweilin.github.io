@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Motivic relative entropy
+title: Motivic relative information
 ---
 
-So far, our definition of relative entropy studies the divergence between real-valued measures. In this post, we will explore motivic measures which take values more generally in some ring $$R$$, and have some fun applying motivic relative entropy to zeta functions.
+So far, our definition of relative information studies the divergence between real-valued measures. In this post, we will explore motivic measures which take values more generally in some ring $$R$$, and have some fun applying motivic relative information to zeta functions.
 
 This post is a continuation from our [series](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 
@@ -11,7 +11,7 @@ This post is a continuation from our [series](https://shaoweilin.github.io/motiv
 
 When studying logical objects (described by logical formulas possibly involving existential or universal quantifiers) such as algebraic varieties or quantum events, we could be interested in more general measurements such as Euler characteristics or path integrals. These measurements could have values in some polynomial ring. Loosely we will call them _measures_, even though they do not satisfy the classical definition in measure theory.
 
-We may also be interested in finding a universal measure in the sense that all other measures (such as probabilities, polynomials and counts) factor through this measure. Lastly, we may want to compute the divergence or relative entropy between measures which are not real-valued.
+We may also be interested in finding a universal measure in the sense that all other measures (such as probabilities, polynomials and counts) factor through this measure. Lastly, we may want to compute the divergence or relative information between measures which are not real-valued.
 
 In classical measure theory, a measure space $$(\Omega, \mathcal{C}, P)$$ contains a collection $$\mathcal{C}$$ of objects that we are measuring and a map $$P : \mathcal{C} \rightarrow R$$ where $$R$$ is the ring of real numbers. The measure $$P$$ satisfies the axioms
 
@@ -63,9 +63,9 @@ Given two Boltzmann distributions
 
 $$P(z,i) =\displaystyle \frac{e^{-z \varepsilon_P(i)}}{Z_P(z)}, \quad Q(z,i) = \displaystyle \frac{e^{-z \varepsilon_Q(i)}}{Z_Q(z)},$$
 
-the relative entropy to $$Q$$ from $$P$$ is
+the relative information to $$Q$$ from $$P$$ is
 
-$$\begin{array}{rl} H_{Q\Vert P}(z) &=\displaystyle \sum_i Q(z,i) \log \frac{Q(z,i)}{P(z,i)}\\ & \\ &=\log\displaystyle \frac{Z_P}{Z_Q} -z\, \displaystyle Z_Q^{-1} \sum_i (\varepsilon_Q(i)-\varepsilon_P(i)) e^{-z\varepsilon_Q(i)}. \end{array}$$
+$$\begin{array}{rl} I_{Q\Vert P}(z) &=\displaystyle \sum_i Q(z,i) \log \frac{Q(z,i)}{P(z,i)}\\ & \\ &=\log\displaystyle \frac{Z_P}{Z_Q} -z\, \displaystyle Z_Q^{-1} \sum_i (\varepsilon_Q(i)-\varepsilon_P(i)) e^{-z\varepsilon_Q(i)}. \end{array}$$
 
 We will now apply these constructions to algebraic geometry.
 
@@ -97,7 +97,7 @@ where $$\#V(\mathbb{F}_{q^m})$$ is the number of points of $$V$$ over the field 
 
 $$H_V(z) = \displaystyle \sum_{m \geq 1} \left(\frac{1}{m}+z\log q \right) \#V(\mathbb{F}_{q^m})q^{-zm}.$$
 
-## How do we extend relative entropy to motivic measures?
+## How do we extend relative information to motivic measures?
 
 Suppose that we have a zeta function of the form
 
@@ -109,9 +109,9 @@ We define the distribution
 
 $$Q(z,i) = \displaystyle \frac{m_i e^{-z \varepsilon(i)}}{Z(z)}$$
 
-and consider the relative entropy to $$Q(z)$$ from $$Q(0)$$
+and consider the relative information to $$Q(z)$$ from $$Q(0)$$
 
-$$\begin{array}{rl} H_{Q(z)\Vert Q(0)}(z) &=\displaystyle \sum_i Q(z,i) \log \frac{Q(z,i)}{Q(0,i)} \\ & \\ &=\log Z(0) - \log Z(z) + \displaystyle \sum_i \frac{m_i e^{-z \varepsilon(i)}}{Z(z)} \log \frac{m_i e^{-z \varepsilon(i)}}{m_i } \\ & \\ &= \log Z(0) - \left(1- z \frac{d}{dz} \right) \log Z(z).\end{array}$$
+$$\begin{array}{rl} I_{Q(z)\Vert Q(0)}(z) &=\displaystyle \sum_i Q(z,i) \log \frac{Q(z,i)}{Q(0,i)} \\ & \\ &=\log Z(0) - \log Z(z) + \displaystyle \sum_i \frac{m_i e^{-z \varepsilon(i)}}{Z(z)} \log \frac{m_i e^{-z \varepsilon(i)}}{m_i } \\ & \\ &= \log Z(0) - \left(1- z \frac{d}{dz} \right) \log Z(z).\end{array}$$
 
 The distribution $$Q(0)$$ occurs when the inverse temperature is zero, so it is the limiting distribution at infinite temperature. Note that the final term above is just the entropy of the zeta function when all the coefficients $$m_i$$ are equal to one.
 
@@ -123,11 +123,11 @@ where $$S^n V$$ is the $$n$$-fold symmetric product of $$V$$. To this representa
 
 $$Q_V(z,n) = \displaystyle \frac{\#(S^n V) e^{-z n \log q}}{Z_V(z)}$$
 
-and the relative entropy to $$Q_V(z)$$ from $$Q_V(0)$$ is
+and the relative information to $$Q_V(z)$$ from $$Q_V(0)$$ is
 
-$$H_{V,\{Q_V(z)\Vert Q_V(0)\}}(z) = \log Z_V(0) - H_V(z)$$
+$$I_{Q_V(z)\Vert Q_V(0)}(z) = \log Z_V(0) - H_V(z)$$
 
-where the final term above is the entropy defined previously. It is not difficult to see that we will get the same relative entropy if we define the distribution $$Q_V$$ to be over the effective zero cycles rather than over the nonnegative integers.
+where the final term above is the entropy defined previously. It is not difficult to see that we will get the same relative information if we define the distribution $$Q_V$$ to be over the effective zero cycles rather than over the nonnegative integers.
 
 The Hasse-Weil zeta function was generalized by Kapranov for a motivic measure $$\mu: K_0(\mathcal{V}_k) \rightarrow R$$ to
 
@@ -137,9 +137,9 @@ The zeta function takes value in the formal power series ring $$R[[t]]$$, or mor
 
 $$Q_V(t,n) = \displaystyle \frac{\mu(S^n V) t^n}{Z_{\mu,V}(t)}$$
 
-where a substitution $$z = -\log t$$ was made. The relative entropy to $$Q_V(t)$$ from $$Q_V(1)$$ is therefore
+where a substitution $$z = -\log t$$ was made. The relative information to $$Q_V(t)$$ from $$Q_V(1)$$ is therefore
 
-$$H_{V,\{Q_V(t)\Vert Q_V(1)\}}(t) = \log Z_V(1) - \left(1- (t \log t) \frac{d}{dt} \right) \log Z_V(t).$$
+$$I_{Q_V(t)\Vert Q_V(1)}(t) = \log Z_V(1) - \left(1- (t \log t) \frac{d}{dt} \right) \log Z_V(t).$$
 
 Note that the different measures discussed above should not be confused with each other:
 
@@ -147,9 +147,9 @@ Note that the different measures discussed above should not be confused with eac
 2.  the motivic measure $$\mu: K_0(\mathcal{V}_k) \rightarrow R$$;
 3.  the motivic measure $$Z_{\mu}:\mathcal{V}_k \rightarrow W(R)$$ which maps varieties $$V$$ to some formal power series.
 
-## What is the relative entropy of morphisms between algebraic varieties?
+## What is the relative information of morphisms between algebraic varieties?
 
-We consider the relative entropy of proper morphisms and flat morphisms as described in [[M19 §4.5-§4.7]](#ref-M19).
+We consider the relative information of proper morphisms and flat morphisms as described in [[M19 §4.5-§4.7]](#ref-M19).
 
 First, for each variety $$V$$, we define $$P_V(t)$$ be the distribution on $$\mathcal{C}_V$$ given by
 
@@ -163,31 +163,31 @@ $$P_Y(t) \circ f_*(\alpha) = \displaystyle \frac{t^{\deg(f_*(\alpha))}}{Z_Y(t)} 
 
 because $$\deg(f_*(\alpha)) = \deg(\alpha)$$ for proper morphisms $$f$$.
 
-We consider the relative entropy to $$P_X(t)$$ from $$P_Y(t) \circ f_*,$$ i.e.
+We consider the relative information to $$P_X(t)$$ from $$P_Y(t) \circ f_*,$$ i.e.
 
-$$H_{P_X \Vert P_Y \circ f_*}(t) = \displaystyle \sum_{\alpha \in \mathcal{C}_X} P_X(t,\alpha) \log \frac{P_X(t,\alpha)}{P_Y(t,f_*(\alpha))}.$$
+$$I_{P_X \Vert P_Y \circ f_*}(t) = \displaystyle \sum_{\alpha \in \mathcal{C}_X} P_X(t,\alpha) \log \frac{P_X(t,\alpha)}{P_Y(t,f_*(\alpha))}.$$
 
 Using the formula
 
-$$H_{Q\Vert P}(z) =\log\displaystyle \frac{Z_P}{Z_Q} -z\, \displaystyle Z_Q^{-1} \sum_i (\varepsilon_Q(i)-\varepsilon_P(i)) e^{-z\varepsilon_Q(i)},$$
+$$I_{Q\Vert P}(z) =\log\displaystyle \frac{Z_P}{Z_Q} -z\, \displaystyle Z_Q^{-1} \sum_i (\varepsilon_Q(i)-\varepsilon_P(i)) e^{-z\varepsilon_Q(i)},$$
 
 the latter term vanishes so
 
-$$H_{P_X \Vert P_Y \circ f_*}(t) = \displaystyle \log \frac{Z_Y(t)}{Z_X(t)}.$$
+$$I_{P_X \Vert P_Y \circ f_*}(t) = \displaystyle \log \frac{Z_Y(t)}{Z_X(t)}.$$
 
 Next, given a flat morphism $$f: X \rightarrow Y$$ of algebraic varieties, consider the resulting pullback $$f^*:\mathcal{C}_Y \rightarrow \mathcal{C}_X$$ of effective zero-cycles. Then, both $$P_Y(t)$$ and $$P_X(t) \circ f^*$$ will be distributions on $$\mathcal{C}_Y$$.
 
-We consider the relative entropy to $$P_Y(t)$$ from $$P_X(t) \circ f^*,$$ i.e.
+We consider the relative information to $$P_Y(t)$$ from $$P_X(t) \circ f^*,$$ i.e.
 
-$$H_{P_Y \Vert P_X \circ f^*}(t) = \displaystyle \sum_{\alpha \in \mathcal{C}_Y} P_Y(t,\alpha) \log \frac{P_Y(t,\alpha)}{P_X(t,f^*(\alpha))}.$$
+$$I_{P_Y \Vert P_X \circ f^*}(t) = \displaystyle \sum_{\alpha \in \mathcal{C}_Y} P_Y(t,\alpha) \log \frac{P_Y(t,\alpha)}{P_X(t,f^*(\alpha))}.$$
 
 In the special case where $$f:X\rightarrow Y$$ is a finite flat surjective morphism of smooth quasi-projective varieties with constant degree $$\delta =\deg f,$$ we have
 
 $$\deg(f^*(\alpha)) = \delta \deg(\alpha)$$
 
-so the relative entropy simplifies to
+so the relative information simplifies to
 
-$$H_{P_Y \Vert P_X \circ f^*}(t) =\displaystyle \log \frac{Z_X(t)}{Z_Y(t)} - (\delta-1) (t \log t) \frac{d}{dt} \log Z_Y(t).$$
+$$I_{P_Y \Vert P_X \circ f^*}(t) =\displaystyle \log \frac{Z_X(t)}{Z_Y(t)} - (\delta-1) (t \log t) \frac{d}{dt} \log Z_Y(t).$$
 
 ## References
 

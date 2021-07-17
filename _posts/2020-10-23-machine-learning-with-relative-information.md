@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Machine learning with relative entropy
+title: Machine learning with relative information
 ---
 
-We will reframe some common machine learning paradigms, such as maximum likelihood, stochastic gradients, stochastic approximation and variational inference, in terms of relative entropy.
+We will reframe some common machine learning paradigms, such as maximum likelihood, stochastic gradients, stochastic approximation and variational inference, in terms of relative information.
 
 This post is a continuation from our [series](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 
@@ -23,19 +23,19 @@ Finding the best model is a common problem not just in machine learning but also
 
 Finding the simplest explanation is easier said than done. We want to explain the observed data well, but we do not want to overfit the data. At the same time, we also do not want a model that is too overly simplistic, e.g. the uniform distribution. Many modern strategies use a complexity score or regularizer that penalizes the model based on the number of parameters or the dimension of the model. However, the choice of regularizer can seem rather arbitrary at times.
 
-If we have access to the true distribution $$Q_* \in \Delta_\Omega,$$ life would be a lot easier. We could try to measure the distance of a model distribution $$P_\theta$$ to the true distribution, and attempt to minimize this distance. A natural choice for the distance is the relative entropy to $$Q_*$$ from $$P_\theta$$. 
+If we have access to the true distribution $$Q_* \in \Delta_\Omega,$$ life would be a lot easier. We could try to measure the distance of a model distribution $$P_\theta$$ to the true distribution, and attempt to minimize this distance. A natural choice for the distance is the relative information to $$Q_*$$ from $$P_\theta$$. 
 
-We may also interpret the relative entropy as the average number of informational bits required to encode data from true distribution using the model, up to some additive constant (see Minimum Description Length, Kolmogorov Complexity and Stochastic Complexity for related concepts). Therefore, minimizing relative entropy is beneficial from the computational resource management point of view.
+We may also interpret the relative information as the average number of informational bits required to encode data from true distribution using the model, up to some additive constant (see Minimum Description Length, Kolmogorov Complexity and Stochastic Complexity for related concepts). Therefore, minimizing relative information is beneficial from the computational resource management point of view.
 
 However, we do not have access to the true distribution. There are two general strategies for overcoming this obstacle. For simplicity, let us assume there is a probability measure $$M$$ such that $$Q_* \ll M$$ and $$P_\theta \ll M$$, i.e. both $$Q_*$$ and $$P_\theta$$ are absolutely continuous with respect to $$M$$. In this case, the densities $$dQ_*/dM$$ and $$dP_\theta/dM$$ exist.
 
 ## First method (maximum likelihood)
 
-We estimate the relative entropy from the observed data. We may therefore write the relative entropy as
+We estimate the relative information from the observed data. We may therefore write the relative information as
 
-$$\displaystyle \begin{array}{rl} H_{Q_* \Vert P_\theta} &=\displaystyle\int \log \frac{dQ_*/dM}{dP_\theta/dM} dQ_* \\ & \\&= \displaystyle\mathbb{E}_{X\sim Q_*} \left[ \log \frac{dQ_*}{dM}(X) \right] - \mathbb{E}_{X\sim Q_*} \left[ \log \frac{dP_\theta}{dM}(X) \right]. \end{array}$$
+$$\displaystyle \begin{array}{rl} I_{Q_* \Vert P_\theta} &=\displaystyle\int \log \frac{dQ_*/dM}{dP_\theta/dM} dQ_* \\ & \\&= \displaystyle\mathbb{E}_{X\sim Q_*} \left[ \log \frac{dQ_*}{dM}(X) \right] - \mathbb{E}_{X\sim Q_*} \left[ \log \frac{dP_\theta}{dM}(X) \right]. \end{array}$$
 
-The first term is a constant that does not depend on $$\theta$$, so minimizing the relative entropy is equivalent to maximizing the second term. The second term may be approximated using the average
+The first term is a constant that does not depend on $$\theta$$, so minimizing the relative information is equivalent to maximizing the second term. The second term may be approximated using the average
 
 $$\displaystyle \mathbb{E}_{X\sim Q_*} \left[ \log P_\theta(X) \right] = \frac{1}{\left\vert  \mathcal{D}\right\vert }\sum_{x \in \mathcal{D}} \log P_\theta (x)$$
 
@@ -45,9 +45,9 @@ If the true distribution can be represented by $$Q_* = P_{\theta^*}$$ for some p
 
 ## Second method (stochastic gradient)
 
-We estimate the _gradient_ of the relative entropy from observed data. This gradient can be written as
+We estimate the _gradient_ of the relative information from observed data. This gradient can be written as
 
-$$\begin{array}{rl} \displaystyle \frac{d}{d\theta} H_{Q_* \Vert P_\theta} &= \displaystyle \frac{d}{d\theta} \mathbb{E}_{X\sim Q_*} \left[ \log \frac{dQ_*}{dM}(X) \right] - \frac{d}{d\theta} \mathbb{E}_{X\sim Q_*} \left[ \log \frac{dP_\theta}{dM}(X) \right] \\ & \\&= \displaystyle- \mathbb{E}_{X\sim Q_*} \left[\frac{d}{d\theta} \log \frac{dP_\theta}{dM}(X) \right] \end{array}$$
+$$\begin{array}{rl} \displaystyle \frac{d}{d\theta} I_{Q_* \Vert P_\theta} &= \displaystyle \frac{d}{d\theta} \mathbb{E}_{X\sim Q_*} \left[ \log \frac{dQ_*}{dM}(X) \right] - \frac{d}{d\theta} \mathbb{E}_{X\sim Q_*} \left[ \log \frac{dP_\theta}{dM}(X) \right] \\ & \\&= \displaystyle- \mathbb{E}_{X\sim Q_*} \left[\frac{d}{d\theta} \log \frac{dP_\theta}{dM}(X) \right] \end{array}$$
 
 assuming that the expectation and derivative commute by some convergence theorem. This last term can be approximated by the average
 
@@ -57,7 +57,7 @@ where the _batch_ $$\mathcal{B}$$ is a finite i.i.d. sample of $$Q_*$$. This app
 
 Batch stochastic gradients have a regularizing effect on the estimator $$\hat{\theta}$$ as compared to the gradient of the log-likelihood of the full data set. They ensure that the estimator does not get stuck in a local minima of the log-likelihood function, which corresponds to overfitting of the model to the full data set. The asymptotic behavior of the stochastic gradient method is analyzed in [[W09]](#ref-W09).
 
-## How do we apply stochastic approximation via relative entropy?
+## How do we apply stochastic approximation via relative information?
 
 In the stochastic approximation theory of Robbins-Monro, given an increasing function $$f(\theta)$$ which cannot be observed directly and has a unique root
 
@@ -83,13 +83,13 @@ $$\displaystyle \frac{dg}{d\theta}(\theta) = \mathbb{E} \left[ \frac{dG}{d\theta
 
 so we may apply stochastic approximation techniques with $$F = dG/d\theta$$.
 
-Applying stochastic optimization to relative entropy minimization, we may let
+Applying stochastic optimization to relative information minimization, we may let
 
 $$\displaystyle G = \log \frac{dP_\theta}{dM}$$
 
 where $$P_\theta$$ and $$M$$ were defined above for stochastic gradients. As a result, we get a proof that the stochastic gradient algorithm is consistent, i.e. the parameter updates $$\theta_n$$ tend to the true parameter $$\theta^*$$. Stronger results may be attained if the model distributions $$P_\theta$$ satisfy additional regularity conditions.
 
-## How do we frame variational inference in terms of relative entropy?
+## How do we frame variational inference in terms of relative information?
 
 A latent variable is a random variable for which we have no data. A latent variable model is a statistical model $$\{P_\theta\}$$ with some observed variable $$X$$ and some latent variable $$Z$$. The marginal distribution of $$X$$ is given by the integral
 
@@ -111,28 +111,28 @@ Training latent variable models is notoriously difficult, because the usual maxi
 
 Instead, we will consider a variational approach. Here, _variational_ means that we will introduce a new _functional_ parameter to the optimization problem, e.g. a parameter which is some function $$Q: S \rightarrow \mathbb{R}$$. If the set $$S$$ is infinite, we can think of $$Q$$ as an infinite-dimensional vector with entries $$Q(s), s\in S.$$
 
-Again, we begin with the goal of minimizing the relative entropy  
-$$H_{Q_* \Vert P_\theta}(X)$$ to the true distribution $$Q_*(X)$$ from the model distribution $$P_\theta(X)$$ for the observable $$X$$. We now introduce a variational parameter $$Q(Z\vert X)$$ and let
+Again, we begin with the goal of minimizing the relative information  
+$$I_{Q_* \Vert P_\theta}(X)$$ to the true distribution $$Q_*(X)$$ from the model distribution $$P_\theta(X)$$ for the observable $$X$$. We now introduce a variational parameter $$Q(Z\vert X)$$ and let
 
 $$Q(Z,X) = Q(Z\vert X) Q_*(X).$$
 
-By the chain rule ([CR](https://shaoweilin.github.io/conditional-relative-entropy-and-its-axiomatizations/#mjx-eqn-CR)) for relative entropy,
+By the chain rule ([CR](https://shaoweilin.github.io/conditional-relative-information-and-its-axiomatizations/#mjx-eqn-CR)) for relative information,
 
-$$\begin{array}{rl} H_{Q\Vert P_\theta}(Z, X) &= H_{Q\Vert P_\theta}(Z\vert X) + H_{Q\Vert P_\theta}(X) \\& \\&= H_{Q\Vert P_\theta}(Z\vert X) + H_{Q_*\Vert P_\theta}(X) .\end{array}$$
+$$\begin{array}{rl} I_{Q\Vert P_\theta}(Z, X) &= I_{Q\Vert P_\theta}(Z\vert X) + I_{Q\Vert P_\theta}(X) \\& \\&= I_{Q\Vert P_\theta}(Z\vert X) + I_{Q_*\Vert P_\theta}(X) .\end{array}$$
 
 Therefore,
 
-$$H_{Q\Vert P_\theta}(Z, X) \geq H_{Q_*\Vert P_\theta}(X) $$
+$$I_{Q\Vert P_\theta}(Z, X) \geq I_{Q_*\Vert P_\theta}(X) $$
 
 with equality if and only if $$Q(Z\vert X) = P_\theta(Z\vert X).$$
 
-Now, if $$Q(Z\vert X)$$ is allowed to be any distribution and if a pair $$(\hat{Q}, \hat{\theta})$$ minimizes $$H_{Q\Vert P_\theta}(Z, X)$$, then $$\hat{\theta}$$ minimizes $$H_{Q_*\Vert P_\theta}(X).$$ To see this, let $$\tilde{\theta}$$ be a minimizer of $$H_{Q_*\Vert P_\theta}(X)$$ and let $$\tilde{Q}(Z\vert X) = p_{\tilde{\theta}}(Z\vert X)$$. Then,
+Now, if $$Q(Z\vert X)$$ is allowed to be any distribution and if a pair $$(\hat{Q}, \hat{\theta})$$ minimizes $$I_{Q\Vert P_\theta}(Z, X)$$, then $$\hat{\theta}$$ minimizes $$I_{Q_*\Vert P_\theta}(X).$$ To see this, let $$\tilde{\theta}$$ be a minimizer of $$I_{Q_*\Vert P_\theta}(X)$$ and let $$\tilde{Q}(Z\vert X) = p_{\tilde{\theta}}(Z\vert X)$$. Then,
 
-$$\begin{array}{rl} H_{Q_*\Vert P_{\hat{\theta}}}(X) &\geq H_{Q_*\Vert P_{\tilde{\theta}}}(X) \\ & \\ &= H_{\tilde{Q} \Vert P_{\tilde{\theta}}}(Z,X) \\ & \\ &\geq H_{\hat{Q} \Vert P_{\hat{\theta}}}(Z,X)\geq H_{Q_*\Vert P_{\hat{\theta}}}(X) \end{array}$$
+$$\begin{array}{rl} I_{Q_*\Vert P_{\hat{\theta}}}(X) &\geq I_{Q_*\Vert P_{\tilde{\theta}}}(X) \\ & \\ &= I_{\tilde{Q} \Vert P_{\tilde{\theta}}}(Z,X) \\ & \\ &\geq I_{\hat{Q} \Vert P_{\hat{\theta}}}(Z,X)\geq I_{Q_*\Vert P_{\hat{\theta}}}(X) \end{array}$$
 
-where the first and third inequalities follow from the minimizer assumptions, and the second and fourth equality/inequality follow from the chain rule. Hence, all the inequalities are equalities and $$H_{Q_*\Vert P_{\hat{\theta}}}(X) = H_{Q_*\Vert P_{\tilde{\theta}}}(X)$$, so $$\hat{\theta}$$ is a minimizer as claimed.
+where the first and third inequalities follow from the minimizer assumptions, and the second and fourth equality/inequality follow from the chain rule. Hence, all the inequalities are equalities and $$I_{Q_*\Vert P_{\hat{\theta}}}(X) = I_{Q_*\Vert P_{\tilde{\theta}}}(X)$$, so $$\hat{\theta}$$ is a minimizer as claimed.
 
-This result suggests a variational strategy for training the latent variable model --- introduce a variational parameter $$Q(Z\vert X)$$ and minimize the relative entropy $$H_{Q\Vert P_\theta}(Z, X)$$ over $$Q$$ and $$\theta.$$
+This result suggests a variational strategy for training the latent variable model --- introduce a variational parameter $$Q(Z\vert X)$$ and minimize the relative information $$I_{Q\Vert P_\theta}(Z, X)$$ over $$Q$$ and $$\theta.$$
 
 Moreover, we may perform alternating minimization:
 
@@ -140,9 +140,9 @@ Moreover, we may perform alternating minimization:
 2.  holding $$Q$$ constant while minimizing over $$\theta$$;
 3.  repeat.
 
-In information geometry [[A95]](#ref-A95), the first step is called _exponential projection_ (e-projection) while the second step is called _mixture projection_ (m-projection) (of the log-likelihood, as opposed to minimization of the relative entropy). This _exponential-mixture algorithm_ (em algorithm) is also related to the _expectation-maximization algorithm_ (EM algorithm) [[DLR77]](#ref-DLR77).
+In information geometry [[A95]](#ref-A95), the first step is called _exponential projection_ (e-projection) while the second step is called _mixture projection_ (m-projection) (of the log-likelihood, as opposed to minimization of the relative information). This _exponential-mixture algorithm_ (em algorithm) is also related to the _expectation-maximization algorithm_ (EM algorithm) [[DLR77]](#ref-DLR77).
 
-Sometimes, the variational parameter $$Q(Z\vert X)$$ is constrained to a space of tractable conditional distributions, or a space of distributions for which the maximization step has an exact solution. In these cases, the optimal value of $$H_{Q\Vert P_\theta}(Z, X)$$ may not equal the optimal value of $$H_{Q_* \Vert P_\theta}(X)$$, but it will be an upper bound to the latter. The em algorithm becomes an approximate inference technique, because it minimizes an upper bound and not the desired relative entropy itself.
+Sometimes, the variational parameter $$Q(Z\vert X)$$ is constrained to a space of tractable conditional distributions, or a space of distributions for which the maximization step has an exact solution. In these cases, the optimal value of $$I_{Q\Vert P_\theta}(Z, X)$$ may not equal the optimal value of $$I_{Q_* \Vert P_\theta}(X)$$, but it will be an upper bound to the latter. The em algorithm becomes an approximate inference technique, because it minimizes an upper bound and not the desired relative information itself.
 
 From a computational point of view, gaining efficiency in inference at the cost of approximation is a good thing, especially if there are performance guarantees in the form of an upper bound.
 
@@ -162,13 +162,13 @@ $$Q(Z,X) = Q_*(X) Q(Z\vert X)$$
 
 for some variational parameter $$Q(Z\vert X).$$
 
-We claim that the desired posterior $$P(Z\vert X_*)$$ is the value of the parameter $$Q(Z\vert X_*)$$ which minimizes the conditional relative entropy $$H_{Q\Vert P}(Z, X)$$ as $$Q(Z,X)$$ varies over $$\Delta.$$ To see this, recall that 
+We claim that the desired posterior $$P(Z\vert X_*)$$ is the value of the parameter $$Q(Z\vert X_*)$$ which minimizes the conditional relative information $$I_{Q\Vert P}(Z, X)$$ as $$Q(Z,X)$$ varies over $$\Delta.$$ To see this, recall that 
 
-$$\begin{array}{rl} H_{Q\Vert P}(Z, X) = H_{Q\Vert P}(Z\vert X) + H_{Q_*\Vert P}(X) .\end{array}$$
+$$\begin{array}{rl} I_{Q\Vert P}(Z, X) = I_{Q\Vert P}(Z\vert X) + I_{Q_*\Vert P}(X) .\end{array}$$
 
 In this sum, the second term is a constant that does not depend on the parameter $$Q(Z\vert X).$$ The first term expands to
 
-$$\begin{array}{rl}  H_{Q\Vert P}(Z\vert X) &= \displaystyle \int Q(X) \int Q(Z\vert X) \log \frac{Q(Z\vert X)}{P(Z\vert X)} \,dZ \,dX \\ &= \displaystyle \int Q(Z\vert X_*) \log \frac{Q(Z\vert X_*)}{P(Z\vert X_*)} \,dZ \end{array}
+$$\begin{array}{rl}  I_{Q\Vert P}(Z\vert X) &= \displaystyle \int Q(X) \int Q(Z\vert X) \log \frac{Q(Z\vert X)}{P(Z\vert X)} \,dZ \,dX \\ &= \displaystyle \int Q(Z\vert X_*) \log \frac{Q(Z\vert X_*)}{P(Z\vert X_*)} \,dZ \end{array}
 $$
 
 which is minimized precisely when $$Q(Z\vert X_*) = P(Z\vert X_*).$$

@@ -75,7 +75,7 @@ $$\zeta'(0) = - \displaystyle \sum_\lambda m_\lambda \log \lambda.$$
 
 ## Statistical Learning
 
-In statistical learning, given a prior $$\omega = \psi(w)dw$$ on the parameters $$w$$ of a statistical model $$p: W \rightarrow \Delta,$$ and given the relative entropy $$K(w)$$ to the true distribution $$q$$ from the model distribution $$p(w),$$ the Gelfand-Leray function
+In statistical learning, given a prior $$\omega = \psi(w)dw$$ on the parameters $$w$$ of a statistical model $$p: W \rightarrow \Delta,$$ and given the relative information $$K(w)$$ to the true distribution $$q$$ from the model distribution $$p(w),$$ the Gelfand-Leray function
 
 $$J(t) = \displaystyle \frac{d}{dt} \int_{0 \leq K(w) \leq t} \psi(w) dw$$
 
