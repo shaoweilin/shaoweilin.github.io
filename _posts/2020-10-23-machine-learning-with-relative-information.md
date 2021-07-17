@@ -196,7 +196,7 @@ In this context, instead of projecting $$P(Z,X)$$ to the base space of distribut
 
 ## Why do we need a better name for variational inference?
 
-In the statistical learning community, variational inference is sometimes called _approximate inference_ because we are inferring the latent $$Z$$ from the observed $$X$$ and approximating the Bayes posterior $$P(Z|X)$$ by solving an variational optimization problem over a space of functions $$Q(Z|X).$$ For the same reason, it is also called _variational Bayes_.
+In the statistical learning community, variational inference is sometimes called _approximate inference_ because we are inferring the latent $$Z$$ from the observed $$X$$ and approximating the Bayes posterior $$P(Z\vert X)$$ by solving an variational optimization problem over a space of functions $$Q(Z\vert X).$$ For the same reason, it is also called _variational Bayes_.
 
 In recent work, such as with variational autoencoders, the optimization is performed not over an infinite-dimensional variational space of functions but over a finite-dimensional parametric space of functions. It seems strange to continue using the word _variational_ in describing these techniques.
 
@@ -204,7 +204,7 @@ In other work, the goal has shifted away from inferring the Bayes posterior to i
 
 Since the goal at hand is still inference and since all of these methods hinge on the use of relative information, specifically on measuring the information loss between the discriminative model and the generative model, I propose that we use the name _relative inference_ instead. 
 
-Moreover, instead of calling $$Q(Z|X)$$ the _variational_ parameter, I propose calling it and the related joint distribution $$Q(Z,X) = Q(Z|X)Q_*(X)$$ the _discriminative_ model, to distinguish it from the generative model $$P(Z,X).$$
+Moreover, instead of calling $$Q(Z\vert X)$$ the _variational_ parameter, I propose calling it and the related joint distribution $$Q(Z,X) = Q(Z\vert X)Q_*(X)$$ the _discriminative_ model, to distinguish it from the generative model $$P(Z,X).$$
 
 ## References
 
