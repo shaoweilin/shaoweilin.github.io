@@ -20,7 +20,7 @@ $$\displaystyle H_{Q_*\Vert P}(X_{0\ldots T})$$
 
 (or equivalently the relative entropy rate if we assume strong stationarity.)
 
-[Previously](https://shaoweilin.github.io/machine-learning-with-relative-entropy/), we discussed how this optimization problem over the space of distributions on $$X$$ may be lifted to an optimization problem over the space of distributions on $$(Z,X)$$ using variational inference. In particular, we will be considering different spaces of discriminative models $$Q(Z,X) = Q_*(X) Q(Z\vert X),$$ and attempt to minimize the joint relative entropy
+[Previously](https://shaoweilin.github.io/machine-learning-with-relative-information/), we discussed how this optimization problem over the space of distributions on $$X$$ may be lifted to an optimization problem over the space of distributions on $$(Z,X)$$ using variational inference. In particular, we will be considering different spaces of discriminative models $$Q(Z,X) = Q_*(X) Q(Z\vert X),$$ and attempt to minimize the joint relative entropy
 
 $$H_{Q\Vert P}(Z_{0\ldots T},X_{0\ldots T})$$
 
@@ -42,7 +42,7 @@ By the chain rule of relative entropy,
 
 $$H_{Q\Vert P}(Z_{0\ldots T},X_{0\ldots T}) = H_{Q\Vert P}(Z_{0\ldots T}\vert  X_{0\ldots T}) + H_{Q_*\Vert P}(X_{0\ldots T})$$
 
-so a minimum value for $$H_{Q\Vert P}(Z_{0\ldots T},X_{0\ldots T})$$ will be a lower bound for the minimum value for $$H_{Q_*\Vert P}(X_{0\ldots T}).$$ As shown [previously](https://shaoweilin.github.io/machine-learning-with-relative-entropy/), when minimizing with $$Q$$ varying over the unconstrained space $$\Delta$$, the gap $$H_{Q\Vert P}(Z_{0\ldots T}\vert X_{0\ldots T})$$ in the bound vanishes.
+so a minimum value for $$H_{Q\Vert P}(Z_{0\ldots T},X_{0\ldots T})$$ will be a lower bound for the minimum value for $$H_{Q_*\Vert P}(X_{0\ldots T}).$$ As shown [previously](https://shaoweilin.github.io/machine-learning-with-relative-information/), when minimizing with $$Q$$ varying over the unconstrained space $$\Delta$$, the gap $$H_{Q\Vert P}(Z_{0\ldots T}\vert X_{0\ldots T})$$ in the bound vanishes.
 
 ## How do we perform online learning on latent processes?
 

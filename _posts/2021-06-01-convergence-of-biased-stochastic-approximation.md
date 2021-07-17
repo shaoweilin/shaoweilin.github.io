@@ -457,7 +457,7 @@ $$\begin{array}{rl} &
 H_{\hat{Q}_*}(X_t\vert X_{t-1}) - \hat{\xi}
 . \end{array}$$
 
-where $$\hat{Q}_*$$ is the distribution of the Markov chain that initializes $$X_0$$ with the state $$x_1$$ and has transition probabilities $$Q_*,$$ and $$H_{\hat{Q}_*}$$ is the [conditional entropy](https://shaoweilin.github.io/building-foundations-of-information-theory-on-relative-information/#how-do-we-derive-entropy-from-relative-entropy).
+where $$\hat{Q}_*$$ is the distribution of the Markov chain that initializes $$X_0$$ with the state $$x_1$$ and has transition probabilities $$Q_*,$$ and $$H_{\hat{Q}_*}$$ is the [conditional entropy](https://shaoweilin.github.io/building-foundations-of-information-theory-on-relative-information/#how-do-we-derive-entropy-from-relative-information).
 
 We also note that
 

@@ -33,7 +33,7 @@ $$\lim_{n \rightarrow \infty} H_{Q_\lambda \Vert P_\theta}(Z_{n+1}, X_{n+1} \ver
 
 ## What is the general intuition behind online learning for latent processes?
 
-To minimize the conditional relative entropy objective, we adopt an approach similar to the expectation-maximization (EM) or exponential-mixture (em) [algorithm](https://shaoweilin.github.io/machine-learning-with-relative-entropy/). More precisely, we iteratively optimize for the discriminative model distribution $$Q_\lambda$$ and for the generative model distribution $$P_\theta$$ while holding the other constant. 
+To minimize the conditional relative entropy objective, we adopt an approach similar to the expectation-maximization (EM) or exponential-mixture (em) [algorithm](https://shaoweilin.github.io/machine-learning-with-relative-information/). More precisely, we iteratively optimize for the discriminative model distribution $$Q_\lambda$$ and for the generative model distribution $$P_\theta$$ while holding the other constant. 
 
 First, we pick some initial generative model distribution $$P_{\theta_0}$$ and discriminative model distribution $$Q_{\lambda_0}.$$ Then, for $$n = 0, 1, \ldots,$$ we repeat the next two steps.
 
@@ -111,7 +111,7 @@ $$
 
 where $$\bar{\pi}_*$$ is the stationary distribution of $$Q_*.$$ Let $$\bar{Q}_*$$ be the distribution of the _true stationary process_ with initial distribution $$\bar{\pi}_*$$ and transition probabilies $$Q_*.$$ The asymptotic time-average $$\xi$$ is therefore the _true conditional entropy_ of $$X_1$$ given $$X_0$$ under the true stationary process. 
 
-More [precisely](https://shaoweilin.github.io/building-foundations-of-information-theory-on-relative-information/#how-do-we-derive-entropy-from-relative-entropy), given random variables $$X_0, X_1, X_1',$$ we construct two distributions, namely
+More [precisely](https://shaoweilin.github.io/building-foundations-of-information-theory-on-relative-information/#how-do-we-derive-entropy-from-relative-information), given random variables $$X_0, X_1, X_1',$$ we construct two distributions, namely
 
 $$\bar{Q}_* \!\times\!\bar{Q}_* (X_1, X_1',X_0) = \bar{\pi}_*(X_0) Q_*(X_1 \vert X_0) Q_*(X_1'\vert X_0),$$
 
