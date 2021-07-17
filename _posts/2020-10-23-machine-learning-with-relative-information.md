@@ -206,6 +206,22 @@ Since the goal at hand is still inference and since all of these methods hinge o
 
 Moreover, instead of calling $$Q(Z\vert X)$$ the _variational_ parameter, I propose calling it and the related joint distribution $$Q(Z,X) = Q(Z\vert X)Q_*(X)$$ the _discriminative_ model, to distinguish it from the generative model $$P(Z,X).$$
 
+## Why should we consider mutable variables rather than latent variables?
+
+We say that a random variable is _mutable_ in a parametric model if we are able to control its distribution by changing the parameters. Otherwise, we say that the random variable is _immutable_. For example, in the discriminative model $$Q_\theta(Z,X) =Q_\theta(Z|X)Q_*(X)$$ parametrized/controlled by $$\theta,$$ the true distribution $$Q_*(X)$$ of $$X$$ is fixed so $$X$$ is immutable. On the other hand, the distribution of $$Z$$ may be controlled by $$\theta,$$ so $$Z$$ is mutable.
+
+In relative inference, we shall classify each variable as either mutable or immutable, depending on their mutability in the discriminative model $$Q(Z,X).$$ All the formulas and propositions which we will be studying shall depend only on mutability and not observability, in which we distinguish between observed variables and latent variables. 
+
+How then does observability enter the picture? First, observed variables $$X$$ are almost always immutable in relative inference. We may then introduce some mutable variables $$Z$$ to perform inference on the observations. 
+
+If there are latent variables $$Z$$ which we want to model, we may represent them as mutable variables in our relative inference approach, and adjust our beliefs/distributions for them during the learning stage.
+
+If we are interested in designing a generative model for the observed variables $$X$$ and latent variables $$Z,$$ we will of course represent both $$X$$ and $$Z$$ as mutable variables _in the generative model_ because we want to control their distributions. However, _in the discriminative model and in relative inference_, the variables $$X$$ remain immutable and the latent variables $$Z$$ remain mutable.
+
+For the rest of this [series](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/), we will talk more generally of learning for _mutable_ processes, i.e. discriminative stochastic processes with mutable variables, as opposed to _latent_ processes, i.e. stochastic processes with hidden variables.
+
+
+
 ## References
 
 <a id="ref-A95"></a>[[A95]](#ref-A95) Amari, Shun-ichi. "Information geometry of the EM and em algorithms for neural networks." _Neural networks_ 8, no. 9 (1995): 1379-1408.
