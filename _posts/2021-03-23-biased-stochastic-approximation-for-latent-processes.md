@@ -3,48 +3,48 @@ layout: post
 title: Biased stochastic approximation for latent processes
 ---
 
-We apply biased stochastic approximation and variational inference to optimize a relative entropy objective for latent Markov processes. We will be using [biased](https://shaoweilin.github.io/biased-stochastic-approximation/) stochastic approximation [[KMMW19]](#ref-KMMW19) where the stochastic updates are dependent on the past but the conditional expectation of the stochastic updates given the past is not equal to the mean field. These biased stochastic approximation schemes generalize the classical expectation maximization algorithm [[KMMW19]](#ref-KMMW19).
+We apply biased stochastic approximation and relative inference to optimize a relative information objective for latent Markov processes. We will be using [biased](https://shaoweilin.github.io/biased-stochastic-approximation/) stochastic approximation [[KMMW19]](#ref-KMMW19) where the stochastic updates are dependent on the past but the conditional expectation of the stochastic updates given the past is not equal to the mean field. These biased stochastic approximation schemes generalize the classical expectation maximization algorithm [[KMMW19]](#ref-KMMW19).
 
 This post is a continuation from our [series](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 
 ## What do we assume about the true distribution, the model and the learning objective?
 
-As [before](https://shaoweilin.github.io/variational-inference-for-latent-processes/), we assume that the universe is a Markov process $$\{X_t\},$$ and let its true distribution be the path measure $$Q_*.$$
+As [before](https://shaoweilin.github.io/relative-inference-for-latent-processes/), we assume that the universe is a Markov process $$\{X_t\},$$ and let its true distribution be the path measure $$Q_*.$$
 
 Suppose that we have a parametric discriminative model $$\{Q_\lambda : \lambda \in \Lambda\}$$ and a parametric generative model $$\{P_\theta : \theta \in \Theta\}$$ where the distributions $$Q_\lambda$$ and $$P_\theta$$ are path measures on some joint process $$\{(Z_t, X_t)\}.$$ The random variables $$Z_t$$ represent computational states in this discriminative-generative model. We can also interpret the $$Z_t$$ as sample beliefs from belief distributions $$Q_\lambda(Z_t\vert Z_{t-1},X_{t-1}).$$
 
 We assume that in both models, the distributions are Markov and each $$Z_t$$ and $$X_t$$ are conditionally independent given their past.  We also assume that marginals $$Q(X_{0\ldots T})$$ of the discriminative model distributions $$Q_\lambda(Z_{0 \ldots T}, X_{0\ldots T})$$ are all equal to the true distribution $$Q_*(X_{0\ldots T}).$$
  
-Some parts of universe $$\{X_t\}$$ are observed and other parts are unobserved. We will impose these conditions by putting constraints on the structure of the models $$\{Q_\lambda\}$$ and $$\{P_\theta\}$$, as described in this [article](https://shaoweilin.github.io/variational-inference-for-latent-processes/). 
+Some parts of universe $$\{X_t\}$$ are observed and other parts are unobserved. We will impose these conditions by putting constraints on the structure of the models $$\{Q_\lambda\}$$ and $$\{P_\theta\}$$, as described in this [article](https://shaoweilin.github.io/relative-inference-for-latent-processes/). 
 
-Our goal is to train the models by minimizing the asymptotic relative entropy rate (continuous time) 
+Our goal is to train the models by minimizing the asymptotic relative information rate (continuous time) 
 
-$$\lim_{T\rightarrow \infty} \frac{d}{dT}H_{Q \Vert P}(Z_{0\ldots T}, X_{0\ldots T})$$
+$$\lim_{T\rightarrow \infty} \frac{d}{dT}I_{Q \Vert P}(Z_{0\ldots T}, X_{0\ldots T})$$
 
-or asymptotic conditional relative entropy (discrete time)
+or asymptotic conditional relative information (discrete time)
 
-$$\lim_{n \rightarrow \infty} H_{Q \Vert P}(Z_{n+1}, X_{n+1} \vert Z_{n}, X_{n}).$$
+$$\lim_{n \rightarrow \infty} I_{Q \Vert P}(Z_{n+1}, X_{n+1} \vert Z_{n}, X_{n}).$$
 
 over $$\{Q_\lambda\}$$ and $$\{P_\theta\}$$. We first explore the problem in discrete time, before discussing the analogous results in continuous time.
 
 We assume that $$Q_\lambda$$ has a stationary distribution $$\bar{\pi}_\lambda,$$ and let $$\bar{Q}_\lambda$$ be the distribution of a Markov chain that has the same transition probabilities as $$Q_\lambda$$ but has the initial distribution $$\bar{\pi}_\lambda.$$ Then,
 
-$$\lim_{n \rightarrow \infty} H_{Q_\lambda \Vert P_\theta}(Z_{n+1}, X_{n+1} \vert Z_{n}, X_{n}) = H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0).$$
+$$\lim_{n \rightarrow \infty} I_{Q_\lambda \Vert P_\theta}(Z_{n+1}, X_{n+1} \vert Z_{n}, X_{n}) = I_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0).$$
 
 ## What is the general intuition behind online learning for latent processes?
 
-To minimize the conditional relative entropy objective, we adopt an approach similar to the expectation-maximization (EM) or exponential-mixture (em) [algorithm](https://shaoweilin.github.io/machine-learning-with-relative-information/). More precisely, we iteratively optimize for the discriminative model distribution $$Q_\lambda$$ and for the generative model distribution $$P_\theta$$ while holding the other constant. 
+To minimize the conditional relative information objective, we adopt an approach similar to the expectation-maximization (EM) or exponential-mixture (em) [algorithm](https://shaoweilin.github.io/machine-learning-with-relative-information/). More precisely, we iteratively optimize for the discriminative model distribution $$Q_\lambda$$ and for the generative model distribution $$P_\theta$$ while holding the other constant. 
 
 First, we pick some initial generative model distribution $$P_{\theta_0}$$ and discriminative model distribution $$Q_{\lambda_0}.$$ Then, for $$n = 0, 1, \ldots,$$ we repeat the next two steps.
 
 ----
 
-**Step 1 (generative model update).** Fixing the discriminative model distribution $$Q_{\lambda_{n}}(Z_1 \vert Z_0, X_0),$$ minimize $$H_{\bar{Q}_{\lambda_{n}}\Vert P_{\theta}}(Z_1, X_1 \vert Z_0, X_0)$$ over generative model distributions $$P_{\theta}$$.
+**Step 1 (generative model update).** Fixing the discriminative model distribution $$Q_{\lambda_{n}}(Z_1 \vert Z_0, X_0),$$ minimize $$I_{\bar{Q}_{\lambda_{n}}\Vert P_{\theta}}(Z_1, X_1 \vert Z_0, X_0)$$ over generative model distributions $$P_{\theta}$$.
 
 By definition,
 
 $$\begin{array}{rl} & 
-H_{\bar{Q}_{\lambda_{n}}\Vert P_{\theta}}(Z_1, X_1 \vert Z_0, X_0)
+I_{\bar{Q}_{\lambda_{n}}\Vert P_{\theta}}(Z_1, X_1 \vert Z_0, X_0)
 \\ & \\ & = 
 \mathbb{E}_{\bar{Q}_{\lambda_{n}}} [\log Q_{\lambda_{n}}(Z_1, X_1 \vert Z_0,X_0)] 
 \\ & \\ & 
@@ -67,16 +67,16 @@ $$ \begin{array}{rl} &
 . \end{array}
 $$
 
-**Step 2 (discriminative model update).** Fixing the generative model distribution $$P_{\theta_{n+1}},$$ minimize $$H_{\bar{Q}_\lambda \Vert P_{\theta_{n+1}}}(Z_1, X_1 \vert Z_0, X_0)$$ over discriminative model distributions $$Q_\lambda.$$
+**Step 2 (discriminative model update).** Fixing the generative model distribution $$P_{\theta_{n+1}},$$ minimize $$I_{\bar{Q}_\lambda \Vert P_{\theta_{n+1}}}(Z_1, X_1 \vert Z_0, X_0)$$ over discriminative model distributions $$Q_\lambda.$$
 
 We update the parameter $$\lambda$$ using the gradient
 
-$$\lambda_{n+1} = \displaystyle \lambda_n - \eta_{n+1} \left.\frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_{\theta_{n+1}}}(Z_1 , X_1 \vert Z_0, X_0)\right\vert _{\lambda = \lambda_n}$$
+$$\lambda_{n+1} = \displaystyle \lambda_n - \eta_{n+1} \left.\frac{d}{d\lambda} I_{\bar{Q}_\lambda \Vert P_{\theta_{n+1}}}(Z_1 , X_1 \vert Z_0, X_0)\right\vert _{\lambda = \lambda_n}$$
 
 where, as shown in the [appendix](https://shaoweilin.github.io/biased-stochastic-approximation-for-latent-processes/#appendix-discriminative-model-update), we have
 
 $$\begin{array}{rl} &
-\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0) 
+\displaystyle \frac{d}{d\lambda} I_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0) 
 \\ & \\ &
 = \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+1)},X_{0..(T+1)})} \Bigg[ \left( \log \frac{Q_\lambda(Z_{T+1}, X_{T+1}\vert Z_{T},X_{T})}{P_\theta(Z_{T+1},X_{T+1}\vert Z_{T},X_{T})} \right)
 \\ & \\ & \quad\quad \displaystyle \times \sum_{t=0}^{T} \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \Bigg]
@@ -120,7 +120,7 @@ $$\bar{Q}_{**} (X_1, X_1', X_0) = \bar{\pi}_*(X_0) Q_*(X_1 \vert X_0) \,\mathbf{
 where $$\mathbf{1}(X_1 = X_1')$$ is the indicator function that ensures that $$X_1$$ and $$X_1'$$ are copies of each other. Then, the true conditional entropy is
 
 $$
-\xi = H_{\bar{Q}_{**} \Vert \bar{Q}_* \!\times\! \bar{Q}_*} (X_1 \vert X_0).
+\xi = I_{\bar{Q}_{**} \Vert \bar{Q}_* \!\times\! \bar{Q}_*} (X_1 \vert X_0).
 $$
 
 Let $$\hat{\xi}$$ be an estimate of this true conditional entropy. 
@@ -143,15 +143,15 @@ Before we make some preliminary observations about this stochastic approximation
 
 If the conditional expectations of the updates are independent of $$(Z_{n-1}, X_{n-1})$$, then they will be equal to their mean fields. In this case, we say that the stochastic approximation is _unbiased_. On the other hand, if the conditional expectations depend on $$(Z_{n-1}, X_{n-1})$$, we say that the stochastic approximation is _biased_.
 
-In continuous time, the mean fields will be derivatives of relative entropy rates. The conditional expectations which depend on the current states $$(Z_t,X_t)$$ will be biased estimates of the mean fields.
+In continuous time, the mean fields will be derivatives of relative information rates. The conditional expectations which depend on the current states $$(Z_t,X_t)$$ will be biased estimates of the mean fields.
 
 ## How can we interpret the discriminative model update?
 
-For a fixed generative model $$P_\theta,$$ the discriminative model update looks for a distribution $$Q_\lambda(Z_n\vert Z_{n-1},X_{n-1})$$ that minimizes the learning objective $$H_{\bar{Q}_\lambda \Vert P_\theta}(Z_n, X_n \vert Z_{n-1}, X_{n-1}).$$ Intuitively, we can think of the update as looking for good belief $$Z_n$$ given the previous belief $$Z_{n-1}$$ and observation $$X_{n-1}.$$
+For a fixed generative model $$P_\theta,$$ the discriminative model update looks for a distribution $$Q_\lambda(Z_n\vert Z_{n-1},X_{n-1})$$ that minimizes the learning objective $$I_{\bar{Q}_\lambda \Vert P_\theta}(Z_n, X_n \vert Z_{n-1}, X_{n-1}).$$ Intuitively, we can think of the update as looking for good belief $$Z_n$$ given the previous belief $$Z_{n-1}$$ and observation $$X_{n-1}.$$
 
 Because $$Z_n$$ and $$X_n$$ are conditionally independent given the past, the learning objective decomposes as a sum of two terms.
 
-$$\begin{array}{rl} & H_{\bar{Q}_\lambda \Vert P_\theta}(Z_n, X_n \vert Z_{n-1}, X_{n-1}) \\ & \\ &= H_{\bar{Q}_\lambda \Vert P_\theta}(Z_n \vert Z_{n-1}, X_{n-1}) + H_{\bar{Q}_\lambda \Vert P_\theta}(X_n \vert Z_{n-1}, X_{n-1}) \end{array}$$
+$$\begin{array}{rl} & I_{\bar{Q}_\lambda \Vert P_\theta}(Z_n, X_n \vert Z_{n-1}, X_{n-1}) \\ & \\ &= I_{\bar{Q}_\lambda \Vert P_\theta}(Z_n \vert Z_{n-1}, X_{n-1}) + I_{\bar{Q}_\lambda \Vert P_\theta}(X_n \vert Z_{n-1}, X_{n-1}) \end{array}$$
 
 The first term vanishes when 
 
@@ -164,9 +164,9 @@ The second term vanishes when $$Q_\lambda(X_n\vert Z_{n-1},X_{n-1}) = Q_*(X_n\ve
 Instead, note that (after a change of indices)
 
 $$\begin{array}{rl} & 
-H_{\bar{Q}_\lambda \Vert P_\theta}(X_{n+1} \vert Z_n, X_n) 
+I_{\bar{Q}_\lambda \Vert P_\theta}(X_{n+1} \vert Z_n, X_n) 
 \\ & \\ & = 
-\displaystyle \int \bar{\pi}_*(dX_n) \bar{\pi}_\lambda(dZ_n\vert X_n) H_{Q_*(X_{n+1} \vert X_n) \Vert \mathcal{P}_\theta(X_{n+1} \vert Z_n, X_n)} (X_{n+1})
+\displaystyle \int \bar{\pi}_*(dX_n) \bar{\pi}_\lambda(dZ_n\vert X_n) I_{Q_*(X_{n+1} \vert X_n) \Vert \mathcal{P}_\theta(X_{n+1} \vert Z_n, X_n)} (X_{n+1})
 \end{array}$$
 
 so the parameter $$\lambda$$ has an effect only on the stationary transition $$\bar{\pi}_\lambda(dZ_n\vert dX_n).$$ Thus, in the long run, the discriminative model update tends to pair beliefs $$Z_n$$ with the current $$X_n$$ such that the generative model $$P_\theta(X_{n+1} \vert Z_n, X_n)$$ is able to effectively guess the next state $$X_{n+1}$$ under $$Q_*(X_{n+1}\vert X_n).$$ In simpler words, the discriminative model update tends to _explore_ good beliefs $$Z_n$$ for predicting the next observation $$X_{n+1}$$. 
@@ -208,7 +208,7 @@ While there are many interesting similarities between their scheme and our algor
 
 In this appendix, we derive the gradient
 
-$$\frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1 , X_1 \vert Z_0, X_0)$$
+$$\frac{d}{d\lambda} I_{\bar{Q}_\lambda \Vert P_\theta}(Z_1 , X_1 \vert Z_0, X_0)$$
 
 used in the discriminative model update. The methods used are similar to those employed in the policy gradient theorem [[BB01]](#ref-BB01).
 
@@ -253,7 +253,7 @@ $$ \begin{array}{rl} & \displaystyle
 By the product rule,
 
 $$\begin{array}{rl} & 
-\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1,X_1 \vert Z_0,X_0) 
+\displaystyle \frac{d}{d\lambda} I_{\bar{Q}_\lambda \Vert P_\theta}(Z_1,X_1 \vert Z_0,X_0) 
 \\ & \\ &= 
 \displaystyle \frac{d}{d\lambda} \int \left(\log \frac{Q_\lambda(Z_1,X_1 \vert Z_0,X_0)}{P_\theta(Z_1,X_1 \vert Z_0,X_0)} \right) \bar{\pi}_\lambda(dZ_1,dX_1,dZ_0,dX_0) 
 \\ & \\ & = 
@@ -295,7 +295,7 @@ $$
 the gradient simplifies (after a change of indices) to
 
 $$\begin{array}{rl} &
-\displaystyle \frac{d}{d\lambda} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1,X_1 \vert Z_0,X_0) 
+\displaystyle \frac{d}{d\lambda} I_{\bar{Q}_\lambda \Vert P_\theta}(Z_1,X_1 \vert Z_0,X_0) 
 \\ & \\ & = 
 \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+1)},X_{0..(T+1)})} \Bigg[ \left( \log \frac{Q_\lambda(Z_{T+1},X_{T+1}\vert Z_T,X_T)}{P_\theta(Z_{T+1},X_{T+1}\vert Z_T,X_T)} \right)  \sum_{t=1}^T \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \Bigg]
 \\ & \\ & = 

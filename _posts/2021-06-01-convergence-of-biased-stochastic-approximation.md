@@ -57,12 +57,12 @@ $$\alpha_{n+1} = \alpha_n + \frac{d}{d\lambda} \log Q_{\lambda}(Z_{n+1} \vert  Z
 Our Lyapunov function is the learning objective
 
 $$ \displaystyle
-V(\lambda,\theta) := H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0).
+V(\lambda,\theta) := I_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0).
 $$
 
 where $$\bar{Q}_\lambda$$ is the Markov chain with initial distribution $$\bar{\pi}_\lambda$$ and the same transition probabilities as $$Q_\lambda.$$
 
-Note that this Lyapunov function is bounded below by zero, because it is a form of relative entropy. We assume some standard regularity condition on $$V(\lambda,\theta).$$
+Note that this Lyapunov function is bounded below by zero, because it is a form of relative information. We assume some standard regularity condition on $$V(\lambda,\theta).$$
 
 ----
 **C2 ($$\ell$$-smoothness).** There exists $$\ell < \infty$$ such that for all $$\lambda,\lambda' \in \Lambda$$ and $$\theta, \theta' \in \Theta,$$
@@ -281,7 +281,7 @@ $$\begin{array}{rl} &
 \\ & \\ & = 
 \displaystyle \frac{\partial}{\partial\theta} \int \hat{Q}_\lambda(dZ_0,dX_0)\hat{Q}_\lambda^t(dZ_{t}, dX_{t} \vert Z_0, X_0) \log \frac{\hat{Q}_\lambda(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})}{P_\theta(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})} 
 \\ & \\ & = 
-\displaystyle \frac{\partial}{\partial\theta}  H_{\hat{Q}_\lambda \Vert P_\theta}(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})  \end{array}$$
+\displaystyle \frac{\partial}{\partial\theta}  I_{\hat{Q}_\lambda \Vert P_\theta}(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})  \end{array}$$
 
 where $$\hat{Q}_\lambda$$ is the distribution of the Markov chain that initializes $$(Z_0,X_0)$$ with the state $$(z_1, x_1)$$ and has transition probabilities $$Q_\lambda.$$ Therefore,
 
@@ -298,13 +298,13 @@ Q_{\lambda} \hat{E}_{\theta} (w_0;\lambda,\theta)
 \displaystyle
 \lim_{T \rightarrow \infty} \sum_{t=1}^{T} g_{\theta}(w_0;\lambda,\theta)- Q_\lambda^{t}G_{\theta}(w_0;\lambda,\theta) 
 \\ & \\ & = 
-\displaystyle \lim_{T \rightarrow \infty} \frac{\partial}{\partial\theta} \Big( \sum_{t=1}^{T} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})
- - \sum_{t=1}^{T}  H_{\hat{Q}_\lambda \Vert P_\theta}(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1}) \Big) 
+\displaystyle \lim_{T \rightarrow \infty} \frac{\partial}{\partial\theta} \Big( \sum_{t=1}^{T} I_{\bar{Q}_\lambda \Vert P_\theta}(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})
+ - \sum_{t=1}^{T}  I_{\hat{Q}_\lambda \Vert P_\theta}(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1}) \Big) 
  \\ & \\ & = 
- \displaystyle \lim_{T \rightarrow \infty} \frac{\partial}{\partial\theta} \Big( H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) -  H_{\hat{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) \Big) 
+ \displaystyle \lim_{T \rightarrow \infty} \frac{\partial}{\partial\theta} \Big( I_{\bar{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) -  I_{\hat{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) \Big) 
 \end{array}$$
 
-where the last equality follows from the chain rule for conditional relative entropy. 
+where the last equality follows from the chain rule for conditional relative information. 
 
 As for the second Poisson equation
 
@@ -319,9 +319,9 @@ Now, as shown in the [appendix](https://shaoweilin.github.io/convergence-of-bias
 $$\begin{array}{rl} & 
 \displaystyle Q_\lambda^t G_{\lambda}(w_0;\lambda,\theta) 
 \\ & \\ & = 
-\left( H_{\hat{Q}_\lambda\Vert P_\theta}(Z_t,X_t\vert Z_{t-1},X_{t-1}) + H_{\hat{Q}_*}(X_t\vert X_{t-1}) - \hat{\xi} \right) \alpha_1
+\left( I_{\hat{Q}_\lambda\Vert P_\theta}(Z_t,X_t\vert Z_{t-1},X_{t-1}) + H_{\hat{Q}_*}(X_t\vert X_{t-1}) - \hat{\xi} \right) \alpha_1
 \\ & \\ & \quad 
-\displaystyle + \frac{\partial}{\partial \lambda} H_{\hat{Q}_\lambda\Vert P_\theta}(Z_t,X_t\vert Z_{t-1},X_{t-1})
+\displaystyle + \frac{\partial}{\partial \lambda} I_{\hat{Q}_\lambda\Vert P_\theta}(Z_t,X_t\vert Z_{t-1},X_{t-1})
 . \end{array}$$
 
 Therefore, 
@@ -333,20 +333,20 @@ Q_{\lambda} \hat{E}_{\lambda} (w_0;\lambda,\theta)
 \displaystyle
 \lim_{T \rightarrow \infty} \sum_{t=1}^{T} g_{\lambda}(w_0;\lambda,\theta)- Q_\lambda^{t}G_{\lambda}(w_0;\lambda,\theta) 
 \\ & \\ & = 
-\displaystyle \lim_{T \rightarrow \infty} \frac{\partial}{\partial\lambda} \Big( \sum_{t=1}^{T} H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})
- - \sum_{t=1}^{T}  H_{\hat{Q}_\lambda \Vert P_\theta}(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1}) \Big) 
+\displaystyle \lim_{T \rightarrow \infty} \frac{\partial}{\partial\lambda} \Big( \sum_{t=1}^{T} I_{\bar{Q}_\lambda \Vert P_\theta}(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})
+ - \sum_{t=1}^{T}  I_{\hat{Q}_\lambda \Vert P_\theta}(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1}) \Big) 
  \\ & \\ & \quad \quad
- \displaystyle - \left( \sum_{t=1}^{T}  H_{\hat{Q}_\lambda\Vert P_\theta}(Z_t,X_t\vert Z_{t-1},X_{t-1}) + \sum_{t=1}^{T} H_{\hat{Q}_*}(X_t\vert X_{t-1}) - T \hat{\xi} \right) \alpha_1
+ \displaystyle - \left( \sum_{t=1}^{T}  I_{\hat{Q}_\lambda\Vert P_\theta}(Z_t,X_t\vert Z_{t-1},X_{t-1}) + \sum_{t=1}^{T} H_{\hat{Q}_*}(X_t\vert X_{t-1}) - T \hat{\xi} \right) \alpha_1
  \\ & \\ & = 
- \displaystyle \lim_{T \rightarrow \infty} \frac{\partial}{\partial\lambda} \Big( H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) -  H_{\hat{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) \Big) 
+ \displaystyle \lim_{T \rightarrow \infty} \frac{\partial}{\partial\lambda} \Big( I_{\bar{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) -  I_{\hat{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) \Big) 
  \\ & \\ & \quad \quad
- \displaystyle - \left( H_{\hat{Q}_\lambda\Vert P_\theta}(Z_T,X_T\vert Z_0,X_0) +  H_{\hat{Q}_*}(X_T\vert X_0) - T \hat{\xi} \right) \alpha_1
+ \displaystyle - \left( I_{\hat{Q}_\lambda\Vert P_\theta}(Z_T,X_T\vert Z_0,X_0) +  H_{\hat{Q}_*}(X_T\vert X_0) - T \hat{\xi} \right) \alpha_1
 \end{array}$$
 
 Bringing them all together,
 
 $$\begin{array}{rl}
-V(\lambda,\theta) &= H_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0) 
+V(\lambda,\theta) &= I_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0) 
 \\ & \\ 
 g_\theta(\lambda, \theta) & = 
 \displaystyle \frac{\partial V}{\partial \theta}(\lambda, \theta) 
@@ -361,13 +361,13 @@ E_\lambda(w;\lambda,\theta) &=
 \displaystyle \alpha_1 \left( \log \frac{Q_{\lambda}(z_1\vert z_0,x_0)}{P_{\theta}(z_1,x_1\vert z_0,x_0)} -\hat{\xi} \right) - \frac{\partial V}{\partial \lambda}(\lambda, \theta) 
 \\ & \\
 Q_{\lambda} \hat{E}_{\theta} (w;\lambda,\theta) & =
-\displaystyle \lim_{T \rightarrow \infty} \frac{\partial}{\partial\theta} \Big( H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0})  
--  H_{\hat{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) \Big)
+\displaystyle \lim_{T \rightarrow \infty} \frac{\partial}{\partial\theta} \Big( I_{\bar{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0})  
+-  I_{\hat{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) \Big)
 \\ & \\ 
 Q_{\lambda} \hat{E}_{\lambda} (w;\lambda,\theta) & = 
- \displaystyle \lim_{T \rightarrow \infty} \frac{\partial}{\partial\lambda} \Big( H_{\bar{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) -  H_{\hat{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) \Big) 
+ \displaystyle \lim_{T \rightarrow \infty} \frac{\partial}{\partial\lambda} \Big( I_{\bar{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) -  I_{\hat{Q}_\lambda \Vert P_\theta}(Z_{T}, X_{T} \vert Z_{0}, X_{0}) \Big) 
  \\ & \\ & \quad \quad
- \displaystyle - \left( H_{\hat{Q}_\lambda\Vert P_\theta}(Z_T,X_T\vert Z_0,X_0) +  H_{\hat{Q}_*}(X_T\vert X_0) - T \hat{\xi} \right) \alpha_1
+ \displaystyle - \left( I_{\hat{Q}_\lambda\Vert P_\theta}(Z_T,X_T\vert Z_0,X_0) +  H_{\hat{Q}_*}(X_T\vert X_0) - T \hat{\xi} \right) \alpha_1
 \\ & \\ 
 \hat{E}_{\theta} (w;\lambda,\theta) & = 
 Q_{\lambda} \hat{E}_{\theta} (w;\lambda,\theta) - E_{\theta} (w;\lambda,\theta)
@@ -443,7 +443,7 @@ We observe that
 $$ \begin{array}{rl} & 
 \displaystyle \int \hat{Q}_\lambda(dZ_0,dX_0) Q_\lambda^t(dZ_{t}, dX_{t} \vert Z_0, X_0) \left(\log \frac{Q_\lambda(Z_{t}, X_t \vert Z_{t-1}, X_{t-1})}{P_\theta(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})} \right) 
 \\ & \\ & = 
-\displaystyle H_{\hat{Q}_\lambda\Vert P_\theta}(Z_t,X_t\vert Z_{t-1},X_{t-1})
+\displaystyle I_{\hat{Q}_\lambda\Vert P_\theta}(Z_t,X_t\vert Z_{t-1},X_{t-1})
 \end{array}$$
 
 and that
@@ -463,7 +463,7 @@ We also note that
 
 $$\begin{array}{rl} &
 \displaystyle
-\frac{\partial}{\partial \lambda} H_{\hat{Q}_\lambda\Vert P_\theta}(Z_t,X_t\vert Z_{t-1},X_{t-1})
+\frac{\partial}{\partial \lambda} I_{\hat{Q}_\lambda\Vert P_\theta}(Z_t,X_t\vert Z_{t-1},X_{t-1})
 \\ & \\ & =
 \displaystyle \int \hat{Q}_\lambda(dZ_0,dX_0) \left(\frac{\partial}{\partial \lambda}Q_\lambda^t(dZ_{t}, dX_{t} \vert Z_0, X_0) \right) \log \frac{Q_\lambda(Z_{t}, X_t \vert Z_{t-1}, X_{t-1})}{P_\theta(Z_{t}, X_{t} \vert Z_{t-1}, X_{t-1})} 
 \\ & \\ & \quad
@@ -503,9 +503,9 @@ Therefore,
 $$\begin{array}{rl} & 
 \displaystyle Q_\lambda^t G_{\lambda}(w_0;\lambda,\theta) 
 \\ & \\ & = 
-\left( H_{\hat{Q}_\lambda\Vert P_\theta}(Z_t,X_t\vert Z_{t-1},X_{t-1}) + H_{\hat{Q}_*}(X_t\vert X_{t-1}) - \hat{\xi} \right) \alpha_1
+\left( I_{\hat{Q}_\lambda\Vert P_\theta}(Z_t,X_t\vert Z_{t-1},X_{t-1}) + H_{\hat{Q}_*}(X_t\vert X_{t-1}) - \hat{\xi} \right) \alpha_1
 \\ & \\ & \quad 
-\displaystyle + \frac{\partial}{\partial \lambda} H_{\hat{Q}_\lambda\Vert P_\theta}(Z_t,X_t\vert Z_{t-1},X_{t-1})
+\displaystyle + \frac{\partial}{\partial \lambda} I_{\hat{Q}_\lambda\Vert P_\theta}(Z_t,X_t\vert Z_{t-1},X_{t-1})
 . \end{array}$$
 
 ## References

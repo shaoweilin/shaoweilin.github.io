@@ -11,7 +11,7 @@ This is the first post in our [series](https://shaoweilin.github.io/motivic-info
 
 ## Why build foundations of information theory on relative information?
 
-Firstly, we want to show that relative information is the "right way" to think about machine learning problems. Many methods like max entropy or max likelihood can be framed in terms of min relative information. We can then use this reformulation to derive more robust learning algorithms (e.g. stochastic gradients) and we can prove asymptotic properties of these algorithms more easily. We will also be using (conditional) relative information to derive variational learning algorithms for statistical models with hidden variables. All of these will be explained in a later post.
+Firstly, we want to show that relative information is the "right way" to think about machine learning problems. Many methods like max entropy or max likelihood can be framed in terms of min relative information. We can then use this reformulation to derive more robust learning algorithms (e.g. stochastic gradients) and we can prove asymptotic properties of these algorithms more easily. We will also be using (conditional) relative information to derive learning algorithms for statistical models with hidden variables. All of these will be explained in a later post.
 
 The second reason is because we will be extending relative information to take values in a motivic ring so as to get motivic information theory. This then allows us to write down path integrals that don't run into convergence issues.
 
