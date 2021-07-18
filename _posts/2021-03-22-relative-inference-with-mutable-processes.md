@@ -3,7 +3,7 @@ layout: post
 title: Relative inference with mutable processes
 ---
 
-We introduce a information-theoretic objective, which is a form of relative information between a discriminative model and a generative model, for learning processes with latent variables. This technique is known as [relative inference](https://shaoweilin.github.io/machine-learning-with-relative-information/#why-do-we-need-a-better-name-for-variational-inference) (also called approximate inference, variational inference or variational Bayes).
+We introduce a information-theoretic objective, which is a form of relative information between a discriminative model and a generative model, for learning processes using models with [mutable](https://shaoweilin.github.io/machine-learning-with-relative-information/#why-should-we-consider-mutable-variables-rather-than-latent-variables) variables. This technique is known as [relative inference](https://shaoweilin.github.io/machine-learning-with-relative-information/#why-do-we-need-a-better-name-for-variational-inference) (also called approximate inference, variational inference or variational Bayes).
 
 We discuss natural constraints on the discriminative and generative models, and the consequences of these constraints on:
 
