@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Relative inference for latent processes
+title: Relative inference with mutable processes
 ---
 
 We introduce a information-theoretic objective, which is a form of relative information between a discriminative model and a generative model, for learning processes with latent variables. This technique is known as [relative inference](https://shaoweilin.github.io/machine-learning-with-relative-information/#why-do-we-need-a-better-name-for-variational-inference) (also called approximate inference, variational inference or variational Bayes).
@@ -125,7 +125,7 @@ The latent process $$Z_{0\ldots T}$$ will not represent the states of unobserved
 
 Of course, not every particle will be observed for inference by the discriminative model - we impose this constraint by writing down discriminative models $$Q(Z\vert X)$$ which do not compute with the states of those unobserved particles. Similarly, the unobserved particle will not be modeled by the generative model - we impose this constraint by fixing a trivial distribution (e.g. assigning probability one to some fixed state) to the states of the unobserved particles.
 
-Such constraints on the discriminative model [could](https://shaoweilin.github.io/relative-inference-for-latent-processes/#remark-cost-of-limited-sensing) cause the information gap $$I_{Q\Vert P}(Z_{0\ldots T}\vert  X_{0\ldots T})$$ to increase yet again. We can think of this increase as the cost of _limited sensing_.
+Such constraints on the discriminative model [could](https://shaoweilin.github.io/relative-inference-with-mutable-processes/#remark-cost-of-limited-sensing) cause the information gap $$I_{Q\Vert P}(Z_{0\ldots T}\vert  X_{0\ldots T})$$ to increase yet again. We can think of this increase as the cost of _limited sensing_.
 
 The reason we say that this Markov assumption is _semantically convenient_ is as follows. We could alternatively model the universe as a joint process $$X_{0\ldots T}, U_{0\ldots T}$$ where $$X_{0\ldots T}$$ is observed and $$U_{0\ldots T}$$ is unobserved. However, the mathematical analysis becomes notationally complicated because of the need to write down both processes. It is easier to subsume the distinction between observed and unobserved within the discriminative model distribution $$Q$$ and generative model distribution $$P.$$
 

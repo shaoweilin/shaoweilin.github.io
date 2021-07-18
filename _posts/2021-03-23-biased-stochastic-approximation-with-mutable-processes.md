@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Biased stochastic approximation for latent processes
+title: Biased stochastic approximation with mutable processes
 ---
 
 We apply biased stochastic approximation and relative inference to optimize a relative information objective for latent Markov processes. We will be using [biased](https://shaoweilin.github.io/biased-stochastic-approximation/) stochastic approximation [[KMMW19]](#ref-KMMW19) where the stochastic updates are dependent on the past but the conditional expectation of the stochastic updates given the past is not equal to the mean field. These biased stochastic approximation schemes generalize the classical expectation maximization algorithm [[KMMW19]](#ref-KMMW19).
@@ -9,13 +9,13 @@ This post is a continuation from our [series](https://shaoweilin.github.io/motiv
 
 ## What do we assume about the true distribution, the model and the learning objective?
 
-As [before](https://shaoweilin.github.io/relative-inference-for-latent-processes/), we assume that the universe is a Markov process $$\{X_t\},$$ and let its true distribution be the path measure $$Q_*.$$
+As [before](https://shaoweilin.github.io/relative-inference-with-mutable-processes/), we assume that the universe is a Markov process $$\{X_t\},$$ and let its true distribution be the path measure $$Q_*.$$
 
 Suppose that we have a parametric discriminative model $$\{Q_\lambda : \lambda \in \Lambda\}$$ and a parametric generative model $$\{P_\theta : \theta \in \Theta\}$$ where the distributions $$Q_\lambda$$ and $$P_\theta$$ are path measures on some joint process $$\{(Z_t, X_t)\}.$$ The random variables $$Z_t$$ represent computational states in this discriminative-generative model. We can also interpret the $$Z_t$$ as sample beliefs from belief distributions $$Q_\lambda(Z_t\vert Z_{t-1},X_{t-1}).$$
 
 We assume that in both models, the distributions are Markov and each $$Z_t$$ and $$X_t$$ are conditionally independent given their past.  We also assume that marginals $$Q(X_{0\ldots T})$$ of the discriminative model distributions $$Q_\lambda(Z_{0 \ldots T}, X_{0\ldots T})$$ are all equal to the true distribution $$Q_*(X_{0\ldots T}).$$
  
-Some parts of universe $$\{X_t\}$$ are observed and other parts are unobserved. We will impose these conditions by putting constraints on the structure of the models $$\{Q_\lambda\}$$ and $$\{P_\theta\}$$, as described in this [article](https://shaoweilin.github.io/relative-inference-for-latent-processes/). 
+Some parts of universe $$\{X_t\}$$ are observed and other parts are unobserved. We will impose these conditions by putting constraints on the structure of the models $$\{Q_\lambda\}$$ and $$\{P_\theta\}$$, as described in this [article](https://shaoweilin.github.io/relative-inference-with-mutable-processes/). 
 
 Our goal is to train the models by minimizing the asymptotic relative information rate (continuous time) 
 
@@ -73,7 +73,7 @@ We update the parameter $$\lambda$$ using the gradient
 
 $$\lambda_{n+1} = \displaystyle \lambda_n - \eta_{n+1} \left.\frac{d}{d\lambda} I_{\bar{Q}_\lambda \Vert P_{\theta_{n+1}}}(Z_1 , X_1 \vert Z_0, X_0)\right\vert _{\lambda = \lambda_n}$$
 
-where, as shown in the [appendix](https://shaoweilin.github.io/biased-stochastic-approximation-for-latent-processes/#appendix-discriminative-model-update), we have
+where, as shown in the [appendix](https://shaoweilin.github.io/biased-stochastic-approximation-with-mutable-processes/#appendix-discriminative-model-update), we have
 
 $$\begin{array}{rl} &
 \displaystyle \frac{d}{d\lambda} I_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0) 

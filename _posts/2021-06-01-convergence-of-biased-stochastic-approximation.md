@@ -4,7 +4,7 @@ title: Convergence of biased stochastic approximation
 excerpt_separator: <!--more-->
 ---
 
-Using techniques from [biased](https://shaoweilin.github.io/biased-stochastic-approximation/) stochastic approximation [[KMMW19]](#ref-KMMW19), we prove under some regularity conditions the convergence of the online learning algorithm proposed [previously](https://shaoweilin.github.io/biased-stochastic-approximation-for-latent-processes/) for latent Markov processes. 
+Using techniques from [biased](https://shaoweilin.github.io/biased-stochastic-approximation/) stochastic approximation [[KMMW19]](#ref-KMMW19), we prove under some regularity conditions the convergence of the online learning algorithm proposed [previously](https://shaoweilin.github.io/biased-stochastic-approximation-with-mutable-processes/) for latent Markov processes. 
 
 Recall that the algorithm is described by the following updates.
 
@@ -26,7 +26,7 @@ This post is a continuation from our [series](https://shaoweilin.github.io/motiv
 
 To prove the convergence of our [biased](https://shaoweilin.github.io/biased-stochastic-approximation/) stochastic approximation, we cannot apply the standard unbiased stochastic approximation theory of Robbins and Monro. We can however apply the work of [[KMMW19]](#ref-KMMW19) which gives some guarantees for biased stochastic approximation involving Markov updates. In this section, we will now derive sufficient conditions for the [convergence](https://shaoweilin.github.io/biased-stochastic-approximation/#theorem-convergence-of-biased-stochastic-approximation) of our biased stochastic approximation.
 
-We [recall](https://shaoweilin.github.io/biased-stochastic-approximation-for-latent-processes/#what-do-we-assume-about-the-true-distribution-the-model-and-the-learning-objective) some key assumptions about our disciminative model $$\{Q_\lambda:\lambda\in\Lambda\},$$ generative model $$\{P_\theta:\theta \in \Theta\}$$ and true distribution $$Q_*$$
+We [recall](https://shaoweilin.github.io/biased-stochastic-approximation-with-mutable-processes/#what-do-we-assume-about-the-true-distribution-the-model-and-the-learning-objective) some key assumptions about our disciminative model $$\{Q_\lambda:\lambda\in\Lambda\},$$ generative model $$\{P_\theta:\theta \in \Theta\}$$ and true distribution $$Q_*$$
 
 ----
 
@@ -122,7 +122,7 @@ $$\begin{array}{rl}
 \displaystyle \frac{\partial V}{\partial\lambda}(\lambda_n,\theta_{n+1}) 
 . \end{array}$$
 
-where the last equality follows from a [formula](https://shaoweilin.github.io/biased-stochastic-approximation-for-latent-processes/#appendix-discriminative-model-update) for integrals over the derivative of a stationary distribution:
+where the last equality follows from a [formula](https://shaoweilin.github.io/biased-stochastic-approximation-with-mutable-processes/#appendix-discriminative-model-update) for integrals over the derivative of a stationary distribution:
 
 $$ \begin{array}{rl} &
 \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_{\lambda_n}} \Bigg[ \left( -\log Q_*(X_{T+1}\vert X_T) - \hat{\xi} \right) \sum_{t=0}^{T} \left. \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \right\vert_{\lambda=\lambda_n} \Bigg]
