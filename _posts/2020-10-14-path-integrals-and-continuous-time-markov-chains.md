@@ -135,7 +135,7 @@ $$\displaystyle \begin{array}{rl} & \mathbb{P}( X(t_{n}) = x_{n}, \ldots, X(t_{0
 
 The limit
 
-$$\Gamma_{xy} = \displaystyle \lim_{\delta \rightarrow 0} \frac{\mathbb{P}(X(t+\delta) = y \vert X(t) = x ) +\mathbb{I}_{x=y}}{\delta}$$
+$$\Gamma_{xy} = \displaystyle \lim_{\delta \rightarrow 0} \frac{\mathbb{P}(X(t+\delta) = y \vert X(t) = x ) +\mathbb{I}(x=y)}{\delta}$$
 
 is the _transition rate_ from state $$x$$ to state $$y$$, where $$\mathbb{I}$$ is the indicator function. This limit does not depend on the time $$t$$ because the stochastic process is stationary. The (possibly infinite-dimensional) matrix $$\Gamma = (\Gamma_{xy})_{x,y \in \mathcal{X}}$$ is called the _transition rate matrix_. Note that $$\Gamma_{xx} = -\sum_{y\neq x} \Gamma_{xy}$$ because the probabilities $$\mathbb{P}(X(t+\delta) = y \vert X(t) = x )$$ sum to one as $$y$$ varies over all the states.
 
@@ -207,7 +207,7 @@ so for each fixed $$x \in \mathcal{X},$$ $$P(x,\,\cdot\,,t)$$ is a probability m
 
 We assume 
 
-$$P(x,B,0) = \mathbb{I}_{x \in B}$$ 
+$$P(x,B,0) = \mathbb{I}(x \in B)$$ 
 
 where $$\mathbb{I}$$ is the indicator function. We then define $$P(x,B,t)$$ to be the solution of the following Kolmogorov forward and backward differential equations.
 

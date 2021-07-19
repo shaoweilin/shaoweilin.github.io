@@ -4,7 +4,7 @@ title: Convergence of biased stochastic approximation
 excerpt_separator: <!--more-->
 ---
 
-Using techniques from [biased](https://shaoweilin.github.io/biased-stochastic-approximation/) stochastic approximation [[KMMW19]](#ref-KMMW19), we prove under some regularity conditions the convergence of the online learning algorithm proposed [previously](https://shaoweilin.github.io/biased-stochastic-approximation-with-mutable-processes/) for latent Markov processes. 
+Using techniques from [biased](https://shaoweilin.github.io/biased-stochastic-approximation/) stochastic approximation [[KMMW19]](#ref-KMMW19), we prove under some regularity conditions the convergence of the online learning algorithm proposed [previously](https://shaoweilin.github.io/biased-stochastic-approximation-with-mutable-processes/) for mutable Markov processes. 
 
 Recall that the algorithm is described by the following updates.
 

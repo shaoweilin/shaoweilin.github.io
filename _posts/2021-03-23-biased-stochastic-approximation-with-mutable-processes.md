@@ -3,7 +3,9 @@ layout: post
 title: Biased stochastic approximation with mutable processes
 ---
 
-We apply biased stochastic approximation and relative inference to optimize a relative information objective for latent Markov processes. We will be using [biased](https://shaoweilin.github.io/biased-stochastic-approximation/) stochastic approximation [[KMMW19]](#ref-KMMW19) where the stochastic updates are dependent on the past but the conditional expectation of the stochastic updates given the past is not equal to the mean field. These biased stochastic approximation schemes generalize the classical expectation maximization algorithm [[KMMW19]](#ref-KMMW19).
+We apply biased stochastic approximation and relative inference to optimize a relative information objective involving mutable Markov processes. 
+
+We will be using [biased](https://shaoweilin.github.io/biased-stochastic-approximation/) stochastic approximation [[KMMW19]](#ref-KMMW19) where the stochastic updates are dependent on the past but the conditional expectation of the stochastic updates given the past is not equal to the mean field. These biased stochastic approximation schemes for mutable processes generalize the classical expectation maximization algorithm [[KMMW19]](#ref-KMMW19) for mutable models.
 
 This post is a continuation from our [series](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 
@@ -15,7 +17,7 @@ Suppose that we have a parametric discriminative model $$\{Q_\lambda : \lambda \
 
 We assume that in both models, the distributions are Markov and each $$Z_t$$ and $$X_t$$ are conditionally independent given their past.  We also assume that marginals $$Q(X_{0\ldots T})$$ of the discriminative model distributions $$Q_\lambda(Z_{0 \ldots T}, X_{0\ldots T})$$ are all equal to the true distribution $$Q_*(X_{0\ldots T}).$$
  
-Some parts of universe $$\{X_t\}$$ are observed and other parts are unobserved. We will impose these conditions by putting constraints on the structure of the models $$\{Q_\lambda\}$$ and $$\{P_\theta\}$$, as described in this [article](https://shaoweilin.github.io/relative-inference-with-mutable-processes/). 
+Some parts of universe $$\{X_t\}$$ are observed and other parts are hidden. We will impose these conditions by putting constraints on the structure of the models $$\{Q_\lambda\}$$ and $$\{P_\theta\}$$, as described in this [article](https://shaoweilin.github.io/relative-inference-with-mutable-processes/). 
 
 Our goal is to train the models by minimizing the asymptotic relative information rate (continuous time) 
 
@@ -31,7 +33,7 @@ We assume that $$Q_\lambda$$ has a stationary distribution $$\bar{\pi}_\lambda,$
 
 $$\lim_{n \rightarrow \infty} I_{Q_\lambda \Vert P_\theta}(Z_{n+1}, X_{n+1} \vert Z_{n}, X_{n}) = I_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0).$$
 
-## What is the general intuition behind online learning for latent processes?
+## What is the general intuition behind online learning for mutable processes?
 
 To minimize the conditional relative information objective, we adopt an approach similar to the expectation-maximization (EM) or exponential-mixture (em) [algorithm](https://shaoweilin.github.io/machine-learning-with-relative-information/). More precisely, we iteratively optimize for the discriminative model distribution $$Q_\lambda$$ and for the generative model distribution $$P_\theta$$ while holding the other constant. 
 
@@ -115,9 +117,9 @@ More [precisely](https://shaoweilin.github.io/building-foundations-of-informatio
 
 $$\bar{Q}_* \!\times\!\bar{Q}_* (X_1, X_1',X_0) = \bar{\pi}_*(X_0) Q_*(X_1 \vert X_0) Q_*(X_1'\vert X_0),$$
 
-$$\bar{Q}_{**} (X_1, X_1', X_0) = \bar{\pi}_*(X_0) Q_*(X_1 \vert X_0) \,\mathbf{1}(X_1 = X_1').$$
+$$\bar{Q}_{**} (X_1, X_1', X_0) = \bar{\pi}_*(X_0) Q_*(X_1 \vert X_0) \,\mathbb{I}(X_1 = X_1').$$
 
-where $$\mathbf{1}(X_1 = X_1')$$ is the indicator function that ensures that $$X_1$$ and $$X_1'$$ are copies of each other. Then, the true conditional entropy is
+where $$\mathbb{I}(X_1 = X_1')$$ is the indicator function that ensures that $$X_1$$ and $$X_1'$$ are copies of each other. Then, the true conditional entropy is
 
 $$
 \xi = I_{\bar{Q}_{**} \Vert \bar{Q}_* \!\times\! \bar{Q}_*} (X_1 \vert X_0).
