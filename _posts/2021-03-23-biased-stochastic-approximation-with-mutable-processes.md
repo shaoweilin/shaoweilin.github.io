@@ -3,9 +3,13 @@ layout: post
 title: Biased stochastic approximation with mutable processes
 ---
 
-We apply biased stochastic approximation and relative inference to optimize a relative information objective involving mutable Markov processes. 
+The goal of this article is to derive a general online learning recipe for training a [mutable](https://shaoweilin.github.io/relative-inference-with-mutable-processes/#what-is-a-mutable-process) process $$\{Z_t,X_t\}$$ to learn the true distribution $$Q_*(X)$$ of a partially-observed Markov process $$\{X_t\}$$. The recipe returns a generative distribution $$P(Z,X)$$ whose marginal $$P(X)$$ approximates $$Q_*(X).$$ 
 
-We will be using [biased](https://shaoweilin.github.io/biased-stochastic-approximation/) stochastic approximation [[KMMW19]](#ref-KMMW19) where the stochastic updates are dependent on the past but the conditional expectation of the stochastic updates given the past is not equal to the mean field. These biased stochastic approximation schemes for mutable processes generalize the classical expectation maximization algorithm [[KMMW19]](#ref-KMMW19) for mutable models.
+The variables $$Z$$ of the mutable process are auxiliary variables that assist in inference and computation. During training, the distribution of $$Z$$ given $$X$$ is controlled by a discriminative model $$\{Q(Z\vert X)\}.$$ Our method works in both discrete time and continuous time. We assume in the mutable process that for each time $$t,$$ the variables $$Z_t$$ and $$X_t$$ are conditionally independent of each other given their past.
+
+Our strategy is relative inference, where we use a relative information objective that measures the divergence between the discriminative distribution $$Q(Z,X)$$ and the generative distribution $$P(Z,X).$$ We minimize this objective by alternating updates to the discriminative and generative distributions using stochastic gradients. 
+
+We will be using [biased](https://shaoweilin.github.io/biased-stochastic-approximation/) stochastic approximation [[KMMW19]](#ref-KMMW19) where the stochastic updates are dependent on the past but the conditional expectation of the stochastic updates given the past is not equal to the mean field. These biased stochastic approximation schemes for mutable processes generalize the classical expectation maximization algorithm for mutable models.
 
 This post is a continuation from our [series](https://shaoweilin.github.io/motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 

@@ -195,10 +195,6 @@ Let $$(\mathcal{X},\mathcal{B})$$ be a measurable space. A function $$\Gamma: \m
 
 2. we have $$\Gamma(x,B) \leq 0$$ when $$x \in B;$$ and $$0 \leq \Gamma(x,B) < \infty$$ when $$x \notin B;$$
 
-3. when $$B = \bigcup_{i=1}^\infty A_i$$ and $$A_i \cap A_j = \emptyset$$ for all $$i \neq j,$$ we have
-
-$$\displaystyle \Gamma(x,B) = \sum_{i=1}^\infty \Gamma(x,A_i).$$
-
 Next, we define the transition probabilities of a continuous-space continuous-time Markov chain $$X(t)$$ with kernel $$\Gamma$$. Let us denote
 
 $$P(x,B,t) = \mathbb{P}(X(t)\in B \vert X(0)=x)$$
