@@ -47,9 +47,9 @@ I am a mathematician working on the statistical learning theory of spiking neura
 ---
 :column: col-9
 
+- [Blog](blog/)
 - [PhD Thesis](https://w3id.org/people/shaoweilin/public/swthesis.pdf)
 - [Singular Learning](singular/)
-- [Blog](blog/)
 
 ---
 :column: col-3
@@ -88,6 +88,6 @@ I am a mathematician working on the statistical learning theory of spiking neura
 
 ```
 
-## Website
+#### Website
 
 As a big MyST fan, I was really inspired by Chris Holdgraf's [website](https://predictablynoisy.com/posts/2020/sphinx-blogging/). My [source code](https://github.com/shaoweilin/shaoweilin.github.io) was modified from [his](https://github.com/choldgraf/choldgraf.github.io).
