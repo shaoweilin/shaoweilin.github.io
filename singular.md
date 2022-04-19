@@ -2,6 +2,15 @@
 
 Some personal resources for understanding and applying singular learning theory. For more information, please read the [textbook](http://watanabe-www.math.dis.titech.ac.jp/users/swatanab/singular-learning-theory.html) by Sumio Watanabe.
 
+```{list-table}
+* - Training
+  - Validation
+* - 0
+  - 5
+* - 13720
+  - 2744
+```
+
 | [Thesis](https://w3id.org/people/shaoweilin/public/swthesis.pdf) | Algebraic methods for evaluating integrals in Bayesian statistics |
 | [Preprint](http://arxiv.org/abs/1003.5338) | Asymptotic approximation of marginal likelihood integrals |
 | [Notes](https://w3id.org/people/shaoweilin/public/useful.pdf) | Useful facts about RLCT |
