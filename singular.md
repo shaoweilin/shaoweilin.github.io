@@ -1,4 +1,8 @@
-# Singular Learning
+---
+layout: page
+title: Singular Learning
+permalink: /singular/
+---
 
 Some personal resources for understanding and applying singular learning theory. For more information, please read the [textbook](http://watanabe-www.math.dis.titech.ac.jp/users/swatanab/singular-learning-theory.html) by Sumio Watanabe.
 

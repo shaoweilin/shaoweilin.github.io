@@ -1,7 +1,10 @@
-# About
+---
+layout: page
+title: About
+permalink: /about/
+---
 
 I am a mathematician working on the statistical learning theory of spiking neural networks and on dependent type theories for machine reasoning.
-
 
 PURL [https://w3id.org/people/shaoweilin](https://w3id.org/people/shaoweilin)
 
@@ -25,17 +28,17 @@ ORCID [0000-0002-8176-8868](https://orcid.org/0000-0002-8176-8868)
 
 [PhD Thesis](https://w3id.org/people/shaoweilin/public/swthesis.pdf)
 
-[Singular Learning](singular/)
+[Singular Learning](https://shaoweilin.github.io/singular/)
 
 ## Talks
 
-[Proofs as programs](proofs-as-programs-challenges-and-strategies-for-program-synthesis/)
+[Proofs as programs](https://shaoweilin.github.io/proofs-as-programs-challenges-and-strategies-for-program-synthesis/)
 
-[Neural-symbolic reasoning](machine-reasoning-and-deep-spiking-networks/)
+[Neural-symbolic reasoning](https://shaoweilin.github.io/machine-reasoning-and-deep-spiking-networks/)
 
-[Internet of things](artificial-general-intelligence-for-the-internet-of-things/)
+[Internet of things](https://shaoweilin.github.io/artificial-general-intelligence-for-the-internet-of-things/)
 
-[Singular learning](studying-model-asymptotics-with-singular-learning-theory/)
+[Singular learning](https://shaoweilin.github.io/studying-model-asymptotics-with-singular-learning-theory/)
 
 ## Software
 
@@ -51,11 +54,6 @@ ORCID [0000-0002-8176-8868](https://orcid.org/0000-0002-8176-8868)
 
 [Legendrian Knots](https://w3id.org/people/shaoweilin/public/legendrian.html)
 
-## Website
-
-As a big MyST fan, I was really inspired by Chris Holdgraf's [website](https://predictablynoisy.com/posts/2020/sphinx-blogging/). My [source code](https://github.com/shaoweilin/shaoweilin.github.io) was modified from [his](https://github.com/choldgraf/choldgraf.github.io).
-
 ## Contact
 
 shaoweilin × research + gmail × com
-
