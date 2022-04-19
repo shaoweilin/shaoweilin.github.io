@@ -2,7 +2,7 @@
 
 Some personal resources for understanding and applying singular learning theory. For more information, please read the [textbook](http://watanabe-www.math.dis.titech.ac.jp/users/swatanab/singular-learning-theory.html) by Sumio Watanabe.
 
-````{rst-class} right-align
+````{rst-class} cols-left-align
 ```{list-table}
 * - [Thesis](https://w3id.org/people/shaoweilin/public/swthesis.pdf) 
   - Algebraic methods for evaluating integrals in Bayesian statistics
@@ -27,7 +27,7 @@ Some personal resources for understanding and applying singular learning theory.
 
 My slides and problem sets on Singular Learning Theory from the [Motivic Invariants and Singularities](http://www3.nd.edu/~cmnd/programs/mis2013/) workshop at the Center for Mathematics at Notre Dame (May 2013).
 
-````{rst-class} right-align
+````{rst-class} cols-left-align
 ```{list-table}
 * - Statistical Learning Theory
   - [Slides](https://w3id.org/people/shaoweilin/public/cmnd1SLT.pdf)
