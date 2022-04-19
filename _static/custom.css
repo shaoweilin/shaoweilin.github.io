@@ -109,6 +109,10 @@ div.timeline div.entry.right::after {
 }
 
 /* list-table style */
+table {
+    margin-left: 5%;
+}
+
 td {
-    text-align: left
+    text-align: left;
 }
