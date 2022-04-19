@@ -2,6 +2,7 @@
 
 Some personal resources for understanding and applying singular learning theory. For more information, please read the [textbook](http://watanabe-www.math.dis.titech.ac.jp/users/swatanab/singular-learning-theory.html) by Sumio Watanabe.
 
+````{rst-class} right-align
 ```{list-table}
 * - [Thesis](https://w3id.org/people/shaoweilin/public/swthesis.pdf) 
   - Algebraic methods for evaluating integrals in Bayesian statistics
@@ -22,9 +23,11 @@ Some personal resources for understanding and applying singular learning theory.
 * - [Website](https://w3id.org/people/shaoweilin/public/rlct.html) 
   - Macaulay2 library for computing RLCTs using Newton polyhedra
 ```
+````
 
 My slides and problem sets on Singular Learning Theory from the [Motivic Invariants and Singularities](http://www3.nd.edu/~cmnd/programs/mis2013/) workshop at the Center for Mathematics at Notre Dame (May 2013).
 
+````{rst-class} right-align
 ```{list-table}
 * - Statistical Learning Theory
   - [Slides](https://w3id.org/people/shaoweilin/public/cmnd1SLT.pdf)
@@ -39,97 +42,4 @@ My slides and problem sets on Singular Learning Theory from the [Motivic Invaria
   - [Notes](https://w3id.org/people/shaoweilin/public/cmnd4notes.pdf)
   - 
 ```
-
-``````{list-table}
-:header-rows: 1
-:widths: 20 20 20
-
-* - Syntax
-  - Example
-  - Result
-* - ```md
-    | a    | b    |
-    | :--- | ---: |
-    | c    | d    |
-    ```
-  - ```md
-    |    Training   |   Validation   |
-    | :------------ | -------------: |
-    |        0      |        5       |
-    |     13720     |      2744      |
-    ```
-  - |    Training   |   Validation   |
-    | :------------ | -------------: |
-    |        0      |        5       |
-    |     13720     |      2744      |
-* - ````md
-     ```{list-table}
-    :header-rows: 1
-
-    * - Col1
-      - Col2
-    * - Row1 under Col1
-      - Row1 under Col2
-    * - Row2 under Col1
-      - Row2 under Col2
-    ```
-    ````
-  - ````md
-     ```{list-table}
-    :header-rows: 1
-    :name: example-table
-
-    * - Training
-      - Validation
-    * - 0
-      - 5
-    * - 13720
-      - 2744
-    ```
-    ````
-  - ```{list-table}
-    :header-rows: 1
-    :name: example-table
-
-    * - Training
-      - Validation
-    * - 0
-      - 5
-    * - 13720
-      - 2744
-    ```
-* - ````md
-     ```{list-table} title
-    :header-rows: 1
-
-    * - Col1
-      - Col2
-    * - Row1 under Col1
-      - Row1 under Col2
-    * - Row2 under Col1
-      - Row2 under Col2
-    ```
-    ````
-  - ````md
-     ```{list-table} Table with a title
-    :header-rows: 1
-
-    * - Training
-      - Validation
-    * - 0
-      - 5
-    * - 13720
-      - 2744
-    ```
-    ````
-  - ```{list-table} Table with a title
-    :header-rows: 1
-
-    * - Training
-      - Validation
-    * - 0
-      - 5
-    * - 13720
-      - 2744
-    ```
-``````
+````
