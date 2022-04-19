@@ -109,6 +109,6 @@ div.timeline div.entry.right::after {
 }
 
 /* list-table style */
-table.cols-left-align td {
+td {
     text-align: left
 }
