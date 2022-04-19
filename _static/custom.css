@@ -107,3 +107,8 @@ div.timeline div.entry.right::after {
 .gsc-reactions {
     margin-top: 1em;
 }
+
+/* list-table style */
+table.right-align td {
+    text-align: right
+}
