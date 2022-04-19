@@ -1,0 +1,498 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:title" content="Conditional relative information and its axiomatizations" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://shaoweilin.github.io/posts/2020-09-18-conditional-relative-information-and-its-axiomatizations/" />
+  
+<meta property="og:description" content="In this post, we will study the conditional form of relative information. We will also look at how conditional relative information can be axiomatized and extended to non-real-valued measures. This..." />
+  
+<meta property="og:image" content="https://shaoweilin.github.io/_static/profile.jpg" />
+  
+<meta property="og:image:alt" content="Conditional relative information and its axiomatizations" />
+  
+    <title>Conditional relative information and its axiomatizations &#8212; Spikes and Types  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../about/" />
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+     
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../blog/atom.xml"
+  title="Spikes and Types"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../">
+<p class="title">Spikes and Types</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../about/">
+  About
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../blog/">
+  Blog
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../search/" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" >
+</form>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/shaoweilin/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
+<h2>
+   <i class="fa fa-calendar"></i>
+  18 September 2020 
+</h2>
+
+<ul>
+        
+</ul>
+
+<h3>
+  <a href="../../blog/">Recent Posts</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../2022-01-22-information-topos-theory-motivation/"
+      >22 January - Information topos theory - motivation</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-09-09-all-you-need-is-relative-information/"
+      >09 September - All you need is relative information</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-06-05-spiking-neural-networks/"
+      >05 June - Spiking neural networks</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-06-01-convergence-of-biased-stochastic-approximation/"
+      >01 June - Convergence of biased stochastic approximation</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-05-10-path-integrals-and-the-dyson-formula/"
+      >10 May - Path integrals and the Dyson formula</a
+    >
+  </li>
+  
+</ul>
+
+<h3>
+  <a href="../../blog/archive/">Archives</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../blog/2022/">2022 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2021/">2021 (8)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2020/">2020 (12)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2018/">2018 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2017/">2017 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2016/">2016 (3)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2014/">2014 (2)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2012/">2012 (1)</a>
+  </li>
+   
+</ul>
+
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-conditional-relative-information">
+   What is conditional relative information?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#whats-is-the-chain-rule-for-conditional-relative-information">
+   Whats is the chain rule for conditional relative information?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-do-we-derive-conditional-entropy-from-conditional-relative-information">
+   How do we derive conditional entropy from conditional relative information?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#is-there-an-axiomatization-of-conditional-entropy">
+   Is there an axiomatization of conditional entropy?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#is-there-an-axiomatization-of-conditional-relative-information">
+   Is there an axiomatization of conditional relative information?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+
+              <div>
+                 <div class="tex2jax_ignore mathjax_ignore section" id="conditional-relative-information-and-its-axiomatizations">
+<h1>Conditional relative information and its axiomatizations<a class="headerlink" href="#conditional-relative-information-and-its-axiomatizations" title="Permalink to this headline">#</a></h1>
+<p>In this post, we will study the conditional form of relative information. We will also look at how conditional relative information can be axiomatized and extended to non-real-valued measures.</p>
+<p>This post is a continuation from our <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">series</span></a> on spiking networks, path integrals and motivic information.</p>
+<div class="section" id="what-is-conditional-relative-information">
+<h2>What is conditional relative information?<a class="headerlink" href="#what-is-conditional-relative-information" title="Permalink to this headline">#</a></h2>
+<p>Suppose we have two random variables <span class="math notranslate nohighlight">\(X, Y\)</span> and probability measures <span class="math notranslate nohighlight">\(P, Q\)</span> on <span class="math notranslate nohighlight">\(\Omega\)</span>. We are interested in how far the model conditional <span class="math notranslate nohighlight">\(P_{Y\vert X}\)</span> is to the true conditional <span class="math notranslate nohighlight">\(Q_{Y\vert X}\)</span> on average over <span class="math notranslate nohighlight">\(Q_X\)</span>, and we want to ignore the model marginal <span class="math notranslate nohighlight">\(P_X\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(P_{XY}, Q_{XY}\)</span> be the induced joint distributions for <span class="math notranslate nohighlight">\(X, Y\)</span>. We first construct a distribution <span class="math notranslate nohighlight">\(R_{XY}\)</span> which has the same conditional distribution <span class="math notranslate nohighlight">\(R_{Y\vert X} = P_{Y\vert X}\)</span> as the model but has a marginal <span class="math notranslate nohighlight">\(R_X = Q_X\)</span> equal to that of the true distribution <span id="id1">[<a class="reference internal" href="#id49" title="Robert M Gray. Entropy and information theory. Springer Science &amp; Business Media, 2011.">Gra11</a>]</span>. Namely,</p>
+<div class="math notranslate nohighlight">
+\[R_{XY}(F \times G) = \int_F P_{Y\vert X}(G\vert x) dQ_X(x)\]</div>
+<p>where <span class="math notranslate nohighlight">\(F\)</span> and <span class="math notranslate nohighlight">\(G\)</span> are measurable sets over the state spaces of <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> respectively.</p>
+<p>We then define the <em>conditional relative information</em> to be</p>
+<div class="math notranslate nohighlight">
+\[I_{Q\Vert P}(Y\vert X) = I_{Q_{XY} \Vert R_{XY}}.\]</div>
+<p>In the case where the corresponding densities are well-defined, we have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{rl} I_{Q\Vert P}(Y\vert X) &amp;= \int \int q(y\vert x) \log \frac{q(y\vert x)}{p(y\vert x)}\, dy \,q(x)dx \\ &amp; \\ &amp;= \int \int q(y, x) \log \frac{q(y\vert x)}{p(y\vert x)} \,dy\, dx \end{array}.\end{split}\]</div>
+<p>which is the relative information to <span class="math notranslate nohighlight">\(q(y\vert x)\)</span> from <span class="math notranslate nohighlight">\(p(y\vert x)\)</span> averaged over <span class="math notranslate nohighlight">\(q(x)\)</span>.</p>
+</div>
+<div class="section" id="whats-is-the-chain-rule-for-conditional-relative-information">
+<h2>Whats is the chain rule for conditional relative information?<a class="headerlink" href="#whats-is-the-chain-rule-for-conditional-relative-information" title="Permalink to this headline">#</a></h2>
+<p>In statistics and machine learning, we often think of <span class="math notranslate nohighlight">\(Q\)</span> as a true distribution that we are trying to uncover and <span class="math notranslate nohighlight">\(P\)</span> as a model distribution for approximating <span class="math notranslate nohighlight">\(Q\)</span>. The relative information <span class="math notranslate nohighlight">\(I_{Q\Vert P}\)</span> measures how far the model is to the truth.</p>
+<p>To uncover the truth, it makes strategic sense to study different facets <span class="math notranslate nohighlight">\(X, Y\)</span> of reality, and to build up reality one facet at a time. For example, we may want to know how far our model is to reality in modeling <span class="math notranslate nohighlight">\(X\)</span> and focus on modeling <span class="math notranslate nohighlight">\(X\)</span>, before moving on to what our model says about both <span class="math notranslate nohighlight">\(X, Y\)</span>. The chain rule of conditional relative information says that the divergence of our model to reality for <span class="math notranslate nohighlight">\(X, Y\)</span> is simply the sum of the divergences for <span class="math notranslate nohighlight">\(X\)</span> and for <span class="math notranslate nohighlight">\(Y \vert X\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\tag{CR} I_{Q\Vert P}(Y, X) = I_{Q\Vert P}(Y\vert X) + I_{Q\Vert P}(X).\]</div>
+<p>Therefore, to get a good model of <span class="math notranslate nohighlight">\(X, Y\)</span>, we could attempt to minimize the divergences for <span class="math notranslate nohighlight">\(X\)</span> and for <span class="math notranslate nohighlight">\(Y \vert X\)</span> in parallel.</p>
+</div>
+<div class="section" id="how-do-we-derive-conditional-entropy-from-conditional-relative-information">
+<h2>How do we derive conditional entropy from conditional relative information?<a class="headerlink" href="#how-do-we-derive-conditional-entropy-from-conditional-relative-information" title="Permalink to this headline">#</a></h2>
+<p>Just as the entropy of a random variable <span class="math notranslate nohighlight">\(X\)</span> with distribution <span class="math notranslate nohighlight">\(P_X\)</span> can be defined as the relative information to the dependent distribution <span class="math notranslate nohighlight">\(P_{XX}\)</span> from the independent distribution <span class="math notranslate nohighlight">\(P_X \times P_X,\)</span> we will do the same for conditional entropy.</p>
+<p>Given random variables <span class="math notranslate nohighlight">\(X, Y\)</span> with joint distribution <span class="math notranslate nohighlight">\(P_{XY}\)</span>, we define the conditional entropy of <span class="math notranslate nohighlight">\(Y \vert X\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[H(Y\vert X) = I_{P_{XY,XY}\Vert P_{XY} \times P_{XY}}(Y\vert X)\]</div>
+<p>the conditional relative information of <span class="math notranslate nohighlight">\(Y \vert X\)</span> to the dependent distribution <span class="math notranslate nohighlight">\(P_{XY} \times P_{XY}\)</span> from the independent distribution <span class="math notranslate nohighlight">\(P_{XY,XY}.\)</span></p>
+<p>According to the chain rule of conditional relative information,</p>
+<div class="math notranslate nohighlight">
+\[I_{P_{XY,XY}\Vert P_{XY} \times P_{XY}}(Y, X) = I_{P_{XY,XY}\Vert P_{XY} \times P_{XY}}(Y\vert X) + I_{P_{XY,XY}\Vert P_{XY} \times P_{XY}}(X).\]</div>
+<p>By the definition of entropy in our <a class="reference internal" href="../2020-09-08-building-foundations-of-information-theory-on-relative-information/"><span class="doc std std-doc">introduction</span></a>, the first and third terms are the entropies <span class="math notranslate nohighlight">\(H(Y,X)\)</span> and <span class="math notranslate nohighlight">\(H(X)\)</span> respectively, while the second term is the conditional entropy <span class="math notranslate nohighlight">\(H(Y\vert X)\)</span>. Thus, we recover the classical chain rule for conditional entropy</p>
+<div class="math notranslate nohighlight">
+\[H(Y,X) = H(Y\vert X) +H(X).\]</div>
+</div>
+<div class="section" id="is-there-an-axiomatization-of-conditional-entropy">
+<h2>Is there an axiomatization of conditional entropy?<a class="headerlink" href="#is-there-an-axiomatization-of-conditional-entropy" title="Permalink to this headline">#</a></h2>
+<p>As described in our <a class="reference internal" href="../2020-09-08-building-foundations-of-information-theory-on-relative-information/"><span class="doc std std-doc">previous post</span></a>, we allow the total measures of <span class="math notranslate nohighlight">\(P, Q\)</span> to be different from one, but we require their total measures to be the same.</p>
+<p>We start with an axiomatizations of conditional entropy with the hope of deriving axiomatizations of conditional relative information. I like the following categorical view of conditional entropy <span id="id2">[<a class="reference internal" href="#id47" title="John C Baez, Tobias Fritz, and Tom Leinster. A characterization of entropy in terms of information loss. Entropy, 13(11):1945–1957, 2011.">BFL11</a>]</span>. I’ve taken the liberty of rewriting it in our notations.</p>
+<p>Given a measured space <span class="math notranslate nohighlight">\((\Omega, \mathcal{B}, P)\)</span>, a finite measurable function <span class="math notranslate nohighlight">\(Y : \Omega \rightarrow S_Y\)</span> and a morphism <span class="math notranslate nohighlight">\(f :S_Y \rightarrow S_X\)</span> between finite sets, let <span class="math notranslate nohighlight">\(X = f \circ Y\)</span> and let <span class="math notranslate nohighlight">\(P_Y, P_X\)</span> be the induced measures on <span class="math notranslate nohighlight">\(S_Y, S_X\)</span>.</p>
+<p>In this case, the conditional entropy of <span class="math notranslate nohighlight">\(Y \vert X\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{rl} H(Y\vert X) &amp;= H(Y,X)-H(X)\\ &amp; \\ &amp;= H(Y) - H(X) \\ &amp; \\ &amp;= - T\displaystyle\sum_{y} \bar{P}_Y(y) \log \bar{P}_Y(y) + T\displaystyle \sum_{x} \bar{P}_X(x) \log \bar{P}_X(x) \\ &amp; \\&amp;= -\displaystyle \sum_{y} P_Y(y) \log P_Y(y) + \displaystyle\sum_{x} P_X(x) \log P_X(x) \end{array}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(T\)</span> is the total measure of <span class="math notranslate nohighlight">\(P\)</span>, and <span class="math notranslate nohighlight">\(\bar{P}_X = P_X/T\)</span> and <span class="math notranslate nohighlight">\(\bar{P}_Y = P_Y/T\)</span> are probability measures.</p>
+<p>Given two measured spaces <span class="math notranslate nohighlight">\((\Omega_1, \mathcal{B}_1, P_1)\)</span> and <span class="math notranslate nohighlight">\((\Omega_2, \mathcal{B}_2, P_2)\)</span>, let <span class="math notranslate nohighlight">\((\Omega_1 \sqcup \Omega_2, \mathcal{B}_1 \oplus \mathcal{B}_2, P_1 \oplus P_2)\)</span> be their direct sum. Here, <span class="math notranslate nohighlight">\(\Omega_1 \sqcup \Omega_2\)</span> is the disjoint union, and <span class="math notranslate nohighlight">\(S \in \mathcal{B}_1 \oplus \mathcal{B}_2\)</span> if and only if <span class="math notranslate nohighlight">\(S \cap \Omega_1 \in \mathcal{B}_1\)</span> and <span class="math notranslate nohighlight">\(S \cap \Omega_2 \in \mathcal{B}_2\)</span>. The measure of <span class="math notranslate nohighlight">\(S\)</span> is the sum of that of <span class="math notranslate nohighlight">\(S \cap \Omega_1\)</span> and of <span class="math notranslate nohighlight">\(S \cap \Omega_2\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(F_P\)</span> be a family of maps indexed by measures <span class="math notranslate nohighlight">\(P\)</span> such that each <span class="math notranslate nohighlight">\(F_P\)</span> sends morphisms <span class="math notranslate nohighlight">\(f :S_X \rightarrow S_Y\)</span> between finite sets to <span class="math notranslate nohighlight">\([0, \infty)\)</span>. Suppose that the family <span class="math notranslate nohighlight">\(F_P\)</span> satisfies the following three axioms.</p>
+<ol class="simple">
+<li><p><em>Functoriality.</em> <span class="math notranslate nohighlight">\(F_P(f\circ g) = F_P(f) + F_P(g)\)</span></p></li>
+<li><p><em>Homogeneity</em>. <span class="math notranslate nohighlight">\(F_{\lambda P}(f) = \lambda F_P(f)\)</span></p></li>
+<li><p><em>Additivity.</em> <span class="math notranslate nohighlight">\(F_{P_1\oplus P_2}(f_1 \oplus f_2) = F_{P_1}(f_1) + F_{P_2}(f_2)\)</span></p></li>
+<li><p><em>Continuity.</em> <span class="math notranslate nohighlight">\(F\)</span> is continuous</p></li>
+</ol>
+<p>Then, <span class="math notranslate nohighlight">\(F_P(f)\)</span> must be <span class="math notranslate nohighlight">\(c H(Y\vert X)\)</span> for some constant <span class="math notranslate nohighlight">\(c \geq 0\)</span>.</p>
+<p>Given a classical conditional entropy <span class="math notranslate nohighlight">\(H(Y\vert X)\)</span>, we can now write this as <span class="math notranslate nohighlight">\(F_P(f)\)</span> where <span class="math notranslate nohighlight">\(f\)</span> is the projection <span class="math notranslate nohighlight">\((Y,X) \mapsto X\)</span>.</p>
+<p>The nice thing about the above categorical axiomatization of conditional entropy is that it fits into the view where the objects of study are spaces <span class="math notranslate nohighlight">\(E, B\)</span> and fibrations <span class="math notranslate nohighlight">\(\pi: E \rightarrow B\)</span> equipped with measures. The conditional entropy is the sum of the entropies of the fibers <span class="math notranslate nohighlight">\(\pi^{-1}(b)\)</span> weighted by <span class="math notranslate nohighlight">\(P_B(b)\)</span>.</p>
+</div>
+<div class="section" id="is-there-an-axiomatization-of-conditional-relative-information">
+<h2>Is there an axiomatization of conditional relative information?<a class="headerlink" href="#is-there-an-axiomatization-of-conditional-relative-information" title="Permalink to this headline">#</a></h2>
+<p>We prefer to work with conditional relative information rather than conditional entropy. Its axiomatization should tell us how it behaves with respect to products and coproducts of the measures being compared.</p>
+<p>Our axioms. Note the addition of the product rule. I’m not sure if the product axiom can be derived from the others when the state spaces are not finite. Perhaps it will follow from continuity and the fact that the limit of coproducts is the product of limits.</p>
+<ol class="simple">
+<li><p><em>Functoriality</em>. <span class="math notranslate nohighlight">\(G_{Q \Vert P} (f \circ g) = G_{Q \Vert P} (f) + G_{Q \Vert P} (g)\)</span></p></li>
+<li><p><em>Homogeneity</em>. <span class="math notranslate nohighlight">\(G_{\lambda Q \Vert \lambda P} (f) = \lambda G_{Q \Vert P} (f)\)</span></p></li>
+<li><p><em>Coproduct</em>. <span class="math notranslate nohighlight">\(G_{Q_1 \oplus Q_2 \Vert P_1 \oplus P_2} (f_1 \oplus f_2) = G_{Q_1 \Vert P_1} (f_1) + G_{Q_2 \Vert P_2} (f_2)\)</span></p></li>
+<li><p><em>Product</em>. <span class="math notranslate nohighlight">\(G_{Q_1 \times Q_2 \Vert P_1 \times P_2} (f_1,f_2) = T_2 G_{Q_1 \Vert P_1} (f_1) + T_1 G_{Q_2 \Vert P_2} (f_2)\)</span></p></li>
+<li><p><em>Continuity</em>. <span class="math notranslate nohighlight">\(G\)</span> is continuous.</p></li>
+</ol>
+<p>Here, <span class="math notranslate nohighlight">\(T_1\)</span> and <span class="math notranslate nohighlight">\(T_2\)</span> are the total measures of <span class="math notranslate nohighlight">\(Q_1\)</span> and <span class="math notranslate nohighlight">\(Q_2\)</span> respectively.</p>
+<p>The axioms for conditional entropy follow immediately from these axioms for conditional relative information, because we can write</p>
+<div class="math notranslate nohighlight">
+\[F_{P_X}(f) = G_{TP_{XX} \Vert P_X \times P_X} (f)\]</div>
+<p>where <span class="math notranslate nohighlight">\(T\)</span> is the total measure of <span class="math notranslate nohighlight">\(P_X\)</span>.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<div class="docutils container" id="id3">
+<dl class="citation">
+<dt class="label" id="id47"><span class="brackets"><a class="fn-backref" href="#id2">BFL11</a></span></dt>
+<dd><p>John C Baez, Tobias Fritz, and Tom Leinster. A characterization of entropy in terms of information loss. <em>Entropy</em>, 13(11):1945–1957, 2011.</p>
+</dd>
+<dt class="label" id="id49"><span class="brackets"><a class="fn-backref" href="#id1">Gra11</a></span></dt>
+<dd><p>Robert M Gray. <em>Entropy and information theory</em>. Springer Science &amp; Business Media, 2011.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     
+    <a href="../2020-09-08-building-foundations-of-information-theory-on-relative-information/">
+      <i class="fa fa-arrow-circle-left"></i> Building foundations of information theory on relative information
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+     
+    <a href="../2020-10-05-zeta-functions-mellin-transforms-and-the-gelfand-leray-form/">
+      Zeta functions, Mellin transforms and the Gelfand-Leray form <i
+        class="fa fa-arrow-circle-right"
+      ></i
+      >
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+              </div>
+              
+<!-- Add a comment box underneath the page's content -->
+<script src="https://giscus.app/client.js"
+        data-repo="shaoweilin/shaoweilin.github.io"
+        data-repo-id="R_kgDOHM5tAA"
+        data-category="Blog comments"
+        data-category-id="DIC_kwDOHM5tAM4COqgI"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2022, Shaowei Lin.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

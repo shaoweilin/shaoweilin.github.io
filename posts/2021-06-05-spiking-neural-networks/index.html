@@ -1,0 +1,1131 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:title" content="Spiking neural networks" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://shaoweilin.github.io/posts/2021-06-05-spiking-neural-networks/" />
+  
+<meta property="og:description" content="In this post, we study a class of spiking network models based on continuous-time Markov chains with mutable variables. Using a relative inference recipe for online learning, we derive local Hebbia..." />
+  
+<meta property="og:image" content="https://shaoweilin.github.io/_static/profile.jpg" />
+  
+<meta property="og:image:alt" content="Spiking neural networks" />
+  
+    <title>Spiking neural networks &#8212; Spikes and Types  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../about/" />
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+     
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../blog/atom.xml"
+  title="Spikes and Types"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../">
+<p class="title">Spikes and Types</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../about/">
+  About
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../blog/">
+  Blog
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../search/" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" >
+</form>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/shaoweilin/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
+<h2>
+   <i class="fa fa-calendar"></i>
+  05 June 2021 
+</h2>
+
+<ul>
+        
+</ul>
+
+<h3>
+  <a href="../../blog/">Recent Posts</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../2022-01-22-information-topos-theory-motivation/"
+      >22 January - Information topos theory - motivation</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-09-09-all-you-need-is-relative-information/"
+      >09 September - All you need is relative information</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-06-01-convergence-of-biased-stochastic-approximation/"
+      >01 June - Convergence of biased stochastic approximation</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-05-10-path-integrals-and-the-dyson-formula/"
+      >10 May - Path integrals and the Dyson formula</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-04-22-proofs-as-programs-challenges-and-strategies-for-program-synthesis/"
+      >22 April - Proofs as programs - challenges and strategies for program synthesis</a
+    >
+  </li>
+  
+</ul>
+
+<h3>
+  <a href="../../blog/archive/">Archives</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../blog/2022/">2022 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2021/">2021 (8)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2020/">2020 (12)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2018/">2018 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2017/">2017 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2016/">2016 (3)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2014/">2014 (2)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2012/">2012 (1)</a>
+  </li>
+   
+</ul>
+
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-are-the-states-and-parameters-of-the-spiking-network-model">
+   What are the states and parameters of the spiking network model?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-are-the-dynamics-of-the-generative-model">
+   What are the dynamics of the generative model?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-does-the-recovery-rate-vary-inversely-with-the-membrane-potential-in-the-refractory-state">
+   Why does the recovery rate vary inversely with the membrane potential in the refractory state?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-does-our-spiking-network-model-compare-to-others-in-the-literature">
+   How does our spiking network model compare to others in the literature?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-are-the-dynamics-of-the-discriminative-model">
+   What are the dynamics of the discriminative model?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-do-we-simulate-the-continuous-time-spiking-neural-networks-on-a-discrete-time-digital-computer">
+   How do we simulate the continuous-time spiking neural networks on a discrete-time digital computer?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-are-the-learning-updates-in-discrete-time">
+   What are the learning updates in discrete time?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-are-the-learning-updates-in-continuous-time">
+   What are the learning updates in continuous time?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-nature-could-derive-such-a-complex-learning-algorithm">
+   How nature could derive such a complex learning algorithm?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unfinished-tasks">
+   Unfinished tasks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+
+              <div>
+                 <div class="tex2jax_ignore mathjax_ignore section" id="spiking-neural-networks">
+<h1>Spiking neural networks<a class="headerlink" href="#spiking-neural-networks" title="Permalink to this headline">#</a></h1>
+<p>In this post, we study a class of spiking network models based on continuous-time <a class="reference external" href="2020-10-14-path-integrals-and-continuous-time-markov-chains/#what-is-a-continuous-time-markov-chain">Markov</a> chains with <a class="reference external" href="2021-03-22-relative-inference-with-mutable-processes/#what-is-a-mutable-process">mutable</a>  variables.</p>
+<p>Using a <a class="reference internal" href="../2021-06-01-convergence-of-biased-stochastic-approximation/"><span class="doc std std-doc">relative inference</span></a> recipe for online learning, we derive local Hebbian learning rules for the spiking network which are provably convergent to local minima of the relative information objective.</p>
+<p>This post is a continuation from our <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">series</span></a> on spiking networks, path integrals and motivic information.</p>
+<p>For background material in statistical learning, relative information, relative inference, process learning, mutable processes and biased stochastic approximation, you may follow the recommended sequence of posts under <em>Spiking Networks</em> in this <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">outline</span></a>.</p>
+<div class="section" id="what-are-the-states-and-parameters-of-the-spiking-network-model">
+<h2>What are the states and parameters of the spiking network model?<a class="headerlink" href="#what-are-the-states-and-parameters-of-the-spiking-network-model" title="Permalink to this headline">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{V}_X\)</span> be a finite set representing the collection of random variables which capture the state of the environment or universe. For <a class="reference external" href="2021-03-23-biased-stochastic-approximation-with-mutable-processes/#what-do-we-assume-about-the-true-distribution-the-model-and-the-learning-objective">simplicity</a>, we assume that each of these variables have the same state space as the neurons in our model, so we will call them <em>environment neurons</em> for convenience. We also assume that these neurons contain enough information about the environment such that its true distribution is Markov. A subset of these neurons will be observed for inference and learning; the other neurons could remain unobserved or inaccessible.</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{V}_Z\)</span> be a finite set representing the collection of <a class="reference external" href="2021-03-22-relative-inference-with-mutable-processes/#what-is-a-mutable-process">mutable</a> neurons which assist the spiking network computationally in learning an approximation of the true distribution. The states of these mutable neurons represent samples of beliefs that the spiking network has about the current state of the environment. Together, they act as the memory of the spiking network, so we will call them <em>memory neurons</em>.</p>
+<p>At each time <span class="math notranslate nohighlight">\(t \geq 0\)</span> and for each neuron <span class="math notranslate nohighlight">\(i \in \mathcal{V}:=\mathcal{V}_Z \cup \mathcal{V}_X,\)</span> we have a signed state</p>
+<div class="math notranslate nohighlight">
+\[S_{it} \in \mathbb{S} := \{-1,+1\}\]</div>
+<p>representing the state of the voltage-gated sodium channels of the neuron, namely, <span class="math notranslate nohighlight">\(+1\)</span> if the channels are <em>closed</em>, and <span class="math notranslate nohighlight">\(-1\)</span> if the channels are <em>open</em> or <em>inactive</em>. A transition from <span class="math notranslate nohighlight">\(+1\)</span> to <span class="math notranslate nohighlight">\(-1\)</span> is called <em>spiking</em> while a transition from <span class="math notranslate nohighlight">\(-1\)</span> to <span class="math notranslate nohighlight">\(+1\)</span> is called <em>recovery</em>.</p>
+<p>If the sodium channels are closed, the neuron is in a resting state and ready to spike at any time. When the membrane potential exceeds a certain threshold, the sodium channels open to allow sodium ions into the neuron, causing the neuron to spike. After spiking, the sodium channels are inactivated, the neuron enters a refractory state, the sodium ions leave the cell, and the membrane potential goes back to its resting level. When the sodium channels are open or inactive, the neuron is unable to spike. Finally, the channels return to their closed state and the process starts again.</p>
+<p>The above process is often modelled deterministically, where the voltage-dependent channels open when the membrane potential crosses the threshold and the neuron then enters the refractory period for a fixed duration of time. Following <span id="id1">[<a class="reference internal" href="#id22" title="Jean-Pascal Pfister, Taro Toyoizumi, David Barber, and Wulfram Gerstner. Optimal spike-timing-dependent plasticity for precise action potential firing in supervised learning. Neural computation, 18(6):1318–1348, 2006.">PTBG06</a>]</span> and <span id="id2">[<a class="reference internal" href="#id33" title="Danilo Jimenez Rezende and Wulfram Gerstner. Stochastic variational learning in recurrent spiking networks. Frontiers in computational neuroscience, 8:38, 2014.">RG14</a>]</span>, we will instead model the neuron spikes and channel recoveries stochastically, because of intrinsic noise in the transmission of input spikes from other neurons as well as random impulses from neurons which are not explicitly modeled.</p>
+<p>At each time <span class="math notranslate nohighlight">\(t \geq 0\)</span> and for each pair <span class="math notranslate nohighlight">\(i,j \in \mathcal{V}\)</span>, we have a counting state</p>
+<div class="math notranslate nohighlight">
+\[R_{ijt} \in \mathbb{N} := \{0,1,2,\ldots\}\]</div>
+<p>representing the number of spikes from possibly some presynaptic neuron <span class="math notranslate nohighlight">\(i\)</span> to some postsynaptic neuron <span class="math notranslate nohighlight">\(j\)</span> since the last spike by the postsynaptic neuron <span class="math notranslate nohighlight">\(j.\)</span> We consider these synaptic counts as belonging to the postsynaptic neuron <span class="math notranslate nohighlight">\(j,\)</span> because a spike in neuron <span class="math notranslate nohighlight">\(j\)</span> resets them and eventually the counts affect its membrane potential. For all <span class="math notranslate nohighlight">\(j \in \mathcal{V},\)</span> we fix <span class="math notranslate nohighlight">\(R_{jjt} = 1.\)</span> This count will later help to account for changes in the membrane potential which are not from other neurons.</p>
+<p>Collectively, we denote</p>
+<div class="math notranslate nohighlight">
+\[S_t := (S_{it} : i \in \mathcal{V}),\]</div>
+<div class="math notranslate nohighlight">
+\[R_t := (R_{ijt} : i,j \in \mathcal{V}),\]</div>
+<div class="math notranslate nohighlight">
+\[X_t := (S_{jt},R_{ijt} : j \in \mathcal{V}_X, i \in \mathcal{V}),\]</div>
+<div class="math notranslate nohighlight">
+\[Z_t := (S_{jt},R_{ijt} : j \in \mathcal{V}_Z, i \in \mathcal{V}).\]</div>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{E}_Q\)</span> be a finite set representing the collection of edges or connections from <span class="math notranslate nohighlight">\(\mathcal{V}\)</span> to <span class="math notranslate nohighlight">\(\mathcal{V}_Z\)</span> that participate in the discriminative model <span class="math notranslate nohighlight">\(Q\)</span> of the spiking network. Intuitively, at time <span class="math notranslate nohighlight">\(T,\)</span> this discriminative model computes from <span class="math notranslate nohighlight">\((Z_T,X_T)\)</span> the distribution or belief of <span class="math notranslate nohighlight">\(Z_{T+\delta}\)</span> for infinitesimal <span class="math notranslate nohighlight">\(\delta &gt; 0.\)</span> The model plays an important role in inference. Note that there are no edges to <span class="math notranslate nohighlight">\(\mathcal{V}_X\)</span> in this set of connections.</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{E}_P\)</span> be a finite set representing the collection of edges or connections from <span class="math notranslate nohighlight">\(\mathcal{V}\)</span> to <span class="math notranslate nohighlight">\(\mathcal{V}\)</span> that participate in the generative model <span class="math notranslate nohighlight">\(P\)</span> of the spiking network. Intuitively, at time <span class="math notranslate nohighlight">\(T,\)</span> this generative model estimates from <span class="math notranslate nohighlight">\((Z_T,X_T)\)</span> the distribution of <span class="math notranslate nohighlight">\((Z_t,X_t)\)</span> for all <span class="math notranslate nohighlight">\(t &gt; T.\)</span> The model plays an important role in prediction.</p>
+<p>For each edge <span class="math notranslate nohighlight">\(e \in \mathcal{E}_Q \cup \mathcal{E}_P,\)</span> we denote its source by <span class="math notranslate nohighlight">\(e(0)\)</span> and its target by <span class="math notranslate nohighlight">\(e(1).\)</span> We assume that <span class="math notranslate nohighlight">\(\mathcal{E}_Q\)</span> and <span class="math notranslate nohighlight">\(\mathcal{E}_P\)</span> contain <em>all</em> self-loops, i.e. edges <span class="math notranslate nohighlight">\(e\)</span> with <span class="math notranslate nohighlight">\(e(0)=e(1).\)</span> For simplicity, we do not allow multi-edges, i.e. two distinct edges with the same source and target.</p>
+<p>Each edge <span class="math notranslate nohighlight">\(e \in \mathcal{E}_Q\)</span> of the discriminative model has a weight <span class="math notranslate nohighlight">\(w^{(Q)}_{e} \in \mathbb{R}\)</span> representing the synaptic strength of the corresponding connection. For self-loops <span class="math notranslate nohighlight">\(e,\)</span> the bias <span class="math notranslate nohighlight">\(w^{(Q)}_e\)</span> represent changes to the membrane potential that is not from other neurons, e.g. decay. As for the generative model <span class="math notranslate nohighlight">\(P,\)</span> the weights <span class="math notranslate nohighlight">\(w^{(P)}_e, e \in \mathcal{E}_P,\)</span> are similarly defined.</p>
+<p>Collectively, we denote</p>
+<div class="math notranslate nohighlight">
+\[w^{(Q)} := (w^{(Q)}_{e}: e \in \mathcal{E}_Q),\]</div>
+<div class="math notranslate nohighlight">
+\[w^{(P)} := (w^{(P)}_{e} : e \in \mathcal{E}_P).\]</div>
+<p>We now describe the transitions allowed in our spiking network model. We require the states <span class="math notranslate nohighlight">\((R_t,S_t)\)</span> to be piecewise constant in time, with only finitely many transitions in any finite time interval. If we have a transition from <span class="math notranslate nohighlight">\((R,S)\)</span> to <span class="math notranslate nohighlight">\((R',S'),\)</span> and <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(S'\)</span> differ at exactly <span class="math notranslate nohighlight">\(k\)</span> different neurons, then we say the transition is <em><span class="math notranslate nohighlight">\(k\)</span>-hop</em>. For the environment process <span class="math notranslate nohighlight">\(\{X_t\},\)</span> we will allow multi-hop transitions, even if such coupling of neurons is biologically rare or impossible.</p>
+</div>
+<div class="section" id="what-are-the-dynamics-of-the-generative-model">
+<h2>What are the dynamics of the generative model?<a class="headerlink" href="#what-are-the-dynamics-of-the-generative-model" title="Permalink to this headline">#</a></h2>
+<p>Suppose we fix the parameters <span class="math notranslate nohighlight">\(w^{(P)}\)</span> and drop the <span class="math notranslate nohighlight">\((P)\)</span> annotation for convenience. We now define the generative model distribution <span class="math notranslate nohighlight">\(P_w\)</span> as a <span class="math notranslate nohighlight">\(w\)</span>-controlled continuous-time <a class="reference external" href="2020-10-14-path-integrals-and-continuous-time-markov-chains/#what-is-a-continuous-time-markov-chain">Markov</a> chain with rate kernel <span class="math notranslate nohighlight">\(\Gamma\)</span> and a countable state space</p>
+<div class="math notranslate nohighlight">
+\[(R_t, S_t) \quad \in \quad \mathbb{N}^{\lvert \mathcal{V} \rvert \times \lvert \mathcal{V} \rvert} \times \mathbb{S}^{\lvert \mathcal{V} \rvert}. \]</div>
+<p>Before defining the rate kernel <span class="math notranslate nohighlight">\(\Gamma\)</span>, let us describe informally the dynamics of the spiking network. Suppose that the network is in state <span class="math notranslate nohighlight">\((R_t,S_t)\)</span> at time <span class="math notranslate nohighlight">\(t.\)</span> We want the membrane potential of a neuron <span class="math notranslate nohighlight">\(j \in \mathcal{V}\)</span>  to be</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle 
+U_{jt} = \sum_{e \in \mathcal{E}_P} \mathbb{I}(e(1)=j)\, R_{et}\, w_e \]</div>
+<p>where <span class="math notranslate nohighlight">\(R_{et}\)</span> is notation for <span class="math notranslate nohighlight">\(R_{e(0)e(1)t}\)</span> and <span class="math notranslate nohighlight">\(\mathbb{I}\)</span> the indicator function. Note that only one of the self-loop biases <span class="math notranslate nohighlight">\(w_e, e(1)=j,\)</span> appears in this sum with <span class="math notranslate nohighlight">\(R_{et}=1\)</span> by default. The holding time until the next transition (spiking or recovery) is exponentially distributed with rate</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\rho_{jt} = \rho_{S_{jt}} \exp \left( \, \beta_{S_{jt}} \, S_{jt} \, U_{jt} \, \right) \]</div>
+<p>where the hyperparameters <span class="math notranslate nohighlight">\(\rho_+, \rho_- &gt; 0\)</span> and <span class="math notranslate nohighlight">\(\beta_+,\beta_- &gt; 0\)</span> are the rate constants and the inverse temperatures for the resting and refractory states respectively. The transition events for different neurons are independent of each other. Note that the transition rate depends on whether the neuron is in resting state <span class="math notranslate nohighlight">\((S_{jt}=+1)\)</span> or refractory state <span class="math notranslate nohighlight">\((S_{jt}=-1).\)</span> We will explain in the next section why the recovery rate varies inversely with the membrane potential for the refractory state.</p>
+<p>If neuron <span class="math notranslate nohighlight">\(j\)</span> is the first neuron to transition at time <span class="math notranslate nohighlight">\(t'\)</span> and <span class="math notranslate nohighlight">\(S_{jt} = +1,\)</span> the neuron spikes and sends an impulse to its downstream neurons. We flip its sign <span class="math notranslate nohighlight">\(S_{jt'}=-1,\)</span> and reset the upstream counts</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+R_{ijt'} = 0 \quad \text{for all }i \in \mathcal{V}.\]</div>
+<p>We also increment the downstream counts</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+R_{jkt'} = R_{jkt}+1 \quad \text{for all }k \in \mathcal{V}.\]</div>
+<p>By default, <span class="math notranslate nohighlight">\(R_{jjt'}=1.\)</span> On the other hand, if neuron <span class="math notranslate nohighlight">\(i\)</span> is the first neuron to transition at time <span class="math notranslate nohighlight">\(t'\)</span> but <span class="math notranslate nohighlight">\(S_{it} = -1,\)</span> then no impulse is sent to the downstream neurons. We flip the sign of the neuron so <span class="math notranslate nohighlight">\(S_{it'}=+1\)</span> but keep the counts <span class="math notranslate nohighlight">\(R_{t'} = R_t\)</span> unchanged.</p>
+<p>So far we have described the different ways a state <span class="math notranslate nohighlight">\(Y = (R_t,S_t)\)</span> can transition to the next state <span class="math notranslate nohighlight">\(Y' = (R_{t'},S_{t'})\)</span> which involves the spiking or recovery of some neuron <span class="math notranslate nohighlight">\(j\)</span> with rate <span class="math notranslate nohighlight">\(\rho_{jt}.\)</span> We record this formally as the transition rate</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle
+\Gamma_{YY'} = \rho_{jt}.\]</div>
+<p>It follows that the holding time to the first transition by <em>any</em> neuron is exponentially distributed with rate</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle
+\rho_{*t} = \sum_{j \in \mathcal{V}} \rho_{jt}\]</div>
+<p>and this is formally recorded in the transition rate</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle
+\Gamma_{YY} = -\rho_{*t}.\]</div>
+<p>The probability that the first transition occurs at neuron <span class="math notranslate nohighlight">\(j\)</span> is then given by</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle
+\mathbb{P}(j | Y) = \frac{\rho_{jt}}{\rho_{*t}}.\]</div>
+<p>As mentioned previously, models typically represent the spiking of the neurons as a deterministic process, with the neurons firing when the membrane potential exceeds a fixed threshold. In our model, the membrane potentials <span class="math notranslate nohighlight">\(U_{jt}\)</span> should be interpreted as the mean potential of neuron <span class="math notranslate nohighlight">\(j\)</span> conditioned on the history of incoming spikes and the strength of synaptic connections.</p>
+</div>
+<div class="section" id="why-does-the-recovery-rate-vary-inversely-with-the-membrane-potential-in-the-refractory-state">
+<h2>Why does the recovery rate vary inversely with the membrane potential in the refractory state?<a class="headerlink" href="#why-does-the-recovery-rate-vary-inversely-with-the-membrane-potential-in-the-refractory-state" title="Permalink to this headline">#</a></h2>
+<p>We give three distinct reasons for introducing this inverse relationship in our model.</p>
+<p>The first reason is statistical. Suppose the goal is to model the timings of certain point events. Let us represent each point event <span class="math notranslate nohighlight">\(j\)</span> with a neuron <span class="math notranslate nohighlight">\(j,\)</span> with the spiking of the neuron indicating the beginning of a time interval during which we have confidence event <span class="math notranslate nohighlight">\(j\)</span> occurred, and the recovery of the neuron indicating the end of that interval.</p>
+<p>Suppose we are interested in information or evidence that event <span class="math notranslate nohighlight">\(j\)</span> has not occurred yet but will be occurring soon, and let us represent the amount of evidence with the membrane potential of neuron <span class="math notranslate nohighlight">\(j.\)</span> If we know that some event <span class="math notranslate nohighlight">\(i\)</span> is a strong predictor that event <span class="math notranslate nohighlight">\(j\)</span> did not happen before but will happen soon after, and if event <span class="math notranslate nohighlight">\(i\)</span> is represented by neuron <span class="math notranslate nohighlight">\(i,\)</span> we may instruct the membrane potential of neuron <span class="math notranslate nohighlight">\(j\)</span> to increase by some fixed weight <span class="math notranslate nohighlight">\(w\)</span> with every spike from neuron <span class="math notranslate nohighlight">\(i.\)</span></p>
+<p>Neuron <span class="math notranslate nohighlight">\(j\)</span> may now use the evidence indicated by its membrane potential to decide when to spike and when to recover. If the neuron is in the resting state and the membrane potential is high, the neuron will have strong reasons to believe that event <span class="math notranslate nohighlight">\(j\)</span> has not yet happened but will happen soon. It should increase its transition rate so that the spike (indicating the start of the confidence time interval) occurs sooner.</p>
+<p>After the neuron spikes, the information in the membrane potential is deemed to be used in producing that estimate of the start of the confidence interval, so the neuron resets its potential. Now the neuron is in the refractory state. If the membrane potential continues to increase due to incoming spikes, the neuron will have strong reasons to believe that it was too early with its estimate of the start of the confidence time interval. It should try to drag out the length of the interval by reducing its transition rate, so that the interval has a higher chance of capturing the actual timing of event <span class="math notranslate nohighlight">\(j.\)</span> Therefore the recovery rate varies inversely with the membrane potential.</p>
+<p>The second reason is direct biological evidence from sodium channel studies. Early studies <span id="id3">[<a class="reference internal" href="#id26" title="Alan L Hodgkin and Andrew F Huxley. A quantitative description of membrane current and its application to conduction and excitation in nerve. The Journal of physiology, 117(4):500, 1952.">HH52</a>]</span> described the time to recovery of the channels from inactivation as exponentially distributed  with faster rates at more negative voltages. More recent studies <span id="id4">[<a class="reference internal" href="#id25" title="Chung-Chin Kuo and Bruce P Bean. Na+ channels must deactivate to recover from inactivation. Neuron, 12(4):819–829, 1994.">KB94</a>]</span> proposed mechanisms to explain this inverse relationship.</p>
+<p>The third reason is indirect biological evidence from Spike Timing Dependent Plasticity (STDP). When the presynaptic neuron spikes <em>after</em> the postsynaptic neuron, there is a weakening in the synaptic strength between the neurons. Moreover, as the time interval between the presynaptic and postsynaptic spikes become shorter, the amount of weakening becomes exponentially greater. If STDP is the neural network’s algorithm for reinforcement learning, then this weakening must be reinforcing the effect that the synaptic weight has on reducing the recovery time. More precisely, as the interspike timings become shorter, the need to decrease the weights become greater, so decreasing the weights probably has the effect of further reducing the recovery time. In other words, decreasing the membrane potential increases the recovery rate.</p>
+</div>
+<div class="section" id="how-does-our-spiking-network-model-compare-to-others-in-the-literature">
+<h2>How does our spiking network model compare to others in the literature?<a class="headerlink" href="#how-does-our-spiking-network-model-compare-to-others-in-the-literature" title="Permalink to this headline">#</a></h2>
+<p>Compared to the spiking network model of <span id="id5">[<a class="reference internal" href="#id33" title="Danilo Jimenez Rezende and Wulfram Gerstner. Stochastic variational learning in recurrent spiking networks. Frontiers in computational neuroscience, 8:38, 2014.">RG14</a>]</span>, our model is different in the following ways.</p>
+<ol class="simple">
+<li><p>Their model adds an exponential filter to the adaptation potentials (decrease in potential after a neuron spikes) and evoked potentials (incoming potentials from neighboring neurons). We do not have this exponential filter explicitly. Instead, the exponential filter will turn out to be a consequence of the learning algorithm.</p></li>
+<li><p>Their model does not model the refractory period of the neuron. We model the refractory period as following an exponential distribution whose rate is inversely related to the membrane potential, i.e. the higher the membrane potential, the slower the recovery of the neuron after spiking.</p></li>
+<li><p>In their model, the membrane potential at time <span class="math notranslate nohighlight">\(t\)</span> depends on the full history of spikes from time <span class="math notranslate nohighlight">\(0\)</span> to time <span class="math notranslate nohighlight">\(t\)</span> so it is not Markov. In our Markov model, the membrane potential <span class="math notranslate nohighlight">\(U_{jt}\)</span> of neuron <span class="math notranslate nohighlight">\(j\)</span> at time <span class="math notranslate nohighlight">\(t\)</span> depends on the incoming synaptic spike counts <span class="math notranslate nohighlight">\(R_{ijt}\)</span> which reset with every outgoing spike. These spike counts can be implemented biologically by neuromodulator concentrations that are local to each synapse. Hence, the membrane potential only depends on incoming spikes since the last outgoing spike.</p></li>
+<li><p>Because of the inverse relationship between the membrane potential and refractory period, we will be able to prove directly that our learning updates satisfy the full Spike Timing Dependent Plasticity (STDP). In <span id="id6">[<a class="reference internal" href="#id22" title="Jean-Pascal Pfister, Taro Toyoizumi, David Barber, and Wulfram Gerstner. Optimal spike-timing-dependent plasticity for precise action potential firing in supervised learning. Neural computation, 18(6):1318–1348, 2006.">PTBG06</a>]</span>, the learning updates satisfy only a simplified kind of STDP unless some form of out-of-model regularization is added to the objective function.</p></li>
+</ol>
+</div>
+<div class="section" id="what-are-the-dynamics-of-the-discriminative-model">
+<h2>What are the dynamics of the discriminative model?<a class="headerlink" href="#what-are-the-dynamics-of-the-discriminative-model" title="Permalink to this headline">#</a></h2>
+<p>For the discriminative model <span class="math notranslate nohighlight">\(Q_w\)</span> with parameters <span class="math notranslate nohighlight">\(w = w^{(Q)},\)</span> we start by characterizing the true distribution <span class="math notranslate nohighlight">\(Q_*(X).\)</span> Because <span class="math notranslate nohighlight">\(\{X_t\}\)</span> is a continuous-time Markov chain by assumption, it has a rate kernel <span class="math notranslate nohighlight">\(\Gamma^{(X)}.\)</span> Recall that we allow multi-hop transitions in <span class="math notranslate nohighlight">\(\{X_t\}\)</span>.</p>
+<p>Intuitively, the dynamics of the discriminative process is very similar to that of the generative process, except that the environment states <span class="math notranslate nohighlight">\(X_t\)</span> cannot be controlled. For each spike in an environment or memory neuron, we update the synaptic counts in the possibly outgoing edges of the neuron. For each recovery in a memory neuron, we reset the synaptic counts in the possibly incoming edges of the neuron.</p>
+<p>We now define the rate kernel <span class="math notranslate nohighlight">\(\Gamma\)</span> of the full process <span class="math notranslate nohighlight">\(\{Z_t,X_t\}\)</span> in terms of <span class="math notranslate nohighlight">\(\Gamma_X\)</span> and model parameters <span class="math notranslate nohighlight">\(w.\)</span> We consider two kinds of transitions: environment transitions where the signed states of <span class="math notranslate nohighlight">\(X_t\)</span> changes but not that of <span class="math notranslate nohighlight">\(Z_t,\)</span> and memory transitions where the signed states of <span class="math notranslate nohighlight">\(Z_t\)</span> changes but not that of <span class="math notranslate nohighlight">\(X_t.\)</span></p>
+<p>Suppose we have an environment transition from some <span class="math notranslate nohighlight">\((R_X,S_X)\)</span> to <span class="math notranslate nohighlight">\((R'_X,S'_X)\)</span> with</p>
+<div class="math notranslate nohighlight">
+\[\Gamma^{(X)}_{(R_X,S_X)(R'_X,S'_X)} &gt; 0.\]</div>
+<p>Let <span class="math notranslate nohighlight">\(\Delta R\)</span> be the number of spiking environment neurons, i.e. neurons <span class="math notranslate nohighlight">\(i \in \mathcal{V}_X\)</span> with</p>
+<div class="math notranslate nohighlight">
+\[(S_X)_i = +1, \quad (S'_X)_i = -1.\]</div>
+<p>For all memory states <span class="math notranslate nohighlight">\((R_Z,S_Z),\)</span> let <span class="math notranslate nohighlight">\(R' = (R'_Z,R'_X)\)</span> where</p>
+<div class="math notranslate nohighlight">
+\[(R'_Z)_{ij} = (R'_Z)_{ij} + \Delta R\]</div>
+<p>for all <span class="math notranslate nohighlight">\(j \in \mathcal{V}_Z.\)</span> Let <span class="math notranslate nohighlight">\(R = (R_Z,R_X),\)</span> <span class="math notranslate nohighlight">\(S = (S_Z,S_X)\)</span> and <span class="math notranslate nohighlight">\(S' = (S_Z,S'_X).\)</span> We then define</p>
+<div class="math notranslate nohighlight">
+\[\Gamma_{(R,S)(R',S')} = \Gamma^{(X)}_{(R_X,S_X)(R'_X,S'_X)}.\]</div>
+<p>As for the memory transitions, for every full state <span class="math notranslate nohighlight">\((R,S)\)</span> and every neuron <span class="math notranslate nohighlight">\(j \in \mathcal{V}_Z\)</span> with <span class="math notranslate nohighlight">\(S_j = +1,\)</span> we let</p>
+<div class="math notranslate nohighlight">
+\[U_j = \sum_{e \in \mathcal{E}_P} \mathbb{I}(e(1)=j) \, R_{e} \, w_e\]</div>
+<div class="math notranslate nohighlight">
+\[\rho_j = \rho_{S_j} \exp \left( \, \beta_{S_j} \, S_j \, U_j \, \right)\]</div>
+<div class="math notranslate nohighlight">
+\[S'_j = -1\]</div>
+<div class="math notranslate nohighlight">
+\[R'_{ij} = 0 \quad \text{for all }i \in \mathcal{V}\]</div>
+<div class="math notranslate nohighlight">
+\[R'_{jk} = R_{jk} + 1 \quad \text{for all }k \in \mathcal{V}_Z\]</div>
+<p>where <span class="math notranslate nohighlight">\(R_e\)</span> is notation for <span class="math notranslate nohighlight">\(R_{e(0)e(1)}.\)</span> By default, <span class="math notranslate nohighlight">\(R'_{jj}=1.\)</span> All other entries of <span class="math notranslate nohighlight">\(R',S'\)</span> not stated above are unchanged from <span class="math notranslate nohighlight">\(R,S\)</span>. We then define</p>
+<div class="math notranslate nohighlight">
+\[\Gamma_{(R,S)(R',S')} = \rho_j.\]</div>
+<p>Similarly, for every full state <span class="math notranslate nohighlight">\((R,S)\)</span> and every neuron <span class="math notranslate nohighlight">\(j \in \mathcal{V}_Z\)</span> with <span class="math notranslate nohighlight">\(S_j = -1,\)</span> we let</p>
+<div class="math notranslate nohighlight">
+\[U_j =  \sum_{e \in \mathcal{E}_P} \mathbb{I}(e(1)=j) \, R_{e} \, w_e\]</div>
+<div class="math notranslate nohighlight">
+\[\rho_j = \rho_{S_j} \exp \left( \,\beta_{S_j}\, S_j \, U_j \, \right)\]</div>
+<div class="math notranslate nohighlight">
+\[S'_j = +1,\]</div>
+<p>and all other entries of <span class="math notranslate nohighlight">\(R',S'\)</span> are unchanged from <span class="math notranslate nohighlight">\(R,S.\)</span> We then also define</p>
+<div class="math notranslate nohighlight">
+\[\Gamma_{(R,S)(R',S')} = \rho_j.\]</div>
+<p>As for the diagonal rates, we have</p>
+<div class="math notranslate nohighlight">
+\[\Gamma_{(R,S)(R,S)} = \Gamma_{(R_X,S_X)(R_X,S_X)} - \rho_{*t},\]</div>
+<div class="math notranslate nohighlight">
+\[\rho_{*} = \sum_{j \in \mathcal{V}_Z} \rho_j.\]</div>
+<p>All other transition rates are defined to be zero.</p>
+</div>
+<div class="section" id="how-do-we-simulate-the-continuous-time-spiking-neural-networks-on-a-discrete-time-digital-computer">
+<h2>How do we simulate the continuous-time spiking neural networks on a discrete-time digital computer?<a class="headerlink" href="#how-do-we-simulate-the-continuous-time-spiking-neural-networks-on-a-discrete-time-digital-computer" title="Permalink to this headline">#</a></h2>
+<p>We have presented the discriminative model <span class="math notranslate nohighlight">\(Q\)</span> and generative model <span class="math notranslate nohighlight">\(P\)</span> as parametric spiking neural networks in continuous time. We have a relative inference <a class="reference internal" href="../2021-06-01-convergence-of-biased-stochastic-approximation/"><span class="doc std std-doc">recipe</span></a> for online learning that updates the parameters in continuous time.</p>
+<p>For efficient simulation on a discrete-time digital computer, we could consider for each continuous-time Markov chain (CTMC) its <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_chain#Embedded_Markov_chain">embedded</a> discrete-time Markov chain (DTMC) which records the transitions and the holding times between transitions at each integer time step. However, the above recipe for deriving learning algorithms will not apply. This is because the resulting pair <span class="math notranslate nohighlight">\((\hat{Z}_n,\hat{X}_n)\)</span> of variables is always exactly one environment transition or one memory transition from <span class="math notranslate nohighlight">\((\hat{Z}_{n-1},\hat{X}_{n-1}),\)</span> so their states are coupled. This means that <span class="math notranslate nohighlight">\(\hat{Z}_n\)</span> and <span class="math notranslate nohighlight">\(\hat{X}_n\)</span> are not independent given their past in the DTMC, a condition that is needed for the recipe to work.</p>
+<p>Alternatively, we could use the <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_chain#Embedded_Markov_chain"><span class="math notranslate nohighlight">\(\delta\)</span>-skeletions</a> of the CTMCs, where we impose a fixed wait time <span class="math notranslate nohighlight">\(\delta\)</span> between observations. The issue here is that as <span class="math notranslate nohighlight">\(\delta\)</span> tends to zero, some of the probabilistic integrals diverge and the original CTMC is not the limit of the <span class="math notranslate nohighlight">\(\delta\)</span>-skeletons.</p>
+<p>We now describe a slight variation of the <span class="math notranslate nohighlight">\(\delta\)</span>-skeleton method whose limiting behavior is the same as the original CTMC.</p>
+<p>We start with the <a class="reference external" href="https://en.wikipedia.org/wiki/Uniformization_(probability_theory)">uniformization</a> of the CTMC, where we assume an independent Poisson process with rate <span class="math notranslate nohighlight">\(\hat{\rho}\)</span> that generate a sequence of time stamps. Given a state <span class="math notranslate nohighlight">\(Y\)</span> at one time stamp, the state <span class="math notranslate nohighlight">\(Y'\)</span> at the next time stamp is either the same as <span class="math notranslate nohighlight">\(Y\)</span> or one-hop from <span class="math notranslate nohighlight">\(Y\)</span>, and is stochastically generated by transition probabilities</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{P}(Y'\vert Y) =  \delta \, \Gamma_{YY'}  \quad \text{for }Y' \neq Y,\]</div>
+<div class="math notranslate nohighlight">
+\[\mathbb{P}(Y\vert Y) = 1-\delta \sum_{Y'} \Gamma_{YY'},\]</div>
+<p>where <span class="math notranslate nohighlight">\(\delta = 1/\hat{\rho}.\)</span> For these transition probabilities to make sense, we require</p>
+<div class="math notranslate nohighlight">
+\[ \delta \sum_{Y'} \Gamma_{YY'} \,\,&lt; \,\,1.\]</div>
+<p>One can prove that this discrete-time Markov chain is isomorphic to the original CTMC via the obvious map from discrete time to continuous time.</p>
+<p>We relax the one-hop condition on the transition probabilities by allowing the individual neuron transitions to be independent of each other when conditioned on their past. Namely, we define the Bernoulli probabilities for the transition of neuron <span class="math notranslate nohighlight">\(j\)</span> to be</p>
+<div class="math notranslate nohighlight">
+\[ \mathbb{P}(j \text{ transits} \,\vert\, Y) := 1- \exp (-\delta\,\Gamma_{YY'})  , \]</div>
+<div class="math notranslate nohighlight">
+\[ \mathbb{P}(j \text{ unchanged} \,\vert\, Y) := \exp (-\delta\,\Gamma_{YY'}) , \]</div>
+<p>where the state <span class="math notranslate nohighlight">\(Y'\)</span> is one-hop from <span class="math notranslate nohighlight">\(Y\)</span> via neuron <span class="math notranslate nohighlight">\(j\)</span>. Note that for small <span class="math notranslate nohighlight">\(\delta,\)</span> we have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{rl} 
+\mathbb{P}(Y\vert Y) &amp; = 
+\displaystyle \prod_{Y'} \exp (-\delta\,\Gamma_{YY'}) 
+\\ &amp; \\ &amp; = 
+\displaystyle \exp\left(-\delta \sum_{Y'} \Gamma_{YY'} \right) \,\,\approx\,\, 1- \delta \sum_{Y'} \Gamma_{YY'}.\end{array}\end{split}\]</div>
+<p>For states <span class="math notranslate nohighlight">\(Y'\)</span> which are one-hop from <span class="math notranslate nohighlight">\(Y,\)</span> we have</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\mathbb{P}(Y'\vert Y) = \displaystyle \left( 1-\exp (-\delta\,\Gamma_{YY'} )\right) \prod_{Y'' \neq Y'} \exp (-\delta\,\Gamma_{YY''}) \,\, \approx\,\, \displaystyle \delta\,\Gamma_{YY'}, \]</div>
+<p>where the product is over other states <span class="math notranslate nohighlight">\(Y''\)</span> that are one-hop from <span class="math notranslate nohighlight">\(Y.\)</span> For states <span class="math notranslate nohighlight">\(Y'\)</span> which are at least two-hops from <span class="math notranslate nohighlight">\(Y,\)</span> we have <span class="math notranslate nohighlight">\(\mathbb{P}(Y'\vert Y) \approx 0.\)</span> This shows that our Bernoulli model tends to the uniformization model and the original CTMC as <span class="math notranslate nohighlight">\(\delta \rightarrow 0.\)</span></p>
+<p>In practice, there is nothing in the Bernoulli model that stops us from choosing</p>
+<div class="math notranslate nohighlight">
+\[1 \,\,\leq\,\, \delta \sum_{Y'} \Gamma_{YY'} \]</div>
+<p>since the proposed Bernoulli probabilities satisfy <span class="math notranslate nohighlight">\(0 &lt; \exp(-\delta\,\Gamma_{YY'}) &lt; 1\)</span> for all <span class="math notranslate nohighlight">\(\delta &gt; 0.\)</span> If <span class="math notranslate nohighlight">\(\delta\)</span> is small, we get a better approximation of the original CTMC on the discrete-time digital computer, but the simulation may take a long time since states may remain unchanged through many transitions. We should adjust the value of <span class="math notranslate nohighlight">\(\delta\)</span> so that a small but significant percentage of the neurons transition at each time step.</p>
+<p>Note that the uniformization model and the Bernoulli model are approximations of the <span class="math notranslate nohighlight">\(\delta\)</span>-skeleton whose transition probabilities are given by</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\exp(\delta\Gamma) = I + \delta\Gamma + \frac{1}{2!} (\delta\Gamma)^2 + \cdots \]</div>
+<p>in terms of the (infinite-dimensional) transition rate matrix <span class="math notranslate nohighlight">\(\Gamma.\)</span></p>
+<p>In quantum physics <span id="id7">[<a class="reference internal" href="#id47" title="Tepper L Gill and WW Zachary. Foundations for relativistic quantum theory. i. feynman’s operator calculus and the dyson conjectures. Journal of Mathematical Physics, 43(1):69–93, 2002.">GZ02</a>]</span> <span id="id8">[<a class="reference internal" href="#id23" title="Jussi Lindgren and Jukka Liukkonen. Quantum mechanics can be understood through stochastic optimization on spacetimes. Scientific reports, 9(1):1–8, 2019.">LL19</a>]</span>, the same uniformization limit as <span class="math notranslate nohighlight">\(\delta \rightarrow 0\)</span> is used to define path integrals or the Schrödinger equation. The analysis involving uniformization, Bernoulli models and <span class="math notranslate nohighlight">\(\delta\)</span>-skeletons can also be applied to the quantum case.</p>
+<p>For the rest of this post, we will focus on the Bernoulli model described above to derive efficient learning algorithms for digital computers.</p>
+<p>Explicitly, let <span class="math notranslate nohighlight">\(\hat{Y}_n=(\hat{R}_n,\hat{S}_n)\)</span> denote the state of the Bernoulli model at discrete time <span class="math notranslate nohighlight">\(n \in \{0,1,2,\ldots \}.\)</span> Let <span class="math notranslate nohighlight">\(\mathcal{E} := \mathcal{E}_P\)</span> be the edges and <span class="math notranslate nohighlight">\(\mathcal{V} := \mathcal{V}_Z \cup \mathcal{V}_X\)</span> the neurons of the generative CTMC. Let <span class="math notranslate nohighlight">\(w := w^{(P)}\)</span> be its parameters, and <span class="math notranslate nohighlight">\( \delta := 1/\hat{\rho}\)</span> with <span class="math notranslate nohighlight">\(0 &lt; \delta \ll 1.\)</span></p>
+<p>At time <span class="math notranslate nohighlight">\(n=0,\)</span> we assume all signed states are <span class="math notranslate nohighlight">\(\hat{S}_{in}=+1\)</span> and all counting states are <span class="math notranslate nohighlight">\(\hat{R}_{ijn}=0.\)</span> Given the state <span class="math notranslate nohighlight">\(\hat{Y}_n=(\hat{R}_n,\hat{S}_n),\)</span> we define the membrane potential and transition rate at neuron <span class="math notranslate nohighlight">\(j\)</span> to be</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle 
+\hat{U}_{j n} = \sum_{e \in \mathcal{E}} \mathbb{I}(e(1)=j) \,\hat{R}_{en} \,w_{e} \, , \]</div>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\hat{\rho}_{j n}  = \rho_{\hat{S}_{jn}} \exp\left(\,\beta_{\hat{S}_{jn}}\, \hat{S}_{jn} \,\hat{U}_{jn}\,\right), \]</div>
+<p>where <span class="math notranslate nohighlight">\(\hat{R}_{en}\)</span> is notation for <span class="math notranslate nohighlight">\(\hat{R}_{e(0)e(1)n}.\)</span> The Bernoulli transition probabilities are</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rl}
+\mathbb{P}(j \text{ unchanged} \,\vert\, \hat{Y}_n) &amp;= \exp (-\delta \hat{\rho}_{j n} ), 
+\\ &amp; \\ 
+\mathbb{P}(j \text{ transits} \,\vert\, \hat{Y}_n) &amp;= 1- \exp (-\delta \hat{\rho}_{j n} ) \,\,\approx\,\, \delta \hat{\rho}_{j n}  \exp (-\delta \hat{\rho}_{j n} ) . \end{array} \end{split}\]</div>
+<p>The probability of any signed state <span class="math notranslate nohighlight">\(\hat{S}_{n+1}\)</span> given <span class="math notranslate nohighlight">\(\hat{S}_{n}\)</span> can then be approximated as</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle 
+\mathbb{P}(\hat{S}_{n+1}\vert \hat{S}_{n})\quad  \approx \quad  \prod_{j \in \mathcal{V}}\, \exp (-\delta\hat{\rho}_{j n}) \,\,\prod_{j \in \mathcal{V}} \, \left( \delta\hat{\rho}_{j n} \right)^{\,\mathbb{I}(\hat{S}_{j(n+1)} \neq \hat{S}_{jn})}. \]</div>
+<p>We denote this stochastic update as</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle 
+\hat{S}_{j(n+1)} \,\, \sim\,\, \text{Flip}(\hat{S}_{jn},1-\exp (-\delta \hat{\rho}_{j n} )) \]</div>
+<p>where <span class="math notranslate nohighlight">\(1-\hat{p}_{jn}\)</span> is the probability that sign <span class="math notranslate nohighlight">\(\hat{S}_{jn}\)</span> of neuron <span class="math notranslate nohighlight">\(j\)</span> is flipped in <span class="math notranslate nohighlight">\(\hat{S}_{j(n+1)}\)</span>.</p>
+<p>Given the current <span class="math notranslate nohighlight">\((\hat{R}_n,\hat{S}_n)\)</span> and the next <span class="math notranslate nohighlight">\(\hat{S}_{n+1},\)</span> we now describe the effect on the synaptic counts <span class="math notranslate nohighlight">\(\hat{R}_{n+1}.\)</span> Let <span class="math notranslate nohighlight">\(\Delta S\)</span> be the set of neurons which spiked from <span class="math notranslate nohighlight">\(\hat{S}_{n}\)</span> to <span class="math notranslate nohighlight">\(\hat{S}_{n+1},\)</span> i.e. neurons <span class="math notranslate nohighlight">\(j \in \mathcal{V}\)</span> with <span class="math notranslate nohighlight">\(\hat{S}_{jn} = +1\)</span> and <span class="math notranslate nohighlight">\(\hat{S}_{j(n+1)} = -1.\)</span> We reset the upstream synaptic counts</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\hat{R}_{ij(n+1)} = 0 \quad \text{for all }i \in \mathcal{V}\setminus \Delta S,\,\, j \in \Delta S,\]</div>
+<p>and increment the downstream synaptic counts</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\hat{R}_{ij(n+1)} = \hat{R}_{ijn} + 1 \quad \text{for all }i \in \Delta S, \,\,j \in \mathcal{V} \setminus \Delta S.\]</div>
+<p>As a convention, for pairs of spiking neurons, we set</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\hat{R}_{ij(n+1)} = 1 \quad \text{for all }i \in \Delta S,\,\, j \in \Delta S.\]</div>
+<p>The other synaptic counts are unchanged</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\hat{R}_{ij(n+1)} = \hat{R}_{ijn}  \quad \text{for all }i \in \mathcal{V} \setminus \Delta S, \,\,j \in \mathcal{V} \setminus \Delta S .\]</div>
+<p>We denote this update to the synaptic counts as</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\hat{R}_{ij(n+1)} = \text{Fire}(\hat{R}_{ijn},\hat{S}_n,\hat{S}_{n+1}).\]</div>
+<p>The discrete-time Bernoulli model for the discriminative process is similarly defined, except that we update only the memory states <span class="math notranslate nohighlight">\(\hat{R}_Z\)</span> and <span class="math notranslate nohighlight">\(\hat{S}_Z\)</span> and that the probabilities of the signed states of only the memory neurons are known.</p>
+<p>Finally, let the environment and memory components of <span class="math notranslate nohighlight">\(\hat{Y}_n\)</span> be <span class="math notranslate nohighlight">\(\hat{X}_n\)</span> and <span class="math notranslate nohighlight">\(\hat{Z}_n.\)</span> Let <span class="math notranslate nohighlight">\(\{\hat{Q}\}\)</span> and <span class="math notranslate nohighlight">\(\{\hat{P}\}\)</span> denote the discrete-time discrimative and generative Bernoulli models derived from the continuous-time models <span class="math notranslate nohighlight">\(\{Q\}\)</span> and <span class="math notranslate nohighlight">\(\{P\}\)</span> respectively.</p>
+</div>
+<div class="section" id="what-are-the-learning-updates-in-discrete-time">
+<h2>What are the learning updates in discrete time?<a class="headerlink" href="#what-are-the-learning-updates-in-discrete-time" title="Permalink to this headline">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(\bar{\pi}_*\)</span> be the stationary distribution of the true distribution <span class="math notranslate nohighlight">\(\hat{Q}_*\)</span> of the environment <span class="math notranslate nohighlight">\(\{\hat{X}_n\}\)</span> and <span class="math notranslate nohighlight">\(\bar{\pi}_Q\)</span> the stationary distribution of the full discriminative <span class="math notranslate nohighlight">\(\hat{Q}.\)</span> Let <span class="math notranslate nohighlight">\(\bar{Q}\)</span> be the discrete-time Markov chain with initial distribution <span class="math notranslate nohighlight">\(\bar{\pi}_Q\)</span> and the same transition probabilities as <span class="math notranslate nohighlight">\(\hat{Q}.\)</span></p>
+<p>Using our relative inference <a class="reference internal" href="../2021-06-01-convergence-of-biased-stochastic-approximation/"><span class="doc std std-doc">recipe</span></a> for online learning, the learning objective is the conditional relative information</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{rl} &amp;
+\displaystyle V(w^{(Q)}, w^{(P)}) 
+\\ &amp; \\ &amp; =
+\displaystyle I_{\bar{Q} \Vert \hat{P}}(\hat{Z}_1, \hat{X}_1 \vert \hat{Z}_0, \hat{X}_0) 
+\\ &amp; \\ &amp; =
+\displaystyle \sum_{\hat{Z}_0,\hat{X}_0} \bar{\pi}_*(\hat{X}_0) \bar{\pi}_Q(\hat{Z}_0\vert \hat{X}_0) \sum_{\hat{Z}_1,\hat{X}_1} \hat{Q}(\hat{Z}_1,\hat{X}_1\vert \hat{Z}_0, \hat{X}_0) \log \frac{\hat{Q}(\hat{Z}_1,\hat{X}_1\vert \hat{Z}_0, \hat{X}_0)}{\hat{P}(\hat{Z}_1,\hat{X}_1\vert \hat{Z}_0, \hat{X}_0)} 
+\end{array}\end{split}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\hat{Q}(\hat{Z}_1,\hat{X}_1\vert \hat{Z}_0, \hat{X}_0) = \hat{Q}_*(\hat{X}_1\vert \hat{X}_0)  \hat{Q}(\hat{Z}_1\vert \hat{Z}_0, \hat{X}_0),\]</div>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\hat{Q}(\hat{Z}_1\vert \hat{Z}_0, \hat{X}_0) \quad \approx \quad \prod_{j \in \mathcal{V}_Z} \,\exp \left( -\delta\hat{\rho}^{(Q)}_{j 0} \right) \,\,\prod_{j \in \mathcal{V}_Z}  \, \left( \delta\hat{\rho}^{(Q)}_{j 0} \right)^{\,\mathbb{I}(\hat{S}_{j1} \neq \hat{S}_{j0})}, \]</div>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\hat{P}(\hat{Z}_1,\hat{X}_1\vert \hat{Z}_0, \hat{X}_0) \quad \approx \quad \prod_{j \in \mathcal{V}} \,\exp (-\delta \hat{\rho}^{(P)}_{j 0} ) \,\,\prod_{j\in \mathcal{V}} \, \left( \delta\hat{\rho}^{(P)}_{j 0} \right)^{\,\mathbb{I}(\hat{S}_{j1} \neq \hat{S}_{j0})}.\]</div>
+<p>Taking logarithms, we have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rl}
+\log \hat{Q}(\hat{Z}_1\vert \hat{Z}_0, \hat{X}_0) &amp; \approx \quad 
+\displaystyle \sum_{j \in \mathcal{V}_Z} \left(-\delta\,\hat{\rho}^{(Q)}_{j 0} + \mathbb{I}(\hat{S}_{j1} \neq \hat{S}_{j0})\, \log \hat{\rho}^{(Q)}_{j 0} \right)
+\\ &amp; \\ &amp; \quad \quad
+\displaystyle {}+  \sum_{j \in \mathcal{V}_Z} \mathbb{I}(\hat{S}_{j1} \neq \hat{S}_{j0}) \,\log \delta , \end{array} \end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rl}
+\log \hat{P}(\hat{Z}_1,\hat{X}_1\vert \hat{Z}_0, \hat{X}_0) &amp; \approx \quad 
+\displaystyle \sum_{j \in \mathcal{V}} \left(-\delta\,\hat{\rho}^{(P)}_{j 0} + \mathbb{I}(\hat{S}_{j1} \neq \hat{S}_{j0})\, \log \hat{\rho}^{(P)}_{j 0} \right) 
+\\ &amp; \\ &amp; \quad \quad
+\displaystyle {}+  \sum_{j \in \mathcal{V}} \mathbb{I}(\hat{S}_{j1} \neq \hat{S}_{j0}) \,\log \delta. \end{array} \end{split}\]</div>
+<p>Let us estimate the true log-likelihood <span class="math notranslate nohighlight">\(\log \hat{Q}_*(\hat{X}_{1}\vert \hat{X}_0)\)</span> with</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rl}
+\xi(\hat{X}_1 \vert \hat{X}_0) &amp; = \quad 
+\displaystyle \sum_{j \in \mathcal{V}_X} \left(-\delta\,\hat{\rho}^{(\xi)}_{j0} + \mathbb{I}(\hat{S}_{j1} \neq \hat{S}_{j0})\, \log \hat{\rho}^{(\xi)}_{j0} \right)
+\\ &amp; \\ &amp; \quad \quad
+\displaystyle {}+  \sum_{j \in \mathcal{V}_X} \mathbb{I}(\hat{S}_{j1} \neq \hat{S}_{j0}) \,\log \delta , \end{array} \end{split}\]</div>
+<p>where given a fixed estimate <span class="math notranslate nohighlight">\(\hat{U}^{(\xi)}\)</span> of the environment membrane potential, we have</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\hat{\rho}^{(\xi)}_{jn} = \rho_{\hat{S}_{jn}} \exp(\,\beta_{\hat{S}_{jn}}\, \hat{S}_{jn} \,\hat{U}^{(\xi)}\,).\]</div>
+<p>Recall that the recipe prescribes the following updates.</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle X_{n+1} \sim Q_*(X_{n+1} \vert X_{n})\]</div>
+<div class="math notranslate nohighlight">
+\[\displaystyle Z_{n+1} \sim Q_{\lambda_{n}}(Z_{n+1} \vert Z_{n}, X_{n})\]</div>
+<div class="math notranslate nohighlight">
+\[\displaystyle \theta_{n+1} = \theta_{n} + \eta_{n+1} \left.\frac{d}{d\theta} \log P_\theta(Z_{n+1}, X_{n+1} \vert Z_{n},X_{n}) \right\vert _{\theta = \theta_{n}}\]</div>
+<div class="math notranslate nohighlight">
+\[\displaystyle \alpha_{n+1} = \alpha_{n} + \left.\frac{d}{d\lambda} \log Q_{\lambda}(Z_{n+1} \vert  Z_{n},X_{n})\right\vert _{\lambda=\lambda_{n}}\]</div>
+<div class="math notranslate nohighlight">
+\[\displaystyle \lambda_{n+1} = \lambda_{n} - \eta_{n+1} \alpha_{n+1} \left( \xi(X_{n+1}\vert X_n) + \log \frac{Q_{\lambda_{n}}(Z_{n+1}\vert Z_{n},X_{n})}{P_{\theta_{n}}(Z_{n+1},X_{n+1}\vert Z_{n},X_{n})} \right)\]</div>
+<p>According to the recipe, the parameter updates are</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rll}
+\displaystyle
+\hat{U}^{(Q)}_{i n} &amp;= 
+\displaystyle
+\sum_{e \in \mathcal{E}_Q} \mathbb{I}(e(1)=i) \,\hat{R}_{en} \,w^{(Q)}_{en} &amp;
+\text{for all }i\in\mathcal{V}_Z 
+\\ &amp; &amp; \\
+\displaystyle
+\hat{U}^{(P)}_{i n} &amp;= 
+\displaystyle
+\sum_{e \in \mathcal{E}_P} \mathbb{I}(e(1)=i) \,\hat{R}_{en} \,w^{(P)}_{en} &amp;
+\text{for all }i\in\mathcal{V}
+\\ &amp; &amp; \\
+\displaystyle
+\hat{\rho}^{(Q)}_{i n} &amp;= 
+\displaystyle 
+\rho_{\hat{S}_{in}} \exp(\,\beta_{\hat{S}_{in}}\, \hat{S}_{in} \,\hat{U}^{(Q)}_{in}\,) &amp;
+\text{for all }i\in\mathcal{V}_Z 
+\\ &amp; &amp; \\
+\displaystyle
+\hat{\rho}^{(P)}_{i n} &amp;= 
+\displaystyle 
+\rho_{\hat{S}_{in}} \exp(\,\beta_{\hat{S}_{in}}\, \hat{S}_{in} \,\hat{U}^{(P)}_{in}\,) &amp;
+\text{for all }i\in\mathcal{V}
+\\ &amp; &amp; \\ 
+\displaystyle 
+\hat{S}_{i(n+1)} &amp;\sim \text{Flip}(\hat{S}_{in},1-\exp(-\delta \hat{\rho}^{(Q)}_{i n})) &amp;
+\text{for all }i\in\mathcal{V}_Z 
+\\ &amp; &amp; \\
+\displaystyle 
+\hat{X}_{n+1} &amp;
+\displaystyle
+\sim \hat{Q}_*(\hat{X}_{n+1} \vert \hat{X}_{n}) &amp; 
+\\ &amp; &amp; \\
+\displaystyle 
+\hat{R}_{ij(n+1)} &amp;= \text{Fire}(\hat{R}_{ijn},\hat{S}_{n},\hat{S}_{(n+1)}) &amp;
+\text{for all }i,j \in\mathcal{V} 
+\\ &amp; &amp; \\
+\displaystyle 
+\alpha^{(P)}_{e(n+1)} &amp;= 
+\displaystyle
+\phantom{\alpha^{(P)}_{en} +} \Delta\alpha^{(P)}_e &amp; 
+\text{for all }e\in\mathcal{E}_Q
+\\ &amp; &amp; \\
+\displaystyle 
+\alpha^{(Q)}_{e(n+1)} &amp;= 
+\displaystyle
+\alpha^{(Q)}_{en} + \Delta\alpha^{(Q)}_e &amp; 
+\text{for all }e\in\mathcal{E}_Q
+\\ &amp; &amp; \\
+\displaystyle 
+w^{(P)}_{e(n+1)} &amp; =
+\displaystyle 
+w^{(P)}_{en} + \eta_{n+1} \alpha^{(P)}_{e(n+1)} &amp;\text{for all }e\in\mathcal{E}_P 
+\\ &amp; &amp; \\
+\displaystyle 
+w^{(Q)}_{e(n+1)} &amp;= 
+\displaystyle
+w^{(Q)}_{en} - \eta_{n+1}\, \alpha^{(Q)}_{e(n+1)} \gamma  &amp;\text{for all }e\in\mathcal{E}_Q \end{array}\end{split}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rl} 
+\displaystyle 
+\Delta \alpha^{(P)}_e &amp; =
+\displaystyle 
+\left. \frac{d}{dw^{(P)}_e} \log \hat{P}_{w^{(P)}}(\hat{Z}_{n+1}, \hat{X}_{n+1} \vert \hat{Z}_{n},\hat{X}_{n})  \right\vert _{w^{(P)} = w^{(P)}_n} 
+\\ &amp; \\ &amp; =
+\displaystyle 
+\left(-\delta\,\hat{\rho}^{(P)}_{e(1)n} + \mathbb{I}(\hat{S}_{e(1)(n+1)} \neq \hat{S}_{e(1)n}) \right) \frac{d}{dw^{(P)}_e} \log \hat{\rho}^{(P)}_{e(1)n}  
+\\ &amp; \\ &amp; =
+\displaystyle 
+\left(-\delta\,\hat{\rho}^{(P)}_{e(1)n} + \mathbb{I}(\hat{S}_{e(1)(n+1)} \neq \hat{S}_{e(1)n}) \right) \,\beta_{\hat{S}_{e(1)n}} \,\hat{S}_{e(1)n} \,\hat{R}_{en},
+\\ &amp; \\ 
+\displaystyle \Delta\alpha^{(Q)}_e &amp; =
+\displaystyle \left. \frac{d}{dw^{(Q)}_e} \log \hat{Q}_{w^{(Q)}}(\hat{Z}_{n+1} \vert  \hat{Z}_{n},\hat{X}_{n}) \right\vert _{w^{(Q)}=w^{(Q)}_{n}}
+\\ &amp; \\ &amp; =
+\displaystyle 
+\left(-\delta\,\hat{\rho}^{(Q)}_{e(1)n} + \mathbb{I}(\hat{S}_{e(1)(n+1)} \neq \hat{S}_{e(1)n}) \right) \frac{d}{dw^{(Q)}_e} \log \hat{\rho}^{(Q)}_{e(1)n}  
+\\ &amp; \\ &amp; =
+\displaystyle 
+\left(-\delta\,\hat{\rho}^{(Q)}_{e(1)n} + \mathbb{I}(\hat{S}_{e(1)(n+1)} \neq \hat{S}_{e(1)n}) \right) \,\beta_{\hat{S}_{e(1)n}} \,\hat{S}_{e(1)n} \,\hat{R}_{en},
+\\ &amp; \\
+\displaystyle \gamma &amp; = 
+\displaystyle  \xi(\hat{X}_{n+1}\vert\hat{X}_{n}) + \log \frac{\hat{Q}_{w^{(Q)}_n}(\hat{Z}_{n+1}\vert \hat{Z}_{n}, \hat{X}_{n})}{\hat{P}_{w^{(P)}_n}(\hat{Z}_{n+1},\hat{X}_{n+1}\vert \hat{Z}_{n},\hat{X}_{n})} 
+\\ &amp; \\ &amp; =
+\displaystyle
+-\delta \sum_{j \in \mathcal{V}_Z} \left(\hat{\rho}^{(Q)}_{j n}-\hat{\rho}^{(P)}_{j n}\right) -\delta \sum_{j \in \mathcal{V}_X} \left(\hat{\rho}^{(\xi)}_{j n}-\hat{\rho}^{(P)}_{j n}\right) 
+\\ &amp; \\ &amp; \quad
+\displaystyle 
+{} + \sum_{j \in \mathcal{V}_Z} \mathbb{I}(\hat{S}_{j(n+1)} \neq \hat{S}_{jn})\, \beta_{\hat{S}_{jn}}\, \hat{S}_{jn} \left(\hat{U}^{(Q)}_{jn}-\hat{U}^{(P)}_{jn}\right) 
+\\ &amp; \\ &amp; \quad
+\displaystyle
+{} + \sum_{j \in \mathcal{V}_X} \mathbb{I}(\hat{S}_{j(n+1)} \neq \hat{S}_{jn})\, \beta_{\hat{S}_{jn}}\, \hat{S}_{jn} \left(\hat{U}^{(\xi)}-\hat{U}^{(P)}_{jn}\right).
+\end{array} \end{split}\]</div>
+<p>The reason for writing the <span class="math notranslate nohighlight">\(w^{(P)}_e,\)</span> <span class="math notranslate nohighlight">\(w^{(Q)}_e\)</span> updates in terms of auxiliary parameters <span class="math notranslate nohighlight">\(\alpha^{(P)}_e,\)</span> <span class="math notranslate nohighlight">\(\alpha^{(Q)}_e\)</span> is for comparison of the generative and discriminative rules. Note that <span class="math notranslate nohighlight">\(\alpha^{(Q)}_e\)</span> accumulates the updates from <span class="math notranslate nohighlight">\(\Delta \alpha^{(Q)}_e\)</span> but <span class="math notranslate nohighlight">\(\alpha^{(P)}_e\)</span> does not.</p>
+<p>By the convergence <a class="reference external" href="2021-06-01-convergence-of-biased-stochastic-approximation/#theorem-convergence-of-online-learning">theorem</a> for relative inference online learning, the proposed learning algorithm converges to a local minimum of the objective <span class="math notranslate nohighlight">\(V(w^{(Q)},w^{(P)})\)</span> with</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\mathbb{E}\left[\left\Vert \,\nabla V\left(w^{(Q)}_N, w^{(P)}_N\right)\, \right\Vert^2\right] = O(T^{-1/2}\log T)\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is the random stop time and <span class="math notranslate nohighlight">\(T\)</span> is the maximum time horizon for the algorithm as described in this <a class="reference internal" href="../2021-06-01-convergence-of-biased-stochastic-approximation/"><span class="doc std std-doc">post</span></a>.</p>
+</div>
+<div class="section" id="what-are-the-learning-updates-in-continuous-time">
+<h2>What are the learning updates in continuous time?<a class="headerlink" href="#what-are-the-learning-updates-in-continuous-time" title="Permalink to this headline">#</a></h2>
+<p>In continuous time, we may derive the learning updates directly from our relative inference recipe, or in this case we may derive them from the discrete-time updates by considering the limit <span class="math notranslate nohighlight">\(\delta \rightarrow 0.\)</span></p>
+<p>The dynamics of the <span class="math notranslate nohighlight">\(w_t\)</span>-controlled continuous-time Markov chain is similar to the continuous-time dynamics described previously, except that the control parameter <span class="math notranslate nohighlight">\(w_t\)</span> changes with time. As before, the environment process <span class="math notranslate nohighlight">\(\{X_t\}\)</span> evolves with some fixed rate kernel <span class="math notranslate nohighlight">\(\Gamma^{(X)}\)</span> that is unaffected by the parameter <span class="math notranslate nohighlight">\(w_t.\)</span> The discriminative process <span class="math notranslate nohighlight">\(\{Z_t\}\)</span> evolves with the <span class="math notranslate nohighlight">\(w_t\)</span>-controlled membrane potentials and transition rates</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rll}
+\displaystyle
+\hat{U}^{(Q)}_{i n} &amp;= 
+\displaystyle
+\sum_{e \in \mathcal{E}_Q} \mathbb{I}(e(1)=i) \,\hat{R}_{en} \,w^{(Q)}_{en} &amp;
+\text{for all }i\in\mathcal{V}_Z,
+\\ &amp; &amp; \\
+\displaystyle
+\hat{\rho}^{(Q)}_{i n} &amp;= 
+\displaystyle 
+\rho_{\hat{S}_{in}} \exp(\,\beta_{\hat{S}_{in}}\, \hat{S}_{in} \,\hat{U}^{(Q)}_{in}\,) &amp;
+\text{for all }i\in\mathcal{V}_Z,
+\end{array}\end{split}\]</div>
+<p>and changes to the signs <span class="math notranslate nohighlight">\(S_t\)</span> will drive the before-mentioned updates to the synaptic counts <span class="math notranslate nohighlight">\(R_t.\)</span> We also compute the membrane potentials and transition rates of the generative process which will drive changes in the generative parameters <span class="math notranslate nohighlight">\(w^{(P)}.\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rll}
+\displaystyle
+\hat{U}^{(P)}_{i n} &amp;= 
+\displaystyle
+\sum_{e \in \mathcal{E}_P} \mathbb{I}(e(1)=i) \,\hat{R}_{en} \,w^{(P)}_{en} &amp;
+\text{for all }i\in\mathcal{V},
+\\ &amp; &amp; \\
+\displaystyle
+\hat{\rho}^{(P)}_{i n} &amp;= 
+\displaystyle 
+\rho_{\hat{S}_{in}} \exp(\,\beta_{\hat{S}_{in}}\, \hat{S}_{in} \,\hat{U}^{(P)}_{in}\,) &amp;
+\text{for all }i\in\mathcal{V}.
+\end{array}\end{split}\]</div>
+<p>There are two kinds of learning updates: the transition updates which occurs when there is a spike or recovery, and the holding updates which occurs in between the transitions.</p>
+<p>At every transition in the network, we get an immediate update</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rll}
+\displaystyle 
+\alpha^{(P)}_{et} &amp;= 
+\displaystyle
+\phantom{\alpha^{(P)}_{et_-} +} \Delta\alpha^{(P)(T)}_e &amp; 
+\text{for all }e\in\mathcal{E}_Q
+\\ &amp; &amp; \\
+\displaystyle 
+\alpha^{(Q)}_{et} &amp;= 
+\displaystyle
+\alpha^{(Q)}_{et_-} + \Delta\alpha^{(Q)(T)}_e &amp; 
+\text{for all }e\in\mathcal{E}_Q
+\\ &amp; &amp; \\
+\displaystyle 
+w^{(P)}_{et} &amp; =
+\displaystyle 
+w^{(P)}_{et_-} + \eta_{t} \alpha^{(P)}_{et} &amp;\text{for all }e\in\mathcal{E}_P 
+\\ &amp; &amp; \\
+\displaystyle 
+w^{(Q)}_{et} &amp;= 
+\displaystyle
+w^{(Q)}_{et_-} - \eta_{t}\, \alpha^{(Q)}_{et} \gamma^{(T)}  &amp;\text{for all }e\in\mathcal{E}_Q \end{array}\end{split}\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rl} 
+\displaystyle 
+\Delta \alpha^{(P)(T)}_e &amp; =
+\displaystyle 
+\mathbb{I}(\hat{S}_{e(1)t} \neq \hat{S}_{e(1)t_-}) \,\beta_{\hat{S}_{e(1)t_-}} \,\hat{S}_{e(1)t_-} \,\hat{R}_{et_-},
+\\ &amp; \\ 
+\displaystyle \Delta\alpha^{(Q)(T)}_e &amp; =
+\displaystyle 
+\mathbb{I}(\hat{S}_{e(1)t} \neq \hat{S}_{e(1)t_-}) \,\beta_{\hat{S}_{e(1)t_-}} \,\hat{S}_{e(1)t_-} \,\hat{R}_{et_-},
+\\ &amp; \\
+\displaystyle \gamma^{(T)} &amp; = 
+\displaystyle 
+\sum_{j \in \mathcal{V}_Z} \mathbb{I}(\hat{S}_{jt} \neq \hat{S}_{jt_-})\, \beta_{\hat{S}_{jt_-}}\, \hat{S}_{jt_-} \left(\hat{U}^{(Q)}_{jt_-}-\hat{U}^{(P)}_{jt_-}\right) 
+\\ &amp; \\ &amp; \quad
+\displaystyle
+{} + \sum_{j \in \mathcal{V}_X} \mathbb{I}(\hat{S}_{jt} \neq \hat{S}_{jt_-})\, \beta_{\hat{S}_{jt_-}}\, \hat{S}_{jt_-} \left(\hat{U}^{(\xi)}-\hat{U}^{(P)}_{jt_-}\right).
+\end{array} \end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(t_-\)</span> denotes the instant infinitesimally before <span class="math notranslate nohighlight">\(t,\)</span> and <span class="math notranslate nohighlight">\(\eta_t\)</span> is the learning rate at time <span class="math notranslate nohighlight">\(t.\)</span></p>
+<p>Note that the only generative weights <span class="math notranslate nohighlight">\(w^{(P)}_e\)</span> being updated are those whose postsynaptic neuron has a transition. The <span class="math notranslate nohighlight">\(w^{(P)}_e\)</span> update is a signed scaled version (<span class="math notranslate nohighlight">\(\eta_t \beta_+\)</span> or <span class="math notranslate nohighlight">\(-\eta_t \beta_-\)</span>) of the number <span class="math notranslate nohighlight">\(\hat{R}_{et_-}\)</span> of presynaptic spikes since the last postsynaptic spike. Therefore, the learning update is local: triggered by postsynaptic transitions and depending only on information available to the synapse itself.</p>
+<p>Similarly, the local update to the auxiliary parameter <span class="math notranslate nohighlight">\(\alpha^{(Q)}_{e}\)</span> for each synapse <span class="math notranslate nohighlight">\(e\)</span> is triggered by postsynaptic transitions and uses only information available to the synapse.</p>
+<p>The discriminative <span class="math notranslate nohighlight">\(w^{(Q)}_e\)</span> update however is triggered by <em>any</em> transition in the network. The immediate update is the product <span class="math notranslate nohighlight">\(\eta_t \alpha^{(Q)}_{E}\gamma^{(T)}\)</span> where <span class="math notranslate nohighlight">\(\alpha^{(Q)}_e\)</span> is an auxiliary parameter that is local to the synapse <span class="math notranslate nohighlight">\(e.\)</span> It is modulated by an auxiliary parameter <span class="math notranslate nohighlight">\(\gamma^{(T)}\)</span> that is global to the network, in the sense that it modulates every synapse to the same extent. If the transitions are all one-hop even for environmental neurons, the modulator becomes</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle 
+\gamma^{(T)} = \beta_{\hat{S}_{jt_-}}\, \hat{S}_{jt_-} \left(\hat{U}^{(Q)}_{jt_-}-\hat{U}^{(P)}_{jt_-}\right) \]</div>
+<p>if a memory neuron <span class="math notranslate nohighlight">\(j\)</span> transitions, or</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle 
+\gamma^{(T)} = \beta_{\hat{S}_{jt_-}}\, \hat{S}_{jt_-} \left(\hat{U}^{(\xi)}-\hat{U}^{(P)}_{jt_-}\right) \]</div>
+<p>if an environment neuron <span class="math notranslate nohighlight">\(j\)</span> transitions. The modulating signal can easily be computed and broadcasted by the transitioning neuron as a signed scaled version of the difference between the discriminative and generative membrane potentials. Following <span id="id9">[<a class="reference internal" href="#id33" title="Danilo Jimenez Rezende and Wulfram Gerstner. Stochastic variational learning in recurrent spiking networks. Frontiers in computational neuroscience, 8:38, 2014.">RG14</a>]</span>, we will call this modulator <em>surprise</em>.</p>
+<p>In the holding times between the network transitions, we have gradual updates defined by the differential equations</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rll}
+\displaystyle 
+\alpha^{(P)}_{et} &amp;= 
+\displaystyle
+\Delta\alpha^{(Q)(H)}_e &amp; 
+\text{for all }e\in\mathcal{E}_Q
+\\ &amp; &amp; \\
+\displaystyle 
+\dot{\alpha}^{(Q)}_{et} &amp;= 
+\displaystyle
+\Delta\alpha^{(Q)(H)}_e &amp; 
+\text{for all }e\in\mathcal{E}_Q
+\\ &amp; &amp; \\
+\displaystyle 
+\dot{w}^{(P)}_{et} &amp; = 
+\displaystyle \phantom{-}
+\eta_{t} \alpha^{(P)}_{et} &amp;\text{for all }e\in\mathcal{E}_P 
+\\ &amp; &amp; \\
+\displaystyle 
+\dot{w}^{(Q)}_{et} &amp;= 
+\displaystyle -
+\eta_{t}\, \alpha^{(Q)}_{et} \gamma^{(H)}  &amp;\text{for all }e\in\mathcal{E}_Q \end{array}\end{split}\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rl} 
+\displaystyle 
+\Delta \alpha^{(P)(H)}_e &amp; = 
+\displaystyle 
+-\hat{\rho}^{(P)}_{e(1)t}  \,\,\beta_{\hat{S}_{e(1)t}} \,\hat{S}_{e(1)t} \,\hat{R}_{et},
+\\ &amp; \\ 
+\displaystyle \Delta\alpha^{(Q)(H)}_e &amp; =
+\displaystyle 
+-\hat{\rho}^{(Q)}_{e(1)t} \,\,\beta_{\hat{S}_{e(1)t}} \,\hat{S}_{e(1)t} \,\hat{R}_{et},
+\\ &amp; \\
+\displaystyle \gamma^{(H)} &amp; = 
+\displaystyle 
+- \sum_{j \in \mathcal{V}_Z} \left(\hat{\rho}^{(Q)}_{j n}-\hat{\rho}^{(P)}_{j n}\right) - \sum_{j \in \mathcal{V}_X} \left(\hat{\rho}^{(\xi)}_{j n}-\hat{\rho}^{(P)}_{j n}\right).
+\end{array} \end{split}\]</div>
+<p>Depending on the state of the postsynaptic neuron, the generative weights <span class="math notranslate nohighlight">\(w^{(P)}_e\)</span> and auxiliary discriminative parameters <span class="math notranslate nohighlight">\(\alpha^{(Q)}_e\)</span> will decay and weaken if the postsynaptic neuron is in a resting state, but they will strengthen if the postsynaptic neuron is in a refractory state. The rate of weakening and strengthening increases with the postsynaptic transition rates and the synaptic counts.</p>
+<p>The discriminative weights <span class="math notranslate nohighlight">\(w^{(Q)}_e\)</span> will weaken or strengthen depending on the auxiliary discriminative parameters <span class="math notranslate nohighlight">\(\alpha^{(Q)}_e\)</span> and the holding modulator <span class="math notranslate nohighlight">\(\gamma^{(H)},\)</span> which is different from the transition modulator <span class="math notranslate nohighlight">\(\gamma^{(T)}.\)</span> The holding modulator changes much more gradually, ebbing and flowing with the sum of spiking rates of the discriminative and generative networks. Generally, when considering the likelihood of the current holding state <span class="math notranslate nohighlight">\((Z_t,X_t)\)</span> given the past states, the modulator is positive if the discriminative process assigns a higher holding probability (which varies inversely to the transition rate) than the generative process, but the modulator is negative if the discriminative process assigns a lower holding probability.</p>
+<p>Recall that if <span class="math notranslate nohighlight">\(e\)</span> is a self-loop on neuron <span class="math notranslate nohighlight">\(j\)</span> with <span class="math notranslate nohighlight">\(e(0) = e(1) =j,\)</span> then the bias <span class="math notranslate nohighlight">\(w^{(P)}_e\)</span> represents contributions to the membrane potential which are not from other neurons. These biases also get updated with the same transition and holding formulas above, with the synaptic count <span class="math notranslate nohighlight">\(\hat{R}_e = 1\)</span> by default. If the neuron is holding in a resting state, then <span class="math notranslate nohighlight">\(w^{(P)}_e\)</span> weakens, representing the gradual polarization of the membrane potential. If the neuron is holding in a refractory state, then <span class="math notranslate nohighlight">\(w^{(P)}_e\)</span> strengthens, so the membrane potential depolarizes.</p>
+<p>These strengthenings and weakenings of the synaptic weights and the neural biases help to explain, using the context of learning, the rise and decay of synaptic connections and membrane potentials observed biologically during holding states. These changes are often hard-coded as exponential filters <span id="id10">[<a class="reference internal" href="#id33" title="Danilo Jimenez Rezende and Wulfram Gerstner. Stochastic variational learning in recurrent spiking networks. Frontiers in computational neuroscience, 8:38, 2014.">RG14</a>]</span> in traditional models.</p>
+<p>Interestingly, if the neuron is spiking, the transition update pulls up the bias <span class="math notranslate nohighlight">\(w^{(P)}_e\)</span>, which tallies with observations of a sharp depolarization of the membrane potential initially when the neuron spikes. The resetting of synaptic counts in the model causes the membrane potential to quickly fall back to the resting potential, which tallies with observations of a sharp repolarization of the neuron. If the neuron is recovering, the transition update pushes down the bias <span class="math notranslate nohighlight">\(w^{(P)}_e\)</span>. This prescription tallies with observations of hyperpolarization which occurs after the absolute refractory period.</p>
+<p>We conjecture that in continuous time, the proposed learning algorithm converges to a local minimum of the objective <span class="math notranslate nohighlight">\(V(w^{(Q)},w^{(P)})\)</span> with</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\mathbb{E}\left[\left\Vert \,\nabla V\left(w^{(Q)}_N, w^{(P)}_N\right)\, \right\Vert^2\right] = O(T^{-1/2}\log T)\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> and <span class="math notranslate nohighlight">\(T\)</span> are continuous-time analogues of the random stop time and maximum time horizon described in this <a class="reference internal" href="../2021-06-01-convergence-of-biased-stochastic-approximation/"><span class="doc std std-doc">post</span></a>.</p>
+</div>
+<div class="section" id="how-nature-could-derive-such-a-complex-learning-algorithm">
+<h2>How nature could derive such a complex learning algorithm?<a class="headerlink" href="#how-nature-could-derive-such-a-complex-learning-algorithm" title="Permalink to this headline">#</a></h2>
+<p>In the previous section, we derived a statistically-sound online learning algorithm for updating parameters <span class="math notranslate nohighlight">\(w\)</span> such that the given <span class="math notranslate nohighlight">\(w\)</span>-controlled stochastic process would eventually learn a good approximation of the true distribution.</p>
+<p>We then hypothesized how biological neural networks could be implementing this learning algorithm, assuming that the given <span class="math notranslate nohighlight">\(w\)</span>-controlled stochastic process is a good model of actual neural dynamics. If our hypothesis is correct, it would imply that the biological algorithms are effective at learning the true distribution.</p>
+<p>However, we are left with the meta-question of how biological networks could arrive at such a specific learning algorithm in the first place. There are two possible explanations.</p>
+<p>The first is evolution. Organisms with effective learning algorithms will survive better in complex environments than those with poor algorithms. In the long run, powerful features in the algorithms are passed down for many generations, and the accumulation of these features is what we observe in biological networks today.</p>
+<p>The second is information theory. Information is energy. The relative information learning objective <span class="math notranslate nohighlight">\(V(w^{(Q)},w^{(P)})\)</span> could possibly manifest itself in the neural network as some kind of free energy <span id="id11">[<a class="reference internal" href="#id28" title="Karl Friston. The free-energy principle: a unified brain theory? Nature reviews neuroscience, 11(2):127–138, 2010.">Fri10</a>]</span>. In the process of minimizing the energy consumption, the biological processes naturally align themselves to cause learning to occur in the network. The direct goal was not learning but just simple energy minimization. As Karl Friston puts it <span id="id12">[<a class="reference internal" href="#id21" title="S Raviv. The genius neuroscientist who might hold the key to true ai. Wired.[(accessed on 18 February 2021)], 2018.">Rav18</a>]</span>,</p>
+<blockquote>
+<div><p>“All these contrived, anthropomorphized explanations of purpose and survival and the like all seemed to just peel away, and the thing you were observing just was. In the sense that it could be no other way.”</p>
+</div></blockquote>
+</div>
+<div class="section" id="unfinished-tasks">
+<h2>Unfinished tasks<a class="headerlink" href="#unfinished-tasks" title="Permalink to this headline">#</a></h2>
+<p>The <span class="math notranslate nohighlight">\(\alpha^{(Q)}_e\)</span> updates described above may cause the learning algorithm to be numerically unstable and prevent the parameter updates from converging. This instability can be seen in the <a class="reference internal" href="../2021-06-01-convergence-of-biased-stochastic-approximation/"><span class="doc std std-doc">condition</span></a> C5 that has to be satisfied by the corresponding Poisson equation solutions for the discriminative correction terms.</p>
+<p>Instead, we propose the following updates, based on techniques in variance reduction.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rll}
+\displaystyle 
+\alpha^{(P)}_{e(n+1)} &amp;= 
+\displaystyle
+\phantom{\lambda\alpha^{(P)}_{en} + }\Delta\alpha^{(P)}_e &amp; 
+\text{for all }e\in\mathcal{E}_Q
+\\ &amp; &amp; \\
+\displaystyle 
+\alpha^{(Q)}_{e(n+1)} &amp;= 
+\displaystyle
+\lambda\alpha^{(Q)}_{en} + \Delta\alpha^{(Q)}_e &amp; 
+\text{for all }e\in\mathcal{E}_Q
+\end{array}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is a discount factor that reduces the effect of old updates <span class="math notranslate nohighlight">\(\Delta \alpha^{(Q)}_e\)</span> on <span class="math notranslate nohighlight">\(\alpha^{(Q)}_e.\)</span></p>
+<p>The first task is to prove that the solution of its Poisson equation is stable. The parameters will probably converge to a quasi-stationary point with a non-vanishing bias. The proof will be similar to that of Corollary 2 of <span id="id13">[<a class="reference internal" href="#id38" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span>.</p>
+<p>The second task is to follow <span id="id14">[<a class="reference internal" href="#id24" title="Zuozhu Liu, Thiparat Chotibut, Christopher Hillar, and Shaowei Lin. Biologically plausible sequence learning with spiking neural networks. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 34, 1316–1323. 2020.">LCHL20</a>]</span> in proving mathematically that for a given synaptic weight, the learning updates satisfy spike timing dependent plasticity (STDP).</p>
+<p>The third task is to develop an <a class="reference external" href="2021-03-22-relative-inference-with-mutable-processes/#is-relative-inference-necessarily-passive">active</a> form of relative inference that uses mutable processes. This form of active online learning can then be applied to reinforcement learning problems in robots and machine <a class="reference internal" href="../2021-04-22-proofs-as-programs-challenges-and-strategies-for-program-synthesis/"><span class="doc std std-doc">reasoning</span></a>.</p>
+<p>To see the analogy between our results here and those in reinforcement learning, we write down the following description from <span id="id15">[<a class="reference internal" href="#id38" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span> of the policy gradient method for average reward over infinite horizon.</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+Q_\eta((s,a),(s',a')) = \Pi_\eta(a';s') P^a_{s,s'}\]</div>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+J(\eta) = \sum_{s,a} v(s,a) R(s,a)\]</div>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\nabla J(\eta) = \lim_{T\rightarrow\infty}\mathbb{E}_\eta\left[R(S_T,A_T)\sum_{i=0}^{T-1}\nabla\log\Pi_\eta(A_{T-i};S_{T-i})\right]\]</div>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\hat{\nabla}_T J(\eta) = R(S_T,A_T)\sum_{i=0}^{T-1}\lambda^i \nabla\log\Pi_\eta(A_{T-i};S_{T-i})\]</div>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+G_{n+1} = \lambda G_n + \nabla \log\Pi_{\eta_n}(A_{n+1},S_{n+1})\]</div>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\eta_{n+1} = \eta_n + \gamma_{n+1} G_{n+1} R(S_{n+1},A_{n+1})\]</div>
+<p>We briefly define the notations above.</p>
+<ol class="simple">
+<li><p>Environment states <span class="math notranslate nohighlight">\(s, s'\)</span></p></li>
+<li><p>Agent actions <span class="math notranslate nohighlight">\(a, a'\)</span></p></li>
+<li><p>Model parameter <span class="math notranslate nohighlight">\(\eta\)</span></p></li>
+<li><p>Agent policy probability <span class="math notranslate nohighlight">\(\Pi_\eta(a';s')\)</span> of choosing action <span class="math notranslate nohighlight">\(a'\)</span> on state <span class="math notranslate nohighlight">\(s'\)</span></p></li>
+<li><p>State transition probability <span class="math notranslate nohighlight">\(P^a_{s,s'}\)</span> of next state <span class="math notranslate nohighlight">\(s'\)</span> given action <span class="math notranslate nohighlight">\(a\)</span> on state <span class="math notranslate nohighlight">\(s\)</span></p></li>
+<li><p>State-action transition probability <span class="math notranslate nohighlight">\(Q_\eta((s,a),(s',a'))\)</span></p></li>
+<li><p>Average reward objective <span class="math notranslate nohighlight">\(J(\eta)\)</span> for maximization</p></li>
+<li><p>Stationary distribution <span class="math notranslate nohighlight">\(v(s,a)\)</span> of state-action transition matrix</p></li>
+<li><p>Reward <span class="math notranslate nohighlight">\(R(s,a)\)</span> of action <span class="math notranslate nohighlight">\(a\)</span> on state <span class="math notranslate nohighlight">\(s\)</span></p></li>
+<li><p>Time horizon <span class="math notranslate nohighlight">\(T\)</span></p></li>
+<li><p>Objective gradient <span class="math notranslate nohighlight">\(\nabla J(\eta)\)</span> with respect to <span class="math notranslate nohighlight">\(\eta\)</span></p></li>
+<li><p>Expectation <span class="math notranslate nohighlight">\(\mathbb{E}_\eta\)</span> over state-action Markov chain <span class="math notranslate nohighlight">\(Q_\eta\)</span></p></li>
+<li><p>Discount factor <span class="math notranslate nohighlight">\(\lambda\)</span></p></li>
+<li><p>Gradient estimator <span class="math notranslate nohighlight">\(\hat{\nabla}_T J(\eta)\)</span></p></li>
+<li><p>Auxiliary parameter <span class="math notranslate nohighlight">\(G_n\)</span> at <span class="math notranslate nohighlight">\(n\)</span>-th iteration of algorithm</p></li>
+<li><p>Model parameter <span class="math notranslate nohighlight">\(\eta_n\)</span> at <span class="math notranslate nohighlight">\(n\)</span>-th iteration of algorithm</p></li>
+<li><p>Learning rate <span class="math notranslate nohighlight">\(\gamma_n\)</span> at <span class="math notranslate nohighlight">\(n\)</span>-th iteration of algorithm</p></li>
+</ol>
+<p>From our algorithm, we list the analogous formulas in the same order.</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle 
+Q_{w^{(Q)}}(Z',X'\vert Z,X) = Q_{w^{(Q)}}(Z'\vert Z,X)Q_*(X'\vert X)\]</div>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+V(w^{(Q)},w^{(P)}) = \int \bar{\pi}_{w^{(Q)}}(dZ',dX',dZ,dX)  \left(\log \frac{Q_{w^{(Q)}}(Z',X' \vert Z,X)}{P_{w^{(P)}}(Z',X' \vert Z,X)} \right)\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rl}
+\displaystyle
+\frac{\partial V}{\partial w^{(Q)}}(w^{(Q)},w^{(P)}) &amp;= 
+\displaystyle
+\lim_{T\rightarrow \infty} \mathbb{E}_{Q_{w^{(Q)}}(Z_{0..(T+1)},X_{0..(T+1)})} \Bigg[ \left( \log \frac{Q_{w^{(Q)}}(Z_{T+1},X_{T+1}\vert Z_T,X_T)}{P_{w^{(P)}}(Z_{T+1},X_{T+1}\vert Z_T,X_T)} \right) 
+\\ &amp; \\ &amp; \quad \quad \quad \quad
+\displaystyle 
+{}\times \sum_{t=0}^T \frac{d}{d{w^{(Q)}}} \log Q_{w^{(Q)}}(Z_{t+1} \vert  Z_{t},X_{t}) \Bigg] \end{array}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rl}
+\displaystyle
+\frac{\widehat{\partial V}_T}{\partial w^{(Q)}}(w^{(Q)},w^{(P)}) &amp;= 
+\displaystyle
+ \left( \log \frac{Q_{w^{(Q)}}(Z_{T+1},X_{T+1}\vert Z_T,X_T)}{P_{w^{(P)}}(Z_{T+1},X_{T+1}\vert Z_T,X_T)} \right) 
+\\ &amp; \\ &amp; \quad \quad \quad \quad
+\displaystyle 
+{}\times \sum_{t=0}^T \lambda^{T-t} \frac{d}{d{w^{(Q)}}} \log Q_{w^{(Q)}}(Z_{t+1} \vert  Z_{t},X_{t})  \end{array}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\alpha^{(Q)}_{e(n+1)} = \lambda \alpha^{(Q)}_{en}+ \frac{d}{dw^{(Q)}_e} \log Q_{w^{(Q)}}(Z_{n+1} \vert  Z_{n},X_{n}) \]</div>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+w^{(Q)}_{e(n+1)} = w^{(Q)}_{e(n+1)} - \eta_{n+1}\alpha^{(Q)}_{e(n+1)} \left( \log \frac{Q_{w^{(Q)}_n}(Z_{n+1},X_{n+1}\vert Z_n,X_n)}{P_{w^{(P)}_n}(Z_{n+1},X_{n+1}\vert Z_n,X_n)} \right)\]</div>
+<p>with the following analogous notations.</p>
+<ol class="simple">
+<li><p>Environment states <span class="math notranslate nohighlight">\(X, X'\)</span></p></li>
+<li><p>Memory/mutable states <span class="math notranslate nohighlight">\(Z, Z'\)</span></p></li>
+<li><p>Discriminative parameter <span class="math notranslate nohighlight">\(w^{(Q)}\)</span></p></li>
+<li><p>Discriminative conditional distribution <span class="math notranslate nohighlight">\(Q_{w^{(Q)}}(Z'\vert Z,X)\)</span></p></li>
+<li><p>True distribution <span class="math notranslate nohighlight">\(Q_*(X'\vert X)\)</span></p></li>
+<li><p>Discriminative joint distribution <span class="math notranslate nohighlight">\(Q_{w^{(Q)}}(Z',X'\vert Z,X)\)</span></p></li>
+<li><p>Relative information objective <span class="math notranslate nohighlight">\(V(w^{(Q)},w^{(P)})\)</span> for minimization</p></li>
+<li><p>One-step stationary distribution <span class="math notranslate nohighlight">\(\bar{\pi}_{w^{(Q)}}(dZ',dX',dZ,dX)\)</span> of <span class="math notranslate nohighlight">\(Q_{w^{(Q)}}\)</span></p></li>
+<li><p>Surprise or log-likelihood ratio <span class="math notranslate nohighlight">\(\log Q_{w^{(Q)}}(Z',X' \vert Z,X)/P_{w^{(P)}}(Z',X' \vert Z,X) \)</span></p></li>
+<li><p>Time horizon <span class="math notranslate nohighlight">\(T\)</span></p></li>
+<li><p>Objective gradient <span class="math notranslate nohighlight">\(\partial V/ \partial w^{(Q)}\)</span></p></li>
+<li><p>Expectation <span class="math notranslate nohighlight">\(\mathbb{E}_{Q_{w^{(Q)}}(Z_{0..(T+1)},X_{0..(T+1)})}\)</span> over state-action Markov chain <span class="math notranslate nohighlight">\(Q_{w^{(Q)}}\)</span></p></li>
+<li><p>Discount factor <span class="math notranslate nohighlight">\(\lambda\)</span></p></li>
+<li><p>Gradient estimator <span class="math notranslate nohighlight">\(\widehat{\partial V}_T/\partial w^{(Q)}\)</span></p></li>
+<li><p>Auxiliary parameter <span class="math notranslate nohighlight">\(\alpha^{(Q)}_{en}\)</span> at <span class="math notranslate nohighlight">\(n\)</span>-th iteration of algorithm</p></li>
+<li><p>Model parameter <span class="math notranslate nohighlight">\(w^{(Q)}_{en}\)</span> at <span class="math notranslate nohighlight">\(n\)</span>-th iteration of algorithm</p></li>
+<li><p>Learning rate <span class="math notranslate nohighlight">\(\eta_n\)</span> at <span class="math notranslate nohighlight">\(n\)</span>-th iteration of algorithm</p></li>
+</ol>
+<p>The analogy is not perfect, since the rewards in our problem depend on generative parameters <span class="math notranslate nohighlight">\(w^{(P)}\)</span> that also need to be optimized, but the proof ideas are similar.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<div class="docutils container" id="id16">
+<dl class="citation">
+<dt class="label" id="id28"><span class="brackets"><a class="fn-backref" href="#id11">Fri10</a></span></dt>
+<dd><p>Karl Friston. The free-energy principle: a unified brain theory? <em>Nature reviews neuroscience</em>, 11(2):127–138, 2010.</p>
+</dd>
+<dt class="label" id="id47"><span class="brackets"><a class="fn-backref" href="#id7">GZ02</a></span></dt>
+<dd><p>Tepper L Gill and WW Zachary. Foundations for relativistic quantum theory. i. feynman’s operator calculus and the dyson conjectures. <em>Journal of Mathematical Physics</em>, 43(1):69–93, 2002.</p>
+</dd>
+<dt class="label" id="id26"><span class="brackets"><a class="fn-backref" href="#id3">HH52</a></span></dt>
+<dd><p>Alan L Hodgkin and Andrew F Huxley. A quantitative description of membrane current and its application to conduction and excitation in nerve. <em>The Journal of physiology</em>, 117(4):500, 1952.</p>
+</dd>
+<dt class="label" id="id38"><span class="brackets">KMMW19</span><span class="fn-backref">(<a href="#id13">1</a>,<a href="#id15">2</a>)</span></dt>
+<dd><p>Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In <em>Conference on Learning Theory</em>, 1944–1974. PMLR, 2019.</p>
+</dd>
+<dt class="label" id="id25"><span class="brackets"><a class="fn-backref" href="#id4">KB94</a></span></dt>
+<dd><p>Chung-Chin Kuo and Bruce P Bean. Na+ channels must deactivate to recover from inactivation. <em>Neuron</em>, 12(4):819–829, 1994.</p>
+</dd>
+<dt class="label" id="id23"><span class="brackets"><a class="fn-backref" href="#id8">LL19</a></span></dt>
+<dd><p>Jussi Lindgren and Jukka Liukkonen. Quantum mechanics can be understood through stochastic optimization on spacetimes. <em>Scientific reports</em>, 9(1):1–8, 2019.</p>
+</dd>
+<dt class="label" id="id24"><span class="brackets"><a class="fn-backref" href="#id14">LCHL20</a></span></dt>
+<dd><p>Zuozhu Liu, Thiparat Chotibut, Christopher Hillar, and Shaowei Lin. Biologically plausible sequence learning with spiking neural networks. In <em>Proceedings of the AAAI Conference on Artificial Intelligence</em>, volume 34, 1316–1323. 2020.</p>
+</dd>
+<dt class="label" id="id22"><span class="brackets">PTBG06</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id6">2</a>)</span></dt>
+<dd><p>Jean-Pascal Pfister, Taro Toyoizumi, David Barber, and Wulfram Gerstner. Optimal spike-timing-dependent plasticity for precise action potential firing in supervised learning. <em>Neural computation</em>, 18(6):1318–1348, 2006.</p>
+</dd>
+<dt class="label" id="id21"><span class="brackets"><a class="fn-backref" href="#id12">Rav18</a></span></dt>
+<dd><p>S Raviv. The genius neuroscientist who might hold the key to true ai. <em>Wired.[(accessed on 18 February 2021)]</em>, 2018.</p>
+</dd>
+<dt class="label" id="id33"><span class="brackets">RG14</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id5">2</a>,<a href="#id9">3</a>,<a href="#id10">4</a>)</span></dt>
+<dd><p>Danilo Jimenez Rezende and Wulfram Gerstner. Stochastic variational learning in recurrent spiking networks. <em>Frontiers in computational neuroscience</em>, 8:38, 2014.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     
+    <a href="../2021-06-01-convergence-of-biased-stochastic-approximation/">
+      <i class="fa fa-arrow-circle-left"></i> Convergence of biased stochastic approximation
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+     
+    <a href="../2021-09-09-all-you-need-is-relative-information/">
+      All you need is relative information <i
+        class="fa fa-arrow-circle-right"
+      ></i
+      >
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+              </div>
+              
+<!-- Add a comment box underneath the page's content -->
+<script src="https://giscus.app/client.js"
+        data-repo="shaoweilin/shaoweilin.github.io"
+        data-repo-id="R_kgDOHM5tAA"
+        data-category="Blog comments"
+        data-category-id="DIC_kwDOHM5tAM4COqgI"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2022, Shaowei Lin.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

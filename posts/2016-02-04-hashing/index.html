@@ -1,0 +1,432 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:title" content="Hashing" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://shaoweilin.github.io/posts/2016-02-04-hashing/" />
+  
+<meta property="og:description" content="Hashing is a method for compressing information from a high dimensional space into a smaller space. Hashing is commonly used in computer science to help us with many tasks. For instance, if two doc..." />
+  
+<meta property="og:image" content="https://shaoweilin.github.io/_static/profile.jpg" />
+  
+<meta property="og:image:alt" content="Hashing" />
+  
+    <title>Hashing &#8212; Spikes and Types  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../about/" />
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+     
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../blog/atom.xml"
+  title="Spikes and Types"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../">
+<p class="title">Spikes and Types</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../about/">
+  About
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../blog/">
+  Blog
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../search/" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" >
+</form>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/shaoweilin/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
+<h2>
+   <i class="fa fa-calendar"></i>
+  04 February 2016 
+</h2>
+
+<ul>
+        
+</ul>
+
+<h3>
+  <a href="../../blog/">Recent Posts</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../2022-01-22-information-topos-theory-motivation/"
+      >22 January - Information topos theory - motivation</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-09-09-all-you-need-is-relative-information/"
+      >09 September - All you need is relative information</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-06-05-spiking-neural-networks/"
+      >05 June - Spiking neural networks</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-06-01-convergence-of-biased-stochastic-approximation/"
+      >01 June - Convergence of biased stochastic approximation</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-05-10-path-integrals-and-the-dyson-formula/"
+      >10 May - Path integrals and the Dyson formula</a
+    >
+  </li>
+  
+</ul>
+
+<h3>
+  <a href="../../blog/archive/">Archives</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../blog/2022/">2022 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2021/">2021 (8)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2020/">2020 (12)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2018/">2018 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2017/">2017 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2016/">2016 (3)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2014/">2014 (2)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2012/">2012 (1)</a>
+  </li>
+   
+</ul>
+
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hashing-trick">
+   Hashing Trick
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vowpal-wabbit">
+   Vowpal Wabbit
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#minwise-hashing">
+   Minwise Hashing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compressing-neural-networks">
+   Compressing Neural Networks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#acknowledgements">
+   Acknowledgements
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+
+              <div>
+                 <div class="tex2jax_ignore mathjax_ignore section" id="hashing">
+<h1>Hashing<a class="headerlink" href="#hashing" title="Permalink to this headline">#</a></h1>
+<p>Hashing is a method for compressing information from a high dimensional space into a smaller space. Hashing is commonly used in computer science to help us with many tasks. For instance, if two documents are (randomly) hashed to the same code, it is very likely that they are exactly the same. Also, in computer vision, we sometimes hash images in a clever way to find similar or related images through their codes.</p>
+<p>Hashing goes all the way back to Shannon, the father of information theory, who looked at random hashes in his source coding theorem. There are also interesting connections to compressed sensing which have not been fully explored as yet.</p>
+<p>In deep learning and machine learning, there has been increased interest in applying hashing to speed up the computation. Here are some examples.</p>
+<div class="section" id="hashing-trick">
+<h2>Hashing Trick<a class="headerlink" href="#hashing-trick" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Feature_hashing">Wikipedia article on Feature Hashing</a></p>
+<p>Let us suppose that we represent documents as Bags of Words. Essentially, a bag of words is a large vector where the <span class="math notranslate nohighlight">\(n\)</span>-th coordinate counts the number of times the <span class="math notranslate nohighlight">\(n\)</span>-th word of a given dictionary occurs in the document. Doing classification with such large vectors can be computationally intensive, so the hashing trick maps each word in the dictionary randomly down a smaller list of indices. The bag of words is then mapped into a smaller vector by adding the coordinates of words which hash to the same index. One can show that if the original bag of words is sparse, then there is a very small probability of collision in the hash. Moreover, for many linear machine learning methods like linear regression and support vector machines, the performance of the algorithm degrades only very slightly under the hash, but the improvement in computation time is great.</p>
+</div>
+<div class="section" id="vowpal-wabbit">
+<h2>Vowpal Wabbit<a class="headerlink" href="#vowpal-wabbit" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://github.com/JohnLangford/vowpal_wabbit/wiki">Github Wiki for Vowpal Wabbit</a></p>
+<p>This is not a kind of hash, but a software package for machine learning that uses the hash trick extensively. The hash used is a type of random projection (MD5).</p>
+</div>
+<div class="section" id="minwise-hashing">
+<h2>Minwise Hashing<a class="headerlink" href="#minwise-hashing" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="http://papers.nips.cc/paper/4403-hashing-algorithms-for-large-scale-learning.pdf">Hashing Algorithms for Large Scale Learning</a></p>
+<p>This is a variant of the Minwise Hash. In the minwise hash, we first fix permutations <span class="math notranslate nohighlight">\(\pi_1, \pi_2, \ldots, \pi_k\)</span> of the dictionary. Given a document <span class="math notranslate nohighlight">\(S\)</span>, we compute the minimum nonzero index of <span class="math notranslate nohighlight">\(\pi_i(S)\)</span> for each <span class="math notranslate nohighlight">\(i\)</span>, storing each index using 64-bits. This collection of indices is the minwise hash. The <span class="math notranslate nohighlight">\(b\)</span>-bit version stores the first <span class="math notranslate nohighlight">\(b\)</span> bits of the minimum indices instead of the full 64 bits. The authors apply their hash method to SVMs and other linear methods and they claim that it has better performance than the random projections used by Vowpal Wabbit.</p>
+</div>
+<div class="section" id="compressing-neural-networks">
+<h2>Compressing Neural Networks<a class="headerlink" href="#compressing-neural-networks" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="http://arxiv.org/abs/1504.04788">Compressing Neural Networks with the Hashing Trick</a></p>
+<p><a class="reference external" href="http://arxiv.org/abs/1511.05212">Binary Embeddings with Structured Hash Projections</a></p>
+<p><a class="reference external" href="https://arxiv.org/abs/1510.00149v1">A Deep Neural Network Compression Pipeline: Pruning, Quantization, Huffman Encoding</a></p>
+<p>One important problem is to fit the large neural networks learned for facial recognition or image recognition into mobile phones. The challenge is in the storage of the many neural weights. One approach is randomly pick matrix structures where the values of some of its entries are tied together, and use such matrices as weights in training the neural network. Optimal values of the tied weights are learned by the algorithm. If we look at minwise hash or the random hashes used by Vowpal Wabbit using this perspective, they correspond to using fat <span class="math notranslate nohighlight">\(0-1\)</span> matrices where each column (corresponding to each input neuron) has only one nonzero element, and the positions of the ones are randomly chosen in each column. If we multiply a square matrix of free weights to the left of the fat matrix, this gives a fat matrix whose entries must come from the original square matrix.</p>
+</div>
+<div class="section" id="acknowledgements">
+<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">#</a></h2>
+<p>I would like to thank Binghao, Sai Ganesh, Georgios, Yeow Khiang and Zuozhu for insightful discussions on this topic</p>
+</div>
+</div>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     
+    <a href="../2014-08-13-statistics-and-machine-learning/">
+      <i class="fa fa-arrow-circle-left"></i> Statistics and machine learning
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+     
+    <a href="../2016-05-03-exercise-on-deep-neural-networks/">
+      Exercise on deep neural networks <i
+        class="fa fa-arrow-circle-right"
+      ></i
+      >
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+              </div>
+              
+<!-- Add a comment box underneath the page's content -->
+<script src="https://giscus.app/client.js"
+        data-repo="shaoweilin/shaoweilin.github.io"
+        data-repo-id="R_kgDOHM5tAA"
+        data-category="Blog comments"
+        data-category-id="DIC_kwDOHM5tAM4COqgI"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2022, Shaowei Lin.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

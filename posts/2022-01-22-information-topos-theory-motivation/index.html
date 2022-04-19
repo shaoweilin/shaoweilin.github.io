@@ -1,0 +1,461 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:title" content="Information topos theory - motivation" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://shaoweilin.github.io/posts/2022-01-22-information-topos-theory-motivation/" />
+  
+<meta property="og:description" content="Relative information (also known as the Kullback-Leibler divergence) is an important fundamental concept in statistical learning and information theory. The (conditional) relative information\displ..." />
+  
+<meta property="og:image" content="https://shaoweilin.github.io/_static/profile.jpg" />
+  
+<meta property="og:image:alt" content="Information topos theory - motivation" />
+  
+    <title>Information topos theory - motivation &#8212; Spikes and Types  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../about/" />
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+     
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../blog/atom.xml"
+  title="Spikes and Types"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../">
+<p class="title">Spikes and Types</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../about/">
+  About
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../blog/">
+  Blog
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../search/" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" >
+</form>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/shaoweilin/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
+<h2>
+   <i class="fa fa-calendar"></i>
+  22 January 2022 
+</h2>
+
+<ul>
+        
+</ul>
+
+<h3>
+  <a href="../../blog/">Recent Posts</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../2021-09-09-all-you-need-is-relative-information/"
+      >09 September - All you need is relative information</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-06-05-spiking-neural-networks/"
+      >05 June - Spiking neural networks</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-06-01-convergence-of-biased-stochastic-approximation/"
+      >01 June - Convergence of biased stochastic approximation</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-05-10-path-integrals-and-the-dyson-formula/"
+      >10 May - Path integrals and the Dyson formula</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-04-22-proofs-as-programs-challenges-and-strategies-for-program-synthesis/"
+      >22 April - Proofs as programs - challenges and strategies for program synthesis</a
+    >
+  </li>
+  
+</ul>
+
+<h3>
+  <a href="../../blog/archive/">Archives</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../blog/2022/">2022 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2021/">2021 (8)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2020/">2020 (12)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2018/">2018 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2017/">2017 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2016/">2016 (3)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2014/">2014 (2)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2012/">2012 (1)</a>
+  </li>
+   
+</ul>
+
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bayesian-bundles">
+   Bayesian bundles
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#from-bundles-to-presheaves">
+   From bundles to presheaves
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#presheaf-catagories">
+   Presheaf catagories
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#natural-models">
+   Natural models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+
+              <div>
+                 <div class="tex2jax_ignore mathjax_ignore section" id="information-topos-theory-motivation">
+<h1>Information topos theory - motivation<a class="headerlink" href="#information-topos-theory-motivation" title="Permalink to this headline">#</a></h1>
+<p>Relative information (also known as the Kullback-Leibler divergence) is an important fundamental concept in statistical learning and information theory.</p>
+<p>The (conditional) relative information</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+I_{q \Vert p}(Z|X) = \int q(X) \int q(Z|X) \log \frac{q(Z|X)}{p(Z|X)} dZ\, dX\]</div>
+<p>gives the weighted divergence from a <em>model</em> conditional distribution <span class="math notranslate nohighlight">\(p(Z \vert X)\)</span> to the <em>true</em> conditional distribution <span class="math notranslate nohighlight">\(q(Z \vert X),\)</span> where the weighting is given by the true distribution <span class="math notranslate nohighlight">\(q(X.)\)</span> We call it a <em>divergence</em> rather than a <em>distance</em> because it is not symmetric with respect to <span class="math notranslate nohighlight">\(q\)</span> and <span class="math notranslate nohighlight">\(p.\)</span></p>
+<p>Relative information has two key aspects: divergence and conditioning. As a divergence, it says that the amount of information is relative, not absolute. As a function of a conditional relationship, it says that we should study the amount of information in something unknown while factoring in what we do know.</p>
+<p>An (elementary) topos is a category that has just enough basic properties for us to do both geometry and logic. When studying morphisms between logical spaces in topoi, it might be useful to have a measure of information that is relative (giving us distances or divergences between points) and conditional (giving us the change in information through a morphism). Over the next few posts, we will explore examples of such uses in statistics, algebra, number theory and quantum physics.</p>
+<p>In the same way that a Riemannian metric on a smooth manifold allows us to study curvatures and ultimately dynamical systems in general relativity via Riemannian geometry, and in the same way that the Fisher information metric on a smooth manifold allows us to study generalization and ultimately learning algorithms in statistics via information geometry, we think of information topos theory as a systematic way of associating an appropriate metric to a geometric topos space. Ultimately, the hope is to use this metric topos as a space-time substitute for understanding quantum mechanics and gravity.</p>
+<p>In this post, we will motivate the development of an information theory for topoi, without invoking any logarithms, integrals, probabilities or measure theory. The mathematical foundations will be postponed to a later post.</p>
+<div class="section" id="bayesian-bundles">
+<h2>Bayesian bundles<a class="headerlink" href="#bayesian-bundles" title="Permalink to this headline">#</a></h2>
+<p>John Baez and Tobias Fritz <span id="id1">[<a class="reference internal" href="#id53" title="JC Baez and T Fritz. A bayesian characterization of relative entropy. Theory and Applications of Categories, 29:422–456, 2014.">BF14</a>]</span> have a nice characterization of <em>conditional</em> relative information as the unique functor (up to scaling) from the category of probability distributions on finite sets to the additive monoid <span class="math notranslate nohighlight">\([0,\infty]\)</span> satisfying some basic linearity, convexity and continuity conditions.</p>
+<p>Instead of defining relative information as a function of a conditional relationship, they provide a measure-preserving morphism <span class="math notranslate nohighlight">\(f: X \rightarrow Y\)</span>
+paired with a stochastic right inverse <span class="math notranslate nohighlight">\(s: Y \rightarrow X.\)</span> I prefer to think in terms of a bundle <span class="math notranslate nohighlight">\(\pi_f : \Delta_X \rightarrow \Delta_Y\)</span> that projects from the space of distributions over <span class="math notranslate nohighlight">\(X\)</span> to the space of distributions over <span class="math notranslate nohighlight">\(Y\)</span> by marginalization, and a section <span class="math notranslate nohighlight">\(\sigma_s : \Delta_Y \rightarrow \Delta_X\)</span> that lifts a distribution over <span class="math notranslate nohighlight">\(Y\)</span> to a distribution over <span class="math notranslate nohighlight">\(X\)</span> by multiplication with a conditional distribution. Perhaps this interpretation was an intent of the authors too.</p>
+<p>Suppose we have a bundle <span class="math notranslate nohighlight">\(\pi: \Delta \rightarrow \Gamma\)</span> and three sections - a true <span class="math notranslate nohighlight">\(\sigma_q : \Gamma \rightarrow \Delta\)</span>, a model <span class="math notranslate nohighlight">\(\sigma_p : \Gamma \rightarrow \Delta\)</span> and a base point <span class="math notranslate nohighlight">\(\omega_q : * \rightarrow \Gamma.\)</span> Here, <span class="math notranslate nohighlight">\(*\)</span> is the one-point space. We may then consider the relative information for this bundle <span class="math notranslate nohighlight">\(\pi,\)</span> from the model <span class="math notranslate nohighlight">\(\sigma_p\)</span> to the true <span class="math notranslate nohighlight">\(\sigma_q,\)</span> weighted by the distribution <span class="math notranslate nohighlight">\(\omega_q(*)\)</span> (which you may think of as a prior).</p>
+<p>This generalization beyond conditional relationships to bundles lets us define relative information for non-statistical categories.</p>
+</div>
+<div class="section" id="from-bundles-to-presheaves">
+<h2>From bundles to presheaves<a class="headerlink" href="#from-bundles-to-presheaves" title="Permalink to this headline">#</a></h2>
+<p>If we have a bundle <span class="math notranslate nohighlight">\(\pi:\Delta \rightarrow \Gamma\)</span> and some topology <span class="math notranslate nohighlight">\(C\)</span> of open sets over the base space <span class="math notranslate nohighlight">\(\Gamma,\)</span> we may construct a presheaf <span class="math notranslate nohighlight">\(U: C^\text{op}\rightarrow \text{Set}\)</span> from <span class="math notranslate nohighlight">\(\pi\)</span> by associating to each open set the set of sections over that open set. See the tutorial <span id="id2">[<a class="reference internal" href="#id6" title="John Baez. Topos theory (part 2). \url https://johncarlosbaez.wordpress.com/2020/01/07/topos-theory-part-2/, 2020.">Bae20</a>]</span> by John Baez for an excellent description of this construction.</p>
+<p>For the rest of this post, we will be using presheaves instead of bundles, but the two ideas are somewhat interchangeable if you prefer to think in terms of bundles.</p>
+<p>So far, we have glossed over what it means to be an “open set” of the base space <span class="math notranslate nohighlight">\(\Gamma.\)</span> In statistics, when <span class="math notranslate nohighlight">\(\Gamma\)</span> is a space of distributions, there is a natural choice of topology inherited from the topology of the real numbers which are used in defining the distributions or measures. However, we <em>want to avoid</em> this topology.</p>
+<p>Instead, we want to think of <span class="math notranslate nohighlight">\(\Gamma\)</span> as a kind of <em>context</em> and an open set of <span class="math notranslate nohighlight">\(\Gamma\)</span> should be some kind of <em>subcontext</em>. This subcontext should lead us to other bundles and sections. In our example involving the bundles <span class="math notranslate nohighlight">\(\Delta \rightarrow \Gamma\)</span> and <span class="math notranslate nohighlight">\(\Gamma \rightarrow *,\)</span> we want to think of <span class="math notranslate nohighlight">\(\Delta, \Gamma, *\)</span> as contexts in our category <span class="math notranslate nohighlight">\(C.\)</span> We then have sections <span class="math notranslate nohighlight">\(\sigma_q, \sigma_p \in U(\Gamma)\)</span> and <span class="math notranslate nohighlight">\(\omega_q \in U(*)\)</span> where <span class="math notranslate nohighlight">\(U : C^\text{op} \rightarrow \text{Set}\)</span> is our presheaf. We will make these ideas more rigorous later.</p>
+</div>
+<div class="section" id="presheaf-catagories">
+<h2>Presheaf catagories<a class="headerlink" href="#presheaf-catagories" title="Permalink to this headline">#</a></h2>
+<p>We now have relative information for a presheaf <span class="math notranslate nohighlight">\(U : C^\text{op} \rightarrow \text{Set},\)</span> a base space or object <span class="math notranslate nohighlight">\(\Gamma\)</span> in <span class="math notranslate nohighlight">\(C\)</span>, and sections <span class="math notranslate nohighlight">\(\sigma_q, \sigma_p \in U(\Gamma).\)</span> By Yoneda’s lemma, the sections <span class="math notranslate nohighlight">\(\sigma \in U(\Gamma)\)</span> are in one-to-one correspondence with natural transformations</p>
+<div class="math notranslate nohighlight">
+\[\eta_\sigma : \text{Hom}(-, \Gamma) \rightarrow U\]</div>
+<p>where <span class="math notranslate nohighlight">\(\text{Hom}(-, \Gamma) : C^\text{op} \rightarrow \text{Set}\)</span> is also a presheaf.</p>
+<p>Therefore, it makes sense to consider relative information within a larger <em>presheaf category</em> where the objects are presheaves (which are functors <span class="math notranslate nohighlight">\(C^\text{op} \rightarrow \text{Set}\)</span>) and the morphisms are natural transformations between then presheaves. This presheaf category is an example of an <em>elementary topos</em> <span id="id3">[]</span>.</p>
+</div>
+<div class="section" id="natural-models">
+<h2>Natural models<a class="headerlink" href="#natural-models" title="Permalink to this headline">#</a></h2>
+<p>Recall that we had a presheaf <span class="math notranslate nohighlight">\(U : C^\text{op} \rightarrow \text{Set},\)</span> a context <span class="math notranslate nohighlight">\(\Gamma\)</span> in <span class="math notranslate nohighlight">\(C\)</span> and a section <span class="math notranslate nohighlight">\(\sigma \in U(\Gamma).\)</span> In the statistical setting, the section is a map <span class="math notranslate nohighlight">\(\sigma : \Gamma \rightarrow \Delta.\)</span> We want to think of the image <span class="math notranslate nohighlight">\(\Gamma.\sigma := \sigma(\Gamma)\)</span> also as a context, with the projection <span class="math notranslate nohighlight">\(\Gamma.\sigma \rightarrow \Gamma\)</span> as a morphism in <span class="math notranslate nohighlight">\(C.\)</span></p>
+<p>In the non-statistical setting, how do we go about extending the context <span class="math notranslate nohighlight">\(\Gamma\)</span> by a section <span class="math notranslate nohighlight">\(\sigma \in U(\Gamma)?\)</span> How do we check if <span class="math notranslate nohighlight">\(\Gamma.\sigma\)</span> is a context in the category <span class="math notranslate nohighlight">\(C\)</span> without forcefully requiring <span class="math notranslate nohighlight">\(C\)</span> to be expanded to include these extensions?</p>
+<p>Awodey has a beautiful way of constructing context extensions by imposing a simple requirement on the presheaf category <span id="id4">[<a class="reference internal" href="#id59" title="Steve Awodey. Natural models of homotopy type theory. Mathematical Structures in Computer Science, 28(2):241–286, 2018.">Awo18</a>]</span>. He begins with a fixed natural transformation <span class="math notranslate nohighlight">\(p: \dot{U} \rightarrow U\)</span> of presheaves on a category <span class="math notranslate nohighlight">\(C.\)</span> He then requires this natural transformation to be <em>representable</em>, i.e. its pullback along any natural transformation <span class="math notranslate nohighlight">\(\text{Hom}(-,\Gamma) \rightarrow U\)</span> is representable.</p>
+<p>Given a representable natural transformation <span class="math notranslate nohighlight">\(p: \dot{U} \rightarrow U,\)</span> we can build a dependent type theory with <span class="math notranslate nohighlight">\(C\)</span> as the category of contexts and substitutions in the theory. The map <span class="math notranslate nohighlight">\(p\)</span> then takes each term in the universe <span class="math notranslate nohighlight">\(\dot{U}\)</span> to its type in <span class="math notranslate nohighlight">\(U.\)</span> A representable natural transformation (together with a choice of pullbacks in some presheaf category) is also called a <em>natural model of type theory</em>.</p>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
+<p>In our next post, we will continue with motivations for information topos theory and discuss posetal subcategories of our presheaf category. Relative information will then be defined as the divergence between two sections of a poset with respect to a morphism in the poset.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<div class="docutils container" id="id5">
+<dl class="citation">
+<dt class="label" id="id59"><span class="brackets"><a class="fn-backref" href="#id4">Awo18</a></span></dt>
+<dd><p>Steve Awodey. Natural models of homotopy type theory. <em>Mathematical Structures in Computer Science</em>, 28(2):241–286, 2018.</p>
+</dd>
+<dt class="label" id="id53"><span class="brackets"><a class="fn-backref" href="#id1">BF14</a></span></dt>
+<dd><p>JC Baez and T Fritz. A bayesian characterization of relative entropy. <em>Theory and Applications of Categories</em>, 29:422–456, 2014.</p>
+</dd>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id2">Bae20</a></span></dt>
+<dd><p>John Baez. Topos theory (part 2). <a class="reference external" href="https://johncarlosbaez.wordpress.com/2020/01/07/topos-theory-part-2/">https://johncarlosbaez.wordpress.com/2020/01/07/topos-theory-part-2/</a>, 2020.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     
+    <a href="../2021-09-09-all-you-need-is-relative-information/">
+      <i class="fa fa-arrow-circle-left"></i> All you need is relative information
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+    
+  </span>
+</div>
+  
+</div>
+
+              </div>
+              
+<!-- Add a comment box underneath the page's content -->
+<script src="https://giscus.app/client.js"
+        data-repo="shaoweilin/shaoweilin.github.io"
+        data-repo-id="R_kgDOHM5tAA"
+        data-category="Blog comments"
+        data-category-id="DIC_kwDOHM5tAM4COqgI"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2022, Shaowei Lin.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

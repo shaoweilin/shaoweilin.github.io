@@ -1,0 +1,451 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:title" content="Process learning with relative information" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://shaoweilin.github.io/posts/2021-03-21-process-learning-with-relative-information/" />
+  
+<meta property="og:description" content="Over the next few posts, we will derive a distributed learning algorithm for spiking neural networks with mutable variables that minimizes some natural notion of relative information and provably c..." />
+  
+<meta property="og:image" content="https://shaoweilin.github.io/_static/profile.jpg" />
+  
+<meta property="og:image:alt" content="Process learning with relative information" />
+  
+    <title>Process learning with relative information &#8212; Spikes and Types  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../about/" />
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+     
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../blog/atom.xml"
+  title="Spikes and Types"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../">
+<p class="title">Spikes and Types</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../about/">
+  About
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../blog/">
+  Blog
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../search/" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" >
+</form>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/shaoweilin/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
+<h2>
+   <i class="fa fa-calendar"></i>
+  21 March 2021 
+</h2>
+
+<ul>
+        
+</ul>
+
+<h3>
+  <a href="../../blog/">Recent Posts</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../2022-01-22-information-topos-theory-motivation/"
+      >22 January - Information topos theory - motivation</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-09-09-all-you-need-is-relative-information/"
+      >09 September - All you need is relative information</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-06-05-spiking-neural-networks/"
+      >05 June - Spiking neural networks</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-06-01-convergence-of-biased-stochastic-approximation/"
+      >01 June - Convergence of biased stochastic approximation</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-05-10-path-integrals-and-the-dyson-formula/"
+      >10 May - Path integrals and the Dyson formula</a
+    >
+  </li>
+  
+</ul>
+
+<h3>
+  <a href="../../blog/archive/">Archives</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../blog/2022/">2022 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2021/">2021 (8)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2020/">2020 (12)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2018/">2018 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2017/">2017 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2016/">2016 (3)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2014/">2014 (2)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2012/">2012 (1)</a>
+  </li>
+   
+</ul>
+
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-do-we-train-a-stochastic-process-using-relative-information">
+   How do we train a stochastic process using relative information?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-do-we-train-a-stochastic-process-using-relative-information-rate">
+   How do we train a stochastic process using relative information rate?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+
+              <div>
+                 <div class="tex2jax_ignore mathjax_ignore section" id="process-learning-with-relative-information">
+<h1>Process learning with relative information<a class="headerlink" href="#process-learning-with-relative-information" title="Permalink to this headline">#</a></h1>
+<p>Over the next few posts, we will derive a distributed learning algorithm for spiking neural networks with <a class="reference external" href="2020-10-23-machine-learning-with-relative-information/#why-should-we-consider-mutable-variables-rather-than-latent-variables">mutable</a> variables that minimizes some natural notion of relative information and provably converges over time. We will model these spiking neural networks with stochastic processes: both discrete-time and continuous-time processes, with or without mutable variables.</p>
+<p>In this post, we give a general overview of information-theoretic approaches to training stochastic processes, while postponing discussions about issues that arise from mutable variables.</p>
+<p>The actual process that generates the data could possibly be different from the model that we are training on the data. This problem is called model misspecification, which we are not addressing in this series. Our goal is to find a distribution in the model that fits the data well according to some sensible metric.</p>
+<p>This post is a continuation from our <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">series</span></a> on spiking networks, path integrals and motivic information.</p>
+<div class="section" id="how-do-we-train-a-stochastic-process-using-relative-information">
+<h2>How do we train a stochastic process using relative information?<a class="headerlink" href="#how-do-we-train-a-stochastic-process-using-relative-information" title="Permalink to this headline">#</a></h2>
+<p>Suppose that we have a stochastic process <span class="math notranslate nohighlight">\( \{X_t\}\)</span> where <span class="math notranslate nohighlight">\( X: I \rightarrow \mathcal{X}\)</span> is a map from some time interval <span class="math notranslate nohighlight">\( I \subset \mathbb{R}\)</span> to some state space <span class="math notranslate nohighlight">\( \mathcal{X}\)</span>. If <span class="math notranslate nohighlight">\( I\)</span> is the continuous interval <span class="math notranslate nohighlight">\( [0, T],\)</span> then <span class="math notranslate nohighlight">\( X\)</span> is a continuous-time stochastic process. If <span class="math notranslate nohighlight">\( I\)</span> is the discrete interval <span class="math notranslate nohighlight">\( \{0, 1, \ldots, T\},\)</span> then <span class="math notranslate nohighlight">\( X\)</span> is a discrete-time stochastic process.</p>
+<p>Let the true distribution of <span class="math notranslate nohighlight">\( \{X_t\}\)</span> be given by some path measure <span class="math notranslate nohighlight">\( Q_*(\gamma)\)</span> over paths <span class="math notranslate nohighlight">\( \gamma : I \rightarrow R\)</span>. Suppose that we have a model or a family of path measures <span class="math notranslate nohighlight">\( P_\theta(\gamma)\)</span> parametrized by <span class="math notranslate nohighlight">\( \theta \in \Theta.\)</span> We also assume absolute continuity for our model, i.e. <span class="math notranslate nohighlight">\( Q_* \ll P_\theta\)</span> for all <span class="math notranslate nohighlight">\( \theta\)</span>. This assumption is trivially satisfied if each model distribution assigns a non-zero measure to every cylinder in the sigma-algebra of our path space. Let <span class="math notranslate nohighlight">\( X_{a\ldots b}\)</span> denote the stochastic process over the interval <span class="math notranslate nohighlight">\( [a,b]\)</span>, i.e. the family <span class="math notranslate nohighlight">\( \{X_t\}_{t \in [a,b]}.\)</span></p>
+<p>Because we have absolute continuity, the Radon-Nikodym derivative <span class="math notranslate nohighlight">\( dQ_*/dP_\theta\)</span> exists, and we may define the time-averaged relative information</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \frac{1}{T} I_{Q_*\Vert P_\theta}(X_{0\ldots T}) = \frac{1}{T} \int \log \frac{dQ_*}{dP_\theta} dQ_*. \]</div>
+<p>To find the best model distribution <span class="math notranslate nohighlight">\( P_\theta\)</span> for approximation the true distribution <span class="math notranslate nohighlight">\( Q_*\)</span>, we will minimize this relative information with respect to <span class="math notranslate nohighlight">\( \theta\)</span>. As the time horizon <span class="math notranslate nohighlight">\( T\)</span> tends to infinity, we may also consider minimizing the limit of the time-averaged relative information</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \lim_{T\rightarrow \infty} \frac{1}{T} I_{Q_*\Vert P_\theta}(X_{0\ldots T}).\]</div>
+</div>
+<div class="section" id="how-do-we-train-a-stochastic-process-using-relative-information-rate">
+<h2>How do we train a stochastic process using relative information rate?<a class="headerlink" href="#how-do-we-train-a-stochastic-process-using-relative-information-rate" title="Permalink to this headline">#</a></h2>
+<p>In discrete time, by the chain rule (<a class="reference external" href="2020-09-18-conditional-relative-information-and-its-axiomatizations/#mjx-eqn-CR">CR</a>), the relative information decomposes into the sum</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rl} I_{Q \Vert P}(X_{0\ldots n}) &amp;= I_{Q \Vert P}(X_n \vert X_{0\ldots (n-1)}) \\ &amp; \\ &amp; \quad + I_{Q \Vert P}(X_{n-1} \vert X_{0\ldots (n-2)}) \\ &amp; \\ &amp; \quad + \cdots + I_{Q \Vert P}(X_1 \vert X_0) +I_{Q \Vert P}( X_0). \end{array}\end{split}\]</div>
+<p>In continuous time, we have the analogous result</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle I_{Q \Vert P}(X_{0\ldots T}) = \int_0^T \frac{d}{ds}I_{Q \Vert P}(X_{0\ldots s}) \,ds \]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rl} &amp;\displaystyle \frac{d}{ds}I_{Q \Vert P} (X_{0\ldots s}) \\ &amp; \\ &amp;= \lim_{\delta \rightarrow 0} \frac{1}{\delta} \left[ I_{Q \Vert P} (X_{0\ldots s+\delta}) - I_{Q \Vert P} (X_{0\ldots s})\right] \\ &amp; \\ &amp;= \lim_{\delta \rightarrow 0} \frac{1}{\delta} I_{Q \Vert P} (X_{s\ldots s+\delta}\vert X_{0\ldots s}) \end{array}\end{split}\]</div>
+<p>is also known as the <em>relative information rate</em> of <span class="math notranslate nohighlight">\( X_t\)</span>. The differential operator acting on the function <span class="math notranslate nohighlight">\( I_{Q \Vert P}\)</span> of the path <span class="math notranslate nohighlight">\( X_{0\ldots s}\)</span> may be seen as a generalization of the infinitesimal generator for Markov processes.</p>
+<p>In fact, using Kingman’s subadditive ergodic theory <span id="id1">[<a class="reference internal" href="#id21" title="Brian G Leroux. Maximum-likelihood estimation for hidden markov models. Stochastic processes and their applications, 40(1):127–143, 1992.">Ler92</a>]</span>, we can show that under mild regularity conditions,</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle \lim_{n\rightarrow \infty} \frac{1}{n} I_{Q \Vert P}(X_{0\ldots n}) = \lim_{n\rightarrow \infty} I_{Q \Vert P}(X_n \vert X_{0\ldots (n-1)}).\]</div>
+<p>In continuous time, we have the corresponding relation</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle \lim_{T\rightarrow \infty} \frac{1}{T} I_{Q \Vert P}(X_{0\ldots T}) = \lim_{T\rightarrow \infty} \frac{d}{dT}I_{Q \Vert P}(X_{0\ldots T}).\]</div>
+<p>This gives us an asymptotic relationship between relative information and relative information rate.</p>
+<p>Hence, to learn a strongly-stationary stochastic process, instead of minimizing the relative information to <span class="math notranslate nohighlight">\( Q_*\)</span> from <span class="math notranslate nohighlight">\( P_\theta\)</span>, we may minimize their relative information rate. We will assume strong stationarity for the rest of this series.</p>
+<p>In the case where we do not have strong stationarity, it will be hard to guarantee convergence of the learning algorithm. Greedily minimizing the terms <span class="math notranslate nohighlight">\(I_{Q \Vert P}(X_t \vert X_{0\ldots (t-1)})\)</span> of the decomposition</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rl} I_{Q \Vert P}(X_{0\ldots n}) &amp;= I_{Q \Vert P}(X_n \vert X_{0\ldots (n-1)}) \\ &amp; \\ &amp; \quad + I_{Q \Vert P}(X_{n-1} \vert X_{0\ldots (n-2)}) \\ &amp; \\ &amp; \quad + \cdots + I_{Q \Vert P}(X_1 \vert X_0) +I_{Q \Vert P}( X_0). \end{array}\end{split}\]</div>
+<p>may not help in minimizing the asymptotic time-averaged relative information, since a parameter update to reduce <span class="math notranslate nohighlight">\(I_{Q \Vert P}(X_t \vert X_{0\ldots (t-1)})\)</span> may cause earlier terms <span class="math notranslate nohighlight">\(I_{Q \Vert P}(X_s \vert X_{0\ldots (s-1)}), s &lt; t,\)</span> to increase more than the amount reduced. Getting this balance to work with stochastic updates is tricky and will require some kind of stationarity as well as new mathematical techniques from the field of biased stochastic approximation.</p>
+<p>Note that the relative information rate does not depend on the initial distributions <span class="math notranslate nohighlight">\( Q(X_0)\)</span> and <span class="math notranslate nohighlight">\( P(X_0).\)</span> Therefore, by using the time-averaged relative information (or equivalently the relative information rate) as the learning objective, we are declaring that our main focus is learning the transition kernel of the true distribution.</p>
+<p>I prefer to write the relative information rate as</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle \frac{d}{ds}I_{Q \Vert P} (X_{0\ldots s}) = \frac{d X_{0\ldots s}}{ds} * \frac{\partial}{\partial X_{0\ldots s}} I_{Q \Vert P} (X_{0\ldots s})\]</div>
+<p>where <span class="math notranslate nohighlight">\( *\)</span> is the inner product in some appropriate Hilbert space and</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle \frac{\partial}{\partial X_{0\ldots s}} F (X_{0\ldots s})\]</div>
+<p>is the functional derivative of a path function <span class="math notranslate nohighlight">\( F\)</span> with respect to the path <span class="math notranslate nohighlight">\( X_{0\ldots s}.\)</span> We will formalize the Hilbert space and functional derivative in another post.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<div class="docutils container" id="id2">
+<dl class="citation">
+<dt class="label" id="id21"><span class="brackets"><a class="fn-backref" href="#id1">Ler92</a></span></dt>
+<dd><p>Brian G Leroux. Maximum-likelihood estimation for hidden markov models. <em>Stochastic processes and their applications</em>, 40(1):127–143, 1992.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     
+    <a href="../2020-12-01-biased-stochastic-approximation/">
+      <i class="fa fa-arrow-circle-left"></i> Biased stochastic approximation
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+     
+    <a href="../2021-03-22-relative-inference-with-mutable-processes/">
+      Relative inference with mutable processes <i
+        class="fa fa-arrow-circle-right"
+      ></i
+      >
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+              </div>
+              
+<!-- Add a comment box underneath the page's content -->
+<script src="https://giscus.app/client.js"
+        data-repo="shaoweilin/shaoweilin.github.io"
+        data-repo-id="R_kgDOHM5tAA"
+        data-category="Blog comments"
+        data-category-id="DIC_kwDOHM5tAM4COqgI"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2022, Shaowei Lin.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,681 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:title" content="Biased stochastic approximation with mutable processes" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://shaoweilin.github.io/posts/2021-03-23-biased-stochastic-approximation-with-mutable-processes/" />
+  
+<meta property="og:description" content="The goal of this post is to derive a general online learning recipe for training a mutable process\{Z_t,X_t\} to learn the true distribution Q_*(X) of a partially-observed Markov process\{X_t\}. Th..." />
+  
+<meta property="og:image" content="https://shaoweilin.github.io/_static/profile.jpg" />
+  
+<meta property="og:image:alt" content="Biased stochastic approximation with mutable processes" />
+  
+    <title>Biased stochastic approximation with mutable processes &#8212; Spikes and Types  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../about/" />
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+     
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../blog/atom.xml"
+  title="Spikes and Types"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../">
+<p class="title">Spikes and Types</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../about/">
+  About
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../blog/">
+  Blog
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../search/" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" >
+</form>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/shaoweilin/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
+<h2>
+   <i class="fa fa-calendar"></i>
+  23 March 2021 
+</h2>
+
+<ul>
+        
+</ul>
+
+<h3>
+  <a href="../../blog/">Recent Posts</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../2022-01-22-information-topos-theory-motivation/"
+      >22 January - Information topos theory - motivation</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-09-09-all-you-need-is-relative-information/"
+      >09 September - All you need is relative information</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-06-05-spiking-neural-networks/"
+      >05 June - Spiking neural networks</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-06-01-convergence-of-biased-stochastic-approximation/"
+      >01 June - Convergence of biased stochastic approximation</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-05-10-path-integrals-and-the-dyson-formula/"
+      >10 May - Path integrals and the Dyson formula</a
+    >
+  </li>
+  
+</ul>
+
+<h3>
+  <a href="../../blog/archive/">Archives</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../blog/2022/">2022 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2021/">2021 (8)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2020/">2020 (12)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2018/">2018 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2017/">2017 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2016/">2016 (3)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2014/">2014 (2)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2012/">2012 (1)</a>
+  </li>
+   
+</ul>
+
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-do-we-assume-about-the-true-distribution-the-model-and-the-learning-objective">
+   What do we assume about the true distribution, the model and the learning objective?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-the-general-intuition-behind-online-learning-for-mutable-processes">
+   What is the general intuition behind online learning for mutable processes?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#is-there-a-stochastic-approximation-of-the-above-procedure">
+   Is there a stochastic approximation of the above procedure?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-can-we-interpret-the-discriminative-model-update">
+   How can we interpret the discriminative model update?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#appendix-discriminative-model-update">
+   Appendix: Discriminative model update
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+
+              <div>
+                 <div class="tex2jax_ignore mathjax_ignore section" id="biased-stochastic-approximation-with-mutable-processes">
+<h1>Biased stochastic approximation with mutable processes<a class="headerlink" href="#biased-stochastic-approximation-with-mutable-processes" title="Permalink to this headline">#</a></h1>
+<p>The goal of this post is to derive a general online learning recipe for training a <a class="reference external" href="2021-03-22-relative-inference-with-mutable-processes/#what-is-a-mutable-process">mutable</a> process <span class="math notranslate nohighlight">\(\{Z_t,X_t\}\)</span> to learn the true distribution <span class="math notranslate nohighlight">\(Q_*(X)\)</span> of a partially-observed Markov process <span class="math notranslate nohighlight">\(\{X_t\}\)</span>. The recipe returns a generative distribution <span class="math notranslate nohighlight">\(P(Z,X)\)</span> whose marginal <span class="math notranslate nohighlight">\(P(X)\)</span> approximates <span class="math notranslate nohighlight">\(Q_*(X).\)</span></p>
+<p>The variables <span class="math notranslate nohighlight">\(Z\)</span> of the mutable process are auxiliary variables that assist in inference and computation. During training, the distribution of <span class="math notranslate nohighlight">\(Z\)</span> given <span class="math notranslate nohighlight">\(X\)</span> is controlled by a discriminative model <span class="math notranslate nohighlight">\(\{Q(Z\vert X)\}.\)</span> Our method works in both discrete time and continuous time. We assume in the mutable process that for each time <span class="math notranslate nohighlight">\(t,\)</span> the variables <span class="math notranslate nohighlight">\(Z_t\)</span> and <span class="math notranslate nohighlight">\(X_t\)</span> are conditionally independent of each other given their past.</p>
+<p>Our strategy is relative inference, where we use a relative information objective that measures the divergence between the discriminative distribution <span class="math notranslate nohighlight">\(Q(Z,X)\)</span> and the generative distribution <span class="math notranslate nohighlight">\(P(Z,X).\)</span> We minimize this objective by coordinate-wise updates to the discriminative and generative distributions using stochastic gradients.</p>
+<p>We will be using <a class="reference internal" href="../2020-12-01-biased-stochastic-approximation/"><span class="doc std std-doc">biased</span></a> stochastic approximation <span id="id1">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id38" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span> where the stochastic updates are dependent on the past but the conditional expectation of the stochastic updates given the past is not equal to the mean field. These biased stochastic approximation schemes for mutable processes generalize the classical expectation maximization algorithm for mutable models.</p>
+<p>This post is a continuation from our <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">series</span></a> on spiking networks, path integrals and motivic information.</p>
+<div class="section" id="what-do-we-assume-about-the-true-distribution-the-model-and-the-learning-objective">
+<h2>What do we assume about the true distribution, the model and the learning objective?<a class="headerlink" href="#what-do-we-assume-about-the-true-distribution-the-model-and-the-learning-objective" title="Permalink to this headline">#</a></h2>
+<p>As <a class="reference internal" href="../2021-03-22-relative-inference-with-mutable-processes/"><span class="doc std std-doc">before</span></a>, we assume that the universe is a Markov process <span class="math notranslate nohighlight">\(\{X_t\},\)</span> and let its true distribution be the path measure <span class="math notranslate nohighlight">\(Q_*.\)</span></p>
+<p>Suppose that we have a parametric discriminative model <span class="math notranslate nohighlight">\(\{Q_\lambda : \lambda \in \Lambda\}\)</span> and a parametric generative model <span class="math notranslate nohighlight">\(\{P_\theta : \theta \in \Theta\}\)</span> where the distributions <span class="math notranslate nohighlight">\(Q_\lambda\)</span> and <span class="math notranslate nohighlight">\(P_\theta\)</span> are path measures on some joint process <span class="math notranslate nohighlight">\(\{(Z_t, X_t)\}.\)</span> The random variables <span class="math notranslate nohighlight">\(Z_t\)</span> represent computational states in this discriminative-generative model. We can also interpret the <span class="math notranslate nohighlight">\(Z_t\)</span> as sample beliefs from belief distributions <span class="math notranslate nohighlight">\(Q_\lambda(Z_t\vert Z_{t-1},X_{t-1}).\)</span></p>
+<p>We assume that in both models, the distributions are Markov and each <span class="math notranslate nohighlight">\(Z_t\)</span> and <span class="math notranslate nohighlight">\(X_t\)</span> are conditionally independent given their past.  We also assume that marginals <span class="math notranslate nohighlight">\(Q(X_{0\ldots T})\)</span> of the discriminative model distributions <span class="math notranslate nohighlight">\(Q_\lambda(Z_{0 \ldots T}, X_{0\ldots T})\)</span> are all equal to the true distribution <span class="math notranslate nohighlight">\(Q_*(X_{0\ldots T}).\)</span></p>
+<p>Some parts of universe <span class="math notranslate nohighlight">\(\{X_t\}\)</span> are observed and other parts are hidden. We will impose these conditions by putting constraints on the structure of the models <span class="math notranslate nohighlight">\(\{Q_\lambda\}\)</span> and <span class="math notranslate nohighlight">\(\{P_\theta\}\)</span>, as described in this <a class="reference internal" href="../2021-03-22-relative-inference-with-mutable-processes/"><span class="doc std std-doc">post</span></a>.</p>
+<p>Our goal is to train the models by minimizing the asymptotic relative information rate (continuous time)</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\lim_{T\rightarrow \infty} \frac{d}{dT}I_{Q \Vert P}(Z_{0\ldots T}, X_{0\ldots T})\]</div>
+<p>or asymptotic conditional relative information (discrete time)</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\lim_{n \rightarrow \infty} I_{Q \Vert P}(Z_{n+1}, X_{n+1} \vert Z_{n}, X_{n}).\]</div>
+<p>over <span class="math notranslate nohighlight">\(\{Q_\lambda\}\)</span> and <span class="math notranslate nohighlight">\(\{P_\theta\}\)</span>. We first explore the problem in discrete time, before discussing the analogous results in continuous time.</p>
+<p>We assume that <span class="math notranslate nohighlight">\(Q_\lambda\)</span> has a stationary distribution <span class="math notranslate nohighlight">\(\bar{\pi}_\lambda,\)</span> and let <span class="math notranslate nohighlight">\(\bar{Q}_\lambda\)</span> be the distribution of a Markov chain that has the same transition probabilities as <span class="math notranslate nohighlight">\(Q_\lambda\)</span> but has the initial distribution <span class="math notranslate nohighlight">\(\bar{\pi}_\lambda.\)</span> Then,</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\lim_{n \rightarrow \infty} I_{Q_\lambda \Vert P_\theta}(Z_{n+1}, X_{n+1} \vert Z_{n}, X_{n}) = I_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0).\]</div>
+</div>
+<div class="section" id="what-is-the-general-intuition-behind-online-learning-for-mutable-processes">
+<h2>What is the general intuition behind online learning for mutable processes?<a class="headerlink" href="#what-is-the-general-intuition-behind-online-learning-for-mutable-processes" title="Permalink to this headline">#</a></h2>
+<p>To minimize the relative information objective, we adopt an approach similar to the expectation-maximization (EM) or exponential-mixture (em) <a class="reference internal" href="../2020-10-23-machine-learning-with-relative-information/"><span class="doc std std-doc">algorithm</span></a>. Specifically, we perform coordinate-wise minimization for the discriminative distribution <span class="math notranslate nohighlight">\(Q_\lambda\)</span> and for the generative distribution <span class="math notranslate nohighlight">\(P_\theta\)</span>, updating one distribution while holding the other constant.</p>
+<p>First, we pick some initial generative model distribution <span class="math notranslate nohighlight">\(P_{\theta_0}\)</span> and discriminative model distribution <span class="math notranslate nohighlight">\(Q_{\lambda_0}.\)</span> Then, for <span class="math notranslate nohighlight">\(n = 0, 1, \ldots,\)</span> we repeat the next two steps. Here, we will perform both steps in parallel rather than in an alternating fashion.</p>
+<hr class="docutils" />
+<p><strong>Step 1 (generative model update).</strong> Fixing the discriminative model distribution <span class="math notranslate nohighlight">\(Q_{\lambda_{n}}(Z_1 \vert Z_0, X_0),\)</span> minimize <span class="math notranslate nohighlight">\(I_{\bar{Q}_{\lambda_{n}}\Vert P_{\theta}}(Z_1, X_1 \vert Z_0, X_0)\)</span> over generative model distributions <span class="math notranslate nohighlight">\(P_{\theta}\)</span>.</p>
+<p>By definition,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rl} &amp; 
+I_{\bar{Q}_{\lambda_{n}}\Vert P_{\theta}}(Z_1, X_1 \vert Z_0, X_0)
+\\ &amp; \\ &amp; = 
+\mathbb{E}_{\bar{Q}_{\lambda_{n}}} [\log Q_{\lambda_{n}}(Z_1, X_1 \vert Z_0,X_0)] 
+\\ &amp; \\ &amp; 
+\quad - \mathbb{E}_{\bar{Q}_{\lambda_{n}}} [\log P_\theta(Z_1, X_1 \vert Z_0,X_0)], 
+\end{array}\end{split}\]</div>
+<p>where we note that the first term is independent of <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<p>We update the parameter <span class="math notranslate nohighlight">\(\theta\)</span> using the gradient</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle 
+\theta_{n+1} = \theta_n + \eta_{n+1} \mathbb{E}_{\bar{Q}_{\lambda_{n}}} \left[\left.\frac{d}{d\theta} \log P_\theta(Z_1, X_1 \vert Z_0,X_0)\right\vert _{\theta = \theta_n}\right].\]</div>
+<p>where we can also write</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rl} &amp;
+\displaystyle \mathbb{E}_{\bar{Q}_{\lambda}} \left[\left.\frac{d}{d\theta} \log P_\theta(Z_1, X_1 \vert Z_0,X_0)\right\vert _{\theta = \theta_n}\right]
+\\ &amp; \\ &amp; =
+\displaystyle
+\lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+1)},X_{0..(T+1)})} \left[ \left.\frac{d}{d\theta} \log P_\theta(Z_{T+1}, X_{T+1} \vert Z_{T},X_{T})\right\vert _{\theta = \theta_n} \right]
+. \end{array} \end{split}\]</div>
+<p><strong>Step 2 (discriminative model update).</strong> Fixing the generative model distribution <span class="math notranslate nohighlight">\(P_{\theta_{n}},\)</span> minimize <span class="math notranslate nohighlight">\(I_{\bar{Q}_\lambda \Vert P_{\theta_{n}}}(Z_1, X_1 \vert Z_0, X_0)\)</span> over discriminative model distributions <span class="math notranslate nohighlight">\(Q_\lambda.\)</span></p>
+<p>We update the parameter <span class="math notranslate nohighlight">\(\lambda\)</span> using the gradient</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\lambda_{n+1} = \displaystyle \lambda_n - \eta_{n+1} \left.\frac{d}{d\lambda} I_{\bar{Q}_\lambda \Vert P_{\theta_{n}}}(Z_1 , X_1 \vert Z_0, X_0)\right\vert _{\lambda = \lambda_n}\]</div>
+<p>where, as shown in the <a class="reference external" href="2021-03-23-biased-stochastic-approximation-with-mutable-processes/#appendix-discriminative-model-update">appendix</a>, we have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rl} &amp;
+\displaystyle \frac{d}{d\lambda} I_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0) 
+\\ &amp; \\ &amp;
+= \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+1)},X_{0..(T+1)})} \Bigg[ \left( \log \frac{Q_\lambda(Z_{T+1}, X_{T+1}\vert Z_{T},X_{T})}{P_\theta(Z_{T+1},X_{T+1}\vert Z_{T},X_{T})} \right)
+\\ &amp; \\ &amp; \quad\quad \displaystyle \times \sum_{t=0}^{T} \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \Bigg]
+. \end{array}\end{split}\]</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="is-there-a-stochastic-approximation-of-the-above-procedure">
+<h2>Is there a stochastic approximation of the above procedure?<a class="headerlink" href="#is-there-a-stochastic-approximation-of-the-above-procedure" title="Permalink to this headline">#</a></h2>
+<p>In the above two-step procedure, the term</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rl} &amp;
+\displaystyle \log \frac{Q_\lambda(Z_{T+1},X_{T+1}\vert Z_{T},X_{T})}{P_\theta(Z_{T+1},X_{T+1}\vert Z_{T},X_{T})} 
+\\ &amp; \\ &amp; =
+\displaystyle \log \frac{Q_\lambda(Z_{T+1}\vert Z_{T},X_{T})}{P_\theta(Z_{T+1}, X_{T+1}\vert Z_{T},X_{T})} + \log Q_*(X_{T+1}\vert X_{T})
+. \end{array}\end{split}\]</div>
+<p>cannot be evaluated because it depends on the true distribution <span class="math notranslate nohighlight">\(Q_*.\)</span> Fortunately, this term only scales the discriminative model update; it does not change the direction of the update. We will then replace the unknown <span class="math notranslate nohighlight">\(\log Q_*(X_{T+1}\vert X_{T})\)</span> with an estimate.</p>
+<p>Suppose we study the asymptotic time-average</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+H = -\lim_{T\rightarrow \infty} \frac{1}{T} \sum_{t=0}^T \log Q_*(X_{t+1}\vert X_{t}) \]</div>
+<p>of the negative log-transition of the true distribution. Under mild regularity conditions, we have the ergodic relationship</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+H = -\int \bar{\pi}_*(dX_0)Q_*(dX_1\vert X_0) \log Q_*(X_1\vert X_0) \]</div>
+<p>where <span class="math notranslate nohighlight">\(\bar{\pi}_*\)</span> is the stationary distribution of <span class="math notranslate nohighlight">\(Q_*.\)</span> Let <span class="math notranslate nohighlight">\(\bar{Q}_*\)</span> be the distribution of the <em>true stationary process</em> with initial distribution <span class="math notranslate nohighlight">\(\bar{\pi}_*\)</span> and transition probabilies <span class="math notranslate nohighlight">\(Q_*.\)</span> The asymptotic time-average <span class="math notranslate nohighlight">\(H\)</span> is therefore the <em>true conditional entropy</em> of <span class="math notranslate nohighlight">\(X_1\)</span> given <span class="math notranslate nohighlight">\(X_0\)</span> under the true stationary process.</p>
+<p>More <a class="reference external" href="2020-09-08-building-foundations-of-information-theory-on-relative-information/#how-do-we-derive-entropy-from-relative-information">precisely</a>, given random variables <span class="math notranslate nohighlight">\(X_0, X_1, X_1',\)</span> we construct two distributions, namely</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\bar{Q}_* \!\times\!\bar{Q}_* (X_1, X_1',X_0) = \bar{\pi}_*(X_0) Q_*(X_1 \vert X_0) Q_*(X_1'\vert X_0),\]</div>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\bar{Q}_{**} (X_1, X_1', X_0) = \bar{\pi}_*(X_0) Q_*(X_1 \vert X_0) \,\mathbb{I}(X_1 = X_1').\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbb{I}(X_1 = X_1')\)</span> is the indicator function that ensures that <span class="math notranslate nohighlight">\(X_1\)</span> and <span class="math notranslate nohighlight">\(X_1'\)</span> are copies of each other. Then, the true conditional entropy is</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+H = I_{\bar{Q}_{**} \Vert \bar{Q}_* \!\times\! \bar{Q}_*} (X_1 \vert X_0). \]</div>
+<p>Let <span class="math notranslate nohighlight">\(-\xi\)</span> be an estimate of this true conditional entropy. We can substitute the unknown <span class="math notranslate nohighlight">\(\log Q_*(X_{T+1}\vert X_{T})\)</span> with this constant without affecting the convergence of the algorithm, as we shall see in another post. More generally, we can replace the unknown with any estimate <span class="math notranslate nohighlight">\(\xi(X_{T+1} \vert X_T)\)</span> that does not depend on parameters <span class="math notranslate nohighlight">\(\theta, \lambda\)</span> or beliefs <span class="math notranslate nohighlight">\(Z_{T+1}, Z_T.\)</span></p>
+<p>Now, the above two-step procedure has the following stochastic approximation.</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle 
+X_{n+1} \sim Q_*(X_{n+1} \vert X_{n})\]</div>
+<div class="math notranslate nohighlight">
+\[ \displaystyle 
+Z_{n+1} \sim Q_{\lambda_{n}}(Z_{n+1} \vert Z_{n}, X_{n})\]</div>
+<div class="math notranslate nohighlight">
+\[ \displaystyle 
+\theta_{n+1} = \theta_{n} + \eta_{n+1} \left.\frac{d}{d\theta} \log P_\theta(Z_{n+1}, X_{n+1} \vert Z_{n},X_{n}) \right\vert _{\theta = \theta_{n}}\]</div>
+<div class="math notranslate nohighlight">
+\[ \displaystyle 
+\alpha_{n+1} = \alpha_{n} + \left.\frac{d}{d\lambda} \log Q_{\lambda}(Z_{n+1} \vert  Z_{n},X_{n})\right\vert _{\lambda=\lambda_{n}}\]</div>
+<div class="math notranslate nohighlight">
+\[ \displaystyle 
+\gamma_{n+1} = \xi(X_{n+1} \vert X_n) + \log \frac{Q_{\lambda_{n}}(Z_{n+1}\vert Z_{n},X_{n})}{P_{\theta_{n}}(Z_{n+1},X_{n+1}\vert Z_{n},X_{n})} \]</div>
+<div class="math notranslate nohighlight">
+\[ \displaystyle 
+\lambda_{n+1} = \lambda_{n} - \eta_{n+1} \alpha_{n+1} \gamma_{n+1}\]</div>
+<p>In continuous time, the above updates will become differential equations. The samples <span class="math notranslate nohighlight">\(Z_t\)</span> would be driven by a Poisson process, and the transition probabilities appearing in the updates for <span class="math notranslate nohighlight">\(\theta_t\)</span>, <span class="math notranslate nohighlight">\(\alpha_t\)</span>, <span class="math notranslate nohighlight">\(\gamma_t\)</span> would be replaced by transition rates.</p>
+<p>Before we make some preliminary observations about this stochastic approximation, let us introduce some terminology. Given <span class="math notranslate nohighlight">\((Z_{n}, X_{n}),\)</span> suppose we sample <span class="math notranslate nohighlight">\((Z_{n+1}, X_{n+1})\)</span> from <span class="math notranslate nohighlight">\(Q_\lambda(Z_{n+1},X_{n+1} \vert Z_{n}, X_{n}).\)</span> The <em>conditional expectation</em> of a function <span class="math notranslate nohighlight">\(r(Z_{n+1}, X_{n+1}, Z_{n}, X_{n})\)</span> is the expectation of <span class="math notranslate nohighlight">\(r\)</span> conditioned on some given values of <span class="math notranslate nohighlight">\((Z_{n}, X_{n}).\)</span> The <em>mean field</em> or <em>total expectation</em> of <span class="math notranslate nohighlight">\(r\)</span> is the expectation of its conditional expectation over the stationary distribution <span class="math notranslate nohighlight">\(\bar{\pi}_\lambda\)</span> on <span class="math notranslate nohighlight">\((Z_{n}, X_{n}).\)</span></p>
+<p>If the conditional expectations of the updates are independent of <span class="math notranslate nohighlight">\((Z_{n}, X_{n})\)</span>, then they will be equal to their mean fields. In this case, we say that the stochastic approximation is <em>unbiased</em>. On the other hand, if the conditional expectations depend on <span class="math notranslate nohighlight">\((Z_{n}, X_{n})\)</span>, we say that the stochastic approximation is <em>biased</em>.</p>
+<p>In continuous time, the mean fields will be derivatives of relative information rates. The conditional expectations which depend on the current states <span class="math notranslate nohighlight">\((Z_t,X_t)\)</span> will be biased estimates of the mean fields.</p>
+</div>
+<div class="section" id="how-can-we-interpret-the-discriminative-model-update">
+<h2>How can we interpret the discriminative model update?<a class="headerlink" href="#how-can-we-interpret-the-discriminative-model-update" title="Permalink to this headline">#</a></h2>
+<p>For a fixed generative model <span class="math notranslate nohighlight">\(P_\theta,\)</span> the discriminative model update looks for a distribution <span class="math notranslate nohighlight">\(Q_\lambda(Z_{n+1}\vert Z_{n},X_{n})\)</span> that minimizes the learning objective <span class="math notranslate nohighlight">\(I_{\bar{Q}_\lambda \Vert P_\theta}(Z_{n+1}, X_{n+1} \vert Z_{n}, X_{n}).\)</span> Intuitively, we can think of the update as looking for good belief <span class="math notranslate nohighlight">\(Z_{n+1}\)</span> given the previous belief <span class="math notranslate nohighlight">\(Z_{n}\)</span> and observation <span class="math notranslate nohighlight">\(X_{n}.\)</span></p>
+<p>Because <span class="math notranslate nohighlight">\(Z_{n+1}\)</span> and <span class="math notranslate nohighlight">\(X_{n+1}\)</span> are conditionally independent given the past, the learning objective decomposes as a sum of two terms.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rl} &amp; 
+I_{\bar{Q}_\lambda \Vert P_\theta}(Z_{n+1}, X_{n+1} \vert Z_{n}, X_{n}) \\ &amp; \\ &amp;= I_{\bar{Q}_\lambda \Vert P_\theta}(Z_{n+1} \vert Z_{n}, X_{n}) + I_{\bar{Q}_\lambda \Vert P_\theta}(X_{n+1} \vert Z_{n}, X_{n}) \end{array}\end{split}\]</div>
+<p>The first term vanishes when</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+Q_\lambda(Z_{n+1} \vert Z_{n}, X_{n}) = P_\theta(Z_{n+1} \vert Z_{n}, X_{n}).\]</div>
+<p>This term shows that the discriminative model update tends to <em>exploit</em> the generative model <span class="math notranslate nohighlight">\(P_\theta(Z_{n+1}\vert Z_{n}, X_{n})\)</span> in generating a belief <span class="math notranslate nohighlight">\(Z_{n+1}.\)</span></p>
+<p>The second term vanishes when <span class="math notranslate nohighlight">\(Q_\lambda(X_{n+1}\vert Z_{n},X_{n}) = Q_*(X_{n+1}\vert X_{n})\)</span> equals <span class="math notranslate nohighlight">\(P_\theta(X_{n+1}\vert Z_{n},X_{n}),\)</span> but this is clearly impossible because the true distribution is fixed.</p>
+<p>Instead, note that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rl} &amp; 
+I_{\bar{Q}_\lambda \Vert P_\theta}(X_{n+1} \vert Z_n, X_n) 
+\\ &amp; \\ &amp; = 
+\displaystyle \int \bar{\pi}_*(dX_n) \bar{\pi}_\lambda(dZ_n\vert X_n) I_{Q_*(X_{n+1} \vert X_n) \Vert \mathcal{P}_\theta(X_{n+1} \vert Z_n, X_n)} (X_{n+1})
+\end{array}\end{split}\]</div>
+<p>so the parameter <span class="math notranslate nohighlight">\(\lambda\)</span> has an effect only on the stationary transition <span class="math notranslate nohighlight">\(\bar{\pi}_\lambda(dZ_n\vert dX_n).\)</span> Thus, in the long run, the discriminative model update tends to pair beliefs <span class="math notranslate nohighlight">\(Z_n\)</span> with the current <span class="math notranslate nohighlight">\(X_n\)</span> such that the generative model <span class="math notranslate nohighlight">\(P_\theta(X_{n+1} \vert Z_n, X_n)\)</span> is able to effectively guess the next state <span class="math notranslate nohighlight">\(X_{n+1}\)</span> under <span class="math notranslate nohighlight">\(Q_*(X_{n+1}\vert X_n).\)</span> In simpler words, the discriminative model update tends to <em>explore</em> good beliefs <span class="math notranslate nohighlight">\(Z_n\)</span> for predicting the next observation <span class="math notranslate nohighlight">\(X_{n+1}\)</span>.</p>
+<p>Note that the above two tendencies to <em>exploit</em> and <em>explore</em> could be in conflict with each other. For example, at the start of the training regime, the generative model <span class="math notranslate nohighlight">\(P_\theta\)</span> is often a poor fit for the observations. In exploiting the bad generative model, the discriminative model update may end up with a belief <span class="math notranslate nohighlight">\(Z_n\)</span> that poorly predicts the next observation <span class="math notranslate nohighlight">\(X_{n+1}\)</span>, where the prediction <span class="math notranslate nohighlight">\(P_\theta(X_{n+1}\vert Z_n, X_n)\)</span> was made under this same generative model. However, by exploring beliefs <span class="math notranslate nohighlight">\(Z_n\)</span> that well predict the next observation under the generative model, the discriminative model update is giving feedback which the generative model update can use for strengthening the useful parts of the generative model. More precisely, the generative model update will make these useful beliefs more likely under <span class="math notranslate nohighlight">\(P_\theta(Z_{n+1}\vert Z_{n}, X_{n})\)</span> so that they can be exploited at the next discriminative model update.</p>
+<p>In the long run, when the generative model is a good fit for the observations, the tendencies to exploit and to explore will be more in tune with each other. This is because beliefs generated by the model <span class="math notranslate nohighlight">\(P_\theta(Z_n\vert Z_{n-1}, X_{n-1})\)</span> will also be useful for predicting the next state <span class="math notranslate nohighlight">\(P_\theta(X_{n+1}\vert Z_n,X_n).\)</span></p>
+<p>Explicitly, the exploitative part of the discriminative model update is estimated by</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle  
+\left( \log \frac{Q_\lambda(Z_{T+1}\vert Z_{T},X_{T})}{P_\theta(Z_{T+1}\vert Z_{T},X_{T})} \right) \sum_{t=0}^{T} \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \]</div>
+<p>while the explorative part is estimated by</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle  
+\left( \log \frac{Q_*(X_{T+1}\vert X_{T})}{P_\theta(X_{T+1}\vert Z_{T},X_{T})} \right) \sum_{t=0}^{T} \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) . \]</div>
+<p>The explorative update is large when <span class="math notranslate nohighlight">\(Q_*(X_{T+1}\vert X_{T})\)</span> and <span class="math notranslate nohighlight">\(P_\theta(X_{T+1}\vert Z_{T},X_{T})\)</span> are far apart.</p>
+<p>In the stochastic approximation, the explorative part is controlled by</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\alpha_{n+1} \,(\xi(X_{n+1} \vert X_n)- \log P_{\theta_{n}}(X_{n+1}\vert Z_{n},X_{n})) \]</div>
+<p>where <span class="math notranslate nohighlight">\(\xi(X_{n+1} \vert X_n)\)</span> is an estimate of the true log-likelihood <span class="math notranslate nohighlight">\(\log Q_*(X_{n+1}\vert X_{n})\)</span>. When <span class="math notranslate nohighlight">\(X_{n+1}\)</span> is too likely or too unlikely given <span class="math notranslate nohighlight">\((Z_{n}, X_{n})\)</span>, there will be a big difference between the log-likelihood <span class="math notranslate nohighlight">\(\log P_{\theta_{n}}(X_{n+1}\vert Z_{n},X_{n})\)</span> and the threshold <span class="math notranslate nohighlight">\(\xi(X_{n+1} \vert X_n).\)</span> This will generate a strong signal response in the learning system to correct the discrepancy.</p>
+<p>In <span id="id2">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id33" title="Danilo Jimenez Rezende and Wulfram Gerstner. Stochastic variational learning in recurrent spiking networks. Frontiers in computational neuroscience, 8:38, 2014.">RG14</a>]</span>, this strong signal was called <em>novelty</em> or <em>surprise</em>. The authors hypothesized that biological neural networks could implement this signal using neuromodulation.</p>
+<p>In <span id="id3">[<a class="reference internal" href="#id23" title="Isabella Pozzi, Sander Bohte, and Pieter Roelfsema. Attention-gated brain propagation: how the brain can implement reward-based error backpropagation. Advances in Neural Information Processing Systems, 33:2516–2526, 2020.">PBR20</a>]</span>, a reinforcement learning scheme for training multilayer neural networks was derived. To implement the weight updates, besides computing the usual feedforward signals, the scheme also computes feedback signals using feedback connections, a global modulating signal representing the reward prediction error, and a local gating signal representing top-down attention. The resulting weight updates are Hebbian.</p>
+<p>While there are many interesting similarities between their scheme and our algorithm, one major difference is that we do not require the feedback weights to be the same as the feedforward weights. In our algorithm, the feedback weights are represented by the parameter <span class="math notranslate nohighlight">\(\lambda\)</span> and the feedforward weights by <span class="math notranslate nohighlight">\(\theta\)</span>. At the end of training,  the feedback weights will tend towards the feedforward weights because of the tendency to exploit. However, tying the weights together at the start of training could be detrimental to learning due to the need of the neural network to explore.</p>
+</div>
+<div class="section" id="appendix-discriminative-model-update">
+<h2>Appendix: Discriminative model update<a class="headerlink" href="#appendix-discriminative-model-update" title="Permalink to this headline">#</a></h2>
+<p>In this appendix, we derive the gradient</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle
+\frac{d}{d\lambda} I_{\bar{Q}_\lambda \Vert P_\theta}(Z_1 , X_1 \vert Z_0, X_0)\]</div>
+<p>used in the discriminative model update. The methods used are similar to those employed in the policy gradient theorem <span id="id4">[<a class="reference internal" href="#id25" title="Jonathan Baxter and Peter L Bartlett. Infinite-horizon policy-gradient estimation. Journal of Artificial Intelligence Research, 15:319–350, 2001.">BB01</a>]</span>.</p>
+<p>We start with the following formula from <span id="id5">[<a class="reference internal" href="#id25" title="Jonathan Baxter and Peter L Bartlett. Infinite-horizon policy-gradient estimation. Journal of Artificial Intelligence Research, 15:319–350, 2001.">BB01</a>]</span> and <span id="id6">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id38" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span> for the integral of a function <span class="math notranslate nohighlight">\(r(W)\)</span> with respect to the derivative of the stationary distribution <span class="math notranslate nohighlight">\(\bar{\pi}_\lambda(W)\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rl} &amp;
+\displaystyle \int r(W) \frac{d}{d\lambda} \bar{\pi}_\lambda(dW) 
+\\ &amp; \\ &amp;
+= \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T \int \bar{\pi}_\lambda(dW_0) \int  \prod_{i=0}^{t} Q_\lambda(dW_{i+1}\vert W_i)    
+\\ &amp; \\ &amp;
+\quad \quad \displaystyle \times\,\, r(W_{t+1}) \frac{d}{d\lambda} \log Q_\lambda(W_1 \vert W_0)  
+\\ &amp; \\ &amp;
+= \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T \int \bar{\pi}_\lambda(dW_{T-t}) \int  \prod_{i=T-t}^{T} Q_\lambda(dW_{i+1}\vert W_i)   
+\\ &amp; \\ &amp;
+\quad \quad \displaystyle  \times \,\, r(W_{T+1}) \frac{d}{d\lambda} \log Q_\lambda(W_{T-t+1} \vert W_{T-t})
+\\ &amp; \\ &amp;
+= \displaystyle \lim_{T\rightarrow \infty} \sum_{t=0}^T \mathbb{E}_{Q_\lambda(W_{0..(T+1)})} \left[ r(W_{T+1})  \frac{d}{d\lambda} \log Q_\lambda(W_{T-t+1} \vert  W_{T-t}) \right]
+\\ &amp; \\ &amp;
+= \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(W_{0..(T+1)})} \left[ r(W_{T+1}) \sum_{t=0}^T \frac{d}{d\lambda} \log Q_\lambda(W_{t+1} \vert W_{t}) \right]
+. \end{array}\end{split}\]</div>
+<p>We now derive the discriminative model update. Let <span class="math notranslate nohighlight">\(\{W_n\}\)</span> denote the Markov chain <span class="math notranslate nohighlight">\(\{(Z_{n+1},X_{n+1},Z_{n},X_{n})\}.\)</span> Abusing notation, we write the distribution of <span class="math notranslate nohighlight">\(W_n\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rl} &amp; \displaystyle 
+Q_\lambda(W_{n} \vert W_{n-1}) 
+\\ &amp; \\ &amp; = \displaystyle
+Q_\lambda\left((\,Z_{n+1},X_{n+1},Z_n,X_n)\, \vert\, (Z_n,X_n,Z_{n-1},X_{n-1}) \, \right)
+\\ &amp; \\ &amp; = \displaystyle
+Q_\lambda(Z_{n+1},X_{n+1}\vert Z_n, X_n)
+\end{array} \end{split}\]</div>
+<p>and its stationary distribution as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rl} &amp; \displaystyle 
+\bar{\pi}_\lambda(W_0) 
+\\ &amp; \\ &amp; = \displaystyle
+\bar{\pi}_\lambda(Z_{1},X_{1},Z_0,X_0)
+\\ &amp; \\ &amp; = \displaystyle
+\bar{\pi}_\lambda(Z_0,X_0) Q_\lambda(Z_1,X_1\vert Z_0, X_0)
+. \end{array} \end{split}\]</div>
+<p>By the product rule,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rl} &amp; 
+\displaystyle \frac{d}{d\lambda} I_{\bar{Q}_\lambda \Vert P_\theta}(Z_1,X_1 \vert Z_0,X_0) 
+\\ &amp; \\ &amp;= 
+\displaystyle \frac{d}{d\lambda} \int \left(\log \frac{Q_\lambda(Z_1,X_1 \vert Z_0,X_0)}{P_\theta(Z_1,X_1 \vert Z_0,X_0)} \right) \bar{\pi}_\lambda(dZ_1,dX_1,dZ_0,dX_0) 
+\\ &amp; \\ &amp; = 
+\displaystyle  \int \left( \frac{d}{d\lambda} \log \frac{Q_\lambda(Z_1,X_1 \vert Z_0,X_0)}{P_\theta(Z_1,X_1 \vert Z_0,X_0)} \right)  \bar{\pi}_\lambda(dZ_1,dX_1,dZ_0,dX_0)
+\\ &amp; \\ &amp; 
+\quad + \displaystyle  \int\left( \log \frac{Q_\lambda(Z_1,X_1 \vert Z_0,X_0)}{P_\theta(Z_1,X_1 \vert Z_0,X_0)} \right) \frac{d}{d\lambda} \bar{\pi}_\lambda(dZ_1,dX_1,dZ_0,dX_0) 
+. \end{array}\end{split}\]</div>
+<p>The first term equals</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rl} &amp;
+\displaystyle \int \frac{\frac{d}{d\lambda} Q_\lambda(Z_1,X_1\vert Z_0,X_0)}{Q_\lambda(Z_1,X_1\vert Z_0,X_0)} Q_\lambda(dZ_1,dX_1 \vert Z_0,X_0)  \bar{\pi}_\lambda(dZ_0,dX_0) 
+\\ &amp; \\ &amp; = 
+\displaystyle \int \left( \int \frac{d}{d\lambda} Q_\lambda(dZ_1,dX_1\vert Z_0,X_0) \right) \bar{\pi}_\lambda(dZ_0,dX_0)
+\\ &amp; \\ &amp; = 
+\displaystyle \int \left( \frac{d}{d\lambda}\int Q_\lambda(dZ_1,dX_1\vert Z_0,X_0) \right) \bar{\pi}_\lambda(dZ_0,dX_0)
+\\ &amp; \\ &amp; = \int
+\displaystyle \left( \frac{d}{d\lambda} 1 \right)  \bar{\pi}_\lambda(dZ_0,dX_0)
+\\ &amp; \\ &amp; = 
+0. \end{array}\end{split}\]</div>
+<p>Taking derivatives of the stationary distribution, the second term becomes</p>
+<div class="math notranslate nohighlight">
+\[ \displaystyle 
+\lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+2)},X_{0..(T+2)})} \Bigg[ \left( \log \frac{Q_\lambda(Z_{T+2},X_{T+2}\vert Z_{T+1},X_{T+1})}{P_\theta(Z_{T+2},X_{T+2}\vert Z_{T+1},X_{T+1})} \right) \sum_{t=1}^T \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1},X_{t+1} \vert  Z_t,X_t) \Bigg]. \]</div>
+<p>Lastly, because</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \displaystyle
+\begin{array}{rl} &amp;
+\displaystyle \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1},X_{t+1} \vert  Z_{t},X_{t}) 
+\\ &amp; \\ &amp;
+= \displaystyle \frac{d}{d\lambda} \Big( \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) + \log Q_*(X_{t+1} \vert X_t) \Big)
+\\ &amp; \\ &amp;
+= \displaystyle \frac{d}{d\lambda}  \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t})
+, \end{array} \end{split}\]</div>
+<p>the gradient simplifies (after a change of indices) to</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rl} &amp;
+\displaystyle \frac{d}{d\lambda} I_{\bar{Q}_\lambda \Vert P_\theta}(Z_1,X_1 \vert Z_0,X_0) 
+\\ &amp; \\ &amp; = 
+\displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+1)},X_{0..(T+1)})} \Bigg[ \left( \log \frac{Q_\lambda(Z_{T+1},X_{T+1}\vert Z_T,X_T)}{P_\theta(Z_{T+1},X_{T+1}\vert Z_T,X_T)} \right)  \sum_{t=1}^T \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \Bigg]
+\\ &amp; \\ &amp; = 
+\displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+1)},X_{0..(T+1)})} \Bigg[ \left( \log \frac{Q_\lambda(Z_{T+1},X_{T+1}\vert Z_T,X_T)}{P_\theta(Z_{T+1},X_{T+1}\vert Z_T,X_T)} \right)  \sum_{t=0}^T \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \Bigg]
+\end{array}\end{split}\]</div>
+<p>where the last equality follows because the limit does not depend on the initial distribution of <span class="math notranslate nohighlight">\((Z_0, X_0).\)</span></p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<div class="docutils container" id="id7">
+<dl class="citation">
+<dt class="label" id="id25"><span class="brackets">BB01</span><span class="fn-backref">(<a href="#id4">1</a>,<a href="#id5">2</a>)</span></dt>
+<dd><p>Jonathan Baxter and Peter L Bartlett. Infinite-horizon policy-gradient estimation. <em>Journal of Artificial Intelligence Research</em>, 15:319–350, 2001.</p>
+</dd>
+<dt class="label" id="id29"><span class="brackets">KMMW19</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id6">2</a>)</span></dt>
+<dd><p>Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In <em>Conference on Learning Theory</em>, 1944–1974. PMLR, 2019.</p>
+</dd>
+<dt class="label" id="id23"><span class="brackets"><a class="fn-backref" href="#id3">PBR20</a></span></dt>
+<dd><p>Isabella Pozzi, Sander Bohte, and Pieter Roelfsema. Attention-gated brain propagation: how the brain can implement reward-based error backpropagation. <em>Advances in Neural Information Processing Systems</em>, 33:2516–2526, 2020.</p>
+</dd>
+<dt class="label" id="id24"><span class="brackets"><a class="fn-backref" href="#id2">RG14</a></span></dt>
+<dd><p>Danilo Jimenez Rezende and Wulfram Gerstner. Stochastic variational learning in recurrent spiking networks. <em>Frontiers in computational neuroscience</em>, 8:38, 2014.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     
+    <a href="../2021-03-22-relative-inference-with-mutable-processes/">
+      <i class="fa fa-arrow-circle-left"></i> Relative inference with mutable processes
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+     
+    <a href="../2021-04-22-proofs-as-programs-challenges-and-strategies-for-program-synthesis/">
+      Proofs as programs - challenges and strategies for program synthesis <i
+        class="fa fa-arrow-circle-right"
+      ></i
+      >
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+              </div>
+              
+<!-- Add a comment box underneath the page's content -->
+<script src="https://giscus.app/client.js"
+        data-repo="shaoweilin/shaoweilin.github.io"
+        data-repo-id="R_kgDOHM5tAA"
+        data-category="Blog comments"
+        data-category-id="DIC_kwDOHM5tAM4COqgI"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2022, Shaowei Lin.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

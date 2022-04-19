@@ -1,0 +1,539 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:title" content="Building foundations of information theory on relative information" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://shaoweilin.github.io/posts/2020-09-08-building-foundations-of-information-theory-on-relative-information/" />
+  
+<meta property="og:description" content="The relative information[ BF14](also known as relative entropy or Kullback-Leibler divergence) is an important object in information theory for measuring how far a probability measure Q is from ano..." />
+  
+<meta property="og:image" content="https://shaoweilin.github.io/_static/profile.jpg" />
+  
+<meta property="og:image:alt" content="Building foundations of information theory on relative information" />
+  
+    <title>Building foundations of information theory on relative information &#8212; Spikes and Types  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../about/" />
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+     
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../blog/atom.xml"
+  title="Spikes and Types"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../">
+<p class="title">Spikes and Types</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../about/">
+  About
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../blog/">
+  Blog
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../search/" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" >
+</form>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/shaoweilin/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
+<h2>
+   <i class="fa fa-calendar"></i>
+  08 September 2020 
+</h2>
+
+<ul>
+        
+</ul>
+
+<h3>
+  <a href="../../blog/">Recent Posts</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../2022-01-22-information-topos-theory-motivation/"
+      >22 January - Information topos theory - motivation</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-09-09-all-you-need-is-relative-information/"
+      >09 September - All you need is relative information</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-06-05-spiking-neural-networks/"
+      >05 June - Spiking neural networks</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-06-01-convergence-of-biased-stochastic-approximation/"
+      >01 June - Convergence of biased stochastic approximation</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-05-10-path-integrals-and-the-dyson-formula/"
+      >10 May - Path integrals and the Dyson formula</a
+    >
+  </li>
+  
+</ul>
+
+<h3>
+  <a href="../../blog/archive/">Archives</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../blog/2022/">2022 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2021/">2021 (8)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2020/">2020 (12)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2018/">2018 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2017/">2017 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2016/">2016 (3)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2014/">2014 (2)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2012/">2012 (1)</a>
+  </li>
+   
+</ul>
+
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-build-foundations-of-information-theory-on-relative-information">
+   Why build foundations of information theory on relative information?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-relative-information">
+   What is relative information?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-do-we-derive-entropy-from-relative-information">
+   How do we derive entropy from relative information?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-do-we-define-relative-information-without-densities">
+   How do we define relative information without densities?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-do-we-define-relative-information-without-absolute-continuity">
+   How do we define relative information without absolute continuity?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-do-we-define-relative-information-when-the-total-measure-is-not-one">
+   How do we define relative information when the total measure is not one?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-do-we-define-relative-information-when-the-total-measures-of-p-q-are-not-the-same">
+   How do we define relative information when the total measures of
+   <span class="math notranslate nohighlight">
+    \(P, Q\)
+   </span>
+   are not the same?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+
+              <div>
+                 <div class="tex2jax_ignore mathjax_ignore section" id="building-foundations-of-information-theory-on-relative-information">
+<h1>Building foundations of information theory on relative information<a class="headerlink" href="#building-foundations-of-information-theory-on-relative-information" title="Permalink to this headline">#</a></h1>
+<p>The relative information <span id="id1">[<a class="reference internal" href="../2022-01-22-information-topos-theory-motivation/#id53" title="JC Baez and T Fritz. A bayesian characterization of relative entropy. Theory and Applications of Categories, 29:422–456, 2014.">BF14</a>]</span> (also known as relative entropy or Kullback-Leibler divergence) is an important object in information theory for measuring how far a probability measure <span class="math notranslate nohighlight">\(Q\)</span> is from another probability measure <span class="math notranslate nohighlight">\(P.\)</span> Here, <span class="math notranslate nohighlight">\(Q\)</span> is usually the true distribution of some real phenomenon, and <span class="math notranslate nohighlight">\(P\)</span> is some model distribution.</p>
+<p>In this post, we emphasize that the relative information is fundamental in the sense that all other interesting information-theoretic objects may be derived from it. We also outline how relative information can be defined without probability mass functions or probability density functions, or even in the absence of absolute continuity.</p>
+<p>This is the first post in our <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">series</span></a> on spiking networks, path integrals and motivic information.</p>
+<div class="section" id="why-build-foundations-of-information-theory-on-relative-information">
+<h2>Why build foundations of information theory on relative information?<a class="headerlink" href="#why-build-foundations-of-information-theory-on-relative-information" title="Permalink to this headline">#</a></h2>
+<p>Firstly, we want to show that relative information is the “right way” to think about machine learning problems. Many methods like max entropy or max likelihood can be framed in terms of min relative information. We can then use this reformulation to derive more robust learning algorithms (e.g. stochastic gradients) and we can prove asymptotic properties of these algorithms more easily. We will also be using (conditional) relative information to derive learning algorithms for statistical models with hidden variables. All of these will be explained in a later post.</p>
+<p>The second reason is because we will be extending relative information to take values in a motivic ring so as to get motivic information theory. This then allows us to write down path integrals that don’t run into convergence issues.</p>
+</div>
+<div class="section" id="what-is-relative-information">
+<h2>What is relative information?<a class="headerlink" href="#what-is-relative-information" title="Permalink to this headline">#</a></h2>
+<p>Given probability measures <span class="math notranslate nohighlight">\(P, Q\)</span> on a finite state space <span class="math notranslate nohighlight">\(\{1, \ldots, n\},\)</span> the relative information to <span class="math notranslate nohighlight">\(Q\)</span> from <span class="math notranslate nohighlight">\(P\)</span> is the sum</p>
+<div class="math notranslate nohighlight">
+\[I_{Q\Vert P} = \displaystyle \sum_{i=1}^{n} Q(i) \log \frac{Q(i)}{P(i)}.\]</div>
+<p>In the continuous case, given probability measures <span class="math notranslate nohighlight">\(P, Q\)</span> on <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> with density functions <span class="math notranslate nohighlight">\(p(x), q(x),\)</span> the relative information to <span class="math notranslate nohighlight">\(Q\)</span> from <span class="math notranslate nohighlight">\(P\)</span> is the integral</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle I_{Q\Vert P} = \int q(x) \log \frac{q(x)}{p(x)}\, dx.\]</div>
+<p>It is not difficult to show that <span class="math notranslate nohighlight">\(I_{Q\Vert P} \geq 0\)</span> for all probability measures <span class="math notranslate nohighlight">\(P, Q\)</span> with equality if and only if <span class="math notranslate nohighlight">\(P = Q\)</span> almost everywhere.</p>
+</div>
+<div class="section" id="how-do-we-derive-entropy-from-relative-information">
+<h2>How do we derive entropy from relative information?<a class="headerlink" href="#how-do-we-derive-entropy-from-relative-information" title="Permalink to this headline">#</a></h2>
+<p>Classical textbooks for information theory define the relative information in terms of entropy (and cross entropy). We could choose instead to think of the relative information as the fundamental object, and entropy as a special case <span id="id2">[<a class="reference internal" href="../2020-09-18-conditional-relative-information-and-its-axiomatizations/#id49" title="Robert M Gray. Entropy and information theory. Springer Science &amp; Business Media, 2011.">Gra11</a>]</span>, <span id="id3">[<a class="reference internal" href="#id53" title="Philip Chodrow. Divergence, entropy, information: an opinionated introduction to information theory. arXiv preprint arXiv:1708.07459, 2017.">Cho17</a>]</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(X\)</span> be a random variable with values in the measurable space <span class="math notranslate nohighlight">\((\Omega, \mathcal{B})\)</span>, and let <span class="math notranslate nohighlight">\(P_X\)</span> be its distribution. For discrete state spaces <span class="math notranslate nohighlight">\(\Omega\)</span>, the entropy of <span class="math notranslate nohighlight">\(X\)</span> is defined as</p>
+<div class="math notranslate nohighlight">
+\[H_{P_X}(X) = - \displaystyle \sum_{i=1}^{n} P_X(i) \log P_X(i).\]</div>
+<p>In general, for any measurable space <span class="math notranslate nohighlight">\((\Omega, \mathcal{B})\)</span>, we now construct two extreme measures on the product space <span class="math notranslate nohighlight">\((\Omega \times \Omega, \mathcal{B} \otimes \mathcal{B})\)</span>.</p>
+<p>The first is the product measure <span class="math notranslate nohighlight">\(P_X \times P_X\)</span> where</p>
+<div class="math notranslate nohighlight">
+\[(P_X \times P_X) (F \times G) = P_X(F) P_X(G)\]</div>
+<p>for all <span class="math notranslate nohighlight">\(F,G \in \mathcal{B}\)</span>. We may think of it as the joint distribution on two independent random variables <span class="math notranslate nohighlight">\(X_1, X_2\)</span> whose marginals are both equal to <span class="math notranslate nohighlight">\(P_X\)</span>.</p>
+<p>The second is the <em>diagonal</em> measure</p>
+<div class="math notranslate nohighlight">
+\[P_{XX}(F\times G) = P_X(F \cap G)\]</div>
+<p>for all <span class="math notranslate nohighlight">\(F,G \in \mathcal{B}\)</span>. When <span class="math notranslate nohighlight">\(\Omega\)</span> is finite, <span class="math notranslate nohighlight">\(P_{XX}(x_1,x_2)\)</span> equals <span class="math notranslate nohighlight">\(P(x_1)\)</span> if <span class="math notranslate nohighlight">\(x_1 = x_2\)</span>, and zero otherwise. We may think of it as the joint distribution on two dependent random variables <span class="math notranslate nohighlight">\(X_1 = X_2\)</span> whose marginals are also both equal to <span class="math notranslate nohighlight">\(P_X\)</span>.</p>
+<p>The entropy of <span class="math notranslate nohighlight">\(X\)</span> may be then defined as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{rl} H_{P_X}(X) &amp;= I_{P_{XX} \Vert P_X\times P_X} \\ &amp; \\ &amp;= \displaystyle \sum_{i,j} P_{XX}(i,j) \log \frac{P_{XX}(i,j)}{P_X(i)P_X(j)} \\ &amp; \\ &amp;= \displaystyle \sum_{i} P_{X}(i) \log \frac{P_{X}(i)}{P_X(i)P_X(i)} \\ &amp; \\ &amp;= -\displaystyle \sum_{i} P_X(i) \log P_X(i), \end{array}\end{split}\]</div>
+<p>the relative information to <span class="math notranslate nohighlight">\(P_{XX}\)</span> from <span class="math notranslate nohighlight">\(P_X\times P_X.\)</span> Therefore, entropy measures the amount of information gained when we learn that two random variables <span class="math notranslate nohighlight">\(X_1, X_2\)</span> previously believed to be completely independent are actually completely dependent.</p>
+<p>A different view of the relationship between entropy and relative information starts with the observation that Shannon’s formula for discrete entropy does not behave well when we take its limit to get a formula for continuous entropy. Jaynes proposed a correction called the limiting density of discrete points (LDDP) that is defined as the negative relative information to <span class="math notranslate nohighlight">\(P_X\)</span> from the uniform distribution <span id="id4">[<a class="reference internal" href="#id51" title="Edwin T Jaynes. Information theory and statistical mechanics. Physical review, 106(4):620, 1957.">Jay57</a>]</span>. In the discrete case, the LDDP works out to be</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \sum_{i=1}^{n} P_X(i) \log \frac{P_X(i)}{1/n} = \log n - H_{P_X}(X).\]</div>
+<p>Using the relative information of the uniform distribution to <span class="math notranslate nohighlight">\(P_X\)</span> as the “right way” to think about the entropy of <span class="math notranslate nohighlight">\(X\)</span>, we find that this relative information is always positive and it decreases to zero as a system loses its structure and becomes more uniform.</p>
+<p>In many interesting problems, the uniform distribution is not well-defined, so this second definition of entropy in terms of relative information will not make sense. We will then revert to the first definition as the relative information to the dependent distribution from the independent distribution.</p>
+</div>
+<div class="section" id="how-do-we-define-relative-information-without-densities">
+<h2>How do we define relative information without densities?<a class="headerlink" href="#how-do-we-define-relative-information-without-densities" title="Permalink to this headline">#</a></h2>
+<p>In our definition of relative information, the densities <span class="math notranslate nohighlight">\(p(x) = dP/dx\)</span> and <span class="math notranslate nohighlight">\(q(x) = dQ/dx\)</span> are Radon-Nikodym derivatives which exist if and only if <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span> are absolutely continuous with respect to the Lebesgue measure on <span class="math notranslate nohighlight">\(\mathbb{R}^n.\)</span> However, there are many important applications where this assumption is not true, such as in the case of path measures for stochastic processes.</p>
+<p>To avoid such technical difficulties, we may define the relative information in terms of the Radon-Nikodym derivative <span class="math notranslate nohighlight">\(dQ/dP,\)</span> which exists when <span class="math notranslate nohighlight">\(Q\)</span> is absolutely continuous with respect to <span class="math notranslate nohighlight">\(P\)</span> (i.e. <span class="math notranslate nohighlight">\(Q \ll P\)</span>).</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle I_{Q\Vert P} = \int \log \frac{dQ}{dP} \,dQ\]</div>
+<p>Substituting the equations</p>
+<div class="math notranslate nohighlight">
+\[dQ = \displaystyle \frac{dQ}{dx} dx\]</div>
+<div class="math notranslate nohighlight">
+\[\displaystyle \frac{dQ}{dP} = \displaystyle \frac{dQ}{dx}/\frac{dP}{dx}\]</div>
+<p>arising from the chain rule for Radon-Nikodym derivatives, we get the earlier definition of the relative information in terms of densities.</p>
+</div>
+<div class="section" id="how-do-we-define-relative-information-without-absolute-continuity">
+<h2>How do we define relative information without absolute continuity?<a class="headerlink" href="#how-do-we-define-relative-information-without-absolute-continuity" title="Permalink to this headline">#</a></h2>
+<p>When <span class="math notranslate nohighlight">\(Q\)</span> is not absolutely continuous with respect to <span class="math notranslate nohighlight">\(P,\)</span> the Radon-Nikodym derivative <span class="math notranslate nohighlight">\(dQ/dP\)</span> does not exist and the above definition of <span class="math notranslate nohighlight">\(I_{Q\Vert P}\)</span> does not make sense. To extend the definition, we consider the relative information of a partition of <span class="math notranslate nohighlight">\(\Omega\)</span> <span id="id5">[<a class="reference internal" href="../2020-09-18-conditional-relative-information-and-its-axiomatizations/#id49" title="Robert M Gray. Entropy and information theory. Springer Science &amp; Business Media, 2011.">Gra11</a>]</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\((\Omega, \mathcal{B})\)</span> be a measurable space and let <span class="math notranslate nohighlight">\(P, Q\)</span> be two probability measures on this space. For finite partitions <span class="math notranslate nohighlight">\(\mathcal{W}=\left\{ \mathcal{W}_1, \ldots, \mathcal{W}_k \right\}\)</span> of <span class="math notranslate nohighlight">\(\Omega\)</span>, we define</p>
+<div class="math notranslate nohighlight">
+\[I_{Q\Vert P}(\mathcal{W}) = \displaystyle\sum_{\mathcal{W}_i \in \mathcal{W}} Q(\mathcal{W}_i) \log \frac{Q(\mathcal{W}_i)}{P(\mathcal{W}_i)},\]</div>
+<p>and for infinite partitions <span class="math notranslate nohighlight">\(\mathcal{U}\)</span>, we define</p>
+<div class="math notranslate nohighlight">
+\[I_{Q\Vert P}(\mathcal{U}) = \displaystyle \sup_{\mathcal{U}\leq \mathcal{W}} I_{Q\Vert P}(\mathcal{W})\]</div>
+<p>where the supremum is taken over all finite partitions <span class="math notranslate nohighlight">\(\mathcal{W}\)</span> such that <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> is a refinement of <span class="math notranslate nohighlight">\(\mathcal{W}\)</span>. Finally, we define <span class="math notranslate nohighlight">\(I_{Q\Vert P} = I_{Q\Vert P}(\Omega)\)</span>.</p>
+<p>Given any random variable <span class="math notranslate nohighlight">\(X\)</span> on <span class="math notranslate nohighlight">\(\Omega\)</span>, we also define <span class="math notranslate nohighlight">\(I_{Q\Vert P}(X)\)</span> to be <span class="math notranslate nohighlight">\(I_{Q\Vert P}(\mathcal{U})\)</span> where <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> is the partition of <span class="math notranslate nohighlight">\(\Omega\)</span> induced by <span class="math notranslate nohighlight">\(X\)</span>. Because the relative information only depends on the induced distributions <span class="math notranslate nohighlight">\(P_X, Q_X\)</span> for <span class="math notranslate nohighlight">\(X\)</span>, we have</p>
+<div class="math notranslate nohighlight">
+\[I_{Q\Vert P}(X) = I_{Q_X \Vert P_X}.\]</div>
+<p>When <span class="math notranslate nohighlight">\(Q\)</span> is not absolutely continuous with respect to <span class="math notranslate nohighlight">\(P,\)</span> we can show that this definition tells us that the relative information is infinite.</p>
+</div>
+<div class="section" id="how-do-we-define-relative-information-when-the-total-measure-is-not-one">
+<h2>How do we define relative information when the total measure is not one?<a class="headerlink" href="#how-do-we-define-relative-information-when-the-total-measure-is-not-one" title="Permalink to this headline">#</a></h2>
+<p>Let us assume that both <span class="math notranslate nohighlight">\(P, Q\)</span> have the same total measure <span class="math notranslate nohighlight">\(T\)</span> which is not necessarily equal to one. Let <span class="math notranslate nohighlight">\(\bar{P} = P/T\)</span> and <span class="math notranslate nohighlight">\(\bar{Q}= Q/T\)</span> be the respective probability measures. We define</p>
+<div class="math notranslate nohighlight">
+\[I_{Q\Vert P} =\displaystyle \sum_{i=1}^{n} Q(i) \log \frac{Q(i)}{P(i)}.\]</div>
+<p>Then, a simple calculation shows that</p>
+<div class="math notranslate nohighlight">
+\[I_{Q\Vert P} = T I_{\bar{Q}\Vert \bar{P}}.\]</div>
+</div>
+<div class="section" id="how-do-we-define-relative-information-when-the-total-measures-of-p-q-are-not-the-same">
+<h2>How do we define relative information when the total measures of <span class="math notranslate nohighlight">\(P, Q\)</span> are not the same?<a class="headerlink" href="#how-do-we-define-relative-information-when-the-total-measures-of-p-q-are-not-the-same" title="Permalink to this headline">#</a></h2>
+<p>The short answer is Don’t. It does not make sense to compare two measures with different total measures.</p>
+<p>The long answer is as follows. Suppose that we do want to go ahead and extend the definition of relative information to this situation. What property of relative information would we want to preserve?</p>
+<p>A reasonable property would be the nonnegativity of relative information. If we study the proof of nonnegativity in the classical situation, it hinges on the fact that</p>
+<div class="math notranslate nohighlight">
+\[x-1-\log x \geq 0\]</div>
+<p>for all <span class="math notranslate nohighlight">\(x \geq 0\)</span>. Continuing the proof, we replace <span class="math notranslate nohighlight">\(x\)</span> by <span class="math notranslate nohighlight">\(P(i)/Q(i)\)</span>, multiply the inequality by <span class="math notranslate nohighlight">\(Q(i)\)</span> and sum up the inequalities over <span class="math notranslate nohighlight">\(i\)</span>. This gives us</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \sum_{i=1}^{n} P(i)-\displaystyle\sum_{i=1}^{n} Q(i)+ \displaystyle\sum_{i=1}^{n} Q(i) \log \frac{Q(i)}{P(i)} \geq 0.\]</div>
+<p>Let us define naively</p>
+<div class="math notranslate nohighlight">
+\[I_{Q\Vert P} = \displaystyle\sum_{i=1}^{n} P(i)-\displaystyle\sum_{i=1}^{n} Q(i)+\displaystyle\sum_{i=1}^{n} Q(i) \log \frac{Q(i)}{P(i)}.\]</div>
+<p>Let <span class="math notranslate nohighlight">\(T_P, T_Q\)</span> be the total measures of <span class="math notranslate nohighlight">\(P, Q\)</span> assuming that they are finite, and let <span class="math notranslate nohighlight">\(\bar{P} = P/T_P\)</span> and <span class="math notranslate nohighlight">\(\bar{Q}= Q/T_Q\)</span> be the corresponding probability measures. Then,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{rl} I_{Q\Vert P} &amp;= T_P-T_Q+\displaystyle\sum_{i=1}^{n} T_Q \bar{Q}(i) \log \frac{T_Q \bar{Q}(i)}{T_P \bar{P}(i)} \\ &amp; \\ &amp;= \displaystyle T_P-T_Q+ T_Q \log \frac{T_Q}{T_P}+ T_Q I_{\bar{Q}\Vert \bar{P}}.\end{array}\end{split}\]</div>
+<p>We see that the value of <span class="math notranslate nohighlight">\(I_{Q\Vert P}\)</span> depends on the measures <span class="math notranslate nohighlight">\(P, Q\)</span> only through the classical relative information <span class="math notranslate nohighlight">\(I_{\bar{Q}\Vert \bar{P}}\)</span>, so we do not gain anything new. Relative information is only meaningful for understanding the distance between two measures that distribute the same total measure differently.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<div class="docutils container" id="id6">
+<dl class="citation">
+<dt class="label" id="id54"><span class="brackets"><a class="fn-backref" href="#id1">BF14</a></span></dt>
+<dd><p>JC Baez and T Fritz. A bayesian characterization of relative entropy. <em>Theory and Applications of Categories</em>, 29:422–456, 2014.</p>
+</dd>
+<dt class="label" id="id53"><span class="brackets"><a class="fn-backref" href="#id3">Cho17</a></span></dt>
+<dd><p>Philip Chodrow. Divergence, entropy, information: an opinionated introduction to information theory. <em>arXiv preprint arXiv:1708.07459</em>, 2017.</p>
+</dd>
+<dt class="label" id="id52"><span class="brackets">Gra11</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id5">2</a>)</span></dt>
+<dd><p>Robert M Gray. <em>Entropy and information theory</em>. Springer Science &amp; Business Media, 2011.</p>
+</dd>
+<dt class="label" id="id51"><span class="brackets"><a class="fn-backref" href="#id4">Jay57</a></span></dt>
+<dd><p>Edwin T Jaynes. Information theory and statistical mechanics. <em>Physical review</em>, 106(4):620, 1957.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     
+    <a href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/">
+      <i class="fa fa-arrow-circle-left"></i> Motivic information, path integrals and spiking networks
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+     
+    <a href="../2020-09-18-conditional-relative-information-and-its-axiomatizations/">
+      Conditional relative information and its axiomatizations <i
+        class="fa fa-arrow-circle-right"
+      ></i
+      >
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+              </div>
+              
+<!-- Add a comment box underneath the page's content -->
+<script src="https://giscus.app/client.js"
+        data-repo="shaoweilin/shaoweilin.github.io"
+        data-repo-id="R_kgDOHM5tAA"
+        data-category="Blog comments"
+        data-category-id="DIC_kwDOHM5tAM4COqgI"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2022, Shaowei Lin.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

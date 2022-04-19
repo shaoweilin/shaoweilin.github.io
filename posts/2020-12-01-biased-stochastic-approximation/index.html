@@ -1,0 +1,610 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:title" content="Biased stochastic approximation" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://shaoweilin.github.io/posts/2020-12-01-biased-stochastic-approximation/" />
+  
+<meta property="og:description" content="We explore the convergence of continuous-time ordinary differential equations and their discrete-time analogs, such as stochastic approximation and gradient descent, through the lens of Lyapunov th..." />
+  
+<meta property="og:image" content="https://shaoweilin.github.io/_static/profile.jpg" />
+  
+<meta property="og:image:alt" content="Biased stochastic approximation" />
+  
+    <title>Biased stochastic approximation &#8212; Spikes and Types  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../about/" />
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+     
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../blog/atom.xml"
+  title="Spikes and Types"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../">
+<p class="title">Spikes and Types</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../about/">
+  About
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../blog/">
+  Blog
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../search/" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" >
+</form>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/shaoweilin/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
+<h2>
+   <i class="fa fa-calendar"></i>
+  01 December 2020 
+</h2>
+
+<ul>
+        
+</ul>
+
+<h3>
+  <a href="../../blog/">Recent Posts</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../2022-01-22-information-topos-theory-motivation/"
+      >22 January - Information topos theory - motivation</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-09-09-all-you-need-is-relative-information/"
+      >09 September - All you need is relative information</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-06-05-spiking-neural-networks/"
+      >05 June - Spiking neural networks</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-06-01-convergence-of-biased-stochastic-approximation/"
+      >01 June - Convergence of biased stochastic approximation</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-05-10-path-integrals-and-the-dyson-formula/"
+      >10 May - Path integrals and the Dyson formula</a
+    >
+  </li>
+  
+</ul>
+
+<h3>
+  <a href="../../blog/archive/">Archives</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../blog/2022/">2022 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2021/">2021 (8)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2020/">2020 (12)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2018/">2018 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2017/">2017 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2016/">2016 (3)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2014/">2014 (2)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2012/">2012 (1)</a>
+  </li>
+   
+</ul>
+
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#continuous-time-dynamics">
+   Continuous-time dynamics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discrete-time-dynamics">
+   Discrete-time dynamics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#martingales-stochastic-integrals-and-the-poisson-equation">
+   Martingales, stochastic integrals and the Poisson equation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#biased-updates">
+   Biased updates
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+
+              <div>
+                 <div class="tex2jax_ignore mathjax_ignore section" id="biased-stochastic-approximation">
+<h1>Biased stochastic approximation<a class="headerlink" href="#biased-stochastic-approximation" title="Permalink to this headline">#</a></h1>
+<p>We explore the convergence of continuous-time ordinary differential equations and their discrete-time analogs, such as stochastic approximation and gradient descent, through the lens of Lyapunov theory <span id="id1">[<a class="reference internal" href="#id34" title="Léon Bottou and others. Online learning and stochastic approximations. On-line learning in neural networks, 17(9):142, 1998.">B+98</a>]</span> <span id="id2">[<a class="reference internal" href="#id31" title="Yingshen Li and Mark Rowland. Stochastic approximation theory (slides). \url http://yingzhenli.net/home/pdf/SA.pdf, 2015.">LR15</a>]</span>. From this perspective, we will study biased stochastic approximation <span id="id3">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id38" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span> where the expectation of the stochastic updates conditioned on the past (which we call the <em>conditional expectation</em>) is not the same as the expectation of the stochastic updates under the stationary distribution (which we call the <em>total expectation</em>).</p>
+<p>This post is a continuation from our <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">series</span></a> on spiking networks, path integrals and motivic information.</p>
+<div class="section" id="continuous-time-dynamics">
+<h2>Continuous-time dynamics<a class="headerlink" href="#continuous-time-dynamics" title="Permalink to this headline">#</a></h2>
+<p>Suppose we have a continuous-time dynamical system with state space <span class="math notranslate nohighlight">\(\mathcal{H} \subset \mathbb{R}^d\)</span> and update rule</p>
+<div class="math notranslate nohighlight">
+\[\dot{\eta} = -h(\eta),\]</div>
+<p>and suppose we have a function <span class="math notranslate nohighlight">\(V: \mathcal{H} \rightarrow \mathbb{R}\)</span> that has a finite lower bound. We are primarily interested in the conditions that will lead to convergence of the system to two kinds of points, namely</p>
+<ol class="simple">
+<li><p>To a fixed point, i.e. <span class="math notranslate nohighlight">\(h(\eta) = 0,\)</span></p></li>
+<li><p>To a critical point, i.e. <span class="math notranslate nohighlight">\(\nabla V(\eta) = 0.\)</span></p></li>
+</ol>
+<p>In the special case where <span class="math notranslate nohighlight">\(h(\eta) = \nabla V(\eta),\)</span> the two kinds of points are the same.</p>
+<p>If the value of <span class="math notranslate nohighlight">\(V(\eta(t))\)</span> along any path <span class="math notranslate nohighlight">\(\eta : \mathbb{R} \rightarrow \mathcal{H}\)</span> in the dynamical system decreases strictly with time <span class="math notranslate nohighlight">\(t\)</span>, then we say that <span class="math notranslate nohighlight">\(V\)</span> is a Lyapunov function for the dynamical system. Here, the system converges to a point that is both a fixed point of the system and a critical point of <span class="math notranslate nohighlight">\(V\)</span>.</p>
+<p>Suppose <span class="math notranslate nohighlight">\(V\)</span> is <span class="math notranslate nohighlight">\(C^1\)</span>-smooth and near each point <span class="math notranslate nohighlight">\(\eta\)</span> it has the expansion</p>
+<div class="math notranslate nohighlight">
+\[V(\eta') = V(\eta) + \langle \nabla V(\eta), \eta'-\eta \rangle + O(\Vert \eta'-\eta \Vert^2).\]</div>
+<p>In continuous-time, the updates <span class="math notranslate nohighlight">\(\eta'-\eta\)</span> are infinitesimal, so the change in <span class="math notranslate nohighlight">\(V\)</span> is dominated by the first order term. Therefore, if <span class="math notranslate nohighlight">\(0 &lt; \langle \nabla V(\eta), h(\eta) \rangle\)</span> for all <span class="math notranslate nohighlight">\(\eta : \mathcal{H}\)</span> away from the zeros of <span class="math notranslate nohighlight">\(h,\)</span> then <span class="math notranslate nohighlight">\(V\)</span> is a Lyapunov function for the dynamical system.</p>
+<p>In the special case where <span class="math notranslate nohighlight">\(h(\eta) = \nabla V(\eta),\)</span> we have</p>
+<div class="math notranslate nohighlight">
+\[\Vert h(\eta) \Vert^2 = \langle \nabla V(\eta), h(\eta)\rangle\]</div>
+<p>which will be strictly positive away from the zeros of <span class="math notranslate nohighlight">\(h.\)</span></p>
+</div>
+<div class="section" id="discrete-time-dynamics">
+<h2>Discrete-time dynamics<a class="headerlink" href="#discrete-time-dynamics" title="Permalink to this headline">#</a></h2>
+<p>For discrete-time dynamical systems such as gradient descent or stochastic approximation, the situation is more delicate. The value of the function <span class="math notranslate nohighlight">\(V: \mathcal{H} \rightarrow \mathbb{R}\)</span> may fluctuate up and down with each discrete time step, but the <em>total expectation</em> of <span class="math notranslate nohighlight">\(\Vert h(\eta) \Vert\)</span> or of <span class="math notranslate nohighlight">\(\nabla V(\eta)\)</span> decreases over time so the system converges to a fixed point or to a critical point.</p>
+<p>Specifically, suppose that we have discrete-time stochastic process</p>
+<div class="math notranslate nohighlight">
+\[\eta_{n+1} = \eta_{n} - \gamma_{n+1} H_{\eta_n}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\gamma_{n+1}\)</span> is the time-dependent learning rate and <span class="math notranslate nohighlight">\(H_{\eta_n}\)</span> is the update at time <span class="math notranslate nohighlight">\((n+1)\)</span> that depends on the previous system state <span class="math notranslate nohighlight">\(\eta_n.\)</span> The update could be deterministic as in the case of gradient descent, or more generally it could be stochastic as in the case of stochastic approximation.</p>
+<p>We will assume that any stochastic update <span class="math notranslate nohighlight">\(H_{\eta_n}(X_{n+1})\)</span> is a function of some parameter-controlled stochastic process <span class="math notranslate nohighlight">\(\{X_n\}\)</span>, i.e. the distribution of <span class="math notranslate nohighlight">\(X_{n+1}\)</span> conditioned on its past <span class="math notranslate nohighlight">\(X_n, X_{n-1}, \ldots\)</span> is controlled by the parameter <span class="math notranslate nohighlight">\(\eta_n.\)</span> We will also assume that for each <span class="math notranslate nohighlight">\(\eta \in \mathcal{H}\)</span>, the <span class="math notranslate nohighlight">\(\eta\)</span>-controlled stochastic process <span class="math notranslate nohighlight">\(\{X_n\}\)</span> has a unique stationary distribution <span class="math notranslate nohighlight">\(\pi_\eta\)</span>. Let <span class="math notranslate nohighlight">\(h(\eta)\)</span> be the total expectation or <em>mean field</em> of the <span class="math notranslate nohighlight">\(\eta\)</span>-controlled stochastic process, i.e. the expectation of the stochastic updates <span class="math notranslate nohighlight">\(H_{\eta}(x)\)</span> with respect to <span class="math notranslate nohighlight">\(x \sim \pi_\eta.\)</span></p>
+<p>As before, let <span class="math notranslate nohighlight">\(V: \mathcal{H} \rightarrow \mathbb{R}\)</span> be a function with a finite lower bound. We will again be interested in conditions that guarantee the convergence of the discrete-time dynamical system to two kinds of points, namely</p>
+<ol class="simple">
+<li><p>To a fixed point, i.e. <span class="math notranslate nohighlight">\(h(\eta) = 0,\)</span></p></li>
+<li><p>To a critical point, i.e. <span class="math notranslate nohighlight">\(\nabla V(\eta) = 0.\)</span></p></li>
+</ol>
+<p>The general strategy for proving the convergence of the system is to show that the <em>total expectation</em> of <span class="math notranslate nohighlight">\(V(\eta_n)\)</span> is <em>eventually</em> a decreasing function. To show that this decrease happens, it is often sufficient to check that for all <span class="math notranslate nohighlight">\(\eta', \eta,\)</span></p>
+<div class="math notranslate nohighlight">
+\[\displaystyle V(\eta') \leq V(\eta)+ \langle \nabla V(\eta), \eta'-\eta \rangle + \frac{\ell}{2}\Vert \eta'-\eta \Vert^2\]</div>
+<p>for some constant <span class="math notranslate nohighlight">\(\ell&gt;0.\)</span> When the domain <span class="math notranslate nohighlight">\(\mathcal{H}\)</span> is convex, this condition is equivalent to the <span class="math notranslate nohighlight">\(\ell\)</span>-smoothness of <span class="math notranslate nohighlight">\(V,\)</span> i.e. for all <span class="math notranslate nohighlight">\(\eta', \eta,\)</span></p>
+<div class="math notranslate nohighlight">
+\[\Vert \nabla V(\eta')- \nabla V(\eta) \Vert \leq \ell \Vert \eta' - \eta \Vert.\]</div>
+<p>which is to say that <span class="math notranslate nohighlight">\(\nabla V\)</span> is Lipschitz continuous.</p>
+<p>Going further, we may want to prove some results about the speed of convergence. First, let us represent the update</p>
+<div class="math notranslate nohighlight">
+\[H_{\eta_n}(X_{n+1}) = h(\eta_n) +E_{\eta_n}(X_{n+1})\]</div>
+<p>as the sum of the mean field and a correction term. Substituting this representation into the <span class="math notranslate nohighlight">\(\ell\)</span>-smoothness condition, we get</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\displaystyle \begin{array}{rl}V(\eta_{n+1}) &amp; \leq V(\eta)- \gamma_{n+1} \langle \nabla V(\eta),H_{\eta_n}(X_{n+1}) \rangle \\ &amp; \\ &amp; \quad \quad + \frac{\ell\gamma_{n+1}^2}{2}\Vert H_{\eta_n}(X_{n+1}) \Vert^2 \\ &amp; \\ &amp; \leq V(\eta_n) - \gamma_{n+1}\langle \nabla V(\eta), h(\eta_n) \rangle \\ &amp; \\ &amp; \quad \quad - \gamma_{n+1}\langle \nabla V(\eta), E_{\eta_n}(X_{n+1}) \rangle \\ &amp; \\ &amp; \quad \quad + \frac{\ell \gamma_{n+1}^2}{2}\Vert E_{\eta_n}(X_{n+1})\Vert^2 \\ &amp; \\ &amp; \quad \quad + \frac{\ell \gamma_{n+1}^2}{2}\Vert h(\eta_n)\Vert^2 \end{array}.\end{split}\]</div>
+<p>To manage the speed of convergence, one effective way is to bound the terms involving <span class="math notranslate nohighlight">\(\langle \nabla V(\eta), h(\eta_n) \rangle,\)</span> <span class="math notranslate nohighlight">\(\langle \nabla V(\eta), E_{\eta_n}(X_{n+1}) \rangle\)</span> and <span class="math notranslate nohighlight">\(\Vert E_{\eta_n}(X_{n+1})\Vert^2\)</span> with some scalar multiple of <span class="math notranslate nohighlight">\(\Vert h(\eta_n) \Vert^2.\)</span></p>
+<p>Starting with <span class="math notranslate nohighlight">\(\langle \nabla V(\eta), h(\eta_n) \rangle,\)</span> we could require that for all <span class="math notranslate nohighlight">\(\eta,\)</span></p>
+<div class="math notranslate nohighlight">
+\[\Vert h(\eta) \Vert^2 \leq C \langle \nabla V(\eta), h(\eta)\rangle.\]</div>
+<p>This condition is automatically satisfied for gradient dynamical systems where <span class="math notranslate nohighlight">\(h(\eta) = \nabla V(\eta)\)</span>, so the inequality becomes an equality with <span class="math notranslate nohighlight">\(C=1.\)</span></p>
+<p>As for <span class="math notranslate nohighlight">\(\Vert E_{\eta_n}(X_{n+1})\Vert^2,\)</span> we could require that this correction term be uniformly bounded, or that its conditional expectation (i.e. expected value when conditioned on the past <span class="math notranslate nohighlight">\(X_n, X_{n-1}, \ldots\)</span>) be bounded by a scalar multiple of <span class="math notranslate nohighlight">\(\Vert h(\eta_n) \Vert^2.\)</span></p>
+<p>Lastly, for <span class="math notranslate nohighlight">\(\langle \nabla V(\eta), E_{\eta_n}(X_{n+1}) \rangle,\)</span> recall that</p>
+<div class="math notranslate nohighlight">
+\[H_{\eta_n}(X_{n+1}) = h(\eta_n) +E_{\eta_n}(X_{n+1})\]</div>
+<p>so the total expectation of the correction <span class="math notranslate nohighlight">\(E_{\eta_n}(X_{n+1})\)</span> is zero by definition. If we further require that the <em>conditional expectation</em> of <span class="math notranslate nohighlight">\(H_{\eta_n}(X_{n+1})\)</span>be equal to the mean field <span class="math notranslate nohighlight">\(h(\eta_n),\)</span> then the <em>conditional expectation</em> of <span class="math notranslate nohighlight">\(E_{\eta_n}(X_{n+1})\)</span> will be equal to zero. Here, the expectation of <span class="math notranslate nohighlight">\(\langle \nabla V(\eta), E_{\eta_n}(X_{n+1}) \rangle\)</span> vanishes when we condition on the past and we get a good handle on the speed of convergence. We refer to this scenario as <em>unbiased stochastic approximation</em>.</p>
+<p>However, the conditional expectation of <span class="math notranslate nohighlight">\(E_{\eta_n}(X_{n+1})\)</span> is often non-zero for many important applications. We refer to this scenario as <em>biased stochastic approximation</em>. Here, the object of interest is the discrete-time stochastic integral</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \sum_{k=0}^n E_{\eta_k}(X_{k+1}).\]</div>
+<p>If the conditional expectation of <span class="math notranslate nohighlight">\(E_{\eta_n}(X_{n+1})\)</span> is zero, then the above stochastic integral is a martingale. To tackle the scenario where the conditional expectation of <span class="math notranslate nohighlight">\(E_{\eta_n}(X_{n+1})\)</span> is non-zero, we will need to find another suitable martingale by solving a Poisson equation, so as to control the behavior of the stochastic integral. We introduce this strategy in the next section.</p>
+</div>
+<div class="section" id="martingales-stochastic-integrals-and-the-poisson-equation">
+<h2>Martingales, stochastic integrals and the Poisson equation<a class="headerlink" href="#martingales-stochastic-integrals-and-the-poisson-equation" title="Permalink to this headline">#</a></h2>
+<p>Given a (discrete-time or continuous-time) stochastic process <span class="math notranslate nohighlight">\(\{H_t\}_{0 \leq t},\)</span> let <span class="math notranslate nohighlight">\(\mathcal{F}_s\)</span> denote the filtration (i.e. sequence of sigma algebras with <span class="math notranslate nohighlight">\(\mathcal{F}_s \subseteq \mathcal{F}_t\)</span> for all <span class="math notranslate nohighlight">\(s \leq t\)</span>) generated by the random variations <span class="math notranslate nohighlight">\(\{H_t\}_{0\leq t \leq s}.\)</span> Recall that <span class="math notranslate nohighlight">\(H_t\)</span> is a martingale if for all <span class="math notranslate nohighlight">\(s \leq t,\)</span></p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}[ H_t \vert  \mathcal{F}_s] = H_s.\]</div>
+<p>Note that this condition implies that for discrete time stochastic processes, the expectation of the <em>martingale difference</em> <span class="math notranslate nohighlight">\(E_{n+1} = H_{n+1} - H_n\)</span> conditioned on <span class="math notranslate nohighlight">\(\mathcal{F}_n\)</span> is zero.</p>
+<p>Martingales play an important role in stochastic integration <span id="id4">[<a class="reference internal" href="#id33" title="Patrick Cattiaux, Djalil Chafaı, and Arnaud Guillin. Central limit theorems for additive functionals of ergodic markov diffusions processes. ALEA, 9(2):337–382, 2012.">CChafaiG12</a>]</span>. For example, let <span class="math notranslate nohighlight">\(\{X_t\}_{0\leq t}\)</span> be a continuous-time stochastic process driven by Brownian motion, e.g.</p>
+<div class="math notranslate nohighlight">
+\[dX_t = b(X_t) dt + \sigma(X_t) dB_t\]</div>
+<p>where <span class="math notranslate nohighlight">\(X_t\)</span> is an <span class="math notranslate nohighlight">\(n\)</span>-dimensional vector, <span class="math notranslate nohighlight">\(B_t\)</span> is <span class="math notranslate nohighlight">\(m\)</span>-dimensional Brownian motion, <span class="math notranslate nohighlight">\(b(X_t)\)</span> is an <span class="math notranslate nohighlight">\(n\)</span>-dimensional vector and <span class="math notranslate nohighlight">\(\sigma(X_t)\)</span> is an <span class="math notranslate nohighlight">\(n \times m\)</span> matrix. Let <span class="math notranslate nohighlight">\(L\)</span> be the infinitesimal generator of this process, i.e. <span class="math notranslate nohighlight">\(L\)</span> acts on the space of measurable functions such that for any measurable function <span class="math notranslate nohighlight">\(g\)</span> and state <span class="math notranslate nohighlight">\(x,\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{rl} \displaystyle Lg(x) &amp;:= \displaystyle \lim_{t \rightarrow 0} \frac{ \mathbb{E}[ g(X_t) \vert X_0 =x] - g(x)} {t} \\ &amp; \\ &amp; = \displaystyle \lim_{t \rightarrow 0} \frac{ P^t g(x) - g(x)} {t} \\ &amp; \\ &amp; = \displaystyle \left. \partial_t P^t g(x) \right\vert_{t=0} \end{array}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(P^t\)</span> is the transition operator of the stochastic process <span class="math notranslate nohighlight">\(\{X_t\}.\)</span></p>
+<p>Then, one can show that</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \int_0^t Lg(X_s) ds = g(X_t) - g(X_0) - \int_0^t \sum_{i} \frac{\partial g}{\partial x_i}(X_s) \sigma_i (X_s) dB_s,\]</div>
+<p>thanks to the Itô formula, e.g. see Lemma 7.3.2 of <span id="id5">[<a class="reference internal" href="#id30" title="Bernt Oksendal. Stochastic differential equations: an introduction with applications. Springer Science &amp; Business Media, 2013.">Oks13</a>]</span>.</p>
+<p>The last term</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle M_t = \int_0^t \sum_{i} \frac{\partial g}{\partial x_i}(X_s) \sigma_i (X_s) dB_s\]</div>
+<p>is a martingale, so its expected value conditioned on <span class="math notranslate nohighlight">\(X_0\)</span> is the initial value <span class="math notranslate nohighlight">\(M_0\)</span> which is zero. Therefore,</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \mathbb{E} \left[\int_0^t Lg(X_s) ds \middle\vert  X_0\right] = \mathbb{E} [g(X_t) \vert X_0] - g(X_0)\]</div>
+<p>after taking expectations of the Itô formula.</p>
+<p>Interestingly, this formula gives us a strategy for computing expectations of stochastic integrals of the form</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \mathbb{E} \left[\int_0^t f(X_s) ds \middle\vert  X_0 \right].\]</div>
+<p>Indeed, if we are able to solve the <em>Poisson equation</em></p>
+<div class="math notranslate nohighlight">
+\[Lg = f\]</div>
+<p>with some solution <span class="math notranslate nohighlight">\(g\)</span> that is sufficiently regular, then we can use the above formula to compute the desired answer.</p>
+<p>Under some regularity conditions on <span class="math notranslate nohighlight">\(\{X_t\}\)</span> and assuming that the total expectation of <span class="math notranslate nohighlight">\(g(x)\)</span> is zero, a candidate solution to the Poisson equation is</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle g(x) = - \int_0^\infty P^s f(x) ds\]</div>
+<p>if the integral is well-defined <span id="id6">[<a class="reference internal" href="#id33" title="Patrick Cattiaux, Djalil Chafaı, and Arnaud Guillin. Central limit theorems for additive functionals of ergodic markov diffusions processes. ALEA, 9(2):337–382, 2012.">CChafaiG12</a>]</span>. Indeed, if <span class="math notranslate nohighlight">\(Lg = f,\)</span> then</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{rl} P^t g(x) - g(x) &amp;= \displaystyle \int_0^t \partial_s P^s g(x) ds \\ &amp; \\ &amp; = \displaystyle \int_0^t L P^s g (x) ds \\ &amp; \\ &amp; = \displaystyle \int_0^t P^s Lg(x) ds = \displaystyle \int_0^t P^s f(x) ds. \end{array}\end{split}\]</div>
+<p>Taking limits as <span class="math notranslate nohighlight">\(t \rightarrow \infty\)</span> and observing that under strong ergodicity <span class="math notranslate nohighlight">\(P^t g(x)\)</span> goes to the total expectation of <span class="math notranslate nohighlight">\(g(x)\)</span> which is zero, the candidate solution follows.</p>
+<p>The strategy for integrals of functions of discrete-time stochastic processes works in a similar way, where solutions to the Poisson equation provide martingales whose expected values vanish. We will use this strategy for analyzing biased stochastic approximation algorithms.</p>
+<p>In a future post, we will explore martingales, stochastic integrals and the Poisson equation through the lens of regularity structures <span id="id7">[<a class="reference internal" href="#id40" title="Martin Hairer. A theory of regularity structures. Inventiones mathematicae, 198(2):269–504, 2014.">Hai14</a>]</span>.</p>
+</div>
+<div class="section" id="biased-updates">
+<h2>Biased updates<a class="headerlink" href="#biased-updates" title="Permalink to this headline">#</a></h2>
+<p>For the rest of this post, we assume that our discrete-time parameter-controlled stochastic process <span class="math notranslate nohighlight">\(\{X_n\}_{0 \leq n}\)</span> is Markov. Explicitly, let <span class="math notranslate nohighlight">\((\mathcal{X}, \Sigma)\)</span> be a measurable space. A function <span class="math notranslate nohighlight">\(P:\mathcal{X} \times \Sigma \rightarrow [0,1]\)</span> is a Markov kernel if <span class="math notranslate nohighlight">\(P(x, \cdot): \Sigma \rightarrow [0,1]\)</span> is a distribution for all <span class="math notranslate nohighlight">\(x \in \mathcal{X}\)</span>, and <span class="math notranslate nohighlight">\(P(\cdot, A): \mathcal{X} \rightarrow [0,1]\)</span> is measurable for all <span class="math notranslate nohighlight">\(A \in \Sigma.\)</span> A Markov kernel generalizes the notion of a transition matrix beyond finite-state Markov chains.</p>
+<p>Suppose we have a Markov kernel <span class="math notranslate nohighlight">\(P_\eta\)</span> for each <span class="math notranslate nohighlight">\(\eta \in \mathcal{H}\)</span>. Let <span class="math notranslate nohighlight">\(L_\eta\)</span> be the generator of the process with Markov kernel <span class="math notranslate nohighlight">\(P_\eta\)</span>, i.e. <span class="math notranslate nohighlight">\(L_\eta\)</span> acts on the space of measurable functions such that for any function <span class="math notranslate nohighlight">\(g\)</span> and state <span class="math notranslate nohighlight">\(x,\)</span></p>
+<div class="math notranslate nohighlight">
+\[\displaystyle L_\eta g(x) := P_\eta g(x)- g(x).\]</div>
+<p>We also assume that for all <span class="math notranslate nohighlight">\(\eta \in \mathcal{H}\)</span>, the Markov kernel <span class="math notranslate nohighlight">\(P_\eta\)</span> has a unique stationary distribution <span class="math notranslate nohighlight">\(\pi_\eta\)</span>, i.e. for all <span class="math notranslate nohighlight">\(A \in \Sigma,\)</span></p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \pi_\eta(A) = \pi_\eta P_\eta(A) := \int_\mathcal{X} \pi_\eta(dx) P_\eta(x, A).\]</div>
+<p>Let <span class="math notranslate nohighlight">\(X_0, X_1, \ldots\)</span> be random variables on this space such that for all bounded measurable functions <span class="math notranslate nohighlight">\(\varphi\)</span> and integer <span class="math notranslate nohighlight">\(n \geq 0\)</span>, we have</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \mathbb{E} [ \varphi(X_{n+1}) \vert  \mathcal{F}_n] = P_{\eta_n} \varphi(X_n) := \int_\mathcal{X} P_{\eta_n} (X_n, dx) \varphi(x)\]</div>
+<p>where the parameter updates are given by</p>
+<div class="math notranslate nohighlight">
+\[\eta_{n+1} = \eta_{n} - \gamma_{n+1} H_{\eta_n}(X_{n+1})\]</div>
+<div class="math notranslate nohighlight">
+\[H_{\eta_n}(X_{n+1}) = h(\eta_n) +E_{\eta_n}(X_{n+1})\]</div>
+<div class="math notranslate nohighlight">
+\[h(\eta) = \displaystyle \int \pi_\eta(dx) H_{\eta}(x)\]</div>
+<p>as before. We will primarily be interested in the stochastic integral</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \sum_{k=0}^n E_{\eta_k}(X_{k+1}).\]</div>
+<p>For simplicity, we first fix the parameters <span class="math notranslate nohighlight">\(\eta_n = \eta\)</span> for all <span class="math notranslate nohighlight">\(n\)</span> and drop the subscripts <span class="math notranslate nohighlight">\(\eta\)</span> in notations such as <span class="math notranslate nohighlight">\(E_\eta,\)</span> <span class="math notranslate nohighlight">\(P_\eta\)</span> and <span class="math notranslate nohighlight">\(L_\eta\)</span>. Later, we will generalize the approach to the case with parameter updates <span id="id8">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id38" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span>.</p>
+<p>Suppose that we have a solution <span class="math notranslate nohighlight">\(\hat{H}\)</span> to the Poisson equation <span class="math notranslate nohighlight">\(L \hat{H} = E.\)</span> Then</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{rl} &amp; \displaystyle \sum_{k=0}^n E(X_{k+1}) \\ &amp; \\ &amp;= \displaystyle \sum_{k=0}^n P\hat{H}(X_{k+1}) - \hat{H}(X_{k+1}) \\ &amp; \\ &amp; = \displaystyle P\hat{H}(X_{n+1}) - \hat{H}(X_{1}) + \sum_{k=1}^n P\hat{H}(X_{k}) - \hat{H}(X_{k+1}) \end{array}.\end{split}\]</div>
+<p>The last sum is a martingale, because each of the summands <span class="math notranslate nohighlight">\(P\hat{H}(X_{k}) - \hat{H}(X_{k+1})\)</span> is a martingale difference, i.e. conditioned on <span class="math notranslate nohighlight">\(X_s\)</span> for some <span class="math notranslate nohighlight">\(s \leq k,\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{rl} &amp;\mathbb{E} [P\hat{H}(X_{k}) - \hat{H}(X_{k+1}) \vert X_s] \\ &amp; \\ &amp; = \displaystyle \int P^{k+1-s}(X_s, dx) \hat{H}(x) - \int P^{k+1-s}(X_s, dx) \hat{H}(x) = 0.\end{array}\end{split}\]</div>
+<p>This martingale term vanishes under both conditional and total expectation.</p>
+<p>Now, we tackle the general case where the parameter <span class="math notranslate nohighlight">\(\eta_n\)</span> is updated. We are primarily interested in the stochastic integral</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \sum_{k=0}^n \gamma_{k+1} \langle \nabla V(\eta_k) \vert E_{\eta_k}(X_{k+1}) \rangle.\]</div>
+<p>Suppose that for all <span class="math notranslate nohighlight">\(\eta\)</span>, we have a solution <span class="math notranslate nohighlight">\(\hat{H}_\eta\)</span> to the Poisson equation <span class="math notranslate nohighlight">\(L_\eta \hat{H}_\eta = E_\eta.\)</span> We may then decompose the above stochastic integral as the sum of the following expressions.</p>
+<div class="math notranslate nohighlight">
+\[S_0 := \gamma_{n+1} \langle \nabla V(\eta_n) \vert P_{\eta_n} \hat{H}_{\eta_n}(X_{n+1}) \rangle - \gamma_{1} \langle \nabla V(\eta_0) \vert \hat{H}_{\eta_0}(X_{1}) \rangle \]</div>
+<div class="math notranslate nohighlight">
+\[S_1 := \sum_{k=1}^n \gamma_{k+1} \langle \nabla V(\eta_k) \vert P_{\eta_k} \hat{H}_{\eta_k}(X_{k}) - \hat{H}_{\eta_k}(X_{k+1}) \rangle\]</div>
+<div class="math notranslate nohighlight">
+\[S_2 := \sum_{k=1}^n \gamma_{k+1} \langle \nabla V(\eta_k) \vert P_{\eta_{k-1}} \hat{H}_{\eta_{k-1}}(X_{k}) - P_{\eta_k} \hat{H}_{\eta_k}(X_{k}) \rangle\]</div>
+<div class="math notranslate nohighlight">
+\[S_3 := \sum_{k=1}^n \gamma_{k+1} \langle \nabla V(\eta_{k-1}) - \nabla V(\eta_k) \vert P_{\eta_{k-1}} \hat{H}_{\eta_{k-1}}(X_{k}) \rangle\]</div>
+<div class="math notranslate nohighlight">
+\[S_4 := \sum_{k=1}^n (\gamma_{k} - \gamma_{k+1}) \langle \nabla V(\eta_{k-1}) \vert P_{\eta_{k-1}} \hat{H}_{\eta_{k-1}}(X_{k}) \rangle\]</div>
+<p>Here, the expressions <span class="math notranslate nohighlight">\(S_0\)</span> and <span class="math notranslate nohighlight">\(S_1\)</span> arise naturally from the application of the Poisson equation solutions. In particular, the terms <span class="math notranslate nohighlight">\(P_{\eta_k} \hat{H}_{\eta_k}(X_{k}) - \hat{H}_{\eta_k}(X_{k+1})\)</span> appearing in <span class="math notranslate nohighlight">\(S_1\)</span> are martingale differences so <span class="math notranslate nohighlight">\(S_1\)</span> vanishes under conditional and total expectations.</p>
+<p>The expressions <span class="math notranslate nohighlight">\(S_2,\)</span> <span class="math notranslate nohighlight">\(S_3\)</span> and <span class="math notranslate nohighlight">\(S_4\)</span> are correction terms coming from updates to the parameters and step sizes, and they can be bounded by some suitable assumptions on the regularity of <span class="math notranslate nohighlight">\(P_\eta \hat{H}_\eta(x),\)</span> <span class="math notranslate nohighlight">\(\nabla V (\eta)\)</span> and <span class="math notranslate nohighlight">\(\gamma_{n}\)</span> respectively.</p>
+<p>To summarize, we have the following convergence result for biased stochastic approximation <span id="id9">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id38" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span>, starting with some regularity conditions. Note that <span class="math notranslate nohighlight">\(h(\eta)\)</span> varies like <span class="math notranslate nohighlight">\(\frac{\partial V}{\partial \eta}(\eta)\)</span> so we are guaranteed convergence only to a critical point of the Lyapunov function <span class="math notranslate nohighlight">\(V(\eta).\)</span></p>
+<hr class="docutils" />
+<p><strong>A1 (Direction of mean field).</strong> There exists <span class="math notranslate nohighlight">\(c_0 \geq 0, c_1 \geq 0\)</span> such that for all <span class="math notranslate nohighlight">\(\eta \in \mathcal{H},\)</span></p>
+<div class="math notranslate nohighlight">
+\[\displaystyle c_0 + c_1 \left\langle \frac{\partial V}{\partial \eta}(\eta) , h(\eta) \right\rangle \geq \Vert h(\eta) \Vert^2.\]</div>
+<p><strong>A2 (Length of mean field).</strong> There exists <span class="math notranslate nohighlight">\(d_0 \geq 0, d_1 \geq 0\)</span> such that for all <span class="math notranslate nohighlight">\(\eta \in \mathcal{H},\)</span></p>
+<div class="math notranslate nohighlight">
+\[\displaystyle d_0 + d_1 \Vert h(\eta) \Vert \geq \left\Vert \frac{\partial V}{\partial \eta}(\eta) \right\Vert.\]</div>
+<p><strong>A3 (<span class="math notranslate nohighlight">\(\ell\)</span>-smoothness of Lyapunov function).</strong> There exists <span class="math notranslate nohighlight">\(\ell &lt; \infty\)</span> such that for all <span class="math notranslate nohighlight">\(\eta, \eta' \in \mathcal{H},\)</span></p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \left\Vert \frac{\partial V}{\partial \eta}(\eta) - \frac{\partial V}{\partial \eta}(\eta') \right\Vert \leq \ell \Vert \eta - \eta' \Vert.\]</div>
+<p><strong>A4 (Solution of Poisson equation).</strong> There exists a Borel measurable function <span class="math notranslate nohighlight">\(\hat{H} : \mathcal{H} \times \mathcal{X} \rightarrow \mathcal{H}\)</span> such that for all <span class="math notranslate nohighlight">\(\eta \in \mathcal{H}, x \in \mathcal{X}\)</span></p>
+<div class="math notranslate nohighlight">
+\[L_{\eta} \hat{H}_{\eta}(x) = E_{\eta}(x).\]</div>
+<p><strong>A5 (Regularity of solution).</strong> There exists <span class="math notranslate nohighlight">\(\ell_0, \ell_1 &lt; \infty\)</span> such that for all <span class="math notranslate nohighlight">\(\eta, \eta' \in \mathcal{H}, x \in \mathcal{X},\)</span></p>
+<div class="math notranslate nohighlight">
+\[\Vert \hat{H}_{\eta} (x) \Vert \leq \ell_0, \quad \Vert P_{\eta} \hat{H}_{\eta}(x) \Vert \leq \ell_0,\]</div>
+<div class="math notranslate nohighlight">
+\[\Vert P_{\eta} \hat{H}_{\eta}(x) - P_{\eta'} \hat{H}_{\eta'} (x) \Vert \leq \ell_1 \Vert \eta - \eta' \Vert.\]</div>
+<p><strong>A6 (Correction bound).</strong> There exists <span class="math notranslate nohighlight">\(\sigma &lt; \infty\)</span> such that for all <span class="math notranslate nohighlight">\(\eta \in \mathcal{H}, x \in \mathcal{X},\)</span></p>
+<div class="math notranslate nohighlight">
+\[\Vert E_{\eta} (x) \Vert \leq \sigma.\]</div>
+<hr class="docutils" />
+<p><strong><a id="theorem-convergence-of-biased-stochastic-approximation"></a>Theorem (Convergence of Biased Stochastic Approximation).</strong> Suppose that we have parameter updates</p>
+<div class="math notranslate nohighlight">
+\[\eta_{k+1} = \eta_{k} - \gamma_{k+1} H_{\eta_k}(X_{k+1})\]</div>
+<p>for <span class="math notranslate nohighlight">\(0 \leq k \leq n,\)</span> using step sizes <span class="math notranslate nohighlight">\(\gamma_k = \gamma_0 k^{-1/2}\)</span> for sufficiently small <span class="math notranslate nohighlight">\(\gamma_0 \geq 0,\)</span> and using a random stop time <span class="math notranslate nohighlight">\(0 \leq N \leq n\)</span> with <span class="math notranslate nohighlight">\(\mathbb{P}(N = l) := (\sum_{k=0}^n \gamma_{k+1})^{-1} \gamma_{l+1}.\)</span> Then assuming A1-A6, we have</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}(\Vert h(\eta_N) \Vert^2) = O(c_0 + \log n / \sqrt{n} ).\]</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<div class="docutils container" id="id10">
+<dl class="citation">
+<dt class="label" id="id34"><span class="brackets"><a class="fn-backref" href="#id1">B+98</a></span></dt>
+<dd><p>Léon Bottou and others. Online learning and stochastic approximations. <em>On-line learning in neural networks</em>, 17(9):142, 1998.</p>
+</dd>
+<dt class="label" id="id33"><span class="brackets">CChafaiG12</span><span class="fn-backref">(<a href="#id4">1</a>,<a href="#id6">2</a>)</span></dt>
+<dd><p>Patrick Cattiaux, Djalil Chafaı, and Arnaud Guillin. Central limit theorems for additive functionals of ergodic markov diffusions processes. <em>ALEA</em>, 9(2):337–382, 2012.</p>
+</dd>
+<dt class="label" id="id40"><span class="brackets"><a class="fn-backref" href="#id7">Hai14</a></span></dt>
+<dd><p>Martin Hairer. A theory of regularity structures. <em>Inventiones mathematicae</em>, 198(2):269–504, 2014.</p>
+</dd>
+<dt class="label" id="id32"><span class="brackets">KMMW19</span><span class="fn-backref">(<a href="#id3">1</a>,<a href="#id8">2</a>,<a href="#id9">3</a>)</span></dt>
+<dd><p>Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In <em>Conference on Learning Theory</em>, 1944–1974. PMLR, 2019.</p>
+</dd>
+<dt class="label" id="id31"><span class="brackets"><a class="fn-backref" href="#id2">LR15</a></span></dt>
+<dd><p>Yingshen Li and Mark Rowland. Stochastic approximation theory (slides). <a class="reference external" href="http://yingzhenli.net/home/pdf/SA.pdf">http://yingzhenli.net/home/pdf/SA.pdf</a>, 2015.</p>
+</dd>
+<dt class="label" id="id30"><span class="brackets"><a class="fn-backref" href="#id5">Oks13</a></span></dt>
+<dd><p>Bernt Oksendal. <em>Stochastic differential equations: an introduction with applications</em>. Springer Science &amp; Business Media, 2013.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     
+    <a href="../2020-10-23-machine-learning-with-relative-information/">
+      <i class="fa fa-arrow-circle-left"></i> Machine learning with relative information
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+     
+    <a href="../2021-03-21-process-learning-with-relative-information/">
+      Process learning with relative information <i
+        class="fa fa-arrow-circle-right"
+      ></i
+      >
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+              </div>
+              
+<!-- Add a comment box underneath the page's content -->
+<script src="https://giscus.app/client.js"
+        data-repo="shaoweilin/shaoweilin.github.io"
+        data-repo-id="R_kgDOHM5tAA"
+        data-category="Blog comments"
+        data-category-id="DIC_kwDOHM5tAM4COqgI"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2022, Shaowei Lin.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

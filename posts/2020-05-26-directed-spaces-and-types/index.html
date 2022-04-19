@@ -1,0 +1,385 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:title" content="Directed spaces and types" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://shaoweilin.github.io/posts/2020-05-26-directed-spaces-and-types/" />
+  
+<meta property="og:description" content="Joint work with Jin Xing Lim, Liang Ze Wong, Georgios Piliouras. There is a concept of Directed Spaces. Since Types can be thought of as Spaces, the question is what kind of additional information ..." />
+  
+<meta property="og:image" content="https://shaoweilin.github.io/_static/profile.jpg" />
+  
+<meta property="og:image:alt" content="Directed spaces and types" />
+  
+    <title>Directed spaces and types &#8212; Spikes and Types  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../about/" />
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+     
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../blog/atom.xml"
+  title="Spikes and Types"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../">
+<p class="title">Spikes and Types</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../about/">
+  About
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../blog/">
+  Blog
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../search/" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" >
+</form>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/shaoweilin/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
+<h2>
+   <i class="fa fa-calendar"></i>
+  26 May 2020 
+</h2>
+
+<ul>
+        
+</ul>
+
+<h3>
+  <a href="../../blog/">Recent Posts</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../2022-01-22-information-topos-theory-motivation/"
+      >22 January - Information topos theory - motivation</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-09-09-all-you-need-is-relative-information/"
+      >09 September - All you need is relative information</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-06-05-spiking-neural-networks/"
+      >05 June - Spiking neural networks</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-06-01-convergence-of-biased-stochastic-approximation/"
+      >01 June - Convergence of biased stochastic approximation</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-05-10-path-integrals-and-the-dyson-formula/"
+      >10 May - Path integrals and the Dyson formula</a
+    >
+  </li>
+  
+</ul>
+
+<h3>
+  <a href="../../blog/archive/">Archives</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../blog/2022/">2022 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2021/">2021 (8)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2020/">2020 (12)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2018/">2018 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2017/">2017 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2016/">2016 (3)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2014/">2014 (2)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2012/">2012 (1)</a>
+  </li>
+   
+</ul>
+
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+
+              <div>
+                 <div class="tex2jax_ignore mathjax_ignore section" id="directed-spaces-and-types">
+<h1>Directed spaces and types<a class="headerlink" href="#directed-spaces-and-types" title="Permalink to this headline">#</a></h1>
+<p>Joint work with Jin Xing Lim, Liang Ze Wong, Georgios Piliouras.</p>
+<p>There is a concept of <a class="reference external" href="https://ncatlab.org/nlab/show/directed+topological+space">Directed Spaces</a>. Since Types can be thought of as Spaces, the question is what kind of additional information we would need to construct such a Type (e.g. for undirected types, we can construct these types using identity types as additional information).</p>
+<p>I am interested in the study of directed types because of computer-assisted theorem proving. In theorem proving, suppose we have a proposition/type Q that we are trying to prove, and we have a lemma that <span class="math notranslate nohighlight">\(P\rightarrow Q\)</span>. Then we can apply this lemma, and attempt to prove P instead. However, it is possible that Q is true/inhabited but P is not.</p>
+<p>The situation here is different from proving equalities using a given set of rewrite rules. In the case of equalities, if we have an equality <span class="math notranslate nohighlight">\(Q=Q'\)</span> that we want to prove, and we have a rewrite <span class="math notranslate nohighlight">\(P \leftrightarrow Q\)</span>, then <span class="math notranslate nohighlight">\(Q=Q'\)</span> is true if and only if <span class="math notranslate nohighlight">\(P=Q'\)</span> is true. For the proof of equalities, we have Knuth-Bendix theory to help us. For the proof of propositions or the construction of terms of types, such a symmetric theory may not be as well-suited.</p>
+<p>The directed path types in directed types (as opposed to path types for undirected types) will satisfy reflexivity (<span class="math notranslate nohighlight">\(x\rightarrow x\)</span>) and transitivity (if <span class="math notranslate nohighlight">\(x\rightarrow y\)</span> and <span class="math notranslate nohighlight">\(y\rightarrow z\)</span>, then <span class="math notranslate nohighlight">\(x\rightarrow z\)</span>) but not symmetry (if <span class="math notranslate nohighlight">\(x\rightarrow y\)</span>, then <span class="math notranslate nohighlight">\(y\rightarrow x\)</span>). This is similar to the case of judgments in logical frameworks, although that is not surprising because logical frameworks formalize the deduction of judgments. The more interesting question is how the design of logical frameworks is influenced by the nature of directed types.</p>
+<p>More specifically, let some universe <span class="math notranslate nohighlight">\(U\)</span> of types be the space that we are studying. The points of this space are propositions and types. We have a directed path from some <span class="math notranslate nohighlight">\(T\)</span> to <span class="math notranslate nohighlight">\(T'\)</span> if there exists a lemma <span class="math notranslate nohighlight">\(T \rightarrow T'\)</span>. Let <span class="math notranslate nohighlight">\(\textbf{1}\)</span> be the unit type, which is a terminal object in the space of types. We say that a type <span class="math notranslate nohighlight">\(T\)</span> is <em>inhabited</em> if there is a function <span class="math notranslate nohighlight">\(\textbf{1} \rightarrow T\)</span>. Unpacking this definition, <span class="math notranslate nohighlight">\(T\)</span> is inhabited if it is an inductive type (i.e. a basic defined type), an axiomatic type (i.e. assumed to be inhabited), or connected <em>from</em> an inhabited type by a directed path (i.e. if <span class="math notranslate nohighlight">\(T\)</span> is inhabited and <span class="math notranslate nohighlight">\(T \rightarrow T'\)</span>, then <span class="math notranslate nohighlight">\(T'\)</span> is inhabited). Let <span class="math notranslate nohighlight">\(T^*\)</span> be the type for which we are constructing a term. The goal is to construct a directed path from <span class="math notranslate nohighlight">\(\textbf{1}\)</span> to <span class="math notranslate nohighlight">\(T^*\)</span>.</p>
+<p>Unlike the story of equality proofs and rewrite rules, we do not get critical pairs since the paths are directed, unless we have equivalences <span class="math notranslate nohighlight">\(T \leftrightarrow T'\)</span>. However, one issue is that of unification. Let <span class="math notranslate nohighlight">\(S, T\)</span> be two types that unify. If one of the definitions in <span class="math notranslate nohighlight">\(S\)</span> is unfolded, the new expression <span class="math notranslate nohighlight">\(S'\)</span> may no longer unify with <span class="math notranslate nohighlight">\(T\)</span>.</p>
+<p>In fact, I would argue that equivalence is the only issue standing in the way of efficient proof automation. The unfolding of definitions is a form of equivalence. The beta or eta conversion of terms is another form of equivalence. Reflections between propositional predicates and boolean predicates are also equivalences, as are if-and-only-if statements. Given a lemma <span class="math notranslate nohighlight">\(P \rightarrow Q\)</span>, every equivalence <span class="math notranslate nohighlight">\(Q \leftrightarrow Q'\)</span> gives rise to another equivalent lemma <span class="math notranslate nohighlight">\(P \rightarrow Q'\)</span>. Given a goal <span class="math notranslate nohighlight">\(T x\)</span>, every Leibniz’s equality <span class="math notranslate nohighlight">\(x=x'\)</span> gives rise to an equivalent goal <span class="math notranslate nohighlight">\(T x'\)</span>. These equivalences lead to a profusion of lemmas needed for proof automation and time wasted in running through them for potential proofs. Therefore, we need to return to the Knuth-Bendix algorithm for a way to construct normal forms for these equivalences, so that fewer lemmas need to be checked during proof automation. From the point of view of finding directed paths through a space, we are using equivalences to reduce the size of the space by homotopy, so that the path search will be more efficient.</p>
+<p>As a case study, consider the solution of systems of polynomial equations with real coefficients. Suppose we are interested in finding out if a particular system has any real roots. This is analogous to the more general question of whether a type is inhabited. We could simply find all the complex roots, and check if any of them are real. However, this depends on the assumption that the equation <span class="math notranslate nohighlight">\(x^2+1 = 0\)</span> has a root <span class="math notranslate nohighlight">\(i\)</span>. We can think of this assumption as an axiom that the type <span class="math notranslate nohighlight">\(\{ x \in k\vert  x^2+1 = 0 \}\)</span> is inhabited, where <span class="math notranslate nohighlight">\(k\)</span> is our base field. With this axiom, we get an equivalence (up to Nullstellensatz) between polynomial systems and sets of points in complex space, which then makes it easy for us to check in particular if there are any real roots. However, the work required to extend the axiom that <span class="math notranslate nohighlight">\(x^2+1=0\)</span> has a root, to this equivalence between systems and sets, is called the Fundamental Theorem of Algebra. The proof of the theorem is not straight-forward - if we only consider algebraic proofs (with just a little bit of basic real analysis), the proof is an exercise in Galois Theory. Thus, if we were working on a particular polynomial system and found ourselves needing the axiom to complete the proof, it is not merely enough to add this axiom to the proof engine and hope that future proofs will automatically learn how to use it. We need to extend the axiom into an equivalence for our polynomial systems, so that the proof space of directed paths can be simplified drastically.</p>
+<p>Directed spaces are related to <a class="reference external" href="https://ncatlab.org/nlab/show/%28n%2Cr%29-category"><span class="math notranslate nohighlight">\((n,r)\)</span>-categories</a>, and in particular, <a class="reference external" href="http://www.math.jhu.edu/~eriehl/Leeds-HTT-UF.pdf"><span class="math notranslate nohighlight">\(\infty\)</span>-categories</a>. Directed spaces give rise to <a class="reference external" href="https://ncatlab.org/nlab/show/directed+topological+space">streams</a> and coinductive types, which contain more structure and fit nicely with categorical considerations. It makes sense to view directed types through the lens of coinductive types and their <a class="reference external" href="https://groups.google.com/forum/#%21msg/homotopytypetheory/tYRTcI2Opyo/PIrI6t5me-oJ">corresponding identity types</a>.</p>
+<p>Directed spaces are naturally related to posets (partially ordered sets) where the partial order satisfies reflexivity and transitivity but not symmetry.</p>
+<p>Directed types are related to goal trees, where root represents the main goal, and the leaves represent subgoals which, when inhabited, would imply that the main goal is inhabited</p>
+</div>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     
+    <a href="../2020-05-21-logical-frameworks/">
+      <i class="fa fa-arrow-circle-left"></i> Logical frameworks
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+     
+    <a href="../2020-07-23-adjunctions/">
+      Adjunctions <i
+        class="fa fa-arrow-circle-right"
+      ></i
+      >
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+              </div>
+              
+<!-- Add a comment box underneath the page's content -->
+<script src="https://giscus.app/client.js"
+        data-repo="shaoweilin/shaoweilin.github.io"
+        data-repo-id="R_kgDOHM5tAA"
+        data-category="Blog comments"
+        data-category-id="DIC_kwDOHM5tAM4COqgI"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2022, Shaowei Lin.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

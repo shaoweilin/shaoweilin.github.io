@@ -1,0 +1,529 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:title" content="Zeta functions, Mellin transforms and the Gelfand-Leray form" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://shaoweilin.github.io/posts/2020-10-05-zeta-functions-mellin-transforms-and-the-gelfand-leray-form/" />
+  
+<meta property="og:description" content="We outline the similarities between zeta functions appearing in number theory and in statistical learning. This post is a continuation from our series on spiking networks, path integrals and motivi..." />
+  
+<meta property="og:image" content="https://shaoweilin.github.io/_static/profile.jpg" />
+  
+<meta property="og:image:alt" content="Zeta functions, Mellin transforms and the Gelfand-Leray form" />
+  
+    <title>Zeta functions, Mellin transforms and the Gelfand-Leray form &#8212; Spikes and Types  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../about/" />
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+     
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../blog/atom.xml"
+  title="Spikes and Types"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../">
+<p class="title">Spikes and Types</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../about/">
+  About
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../blog/">
+  Blog
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../search/" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" >
+</form>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/shaoweilin/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
+<h2>
+   <i class="fa fa-calendar"></i>
+  05 October 2020 
+</h2>
+
+<ul>
+        
+</ul>
+
+<h3>
+  <a href="../../blog/">Recent Posts</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../2022-01-22-information-topos-theory-motivation/"
+      >22 January - Information topos theory - motivation</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-09-09-all-you-need-is-relative-information/"
+      >09 September - All you need is relative information</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-06-05-spiking-neural-networks/"
+      >05 June - Spiking neural networks</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-06-01-convergence-of-biased-stochastic-approximation/"
+      >01 June - Convergence of biased stochastic approximation</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-05-10-path-integrals-and-the-dyson-formula/"
+      >10 May - Path integrals and the Dyson formula</a
+    >
+  </li>
+  
+</ul>
+
+<h3>
+  <a href="../../blog/archive/">Archives</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../blog/2022/">2022 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2021/">2021 (8)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2020/">2020 (12)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2018/">2018 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2017/">2017 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2016/">2016 (3)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2014/">2014 (2)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2012/">2012 (1)</a>
+  </li>
+   
+</ul>
+
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gelfand-leray-functions">
+   Gelfand-Leray functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zeta-functions">
+   Zeta functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#statistical-learning">
+   Statistical Learning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#number-theory">
+   Number Theory
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+
+              <div>
+                 <div class="tex2jax_ignore mathjax_ignore section" id="zeta-functions-mellin-transforms-and-the-gelfand-leray-form">
+<h1>Zeta functions, Mellin transforms and the Gelfand-Leray form<a class="headerlink" href="#zeta-functions-mellin-transforms-and-the-gelfand-leray-form" title="Permalink to this headline">#</a></h1>
+<p>We outline the similarities between zeta functions appearing in number theory and in statistical learning.</p>
+<p>This post is a continuation from our <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">series</span></a> on spiking networks, path integrals and motivic information.</p>
+<div class="section" id="gelfand-leray-functions">
+<h2>Gelfand-Leray functions<a class="headerlink" href="#gelfand-leray-functions" title="Permalink to this headline">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(\omega\)</span> be a volume form or a form resulting from a measure on some space <span class="math notranslate nohighlight">\(W\)</span>. Let <span class="math notranslate nohighlight">\(f: W \rightarrow \mathbb{R}\)</span> be a non-negative energy function or a Kullback-Leibler divergence. A <em>Gelfand-Leray form</em> of <span class="math notranslate nohighlight">\(\omega\)</span> is any differential form <span class="math notranslate nohighlight">\(\phi\)</span> that satisfies</p>
+<div class="math notranslate nohighlight">
+\[df \wedge \phi = \omega.\]</div>
+<p>We will denote <span class="math notranslate nohighlight">\(\phi\)</span> by <span class="math notranslate nohighlight">\(\omega /df\)</span>. See <span id="id1">[<a class="reference internal" href="#id50" title="VI Arnold, SM Gusein-Zade, and AN Varchenko. Elementary integrals and the resolution of singularities of the phase. In Singularities of Differentiable Maps, pages 215–232. Springer, 1988.">AGZV88</a>]</span> and §4 of <span id="id2">[<a class="reference internal" href="#id46" title="Matilde Marcolli. Feynman motives. World Scientific, 2010.">Mar10</a>]</span> for expositions about the Gelfand-Leray form.</p>
+<p>The <em>Gelfand-Leray function</em> is</p>
+<div class="math notranslate nohighlight">
+\[J(t) =\displaystyle \int_{f(w)=t} \frac{\omega}{df}.\]</div>
+<p>These functions often have asymptotic expansions of the form</p>
+<div class="math notranslate nohighlight">
+\[J(t) = \displaystyle \sum_\alpha \sum_{i=1}^d m_{\alpha,i} t^\alpha (\log t)^{i-1}.\]</div>
+</div>
+<div class="section" id="zeta-functions">
+<h2>Zeta functions<a class="headerlink" href="#zeta-functions" title="Permalink to this headline">#</a></h2>
+<p>Informally, zeta functions are complex functions of the form</p>
+<div class="math notranslate nohighlight">
+\[\zeta(z) = \displaystyle \sum_\lambda m_\lambda \lambda^{-z}\]</div>
+<p>where the sum is over some possibly infinite (multi-)set of complex numbers <span class="math notranslate nohighlight">\(\lambda\)</span> and the coefficients <span class="math notranslate nohighlight">\(m_\lambda\)</span> are complex.</p>
+<p>For example, the Riemann zeta function is</p>
+<div class="math notranslate nohighlight">
+\[\zeta(z) = \displaystyle \sum_{n=1}^\infty n^{-z}.\]</div>
+<p>Zeta functions often have analytic continuations to the whole complex plane, and possess Laurent expansions of the form</p>
+<div class="math notranslate nohighlight">
+\[\zeta(z) = \zeta_0(z) + \sum_\alpha \sum_{i=1}^d c_{\alpha i} (z-\alpha)^{-i}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\zeta_0(z)\)</span> is holomorphic and the <span class="math notranslate nohighlight">\(\alpha\)</span> are the poles.</p>
+<p>A zeta function can often be written as the Mellin transform</p>
+<div class="math notranslate nohighlight">
+\[\zeta(z) = \displaystyle \int_0^\infty t^{z-1} J(t) dt = \int_W f(w)^{z-1} \omega\]</div>
+<p>of a function <span class="math notranslate nohighlight">\(J(t)\)</span>, and <span class="math notranslate nohighlight">\(J(t)\)</span> is often some kind of Gelfand-Leray function.</p>
+<p>For example, <span class="math notranslate nohighlight">\(\zeta(z) = \sum_\lambda m_\lambda \lambda^{-z}\)</span> is the Mellin transform</p>
+<div class="math notranslate nohighlight">
+\[\zeta(z) = \displaystyle \frac{1}{\Gamma(s)} \int_0^\infty \theta(t) t^{z-1} dt\]</div>
+<p>of the theta function</p>
+<div class="math notranslate nohighlight">
+\[\theta(t) = \displaystyle \sum_{\lambda} m_\lambda e^{- \lambda t}.\]</div>
+<p>However, I do not know if the theta function can be expressed as the Gelfand-Leray function of a differential form with respect to an energy function.</p>
+<p>Zeta functions are also useful for defining infinite products <span id="id3">[<a class="reference internal" href="#id47" title="Yuri Manin. Lectures on zeta functions and motives. Astérisque, 228:121–163, 1995.">Man95</a>]</span></p>
+<div class="math notranslate nohighlight">
+\[Z = \displaystyle \prod_\lambda \lambda^{m_\lambda}\]</div>
+<p>which we define to be</p>
+<div class="math notranslate nohighlight">
+\[Z = \exp \left( - \zeta'(0)\right)\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\zeta(z) = \displaystyle \sum_\lambda m_\lambda \lambda^{-z}.\]</div>
+<p>Indeed, for finite sums, we see that</p>
+<div class="math notranslate nohighlight">
+\[\zeta'(0) = - \displaystyle \sum_\lambda m_\lambda \log \lambda.\]</div>
+</div>
+<div class="section" id="statistical-learning">
+<h2>Statistical Learning<a class="headerlink" href="#statistical-learning" title="Permalink to this headline">#</a></h2>
+<p>In statistical learning, given a prior <span class="math notranslate nohighlight">\(\omega = \psi(w)dw\)</span> on the parameters <span class="math notranslate nohighlight">\(w\)</span> of a statistical model <span class="math notranslate nohighlight">\(p: W \rightarrow \Delta,\)</span> and given the relative information <span class="math notranslate nohighlight">\(K(w)\)</span> to the true distribution <span class="math notranslate nohighlight">\(q\)</span> from the model distribution <span class="math notranslate nohighlight">\(p(w),\)</span> the Gelfand-Leray function</p>
+<div class="math notranslate nohighlight">
+\[J(t) = \displaystyle \frac{d}{dt} \int_{0 \leq K(w) \leq t} \psi(w) dw\]</div>
+<p>is called the state density function <span id="id4">[<a class="reference internal" href="../2020-10-23-machine-learning-with-relative-information/#id45" title="Sumio Watanabe. Algebraic geometry and statistical learning theory. Number 25. Cambridge university press, 2009.">Wat09</a>]</span>.</p>
+<p>The zeta function of the statistical model is</p>
+<div class="math notranslate nohighlight">
+\[\zeta(z) = \int_W K(w)^z \psi(w) dw = \int_0^\infty t^z J(t)dt\]</div>
+<p>which (up to some linear change of variable in <span class="math notranslate nohighlight">\(z\)</span>) is the Mellin transform of the state density function <span class="math notranslate nohighlight">\(J(t).\)</span></p>
+</div>
+<div class="section" id="number-theory">
+<h2>Number Theory<a class="headerlink" href="#number-theory" title="Permalink to this headline">#</a></h2>
+<p>In number theory, we have the notorious Riemann zeta function which becomes more interesting <span id="id5">[<a class="reference internal" href="#id49" title="John Baez. This week’s finds in mathematical physics (week 217). \url https://math.ucr.edu/home/baez/week217.html, 2005.">Bae05</a>]</span> if we write it as</p>
+<div class="math notranslate nohighlight">
+\[\zeta(z) = \displaystyle \sum_{n=1}^\infty \left(n^2\right)^{-\frac{z}{2}}.\]</div>
+<p>This representation suggests that we study the infamous Jacobi theta function</p>
+<div class="math notranslate nohighlight">
+\[\theta(t) =\displaystyle \sum_{n=-\infty}^\infty e^{-n^2 (\pi t) }.\]</div>
+<p>Note the extra factor of <span class="math notranslate nohighlight">\(\pi\)</span> in the exponent and the changing of the lower bound of summation to <span class="math notranslate nohighlight">\(-\infty\)</span>.</p>
+<p>The modularity of the theta function</p>
+<div class="math notranslate nohighlight">
+\[\theta(t) = \displaystyle \frac{1}{\sqrt{t}} \theta\left(\frac{1}{t}\right)\]</div>
+<p>is the crux behind the functional equation for the Riemann zeta function</p>
+<div class="math notranslate nohighlight">
+\[\Lambda(z) = \Lambda(1-z)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Lambda(z) = 2^{-1/2}\pi^{-z/2}\Gamma(z/2)\zeta(z).\)</span></p>
+<p>The function <span class="math notranslate nohighlight">\(\Lambda(z)\)</span> itself can be written <span id="id6">[<a class="reference internal" href="#id48" title="Christopher Deninger. On the γ-factors attached to motives. Inventiones mathematicae, 104(1):245–261, 1991.">Den91</a>]</span> as the infinite product</p>
+<div class="math notranslate nohighlight">
+\[(\frac{z}{2\pi})(\frac{z-1}{2\pi})\Lambda(z) = \prod_\rho \frac{z-\rho}{2\pi}\]</div>
+<p>over the zeros of the Riemann zeta function. This infinite product is in turn expressible using another zeta function and theta function.</p>
+<p>The Hurwitz zeta function</p>
+<div class="math notranslate nohighlight">
+\[\zeta_s(z) = \displaystyle \sum_{n=0}^\infty (n+s)^{-z}\]</div>
+<p>is associated to the theta function <span class="math notranslate nohighlight">\(\theta_s(t) = e^{-st} \theta(t)\)</span> where</p>
+<div class="math notranslate nohighlight">
+\[\theta(t) =\sum_{n=0}^\infty e^{-nt} = \frac{1}{1-e^{-t}}.\]</div>
+<p>Note that the Riemann zeta function is the special case <span class="math notranslate nohighlight">\(\zeta_1(z).\)</span></p>
+<p>The Hasse-Weil zeta function of a smooth absolutely irreducible curve <span class="math notranslate nohighlight">\(V\)</span> over a finite field <span class="math notranslate nohighlight">\(\mathbb{F}_q\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{rl} Z_{V}(z) &amp;= \displaystyle \sum_\alpha \left(q^{ \deg(\alpha)}\right)^{-z} \\ &amp; \\ &amp;= \exp\left(\displaystyle\sum_{m\geq 1} \frac{\# V(\mathbb{F}_{q^m})}{m}q^{-zm} \right) \end{array}\end{split}\]</div>
+<p>where the first sum is over effective zero-cycles <span class="math notranslate nohighlight">\(\alpha\)</span>. The zeta function can also be written as</p>
+<div class="math notranslate nohighlight">
+\[(1-q^{-z})(1-q^{1-z})Z_{V}(z) = \displaystyle \prod_{j=1}^{2g} (1-\phi_j q^{-z})\]</div>
+<p>where <span class="math notranslate nohighlight">\(g\)</span> is the genus of <span class="math notranslate nohighlight">\(V\)</span> and each <span class="math notranslate nohighlight">\(\phi_j\)</span> is an algebraic integer. Each of the factors can be written as infinite products</p>
+<div class="math notranslate nohighlight">
+\[1-\lambda q^{-z} = \displaystyle \prod_{\rho \vert  q^\rho = \lambda} \frac{\log q}{2\pi i}(z-\rho).\]</div>
+<p>which is in turn expressible using another zeta function and theta function.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<div class="docutils container" id="id7">
+<dl class="citation">
+<dt class="label" id="id50"><span class="brackets"><a class="fn-backref" href="#id1">AGZV88</a></span></dt>
+<dd><p>VI Arnold, SM Gusein-Zade, and AN Varchenko. Elementary integrals and the resolution of singularities of the phase. In <em>Singularities of Differentiable Maps</em>, pages 215–232. Springer, 1988.</p>
+</dd>
+<dt class="label" id="id49"><span class="brackets"><a class="fn-backref" href="#id5">Bae05</a></span></dt>
+<dd><p>John Baez. This week’s finds in mathematical physics (week 217). <a class="reference external" href="https://math.ucr.edu/home/baez/week217.html">https://math.ucr.edu/home/baez/week217.html</a>, 2005.</p>
+</dd>
+<dt class="label" id="id48"><span class="brackets"><a class="fn-backref" href="#id6">Den91</a></span></dt>
+<dd><p>Christopher Deninger. On the γ-factors attached to motives. <em>Inventiones mathematicae</em>, 104(1):245–261, 1991.</p>
+</dd>
+<dt class="label" id="id47"><span class="brackets"><a class="fn-backref" href="#id3">Man95</a></span></dt>
+<dd><p>Yuri Manin. Lectures on zeta functions and motives. <em>Astérisque</em>, 228:121–163, 1995.</p>
+</dd>
+<dt class="label" id="id46"><span class="brackets"><a class="fn-backref" href="#id2">Mar10</a></span></dt>
+<dd><p>Matilde Marcolli. <em>Feynman motives</em>. World Scientific, 2010.</p>
+</dd>
+<dt class="label" id="id45"><span class="brackets"><a class="fn-backref" href="#id4">Wat09</a></span></dt>
+<dd><p>Sumio Watanabe. <em>Algebraic geometry and statistical learning theory</em>. Number 25. Cambridge university press, 2009.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     
+    <a href="../2020-09-18-conditional-relative-information-and-its-axiomatizations/">
+      <i class="fa fa-arrow-circle-left"></i> Conditional relative information and its axiomatizations
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+     
+    <a href="../2020-10-07-motivic-relative-information/">
+      Motivic relative information <i
+        class="fa fa-arrow-circle-right"
+      ></i
+      >
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+              </div>
+              
+<!-- Add a comment box underneath the page's content -->
+<script src="https://giscus.app/client.js"
+        data-repo="shaoweilin/shaoweilin.github.io"
+        data-repo-id="R_kgDOHM5tAA"
+        data-category="Blog comments"
+        data-category-id="DIC_kwDOHM5tAM4COqgI"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2022, Shaowei Lin.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

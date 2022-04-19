@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:title" content="Recent posts" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://shaoweilin.github.io/index/" />
+  
+<meta property="og:description" content="2022-01-22 Information topos theory - motivation Relative information (also known as the Kullback-Leibler divergence) is an important fundamental concept in statistical learning and information the..." />
+  
+<meta property="og:image" content="https://shaoweilin.github.io/_static/profile.jpg" />
+  
+<meta property="og:image:alt" content="Recent posts" />
+  
+    <title>Recent posts &#8212; Spikes and Types  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="#" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="about/" />
+    <link rel="index" title="Index" href="genindex/" />
+    <link rel="search" title="Search" href="search/" />
+    <link rel="next" title="About" href="about/" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+     
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="blog/atom.xml"
+  title="Spikes and Types"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="#">
+<p class="title">Spikes and Types</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="about/">
+  About
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="blog/">
+  Blog
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="search/" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" >
+</form>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/shaoweilin/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><div class="profile-pic"><img src="_static/profile.jpg" /></div>
+
+<div class="bio-info">
+    <div class="name">
+        Shaowei Lin
+    </div>
+    <div class="focusareas">
+        | Mathematician <br>
+        | Spiking Networks <br>
+        | Machine Reasoning
+    </div>
+
+    <div class="whatido">
+        I am a mathematician working on the statistical learning theory of spiking neural networks and on dependent type theories for machine reasoning.
+    </div>
+</div>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+
+              <div>
+                 <div class="tex2jax_ignore mathjax_ignore section" id="recent-posts">
+<h1>Recent posts<a class="headerlink" href="#recent-posts" title="Permalink to this headline">#</a></h1>
+<ul class="postlist-style-none postlist">
+<li class="ablog-post"><p class="ablog-post-title">2022-01-22 <a class="reference internal" href="posts/2022-01-22-information-topos-theory-motivation/">Information topos theory - motivation</a></p>
+<p class="ablog-post-excerpt">Relative information (also known as the Kullback-Leibler divergence) is an important fundamental concept in statistical learning and information theory.</p>
+<p class="ablog-post-excerpt">The (conditional) relative information</p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2021-09-09 <a class="reference internal" href="posts/2021-09-09-all-you-need-is-relative-information/">All you need is relative information</a></p>
+<p class="ablog-post-excerpt">Relative information (relative entropy, KL divergence) and variational inference are powerful tools for deriving learning algorithms and their asymptotic properties, for both static systems and dynamic systems. The goal of this talk is to motivate a general online stochastic learning algorithm for stochastic processes with latent variables or memory, that provably converges under some regularity conditions. Please visit <a class="reference external" href="https://bit.ly/3kmovql">https://bit.ly/3kmovql</a> for details.</p>
+<p class="ablog-post-excerpt">In the first half of the talk, we study static systems, viewing maximum likelihood and Bayesian inference through the lens of relative information. In particular, their generalization errors may be derived by resolving the singularities of relative information. We then frame the two learning algorithms as special cases of variational inference with different computational constraints.</p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2021-06-05 <a class="reference internal" href="posts/2021-06-05-spiking-neural-networks/">Spiking neural networks</a></p>
+<p class="ablog-post-excerpt">In this post, we study a class of spiking network models based on continuous-time <a class="reference external" href="2020-10-14-path-integrals-and-continuous-time-markov-chains/#what-is-a-continuous-time-markov-chain">Markov</a> chains with <a class="reference external" href="2021-03-22-relative-inference-with-mutable-processes/#what-is-a-mutable-process">mutable</a>  variables.</p>
+<p class="ablog-post-excerpt">Using a <span class="xref myst">relative inference</span> recipe for online learning, we derive local Hebbian learning rules for the spiking network which are provably convergent to local minima of the relative information objective.</p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2021-06-01 <a class="reference internal" href="posts/2021-06-01-convergence-of-biased-stochastic-approximation/">Convergence of biased stochastic approximation</a></p>
+<p class="ablog-post-excerpt">Using techniques from <span class="xref myst">biased</span> stochastic approximation <span id="id1">[<a class="reference internal" href="posts/2021-06-05-spiking-neural-networks/#id38" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span>, we prove under some regularity conditions the convergence of the online learning algorithm proposed <span class="xref myst">previously</span> for mutable Markov processes.</p>
+<p class="ablog-post-excerpt">Recall that the algorithm is described by the following updates.</p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2021-05-10 <a class="reference internal" href="posts/2021-05-10-path-integrals-and-the-dyson-formula/">Path integrals and the Dyson formula</a></p>
+<p class="ablog-post-excerpt">One of the deepest results in quantum field theory, to me, is the Dyson formula <span id="id1">[<a class="reference internal" href="posts/2021-05-10-path-integrals-and-the-dyson-formula/#id19" title="nLab. Dyson formula. \url https://ncatlab.org/nlab/show/Dyson+formula. Accessed: 2021.">nLa</a>]</span>. It describes the solution to the differential equation</p>
+<p class="ablog-post-excerpt">in terms of the exponential of the path integral of the operator <span class="math notranslate nohighlight">\(A(t)\)</span>,</p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2021-04-22 <a class="reference internal" href="posts/2021-04-22-proofs-as-programs-challenges-and-strategies-for-program-synthesis/">Proofs as programs - challenges and strategies for program synthesis</a></p>
+<p class="ablog-post-excerpt">The Curry-Howard correspondence between proofs and programs suggests that we can exploit proof assistants for writing software. I will discuss the challenges behind a naïve execution of this idea, and some preliminary strategies for overcoming them. As an example, we will organize higher-order information in knowledge graphs using dependent type theory, and automate the answering of queries using a proof assistant. In another example, we will explore how decentralized proof assistants can enable mathematicians or programmers to work collaboratively on a theorem or application. If time permits, I will outline connections to canonical structures, reflection (ssreflect), transport, unification and universe management.</p>
+<p class="ablog-post-excerpt"><a class="reference external" href="https://topos.site/topos-colloquium/">Topos Institute Colloquium</a></p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2021-03-23 <a class="reference internal" href="posts/2021-03-23-biased-stochastic-approximation-with-mutable-processes/">Biased stochastic approximation with mutable processes</a></p>
+<p class="ablog-post-excerpt">The goal of this post is to derive a general online learning recipe for training a <a class="reference external" href="2021-03-22-relative-inference-with-mutable-processes/#what-is-a-mutable-process">mutable</a> process <span class="math notranslate nohighlight">\(\{Z_t,X_t\}\)</span> to learn the true distribution <span class="math notranslate nohighlight">\(Q_*(X)\)</span> of a partially-observed Markov process <span class="math notranslate nohighlight">\(\{X_t\}\)</span>. The recipe returns a generative distribution <span class="math notranslate nohighlight">\(P(Z,X)\)</span> whose marginal <span class="math notranslate nohighlight">\(P(X)\)</span> approximates <span class="math notranslate nohighlight">\(Q_*(X).\)</span></p>
+<p class="ablog-post-excerpt">The variables <span class="math notranslate nohighlight">\(Z\)</span> of the mutable process are auxiliary variables that assist in inference and computation. During training, the distribution of <span class="math notranslate nohighlight">\(Z\)</span> given <span class="math notranslate nohighlight">\(X\)</span> is controlled by a discriminative model <span class="math notranslate nohighlight">\(\{Q(Z\vert X)\}.\)</span> Our method works in both discrete time and continuous time. We assume in the mutable process that for each time <span class="math notranslate nohighlight">\(t,\)</span> the variables <span class="math notranslate nohighlight">\(Z_t\)</span> and <span class="math notranslate nohighlight">\(X_t\)</span> are conditionally independent of each other given their past.</p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2021-03-22 <a class="reference internal" href="posts/2021-03-22-relative-inference-with-mutable-processes/">Relative inference with mutable processes</a></p>
+<p class="ablog-post-excerpt">We introduce a information-theoretic objective, which is a form of relative information between a discriminative model and a generative model, for learning processes using models with <a class="reference external" href="2020-10-23-machine-learning-with-relative-information/#why-should-we-consider-mutable-variables-rather-than-latent-variables">mutable</a> variables. This technique is known as <a class="reference external" href="2020-10-23-machine-learning-with-relative-information/#why-do-we-need-a-better-name-for-variational-inference">relative inference</a> (also called approximate inference, variational inference or variational Bayes). Such a technique is useful, for instance, for learning processes that contain latent variables.</p>
+<p class="ablog-post-excerpt">We discuss natural constraints on the discriminative and generative models, and the consequences of these constraints on:</p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2021-03-21 <a class="reference internal" href="posts/2021-03-21-process-learning-with-relative-information/">Process learning with relative information</a></p>
+<p class="ablog-post-excerpt">Over the next few posts, we will derive a distributed learning algorithm for spiking neural networks with <a class="reference external" href="2020-10-23-machine-learning-with-relative-information/#why-should-we-consider-mutable-variables-rather-than-latent-variables">mutable</a> variables that minimizes some natural notion of relative information and provably converges over time. We will model these spiking neural networks with stochastic processes: both discrete-time and continuous-time processes, with or without mutable variables.</p>
+<p class="ablog-post-excerpt">In this post, we give a general overview of information-theoretic approaches to training stochastic processes, while postponing discussions about issues that arise from mutable variables.</p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2020-12-01 <a class="reference internal" href="posts/2020-12-01-biased-stochastic-approximation/">Biased stochastic approximation</a></p>
+<p class="ablog-post-excerpt">We explore the convergence of continuous-time ordinary differential equations and their discrete-time analogs, such as stochastic approximation and gradient descent, through the lens of Lyapunov theory <span id="id1">[<a class="reference internal" href="posts/2020-12-01-biased-stochastic-approximation/#id34" title="Léon Bottou and others. Online learning and stochastic approximations. On-line learning in neural networks, 17(9):142, 1998.">B+98</a>]</span> <span id="id2">[<a class="reference internal" href="posts/2020-12-01-biased-stochastic-approximation/#id31" title="Yingshen Li and Mark Rowland. Stochastic approximation theory (slides). \url http://yingzhenli.net/home/pdf/SA.pdf, 2015.">LR15</a>]</span>. From this perspective, we will study biased stochastic approximation <span id="id3">[<a class="reference internal" href="posts/2021-06-05-spiking-neural-networks/#id38" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span> where the expectation of the stochastic updates conditioned on the past (which we call the <em>conditional expectation</em>) is not the same as the expectation of the stochastic updates under the stationary distribution (which we call the <em>total expectation</em>).</p>
+<p class="ablog-post-excerpt">This post is a continuation from our <span class="xref myst">series</span> on spiking networks, path integrals and motivic information.</p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2020-10-23 <a class="reference internal" href="posts/2020-10-23-machine-learning-with-relative-information/">Machine learning with relative information</a></p>
+<p class="ablog-post-excerpt">We will reframe some common machine learning paradigms, such as maximum likelihood, stochastic gradients, stochastic approximation and variational inference, in terms of relative information.</p>
+<p class="ablog-post-excerpt">This post is a continuation from our <span class="xref myst">series</span> on spiking networks, path integrals and motivic information.</p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2020-10-14 <a class="reference internal" href="posts/2020-10-14-path-integrals-and-continuous-time-markov-chains/">Path integrals and continuous-time Markov chains</a></p>
+<p class="ablog-post-excerpt">We give an introduction to continuous-time Markov chains, and define path measures for these objects.</p>
+<p class="ablog-post-excerpt">This post is a continuation from our <span class="xref myst">series</span> on spiking networks, path integrals and motivic information.</p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2020-10-07 <a class="reference internal" href="posts/2020-10-07-motivic-relative-information/">Motivic relative information</a></p>
+<p class="ablog-post-excerpt">So far, our definition of relative information studies the divergence between real-valued measures. In this post, we will explore motivic measures which take values more generally in some ring <span class="math notranslate nohighlight">\(R\)</span>, and have some fun applying motivic relative information to zeta functions.</p>
+<p class="ablog-post-excerpt">This post is a continuation from our <span class="xref myst">series</span> on spiking networks, path integrals and motivic information.</p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2020-10-05 <a class="reference internal" href="posts/2020-10-05-zeta-functions-mellin-transforms-and-the-gelfand-leray-form/">Zeta functions, Mellin transforms and the Gelfand-Leray form</a></p>
+<p class="ablog-post-excerpt">We outline the similarities between zeta functions appearing in number theory and in statistical learning.</p>
+<p class="ablog-post-excerpt">This post is a continuation from our <span class="xref myst">series</span> on spiking networks, path integrals and motivic information.</p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2020-09-18 <a class="reference internal" href="posts/2020-09-18-conditional-relative-information-and-its-axiomatizations/">Conditional relative information and its axiomatizations</a></p>
+<p class="ablog-post-excerpt">In this post, we will study the conditional form of relative information. We will also look at how conditional relative information can be axiomatized and extended to non-real-valued measures.</p>
+<p class="ablog-post-excerpt">This post is a continuation from our <span class="xref myst">series</span> on spiking networks, path integrals and motivic information.</p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2020-09-08 <a class="reference internal" href="posts/2020-09-08-building-foundations-of-information-theory-on-relative-information/">Building foundations of information theory on relative information</a></p>
+<p class="ablog-post-excerpt">The relative information <span id="id1">[<a class="reference internal" href="posts/2022-01-22-information-topos-theory-motivation/#id53" title="JC Baez and T Fritz. A bayesian characterization of relative entropy. Theory and Applications of Categories, 29:422–456, 2014.">BF14</a>]</span> (also known as relative entropy or Kullback-Leibler divergence) is an important object in information theory for measuring how far a probability measure <span class="math notranslate nohighlight">\(Q\)</span> is from another probability measure <span class="math notranslate nohighlight">\(P.\)</span> Here, <span class="math notranslate nohighlight">\(Q\)</span> is usually the true distribution of some real phenomenon, and <span class="math notranslate nohighlight">\(P\)</span> is some model distribution.</p>
+<p class="ablog-post-excerpt">In this post, we emphasize that the relative information is fundamental in the sense that all other interesting information-theoretic objects may be derived from it. We also outline how relative information can be defined without probability mass functions or probability density functions, or even in the absence of absolute continuity.</p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2020-08-28 <a class="reference internal" href="posts/2020-08-28-motivic-information-path-integrals-and-spiking-networks/">Motivic information, path integrals and spiking networks</a></p>
+<p class="ablog-post-excerpt">I’m writing a series of posts that will explore the connections between these topics. Here is a rough outline of the series, which I will fill in slowly over time.</p>
+<p class="ablog-post-excerpt"><span class="xref myst">Building foundations of information theory on relative information</span></p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2020-08-07 <a class="reference internal" href="posts/2020-08-07-processes-and-variety-maximization/">Processes and variety maximization</a></p>
+<p class="ablog-post-excerpt">“It’s a theory about processes, about the sequences and causal relations among <em>things that happen</em>, not the inherent properties of <em>things that are.</em> The fundamental ingredient is what we call an “event.” Events are things that happen at a single place and time; at each event there’s some momentum, energy, charge or other various physical quantity that’s measurable. The event has relations with the rest of the universe, and that set of relations constitutes its “view” of the universe. Rather than describing an isolated system in terms of things that are measured from the outside, we’re taking the universe as constituted of relations among events. The idea is to try to reformulate physics in terms of these views from the inside, what it looks like from inside the universe.”</p>
+<p class="ablog-post-excerpt">“There are many views, and each one has only partial information about the rest of the universe. We propose as a principle of dynamics that each view should be unique. That idea comes from Leibniz’s principle of the identity of indiscernibles. Two events whose views are exactly mappable onto each other are the same event, by definition. So each view is unique, and you can measure how distinct one is from another by defining a quantity called the “variety.” If you think of a node on a graph, you can go one step out, two steps out, three steps out. Each step gives you a neighborhood — the one-step neighborhood, the two-step neighborhood, the three-step neighborhood. So for any two events you can ask: How many steps do you have to go out until their views diverge? In what neighborhood are they different? The fewer steps you have to go, the more distinguishable the views are from one another. The idea in this theory is that the laws of physics — the dynamics of the system — work to maximize variety. That principle — that nature wants to maximize variety — actually leads, within the framework I’ve been describing, to the Schrödinger equation, and hence to a recovery, in an appropriate limit, of quantum mechanics.” - Les Smolin</p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2020-07-23 <a class="reference internal" href="posts/2020-07-23-adjunctions/">Adjunctions</a></p>
+<p class="ablog-post-excerpt">Read about the Curry-Howard-Lambek correspondence. Some call it the holy trinity of Logic, Computation and Categories. Lambek adds the “objects as propositions” and “arrows as proofs” part to the mix. You may need to learn some basic category theory.</p>
+<p class="ablog-post-excerpt"><a class="reference external" href="http://arca.di.uminho.pt/quantum-logic-1920/CategoriesAndLogic.pdf">http://arca.di.uminho.pt/quantum-logic-1920/CategoriesAndLogic.pdf</a></p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2020-05-26 <a class="reference internal" href="posts/2020-05-26-directed-spaces-and-types/">Directed spaces and types</a></p>
+<p class="ablog-post-excerpt">Joint work with Jin Xing Lim, Liang Ze Wong, Georgios Piliouras.</p>
+<p class="ablog-post-excerpt">There is a concept of <a class="reference external" href="https://ncatlab.org/nlab/show/directed+topological+space">Directed Spaces</a>. Since Types can be thought of as Spaces, the question is what kind of additional information we would need to construct such a Type (e.g. for undirected types, we can construct these types using identity types as additional information).</p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2020-05-21 <a class="reference internal" href="posts/2020-05-21-logical-frameworks/">Logical frameworks</a></p>
+<p class="ablog-post-excerpt">Logical frameworks are formal meta-languages for specifying different kinds of object theories (e.g. logical theories and type theories).</p>
+<p class="ablog-post-excerpt">LF is a logical framework <span id="id1">[<a class="reference internal" href="posts/2020-05-21-logical-frameworks/#id60" title="Robert Harper, Furio Honsell, and Gordon Plotkin. A framework for defining logics. Journal of the ACM (JACM), 40(1):143–184, 1993.">HHP93</a>]</span> that formalizes Martin-Lof’s logical framework and is itself based on type theory. It was designed to unify similarities between two forms of judgments.</p>
+<img alt="logical-framework-rules" class="ablog-post-excerpt" src="_images/logical-framework-rules.png" />
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2018-05-26 <a class="reference internal" href="posts/2018-05-26-machine-reasoning-and-deep-spiking-networks/">Machine reasoning and deep spiking networks</a></p>
+<p class="ablog-post-excerpt">This is a short presentation which I shared at the Visions of AI Futures workshop organized by AI Singapore. I talked about the goal of building next-generation machine intelligence, through neural and symbolic modules that work seamlessly together to accomplish intuitive reasoning, as well as efficient, effective neural chips for every device.</p>
+<p class="ablog-post-excerpt"><a class="reference external" href="https://www.aisingapore.org/event/visions-of-ai-futures/">Visions of AI Futures</a></p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2017-05-08 <a class="reference internal" href="posts/2017-05-08-artificial-general-intelligence-for-the-internet-of-things/">Artificial general intelligence for the internet of things</a></p>
+<p class="ablog-post-excerpt">What do we need to achieve artificial general intelligence? How do we distribute intelligence over the internet-of-things? We’ll dive deep into the heart of the matter, which is machine reasoning. Following recent advances in mathematical foundations and homotopy type theory, we conclude that the crux is to formally separate intents from implementations. We can teach neural networks to understand these intents and to use a divide-and-conquer method for compiling these intents into implementations. Our goal is to outline a distributed strategy for accomplishing this moonshot.</p>
+<p class="ablog-post-excerpt"><a class="reference external" href="https://on-demand-gtc.gputechconf.com/gtcnew/sessionview.php?sessionName=s7239-artificial+general+intelligence+for+the+internet+of+things">GPU Technology Conference</a></p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2016-05-03 <a class="reference internal" href="posts/2016-05-03-exercise-on-sparse-autoencoders/">Exercise on sparse autoencoders</a></p>
+<p class="ablog-post-excerpt">This exercise is the first of several posts I am writing, for those who want a mathematical and hands-on introduction to deep neural networks.</p>
+<p class="ablog-post-excerpt">Read the series of notes on the topic of “Sparse Autoencoder” in the <a class="reference external" href="http://deeplearning.stanford.edu/wiki/index.php/UFLDL_Tutorial">UFLDL Tutorial</a>.</p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2016-05-03 <a class="reference internal" href="posts/2016-05-03-exercise-on-deep-neural-networks/">Exercise on deep neural networks</a></p>
+<p class="ablog-post-excerpt">Read the notes and complete the exercises for the section on “Building Deep Networks for Classification” in the <a class="reference external" href="http://deeplearning.stanford.edu/wiki/index.php/UFLDL_Tutorial">UFLDL Tutorial</a>. Complete all the programming tasks in Python. No starter code will be given for these exercises, but you may refer to the given Matlab codes for hints if you are stuck</p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2016-02-04 <a class="reference internal" href="posts/2016-02-04-hashing/">Hashing</a></p>
+<p class="ablog-post-excerpt">Hashing is a method for compressing information from a high dimensional space into a smaller space. Hashing is commonly used in computer science to help us with many tasks. For instance, if two documents are (randomly) hashed to the same code, it is very likely that they are exactly the same. Also, in computer vision, we sometimes hash images in a clever way to find similar or related images through their codes.</p>
+<p class="ablog-post-excerpt">Hashing goes all the way back to Shannon, the father of information theory, who looked at random hashes in his source coding theorem. There are also interesting connections to compressed sensing which have not been fully explored as yet.</p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2014-08-13 <a class="reference internal" href="posts/2014-08-13-statistics-and-machine-learning/">Statistics and machine learning</a></p>
+<p class="ablog-post-excerpt">Below are some introductory texts for probability, statistics, machine learning and statistical learning theory. They are sorted roughly according to difficulty, so you can find a book that is suitable for where you are and what you need.</p>
+<p class="ablog-post-excerpt"><a class="reference external" href="http://www.amazon.com/First-Course-Probability-9th-Edition/dp/032179477X/ref=dp_ob_title_bk">A First Course in Probability (9th Edition)</a><br />
+<em>Sheldon M. Ross</em><br />
+This book covers combinatorics and stuff. For undergraduates. Might be too easy.</p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2014-08-02 <a class="reference internal" href="posts/2014-08-02-boltzmann-machines-and-hierarchical-models/">Boltzmann machines and hierarchical models</a></p>
+<p class="ablog-post-excerpt">The <a class="reference external" href="http://en.wikipedia.org/wiki/Restricted_Boltzmann_machine">restricted Boltzmann machine</a> (RBM) is a key statistical model used in <a class="reference external" href="http://en.wikipedia.org/wiki/Deep_learning">deep learning</a>. They are special form of Boltzmann machines where the underlying graph is a bipartite graph. Personally, I am more interested in <a class="reference external" href="http://en.wikipedia.org/wiki/Boltzmann_machine">Boltzmann machines</a> because they represent a class of discrete <a class="reference external" href="http://www.cs.nyu.edu/~yann/research/ebm/">energy models</a> where the energy is quadratic. The dynamics of the model bears a lot of resemblance to those of <a class="reference external" href="http://en.wikipedia.org/wiki/Hopfield_network">Hopfield networks</a> and <a class="reference external" href="http://en.wikipedia.org/wiki/Ising_model">Ising models</a>. As an aside, normal distributions are continuous energy models where the energy is quadratic and positive definite.</p>
+<p class="ablog-post-excerpt">If the energy of the model is a polynomial of higher degree (e.g. cubic, quartic), then the model is <em>hierarchical</em>. They are a kind of <a class="reference external" href="http://en.wikipedia.org/wiki/Graphical_model">graphical model</a> where the underlying graph is a <a class="reference external" href="http://en.wikipedia.org/wiki/Simplicial_complex">simplicial complex</a> (a special type of <a class="reference external" href="http://en.wikipedia.org/wiki/Hypergraph">hypergraph</a>). Here are some slides and papers on hierachical models:</p>
+</li>
+<li class="ablog-post"><p class="ablog-post-title">2012-07-13 <a class="reference internal" href="posts/2012-07-13-studying-model-asymptotics-with-singular-learning-theory/">Studying model asymptotics with singular learning theory</a></p>
+<p class="ablog-post-excerpt">Singular statistical models occur frequently in machine learning and computational biology. An important prob-lem in the learning theory of singular models is determin-ing their asymptotic behavior for massive data sets. In this talk, we give a brief introduction to Sumio Watanabe’s Singular Learning Theory, as outlined in his book “Algebraic Geometry and Statistical Learning Theory.” We will also explore the rich algebraic geometry and combinatorics that arise from studying the asymptotics of Bayesian integrals.</p>
+<p class="ablog-post-excerpt"><a class="reference external" href="https://www.youtube.com/playlist?list=PLl_tHArJvfnBS-OPQa2jFYhb1ZrCAnyyL">Modern Massive Data Sets</a></p>
+</li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+<div class="section">
+   
+</div>
+
+              </div>
+              
+<!-- Add a comment box underneath the page's content -->
+<script src="https://giscus.app/client.js"
+        data-repo="shaoweilin/shaoweilin.github.io"
+        data-repo-id="R_kgDOHM5tAA"
+        data-category="Blog comments"
+        data-category-id="DIC_kwDOHM5tAM4COqgI"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='right-next' id="next-link" href="about/" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">About</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2022, Shaowei Lin.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
