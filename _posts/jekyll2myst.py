@@ -10,12 +10,10 @@ from pathlib import Path
 # copy images
 # read more
 # citations
-
 # remove references, add biblio
-
-# excerpts
 # about.md
 # singular.md
+# excerpts
 # find "<a id=" which do not come from biblio
   ## **<a id="theorem-convergence-of-biased-stochastic-approximation"></a>
   ## <a id="assumption-step-sizes-and-stop-time"></a>
