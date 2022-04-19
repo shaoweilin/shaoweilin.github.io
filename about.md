@@ -2,16 +2,36 @@
 
 I am a mathematician working on the statistical learning theory of spiking neural networks and on dependent type theories for machine reasoning.
 
+```{panels}
+:card: border-0 pl-0
+:body: pl-0
+:column: pl-0
+:container: pl-0
 
-PURL [https://w3id.org/people/shaoweilin](https://w3id.org/people/shaoweilin)
+---
+:column: col-3
 
-ORCID [0000-0002-8176-8868](https://orcid.org/0000-0002-8176-8868)
+**Identity**
 
-## Biography
+---
+:column: col-9
 
-[Curriculum Vitae](https://w3id.org/people/shaoweilin/public/vitae.pdf)
+- PURL [https://w3id.org/people/shaoweilin](https://w3id.org/people/shaoweilin)
+- ORCID [0000-0002-8176-8868](https://orcid.org/0000-0002-8176-8868)
 
-[LinkedIn](https://www.linkedin.com/in/shaoweilin)
+---
+:column: col-3
+**Biography**
+
+---
+:column: col-9
+
+- [Curriculum Vitae](https://w3id.org/people/shaoweilin/public/vitae.pdf)
+- [LinkedIn](https://www.linkedin.com/in/shaoweilin)
+
+```
+
+
 
 ## Publications
 
@@ -29,13 +49,13 @@ ORCID [0000-0002-8176-8868](https://orcid.org/0000-0002-8176-8868)
 
 ## Talks
 
-[Proofs as programs](proofs-as-programs-challenges-and-strategies-for-program-synthesis/)
+[Proofs as programs](posts/2021-04-22-proofs-as-programs-challenges-and-strategies-for-program-synthesis/)
 
-[Neural-symbolic reasoning](machine-reasoning-and-deep-spiking-networks/)
+[Neural-symbolic reasoning](posts/2018-05-26-machine-reasoning-and-deep-spiking-networks/)
 
-[Internet of things](artificial-general-intelligence-for-the-internet-of-things/)
+[Internet of things](posts/2017-05-08-artificial-general-intelligence-for-the-internet-of-things/)
 
-[Singular learning](studying-model-asymptotics-with-singular-learning-theory/)
+[Singular learning](posts/2012-07-13-studying-model-asymptotics-with-singular-learning-theory/)
 
 ## Software
 
