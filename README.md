@@ -1,8 +1,10 @@
 # Shaowei Lin
 
-I am a big MyST and Sphinx fan. 
+I am a mathematician working on the statistical learning theory of spiking neural networks and on dependent type theories for machine reasoning. This repository contains the source code for my [website](https://shaoweilin.github.io/).
 
-This website was modified from [choldgraf.github.io](https://github.com/choldgraf/choldgraf.github.io).
+## Website
+
+As a big MyST fan, I was really inspired by Chris Holdgraf's [website](https://predictablynoisy.com/posts/2020/sphinx-blogging/). This source code was modified from [his](https://github.com/choldgraf/choldgraf.github.io).
 
 ## Install
 
