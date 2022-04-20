@@ -109,11 +109,14 @@ div.timeline div.entry.right::after {
 }
 
 /* list-table style */
-table.docutils {
+table.tight-table {
     margin-left: 5%;
     margin-right: 5%;
 }
 
-td {
+.tight-table td {
+    margin-left: 5%;
+    margin-right: 5%;
     text-align: left;
+    white-space: normal !important;
 }
