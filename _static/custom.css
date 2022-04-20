@@ -112,11 +112,10 @@ div.timeline div.entry.right::after {
 table.tight-table {
     margin-left: 5%;
     margin-right: 5%;
+    width: 90%;
 }
 
 .tight-table td {
-    margin-left: 5%;
-    margin-right: 5%;
     text-align: left;
     white-space: normal !important;
 }
