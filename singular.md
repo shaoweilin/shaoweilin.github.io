@@ -4,6 +4,7 @@ Some personal resources for understanding and applying singular learning theory.
 
 ```{list-table}
 :widths: 5 30
+:class: tight-table
 
 * - [Thesis](https://w3id.org/people/shaoweilin/public/swthesis.pdf) 
   - Algebraic methods for evaluating integrals in Bayesian statistics
@@ -31,6 +32,7 @@ My slides and problem sets on Singular Learning Theory from the [Motivic Invaria
 
 ```{list-table}
 :widths: 20 5 5
+:class: tight-table
 
 * - Statistical Learning Theory
   - [Slides](https://w3id.org/people/shaoweilin/public/cmnd1SLT.pdf)
