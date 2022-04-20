@@ -3,7 +3,7 @@
 Some personal resources for understanding and applying singular learning theory. For more information, please read the [textbook](http://watanabe-www.math.dis.titech.ac.jp/users/swatanab/singular-learning-theory.html) by Sumio Watanabe.
 
 ```{list-table}
-:widths: 5 30
+:widths: 5 25
 
 * - [Thesis](https://w3id.org/people/shaoweilin/public/swthesis.pdf) 
   - Algebraic methods for evaluating integrals in Bayesian statistics
