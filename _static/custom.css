@@ -111,6 +111,7 @@ div.timeline div.entry.right::after {
 /* list-table style */
 table.docutils {
     margin-left: 5%;
+    margin-right: 5%;
 }
 
 td {
