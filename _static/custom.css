@@ -109,7 +109,7 @@ div.timeline div.entry.right::after {
 }
 
 /* list-table style */
-table {
+table.docutils {
     margin-left: 20%;
 }
 
