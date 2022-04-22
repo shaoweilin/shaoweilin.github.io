@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'Spikes and Types'
+project = 'Types from Spikes'
 copyright = '2022, Shaowei Lin'
 author = 'Shaowei Lin'
 
@@ -73,7 +73,7 @@ html_sidebars = {
     "blog/**": ['postcard.html', 'recentposts.html', 'archives.html']
 }
 blog_baseurl = "https://shaoweilin.github.io"
-blog_title = "Spikes and Types"
+blog_title = "Types from Spikes"
 blog_path = "blog"
 fontawesome_included = True
 blog_post_pattern = "posts/*"
