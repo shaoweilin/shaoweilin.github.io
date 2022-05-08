@@ -15,7 +15,7 @@ We will be using [biased](2020-12-01-biased-stochastic-approximation/) stochasti
 
 This post is a continuation from our [series](2020-08-28-motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 
-## What do we assume about the true distribution, the model and the learning objective?
+### What do we assume about the true distribution, the model and the learning objective?
 
 As [before](2021-03-22-relative-inference-with-mutable-processes/), we assume that the universe is a Markov process $\{X_t\},$ and let its true distribution be the path measure $Q_*.$
 
@@ -42,7 +42,7 @@ We assume that $Q_\lambda$ has a stationary distribution $\bar{\pi}_\lambda,$ an
 $$ \displaystyle
 \lim_{n \rightarrow \infty} I_{Q_\lambda \Vert P_\theta}(Z_{n+1}, X_{n+1} \vert Z_{n}, X_{n}) = I_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0).$$
 
-## What is the general intuition behind online learning for mutable processes?
+### What is the general intuition behind online learning for mutable processes?
 
 To minimize the relative information objective, we adopt an approach similar to the expectation-maximization (EM) or exponential-mixture (em) [algorithm](2020-10-23-machine-learning-with-relative-information/). Specifically, we perform coordinate-wise minimization for the discriminative distribution $Q_\lambda$ and for the generative distribution $P_\theta$, updating one distribution while holding the other constant. 
 
@@ -96,7 +96,7 @@ $$ \begin{array}{rl} &
 
 ----
 
-## Is there a stochastic approximation of the above procedure?
+### Is there a stochastic approximation of the above procedure?
 
 In the above two-step procedure, the term
 
@@ -163,7 +163,7 @@ If the conditional expectations of the updates are independent of $(Z_{n}, X_{n}
 
 In continuous time, the mean fields will be derivatives of relative information rates. The conditional expectations which depend on the current states $(Z_t,X_t)$ will be biased estimates of the mean fields.
 
-## How can we interpret the discriminative model update?
+### How can we interpret the discriminative model update?
 
 For a fixed generative model $P_\theta,$ the discriminative model update looks for a distribution $Q_\lambda(Z_{n+1}\vert Z_{n},X_{n})$ that minimizes the learning objective $I_{\bar{Q}_\lambda \Vert P_\theta}(Z_{n+1}, X_{n+1} \vert Z_{n}, X_{n}).$ Intuitively, we can think of the update as looking for good belief $Z_{n+1}$ given the previous belief $Z_{n}$ and observation $X_{n}.$
 
@@ -220,7 +220,7 @@ In {cite}`pozzi2020attention`, a reinforcement learning scheme for training mult
 
 While there are many interesting similarities between their scheme and our algorithm, one major difference is that we do not require the feedback weights to be the same as the feedforward weights. In our algorithm, the feedback weights are represented by the parameter $\lambda$ and the feedforward weights by $\theta$. At the end of training,  the feedback weights will tend towards the feedforward weights because of the tendency to exploit. However, tying the weights together at the start of training could be detrimental to learning due to the need of the neural network to explore.
 
-## Appendix: Discriminative model update
+### Appendix: Discriminative model update
 
 In this appendix, we derive the gradient
 
@@ -320,7 +320,7 @@ $$ \begin{array}{rl} &
 
 where the last equality follows because the limit does not depend on the initial distribution of $(Z_0, X_0).$
 
-## References
+### References
 
 ```{bibliography}
 :filter: docname in docnames

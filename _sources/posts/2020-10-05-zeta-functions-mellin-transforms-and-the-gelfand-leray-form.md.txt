@@ -9,7 +9,7 @@ We outline the similarities between zeta functions appearing in number theory an
 
 This post is a continuation from our [series](2020-08-28-motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 
-## Gelfand-Leray functions
+### Gelfand-Leray functions
 
 Let $\omega$ be a volume form or a form resulting from a measure on some space $W$. Let $f: W \rightarrow \mathbb{R}$ be a non-negative energy function or a Kullback-Leibler divergence. A _Gelfand-Leray form_ of $\omega$ is any differential form $\phi$ that satisfies
 
@@ -25,7 +25,7 @@ These functions often have asymptotic expansions of the form
 
 $$J(t) = \displaystyle \sum_\alpha \sum_{i=1}^d m_{\alpha,i} t^\alpha (\log t)^{i-1}.$$
 
-## Zeta functions
+### Zeta functions
 
 Informally, zeta functions are complex functions of the form
 
@@ -75,7 +75,7 @@ Indeed, for finite sums, we see that
 
 $$\zeta'(0) = - \displaystyle \sum_\lambda m_\lambda \log \lambda.$$
 
-## Statistical Learning
+### Statistical Learning
 
 In statistical learning, given a prior $\omega = \psi(w)dw$ on the parameters $w$ of a statistical model $p: W \rightarrow \Delta,$ and given the relative information $K(w)$ to the true distribution $q$ from the model distribution $p(w),$ the Gelfand-Leray function
 
@@ -89,7 +89,7 @@ $$\zeta(z) = \int_W K(w)^z \psi(w) dw = \int_0^\infty t^z J(t)dt$$
 
 which (up to some linear change of variable in $z$) is the Mellin transform of the state density function $J(t).$
 
-## Number Theory
+### Number Theory
 
 In number theory, we have the notorious Riemann zeta function which becomes more interesting {cite}`baez2005week` if we write it as
 
@@ -141,7 +141,7 @@ $$1-\lambda q^{-z} = \displaystyle \prod_{\rho \vert  q^\rho = \lambda} \frac{\l
 
 which is in turn expressible using another zeta function and theta function.
 
-## References
+### References
 
 ```{bibliography}
 :filter: docname in docnames

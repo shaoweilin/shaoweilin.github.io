@@ -63,11 +63,11 @@ Awodey has a beautiful way of constructing context extensions by imposing a simp
 
 Given a representable natural transformation $p: \dot{U} \rightarrow U,$ we can build a dependent type theory with $C$ as the category of contexts and substitutions in the theory. The map $p$ then takes each term in the universe $\dot{U}$ to its type in $U.$ A representable natural transformation (together with a choice of pullbacks in some presheaf category) is also called a _natural model of type theory_.
 
-## Conclusion
+### Conclusion
 
 In our next post, we will continue with motivations for information topos theory and discuss posetal subcategories of our presheaf category. Relative information will then be defined as the divergence between two sections of a poset with respect to a morphism in the poset.
 
-## References
+### References
 
 ```{bibliography}
 :filter: docname in docnames
