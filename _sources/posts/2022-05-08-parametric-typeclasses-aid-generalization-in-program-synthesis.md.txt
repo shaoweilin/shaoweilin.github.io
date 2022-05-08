@@ -40,7 +40,9 @@ Given a type A and a relation (R : A -> A -> Prop), we recursively define a term
 If we do this without classes, we will have to carry a lot of information around with us. Let "Rwf" be the proof of the well-foundedness of R. Let "wf_implies_noetherian" be the function that takes in a proof of well-foundedness, and spits out a proof of noetherian-ness. Then, to do noetherian induction, we would have to apply "wf_implies_noetherian Rwf" at the start of our proof. See <https://github.com/coq/coq/blob/master/theories/Init/Wf.v#L55>.
 
 If we do this with classes, we could have a class "Wellfounded" of all relations that are well-founded. We could also have a class "Noetherian" of all relations for which we can perform Noetherian induction. In this class, we have a generic name "noetherian_rect" 
-(noetherian recursion for types) for the proof of noetherian-ness. See the following Coq code for details.
+(noetherian recursion for types) for the proof of noetherian-ness. 
+
+We would then have R as an instance of Wellfounded, and S as an instance of Noetherian for all well-founded S. If we have a situation where Noetherian induction might be applicable, we just need to apply "noetherian_rect" with no extra parameters. The proof assistant will now compare the goal with the statement of noetherian-ness to guess what the relation R may be. It will then try to find an instance of the "Noetherian R" class, which could be something from the "Wellfounded R" class. Finally, it tries to find an instance of "Wellfounded R" and it sees that an instance was previously registered. All of this searching happens automatically in the background and no extra information needs to be carried by the human or learning machine. See below for the code.
 
 ```coq
 
@@ -88,8 +90,6 @@ Proof. intros. apply noetherian_rect. intros. [...] Qed.
 End BinaryTree.
 
 ```
-
-We would then have R as an instance of Wellfounded, and S as an instance of Noetherian for all well-founded S. If we have a situation where Noetherian induction might be applicable, we just need to apply "noetherian_rect" with no extra parameters. The proof assistant will now compare the goal with the statement of noetherian-ness to guess what the relation R may be. It will then try to find an instance of the "Noetherian R" class, which could be something from the "Wellfounded R" class. Finally, it tries to find an instance of "Wellfounded R" and it sees that an instance was previously registered. All of this searching happens automatically in the background and no extra information needs to be carried by the human or learning machine. See below for the code.
 
 In Coq, a similar proof-search is done when we use the tactic "reflexivity." The proof assistant searches for instances of the Reflexive class. Users can extend the Reflexive class with their own instances to make the tactic more powerful.
 
