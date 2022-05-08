@@ -16,7 +16,7 @@ We discuss natural constraints on the discriminative and generative models, and 
 
 This post is a continuation from our [series](2020-08-28-motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 
-## What is a mutable process?
+### What is a mutable process?
 
 Suppose we have a random variable $X$ which represents the state of reality, the environment or the universe. This random variable may have components which are observed (data is given) or observable (data can be obtained if we want it), and it may also have components which are latent or hidden. Let the true distribution of $X$ be $Q_*(X),$ which may be partially unknown or fully unknown. For now, we assume that we are passive observers incapable of changing this distribution.
 
@@ -39,7 +39,7 @@ A model for a process $\{Y_t\}$ is _mutable_ if we can find subprocesses $\{Z_t\
 We will show in this post that we can train generative models $\{P(Z,X)\}$ using mutable processes $\{Q(Z,X)\}$ and relative inference.
 
 
-## How do we perform relative inference with mutable processes?
+### How do we perform relative inference with mutable processes?
 
 Suppose that we have two processes -- the environment $X_t \in \mathcal{X},$ and the memory $Z_t \in \mathcal{Z}$. Let $Q_*(X_{0\ldots T})$ be the true distribution of $X_{0\ldots T}$. Suppose that we have a generative model $\{P(Z,X)\}.$ Recall that our goal is to find a distribution in the model that minimizes the relative information
 
@@ -60,7 +60,7 @@ $$I_{Q\Vert P}(Z_{0\ldots T},X_{0\ldots T})$$
 
 as $Q$ varies over the space $\Delta.$ We will focus on design considerations for the different computational constraints on $\Delta.$
 
-## Is relative inference necessarily passive?
+### Is relative inference necessarily passive?
 
 The form of relative inference we are considering here is passive by assumption. The true distribution $Q_*(X_{0\ldots T})$ is unchangeable, so the states of the memory variables $Z_{0\ldots T}$ have no effect on the environment $X_{0\ldots T}.$ 
 
@@ -78,7 +78,7 @@ $$I_{Q\Vert P}(Z_{0\ldots T},X_{0\ldots T}) = I_{Q\Vert P}(Z_{0\ldots T}\vert  X
 
 so a minimum value for $I_{Q\Vert P}(Z_{0\ldots T},X_{0\ldots T})$ will be a lower bound for the minimum value for $I_{Q_*\Vert P}(X_{0\ldots T}).$ As shown [previously](2020-10-23-machine-learning-with-relative-information/), when minimizing with $Q$ varying over the unconstrained space $\Delta$, the gap $I_{Q\Vert P}(Z_{0\ldots T}\vert X_{0\ldots T})$ in the bound vanishes.
 
-## How do we perform online learning with mutable processes?
+### How do we perform online learning with mutable processes?
 
 In the training of hidden Markov models, the Baum-Welch algorithm or forward-backward algorithm is often used. It requires knowledge of the enviroment from the start to the end of the time interval. An algorithm that only uses data from the environment from the start to the present is called an _online_ learning algorithm. Otherwise, the learning algorithm is said to be _offline_.
 
@@ -136,7 +136,7 @@ $$\displaystyle \frac{d}{ds}f(z(s),x(s)) =\frac{dz}{ds} \frac{\partial}{\partial
 
 Online learning involves minimizing over the subspace $\Delta_\mathcal{C},$ where the discriminative factors $Q(Z_t \vert Z_{0\ldots (t-1)}, X_{0\ldots (t-1)})$ depend only on information from the past. When optimizing over $\Delta_\mathcal{C},$ the information gap $I_{Q\Vert P}(Z_{0\ldots T}\vert X_{0\ldots T})$ might not vanish. Loosely, the gap represents _the cost of present separation_ and _the cost of future ignorance_. Indeed, if $Z_t$ and $X_t$ are not conditionally independent given their past, then either their states are entangled (e.g. $X_t$ in one state bars $Z_t$ from another state) or their dependence is coming from knowledge of the future. Since the gap vanishes when we optimize over distributions that allow such kinds of dependence, entanglements and future knowledge must be furnishing information for closing this gap.
 
-## How do we perform relative inference with limited memory?
+### How do we perform relative inference with limited memory?
 
 Suppose now that computationally, both the discriminative model and the generative model have limited memory. More precisely, the models cannot store the full histories $Z_{0\ldots t}, X_{0\ldots t}$ but they can recall the most recent states $Z_t, X_t.$ In other words, the distributions satisfy the Markov property. Hence, $Q(Z_{0\ldots T}\vert X_{0\ldots T})$ has a factorization
 
@@ -148,7 +148,7 @@ Compared to minimizing the objective $I_{Q\Vert P}(Z_{0\ldots T},X_{0\ldots T})$
 
 Of course, the recent state $Z_t$ could be used to store copies of older states $Z_{t-1}, Z_{t-2}, \ldots$ but because the dimension of $Z_t$ is finite, only a limited number of those states can be stored. A smarter way is to compress those states, or to only store pertinent information about those states. 
 
-## How do we perform relative inference with limited sensing?
+### How do we perform relative inference with limited sensing?
 
 For our mathematical analysis, we find it semantically convenient to assume that the process $X_{0\ldots T}$ represents the history of _every particle in the universe_ and that it is a Markov process. Some subprocesses of $X_{0\ldots T}$ will be observed during training, while other subprocesses may remain hidden. 
 
@@ -170,7 +170,7 @@ Our goal is therefore to train the model by minimizing the relative information 
 
 Biological spiking networks need to work with the constraints of not knowing the future and having limited memory and sensing. For the remainder of this series, we will also work with these constraints.
 
-## Remark: Cost of limited sensing 
+### Remark: Cost of limited sensing 
 
 Let $V_t$ and $U_t$ be the observed and hidden components of each $X_t.$ Suppose the generative model $P(Z_{0\ldots T},X_{0\ldots T})$ assigns probability one to some fixed path of $\{U_t\}.$ 
 

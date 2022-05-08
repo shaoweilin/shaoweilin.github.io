@@ -65,7 +65,7 @@ ul.postlist li + li {
     margin-top: 2em;
 }
 
-ul.postlist li > p > a {
+ul.postlist li > p:first-child > a {
     font-style: normal;
     font-size: 2em;
 }
@@ -99,11 +99,6 @@ div.timeline div.entry.left::after {
 
 div.timeline div.entry.right::after {
     left: -.5em;
-}
-
-/* Blog posts */
-.bd-content h1 {
-    font-size: 3em;
 }
 
 /* Blog post comments */
