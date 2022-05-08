@@ -23,13 +23,9 @@ However, I believe Haskell was the first programming language to make serious us
 
 ## Examples of parametric strategy
 
-For example, equivalence between types can be captured by parametric classes, and the following seminal paper describes how to extend types equivalences to constructions involving those types in a systematic way. Automated transport along equivalences is important if we want to switch between unary and binary numbers for efficiency in automated programming.
+For example, equivalence between types can be captured by parametric classes, and the seminal paper *Changing Data Structures in Type Theory: A Study of Natural Numbers*(2000) by Magaud and Bertot {cite}`magaud2000changing` describes how to extend types equivalences to constructions involving those types in a systematic way. Automated transport along equivalences is important if we want to switch between unary and binary numbers for efficiency in automated programming.
 
-- Nicolas Magaud and Yves Bertot. 2000. "Changing Data Structures in Type Theory: A Study of Natural Numbers" (TYPES 2000).
-
-This next paper summarizes the latest strategies in parametric transport, and relates them to univalent transport from homotopy type theory. There is also heavy use of classes in their approach.
-
-- Tabareau, Nicolas, Éric Tanter, and Matthieu Sozeau. 2021. "The Marriage of Univalence and Parametricity" (JACM).
+The 2021 paper *The Marriage of Univalence and Parametricity *(2021) by Tabareau, Tanter and Sozeau {cite}`tabareau2021marriage` summarizes the latest strategies in parametric transport, and relates them to univalent transport from homotopy type theory. There is also heavy use of classes in their approach.
 
 ## Example - Noetherian induction
 
@@ -42,7 +38,7 @@ If we do this without classes, we will have to carry a lot of information around
 If we do this with classes, we could have a class "Wellfounded" of all relations that are well-founded. We could also have a class "Noetherian" of all relations for which we can perform Noetherian induction. In this class, we have a generic name "noetherian_rect" 
 (noetherian recursion for types) for the proof of noetherian-ness. 
 
-We would then have R as an instance of Wellfounded, and S as an instance of Noetherian for all well-founded S. If we have a situation where Noetherian induction might be applicable, we just need to apply "noetherian_rect" with no extra parameters. The proof assistant will now compare the goal with the statement of noetherian-ness to guess what the relation R may be. It will then try to find an instance of the "Noetherian R" class, which could be something from the "Wellfounded R" class. Finally, it tries to find an instance of "Wellfounded R" and it sees that an instance was previously registered. All of this searching happens automatically in the background and no extra information needs to be carried by the human or learning machine. See below for the code.
+We would then have R as an instance of Wellfounded, and S as an instance of Noetherian for all well-founded S. If we have a situation where Noetherian induction might be applicable, we just need to apply "noetherian_rect" with no extra parameters. The proof assistant will now compare the goal with the statement of noetherian-ness to guess what the relation R may be. It will then try to find an instance of the "Noetherian R" class, which could be something from the "Wellfounded R" class. Finally, it tries to find an instance of "Wellfounded R" and it sees that an instance was previously registered. All of this searching happens automatically in the background and no extra information needs to be carried by the human or learning machine. See below for the partial code (full code [here](https://w3id.org/people/shaoweilin/public/parametricity.v))
 
 ```coq
 

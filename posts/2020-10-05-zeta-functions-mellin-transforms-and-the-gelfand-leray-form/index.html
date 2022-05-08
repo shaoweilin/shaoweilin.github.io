@@ -330,7 +330,7 @@
 <p>Let <span class="math notranslate nohighlight">\(\omega\)</span> be a volume form or a form resulting from a measure on some space <span class="math notranslate nohighlight">\(W\)</span>. Let <span class="math notranslate nohighlight">\(f: W \rightarrow \mathbb{R}\)</span> be a non-negative energy function or a Kullback-Leibler divergence. A <em>Gelfand-Leray form</em> of <span class="math notranslate nohighlight">\(\omega\)</span> is any differential form <span class="math notranslate nohighlight">\(\phi\)</span> that satisfies</p>
 <div class="math notranslate nohighlight">
 \[df \wedge \phi = \omega.\]</div>
-<p>We will denote <span class="math notranslate nohighlight">\(\phi\)</span> by <span class="math notranslate nohighlight">\(\omega /df\)</span>. See <span id="id1">[<a class="reference internal" href="#id50" title="VI Arnold, SM Gusein-Zade, and AN Varchenko. Elementary integrals and the resolution of singularities of the phase. In Singularities of Differentiable Maps, pages 215–232. Springer, 1988.">AGZV88</a>]</span> and §4 of <span id="id2">[<a class="reference internal" href="#id46" title="Matilde Marcolli. Feynman motives. World Scientific, 2010.">Mar10</a>]</span> for expositions about the Gelfand-Leray form.</p>
+<p>We will denote <span class="math notranslate nohighlight">\(\phi\)</span> by <span class="math notranslate nohighlight">\(\omega /df\)</span>. See <span id="id1">[<a class="reference internal" href="#id52" title="VI Arnold, SM Gusein-Zade, and AN Varchenko. Elementary integrals and the resolution of singularities of the phase. In Singularities of Differentiable Maps, pages 215–232. Springer, 1988.">AGZV88</a>]</span> and §4 of <span id="id2">[<a class="reference internal" href="#id48" title="Matilde Marcolli. Feynman motives. World Scientific, 2010.">Mar10</a>]</span> for expositions about the Gelfand-Leray form.</p>
 <p>The <em>Gelfand-Leray function</em> is</p>
 <div class="math notranslate nohighlight">
 \[J(t) =\displaystyle \int_{f(w)=t} \frac{\omega}{df}.\]</div>
@@ -362,7 +362,7 @@
 <div class="math notranslate nohighlight">
 \[\theta(t) = \displaystyle \sum_{\lambda} m_\lambda e^{- \lambda t}.\]</div>
 <p>However, I do not know if the theta function can be expressed as the Gelfand-Leray function of a differential form with respect to an energy function.</p>
-<p>Zeta functions are also useful for defining infinite products <span id="id3">[<a class="reference internal" href="#id47" title="Yuri Manin. Lectures on zeta functions and motives. Astérisque, 228:121–163, 1995.">Man95</a>]</span></p>
+<p>Zeta functions are also useful for defining infinite products <span id="id3">[<a class="reference internal" href="#id49" title="Yuri Manin. Lectures on zeta functions and motives. Astérisque, 228:121–163, 1995.">Man95</a>]</span></p>
 <div class="math notranslate nohighlight">
 \[Z = \displaystyle \prod_\lambda \lambda^{m_\lambda}\]</div>
 <p>which we define to be</p>
@@ -380,7 +380,7 @@
 <p>In statistical learning, given a prior <span class="math notranslate nohighlight">\(\omega = \psi(w)dw\)</span> on the parameters <span class="math notranslate nohighlight">\(w\)</span> of a statistical model <span class="math notranslate nohighlight">\(p: W \rightarrow \Delta,\)</span> and given the relative information <span class="math notranslate nohighlight">\(K(w)\)</span> to the true distribution <span class="math notranslate nohighlight">\(q\)</span> from the model distribution <span class="math notranslate nohighlight">\(p(w),\)</span> the Gelfand-Leray function</p>
 <div class="math notranslate nohighlight">
 \[J(t) = \displaystyle \frac{d}{dt} \int_{0 \leq K(w) \leq t} \psi(w) dw\]</div>
-<p>is called the state density function <span id="id4">[<a class="reference internal" href="../2020-10-23-machine-learning-with-relative-information/#id45" title="Sumio Watanabe. Algebraic geometry and statistical learning theory. Number 25. Cambridge university press, 2009.">Wat09</a>]</span>.</p>
+<p>is called the state density function <span id="id4">[<a class="reference internal" href="../2020-10-23-machine-learning-with-relative-information/#id47" title="Sumio Watanabe. Algebraic geometry and statistical learning theory. Number 25. Cambridge university press, 2009.">Wat09</a>]</span>.</p>
 <p>The zeta function of the statistical model is</p>
 <div class="math notranslate nohighlight">
 \[\zeta(z) = \int_W K(w)^z \psi(w) dw = \int_0^\infty t^z J(t)dt\]</div>
@@ -388,7 +388,7 @@
 </div>
 <div class="section" id="number-theory">
 <h2>Number Theory<a class="headerlink" href="#number-theory" title="Permalink to this headline">#</a></h2>
-<p>In number theory, we have the notorious Riemann zeta function which becomes more interesting <span id="id5">[<a class="reference internal" href="#id49" title="John Baez. This week’s finds in mathematical physics (week 217). \url https://math.ucr.edu/home/baez/week217.html, 2005.">Bae05</a>]</span> if we write it as</p>
+<p>In number theory, we have the notorious Riemann zeta function which becomes more interesting <span id="id5">[<a class="reference internal" href="#id51" title="John Baez. This week’s finds in mathematical physics (week 217). \url https://math.ucr.edu/home/baez/week217.html, 2005.">Bae05</a>]</span> if we write it as</p>
 <div class="math notranslate nohighlight">
 \[\zeta(z) = \displaystyle \sum_{n=1}^\infty \left(n^2\right)^{-\frac{z}{2}}.\]</div>
 <p>This representation suggests that we study the infamous Jacobi theta function</p>
@@ -402,7 +402,7 @@
 <div class="math notranslate nohighlight">
 \[\Lambda(z) = \Lambda(1-z)\]</div>
 <p>where <span class="math notranslate nohighlight">\(\Lambda(z) = 2^{-1/2}\pi^{-z/2}\Gamma(z/2)\zeta(z).\)</span></p>
-<p>The function <span class="math notranslate nohighlight">\(\Lambda(z)\)</span> itself can be written <span id="id6">[<a class="reference internal" href="#id48" title="Christopher Deninger. On the γ-factors attached to motives. Inventiones mathematicae, 104(1):245–261, 1991.">Den91</a>]</span> as the infinite product</p>
+<p>The function <span class="math notranslate nohighlight">\(\Lambda(z)\)</span> itself can be written <span id="id6">[<a class="reference internal" href="#id50" title="Christopher Deninger. On the γ-factors attached to motives. Inventiones mathematicae, 104(1):245–261, 1991.">Den91</a>]</span> as the infinite product</p>
 <div class="math notranslate nohighlight">
 \[(\frac{z}{2\pi})(\frac{z-1}{2\pi})\Lambda(z) = \prod_\rho \frac{z-\rho}{2\pi}\]</div>
 <p>over the zeros of the Riemann zeta function. This infinite product is in turn expressible using another zeta function and theta function.</p>
@@ -428,22 +428,22 @@
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <div class="docutils container" id="id7">
 <dl class="citation">
-<dt class="label" id="id50"><span class="brackets"><a class="fn-backref" href="#id1">AGZV88</a></span></dt>
+<dt class="label" id="id52"><span class="brackets"><a class="fn-backref" href="#id1">AGZV88</a></span></dt>
 <dd><p>VI Arnold, SM Gusein-Zade, and AN Varchenko. Elementary integrals and the resolution of singularities of the phase. In <em>Singularities of Differentiable Maps</em>, pages 215–232. Springer, 1988.</p>
 </dd>
-<dt class="label" id="id49"><span class="brackets"><a class="fn-backref" href="#id5">Bae05</a></span></dt>
+<dt class="label" id="id51"><span class="brackets"><a class="fn-backref" href="#id5">Bae05</a></span></dt>
 <dd><p>John Baez. This week’s finds in mathematical physics (week 217). <a class="reference external" href="https://math.ucr.edu/home/baez/week217.html">https://math.ucr.edu/home/baez/week217.html</a>, 2005.</p>
 </dd>
-<dt class="label" id="id48"><span class="brackets"><a class="fn-backref" href="#id6">Den91</a></span></dt>
+<dt class="label" id="id50"><span class="brackets"><a class="fn-backref" href="#id6">Den91</a></span></dt>
 <dd><p>Christopher Deninger. On the γ-factors attached to motives. <em>Inventiones mathematicae</em>, 104(1):245–261, 1991.</p>
 </dd>
-<dt class="label" id="id47"><span class="brackets"><a class="fn-backref" href="#id3">Man95</a></span></dt>
+<dt class="label" id="id49"><span class="brackets"><a class="fn-backref" href="#id3">Man95</a></span></dt>
 <dd><p>Yuri Manin. Lectures on zeta functions and motives. <em>Astérisque</em>, 228:121–163, 1995.</p>
 </dd>
-<dt class="label" id="id46"><span class="brackets"><a class="fn-backref" href="#id2">Mar10</a></span></dt>
+<dt class="label" id="id48"><span class="brackets"><a class="fn-backref" href="#id2">Mar10</a></span></dt>
 <dd><p>Matilde Marcolli. <em>Feynman motives</em>. World Scientific, 2010.</p>
 </dd>
-<dt class="label" id="id45"><span class="brackets"><a class="fn-backref" href="#id4">Wat09</a></span></dt>
+<dt class="label" id="id47"><span class="brackets"><a class="fn-backref" href="#id4">Wat09</a></span></dt>
 <dd><p>Sumio Watanabe. <em>Algebraic geometry and statistical learning theory</em>. Number 25. Cambridge university press, 2009.</p>
 </dd>
 </dl>

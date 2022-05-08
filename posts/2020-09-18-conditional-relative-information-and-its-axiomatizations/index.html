@@ -333,7 +333,7 @@
 <div class="section" id="what-is-conditional-relative-information">
 <h2>What is conditional relative information?<a class="headerlink" href="#what-is-conditional-relative-information" title="Permalink to this headline">#</a></h2>
 <p>Suppose we have two random variables <span class="math notranslate nohighlight">\(X, Y\)</span> and probability measures <span class="math notranslate nohighlight">\(P, Q\)</span> on <span class="math notranslate nohighlight">\(\Omega\)</span>. We are interested in how far the model conditional <span class="math notranslate nohighlight">\(P_{Y\vert X}\)</span> is to the true conditional <span class="math notranslate nohighlight">\(Q_{Y\vert X}\)</span> on average over <span class="math notranslate nohighlight">\(Q_X\)</span>, and we want to ignore the model marginal <span class="math notranslate nohighlight">\(P_X\)</span>.</p>
-<p>Let <span class="math notranslate nohighlight">\(P_{XY}, Q_{XY}\)</span> be the induced joint distributions for <span class="math notranslate nohighlight">\(X, Y\)</span>. We first construct a distribution <span class="math notranslate nohighlight">\(R_{XY}\)</span> which has the same conditional distribution <span class="math notranslate nohighlight">\(R_{Y\vert X} = P_{Y\vert X}\)</span> as the model but has a marginal <span class="math notranslate nohighlight">\(R_X = Q_X\)</span> equal to that of the true distribution <span id="id1">[<a class="reference internal" href="#id49" title="Robert M Gray. Entropy and information theory. Springer Science &amp; Business Media, 2011.">Gra11</a>]</span>. Namely,</p>
+<p>Let <span class="math notranslate nohighlight">\(P_{XY}, Q_{XY}\)</span> be the induced joint distributions for <span class="math notranslate nohighlight">\(X, Y\)</span>. We first construct a distribution <span class="math notranslate nohighlight">\(R_{XY}\)</span> which has the same conditional distribution <span class="math notranslate nohighlight">\(R_{Y\vert X} = P_{Y\vert X}\)</span> as the model but has a marginal <span class="math notranslate nohighlight">\(R_X = Q_X\)</span> equal to that of the true distribution <span id="id1">[<a class="reference internal" href="#id51" title="Robert M Gray. Entropy and information theory. Springer Science &amp; Business Media, 2011.">Gra11</a>]</span>. Namely,</p>
 <div class="math notranslate nohighlight">
 \[R_{XY}(F \times G) = \int_F P_{Y\vert X}(G\vert x) dQ_X(x)\]</div>
 <p>where <span class="math notranslate nohighlight">\(F\)</span> and <span class="math notranslate nohighlight">\(G\)</span> are measurable sets over the state spaces of <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> respectively.</p>
@@ -370,7 +370,7 @@
 <div class="section" id="is-there-an-axiomatization-of-conditional-entropy">
 <h2>Is there an axiomatization of conditional entropy?<a class="headerlink" href="#is-there-an-axiomatization-of-conditional-entropy" title="Permalink to this headline">#</a></h2>
 <p>As described in our <a class="reference internal" href="../2020-09-08-building-foundations-of-information-theory-on-relative-information/"><span class="doc std std-doc">previous post</span></a>, we allow the total measures of <span class="math notranslate nohighlight">\(P, Q\)</span> to be different from one, but we require their total measures to be the same.</p>
-<p>We start with an axiomatizations of conditional entropy with the hope of deriving axiomatizations of conditional relative information. I like the following categorical view of conditional entropy <span id="id2">[<a class="reference internal" href="#id47" title="John C Baez, Tobias Fritz, and Tom Leinster. A characterization of entropy in terms of information loss. Entropy, 13(11):1945–1957, 2011.">BFL11</a>]</span>. I’ve taken the liberty of rewriting it in our notations.</p>
+<p>We start with an axiomatizations of conditional entropy with the hope of deriving axiomatizations of conditional relative information. I like the following categorical view of conditional entropy <span id="id2">[<a class="reference internal" href="#id49" title="John C Baez, Tobias Fritz, and Tom Leinster. A characterization of entropy in terms of information loss. Entropy, 13(11):1945–1957, 2011.">BFL11</a>]</span>. I’ve taken the liberty of rewriting it in our notations.</p>
 <p>Given a measured space <span class="math notranslate nohighlight">\((\Omega, \mathcal{B}, P)\)</span>, a finite measurable function <span class="math notranslate nohighlight">\(Y : \Omega \rightarrow S_Y\)</span> and a morphism <span class="math notranslate nohighlight">\(f :S_Y \rightarrow S_X\)</span> between finite sets, let <span class="math notranslate nohighlight">\(X = f \circ Y\)</span> and let <span class="math notranslate nohighlight">\(P_Y, P_X\)</span> be the induced measures on <span class="math notranslate nohighlight">\(S_Y, S_X\)</span>.</p>
 <p>In this case, the conditional entropy of <span class="math notranslate nohighlight">\(Y \vert X\)</span> is</p>
 <div class="math notranslate nohighlight">
@@ -409,10 +409,10 @@
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <div class="docutils container" id="id3">
 <dl class="citation">
-<dt class="label" id="id47"><span class="brackets"><a class="fn-backref" href="#id2">BFL11</a></span></dt>
+<dt class="label" id="id49"><span class="brackets"><a class="fn-backref" href="#id2">BFL11</a></span></dt>
 <dd><p>John C Baez, Tobias Fritz, and Tom Leinster. A characterization of entropy in terms of information loss. <em>Entropy</em>, 13(11):1945–1957, 2011.</p>
 </dd>
-<dt class="label" id="id49"><span class="brackets"><a class="fn-backref" href="#id1">Gra11</a></span></dt>
+<dt class="label" id="id51"><span class="brackets"><a class="fn-backref" href="#id1">Gra11</a></span></dt>
 <dd><p>Robert M Gray. <em>Entropy and information theory</em>. Springer Science &amp; Business Media, 2011.</p>
 </dd>
 </dl>

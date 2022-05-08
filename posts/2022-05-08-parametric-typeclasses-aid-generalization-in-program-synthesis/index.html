@@ -342,14 +342,8 @@
 </div>
 <div class="section" id="examples-of-parametric-strategy">
 <h2>Examples of parametric strategy<a class="headerlink" href="#examples-of-parametric-strategy" title="Permalink to this headline">#</a></h2>
-<p>For example, equivalence between types can be captured by parametric classes, and the following seminal paper describes how to extend types equivalences to constructions involving those types in a systematic way. Automated transport along equivalences is important if we want to switch between unary and binary numbers for efficiency in automated programming.</p>
-<ul class="simple">
-<li><p>Nicolas Magaud and Yves Bertot. 2000. “Changing Data Structures in Type Theory: A Study of Natural Numbers” (TYPES 2000).</p></li>
-</ul>
-<p>This next paper summarizes the latest strategies in parametric transport, and relates them to univalent transport from homotopy type theory. There is also heavy use of classes in their approach.</p>
-<ul class="simple">
-<li><p>Tabareau, Nicolas, Éric Tanter, and Matthieu Sozeau. 2021. “The Marriage of Univalence and Parametricity” (JACM).</p></li>
-</ul>
+<p>For example, equivalence between types can be captured by parametric classes, and the seminal paper <em>Changing Data Structures in Type Theory: A Study of Natural Numbers</em>(2000) by Magaud and Bertot <span id="id1">[<a class="reference internal" href="#id4" title="Nicolas Magaud and Yves Bertot. Changing data structures in type theory: a study of natural numbers. In International Workshop on Types for Proofs and Programs, 181–196. Springer, 2000.">MB00</a>]</span> describes how to extend types equivalences to constructions involving those types in a systematic way. Automated transport along equivalences is important if we want to switch between unary and binary numbers for efficiency in automated programming.</p>
+<p>The 2021 paper *The Marriage of Univalence and Parametricity *(2021) by Tabareau, Tanter and Sozeau <span id="id2">[<a class="reference internal" href="#id5" title="Nicolas Tabareau, Éric Tanter, and Matthieu Sozeau. The marriage of univalence and parametricity. Journal of the ACM (JACM), 68(1):1–44, 2021.">TTS21</a>]</span> summarizes the latest strategies in parametric transport, and relates them to univalent transport from homotopy type theory. There is also heavy use of classes in their approach.</p>
 </div>
 <div class="section" id="example-noetherian-induction">
 <h2>Example - Noetherian induction<a class="headerlink" href="#example-noetherian-induction" title="Permalink to this headline">#</a></h2>
@@ -358,7 +352,7 @@
 <p>If we do this without classes, we will have to carry a lot of information around with us. Let “Rwf” be the proof of the well-foundedness of R. Let “wf_implies_noetherian” be the function that takes in a proof of well-foundedness, and spits out a proof of noetherian-ness. Then, to do noetherian induction, we would have to apply “wf_implies_noetherian Rwf” at the start of our proof. See <a class="reference external" href="https://github.com/coq/coq/blob/master/theories/Init/Wf.v#L55">https://github.com/coq/coq/blob/master/theories/Init/Wf.v#L55</a>.</p>
 <p>If we do this with classes, we could have a class “Wellfounded” of all relations that are well-founded. We could also have a class “Noetherian” of all relations for which we can perform Noetherian induction. In this class, we have a generic name “noetherian_rect”
 (noetherian recursion for types) for the proof of noetherian-ness.</p>
-<p>We would then have R as an instance of Wellfounded, and S as an instance of Noetherian for all well-founded S. If we have a situation where Noetherian induction might be applicable, we just need to apply “noetherian_rect” with no extra parameters. The proof assistant will now compare the goal with the statement of noetherian-ness to guess what the relation R may be. It will then try to find an instance of the “Noetherian R” class, which could be something from the “Wellfounded R” class. Finally, it tries to find an instance of “Wellfounded R” and it sees that an instance was previously registered. All of this searching happens automatically in the background and no extra information needs to be carried by the human or learning machine. See below for the code.</p>
+<p>We would then have R as an instance of Wellfounded, and S as an instance of Noetherian for all well-founded S. If we have a situation where Noetherian induction might be applicable, we just need to apply “noetherian_rect” with no extra parameters. The proof assistant will now compare the goal with the statement of noetherian-ness to guess what the relation R may be. It will then try to find an instance of the “Noetherian R” class, which could be something from the “Wellfounded R” class. Finally, it tries to find an instance of “Wellfounded R” and it sees that an instance was previously registered. All of this searching happens automatically in the background and no extra information needs to be carried by the human or learning machine. See below for the partial code (full code <a class="reference external" href="https://w3id.org/people/shaoweilin/public/parametricity.v">here</a>)</p>
 <div class="highlight-coq notranslate"><div class="highlight"><pre><span></span><span class="kn">Inductive</span> <span class="n">Acc</span> <span class="o">`(</span><span class="n">R</span> <span class="o">:</span> <span class="n">relation</span> <span class="n">A</span><span class="o">)</span> <span class="o">(</span><span class="n">x</span> <span class="o">:</span> <span class="n">A</span><span class="o">)</span> <span class="o">:</span> <span class="kt">Prop</span> <span class="o">:=</span>
   <span class="n">Acc_intro</span> <span class="o">:</span> <span class="o">(</span><span class="k">forall</span> <span class="n">y</span><span class="o">:</span><span class="n">A</span><span class="o">,</span> <span class="n">R</span> <span class="n">y</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">Acc</span> <span class="n">R</span> <span class="n">y</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">Acc</span> <span class="n">R</span> <span class="n">x</span><span class="o">.</span>
 
@@ -411,7 +405,17 @@
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
-<span class="target" id="id1"></span></div>
+<div class="docutils container" id="id3">
+<dl class="citation">
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id1">MB00</a></span></dt>
+<dd><p>Nicolas Magaud and Yves Bertot. Changing data structures in type theory: a study of natural numbers. In <em>International Workshop on Types for Proofs and Programs</em>, 181–196. Springer, 2000.</p>
+</dd>
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id2">TTS21</a></span></dt>
+<dd><p>Nicolas Tabareau, Éric Tanter, and Matthieu Sozeau. The marriage of univalence and parametricity. <em>Journal of the ACM (JACM)</em>, 68(1):1–44, 2021.</p>
+</dd>
+</dl>
+</div>
+</div>
 </div>
 
 <div class="section">
