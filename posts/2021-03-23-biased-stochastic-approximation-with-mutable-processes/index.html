@@ -32,8 +32,8 @@
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
@@ -186,6 +186,12 @@
 <ul>
    
   <li>
+    <a href="../2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/"
+      >22 January - Parametric typeclasses aid generalization in program synthesis</a
+    >
+  </li>
+  
+  <li>
     <a href="../2022-01-22-information-topos-theory-motivation/"
       >22 January - Information topos theory - motivation</a
     >
@@ -209,12 +215,6 @@
     >
   </li>
   
-  <li>
-    <a href="../2021-05-10-path-integrals-and-the-dyson-formula/"
-      >10 May - Path integrals and the Dyson formula</a
-    >
-  </li>
-  
 </ul>
 
 <h3>
@@ -223,7 +223,7 @@
 <ul>
    
   <li>
-    <a href="../../blog/2022/">2022 (1)</a>
+    <a href="../../blog/2022/">2022 (2)</a>
   </li>
     
   <li>
@@ -328,7 +328,7 @@
               <div>
                  <div class="tex2jax_ignore mathjax_ignore section" id="biased-stochastic-approximation-with-mutable-processes">
 <h1>Biased stochastic approximation with mutable processes<a class="headerlink" href="#biased-stochastic-approximation-with-mutable-processes" title="Permalink to this headline">#</a></h1>
-<p>The goal of this post is to derive a general online learning recipe for training a <a class="reference external" href="2021-03-22-relative-inference-with-mutable-processes/#what-is-a-mutable-process">mutable</a> process <span class="math notranslate nohighlight">\(\{Z_t,X_t\}\)</span> to learn the true distribution <span class="math notranslate nohighlight">\(Q_*(X)\)</span> of a partially-observed Markov process <span class="math notranslate nohighlight">\(\{X_t\}\)</span>. The recipe returns a generative distribution <span class="math notranslate nohighlight">\(P(Z,X)\)</span> whose marginal <span class="math notranslate nohighlight">\(P(X)\)</span> approximates <span class="math notranslate nohighlight">\(Q_*(X).\)</span></p>
+<p>The goal of this post is to derive a general online learning recipe for training a <span class="xref myst">mutable</span> process <span class="math notranslate nohighlight">\(\{Z_t,X_t\}\)</span> to learn the true distribution <span class="math notranslate nohighlight">\(Q_*(X)\)</span> of a partially-observed Markov process <span class="math notranslate nohighlight">\(\{X_t\}\)</span>. The recipe returns a generative distribution <span class="math notranslate nohighlight">\(P(Z,X)\)</span> whose marginal <span class="math notranslate nohighlight">\(P(X)\)</span> approximates <span class="math notranslate nohighlight">\(Q_*(X).\)</span></p>
 <p>The variables <span class="math notranslate nohighlight">\(Z\)</span> of the mutable process are auxiliary variables that assist in inference and computation. During training, the distribution of <span class="math notranslate nohighlight">\(Z\)</span> given <span class="math notranslate nohighlight">\(X\)</span> is controlled by a discriminative model <span class="math notranslate nohighlight">\(\{Q(Z\vert X)\}.\)</span> Our method works in both discrete time and continuous time. We assume in the mutable process that for each time <span class="math notranslate nohighlight">\(t,\)</span> the variables <span class="math notranslate nohighlight">\(Z_t\)</span> and <span class="math notranslate nohighlight">\(X_t\)</span> are conditionally independent of each other given their past.</p>
 <p>Our strategy is relative inference, where we use a relative information objective that measures the divergence between the discriminative distribution <span class="math notranslate nohighlight">\(Q(Z,X)\)</span> and the generative distribution <span class="math notranslate nohighlight">\(P(Z,X).\)</span> We minimize this objective by coordinate-wise updates to the discriminative and generative distributions using stochastic gradients.</p>
 <p>We will be using <a class="reference internal" href="../2020-12-01-biased-stochastic-approximation/"><span class="doc std std-doc">biased</span></a> stochastic approximation <span id="id1">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id38" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span> where the stochastic updates are dependent on the past but the conditional expectation of the stochastic updates given the past is not equal to the mean field. These biased stochastic approximation schemes for mutable processes generalize the classical expectation maximization algorithm for mutable models.</p>
@@ -386,7 +386,7 @@ I_{\bar{Q}_{\lambda_{n}}\Vert P_{\theta}}(Z_1, X_1 \vert Z_0, X_0)
 <div class="math notranslate nohighlight">
 \[ \displaystyle
 \lambda_{n+1} = \displaystyle \lambda_n - \eta_{n+1} \left.\frac{d}{d\lambda} I_{\bar{Q}_\lambda \Vert P_{\theta_{n}}}(Z_1 , X_1 \vert Z_0, X_0)\right\vert _{\lambda = \lambda_n}\]</div>
-<p>where, as shown in the <a class="reference external" href="2021-03-23-biased-stochastic-approximation-with-mutable-processes/#appendix-discriminative-model-update">appendix</a>, we have</p>
+<p>where, as shown in the <span class="xref myst">appendix</span>, we have</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} \begin{array}{rl} &amp;
 \displaystyle \frac{d}{d\lambda} I_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0) 
@@ -415,7 +415,7 @@ H = -\lim_{T\rightarrow \infty} \frac{1}{T} \sum_{t=0}^T \log Q_*(X_{t+1}\vert X
 \[ \displaystyle
 H = -\int \bar{\pi}_*(dX_0)Q_*(dX_1\vert X_0) \log Q_*(X_1\vert X_0) \]</div>
 <p>where <span class="math notranslate nohighlight">\(\bar{\pi}_*\)</span> is the stationary distribution of <span class="math notranslate nohighlight">\(Q_*.\)</span> Let <span class="math notranslate nohighlight">\(\bar{Q}_*\)</span> be the distribution of the <em>true stationary process</em> with initial distribution <span class="math notranslate nohighlight">\(\bar{\pi}_*\)</span> and transition probabilies <span class="math notranslate nohighlight">\(Q_*.\)</span> The asymptotic time-average <span class="math notranslate nohighlight">\(H\)</span> is therefore the <em>true conditional entropy</em> of <span class="math notranslate nohighlight">\(X_1\)</span> given <span class="math notranslate nohighlight">\(X_0\)</span> under the true stationary process.</p>
-<p>More <a class="reference external" href="2020-09-08-building-foundations-of-information-theory-on-relative-information/#how-do-we-derive-entropy-from-relative-information">precisely</a>, given random variables <span class="math notranslate nohighlight">\(X_0, X_1, X_1',\)</span> we construct two distributions, namely</p>
+<p>More <span class="xref myst">precisely</span>, given random variables <span class="math notranslate nohighlight">\(X_0, X_1, X_1',\)</span> we construct two distributions, namely</p>
 <div class="math notranslate nohighlight">
 \[ \displaystyle
 \bar{Q}_* \!\times\!\bar{Q}_* (X_1, X_1',X_0) = \bar{\pi}_*(X_0) Q_*(X_1 \vert X_0) Q_*(X_1'\vert X_0),\]</div>

@@ -32,8 +32,8 @@
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
@@ -186,6 +186,12 @@
 <ul>
    
   <li>
+    <a href="../2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/"
+      >22 January - Parametric typeclasses aid generalization in program synthesis</a
+    >
+  </li>
+  
+  <li>
     <a href="../2022-01-22-information-topos-theory-motivation/"
       >22 January - Information topos theory - motivation</a
     >
@@ -209,12 +215,6 @@
     >
   </li>
   
-  <li>
-    <a href="../2021-05-10-path-integrals-and-the-dyson-formula/"
-      >10 May - Path integrals and the Dyson formula</a
-    >
-  </li>
-  
 </ul>
 
 <h3>
@@ -223,7 +223,7 @@
 <ul>
    
   <li>
-    <a href="../../blog/2022/">2022 (1)</a>
+    <a href="../../blog/2022/">2022 (2)</a>
   </li>
     
   <li>
@@ -330,7 +330,7 @@
 <p>When studying logical objects (described by logical formulas possibly involving existential or universal quantifiers) such as algebraic varieties or quantum events, we could be interested in more general measurements such as Euler characteristics or path integrals. These measurements could have values in some polynomial ring. Loosely we will call them <em>measures</em>, even though they do not satisfy the classical definition in measure theory.</p>
 <p>We may also be interested in finding a universal measure in the sense that all other measures (such as probabilities, polynomials and counts) factor through this measure. Lastly, we may want to compute the divergence or relative information between measures which are not real-valued.</p>
 <p>In classical measure theory, a measure space <span class="math notranslate nohighlight">\((\Omega, \mathcal{C}, P)\)</span> contains a collection <span class="math notranslate nohighlight">\(\mathcal{C}\)</span> of objects that we are measuring and a map <span class="math notranslate nohighlight">\(P : \mathcal{C} \rightarrow R\)</span> where <span class="math notranslate nohighlight">\(R\)</span> is the ring of real numbers. The measure <span class="math notranslate nohighlight">\(P\)</span> satisfies the axioms</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Non-negativity. <span class="math notranslate nohighlight">\(P(E) \geq 0\)</span> for all <span class="math notranslate nohighlight">\(E \in \mathcal{C};\)</span></p></li>
 <li><p>Null empty set. <span class="math notranslate nohighlight">\(P(\emptyset) = 0;\)</span></p></li>
 <li><p>Countable additivity. <span class="math notranslate nohighlight">\(P(\cup_{i=1}^\infty E_i) = \sum_{i=1}^\infty P(E_i)\)</span> for countable collection of pairwise disjoint sets.</p></li>
@@ -338,7 +338,7 @@
 <p>The second axiom follows from the third axiom if at least one set in <span class="math notranslate nohighlight">\(\mathcal{C}\)</span> has finite measure.</p>
 <p>When generalizing the above definition to measures which are non real-valued, there are two additional conditions that we may want to consider. The first is that the measure should be invariant under equivalence between the objects. The second is that the collection <span class="math notranslate nohighlight">\(\mathcal{C}\)</span> should include products of its objects, e.g. the higher-dimensional Cartesian product of one-dimensional intervals on the real line.</p>
 <p>Moreover, as a result of the axioms, generalized measures on collections <span class="math notranslate nohighlight">\(\mathcal{C}\)</span> of objects will factor through some universal ring of values, known as a Grothendieck ring <span id="id1">[<a class="reference internal" href="#id40" title="Thomas Scanlon. Motivic integration: an outsider’s tutorial. \url https://math.berkeley.edu/ scanlon/papers/scanlon_durham_motivic_integration_outsiders_tutorial.pdf, 2009.">Sca09</a>]</span>, <span id="id2">[<a class="reference internal" href="#id43" title="Thomas Hales. What is motivic measure? Bulletin of the American Mathematical Society, 42(2):119–135, 2005.">Hal05</a>]</span>. Suppose we have a category <span class="math notranslate nohighlight">\(\mathcal{C}\)</span> or universe of objects with some kind of equivalence <span class="math notranslate nohighlight">\(X \sim Y\)</span>, products <span class="math notranslate nohighlight">\(X \times Y\)</span>, coproducts <span class="math notranslate nohighlight">\(X \oplus Y\)</span> and a terminal object <span class="math notranslate nohighlight">\(*\)</span>. Suppose also that <span class="math notranslate nohighlight">\(\times\)</span> distributes over <span class="math notranslate nohighlight">\(\oplus\)</span>, i.e. <span class="math notranslate nohighlight">\(X \times (Y \oplus Z) = X \times Y \oplus X \times Z.\)</span> We consider the <em>Grothendieck ring</em> <span class="math notranslate nohighlight">\(K_0(\mathcal{C})\)</span> freely-generated by the objects modulo the equivalence <span class="math notranslate nohighlight">\(=\)</span> generated by the relations</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p><em>Congruence</em>. <span class="math notranslate nohighlight">\([X] = [Y]\)</span> if <span class="math notranslate nohighlight">\(X \sim Y;\)</span></p></li>
 <li><p><em>Coproduct</em>. <span class="math notranslate nohighlight">\([X \oplus Y] = [X] + [Y];\)</span></p></li>
 <li><p><em>Product</em>. <span class="math notranslate nohighlight">\([X \times Y] = [X] \times [Y].\)</span></p></li>
@@ -425,7 +425,7 @@
 <div class="math notranslate nohighlight">
 \[I_{Q_V(t)\Vert Q_V(1)}(t) = \log Z_V(1) - \left(1- (t \log t) \frac{d}{dt} \right) \log Z_V(t).\]</div>
 <p>Note that the different measures discussed above should not be confused with each other:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>the measure <span class="math notranslate nohighlight">\(Q_V : \mathbb{Z}_{\geq 0} \rightarrow W(R)\)</span>;</p></li>
 <li><p>the motivic measure <span class="math notranslate nohighlight">\(\mu: K_0(\mathcal{V}_k) \rightarrow R\)</span>;</p></li>
 <li><p>the motivic measure <span class="math notranslate nohighlight">\(Z_{\mu}:\mathcal{V}_k \rightarrow W(R)\)</span> which maps varieties <span class="math notranslate nohighlight">\(V\)</span> to some formal power series.</p></li>

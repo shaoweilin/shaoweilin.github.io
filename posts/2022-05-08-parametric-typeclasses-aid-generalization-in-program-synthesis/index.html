@@ -1,0 +1,486 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:title" content="Parametric typeclasses aid generalization in program synthesis" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://shaoweilin.github.io/posts/2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/" />
+  
+<meta property="og:description" content="We envision programming being done in top-down fashion. The human describes the goal (e.g. sorting), and the machine reduces it to smaller subgoals based on well-known heuristics (e.g. divide and c..." />
+  
+<meta property="og:image" content="https://shaoweilin.github.io/_static/profile.jpg" />
+  
+<meta property="og:image:alt" content="Parametric typeclasses aid generalization in program synthesis" />
+  
+    <title>Parametric typeclasses aid generalization in program synthesis &#8212; Types from Spikes  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../about/" />
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+     
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../blog/atom.xml"
+  title="Types from Spikes"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../">
+<p class="title">Types from Spikes</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../about/">
+  About
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../blog/">
+  Blog
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../search/" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this site..." aria-label="Search this site..." autocomplete="off" >
+</form>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/shaoweilin/" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items">  
+<h2>
+   <i class="fa fa-calendar"></i>
+  22 January 2022 
+</h2>
+
+<ul>
+        
+</ul>
+
+<h3>
+  <a href="../../blog/">Recent Posts</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../2022-01-22-information-topos-theory-motivation/"
+      >22 January - Information topos theory - motivation</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-09-09-all-you-need-is-relative-information/"
+      >09 September - All you need is relative information</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-06-05-spiking-neural-networks/"
+      >05 June - Spiking neural networks</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-06-01-convergence-of-biased-stochastic-approximation/"
+      >01 June - Convergence of biased stochastic approximation</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2021-05-10-path-integrals-and-the-dyson-formula/"
+      >10 May - Path integrals and the Dyson formula</a
+    >
+  </li>
+  
+</ul>
+
+<h3>
+  <a href="../../blog/archive/">Archives</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../blog/2022/">2022 (2)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2021/">2021 (8)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2020/">2020 (12)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2018/">2018 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2017/">2017 (1)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2016/">2016 (3)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2014/">2014 (2)</a>
+  </li>
+    
+  <li>
+    <a href="../../blog/2012/">2012 (1)</a>
+  </li>
+   
+</ul>
+
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenges-in-applying-machine-learning-to-program-synthesis">
+   Challenges in applying machine learning to program synthesis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parametricity-to-the-rescue">
+   Parametricity to the rescue
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples-of-parametric-strategy">
+   Examples of parametric strategy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-noetherian-induction">
+   Example - Noetherian induction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+
+              <div>
+                 <div class="tex2jax_ignore mathjax_ignore section" id="parametric-typeclasses-aid-generalization-in-program-synthesis">
+<h1>Parametric typeclasses aid generalization in program synthesis<a class="headerlink" href="#parametric-typeclasses-aid-generalization-in-program-synthesis" title="Permalink to this headline">#</a></h1>
+<p>We envision programming being done in top-down fashion. The human describes the goal (e.g. sorting), and the machine reduces it to smaller subgoals based on well-known heuristics (e.g. divide and conquer). The easier subgoals could even be fulfilled automatically. This top-down heuristics approach will be more amenable to machine learning. See my <a class="reference download internal" download="" href="../../_downloads/0d6c348fef680eeb3dae84dfe053bb53/2021-04-22-proofs-as-programs-challenges-and-strategies-for-program-synthesis.md"><span class="xref download myst">Topos Institute talk</span></a> for more info.</p>
+<div class="section" id="challenges-in-applying-machine-learning-to-program-synthesis">
+<h2>Challenges in applying machine learning to program synthesis<a class="headerlink" href="#challenges-in-applying-machine-learning-to-program-synthesis" title="Permalink to this headline">#</a></h2>
+<p>The problem with the current approach in type theory is as follows.</p>
+<ol class="arabic simple">
+<li><p>Programs are presented in a bottom-up fashion (e.g. defining insertions before defining insertion-sort). It is hard to see the parts of the proof which can be generalized to produce more powerful principles (e.g. divide and conquer) for problem solving.</p></li>
+<li><p>When solving for a goal, the human/machine needs to remember the specific name (e.g. list_recursion) of the theorem to apply, rather than a general name (e.g. tree_recursion) parametrized by types/operators - parameters which can then be solved during proof search. As a result, a learning machine may think an algorithm works because of a specific function, rather than a more general principle.</p></li>
+</ol>
+</div>
+<div class="section" id="parametricity-to-the-rescue">
+<h2>Parametricity to the rescue<a class="headerlink" href="#parametricity-to-the-rescue" title="Permalink to this headline">#</a></h2>
+<p>This second point about using parametric classes to organize types (e.g. reflexivity) and operators (e.g. equality) and to overload notation, is known as parametricity. As Brendan mentioned, it is not a new idea and has been explored by both category theorists and type theorists.</p>
+<p>However, I believe Haskell was the first programming language to make serious use of classes (not the same as interfaces in object-oriented programming) to simplify code, and Coq and other proof assistants followed suit. As Bas Spitters mentioned in his paper, there is more we need to do to really make this a game changer, e.g. unification hints and rewriting/normalization rules.</p>
+</div>
+<div class="section" id="examples-of-parametric-strategy">
+<h2>Examples of parametric strategy<a class="headerlink" href="#examples-of-parametric-strategy" title="Permalink to this headline">#</a></h2>
+<p>For example, equivalence between types can be captured by parametric classes, and the following seminal paper describes how to extend types equivalences to constructions involving those types in a systematic way. Automated transport along equivalences is important if we want to switch between unary and binary numbers for efficiency in automated programming.</p>
+<ul class="simple">
+<li><p>Nicolas Magaud and Yves Bertot. 2000. “Changing Data Structures in Type Theory: A Study of Natural Numbers” (TYPES 2000).</p></li>
+</ul>
+<p>This next paper summarizes the latest strategies in parametric transport, and relates them to univalent transport from homotopy type theory. There is also heavy use of classes in their approach.</p>
+<ul class="simple">
+<li><p>Tabareau, Nicolas, Éric Tanter, and Matthieu Sozeau. 2021. “The Marriage of Univalence and Parametricity” (JACM).</p></li>
+</ul>
+</div>
+<div class="section" id="example-noetherian-induction">
+<h2>Example - Noetherian induction<a class="headerlink" href="#example-noetherian-induction" title="Permalink to this headline">#</a></h2>
+<p>Let me end with a specific example involving well-founded relations and Noetherian induction.</p>
+<p>Given a type A and a relation (R : A -&gt; A -&gt; Prop), we recursively define a term (x : A) to be accessible if y is accessible for all {y : A | R y x}. We say that R is well-founded if all terms (x : A) are accessible. It is a theorem that given a well-founded relation R and a predicate (P : A -&gt; Prop), we can do Noetherian induction, i.e. suppose for all (x :A), we have (P x) if (P y) for all {y : A | R y x}; then (P x) for all (x : A).</p>
+<p>If we do this without classes, we will have to carry a lot of information around with us. Let “Rwf” be the proof of the well-foundedness of R. Let “wf_implies_noetherian” be the function that takes in a proof of well-foundedness, and spits out a proof of noetherian-ness. Then, to do noetherian induction, we would have to apply “wf_implies_noetherian Rwf” at the start of our proof. See <a class="reference external" href="https://github.com/coq/coq/blob/master/theories/Init/Wf.v#L55">https://github.com/coq/coq/blob/master/theories/Init/Wf.v#L55</a>.</p>
+<p>If we do this with classes, we could have a class “Wellfounded” of all relations that are well-founded. We could also have a class “Noetherian” of all relations for which we can perform Noetherian induction. In this class, we have a generic name “noetherian_rect”
+(noetherian recursion for types) for the proof of noetherian-ness. See the following Coq code for details.</p>
+<div class="highlight-coq notranslate"><div class="highlight"><pre><span></span><span class="kn">Inductive</span> <span class="n">Acc</span> <span class="o">`(</span><span class="n">R</span> <span class="o">:</span> <span class="n">relation</span> <span class="n">A</span><span class="o">)</span> <span class="o">(</span><span class="n">x</span> <span class="o">:</span> <span class="n">A</span><span class="o">)</span> <span class="o">:</span> <span class="kt">Prop</span> <span class="o">:=</span>
+  <span class="n">Acc_intro</span> <span class="o">:</span> <span class="o">(</span><span class="k">forall</span> <span class="n">y</span><span class="o">:</span><span class="n">A</span><span class="o">,</span> <span class="n">R</span> <span class="n">y</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">Acc</span> <span class="n">R</span> <span class="n">y</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">Acc</span> <span class="n">R</span> <span class="n">x</span><span class="o">.</span>
+
+<span class="kn">Class</span> <span class="n">Wellfounded</span> <span class="o">`(</span><span class="n">R</span> <span class="o">:</span> <span class="n">relation</span> <span class="n">A</span><span class="o">)</span> <span class="o">:=</span>
+  <span class="n">wellfoundedness</span> <span class="o">:</span> <span class="k">forall</span> <span class="n">a</span><span class="o">:</span><span class="n">A</span><span class="o">,</span> <span class="n">Acc</span> <span class="n">R</span> <span class="n">a</span><span class="o">.</span>
+
+<span class="kn">Class</span> <span class="n">Noetherian</span> <span class="o">`(</span><span class="n">R</span> <span class="o">:</span> <span class="n">relation</span> <span class="n">A</span><span class="o">)</span> <span class="o">:=</span>
+  <span class="n">noetherian_rect</span> <span class="o">:</span> <span class="k">forall</span> <span class="n">P</span><span class="o">:</span><span class="n">A</span> <span class="o">-&gt;</span> <span class="kt">Type</span><span class="o">,</span>
+    <span class="o">(</span><span class="k">forall</span> <span class="n">x</span><span class="o">:</span><span class="n">A</span><span class="o">,</span> <span class="o">(</span><span class="k">forall</span> <span class="n">y</span><span class="o">:</span><span class="n">A</span><span class="o">,</span> <span class="n">R</span> <span class="n">y</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">P</span> <span class="n">y</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">P</span> <span class="n">x</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="k">forall</span> <span class="n">a</span><span class="o">:</span><span class="n">A</span><span class="o">,</span> <span class="n">P</span> <span class="n">a</span><span class="o">.</span>
+
+<span class="kn">Instance</span> <span class="n">wellfounded_as_noetherian</span> <span class="o">`(</span><span class="n">R</span> <span class="o">:</span> <span class="n">relation</span> <span class="n">A</span><span class="o">)</span> <span class="o">`(</span><span class="n">Wellfounded</span> <span class="n">A</span> <span class="n">R</span><span class="o">)</span> <span class="o">:</span> <span class="n">Noetherian</span> <span class="n">R</span><span class="o">.</span>
+<span class="kn">Proof</span><span class="o">.</span> <span class="k">intro</span><span class="o">.</span> <span class="k">intros</span><span class="o">;</span> <span class="k">apply</span> <span class="o">(@</span><span class="n">Acc_rect</span> <span class="n">A</span> <span class="n">R</span><span class="o">);</span> <span class="k">auto</span><span class="o">.</span> <span class="kn">Qed</span><span class="o">.</span>
+
+<span class="kn">Section</span> <span class="n">BinaryTree</span><span class="o">.</span>
+
+<span class="kn">Variable</span> <span class="n">T</span> <span class="o">:</span> <span class="kt">Type</span><span class="o">.</span>
+
+<span class="kn">Definition</span> <span class="n">lengthOrder</span> <span class="o">(</span><span class="n">ls1</span> <span class="n">ls2</span> <span class="o">:</span> <span class="n">list</span> <span class="n">T</span><span class="o">)</span> <span class="o">:=</span> <span class="n">length</span> <span class="n">ls1</span> <span class="o">&lt;</span> <span class="n">length</span> <span class="n">ls2</span><span class="o">.</span>
+
+<span class="kn">Lemma</span> <span class="n">lengthOrder_wf&#39;</span> <span class="o">:</span> <span class="k">forall</span> <span class="n">len</span><span class="o">,</span> <span class="k">forall</span> <span class="n">ls</span><span class="o">,</span>
+  <span class="n">length</span> <span class="n">ls</span> <span class="o">&lt;=</span> <span class="n">len</span> <span class="o">-&gt;</span> <span class="n">Acc</span> <span class="n">lengthOrder</span> <span class="n">ls</span><span class="o">.</span>
+<span class="kn">Proof</span><span class="o">.</span> <span class="o">[...]</span> <span class="kn">Defined</span><span class="o">.</span>
+
+<span class="kn">Instance</span> <span class="n">lengthOrder_wf</span> <span class="o">:</span> <span class="n">Wellfounded</span> <span class="n">lengthOrder</span><span class="o">.</span>
+<span class="kn">Proof</span><span class="o">.</span> <span class="o">[...]</span> <span class="kn">Defined</span><span class="o">.</span>
+
+<span class="kn">Fixpoint</span> <span class="n">combine</span> <span class="o">(</span><span class="n">ls1</span> <span class="n">ls2</span> <span class="o">:</span> <span class="n">list</span> <span class="n">T</span><span class="o">)</span> <span class="o">:</span> <span class="n">list</span> <span class="n">T</span> <span class="o">:=</span>
+  <span class="k">match</span> <span class="n">ls1</span><span class="o">,</span> <span class="n">ls2</span> <span class="k">with</span>
+  <span class="o">|</span> <span class="n">nil</span><span class="o">,</span> <span class="n">l2</span> <span class="o">=&gt;</span> <span class="n">l2</span>
+  <span class="o">|</span> <span class="n">l1</span><span class="o">,</span> <span class="n">nil</span> <span class="o">=&gt;</span> <span class="n">l1</span>
+  <span class="o">|</span> <span class="n">h1</span> <span class="o">::</span> <span class="n">t1</span><span class="o">,</span> <span class="n">h2</span> <span class="o">::</span> <span class="n">t2</span> <span class="o">=&gt;</span> <span class="n">h1</span> <span class="o">::</span> <span class="n">h2</span> <span class="o">::</span> <span class="n">combine</span> <span class="n">t1</span> <span class="n">t2</span>
+  <span class="k">end</span><span class="o">.</span>
+
+<span class="kn">Theorem</span> <span class="n">tree_rect</span> <span class="o">:</span> <span class="k">forall</span> <span class="o">(</span><span class="n">P</span> <span class="o">:</span> <span class="n">list</span> <span class="n">T</span> <span class="o">-&gt;</span> <span class="kt">Type</span><span class="o">),</span>
+   <span class="n">P</span> <span class="n">nil</span> <span class="o">-&gt;</span>
+  <span class="o">(</span><span class="k">forall</span> <span class="n">t</span> <span class="o">:</span> <span class="n">T</span><span class="o">,</span> <span class="n">P</span> <span class="o">(</span><span class="n">cons</span> <span class="n">t</span> <span class="n">nil</span><span class="o">))</span> <span class="o">-&gt;</span>
+  <span class="o">(</span><span class="k">forall</span> <span class="n">l0</span> <span class="o">:</span> <span class="n">list</span> <span class="n">T</span><span class="o">,</span> <span class="n">P</span> <span class="n">l0</span> <span class="o">-&gt;</span> <span class="k">forall</span> <span class="n">l1</span> <span class="o">:</span> <span class="n">list</span> <span class="n">T</span><span class="o">,</span> <span class="n">P</span> <span class="n">l1</span> <span class="o">-&gt;</span>
+   <span class="n">P</span> <span class="o">(</span><span class="n">combine</span> <span class="n">l0</span> <span class="n">l1</span><span class="o">))</span> <span class="o">-&gt;</span>
+  <span class="o">(</span><span class="k">forall</span> <span class="n">l</span> <span class="o">:</span> <span class="n">list</span> <span class="n">T</span><span class="o">,</span> <span class="n">P</span> <span class="n">l</span><span class="o">).</span>
+<span class="kn">Proof</span><span class="o">.</span> <span class="k">intros</span><span class="o">.</span> <span class="k">apply</span> <span class="n">noetherian_rect</span><span class="o">.</span> <span class="k">intros</span><span class="o">.</span> <span class="o">[...]</span> <span class="kn">Qed</span><span class="o">.</span>
+
+<span class="kn">End</span> <span class="n">BinaryTree</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>We would then have R as an instance of Wellfounded, and S as an instance of Noetherian for all well-founded S. If we have a situation where Noetherian induction might be applicable, we just need to apply “noetherian_rect” with no extra parameters. The proof assistant will now compare the goal with the statement of noetherian-ness to guess what the relation R may be. It will then try to find an instance of the “Noetherian R” class, which could be something from the “Wellfounded R” class. Finally, it tries to find an instance of “Wellfounded R” and it sees that an instance was previously registered. All of this searching happens automatically in the background and no extra information needs to be carried by the human or learning machine. See below for the code.</p>
+<p>In Coq, a similar proof-search is done when we use the tactic “reflexivity.” The proof assistant searches for instances of the Reflexive class. Users can extend the Reflexive class with their own instances to make the tactic more powerful.</p>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
+<p>You can see why such parametric strategies make problem-solving extremely compositional and top-down. They are inherently categorical (generalized algebraic theoretical to be precise) because the classes encode the relational properties of the types/operators but hides the underlying implementations. Proof-search at the top level can automatically trigger appropriate proof-search at lower levels.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<span class="target" id="id1"></span></div>
+</div>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     
+    <a href="../2022-01-22-information-topos-theory-motivation/">
+      <i class="fa fa-arrow-circle-left"></i> Information topos theory - motivation
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+    
+  </span>
+</div>
+  
+</div>
+
+              </div>
+              
+<p style="margin-bottom:5em;"></p>
+<!-- Add a comment box underneath the page's content -->
+<script src="https://giscus.app/client.js"
+        data-repo="shaoweilin/shaoweilin.github.io"
+        data-repo-id="R_kgDOHM5tAA"
+        data-category="Blog comments"
+        data-category-id="DIC_kwDOHM5tAM4COqgI"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2022, Shaowei Lin.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

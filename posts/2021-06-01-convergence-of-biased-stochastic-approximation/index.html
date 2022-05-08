@@ -32,8 +32,8 @@
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
@@ -186,6 +186,12 @@
 <ul>
    
   <li>
+    <a href="../2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/"
+      >22 January - Parametric typeclasses aid generalization in program synthesis</a
+    >
+  </li>
+  
+  <li>
     <a href="../2022-01-22-information-topos-theory-motivation/"
       >22 January - Information topos theory - motivation</a
     >
@@ -209,12 +215,6 @@
     >
   </li>
   
-  <li>
-    <a href="../2021-04-22-proofs-as-programs-challenges-and-strategies-for-program-synthesis/"
-      >22 April - Proofs as programs - challenges and strategies for program synthesis</a
-    >
-  </li>
-  
 </ul>
 
 <h3>
@@ -223,7 +223,7 @@
 <ul>
    
   <li>
-    <a href="../../blog/2022/">2022 (1)</a>
+    <a href="../../blog/2022/">2022 (2)</a>
   </li>
     
   <li>
@@ -351,8 +351,8 @@ Z_{n+1} \sim Q_{\lambda_{n}}(Z_{n+1} \vert Z_{n}, X_{n})\]</div>
 <p>This post is a continuation from our <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">series</span></a> on spiking networks, path integrals and motivic information.</p>
 <div class="section" id="how-do-we-frame-the-problem-in-the-language-of-karimi2019non">
 <h2>How do we frame the problem in the language of <span id="id2">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id38" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span>?<a class="headerlink" href="#how-do-we-frame-the-problem-in-the-language-of-karimi2019non" title="Permalink to this headline">#</a></h2>
-<p>To prove the convergence of our <a class="reference internal" href="../2020-12-01-biased-stochastic-approximation/"><span class="doc std std-doc">biased</span></a> stochastic approximation, we cannot apply the standard unbiased stochastic approximation theory of Robbins and Monro. We can however apply the work of <span id="id3">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id38" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span> which gives some guarantees for biased stochastic approximation involving Markov updates. In this section, we will now derive sufficient conditions for the <a class="reference external" href="2020-12-01-biased-stochastic-approximation/#theorem-convergence-of-biased-stochastic-approximation">convergence</a> of our biased stochastic approximation.</p>
-<p>We <a class="reference external" href="2021-03-23-biased-stochastic-approximation-with-mutable-processes/#what-do-we-assume-about-the-true-distribution-the-model-and-the-learning-objective">recall</a> some key assumptions about our disciminative model <span class="math notranslate nohighlight">\(\{Q_\lambda:\lambda\in\Lambda\},\)</span> generative model <span class="math notranslate nohighlight">\(\{P_\theta:\theta \in \Theta\}\)</span> and true distribution <span class="math notranslate nohighlight">\(Q_*.\)</span></p>
+<p>To prove the convergence of our <a class="reference internal" href="../2020-12-01-biased-stochastic-approximation/"><span class="doc std std-doc">biased</span></a> stochastic approximation, we cannot apply the standard unbiased stochastic approximation theory of Robbins and Monro. We can however apply the work of <span id="id3">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id38" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span> which gives some guarantees for biased stochastic approximation involving Markov updates. In this section, we will now derive sufficient conditions for the <span class="xref myst">convergence</span> of our biased stochastic approximation.</p>
+<p>We <span class="xref myst">recall</span> some key assumptions about our disciminative model <span class="math notranslate nohighlight">\(\{Q_\lambda:\lambda\in\Lambda\},\)</span> generative model <span class="math notranslate nohighlight">\(\{P_\theta:\theta \in \Theta\}\)</span> and true distribution <span class="math notranslate nohighlight">\(Q_*.\)</span></p>
 <hr class="docutils" />
 <p><strong>C1 (Markov property and stationarity).</strong> Under the true distribution <span class="math notranslate nohighlight">\(Q_*,\)</span> the process <span class="math notranslate nohighlight">\(\{X_t\}\)</span> is Markov. Under each <span class="math notranslate nohighlight">\(Q_\lambda\)</span> and each <span class="math notranslate nohighlight">\(P_\theta,\)</span> the process <span class="math notranslate nohighlight">\(\{(Z_t, X_t)\}\)</span> is Markov, and <span class="math notranslate nohighlight">\(Z_t\)</span> and <span class="math notranslate nohighlight">\(X_t\)</span> are independent given their past. The true distribution <span class="math notranslate nohighlight">\(Q_*\)</span> has a stationary distribution <span class="math notranslate nohighlight">\(\bar{\pi}_*,\)</span> and each <span class="math notranslate nohighlight">\(Q_\lambda\)</span> has a stationary distribution <span class="math notranslate nohighlight">\(\bar{\pi}_\lambda.\)</span></p>
 <hr class="docutils" />
@@ -431,7 +431,7 @@ W_{n+1} &amp;\sim Q_{\lambda_{n}}(W_{n+1} \vert W_n).
 \\ &amp; \\ &amp; =
 \displaystyle \frac{\partial V}{\partial\lambda}(\lambda_n,\theta_{n+1}) 
 . \end{array}\end{split}\]</div>
-<p>where the last equality follows from a <a class="reference external" href="2021-03-23-biased-stochastic-approximation-with-mutable-processes/#appendix-discriminative-model-update">formula</a> for integrals over the derivative of a stationary distribution:</p>
+<p>where the last equality follows from a <span class="xref myst">formula</span> for integrals over the derivative of a stationary distribution:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} \begin{array}{rl} &amp;
 \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_{\lambda_n}} \Bigg[ \left( -\log Q_*(X_{T+1}\vert X_T) + \xi(X_{T+1} \vert X_T) \right) \sum_{t=0}^{T} \left. \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \right\vert_{\lambda=\lambda_n} \Bigg]
@@ -477,7 +477,7 @@ W_{n+1} &amp;\sim Q_{\lambda_{n}}(W_{n+1} \vert W_n).
 \[ \displaystyle 
 \mathbb{P}[N=k] = \eta_{k+1} \left(\sum_{j=0}^T \eta_{j+1} \right)^{-1}.\]</div>
 <hr class="docutils" />
-<p>Similar to a previous <a class="reference external" href="2020-12-01-biased-stochastic-approximation/#theorem-convergence-of-biased-stochastic-approximation">analysis</a>, our goal is to find an upper bound such that</p>
+<p>Similar to a previous <span class="xref myst">analysis</span>, our goal is to find an upper bound such that</p>
 <div class="math notranslate nohighlight">
 \[ \displaystyle 
 \mathbb{E}\left[\left\Vert g_\theta(\lambda_N, \theta_N) \right\Vert^2\right] + \mathbb{E}\left[\left\Vert g_\lambda(\lambda_N,\theta_{N}) \right\Vert^2\right] \leq C(T) \rightarrow 0 \]</div>
@@ -491,7 +491,7 @@ W_{n+1} &amp;\sim Q_{\lambda_{n}}(W_{n+1} \vert W_n).
 <div class="math notranslate nohighlight">
 \[ \displaystyle
 \mathbb{E}\left[\left\Vert g_\lambda(\lambda_N, \theta_{N}) \right\Vert^2\right] = \frac{\sum_{n=0}^T \eta_{n+1} \mathbb{E}\left[ \left\Vert g_\lambda(\lambda_n, \theta_{n}) \right\Vert^2 \right]}{\sum_{n=0}^T \eta_{n+1}}. \]</div>
-<p>Following the previous <a class="reference external" href="2020-12-01-biased-stochastic-approximation/#theorem-convergence-of-biased-stochastic-approximation">analysis</a>, the proof starts with the <span class="math notranslate nohighlight">\(\ell\)</span>-smoothness of <span class="math notranslate nohighlight">\(V(\lambda,\theta)\)</span> which implies</p>
+<p>Following the previous <span class="xref myst">analysis</span>, the proof starts with the <span class="math notranslate nohighlight">\(\ell\)</span>-smoothness of <span class="math notranslate nohighlight">\(V(\lambda,\theta)\)</span> which implies</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} \begin{array}{rl} &amp;
 \displaystyle
@@ -594,7 +594,7 @@ L_{\lambda} \hat{E}_{\lambda} (w; \lambda,\theta) = E_{\lambda}(w; \lambda,\thet
 <div class="math notranslate nohighlight">
 \[ \displaystyle
 \hat{E}_{\lambda} (w;\lambda,\theta) = - \displaystyle \sum_{t=0}^\infty Q_{\lambda}^t E_{\lambda}(w;\lambda,\theta).\]</div>
-<p>Now, as shown in the <a class="reference external" href="2021-06-01-convergence-of-biased-stochastic-approximation/#appendix--poisson-equation-for-discriminative-model-update">appendix</a>, for all <span class="math notranslate nohighlight">\(t \geq 1,\)</span></p>
+<p>Now, as shown in the <span class="xref myst">appendix</span>, for all <span class="math notranslate nohighlight">\(t \geq 1,\)</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{split} \begin{array}{rl} &amp; 
 \displaystyle Q_\lambda^t G_{\lambda}(w;\lambda,\theta) 
@@ -705,7 +705,7 @@ we have</p>
 <div class="math notranslate nohighlight">
 \[ \displaystyle
 \mathbb{E}\left[\left\Vert g_\theta(\lambda_N, \theta_N) \right\Vert^2\right] + \mathbb{E}\left[\left\Vert g_\lambda(\lambda_N,\theta_{N}) \right\Vert^2\right] = O(\log T / \sqrt{T} )\]</div>
-<p>where the maximum time <span class="math notranslate nohighlight">\(T\)</span> was defined in <a class="reference external" href="#assumption-step-sizes-and-stop-time">C3</a>.</p>
+<p>where the maximum time <span class="math notranslate nohighlight">\(T\)</span> was defined in <span class="xref myst">C3</span>.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="appendix-poisson-equation-for-discriminative-model-update">
@@ -739,7 +739,7 @@ we have</p>
 \\ &amp; \\ &amp; =
 H_{\hat{Q}_*}(X_t\vert X_{t-1}) + \xi_{\hat{Q}_*}(X_{t} \vert X_{t-1})
 . \end{array}\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\hat{Q}_*\)</span> is the distribution of the Markov chain that initializes <span class="math notranslate nohighlight">\(X_0\)</span> with the state <span class="math notranslate nohighlight">\(x_1\)</span> and has transition probabilities <span class="math notranslate nohighlight">\(Q_*,\)</span> <span class="math notranslate nohighlight">\(H_{\hat{Q}_*}\)</span> is the <a class="reference external" href="2020-09-08-building-foundations-of-information-theory-on-relative-information/#how-do-we-derive-entropy-from-relative-information">conditional entropy</a>, and</p>
+<p>where <span class="math notranslate nohighlight">\(\hat{Q}_*\)</span> is the distribution of the Markov chain that initializes <span class="math notranslate nohighlight">\(X_0\)</span> with the state <span class="math notranslate nohighlight">\(x_1\)</span> and has transition probabilities <span class="math notranslate nohighlight">\(Q_*,\)</span> <span class="math notranslate nohighlight">\(H_{\hat{Q}_*}\)</span> is the <span class="xref myst">conditional entropy</span>, and</p>
 <div class="math notranslate nohighlight">
 \[ \displaystyle
 \xi_{\hat{Q}_*}(X_{t} \vert X_{t-1}) = \mathbb{E}_{\hat{Q}_*}\left[\xi(X_{t} \vert X_{t-1})\right]. \]</div>

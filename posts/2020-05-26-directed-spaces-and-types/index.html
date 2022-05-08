@@ -32,8 +32,8 @@
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
@@ -186,6 +186,12 @@
 <ul>
    
   <li>
+    <a href="../2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/"
+      >22 January - Parametric typeclasses aid generalization in program synthesis</a
+    >
+  </li>
+  
+  <li>
     <a href="../2022-01-22-information-topos-theory-motivation/"
       >22 January - Information topos theory - motivation</a
     >
@@ -209,12 +215,6 @@
     >
   </li>
   
-  <li>
-    <a href="../2021-05-10-path-integrals-and-the-dyson-formula/"
-      >10 May - Path integrals and the Dyson formula</a
-    >
-  </li>
-  
 </ul>
 
 <h3>
@@ -223,7 +223,7 @@
 <ul>
    
   <li>
-    <a href="../../blog/2022/">2022 (1)</a>
+    <a href="../../blog/2022/">2022 (2)</a>
   </li>
     
   <li>
@@ -302,7 +302,7 @@
 <p>Unlike the story of equality proofs and rewrite rules, we do not get critical pairs since the paths are directed, unless we have equivalences <span class="math notranslate nohighlight">\(T \leftrightarrow T'\)</span>. However, one issue is that of unification. Let <span class="math notranslate nohighlight">\(S, T\)</span> be two types that unify. If one of the definitions in <span class="math notranslate nohighlight">\(S\)</span> is unfolded, the new expression <span class="math notranslate nohighlight">\(S'\)</span> may no longer unify with <span class="math notranslate nohighlight">\(T\)</span>.</p>
 <p>In fact, I would argue that equivalence is the only issue standing in the way of efficient proof automation. The unfolding of definitions is a form of equivalence. The beta or eta conversion of terms is another form of equivalence. Reflections between propositional predicates and boolean predicates are also equivalences, as are if-and-only-if statements. Given a lemma <span class="math notranslate nohighlight">\(P \rightarrow Q\)</span>, every equivalence <span class="math notranslate nohighlight">\(Q \leftrightarrow Q'\)</span> gives rise to another equivalent lemma <span class="math notranslate nohighlight">\(P \rightarrow Q'\)</span>. Given a goal <span class="math notranslate nohighlight">\(T x\)</span>, every Leibniz’s equality <span class="math notranslate nohighlight">\(x=x'\)</span> gives rise to an equivalent goal <span class="math notranslate nohighlight">\(T x'\)</span>. These equivalences lead to a profusion of lemmas needed for proof automation and time wasted in running through them for potential proofs. Therefore, we need to return to the Knuth-Bendix algorithm for a way to construct normal forms for these equivalences, so that fewer lemmas need to be checked during proof automation. From the point of view of finding directed paths through a space, we are using equivalences to reduce the size of the space by homotopy, so that the path search will be more efficient.</p>
 <p>As a case study, consider the solution of systems of polynomial equations with real coefficients. Suppose we are interested in finding out if a particular system has any real roots. This is analogous to the more general question of whether a type is inhabited. We could simply find all the complex roots, and check if any of them are real. However, this depends on the assumption that the equation <span class="math notranslate nohighlight">\(x^2+1 = 0\)</span> has a root <span class="math notranslate nohighlight">\(i\)</span>. We can think of this assumption as an axiom that the type <span class="math notranslate nohighlight">\(\{ x \in k\vert  x^2+1 = 0 \}\)</span> is inhabited, where <span class="math notranslate nohighlight">\(k\)</span> is our base field. With this axiom, we get an equivalence (up to Nullstellensatz) between polynomial systems and sets of points in complex space, which then makes it easy for us to check in particular if there are any real roots. However, the work required to extend the axiom that <span class="math notranslate nohighlight">\(x^2+1=0\)</span> has a root, to this equivalence between systems and sets, is called the Fundamental Theorem of Algebra. The proof of the theorem is not straight-forward - if we only consider algebraic proofs (with just a little bit of basic real analysis), the proof is an exercise in Galois Theory. Thus, if we were working on a particular polynomial system and found ourselves needing the axiom to complete the proof, it is not merely enough to add this axiom to the proof engine and hope that future proofs will automatically learn how to use it. We need to extend the axiom into an equivalence for our polynomial systems, so that the proof space of directed paths can be simplified drastically.</p>
-<p>Directed spaces are related to <a class="reference external" href="https://ncatlab.org/nlab/show/%28n%2Cr%29-category"><span class="math notranslate nohighlight">\((n,r)\)</span>-categories</a>, and in particular, <a class="reference external" href="http://www.math.jhu.edu/~eriehl/Leeds-HTT-UF.pdf"><span class="math notranslate nohighlight">\(\infty\)</span>-categories</a>. Directed spaces give rise to <a class="reference external" href="https://ncatlab.org/nlab/show/directed+topological+space">streams</a> and coinductive types, which contain more structure and fit nicely with categorical considerations. It makes sense to view directed types through the lens of coinductive types and their <a class="reference external" href="https://groups.google.com/forum/#%21msg/homotopytypetheory/tYRTcI2Opyo/PIrI6t5me-oJ">corresponding identity types</a>.</p>
+<p>Directed spaces are related to <a class="reference external" href="https://ncatlab.org/nlab/show/%28n%2Cr%29-category"><span class="math notranslate nohighlight">\((n,r)\)</span>-categories</a>, and in particular, <a class="reference external" href="http://www.math.jhu.edu/~eriehl/Leeds-HTT-UF.pdf"><span class="math notranslate nohighlight">\(\infty\)</span>-categories</a>. Directed spaces give rise to <a class="reference external" href="https://ncatlab.org/nlab/show/directed+topological+space">streams</a> and coinductive types, which contain more structure and fit nicely with categorical considerations. It makes sense to view directed types through the lens of coinductive types and their <a class="reference external" href="https://groups.google.com/forum/#!msg/homotopytypetheory/tYRTcI2Opyo/PIrI6t5me-oJ">corresponding identity types</a>.</p>
 <p>Directed spaces are naturally related to posets (partially ordered sets) where the partial order satisfies reflexivity and transitivity but not symmetry.</p>
 <p>Directed types are related to goal trees, where root represents the main goal, and the leaves represent subgoals which, when inhabited, would imply that the main goal is inhabited</p>
 </div>

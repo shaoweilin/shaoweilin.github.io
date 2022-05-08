@@ -32,8 +32,8 @@
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
@@ -186,6 +186,12 @@
 <ul>
    
   <li>
+    <a href="../2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/"
+      >22 January - Parametric typeclasses aid generalization in program synthesis</a
+    >
+  </li>
+  
+  <li>
     <a href="../2022-01-22-information-topos-theory-motivation/"
       >22 January - Information topos theory - motivation</a
     >
@@ -209,12 +215,6 @@
     >
   </li>
   
-  <li>
-    <a href="../2021-05-10-path-integrals-and-the-dyson-formula/"
-      >10 May - Path integrals and the Dyson formula</a
-    >
-  </li>
-  
 </ul>
 
 <h3>
@@ -223,7 +223,7 @@
 <ul>
    
   <li>
-    <a href="../../blog/2022/">2022 (1)</a>
+    <a href="../../blog/2022/">2022 (2)</a>
   </li>
     
   <li>
@@ -453,7 +453,7 @@
 <span class="math notranslate nohighlight">\(I_{Q_* \Vert P_\theta}(X)\)</span> to the true distribution <span class="math notranslate nohighlight">\(Q_*(X)\)</span> from the model distribution <span class="math notranslate nohighlight">\(P_\theta(X)\)</span> for the observable <span class="math notranslate nohighlight">\(X\)</span>. We now introduce a variational parameter <span class="math notranslate nohighlight">\(Q(Z\vert X)\)</span> and let</p>
 <div class="math notranslate nohighlight">
 \[Q(Z,X) = Q(Z\vert X) Q_*(X).\]</div>
-<p>By the chain rule (<a class="reference external" href="2020-09-18-conditional-relative-information-and-its-axiomatizations/#mjx-eqn-CR">CR</a>) for relative information,</p>
+<p>By the chain rule (<span class="xref myst">CR</span>) for relative information,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{rl} I_{Q\Vert P_\theta}(Z, X) &amp;= I_{Q\Vert P_\theta}(Z\vert X) + I_{Q\Vert P_\theta}(X) \\&amp; \\&amp;= I_{Q\Vert P_\theta}(Z\vert X) + I_{Q_*\Vert P_\theta}(X) .\end{array}\end{split}\]</div>
 <p>Therefore,</p>
@@ -466,7 +466,7 @@
 <p>where the first and third inequalities follow from the minimizer assumptions, and the second and fourth equality/inequality follow from the chain rule. Hence, all the inequalities are equalities and <span class="math notranslate nohighlight">\(I_{Q_*\Vert P_{\hat{\theta}}}(X) = I_{Q_*\Vert P_{\tilde{\theta}}}(X)\)</span>, so <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> is a minimizer as claimed.</p>
 <p>This result suggests a variational strategy for training the latent variable model — introduce a variational parameter <span class="math notranslate nohighlight">\(Q(Z\vert X)\)</span> and minimize the relative information <span class="math notranslate nohighlight">\(I_{Q\Vert P_\theta}(Z, X)\)</span> over <span class="math notranslate nohighlight">\(Q\)</span> and <span class="math notranslate nohighlight">\(\theta.\)</span></p>
 <p>Moreover, we may perform coordinate-wise minimization:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>holding <span class="math notranslate nohighlight">\(\theta\)</span> constant while minimizing over <span class="math notranslate nohighlight">\(Q\)</span>;</p></li>
 <li><p>holding <span class="math notranslate nohighlight">\(Q\)</span> constant while minimizing over <span class="math notranslate nohighlight">\(\theta\)</span>;</p></li>
 <li><p>repeat.</p></li>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://shaoweilin.github.io</id>
   <title>Types from Spikes</title>
-  <updated>2022-04-22T05:35:40.586942+00:00</updated>
+  <updated>2022-05-08T20:43:18.942869+00:00</updated>
   <link href="https://shaoweilin.github.io"/>
   <link href="https://shaoweilin.github.io/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.org/" version="0.10.25">ABlog</generator>
@@ -275,7 +275,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <title>Process learning with relative information</title>
     <updated>2021-03-21T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;Over the next few posts, we will derive a distributed learning algorithm for spiking neural networks with &lt;a class="reference external" href="2020-10-23-machine-learning-with-relative-information/#why-should-we-consider-mutable-variables-rather-than-latent-variables"&gt;mutable&lt;/a&gt; variables that minimizes some natural notion of relative information and provably converges over time. We will model these spiking neural networks with stochastic processes: both discrete-time and continuous-time processes, with or without mutable variables.&lt;/p&gt;
+&lt;p&gt;Over the next few posts, we will derive a distributed learning algorithm for spiking neural networks with &lt;span class="xref myst"&gt;mutable&lt;/span&gt; variables that minimizes some natural notion of relative information and provably converges over time. We will model these spiking neural networks with stochastic processes: both discrete-time and continuous-time processes, with or without mutable variables.&lt;/p&gt;
 &lt;p&gt;In this post, we give a general overview of information-theoretic approaches to training stochastic processes, while postponing discussions about issues that arise from mutable variables.&lt;/p&gt;
 &lt;/div&gt;
 </content>
@@ -288,7 +288,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <title>Relative inference with mutable processes</title>
     <updated>2021-03-22T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;We introduce a information-theoretic objective, which is a form of relative information between a discriminative model and a generative model, for learning processes using models with &lt;a class="reference external" href="2020-10-23-machine-learning-with-relative-information/#why-should-we-consider-mutable-variables-rather-than-latent-variables"&gt;mutable&lt;/a&gt; variables. This technique is known as &lt;a class="reference external" href="2020-10-23-machine-learning-with-relative-information/#why-do-we-need-a-better-name-for-variational-inference"&gt;relative inference&lt;/a&gt; (also called approximate inference, variational inference or variational Bayes). Such a technique is useful, for instance, for learning processes that contain latent variables.&lt;/p&gt;
+&lt;p&gt;We introduce a information-theoretic objective, which is a form of relative information between a discriminative model and a generative model, for learning processes using models with &lt;span class="xref myst"&gt;mutable&lt;/span&gt; variables. This technique is known as &lt;span class="xref myst"&gt;relative inference&lt;/span&gt; (also called approximate inference, variational inference or variational Bayes). Such a technique is useful, for instance, for learning processes that contain latent variables.&lt;/p&gt;
 &lt;p&gt;We discuss natural constraints on the discriminative and generative models, and the consequences of these constraints on:&lt;/p&gt;
 &lt;/div&gt;
 </content>
@@ -301,7 +301,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <title>Biased stochastic approximation with mutable processes</title>
     <updated>2021-03-23T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;The goal of this post is to derive a general online learning recipe for training a &lt;a class="reference external" href="2021-03-22-relative-inference-with-mutable-processes/#what-is-a-mutable-process"&gt;mutable&lt;/a&gt; process &lt;span class="math notranslate nohighlight"&gt;\(\{Z_t,X_t\}\)&lt;/span&gt; to learn the true distribution &lt;span class="math notranslate nohighlight"&gt;\(Q_*(X)\)&lt;/span&gt; of a partially-observed Markov process &lt;span class="math notranslate nohighlight"&gt;\(\{X_t\}\)&lt;/span&gt;. The recipe returns a generative distribution &lt;span class="math notranslate nohighlight"&gt;\(P(Z,X)\)&lt;/span&gt; whose marginal &lt;span class="math notranslate nohighlight"&gt;\(P(X)\)&lt;/span&gt; approximates &lt;span class="math notranslate nohighlight"&gt;\(Q_*(X).\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The goal of this post is to derive a general online learning recipe for training a &lt;span class="xref myst"&gt;mutable&lt;/span&gt; process &lt;span class="math notranslate nohighlight"&gt;\(\{Z_t,X_t\}\)&lt;/span&gt; to learn the true distribution &lt;span class="math notranslate nohighlight"&gt;\(Q_*(X)\)&lt;/span&gt; of a partially-observed Markov process &lt;span class="math notranslate nohighlight"&gt;\(\{X_t\}\)&lt;/span&gt;. The recipe returns a generative distribution &lt;span class="math notranslate nohighlight"&gt;\(P(Z,X)\)&lt;/span&gt; whose marginal &lt;span class="math notranslate nohighlight"&gt;\(P(X)\)&lt;/span&gt; approximates &lt;span class="math notranslate nohighlight"&gt;\(Q_*(X).\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;The variables &lt;span class="math notranslate nohighlight"&gt;\(Z\)&lt;/span&gt; of the mutable process are auxiliary variables that assist in inference and computation. During training, the distribution of &lt;span class="math notranslate nohighlight"&gt;\(Z\)&lt;/span&gt; given &lt;span class="math notranslate nohighlight"&gt;\(X\)&lt;/span&gt; is controlled by a discriminative model &lt;span class="math notranslate nohighlight"&gt;\(\{Q(Z\vert X)\}.\)&lt;/span&gt; Our method works in both discrete time and continuous time. We assume in the mutable process that for each time &lt;span class="math notranslate nohighlight"&gt;\(t,\)&lt;/span&gt; the variables &lt;span class="math notranslate nohighlight"&gt;\(Z_t\)&lt;/span&gt; and &lt;span class="math notranslate nohighlight"&gt;\(X_t\)&lt;/span&gt; are conditionally independent of each other given their past.&lt;/p&gt;
 &lt;/div&gt;
 </content>
@@ -353,7 +353,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <title>Spiking neural networks</title>
     <updated>2021-06-05T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;In this post, we study a class of spiking network models based on continuous-time &lt;a class="reference external" href="2020-10-14-path-integrals-and-continuous-time-markov-chains/#what-is-a-continuous-time-markov-chain"&gt;Markov&lt;/a&gt; chains with &lt;a class="reference external" href="2021-03-22-relative-inference-with-mutable-processes/#what-is-a-mutable-process"&gt;mutable&lt;/a&gt;  variables.&lt;/p&gt;
+&lt;p&gt;In this post, we study a class of spiking network models based on continuous-time &lt;span class="xref myst"&gt;Markov&lt;/span&gt; chains with &lt;span class="xref myst"&gt;mutable&lt;/span&gt;  variables.&lt;/p&gt;
 &lt;p&gt;Using a &lt;span class="xref myst"&gt;relative inference&lt;/span&gt; recipe for online learning, we derive local Hebbian learning rules for the spiking network which are provably convergent to local minima of the relative information objective.&lt;/p&gt;
 &lt;/div&gt;
 </content>
@@ -385,6 +385,19 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 </content>
     <link href="https://shaoweilin.github.io/posts/2022-01-22-information-topos-theory-motivation/" rel="alternate"/>
     <summary>Relative information (also known as the Kullback-Leibler divergence) is an important fundamental concept in statistical learning and information theory.The (conditional) relative information</summary>
+    <published>2022-01-22T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://shaoweilin.github.io/posts/2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/</id>
+    <title>Parametric typeclasses aid generalization in program synthesis</title>
+    <updated>2022-01-22T00:00:00+00:00</updated>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;We envision programming being done in top-down fashion. The human describes the goal (e.g. sorting), and the machine reduces it to smaller subgoals based on well-known heuristics (e.g. divide and conquer). The easier subgoals could even be fulfilled automatically. This top-down heuristics approach will be more amenable to machine learning. See my &lt;a class="reference download internal" download="" href="../_downloads/0d6c348fef680eeb3dae84dfe053bb53/2021-04-22-proofs-as-programs-challenges-and-strategies-for-program-synthesis.md"&gt;&lt;span class="xref download myst"&gt;Topos Institute talk&lt;/span&gt;&lt;/a&gt; for more info.&lt;/p&gt;
+&lt;p&gt;The problem with the current approach in type theory is as follows.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://shaoweilin.github.io/posts/2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/" rel="alternate"/>
+    <summary>We envision programming being done in top-down fashion. The human describes the goal (e.g. sorting), and the machine reduces it to smaller subgoals based on well-known heuristics (e.g. divide and conquer). The easier subgoals could even be fulfilled automatically. This top-down heuristics approach will be more amenable to machine learning. See my Topos Institute talk for more info.The problem with the current approach in type theory is as follows.</summary>
     <published>2022-01-22T00:00:00+00:00</published>
   </entry>
 </feed>

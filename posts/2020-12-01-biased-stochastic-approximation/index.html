@@ -32,8 +32,8 @@
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
@@ -186,6 +186,12 @@
 <ul>
    
   <li>
+    <a href="../2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/"
+      >22 January - Parametric typeclasses aid generalization in program synthesis</a
+    >
+  </li>
+  
+  <li>
     <a href="../2022-01-22-information-topos-theory-motivation/"
       >22 January - Information topos theory - motivation</a
     >
@@ -209,12 +215,6 @@
     >
   </li>
   
-  <li>
-    <a href="../2021-05-10-path-integrals-and-the-dyson-formula/"
-      >10 May - Path integrals and the Dyson formula</a
-    >
-  </li>
-  
 </ul>
 
 <h3>
@@ -223,7 +223,7 @@
 <ul>
    
   <li>
-    <a href="../../blog/2022/">2022 (1)</a>
+    <a href="../../blog/2022/">2022 (2)</a>
   </li>
     
   <li>
@@ -331,7 +331,7 @@
 <div class="math notranslate nohighlight">
 \[\dot{\eta} = -h(\eta),\]</div>
 <p>and suppose we have a function <span class="math notranslate nohighlight">\(V: \mathcal{H} \rightarrow \mathbb{R}\)</span> that has a finite lower bound. We are primarily interested in the conditions that will lead to convergence of the system to two kinds of points, namely</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>To a fixed point, i.e. <span class="math notranslate nohighlight">\(h(\eta) = 0,\)</span></p></li>
 <li><p>To a critical point, i.e. <span class="math notranslate nohighlight">\(\nabla V(\eta) = 0.\)</span></p></li>
 </ol>
@@ -355,7 +355,7 @@
 <p>where <span class="math notranslate nohighlight">\(\gamma_{n+1}\)</span> is the time-dependent learning rate and <span class="math notranslate nohighlight">\(H_{\eta_n}\)</span> is the update at time <span class="math notranslate nohighlight">\((n+1)\)</span> that depends on the previous system state <span class="math notranslate nohighlight">\(\eta_n.\)</span> The update could be deterministic as in the case of gradient descent, or more generally it could be stochastic as in the case of stochastic approximation.</p>
 <p>We will assume that any stochastic update <span class="math notranslate nohighlight">\(H_{\eta_n}(X_{n+1})\)</span> is a function of some parameter-controlled stochastic process <span class="math notranslate nohighlight">\(\{X_n\}\)</span>, i.e. the distribution of <span class="math notranslate nohighlight">\(X_{n+1}\)</span> conditioned on its past <span class="math notranslate nohighlight">\(X_n, X_{n-1}, \ldots\)</span> is controlled by the parameter <span class="math notranslate nohighlight">\(\eta_n.\)</span> We will also assume that for each <span class="math notranslate nohighlight">\(\eta \in \mathcal{H}\)</span>, the <span class="math notranslate nohighlight">\(\eta\)</span>-controlled stochastic process <span class="math notranslate nohighlight">\(\{X_n\}\)</span> has a unique stationary distribution <span class="math notranslate nohighlight">\(\pi_\eta\)</span>. Let <span class="math notranslate nohighlight">\(h(\eta)\)</span> be the total expectation or <em>mean field</em> of the <span class="math notranslate nohighlight">\(\eta\)</span>-controlled stochastic process, i.e. the expectation of the stochastic updates <span class="math notranslate nohighlight">\(H_{\eta}(x)\)</span> with respect to <span class="math notranslate nohighlight">\(x \sim \pi_\eta.\)</span></p>
 <p>As before, let <span class="math notranslate nohighlight">\(V: \mathcal{H} \rightarrow \mathbb{R}\)</span> be a function with a finite lower bound. We will again be interested in conditions that guarantee the convergence of the discrete-time dynamical system to two kinds of points, namely</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>To a fixed point, i.e. <span class="math notranslate nohighlight">\(h(\eta) = 0,\)</span></p></li>
 <li><p>To a critical point, i.e. <span class="math notranslate nohighlight">\(\nabla V(\eta) = 0.\)</span></p></li>
 </ol>

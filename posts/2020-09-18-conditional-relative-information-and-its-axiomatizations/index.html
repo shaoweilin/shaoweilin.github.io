@@ -32,8 +32,8 @@
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
@@ -186,6 +186,12 @@
 <ul>
    
   <li>
+    <a href="../2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/"
+      >22 January - Parametric typeclasses aid generalization in program synthesis</a
+    >
+  </li>
+  
+  <li>
     <a href="../2022-01-22-information-topos-theory-motivation/"
       >22 January - Information topos theory - motivation</a
     >
@@ -209,12 +215,6 @@
     >
   </li>
   
-  <li>
-    <a href="../2021-05-10-path-integrals-and-the-dyson-formula/"
-      >10 May - Path integrals and the Dyson formula</a
-    >
-  </li>
-  
 </ul>
 
 <h3>
@@ -223,7 +223,7 @@
 <ul>
    
   <li>
-    <a href="../../blog/2022/">2022 (1)</a>
+    <a href="../../blog/2022/">2022 (2)</a>
   </li>
     
   <li>
@@ -378,7 +378,7 @@
 <p>where <span class="math notranslate nohighlight">\(T\)</span> is the total measure of <span class="math notranslate nohighlight">\(P\)</span>, and <span class="math notranslate nohighlight">\(\bar{P}_X = P_X/T\)</span> and <span class="math notranslate nohighlight">\(\bar{P}_Y = P_Y/T\)</span> are probability measures.</p>
 <p>Given two measured spaces <span class="math notranslate nohighlight">\((\Omega_1, \mathcal{B}_1, P_1)\)</span> and <span class="math notranslate nohighlight">\((\Omega_2, \mathcal{B}_2, P_2)\)</span>, let <span class="math notranslate nohighlight">\((\Omega_1 \sqcup \Omega_2, \mathcal{B}_1 \oplus \mathcal{B}_2, P_1 \oplus P_2)\)</span> be their direct sum. Here, <span class="math notranslate nohighlight">\(\Omega_1 \sqcup \Omega_2\)</span> is the disjoint union, and <span class="math notranslate nohighlight">\(S \in \mathcal{B}_1 \oplus \mathcal{B}_2\)</span> if and only if <span class="math notranslate nohighlight">\(S \cap \Omega_1 \in \mathcal{B}_1\)</span> and <span class="math notranslate nohighlight">\(S \cap \Omega_2 \in \mathcal{B}_2\)</span>. The measure of <span class="math notranslate nohighlight">\(S\)</span> is the sum of that of <span class="math notranslate nohighlight">\(S \cap \Omega_1\)</span> and of <span class="math notranslate nohighlight">\(S \cap \Omega_2\)</span>.</p>
 <p>Let <span class="math notranslate nohighlight">\(F_P\)</span> be a family of maps indexed by measures <span class="math notranslate nohighlight">\(P\)</span> such that each <span class="math notranslate nohighlight">\(F_P\)</span> sends morphisms <span class="math notranslate nohighlight">\(f :S_X \rightarrow S_Y\)</span> between finite sets to <span class="math notranslate nohighlight">\([0, \infty)\)</span>. Suppose that the family <span class="math notranslate nohighlight">\(F_P\)</span> satisfies the following three axioms.</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p><em>Functoriality.</em> <span class="math notranslate nohighlight">\(F_P(f\circ g) = F_P(f) + F_P(g)\)</span></p></li>
 <li><p><em>Homogeneity</em>. <span class="math notranslate nohighlight">\(F_{\lambda P}(f) = \lambda F_P(f)\)</span></p></li>
 <li><p><em>Additivity.</em> <span class="math notranslate nohighlight">\(F_{P_1\oplus P_2}(f_1 \oplus f_2) = F_{P_1}(f_1) + F_{P_2}(f_2)\)</span></p></li>
@@ -392,7 +392,7 @@
 <h2>Is there an axiomatization of conditional relative information?<a class="headerlink" href="#is-there-an-axiomatization-of-conditional-relative-information" title="Permalink to this headline">#</a></h2>
 <p>We prefer to work with conditional relative information rather than conditional entropy. Its axiomatization should tell us how it behaves with respect to products and coproducts of the measures being compared.</p>
 <p>Our axioms. Note the addition of the product rule. I’m not sure if the product axiom can be derived from the others when the state spaces are not finite. Perhaps it will follow from continuity and the fact that the limit of coproducts is the product of limits.</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p><em>Functoriality</em>. <span class="math notranslate nohighlight">\(G_{Q \Vert P} (f \circ g) = G_{Q \Vert P} (f) + G_{Q \Vert P} (g)\)</span></p></li>
 <li><p><em>Homogeneity</em>. <span class="math notranslate nohighlight">\(G_{\lambda Q \Vert \lambda P} (f) = \lambda G_{Q \Vert P} (f)\)</span></p></li>
 <li><p><em>Coproduct</em>. <span class="math notranslate nohighlight">\(G_{Q_1 \oplus Q_2 \Vert P_1 \oplus P_2} (f_1 \oplus f_2) = G_{Q_1 \Vert P_1} (f_1) + G_{Q_2 \Vert P_2} (f_2)\)</span></p></li>

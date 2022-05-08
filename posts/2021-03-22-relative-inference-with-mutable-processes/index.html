@@ -32,8 +32,8 @@
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
@@ -186,6 +186,12 @@
 <ul>
    
   <li>
+    <a href="../2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/"
+      >22 January - Parametric typeclasses aid generalization in program synthesis</a
+    >
+  </li>
+  
+  <li>
     <a href="../2022-01-22-information-topos-theory-motivation/"
       >22 January - Information topos theory - motivation</a
     >
@@ -209,12 +215,6 @@
     >
   </li>
   
-  <li>
-    <a href="../2021-05-10-path-integrals-and-the-dyson-formula/"
-      >10 May - Path integrals and the Dyson formula</a
-    >
-  </li>
-  
 </ul>
 
 <h3>
@@ -223,7 +223,7 @@
 <ul>
    
   <li>
-    <a href="../../blog/2022/">2022 (1)</a>
+    <a href="../../blog/2022/">2022 (2)</a>
   </li>
     
   <li>
@@ -333,7 +333,7 @@
               <div>
                  <div class="tex2jax_ignore mathjax_ignore section" id="relative-inference-with-mutable-processes">
 <h1>Relative inference with mutable processes<a class="headerlink" href="#relative-inference-with-mutable-processes" title="Permalink to this headline">#</a></h1>
-<p>We introduce a information-theoretic objective, which is a form of relative information between a discriminative model and a generative model, for learning processes using models with <a class="reference external" href="2020-10-23-machine-learning-with-relative-information/#why-should-we-consider-mutable-variables-rather-than-latent-variables">mutable</a> variables. This technique is known as <a class="reference external" href="2020-10-23-machine-learning-with-relative-information/#why-do-we-need-a-better-name-for-variational-inference">relative inference</a> (also called approximate inference, variational inference or variational Bayes). Such a technique is useful, for instance, for learning processes that contain latent variables.</p>
+<p>We introduce a information-theoretic objective, which is a form of relative information between a discriminative model and a generative model, for learning processes using models with <span class="xref myst">mutable</span> variables. This technique is known as <span class="xref myst">relative inference</span> (also called approximate inference, variational inference or variational Bayes). Such a technique is useful, for instance, for learning processes that contain latent variables.</p>
 <p>We discuss natural constraints on the discriminative and generative models, and the consequences of these constraints on:</p>
 <ul class="simple">
 <li><p>passive/active learning;</p></li>
@@ -363,7 +363,7 @@ Q(Z,X) = Q(Z\vert X)Q_*(X).
 <div class="math notranslate nohighlight">
 \[\displaystyle I_{Q_*\Vert P}(X_{0\ldots T})\]</div>
 <p>(or equivalently the relative information rate if we assume strong stationarity.)</p>
-<p><a class="reference internal" href="../2020-10-23-machine-learning-with-relative-information/"><span class="doc std std-doc">Previously</span></a>, we discussed how this optimization problem over the space of distributions on <span class="math notranslate nohighlight">\(X\)</span> may be lifted to an optimization problem over the space of distributions on <span class="math notranslate nohighlight">\((Z,X)\)</span> using <a class="reference external" href="2020-10-23-machine-learning-with-relative-information/#why-do-we-need-a-better-name-for-variational-inference">relative inference</a>. For processes, this involves lifting the environment <span class="math notranslate nohighlight">\(X_{0\ldots T}\)</span> to a mutable process <span class="math notranslate nohighlight">\((Z_{0\ldots T}, X_{0\ldots T}).\)</span></p>
+<p><a class="reference internal" href="../2020-10-23-machine-learning-with-relative-information/"><span class="doc std std-doc">Previously</span></a>, we discussed how this optimization problem over the space of distributions on <span class="math notranslate nohighlight">\(X\)</span> may be lifted to an optimization problem over the space of distributions on <span class="math notranslate nohighlight">\((Z,X)\)</span> using <span class="xref myst">relative inference</span>. For processes, this involves lifting the environment <span class="math notranslate nohighlight">\(X_{0\ldots T}\)</span> to a mutable process <span class="math notranslate nohighlight">\((Z_{0\ldots T}, X_{0\ldots T}).\)</span></p>
 <p>Specifically, we will be considering different models <span class="math notranslate nohighlight">\(\Delta\)</span> of discriminative distributions</p>
 <div class="math notranslate nohighlight">
 \[Q(Z_{0\ldots T},X_{0\ldots T}) = Q_*(X_{0\ldots T}) Q(Z_{0\ldots T}\vert X_{0\ldots T})\]</div>
@@ -439,7 +439,7 @@ Q(Z,X) = Q(Z\vert X)Q_*(X).
 <h2>How do we perform relative inference with limited sensing?<a class="headerlink" href="#how-do-we-perform-relative-inference-with-limited-sensing" title="Permalink to this headline">#</a></h2>
 <p>For our mathematical analysis, we find it semantically convenient to assume that the process <span class="math notranslate nohighlight">\(X_{0\ldots T}\)</span> represents the history of <em>every particle in the universe</em> and that it is a Markov process. Some subprocesses of <span class="math notranslate nohighlight">\(X_{0\ldots T}\)</span> will be observed during training, while other subprocesses may remain hidden.</p>
 <p>Observability will be determined by structures in the discriminative model <span class="math notranslate nohighlight">\(\{Q(Z\vert X)\}\)</span> and generative model <span class="math notranslate nohighlight">\(\{P(Z, X)\}.\)</span> If a subprocess of <span class="math notranslate nohighlight">\(X_{0\ldots T}\)</span> is hidden, then the memory <span class="math notranslate nohighlight">\(Z_{0\ldots T}\)</span> will be independent of the subprocess in the discriminative model. In the generative model, we can assign a trivial distribution (e.g. assigning uniform distributions or assigning probability one to some fixed state) to the hidden subprocess.</p>
-<p>Such constraints on the discriminative model and generative model <a class="reference external" href="2021-03-22-relative-inference-with-mutable-processes/#remark-cost-of-limited-sensing">could</a> cause the information gap <span class="math notranslate nohighlight">\(I_{Q\Vert P}(Z_{0\ldots T}\vert  X_{0\ldots T})\)</span> to increase yet again. We can think of this increase as the cost of <em>limited sensing</em>.</p>
+<p>Such constraints on the discriminative model and generative model <span class="xref myst">could</span> cause the information gap <span class="math notranslate nohighlight">\(I_{Q\Vert P}(Z_{0\ldots T}\vert  X_{0\ldots T})\)</span> to increase yet again. We can think of this increase as the cost of <em>limited sensing</em>.</p>
 <p>The reason we say that this Markov assumption is <em>semantically convenient</em> is as follows. We could alternatively model the universe as a joint process <span class="math notranslate nohighlight">\(X_{0\ldots T}, U_{0\ldots T}\)</span> where <span class="math notranslate nohighlight">\(X_{0\ldots T}\)</span> is observed and <span class="math notranslate nohighlight">\(U_{0\ldots T}\)</span> is hidden. However, the mathematical analysis becomes notationally complicated because of the need to write down both processes. It is easier to subsume the distinction between observed and hidden under assumptions for the discriminative model and generative model.</p>
 <p>Under this Markov assumption and under mild regularity conditions, the time-averaged relative information will be equal to the relative information rate.</p>
 <div class="math notranslate nohighlight">

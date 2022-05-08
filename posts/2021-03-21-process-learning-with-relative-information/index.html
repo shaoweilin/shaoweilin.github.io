@@ -32,8 +32,8 @@
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
@@ -186,6 +186,12 @@
 <ul>
    
   <li>
+    <a href="../2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/"
+      >22 January - Parametric typeclasses aid generalization in program synthesis</a
+    >
+  </li>
+  
+  <li>
     <a href="../2022-01-22-information-topos-theory-motivation/"
       >22 January - Information topos theory - motivation</a
     >
@@ -209,12 +215,6 @@
     >
   </li>
   
-  <li>
-    <a href="../2021-05-10-path-integrals-and-the-dyson-formula/"
-      >10 May - Path integrals and the Dyson formula</a
-    >
-  </li>
-  
 </ul>
 
 <h3>
@@ -223,7 +223,7 @@
 <ul>
    
   <li>
-    <a href="../../blog/2022/">2022 (1)</a>
+    <a href="../../blog/2022/">2022 (2)</a>
   </li>
     
   <li>
@@ -313,7 +313,7 @@
               <div>
                  <div class="tex2jax_ignore mathjax_ignore section" id="process-learning-with-relative-information">
 <h1>Process learning with relative information<a class="headerlink" href="#process-learning-with-relative-information" title="Permalink to this headline">#</a></h1>
-<p>Over the next few posts, we will derive a distributed learning algorithm for spiking neural networks with <a class="reference external" href="2020-10-23-machine-learning-with-relative-information/#why-should-we-consider-mutable-variables-rather-than-latent-variables">mutable</a> variables that minimizes some natural notion of relative information and provably converges over time. We will model these spiking neural networks with stochastic processes: both discrete-time and continuous-time processes, with or without mutable variables.</p>
+<p>Over the next few posts, we will derive a distributed learning algorithm for spiking neural networks with <span class="xref myst">mutable</span> variables that minimizes some natural notion of relative information and provably converges over time. We will model these spiking neural networks with stochastic processes: both discrete-time and continuous-time processes, with or without mutable variables.</p>
 <p>In this post, we give a general overview of information-theoretic approaches to training stochastic processes, while postponing discussions about issues that arise from mutable variables.</p>
 <p>The actual process that generates the data could possibly be different from the model that we are training on the data. This problem is called model misspecification, which we are not addressing in this series. Our goal is to find a distribution in the model that fits the data well according to some sensible metric.</p>
 <p>This post is a continuation from our <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">series</span></a> on spiking networks, path integrals and motivic information.</p>
@@ -330,7 +330,7 @@
 </div>
 <div class="section" id="how-do-we-train-a-stochastic-process-using-relative-information-rate">
 <h2>How do we train a stochastic process using relative information rate?<a class="headerlink" href="#how-do-we-train-a-stochastic-process-using-relative-information-rate" title="Permalink to this headline">#</a></h2>
-<p>In discrete time, by the chain rule (<a class="reference external" href="2020-09-18-conditional-relative-information-and-its-axiomatizations/#mjx-eqn-CR">CR</a>), the relative information decomposes into the sum</p>
+<p>In discrete time, by the chain rule (<span class="xref myst">CR</span>), the relative information decomposes into the sum</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} \begin{array}{rl} I_{Q \Vert P}(X_{0\ldots n}) &amp;= I_{Q \Vert P}(X_n \vert X_{0\ldots (n-1)}) \\ &amp; \\ &amp; \quad + I_{Q \Vert P}(X_{n-1} \vert X_{0\ldots (n-2)}) \\ &amp; \\ &amp; \quad + \cdots + I_{Q \Vert P}(X_1 \vert X_0) +I_{Q \Vert P}( X_0). \end{array}\end{split}\]</div>
 <p>In continuous time, we have the analogous result</p>

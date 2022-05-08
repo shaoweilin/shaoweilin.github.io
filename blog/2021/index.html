@@ -20,8 +20,8 @@
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
@@ -163,6 +163,12 @@
 <ul>
    
   <li>
+    <a href="../../posts/2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/"
+      >22 January - Parametric typeclasses aid generalization in program synthesis</a
+    >
+  </li>
+  
+  <li>
     <a href="../../posts/2022-01-22-information-topos-theory-motivation/"
       >22 January - Information topos theory - motivation</a
     >
@@ -186,12 +192,6 @@
     >
   </li>
   
-  <li>
-    <a href="../../posts/2021-05-10-path-integrals-and-the-dyson-formula/"
-      >10 May - Path integrals and the Dyson formula</a
-    >
-  </li>
-  
 </ul>
 
 <h3>
@@ -200,7 +200,7 @@
 <ul>
    
   <li>
-    <a href="../2022/">2022 (1)</a>
+    <a href="../2022/">2022 (2)</a>
   </li>
     
   <li>
@@ -298,7 +298,7 @@
             
     </ul>
     <div class="ablog-post-excerpt docutils container">
-<p>In this post, we study a class of spiking network models based on continuous-time <a class="reference external" href="2020-10-14-path-integrals-and-continuous-time-markov-chains/#what-is-a-continuous-time-markov-chain">Markov</a> chains with <a class="reference external" href="2021-03-22-relative-inference-with-mutable-processes/#what-is-a-mutable-process">mutable</a>  variables.</p>
+<p>In this post, we study a class of spiking network models based on continuous-time <span class="xref myst">Markov</span> chains with <span class="xref myst">mutable</span>  variables.</p>
 <p>Using a <span class="xref myst">relative inference</span> recipe for online learning, we derive local Hebbian learning rules for the spiking network which are provably convergent to local minima of the relative information objective.</p>
 </div>
 
@@ -390,7 +390,7 @@
             
     </ul>
     <div class="ablog-post-excerpt docutils container">
-<p>The goal of this post is to derive a general online learning recipe for training a <a class="reference external" href="2021-03-22-relative-inference-with-mutable-processes/#what-is-a-mutable-process">mutable</a> process <span class="math notranslate nohighlight">\(\{Z_t,X_t\}\)</span> to learn the true distribution <span class="math notranslate nohighlight">\(Q_*(X)\)</span> of a partially-observed Markov process <span class="math notranslate nohighlight">\(\{X_t\}\)</span>. The recipe returns a generative distribution <span class="math notranslate nohighlight">\(P(Z,X)\)</span> whose marginal <span class="math notranslate nohighlight">\(P(X)\)</span> approximates <span class="math notranslate nohighlight">\(Q_*(X).\)</span></p>
+<p>The goal of this post is to derive a general online learning recipe for training a <span class="xref myst">mutable</span> process <span class="math notranslate nohighlight">\(\{Z_t,X_t\}\)</span> to learn the true distribution <span class="math notranslate nohighlight">\(Q_*(X)\)</span> of a partially-observed Markov process <span class="math notranslate nohighlight">\(\{X_t\}\)</span>. The recipe returns a generative distribution <span class="math notranslate nohighlight">\(P(Z,X)\)</span> whose marginal <span class="math notranslate nohighlight">\(P(X)\)</span> approximates <span class="math notranslate nohighlight">\(Q_*(X).\)</span></p>
 <p>The variables <span class="math notranslate nohighlight">\(Z\)</span> of the mutable process are auxiliary variables that assist in inference and computation. During training, the distribution of <span class="math notranslate nohighlight">\(Z\)</span> given <span class="math notranslate nohighlight">\(X\)</span> is controlled by a discriminative model <span class="math notranslate nohighlight">\(\{Q(Z\vert X)\}.\)</span> Our method works in both discrete time and continuous time. We assume in the mutable process that for each time <span class="math notranslate nohighlight">\(t,\)</span> the variables <span class="math notranslate nohighlight">\(Z_t\)</span> and <span class="math notranslate nohighlight">\(X_t\)</span> are conditionally independent of each other given their past.</p>
 </div>
 
@@ -413,7 +413,7 @@
             
     </ul>
     <div class="ablog-post-excerpt docutils container">
-<p>We introduce a information-theoretic objective, which is a form of relative information between a discriminative model and a generative model, for learning processes using models with <a class="reference external" href="2020-10-23-machine-learning-with-relative-information/#why-should-we-consider-mutable-variables-rather-than-latent-variables">mutable</a> variables. This technique is known as <a class="reference external" href="2020-10-23-machine-learning-with-relative-information/#why-do-we-need-a-better-name-for-variational-inference">relative inference</a> (also called approximate inference, variational inference or variational Bayes). Such a technique is useful, for instance, for learning processes that contain latent variables.</p>
+<p>We introduce a information-theoretic objective, which is a form of relative information between a discriminative model and a generative model, for learning processes using models with <span class="xref myst">mutable</span> variables. This technique is known as <span class="xref myst">relative inference</span> (also called approximate inference, variational inference or variational Bayes). Such a technique is useful, for instance, for learning processes that contain latent variables.</p>
 <p>We discuss natural constraints on the discriminative and generative models, and the consequences of these constraints on:</p>
 </div>
 
@@ -436,7 +436,7 @@
             
     </ul>
     <div class="ablog-post-excerpt docutils container">
-<p>Over the next few posts, we will derive a distributed learning algorithm for spiking neural networks with <a class="reference external" href="2020-10-23-machine-learning-with-relative-information/#why-should-we-consider-mutable-variables-rather-than-latent-variables">mutable</a> variables that minimizes some natural notion of relative information and provably converges over time. We will model these spiking neural networks with stochastic processes: both discrete-time and continuous-time processes, with or without mutable variables.</p>
+<p>Over the next few posts, we will derive a distributed learning algorithm for spiking neural networks with <span class="xref myst">mutable</span> variables that minimizes some natural notion of relative information and provably converges over time. We will model these spiking neural networks with stochastic processes: both discrete-time and continuous-time processes, with or without mutable variables.</p>
 <p>In this post, we give a general overview of information-theoretic approaches to training stochastic processes, while postponing discussions about issues that arise from mutable variables.</p>
 </div>
 

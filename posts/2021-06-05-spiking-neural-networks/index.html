@@ -32,8 +32,8 @@
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
@@ -186,6 +186,12 @@
 <ul>
    
   <li>
+    <a href="../2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/"
+      >22 January - Parametric typeclasses aid generalization in program synthesis</a
+    >
+  </li>
+  
+  <li>
     <a href="../2022-01-22-information-topos-theory-motivation/"
       >22 January - Information topos theory - motivation</a
     >
@@ -209,12 +215,6 @@
     >
   </li>
   
-  <li>
-    <a href="../2021-04-22-proofs-as-programs-challenges-and-strategies-for-program-synthesis/"
-      >22 April - Proofs as programs - challenges and strategies for program synthesis</a
-    >
-  </li>
-  
 </ul>
 
 <h3>
@@ -223,7 +223,7 @@
 <ul>
    
   <li>
-    <a href="../../blog/2022/">2022 (1)</a>
+    <a href="../../blog/2022/">2022 (2)</a>
   </li>
     
   <li>
@@ -353,14 +353,14 @@
               <div>
                  <div class="tex2jax_ignore mathjax_ignore section" id="spiking-neural-networks">
 <h1>Spiking neural networks<a class="headerlink" href="#spiking-neural-networks" title="Permalink to this headline">#</a></h1>
-<p>In this post, we study a class of spiking network models based on continuous-time <a class="reference external" href="2020-10-14-path-integrals-and-continuous-time-markov-chains/#what-is-a-continuous-time-markov-chain">Markov</a> chains with <a class="reference external" href="2021-03-22-relative-inference-with-mutable-processes/#what-is-a-mutable-process">mutable</a>  variables.</p>
+<p>In this post, we study a class of spiking network models based on continuous-time <span class="xref myst">Markov</span> chains with <span class="xref myst">mutable</span>  variables.</p>
 <p>Using a <a class="reference internal" href="../2021-06-01-convergence-of-biased-stochastic-approximation/"><span class="doc std std-doc">relative inference</span></a> recipe for online learning, we derive local Hebbian learning rules for the spiking network which are provably convergent to local minima of the relative information objective.</p>
 <p>This post is a continuation from our <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">series</span></a> on spiking networks, path integrals and motivic information.</p>
 <p>For background material in statistical learning, relative information, relative inference, process learning, mutable processes and biased stochastic approximation, you may follow the recommended sequence of posts under <em>Spiking Networks</em> in this <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">outline</span></a>.</p>
 <div class="section" id="what-are-the-states-and-parameters-of-the-spiking-network-model">
 <h2>What are the states and parameters of the spiking network model?<a class="headerlink" href="#what-are-the-states-and-parameters-of-the-spiking-network-model" title="Permalink to this headline">#</a></h2>
-<p>Let <span class="math notranslate nohighlight">\(\mathcal{V}_X\)</span> be a finite set representing the collection of random variables which capture the state of the environment or universe. For <a class="reference external" href="2021-03-23-biased-stochastic-approximation-with-mutable-processes/#what-do-we-assume-about-the-true-distribution-the-model-and-the-learning-objective">simplicity</a>, we assume that each of these variables have the same state space as the neurons in our model, so we will call them <em>environment neurons</em> for convenience. We also assume that these neurons contain enough information about the environment such that its true distribution is Markov. A subset of these neurons will be observed for inference and learning; the other neurons could remain unobserved or inaccessible.</p>
-<p>Let <span class="math notranslate nohighlight">\(\mathcal{V}_Z\)</span> be a finite set representing the collection of <a class="reference external" href="2021-03-22-relative-inference-with-mutable-processes/#what-is-a-mutable-process">mutable</a> neurons which assist the spiking network computationally in learning an approximation of the true distribution. The states of these mutable neurons represent samples of beliefs that the spiking network has about the current state of the environment. Together, they act as the memory of the spiking network, so we will call them <em>memory neurons</em>.</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{V}_X\)</span> be a finite set representing the collection of random variables which capture the state of the environment or universe. For <span class="xref myst">simplicity</span>, we assume that each of these variables have the same state space as the neurons in our model, so we will call them <em>environment neurons</em> for convenience. We also assume that these neurons contain enough information about the environment such that its true distribution is Markov. A subset of these neurons will be observed for inference and learning; the other neurons could remain unobserved or inaccessible.</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{V}_Z\)</span> be a finite set representing the collection of <span class="xref myst">mutable</span> neurons which assist the spiking network computationally in learning an approximation of the true distribution. The states of these mutable neurons represent samples of beliefs that the spiking network has about the current state of the environment. Together, they act as the memory of the spiking network, so we will call them <em>memory neurons</em>.</p>
 <p>At each time <span class="math notranslate nohighlight">\(t \geq 0\)</span> and for each neuron <span class="math notranslate nohighlight">\(i \in \mathcal{V}:=\mathcal{V}_Z \cup \mathcal{V}_X,\)</span> we have a signed state</p>
 <div class="math notranslate nohighlight">
 \[S_{it} \in \mathbb{S} := \{-1,+1\}\]</div>
@@ -393,7 +393,7 @@
 </div>
 <div class="section" id="what-are-the-dynamics-of-the-generative-model">
 <h2>What are the dynamics of the generative model?<a class="headerlink" href="#what-are-the-dynamics-of-the-generative-model" title="Permalink to this headline">#</a></h2>
-<p>Suppose we fix the parameters <span class="math notranslate nohighlight">\(w^{(P)}\)</span> and drop the <span class="math notranslate nohighlight">\((P)\)</span> annotation for convenience. We now define the generative model distribution <span class="math notranslate nohighlight">\(P_w\)</span> as a <span class="math notranslate nohighlight">\(w\)</span>-controlled continuous-time <a class="reference external" href="2020-10-14-path-integrals-and-continuous-time-markov-chains/#what-is-a-continuous-time-markov-chain">Markov</a> chain with rate kernel <span class="math notranslate nohighlight">\(\Gamma\)</span> and a countable state space</p>
+<p>Suppose we fix the parameters <span class="math notranslate nohighlight">\(w^{(P)}\)</span> and drop the <span class="math notranslate nohighlight">\((P)\)</span> annotation for convenience. We now define the generative model distribution <span class="math notranslate nohighlight">\(P_w\)</span> as a <span class="math notranslate nohighlight">\(w\)</span>-controlled continuous-time <span class="xref myst">Markov</span> chain with rate kernel <span class="math notranslate nohighlight">\(\Gamma\)</span> and a countable state space</p>
 <div class="math notranslate nohighlight">
 \[(R_t, S_t) \quad \in \quad \mathbb{N}^{\lvert \mathcal{V} \rvert \times \lvert \mathcal{V} \rvert} \times \mathbb{S}^{\lvert \mathcal{V} \rvert}. \]</div>
 <p>Before defining the rate kernel <span class="math notranslate nohighlight">\(\Gamma\)</span>, let us describe informally the dynamics of the spiking network. Suppose that the network is in state <span class="math notranslate nohighlight">\((R_t,S_t)\)</span> at time <span class="math notranslate nohighlight">\(t.\)</span> We want the membrane potential of a neuron <span class="math notranslate nohighlight">\(j \in \mathcal{V}\)</span>  to be</p>
@@ -445,7 +445,7 @@ R_{jkt'} = R_{jkt}+1 \quad \text{for all }k \in \mathcal{V}.\]</div>
 <div class="section" id="how-does-our-spiking-network-model-compare-to-others-in-the-literature">
 <h2>How does our spiking network model compare to others in the literature?<a class="headerlink" href="#how-does-our-spiking-network-model-compare-to-others-in-the-literature" title="Permalink to this headline">#</a></h2>
 <p>Compared to the spiking network model of <span id="id5">[<a class="reference internal" href="#id33" title="Danilo Jimenez Rezende and Wulfram Gerstner. Stochastic variational learning in recurrent spiking networks. Frontiers in computational neuroscience, 8:38, 2014.">RG14</a>]</span>, our model is different in the following ways.</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Their model adds an exponential filter to the adaptation potentials (decrease in potential after a neuron spikes) and evoked potentials (incoming potentials from neighboring neurons). We do not have this exponential filter explicitly. Instead, the exponential filter will turn out to be a consequence of the learning algorithm.</p></li>
 <li><p>Their model does not model the refractory period of the neuron. We model the refractory period as following an exponential distribution whose rate is inversely related to the membrane potential, i.e. the higher the membrane potential, the slower the recovery of the neuron after spiking.</p></li>
 <li><p>In their model, the membrane potential at time <span class="math notranslate nohighlight">\(t\)</span> depends on the full history of spikes from time <span class="math notranslate nohighlight">\(0\)</span> to time <span class="math notranslate nohighlight">\(t\)</span> so it is not Markov. In our Markov model, the membrane potential <span class="math notranslate nohighlight">\(U_{jt}\)</span> of neuron <span class="math notranslate nohighlight">\(j\)</span> at time <span class="math notranslate nohighlight">\(t\)</span> depends on the incoming synaptic spike counts <span class="math notranslate nohighlight">\(R_{ijt}\)</span> which reset with every outgoing spike. These spike counts can be implemented biologically by neuromodulator concentrations that are local to each synapse. Hence, the membrane potential only depends on incoming spikes since the last outgoing spike.</p></li>
@@ -743,7 +743,7 @@ w^{(Q)}_{en} - \eta_{n+1}\, \alpha^{(Q)}_{e(n+1)} \gamma  &amp;\text{for all }e\
 {} + \sum_{j \in \mathcal{V}_X} \mathbb{I}(\hat{S}_{j(n+1)} \neq \hat{S}_{jn})\, \beta_{\hat{S}_{jn}}\, \hat{S}_{jn} \left(\hat{U}^{(\xi)}-\hat{U}^{(P)}_{jn}\right).
 \end{array} \end{split}\]</div>
 <p>The reason for writing the <span class="math notranslate nohighlight">\(w^{(P)}_e,\)</span> <span class="math notranslate nohighlight">\(w^{(Q)}_e\)</span> updates in terms of auxiliary parameters <span class="math notranslate nohighlight">\(\alpha^{(P)}_e,\)</span> <span class="math notranslate nohighlight">\(\alpha^{(Q)}_e\)</span> is for comparison of the generative and discriminative rules. Note that <span class="math notranslate nohighlight">\(\alpha^{(Q)}_e\)</span> accumulates the updates from <span class="math notranslate nohighlight">\(\Delta \alpha^{(Q)}_e\)</span> but <span class="math notranslate nohighlight">\(\alpha^{(P)}_e\)</span> does not.</p>
-<p>By the convergence <a class="reference external" href="2021-06-01-convergence-of-biased-stochastic-approximation/#theorem-convergence-of-online-learning">theorem</a> for relative inference online learning, the proposed learning algorithm converges to a local minimum of the objective <span class="math notranslate nohighlight">\(V(w^{(Q)},w^{(P)})\)</span> with</p>
+<p>By the convergence <span class="xref myst">theorem</span> for relative inference online learning, the proposed learning algorithm converges to a local minimum of the objective <span class="math notranslate nohighlight">\(V(w^{(Q)},w^{(P)})\)</span> with</p>
 <div class="math notranslate nohighlight">
 \[ \displaystyle
 \mathbb{E}\left[\left\Vert \,\nabla V\left(w^{(Q)}_N, w^{(P)}_N\right)\, \right\Vert^2\right] = O(T^{-1/2}\log T)\]</div>
@@ -921,7 +921,7 @@ w^{(Q)}_{et_-} - \eta_{t}\, \alpha^{(Q)}_{et} \gamma^{(T)}  &amp;\text{for all }
 <p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is a discount factor that reduces the effect of old updates <span class="math notranslate nohighlight">\(\Delta \alpha^{(Q)}_e\)</span> on <span class="math notranslate nohighlight">\(\alpha^{(Q)}_e.\)</span></p>
 <p>The first task is to prove that the solution of its Poisson equation is stable. The parameters will probably converge to a quasi-stationary point with a non-vanishing bias. The proof will be similar to that of Corollary 2 of <span id="id13">[<a class="reference internal" href="#id38" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span>.</p>
 <p>The second task is to follow <span id="id14">[<a class="reference internal" href="#id24" title="Zuozhu Liu, Thiparat Chotibut, Christopher Hillar, and Shaowei Lin. Biologically plausible sequence learning with spiking neural networks. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 34, 1316–1323. 2020.">LCHL20</a>]</span> in proving mathematically that for a given synaptic weight, the learning updates satisfy spike timing dependent plasticity (STDP).</p>
-<p>The third task is to develop an <a class="reference external" href="2021-03-22-relative-inference-with-mutable-processes/#is-relative-inference-necessarily-passive">active</a> form of relative inference that uses mutable processes. This form of active online learning can then be applied to reinforcement learning problems in robots and machine <a class="reference internal" href="../2021-04-22-proofs-as-programs-challenges-and-strategies-for-program-synthesis/"><span class="doc std std-doc">reasoning</span></a>.</p>
+<p>The third task is to develop an <span class="xref myst">active</span> form of relative inference that uses mutable processes. This form of active online learning can then be applied to reinforcement learning problems in robots and machine <a class="reference internal" href="../2021-04-22-proofs-as-programs-challenges-and-strategies-for-program-synthesis/"><span class="doc std std-doc">reasoning</span></a>.</p>
 <p>To see the analogy between our results here and those in reinforcement learning, we write down the following description from <span id="id15">[<a class="reference internal" href="#id38" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span> of the policy gradient method for average reward over infinite horizon.</p>
 <div class="math notranslate nohighlight">
 \[ \displaystyle
@@ -942,7 +942,7 @@ G_{n+1} = \lambda G_n + \nabla \log\Pi_{\eta_n}(A_{n+1},S_{n+1})\]</div>
 \[ \displaystyle
 \eta_{n+1} = \eta_n + \gamma_{n+1} G_{n+1} R(S_{n+1},A_{n+1})\]</div>
 <p>We briefly define the notations above.</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Environment states <span class="math notranslate nohighlight">\(s, s'\)</span></p></li>
 <li><p>Agent actions <span class="math notranslate nohighlight">\(a, a'\)</span></p></li>
 <li><p>Model parameter <span class="math notranslate nohighlight">\(\eta\)</span></p></li>
@@ -993,7 +993,7 @@ V(w^{(Q)},w^{(P)}) = \int \bar{\pi}_{w^{(Q)}}(dZ',dX',dZ,dX)  \left(\log \frac{Q
 \[ \displaystyle
 w^{(Q)}_{e(n+1)} = w^{(Q)}_{e(n+1)} - \eta_{n+1}\alpha^{(Q)}_{e(n+1)} \left( \log \frac{Q_{w^{(Q)}_n}(Z_{n+1},X_{n+1}\vert Z_n,X_n)}{P_{w^{(P)}_n}(Z_{n+1},X_{n+1}\vert Z_n,X_n)} \right)\]</div>
 <p>with the following analogous notations.</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Environment states <span class="math notranslate nohighlight">\(X, X'\)</span></p></li>
 <li><p>Memory/mutable states <span class="math notranslate nohighlight">\(Z, Z'\)</span></p></li>
 <li><p>Discriminative parameter <span class="math notranslate nohighlight">\(w^{(Q)}\)</span></p></li>
