@@ -17,7 +17,7 @@ The problem with the current approach in type theory is as follows.
 
 ## Parametricity to the rescue
 
-This second point about using parametric classes to organize types (e.g. reflexivity) and operators (e.g. equality) and to overload notation, is known as parametricity. As Brendan mentioned, it is not a new idea and has been explored by both category theorists and type theorists.
+This second point about using parametric classes to organize types (e.g. reflexivity) and operators (e.g. equality) and to overload notation, is known as parametricity. This idea is not new and has been explored by both category theorists and type theorists.
 
 However, I believe Haskell was the first programming language to make serious use of classes (not the same as interfaces in object-oriented programming) to simplify code, and Coq and other proof assistants followed suit. As Bas Spitters mentioned in his paper, there is more we need to do to really make this a game changer, e.g. unification hints and rewriting/normalization rules.
 
