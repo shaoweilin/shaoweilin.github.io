@@ -102,7 +102,7 @@ div.timeline div.entry.right::after {
 }
 
 /* Blog post headers */
-.bd-content .h2,h2 {
+.bd-content h2 {
     font-size: 1.5em;
 }
 
