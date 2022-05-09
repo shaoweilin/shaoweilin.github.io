@@ -101,6 +101,27 @@ div.timeline div.entry.right::after {
     left: -.5em;
 }
 
+/* Blog post headers */
+.bd-content .h2,h2 {
+    font-size: 1.5em;
+}
+
+.bd-content .h3,h3 {
+    font-size: 1.25em;
+}
+
+.bd-content .h4,h4 {
+    font-size: 1.125em;
+}
+
+.bd-content .h5,h5 {
+    font-size: 1.0625em;
+}
+
+.bd-content .h6,h6 {
+    font-size: 1em;
+}
+
 /* Blog post comments */
 .gsc-reactions {
     margin-top: 1em;
