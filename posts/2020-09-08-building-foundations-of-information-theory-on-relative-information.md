@@ -11,13 +11,13 @@ In this post, we emphasize that the relative information is fundamental in the s
 
 This is the first post in our [series](2020-08-28-motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 
-### Why build foundations of information theory on relative information?
+## Why build foundations of information theory on relative information?
 
 Firstly, we want to show that relative information is the "right way" to think about machine learning problems. Many methods like max entropy or max likelihood can be framed in terms of min relative information. We can then use this reformulation to derive more robust learning algorithms (e.g. stochastic gradients) and we can prove asymptotic properties of these algorithms more easily. We will also be using (conditional) relative information to derive learning algorithms for statistical models with hidden variables. All of these will be explained in a later post.
 
 The second reason is because we will be extending relative information to take values in a motivic ring so as to get motivic information theory. This then allows us to write down path integrals that don't run into convergence issues.
 
-### What is relative information?
+## What is relative information?
 
 Given probability measures $P, Q$ on a finite state space $\{1, \ldots, n\},$ the relative information to $Q$ from $P$ is the sum
 
@@ -29,7 +29,7 @@ $$\displaystyle I_{Q\Vert P} = \int q(x) \log \frac{q(x)}{p(x)}\, dx.$$
 
 It is not difficult to show that $I_{Q\Vert P} \geq 0$ for all probability measures $P, Q$ with equality if and only if $P = Q$ almost everywhere.
 
-### How do we derive entropy from relative information?
+## How do we derive entropy from relative information?
 
 Classical textbooks for information theory define the relative information in terms of entropy (and cross entropy). We could choose instead to think of the relative information as the fundamental object, and entropy as a special case {cite}`gray2011entropy`, {cite}`chodrow2017divergence`.
 
@@ -65,7 +65,7 @@ Using the relative information of the uniform distribution to $P_X$ as the "righ
 
 In many interesting problems, the uniform distribution is not well-defined, so this second definition of entropy in terms of relative information will not make sense. We will then revert to the first definition as the relative information to the dependent distribution from the independent distribution.
 
-### How do we define relative information without densities?
+## How do we define relative information without densities?
 
 In our definition of relative information, the densities $p(x) = dP/dx$ and $q(x) = dQ/dx$ are Radon-Nikodym derivatives which exist if and only if $P$ and $Q$ are absolutely continuous with respect to the Lebesgue measure on $\mathbb{R}^n.$ However, there are many important applications where this assumption is not true, such as in the case of path measures for stochastic processes.
 
@@ -81,7 +81,7 @@ $$\displaystyle \frac{dQ}{dP} = \displaystyle \frac{dQ}{dx}/\frac{dP}{dx}$$
 
 arising from the chain rule for Radon-Nikodym derivatives, we get the earlier definition of the relative information in terms of densities.
 
-### How do we define relative information without absolute continuity?
+## How do we define relative information without absolute continuity?
 
 When $Q$ is not absolutely continuous with respect to $P,$ the Radon-Nikodym derivative $dQ/dP$ does not exist and the above definition of $I_{Q\Vert P}$ does not make sense. To extend the definition, we consider the relative information of a partition of $\Omega$ {cite}`gray2011entropy`.
 
@@ -101,7 +101,7 @@ $$I_{Q\Vert P}(X) = I_{Q_X \Vert P_X}.$$
 
 When $Q$ is not absolutely continuous with respect to $P,$ we can show that this definition tells us that the relative information is infinite.
 
-### How do we define relative information when the total measure is not one?
+## How do we define relative information when the total measure is not one?
 
 Let us assume that both $P, Q$ have the same total measure $T$ which is not necessarily equal to one. Let $\bar{P} = P/T$ and $\bar{Q}= Q/T$ be the respective probability measures. We define
 
@@ -111,7 +111,7 @@ Then, a simple calculation shows that
 
 $$I_{Q\Vert P} = T I_{\bar{Q}\Vert \bar{P}}.$$
 
-### How do we define relative information when the total measures of $P, Q$ are not the same?
+## How do we define relative information when the total measures of $P, Q$ are not the same?
 
 The short answer is Don't. It does not make sense to compare two measures with different total measures.
 
@@ -135,7 +135,7 @@ $$\begin{array}{rl} I_{Q\Vert P} &= T_P-T_Q+\displaystyle\sum_{i=1}^{n} T_Q \bar
 
 We see that the value of $I_{Q\Vert P}$ depends on the measures $P, Q$ only through the classical relative information $I_{\bar{Q}\Vert \bar{P}}$, so we do not gain anything new. Relative information is only meaningful for understanding the distance between two measures that distribute the same total measure differently.
 
-### References
+## References
 
 ```{bibliography}
 :filter: docname in docnames

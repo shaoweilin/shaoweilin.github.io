@@ -22,7 +22,7 @@ In the same way that a Riemannian metric on a smooth manifold allows us to study
 
 In this post, we will motivate the development of an information theory for topoi, without invoking any logarithms, integrals, probabilities or measure theory. The mathematical foundations will be postponed to a later post.
 
-### Bayesian bundles
+## Bayesian bundles
 
 John Baez and Tobias Fritz {cite}`baez2014bayesian` have a nice characterization of *conditional* relative information as the unique functor (up to scaling) from the category of probability distributions on finite sets to the additive monoid $[0,\infty]$ satisfying some basic linearity, convexity and continuity conditions. 
 
@@ -33,7 +33,7 @@ Suppose we have a bundle $\pi: \Delta \rightarrow \Gamma$ and three sections - a
 
 This generalization beyond conditional relationships to bundles lets us define relative information for non-statistical categories.
 
-### From bundles to presheaves
+## From bundles to presheaves
 
 If we have a bundle $\pi:\Delta \rightarrow \Gamma$ and some topology $C$ of open sets over the base space $\Gamma,$ we may construct a presheaf $U: C^\text{op}\rightarrow \text{Set}$ from $\pi$ by associating to each open set the set of sections over that open set. See the tutorial {cite}`baez2020topos2` by John Baez for an excellent description of this construction.
 
@@ -43,7 +43,7 @@ So far, we have glossed over what it means to be an "open set" of the base space
 
 Instead, we want to think of $\Gamma$ as a kind of _context_ and an open set of $\Gamma$ should be some kind of _subcontext_. This subcontext should lead us to other bundles and sections. In our example involving the bundles $\Delta \rightarrow \Gamma$ and $\Gamma \rightarrow *,$ we want to think of $\Delta, \Gamma, *$ as contexts in our category $C.$ We then have sections $\sigma_q, \sigma_p \in U(\Gamma)$ and $\omega_q \in U(*)$ where $U : C^\text{op} \rightarrow \text{Set}$ is our presheaf. We will make these ideas more rigorous later.
 
-### Presheaf catagories
+## Presheaf catagories
 
 We now have relative information for a presheaf $U : C^\text{op} \rightarrow \text{Set},$ a base space or object $\Gamma$ in $C$, and sections $\sigma_q, \sigma_p \in U(\Gamma).$ By Yoneda's lemma, the sections $\sigma \in U(\Gamma)$ are in one-to-one correspondence with natural transformations 
 
@@ -53,7 +53,7 @@ where $\text{Hom}(-, \Gamma) : C^\text{op} \rightarrow \text{Set}$ is also a pre
 
 Therefore, it makes sense to consider relative information within a larger _presheaf category_ where the objects are presheaves (which are functors $C^\text{op} \rightarrow \text{Set}$) and the morphisms are natural transformations between then presheaves. This presheaf category is an example of an _elementary topos_ {cite}`baez2020topos5`.
 
-### Natural models
+## Natural models
 
 Recall that we had a presheaf $U : C^\text{op} \rightarrow \text{Set},$ a context $\Gamma$ in $C$ and a section $\sigma \in U(\Gamma).$ In the statistical setting, the section is a map $\sigma : \Gamma \rightarrow \Delta.$ We want to think of the image $\Gamma.\sigma := \sigma(\Gamma)$ also as a context, with the projection $\Gamma.\sigma \rightarrow \Gamma$ as a morphism in $C.$
 
@@ -63,11 +63,11 @@ Awodey has a beautiful way of constructing context extensions by imposing a simp
 
 Given a representable natural transformation $p: \dot{U} \rightarrow U,$ we can build a dependent type theory with $C$ as the category of contexts and substitutions in the theory. The map $p$ then takes each term in the universe $\dot{U}$ to its type in $U.$ A representable natural transformation (together with a choice of pullbacks in some presheaf category) is also called a _natural model of type theory_.
 
-### Conclusion
+## Conclusion
 
 In our next post, we will continue with motivations for information topos theory and discuss posetal subcategories of our presheaf category. Relative information will then be defined as the divergence between two sections of a poset with respect to a morphism in the poset.
 
-### References
+## References
 
 ```{bibliography}
 :filter: docname in docnames

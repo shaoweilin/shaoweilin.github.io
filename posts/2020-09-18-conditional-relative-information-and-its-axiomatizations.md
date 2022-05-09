@@ -9,7 +9,7 @@ In this post, we will study the conditional form of relative information. We wil
 
 This post is a continuation from our [series](2020-08-28-motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 
-### What is conditional relative information?
+## What is conditional relative information?
 
 Suppose we have two random variables $X, Y$ and probability measures $P, Q$ on $\Omega$. We are interested in how far the model conditional $P_{Y\vert X}$ is to the true conditional $Q_{Y\vert X}$ on average over $Q_X$, and we want to ignore the model marginal $P_X$.  
 
@@ -29,7 +29,7 @@ $$\begin{array}{rl} I_{Q\Vert P}(Y\vert X) &= \int \int q(y\vert x) \log \frac{q
 
 which is the relative information to $q(y\vert x)$ from $p(y\vert x)$ averaged over $q(x)$.
 
-### Whats is the chain rule for conditional relative information?
+## Whats is the chain rule for conditional relative information?
 
 In statistics and machine learning, we often think of $Q$ as a true distribution that we are trying to uncover and $P$ as a model distribution for approximating $Q$. The relative information $I_{Q\Vert P}$ measures how far the model is to the truth.
 
@@ -39,7 +39,7 @@ $$\tag{CR} I_{Q\Vert P}(Y, X) = I_{Q\Vert P}(Y\vert X) + I_{Q\Vert P}(X).$$
 
 Therefore, to get a good model of $X, Y$, we could attempt to minimize the divergences for $X$ and for $Y \vert X$ in parallel.
 
-### How do we derive conditional entropy from conditional relative information?
+## How do we derive conditional entropy from conditional relative information?
 
 Just as the entropy of a random variable $X$ with distribution $P_X$ can be defined as the relative information to the dependent distribution $P_{XX}$ from the independent distribution $P_X \times P_X,$ we will do the same for conditional entropy.
 
@@ -57,7 +57,7 @@ By the definition of entropy in our [introduction](2020-09-08-building-foundatio
 
 $$H(Y,X) = H(Y\vert X) +H(X).$$
 
-### Is there an axiomatization of conditional entropy?
+## Is there an axiomatization of conditional entropy?
 
 As described in our [previous post](2020-09-08-building-foundations-of-information-theory-on-relative-information/), we allow the total measures of $P, Q$ to be different from one, but we require their total measures to be the same.
 
@@ -86,7 +86,7 @@ Given a classical conditional entropy $H(Y\vert X)$, we can now write this as $F
 
 The nice thing about the above categorical axiomatization of conditional entropy is that it fits into the view where the objects of study are spaces $E, B$ and fibrations $\pi: E \rightarrow B$ equipped with measures. The conditional entropy is the sum of the entropies of the fibers $\pi^{-1}(b)$ weighted by $P_B(b)$.
 
-### Is there an axiomatization of conditional relative information?
+## Is there an axiomatization of conditional relative information?
 
 We prefer to work with conditional relative information rather than conditional entropy. Its axiomatization should tell us how it behaves with respect to products and coproducts of the measures being compared.
 
@@ -106,7 +106,7 @@ $$F_{P_X}(f) = G_{TP_{XX} \Vert P_X \times P_X} (f)$$
 
 where $T$ is the total measure of $P_X$.
 
-### References
+## References
 
 ```{bibliography}
 :filter: docname in docnames

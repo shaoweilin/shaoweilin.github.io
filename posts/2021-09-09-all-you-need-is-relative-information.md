@@ -5,21 +5,21 @@ excerpts: 2
 
 # All you need is relative information
 
-### Abstract
+## Abstract
 Relative information (relative entropy, KL divergence) and variational inference are powerful tools for deriving learning algorithms and their asymptotic properties, for both static systems and dynamic systems. The goal of this talk is to motivate a general online stochastic learning algorithm for stochastic processes with latent variables or memory, that provably converges under some regularity conditions. Please visit [https://bit.ly/3kmovql](https://bit.ly/3kmovql) for details.
 
 In the first half of the talk, we study static systems, viewing maximum likelihood and Bayesian inference through the lens of relative information. In particular, their generalization errors may be derived by resolving the singularities of relative information. We then frame the two learning algorithms as special cases of variational inference with different computational constraints.
 
 In the second half of the talk, we study dynamic systems, extending this variational inference method and computational perspective to stochastic processes and online learning. In particular, the training objective function will be a form of relative information which can be optimized iteratively in a way similar to expectation-maximization. The relative information objective provides a precise way to discuss the trade-off between exploration and exploitation during training.
 
-### Details
+## Details
 [Math Machine Learning Seminar MPI MIS + UCLA](https://www.mis.mpg.de/calendar/lectures/2021/abstract-32595.html)
 
 [Slides](https://w3id.org/people/shaoweilin/public/20210909-mpi-mis-ucla.pdf)
 
 [YouTube](https://youtu.be/U2HnLtwgiqQ)
 
-### Questions
+## Questions
 
 There was a question about resources on singular learning theory. I could not remember the link during the talk, but below is a page with some materials. 
 

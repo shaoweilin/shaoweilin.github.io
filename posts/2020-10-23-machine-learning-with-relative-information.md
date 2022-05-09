@@ -9,7 +9,7 @@ We will reframe some common machine learning paradigms, such as maximum likeliho
 
 This post is a continuation from our [series](2020-08-28-motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 
-### What is a statistical model?
+## What is a statistical model?
 
 Given a measurable space $(\Omega, \mathcal{B})$, let $\Delta_\Omega$ denote the set of distributions or probability measures on $\Omega$. A statistical model is a family $\{P_\theta\}$ of distributions
 
@@ -19,7 +19,7 @@ parametrized by some space $\Theta.$
 
 Suppose that the true distribution is some unknown $Q_* \in \Delta_\Omega.$ The goal of statistical learning is to approximation $Q_*$ with some model distribution $P_\theta.$
 
-### How do we search for the best model?
+## How do we search for the best model?
 
 Finding the best model is a common problem not just in machine learning but also in science. We want a model that explains reality well, but also with as few parameters as possible. This latter requirement is called Occam's Razor. It says that the simplest explanation is most likely the best one.
 
@@ -31,7 +31,7 @@ We may also interpret the relative information as the average number of informat
 
 However, we do not have access to the true distribution. There are two general strategies for overcoming this obstacle. For simplicity, let us assume there is a probability measure $M$ such that $Q_* \ll M$ and $P_\theta \ll M$, i.e. both $Q_*$ and $P_\theta$ are absolutely continuous with respect to $M$. In this case, the densities $dQ_*/dM$ and $dP_\theta/dM$ exist.
 
-### First method (maximum likelihood)
+## First method (maximum likelihood)
 
 We estimate the relative information from the observed data. We may therefore write the relative information as
 
@@ -45,7 +45,7 @@ where $\mathcal{D}$ is a finite i.i.d. sample of $Q_*$. This approximation is ca
 
 If the true distribution can be represented by $Q_* = P_{\theta^*}$ for some parameter $\theta^*,$ it can be shown that as the sample size grows to infinity, the estimated parameter $\hat{\theta}$ converges quickly to the true parameter $\theta^*.$ The asymptotic behavior of the maximum likelihood method is analyzed in {cite}`watanabe2009algebraic`.
 
-### Second method (stochastic gradient)
+## Second method (stochastic gradient)
 
 We estimate the _gradient_ of the relative information from observed data. This gradient can be written as
 
@@ -59,7 +59,7 @@ where the _batch_ $\mathcal{B}$ is a finite i.i.d. sample of $Q_*$. This approxi
 
 Batch stochastic gradients have a regularizing effect on the estimator $\hat{\theta}$ as compared to the gradient of the log-likelihood of the full data set. They ensure that the estimator does not get stuck in a local minima of the log-likelihood function, which corresponds to overfitting of the model to the full data set. The asymptotic behavior of the stochastic gradient method is analyzed in {cite}`watanabe2009algebraic`.
 
-### How do we apply stochastic approximation via relative information?
+## How do we apply stochastic approximation via relative information?
 
 In the stochastic approximation theory of Robbins-Monro, given an increasing function $f(\theta)$ which cannot be observed directly and has a unique root
 
@@ -91,7 +91,7 @@ $$\displaystyle G = \log \frac{dP_\theta}{dM}$$
 
 where $P_\theta$ and $M$ were defined above for stochastic gradients. As a result, we get a proof that the stochastic gradient algorithm is consistent, i.e. the parameter updates $\theta_n$ tend to the true parameter $\theta^*$. Stronger results may be attained if the model distributions $P_\theta$ satisfy additional regularity conditions.
 
-### How do we frame variational inference in terms of relative information?
+## How do we frame variational inference in terms of relative information?
 
 A latent variable is a random variable for which we have no data. A latent variable model is a statistical model $\{P_\theta\}$ with some observed variable $X$ and some latent variable $Z$. The marginal distribution of $X$ is given by the integral
 
@@ -150,11 +150,11 @@ Sometimes, the variational parameter $Q(Z\vert X)$ is constrained to a space of 
 
 From a computational point of view, gaining efficiency in inference at the cost of approximation is a good thing, especially if there are performance guarantees in the form of an upper bound.
 
-### How do we interpret the variational parameter $Q(Z\vert X)$?
+## How do we interpret the variational parameter $Q(Z\vert X)$?
 
 We consider a variety of contexts where the interpretations of $Q(Z\vert X)$ are different.
 
-#### Context of Bayesian statistics
+### Context of Bayesian statistics
 
 Historically, variational inference was introduced {cite}`jordan1999introduction` to approximate posterior distributions in the context of Bayesian statistics, as an alternative to Markov chain Monte Carlo methods {cite}`blei2017variational`. 
 
@@ -182,7 +182,7 @@ optimizing over a smaller space $\Delta'$ of distributions with the desired comp
 
 In the context of Bayesian statistics, the variational parameter $Q(Z\vert X)$ is a computationally-efficient approximation of the model posterior $P(Z\vert X).$
 
-#### Context of statistical learning
+### Context of statistical learning
 
 A second context we may consider is the goal of learning the true distribution $Q_*(X).$ We solve this problem by proposing two models - a generative model $\{P(Z,X)\}$ where the marginals $P(X)$ _approximates_ $Q_*(X),$ and a discriminative model $\{Q(Z\vert X)\}$. From the discriminative model, we define joint distributions $Q(Z,X) = Q_*(X)Q(Z\vert X)$ which factor through the true distribution $Q_*(X).$ Note that the marginal $Q(X)$ _equals_ the true distribution $Q_*(X)$. Abusing terminology, we will also call $\{Q(Z,X)\}$ a _discriminative_ model.
 
@@ -190,7 +190,7 @@ Variational inference is then a joint search over the space of pairs of models. 
 
 In this context, the variational parameter $Q(Z\vert X)$ is therefore interpreted as a disciminative computational model trained on the true distribution.
 
-#### Context of optimization
+### Context of optimization
 
 A third context we may consider is the goal of optimizing a distance function over some rough low-dimensional landscape. The distance to $Q_*(X)$ from $P(X)$ is minimized over the space $\Lambda$ of pairs of distributions $(Q_*(X),P(X))$ where the first component $Q_*(X)$ is fixed and the second component $P(X)$ is the marginalization of some joint distribution $P(Z,X).$ 
 
@@ -198,7 +198,7 @@ Variational inference overcomes the roughness of the low-dimensional landscape b
 
 In this context, instead of projecting $P(Z,X)$ to the base space of distributions on $X$ and optimizing the distance between $Q_*(X)$ and $P(X)$ in the base space, the disciminative model distribution $Q(Z\vert X)$ enables us to lift $Q_*(X)$ from the base space to a section $Q(Z,X)$ in the bundle of distributions on $(Z,X)$ so that we can optimize the distance between $Q(Z,X)$ and $P(Z,X).$
 
-### Why do we need a better name for variational inference?
+## Why do we need a better name for variational inference?
 
 In the statistical learning community, variational inference is sometimes called _approximate inference_ because we are inferring the latent $Z$ from the observed $X$ and approximating the Bayes posterior $P(Z\vert X)$ by solving an variational optimization problem over a space of functions $Q(Z\vert X).$ For the same reason, it is also called _variational Bayes_.
 
@@ -210,7 +210,7 @@ Since the goal at hand is still inference and since all of these methods hinge o
 
 Moreover, instead of calling $Q(Z\vert X)$ the _variational_ parameter, I propose calling it and the related joint distribution $Q(Z,X) = Q(Z\vert X)Q_*(X)$ the _discriminative_ model, to distinguish it from the generative model $P(Z,X).$
 
-### Why should we consider mutable variables rather than latent variables?
+## Why should we consider mutable variables rather than latent variables?
 
 In this section, we consider models that contain distributions which are only partially known. For example, in the discriminative model of distributions $Q(Z,X)$ described above, the marginals $Q(X)$ are all equal to the true distribution $Q_*(X)$ which is unknown.
 
@@ -232,7 +232,7 @@ For the rest of this [series](2020-08-28-motivic-information-path-integrals-and-
 
 
 
-### References
+## References
 
 ```{bibliography}
 :filter: docname in docnames

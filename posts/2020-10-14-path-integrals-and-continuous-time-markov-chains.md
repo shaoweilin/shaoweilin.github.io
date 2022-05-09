@@ -9,7 +9,7 @@ We give an introduction to continuous-time Markov chains, and define path measur
 
 This post is a continuation from our [series](2020-08-28-motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 
-### What is a stochastic process?
+## What is a stochastic process?
 
 A stochastic process {cite}`albeverio2017probabilistic` on a measure space $(\Omega, \mathcal{A},P)$ indexed by a set $I$ is a family $\{X_t \}_{t \in I}$ of random variables $X_t : \Omega \rightarrow R$ on $\Omega,$ where $(R$ is some measure space. This allows us to compute _finite joint distributions_ of the form
 
@@ -17,7 +17,7 @@ $$P(\{\omega \in \Omega \vert X_{t_1}(\omega) \in \mathcal{A}_1, \ldots, X_{t_n}
 
 for some finite set $\{t_1, \ldots, t_n\}$ of indices and some measurable subsets $\mathcal{A}_1, \ldots, \mathcal{A}_n$ of $R.$
 
-### What is a path measure and a path integral?
+## What is a path measure and a path integral?
 
 A priori, a stochastic process is just a collection of random variables for which we write down finite joint distributions. How do we define a path through these random variables? Is there a space of paths imbued with a measure $\mu$ that is consistent with the finite joint distributions?
 
@@ -49,7 +49,7 @@ $$\int_{R^I} f(\gamma) d\mu(\gamma) = \int_{R^n} F(x_1, \ldots, x_n) d\mu_J(x_1,
 
 The path integral of any measurable function $g : R^I \rightarrow \mathbb{C}$ is then defined as the limit of path integrals of cylinder functions that converge to $g$.
 
-### What is a line integral along a path?
+## What is a line integral along a path?
 
 Given a path measure $\mu$, the path integral
 
@@ -123,7 +123,7 @@ $$J(t) = \displaystyle \frac{d}{dt} \int_{0 \leq S(\gamma) \leq t} f(\gamma) D\g
 
 This Gelfand-Leray function is similar to the [density of states](https://en.wikipedia.org/wiki/Density_of_states) studied in solid state physics and condensed matter physics. It integrates the path function $f(\gamma)$ over all paths having a fixed energy $S(\gamma)=t$.
 
-### What is a continuous-time Markov chain?
+## What is a continuous-time Markov chain?
 
 A _continuous-time Markov chain_ (CTMC) is a stationary stochastic process $X(t)$ with finite or countable state space $\mathcal{X}$ in continuous time $t \in [0, \infty)$ that satisfies the Markov property, i.e.
 
@@ -159,7 +159,7 @@ $$\mathbb{P}(X(t) = y \vert X(s) = x ) = (e^{(t-s)\Gamma})_{xy}.$$
 
 The Kolmogorov extension theorem then allows us to define a path measure on the path space $\mathcal{X}^{[0,\infty)}$ as well as path integrals with respect to this path measure.
 
-### How can we approximate a continuous-time Markov chain with a discrete-time Markov chain?
+## How can we approximate a continuous-time Markov chain with a discrete-time Markov chain?
 
 There are roughly two ways of approximating a continuous-time Markov chain with one that is discrete-time. The first is to let the discrete timings represent the timings of observations. The second is to let the discrete timings represent the timings of transitions.
 
@@ -188,7 +188,7 @@ $$\displaystyle P_{xy} = \frac{F_{xy}}{\sum_y F{xy}} = \frac{F_{xy}}{\lambda_x}.
 This second approach involving transition timings is suitable when we are simulating a continuous-time learning algorithm on machines with discrete processor clocks. The machine will keep track of transitions in the learning system, and approximate the continuous-time learning updates between the transitions with discrete-time updates.
 
 
-### References
+## References
 
 ```{bibliography}
 :filter: docname in docnames
