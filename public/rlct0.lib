@@ -1,0 +1,997 @@
+// rlct.lib
+// Singular library  
+// Shaowei Lin, UC Berkeley
+// Jan 2010 
+//
+// The code for interfacing with polymake and gfan 
+// was modified from those in polymake.lib.
+//
+// Works with Polymake version 2.3
+
+
+LIB "qhmoduli.lib"
+LIB "polymake.lib";
+
+proc isMonomialIdeal (ideal I)
+{
+int i;
+int isMonomial = 1;
+for (i=1; i<=size(I); i++)
+{
+  if (size(I[i])!=1) {isMonomial = 0; i=size(I);}
+}
+if (isMonomial==1)
+{
+  return(1);
+}
+else
+{
+  ideal J = std(I);
+  isMonomial = 1;
+  for (i=1; i<=size(J); i++)
+  {
+    if (size(J[i])!=1) {isMonomial = 0; i=size(I);}
+  }
+  return(isMonomial);  
+}
+}
+
+proc polymakePolytope_new (intmat polytope,list #)
+"Output:
+1. faces and the facets which meet them
+2. inequalities defining the facets
+3. f-vector
+4. dimension of polytope"
+{
+  // the header for the file secendarypolytope.polymake
+  string sp="_application polytope
+_version 2.2
+_type RationalPolytope
+
+POINTS
+";
+  int quietsys;
+  int i,j;
+  // set the name for the polymake output file
+  if (size(#)>0)
+  {
+    if (typeof(#[1])=="string")
+    {
+      string dateiname=#[1];
+    }
+    else
+    {
+      string dateiname="polytope";
+    }
+  }
+  else
+  {
+    string dateiname="polytope";
+  }
+  // create the lattice point list for polymake
+  "#####   Creating the lattice point list...";
+  sp=sp+intmatToPolymake(polytope,"points");
+  // initialise dateiname.polymake and compute the vertices
+  write(":w /tmp/"+dateiname+".polymake",sp);
+  
+  // compute the facets
+  "#####   Computing FACETS...";
+  quietsys=system("sh","cd /tmp; polymake "+dateiname+".polymake FACETS > "+dateiname+".output");
+  string facets=read("/tmp/"+dateiname+".output");
+  quietsys=system("sh","/bin/rm /tmp/"+dateiname+".output");
+  intmat nf=polymakeToIntmat(facets,"projective");
+
+  // compute the dimension
+  quietsys=system("sh","cd /tmp; polymake "+dateiname+".polymake DIM > "+dateiname+".output");
+  string pdim=read("/tmp/"+dateiname+".output");
+  quietsys=system("sh","/bin/rm /tmp/"+dateiname+".output");
+  pdim=pdim[5,size(pdim)-6];
+  execute("int nd="+pdim+";");
+
+  // compute the face lattice
+  "#####   Computing DUAL_FACE_LATTICE...";
+  quietsys=system("sh","cd /tmp; polymake "+dateiname+".polymake DUAL_FACE_LATTICE > "+dateiname+".output");
+  string facelattice=read("/tmp/"+dateiname+".output");
+
+  quietsys=system("sh","/bin/rm /tmp/"+dateiname+".output");
+  string facelist;
+  int numbrac=0;
+  for (i=1;i<=size(facelattice);i++)
+  {
+    if (facelattice[i]=="{")
+    {
+      if (numbrac==0)
+      {
+        facelist=facelist+",list(";
+      }
+      else
+      {
+        facelist=facelist+"intvec(";
+      }
+      numbrac=numbrac+1;      
+    }
+    else
+    {
+      if (facelattice[i]=="}")
+      {
+        facelist=facelist+")";
+        numbrac=numbrac-1;
+      }
+      else
+      {
+        if (numbrac > 0)
+        { 
+          if (facelattice[i]==" ")
+          {
+            facelist=facelist+",";
+          }
+          else
+          {
+            facelist=facelist+facelattice[i];
+          }
+        }
+      }
+    }
+  }
+  facelist=facelist[2,size(facelist)];
+  execute("list nface=list("+facelist+");");
+  for (i=1;i<=size(nface);i++)
+  {
+    for (j=1;j<=size(nface[i]);j++)
+    {
+      nface[i][j]=nface[i][j]+1;
+    }
+  }
+
+  // compute the f-vector
+  string fvect;
+  for (i=1;i<=size(nface);i++)
+  {
+    fvect=fvect+string(size(nface[i]))+",";
+  }
+  execute("intvec nfvect = intvec("+fvect[1,size(fvect)-1]+")");
+
+  // delete the tmp-files, if polymakekeeptmpfiles is not set
+  if (defined(polymakekeeptmpfiles)==0)
+  {
+    quietsys=system("sh","/bin/rm /tmp/"+dateiname+".polymake");
+  }
+  // return the files
+  return(list(nface,nf,nfvect,nd));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+proc groebnerFan_new (poly f,list #)
+"Output:
+1. faces and the facets which meet them
+2. inequalities defining the facets
+3. f-vector 
+4. dimension of newton polytope
+5. exponents of terms of newton polytope
+6. exponents of highest common divisor of terms"
+{
+  int i,j,k;
+  // compute the list of exponent vectors of the polynomial, which are the lattice points
+  // whose convex hull is the Newton polytope of f
+  int m = size(f);
+  int n = nvars(basering);
+  intmat exponents[m][n];
+  while (f!=0)
+  {
+    i++;
+    exponents[i,1..nvars(basering)]=leadexp(f);
+    f=f-lead(f);
+  }
+
+
+  // Calculate min and max of each exponent.
+  // 
+  // I made a change here. Later, I want to compute the intersection
+  // of the diagonal with the truncated Newton diagram, so i want the
+  // truncated ND to contain a diagonal point. so i'm only searching 
+  // for the max exponent, not in each coordinate, but over all the 
+  // coordinates.
+  //
+  string expminstr;
+  for (i=1;i<=n;i++)
+  {
+    expminstr=expminstr+string(Min(list(exponents[1..m,i])))+",";
+  }
+  execute("intvec expmin="+expminstr[1,size(expminstr)-1]+";");
+  string expmaxstr;
+  for (i=1;i<=n;i++)
+  {
+    expmaxstr=expmaxstr+string(Max(list(exponents[1..m,i])))+",";
+  }
+  execute("intvec expmax="+expmaxstr[1,size(expmaxstr)-1]+";");
+//  for (i=1;i<=n;i++)
+//  {
+//    if (expmax[i]==expmin[i]) 
+//    {
+//      expmax[i]=expmax[i]+1;
+//    }
+//  }
+  int expmmax = Max(list(expmax[1..n]))+1;
+
+  // FIRST, take convex hull of the points to reduce complexity
+  // 
+  // the header for the file secendarypolytope.polymake
+  string sp="_application polytope
+_version 2.2
+_type RationalPolytope
+
+POINTS
+";
+  // set the name for the polymake output file
+  string dateiname="polytope";
+  int quietsys;
+  // create the lattice point list for polymake
+  sp=sp+intmatToPolymake(exponents,"points");
+  // initialise dateiname.polymake and compute the vertices
+  write(":w /tmp/"+dateiname+".polymake",sp);
+  quietsys=system("sh","cd /tmp; polymake "+dateiname+".polymake VERTICES > "+dateiname+".output");
+  string vertices=read("/tmp/"+dateiname+".output");
+  quietsys=system("sh","/bin/rm /tmp/"+dateiname+".output");
+  intmat np=polymakeToIntmat(vertices,"affine");
+  // compute the dimension
+  quietsys=system("sh","cd /tmp; polymake "+dateiname+".polymake DIM > "+dateiname+".output");
+  string pdim=read("/tmp/"+dateiname+".output");
+  quietsys=system("sh","/bin/rm /tmp/"+dateiname+".output");
+  quietsys=system("sh","/bin/rm /tmp/"+dateiname+".polymake");
+  pdim=pdim[5,size(pdim)-6];
+  execute("int nd="+pdim+";");
+
+
+// SECOND, we put non-negative orthants at each vertex.
+//
+  m = nrows(np);
+  intmat expnew[m*2^n][n];
+  int jtemp,jchar;
+  intvec exptemp;
+  for (i=1;i<=m;i++)
+  {
+    for (j=0;j<2^n;j++)
+    {
+      jtemp=j;
+      exptemp=np[i,1..n];
+      for (k=1;k<=n;k++)
+      {
+        jchar=jtemp%2;
+        jtemp=(jtemp-jchar)/2;
+        if (jchar==1) 
+        {
+          exptemp[k]=expmmax;
+        }
+      }
+      expnew[(i-1)*2^n+j+1,1..n]=exptemp;
+    }
+  }
+  expnew=removerepeatintmat(expnew);
+ 
+  // call polymakePolytope with exponents
+  list gf=polymakePolytope_new(expnew,"newtonPolytope");
+  // append the exponent vectors to gf
+  return(list(gf[1],gf[2],gf[3],nd,np,expmin));
+}
+
+
+
+
+
+
+proc partitionintmat(m,indl,indr,indp,n)
+{
+  intvec pvalue = m[indp,1..n];
+  intvec tempm;
+  m[indp,1..n] = m[indr,1..n];
+  m[indr,1..n] = pvalue;
+  int inds = indl;
+  int i;
+  for (i = indl; i < indr; i++)
+  {
+    if (intvec(m[i,1..n]) <= pvalue)
+    {
+      tempm = m[i,1..n];
+      m[i,1..n] = m[inds,1..n];
+      m[inds,1..n] = tempm;
+      inds=inds+1;
+    }
+  }
+  tempm = m[inds,1..n];
+  m[inds,1..n] = m[indr,1..n];
+  m[indr,1..n] = tempm;
+  return(m,inds);    
+}
+proc quicksortintmat(m,indl,indr,n)
+{
+  if (indr > indl)
+  {
+    int indpnew;
+    m,indpnew = partitionintmat(m,indl,indr,random(indl,indr),n);
+    m=quicksortintmat(m,indl,indpnew-1,n);
+    m=quicksortintmat(m,indpnew+1,indr,n);
+  }
+  return(m);
+}
+proc removerepeatintmat(expnew)
+{
+  int n = ncols(expnew);
+  int m = nrows(expnew);
+  int i;
+  expnew=quicksortintmat(expnew,1,m,n);
+  int numunique=1;
+  intvec prevrow,currow;
+  string expnorepstr;
+  prevrow = expnew[1,1..n];
+  expnorepstr = string(list(prevrow))+",";
+  for (i=2;i<=m;i++)
+  { 
+    currow=expnew[i,1..n];
+    if (prevrow!=currow) 
+    {
+      numunique=numunique+1;
+      expnorepstr=expnorepstr+string(list(currow))+",";
+      prevrow=currow;  
+    }
+  }
+  intmat expnorep[numunique][n];
+  execute("expnorep="+expnorepstr[1,size(expnorepstr)-1]+";");
+  return(expnorep);
+}
+
+
+
+
+
+
+proc sosndg (ideal I,list #)
+"Assumes that the basering is of the form 
+   ring R = 0, (some variables), dp;
+The optional second argument tells how many bad face polynomials to find.
+
+Below, f is the sum of squares of the generators of I.
+The output is a list consisting of
+1. flag determining if f is nondegenerate
+2. exponents of highest common monomial dividing I   
+3. f-vector of Newton polyhedron G of I
+4. weight vectors for faces of G
+5. inequalities defining G                               
+6. faces of G and the facets which meet them
+7. polynomial Lf of lowest terms of f
+8. dimension of Newton polytope of Lf 
+9. vertices of Newton polytope of Lf
+10. if f is degenerate, a weight vector w giving a bad face
+11. if f is degenerate, the initial form w.r.t. w"
+{
+  int numbadpoly = 0;
+  if (size(#)>0)
+  { numbadpoly = #[1];}
+  return(ndg(sos(I),list(numbadpoly,1,isMonomialIdeal(I))));
+}
+
+
+
+
+
+
+
+proc ndg (poly f,list #)
+"Assumes that the basering is of the form 
+   ring R = 0, (some variables), dp;
+The optional second argument tells how many bad face polynomials to find.
+
+The output is a list consisting of
+1. flag determining if f is nondegenerate
+2. exponents of highest common monomial dividing f  
+3. f-vector of Newton polyhedron G of f
+4. weight vectors for faces (non-vertices) of G
+5. inequalities defining G                              
+6. faces of G and the facets which meet them
+7. polynomial Lf of lowest terms of f
+8. dimension of Newton polytope of Lf 
+9. vertices of Newton polytope of Lf
+10. if f is degenerate, a weight vector w giving a bad face
+11. if f is degenerate, the initial form w.r.t. w
+
+I've extended this to cases where the 
+basering is a quotient ring, whose
+defining quotient relations are of the form
+z*p(x)+1, where z is an indeterminate, p(x) is
+polynomial with non-zero constant term in other 
+indeterminates not appearing as a z in some 
+other quotient relation.
+
+All our rings must have coefficient ring Q, 
+and have dp for the monomial ordering."
+{
+  // Gets all the optional arguments
+  int numbadpoly = 0;
+  int isIdeal = 0;
+  int isMonIdeal = 0;
+  if (size(#)>0)
+  { numbadpoly = #[1];}
+  if (size(#)>1)
+  { isIdeal = #[2];}
+  if (size(#)>2)
+  { isMonIdeal = #[3];}
+
+  // Set up a copy of the original ring because we are going to manipulate it.
+  int i,j,k;
+  def RR = basering;
+  execute("ideal varsRR= "+varstr(basering)+";");
+  poly rel, curvar, currel;
+  poly newf = f;
+  list rl = ringlist(RR);
+  for (i=1; i <= ncols(rl[4]); i++)
+  {
+    rel = rl[4][i]+1;
+    curvar = jet(rel,1);
+    curvar = curvar/leadcoef(curvar);
+    currel = rel/curvar;
+    newf = newf*currel^degvar(newf,curvar);
+    newf = reduce(newf,std(0));
+    for (j=1; j<= ncols(varsRR); j++)
+    {
+      if (varsRR[j]==curvar)
+      {
+        varsRR[j] = 0;
+      }
+    }
+  }
+  string newvars = "";
+  string mapstr = "";
+  for (i=1; i<= ncols(varsRR); i++)
+  {
+    if (varsRR[i]==0) 
+    {
+      mapstr = mapstr+"0,";
+    }
+    else
+    {
+      newvars = newvars+string(varsRR[i])+",";
+      mapstr = mapstr+string(varsRR[i])+",";
+    }
+  }
+  execute("ring newR = 0, ("+newvars[1,size(newvars)-1]+"), dp;");
+  execute("map newRmap = RR, "+mapstr[1,size(mapstr)-1]+";");
+  poly copyf = newRmap(newf);
+  
+  poly Lf = lowestTerms(copyf);
+  if (isMonIdeal==0) 
+  {
+    "Polynomial of lowest terms:"; 
+    Lf;
+  }
+
+  int n = nvars(basering);
+  list gf = groebnerFan_new(Lf);
+ 
+  // for each ray
+  //   check if it is in the non-negative orthant, or the negative of a standard basis element.
+  //
+  intmat raystmp = gf[2];
+  intmat rays[nrows(raystmp)][ncols(raystmp)-1] =  raystmp[1..nrows(raystmp), 2..ncols(raystmp)];
+  intvec raysgn = 0:nrows(rays);
+  string ineqstr = "";
+  intvec newfacetindex = 0:nrows(rays);
+  j = 0;
+  for (i=1;i<=nrows(rays);i++)
+  { 
+    raysgn[i]=(Min(list(rays[i,1..n])) >= 0);
+    if (raysgn[i]!=0) 
+    {
+      j=j+1;
+      newfacetindex[i] = j;
+      ineqstr = ineqstr+string(list(raystmp[i,1..(n+1)]))+",";
+    }
+  }
+  intmat ineq[j][n+1];
+  execute("ineq="+ineqstr[1,size(ineqstr)-1]+";");
+
+
+// THIS NEXT PART IS ONLY FOR DEBUGGING PURPOSES.
+  for (i=1;i<=nrows(rays);i++)
+  { 
+    if (raysgn[i]==0)
+    {
+      if (Max(list(rays[i,1..n])) > 0)
+      {
+        "Error 1: This part is not supposed to run at all.";
+        rays[i,1..n];
+      }
+      else
+      {
+        if (sum(list(rays[i,1..n])) < -1)
+        {
+          "Error 2: This part is not supposed to run at all.";
+          rays[i,1..n];
+        }
+      }
+    }
+  }
+
+
+
+
+
+  // its best to think of the problem, not in terms of the newton diagram
+  // but to conside the normal fan of the newton polytope and we want to
+  // intersect this normal fan with the positive orthant and to figure
+  // out the partitioning cones in this intersection.
+  //
+  // given a list of extremal rays of a cone, how do we know if this
+  // cone intersects the non-negative orthant?
+  //
+  // if one of the rays lie in the non-negative orthant, we are done.
+  // but it is possible for all the rays to lie outside, and yet still
+  // have a non-empty intersection.
+  //
+  // it is probably better to have polymake do this intersection
+  // by adding points to the convex hull to force certain faces to come out.
+  // this must be done delicately. adding 2^n points for each vertex works
+  // but is computationally intensive! currently, i'm doing it for vertices 
+  // of the convex hull but maybe there is a better way.
+  // this adding 2^n points is done in groebnerFan_new().
+  //
+  // for each cone
+  //   if one of the vectors is is non-negative, then i'm done.
+  // 
+  // (OLD VERSION) for each cone
+  //   if (++0---) compute initial form max= 1, min= ?
+  //   if (000000) compute initial form max= 0, min= 0
+  //   if (000---) ignore               max= 0, min=-1
+  //   if (------) ignore               max=-1, min=-1
+  //   if vertex   ignore
+
+
+  // for each face, we consider the facets that meet them. 
+  // if we sum the normal vectors for the facets, it gives us 
+  // a vector for a linear function whose minimization is our
+  // original face!
+  //
+  // I made a change below, but i'm still trying to figure out 
+  // if it is a valid change. So, looking at the facet normals,
+  // the only invalid facets are those corresponding to negative
+  // standard basis vectors. I do not want weights for faces 
+  // coming from intersection of one of these "bad" facets. 
+  // They are the ones coming from raysgn = 0. so i changed
+  // Max(list(raysgn(...)))==1 to Min(list(raysgn(...)))===1.
+  // Also, now m should not have repeated rows! so i did away
+  // with m = removerepeatintmat(m). Also, I changed
+  // msum=msum+raysgn[gf[1][i][j][k]]*intvec(rays[gf[1][i][j][k],1..n]);
+  // to
+  // msum=msum+intvec(rays[gf[1][i][j][k],1..n]);
+  //
+  intvec msum;
+  int nr = 0;
+  string mstr;
+  intvec newfvect = 0:size(gf[1]);
+  string facestruct = "list(list(";
+  i=1;
+    for (j=1;j<=size(gf[1][i]);j++)
+    {
+      if (Min(list(raysgn[gf[1][i][j]]))==1)
+      {
+	newfvect[i] = newfvect[i]+1;
+        facestruct = facestruct + "intvec(";
+	for (k=1;k<=size(gf[1][i][j]);k++)
+	{
+	  facestruct = facestruct + string(newfacetindex[gf[1][i][j][k]])+",";
+	}
+	facestruct=facestruct[1,size(facestruct)-1]+"),";
+      }
+    }
+  facestruct = facestruct[1,size(facestruct)-1] + "),";
+  for (i=2;i<=size(gf[1]);i++)
+  {
+    facestruct = facestruct + "list(";
+    for (j=1;j<=size(gf[1][i]);j++)
+    {
+      if (Min(list(raysgn[gf[1][i][j]]))==1)
+      {
+	nr++;
+        newfvect[i] = newfvect[i]+1;
+	msum = 0;
+        facestruct = facestruct + "intvec(";
+	for (k=1;k<=size(gf[1][i][j]);k++)
+	{
+	  msum=msum+intvec(rays[gf[1][i][j][k],1..n]);
+	  facestruct = facestruct + string(newfacetindex[gf[1][i][j][k]])+",";
+	}
+	mstr=mstr+string(list(msum))+",";
+	facestruct=facestruct[1,size(facestruct)-1]+"),";
+      }
+    }
+    facestruct = facestruct[1,size(facestruct)-1] + "),";
+  }
+  intmat m[nr][n];
+  execute("m="+mstr[1,size(mstr)-1]+";");
+  list facelist;
+  execute("facelist="+facestruct[1,size(facestruct)-1] + ");");
+  nr=nrows(m);
+
+  intvec v;
+  poly initf;
+  ideal I, J;
+  int flag=0;
+  intvec badweight;
+  int badind;
+  poly badpoly;
+  ideal maxid = maxideal(1);
+  poly prodvar = product(maxid);
+ 
+  if (isMonIdeal==1)
+  {
+    flag = 0;
+  }
+  else 
+  {
+  "Bad face polynomials:";
+
+  for (i=nr; i>=1; i=i-1)
+  {
+    v = intvec(m[i, 1..n]);
+    initf=initialForm(Lf,v);
+    if (size(initf)!=1)
+    {
+      J = ideal(diff(maxid,ideal(initf)));
+      I = reduce(prodvar, std(radical(J)));   
+      if (I!=0)
+      {
+        initf;
+      
+        // I want to pick a bad poly of the lowest degree.
+        if (flag==0)
+        {
+          badweight=v;
+          badpoly=initf;
+          badind=i;
+        }
+        else
+        {
+          if (deg(initf)<deg(badpoly))
+          {
+            badweight=v;
+            badpoly=initf;
+            badind=i;
+          }
+        }
+      
+        flag=flag+1;
+        if ((numbadpoly>0)&&(flag>=numbadpoly))
+        {
+          i=1;
+        }
+      }
+    }
+  }
+  }
+
+  setring RR;
+  execute("map oldRmap = newR, "+newvars[1,size(newvars)-1]+";");
+  if (isIdeal==1)
+  {
+    for (i=1; i<= size(gf[6]); i++)
+    {
+      gf[6][i] = gf[6][i]/2;
+    }
+    for (i=1; i<= nrows(ineq); i++)
+    {
+      if ((ineq[i,1] mod 2)==0)
+      {
+        ineq[i,1] = ineq[i,1]/2;
+      }
+      else
+      {
+        for (j=2; j<=ncols(ineq); j++)
+        {
+          ineq[i,j] = ineq[i,j]*2;
+        }
+      }
+    }
+  }
+  return(list((flag==0),gf[6],newfvect,m,ineq,facelist,oldRmap(Lf),gf[4],gf[5],badweight,oldRmap(badpoly)));
+}
+
+
+proc initialForm(poly f, intvec v)
+"The number of entries of the second argument
+should be the number of variables in the ring."
+{
+  link filelink = ":w /tmp/nondegproc.input";
+  write(filelink, "Q["+string(maxideal(1))+"]");
+  write(filelink, "{"+string(f)+"}");
+  write(filelink, "("+string(-v)+")");
+  close(filelink);
+  int quietsys=system("sh","gfan_initialforms </tmp/nondegproc.input >/tmp/nondegproc.output");
+
+  string s = read("/tmp/nondegproc.output");
+  quietsys=system("sh","/bin/rm /tmp/nondegproc.input");
+  quietsys=system("sh","/bin/rm /tmp/nondegproc.output");
+  int indst = find(s,"{");
+  int inden = find(s,"}");
+  execute("poly initf="+string(s[(indst+2)..(inden-1)])+";");
+  return(initf);
+}
+
+
+proc initialFormIntmat (poly ff, intmat m)
+"The number of columns of the second argument
+should be the number of variables in the ring.
+
+If the second argument has more than one row,
+the polynomial associated with the UNION of 
+faces for each row is returned."
+{
+  int i,j;
+  intvec v;
+  poly initf;
+  poly principalf;
+  ideal J;
+  int nr = nrows(m);
+  int n  = ncols(m);
+  poly f = lowestTerms(ff);
+
+  if (n!=nvars(basering)) 
+  {
+    m = transpose(m);
+    nr = nrows(m);
+    n = ncols(m);
+  }
+
+  if (n==nvars(basering)) {
+    for (i=1; i<=nr; i=i+1)
+    {
+      v = intvec(m[i, 1..n]);
+      initf=initialForm(f,v);
+      for (j=1; j<size(initf); j++)
+      {
+        J = initf[j];
+        if (size(principalf)==size(reduce(principalf,J)))
+        {
+          principalf=principalf+initf;
+        }
+      }
+    }
+  }
+  else
+  {
+    "I tried transposing the second argument but it is still of incorrect format.";
+    principalf = 0;
+  }
+  return(principalf);
+}
+
+proc sos(ideal I)
+{
+  poly sumsqr = 0;
+  for (int i=1; i<=ncols(I); i++)
+  {
+    sumsqr=sumsqr+I[i]^2;
+  }
+  return(sumsqr);
+}
+
+proc lowestTerms(poly ff)
+"assumes that the basering is a quotient ring, whose
+defining quotient relations are of the form
+z*p(x)+1, where z is an indeterminate, p(x) is
+polynomial with non-zero constant term in other 
+indeterminates not appearing as a z in some 
+other quotient relation."
+{
+  ideal maxid = maxideal(1);
+  def nondegR = basering;
+  def nondegS = changeord("ds");
+  setring nondegS;
+  ideal Sj;
+  poly Sf = fetch(nondegR,ff);
+  poly Sg  = 0;
+  while (Sf <> 0)
+  {
+    Sg = Sg+lead(Sf);
+    Sj = leadmonom(Sf);
+    Sf = reduce(Sf, Sj);
+  } 
+  setring nondegR;
+  poly f = fetch(nondegS,Sg);
+  return(f);
+}
+
+proc degvar(poly f, poly myvar)
+{
+  ideal maxid = maxideal(1);
+  for (int i=1; i<=ncols(maxid); i++)
+  {
+    if (maxid[i]==myvar)
+    {
+      maxid[i]=1;
+    }
+    else
+    {
+      maxid[i]=0;
+    }
+  }
+  def RR = basering;
+  execute("ring SS = 0,("+varstr(RR)+"), wp("+string(maxid)+");");
+  poly ff = fetch(RR,f);
+  int mydeg = deg(ff);
+  setring(RR);
+  return(mydeg);
+}
+
+proc myqring(string newvar, poly newrel)
+{
+  def RR = basering;
+  list rl = ringlist(RR);
+  string qrels = "";
+  for (int i=1; i<=ncols(rl[4]); i++)
+  {
+    if (rl[4][i]!=0) 
+    {
+      qrels = qrels+string(rl[4][i])+",";
+    }
+  }
+  qrels = qrels+newvar+"*("+string(newrel)+")-1";
+  execute("ring newR = 0, ("+varstr(RR)+","+newvar+"), dp;");
+  execute("ideal qrelsII ="+qrels+";");
+  qring newqR = qrelsII;
+  setring(RR);
+  return(newqR);
+}
+
+proc rlct(list ndgL, list #)
+"Calculates the smallest distance to the origin
+of the intersection of the polytope given by 
+inequalities with the diagonal."
+{
+  intmat M = ndgL[5];
+  intvec tau = 0:(ncols(M)-1);
+  if (size(#)>0) {tau = #[1];}
+  tau=tau+1;
+
+  string dateiname="polytope";
+  int quietsys;
+  int i,j;
+
+  string sp="_application polytope
+_version 2.2
+_type RationalPolytope
+
+LINEAR_OBJECTIVE
+0 1 ";
+  for (i=3;i<=ncols(M);i++)
+  {
+    sp=sp+"0 ";
+  }
+  sp=sp+"
+
+INEQUALITIES
+";
+  for (i=1;i<=nrows(M);i++)
+  {
+    for (j=1;j<=ncols(M);j++)
+    {
+      sp=sp+string(M[i,j])+" ";
+    }
+    sp=sp+"
+";
+  }
+  sp=sp+"
+
+EQUATIONS
+";
+  for (i=3; i<=ncols(M); i++)
+  {
+    sp=sp+"0 "+string(tau[i-1])+" ";
+    for (j=3; j<i; j++)
+    {
+      sp=sp+"0 ";
+    }
+    sp=sp+"-"+string(tau[1])+" ";
+    for (j=i+1; j<=ncols(M); j++)
+    {
+      sp=sp+"0 ";
+    }
+    sp=sp+"
+";
+  }
+
+  // initialise dateiname.polymake and compute the vertices
+  write(":w /tmp/"+dateiname+".polymake",sp);
+  quietsys=system("sh","cd /tmp; polymake "+dateiname+".polymake MINIMAL_VALUE > "+dateiname+".output");
+  string pm=read("/tmp/"+dateiname+".output");
+  quietsys=system("sh","/bin/rm /tmp/"+dateiname+".output");
+  quietsys=system("sh","/bin/rm /tmp/"+dateiname+".polymake");
+
+  string zeilenumbruch="
+";
+  // remove the 'argment' name, i.e. the first row of pm
+  int curind = i;
+  while (pm[curind]!=zeilenumbruch)
+  {
+    curind++;
+  }
+  curind++;
+  string minstr = "";
+  while (pm[curind]!=zeilenumbruch)
+  {
+    minstr=minstr+pm[curind];
+    curind++;
+   }
+  execute("number minval = "+minstr+"/tau[1];");
+  
+// the multiplicity is not the number of faces at the intersection
+// but the the codimension of the face at the intersection
+
+  int n = ncols(M);
+  number dotm = 0;
+  intvec mm = 0;
+  for (i=1;i<=nrows(M);i++)
+  {
+    if (Min(list(M[i,2..n])) >= 0)
+    {
+      dotm = M[i,1];
+      for (j=2;j<=n;j++)
+      {
+        dotm = dotm+M[i,j]*minval*tau[j-1];
+      }
+      if (dotm==0) {mm = mm,i;}
+    }
+  }
+  intvec mmv;
+  int facedim=-1;
+  for (i=1; i<=size(ndgL[6]); i++)
+  {
+    for (j=1; j<=size(ndgL[6][i]); j++)
+    {
+      mmv = 0,ndgL[6][i][j];
+      if (mm==mmv) {facedim = i-1;}
+    }
+  }
+  if (facedim == -1) {print("Error occurred finding RLCT. Face not found.");}
+  return(list(1/minval,n-facedim-1));
+}
+
+proc ContainsOrigin (ideal I)
+{
+  int i;
+  int ans;
+  for (i=1; i<=nvars(basering); i++)
+  {  
+    I = subst(I,var(i),0);
+  }
+  if (size(I)==0)
+  {
+    ans = 1;
+  }
+  else
+  {
+    ans = 0;
+  }
+  return(ans);
+}

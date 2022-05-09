@@ -1,0 +1,295 @@
+<HTML>
+<body>
+<head>
+  <title>Tropical Secant Graphs of Monomial Curves</title>
+</head>
+
+<center>
+  <h1>Tropical Secant Graphs of<br> Monomial Curves</h1>
+  <b><font size="+1">
+    <a href="http://math.berkeley.edu/~macueto/">Maria Angelica Cueto</a> and <a href="https://w3id.org/people/shaoweilin">Shaowei Lin</a>
+ </font></b><br><br>
+</center>
+<br>
+<br>
+<br>
+<h2>Disclaimer</h2>
+
+The purpose of this website is to make available unpolished code that we wrote to
+  compute tropical secant graphs. However, there is no guarantee of
+  the correctness of the code, so use at your own risk.
+
+<h2>Research Paper</h2>
+
+The research paper "Tropical Secant Graphs of Monomial Curves" can be found <a href="http://arxiv.org/abs/1005.3364">here</a>.
+
+<h2>Singular Library</h2>
+
+The <tt>Singular</tt> library can be downloaded here: <a
+href="tropsec.lib">tropsec.lib</a>. <br>
+<br>
+Put this file in your work directory and type the command
+<blockquote><tt>> LIB "tropsec.lib";</tt></blockquote>
+when you start your <tt>Singular</tt> session. 
+
+<h2>Tropical Secant Graph</h2>
+
+To compute the <i>tropical secant graph</i> described in Definition 6.6 of the paper, use the command <blockquote><tt>list gph = tropsec(exps);</tt></blockquote> where <tt>exps</tt> is an integer vector of exponents describing a monomial curve. This graph encodes the tropicalization of the first secant variety of the monomial curve described by <tt>exps</tt>. The vector <tt>exps</tt> must have at least four entries, start with zero as the first entry, be strictly increasing and the gcd of all the entries must be one.<br>
+<br>
+It returns a list <tt>gph</tt> with two integer matrices.
+<ul>
+  <li><tt>gph[1]</tt> is an ordered list of rays in the tropical secant
+  graph. Each row of the matrix gives the coordinates of a ray.
+  <li><tt>gph[2]</tt> is an ordered list of edges in the tropical secant graph. Each row corresponds to an edge, and has three entries <tt>i, j, k</tt>. The entries <tt>i</tt> and <tt>j</tt> are indices of the rays defining the edge while the entry <tt>k</tt> is the weight of the edge.
+</ul>
+
+<h3>Example</h3>
+
+<tt>
+> LIB "tropsec.lib";<br>
+> intvec exps = 0,30,45,55,78;<br>
+> list gph = tropsec(exps);<br>
+<br>
+> gph[1];<br>
+&nbsp&nbsp&nbsp 1,0,0,0,0,<br>
+&nbsp&nbsp&nbsp 0,1,0,0,0,<br>
+&nbsp&nbsp&nbsp 0,0,1,0,0,<br>
+&nbsp&nbsp&nbsp 0,0,0,1,0,<br>
+&nbsp&nbsp&nbsp 0,0,0,0,1,<br>
+&nbsp&nbsp&nbsp 0,30,30,30,30,<br>
+&nbsp&nbsp&nbsp 0,30,45,45,45,<br>
+&nbsp&nbsp&nbsp 0,30,45,55,55,<br>
+&nbsp&nbsp&nbsp 1,1,0,0,0,<br>
+&nbsp&nbsp&nbsp 1,0,1,0,0,<br>
+&nbsp&nbsp&nbsp 1,1,1,0,0,<br>
+&nbsp&nbsp&nbsp 1,0,0,1,0,<br>
+&nbsp&nbsp&nbsp 0,1,0,1,0,<br>
+&nbsp&nbsp&nbsp 0,0,1,1,0,<br>
+&nbsp&nbsp&nbsp 1,1,1,1,0,<br>
+&nbsp&nbsp&nbsp 1,0,0,0,1,<br>
+&nbsp&nbsp&nbsp 0,1,0,0,1,<br>
+&nbsp&nbsp&nbsp 1,1,0,0,1,<br>
+&nbsp&nbsp&nbsp 0,0,1,0,1,<br>
+&nbsp&nbsp&nbsp 1,1,1,0,1,<br>
+&nbsp&nbsp&nbsp 0,0,0,1,1<br>
+<br>
+> gph[2];<br>
+&nbsp&nbsp&nbsp 5,6,30,<br>
+&nbsp&nbsp&nbsp 6,7,345,<br>
+&nbsp&nbsp&nbsp 1,5,30,<br>
+&nbsp&nbsp&nbsp 2,6,15,<br>
+&nbsp&nbsp&nbsp 3,7,345,<br>
+&nbsp&nbsp&nbsp 8,0,6,<br>
+&nbsp&nbsp&nbsp 8,1,6,<br>
+&nbsp&nbsp&nbsp 9,0,15,<br>
+&nbsp&nbsp&nbsp 9,2,15,<br>
+&nbsp&nbsp&nbsp 10,0,4,<br>
+&nbsp&nbsp&nbsp 10,1,4,<br>
+&nbsp&nbsp&nbsp 10,2,4,<br>
+&nbsp&nbsp&nbsp 11,0,75,<br>
+&nbsp&nbsp&nbsp 11,3,75,<br>
+&nbsp&nbsp&nbsp 12,1,30,<br>
+&nbsp&nbsp&nbsp 12,3,30,<br>
+&nbsp&nbsp&nbsp 13,2,15,<br>
+&nbsp&nbsp&nbsp 13,3,15,<br>
+&nbsp&nbsp&nbsp 14,0,10,<br>
+&nbsp&nbsp&nbsp 14,1,10,<br>
+&nbsp&nbsp&nbsp 14,2,10,<br>
+&nbsp&nbsp&nbsp 14,3,30,<br>
+&nbsp&nbsp&nbsp 15,0,180,<br>
+&nbsp&nbsp&nbsp 15,4,180,<br>
+&nbsp&nbsp&nbsp 16,1,105,<br>
+&nbsp&nbsp&nbsp 16,4,105,<br>
+&nbsp&nbsp&nbsp 17,0,3,<br>
+&nbsp&nbsp&nbsp 17,1,3,<br>
+&nbsp&nbsp&nbsp 17,4,15,<br>
+&nbsp&nbsp&nbsp 18,2,75,<br>
+&nbsp&nbsp&nbsp 18,4,75,<br>
+&nbsp&nbsp&nbsp 19,0,3,<br>
+&nbsp&nbsp&nbsp 19,1,3,<br>
+&nbsp&nbsp&nbsp 19,2,6,<br>
+&nbsp&nbsp&nbsp 19,4,15,<br>
+&nbsp&nbsp&nbsp 20,3,165,<br>
+&nbsp&nbsp&nbsp 20,4,165
+</tt>
+<br>
+<br>
+
+<h2>Groebner Tropical Secant Graph</h2>
+
+To compute the <i>Groebner tropical secant graph</i> described in
+Definition 6.12, Theorem 6.13 (dim 6), Theorem 6.14 (dim 5), Lemma 7.3
+(dim 4), Theorem 7.4 (dim 4) of the paper, use the command
+<blockquote><tt>list gph = grobsec(exps);</tt></blockquote> where
+<tt>exps</tt> is an integer vector of exponents describing a monomial
+curve.<br>
+<br>
+It returns a list <tt>gph</tt> with the following items.
+
+<ul>
+<li><tt>gph[1]</tt> is a list of all the coordinates of the nodes
+<li><tt>gph[2]</tt> is a list of the edges in the form "i,j,m" which means the edge from node i to node j has weight m.
+<li><tt>gph[3]</tt> is a list of all the names of the nodes
+<li><tt>gph[4]</tt> is a list of all the names of the edges 
+<li><tt>gph[5]</tt> is a list of all the partial overlaps and internal crossings predicted by the paper which makes it a groebner tropical secant graph.
+</ul>
+Lastly, if you try our example "0,30,45,55,78", it says "integer
+overflow error" because I did not use large integers to program this
+code but just standard integers (i.e. between -65536 and 65536). I
+could rewrite my code to do that, but that would take time, so I
+decided to leave it alone. <br>
+
+<h3>Example</h3>
+<tt>
+> LIB "tropsec.lib";<br>
+> intvec exps = 0,2,5,8,10;<br>
+> list gph = grobsec(exps);<br>
+> gph;<br>
+[1]:<br>
+&nbsp&nbsp&nbsp   1,0,0,0,0,<br>
+&nbsp&nbsp&nbsp   0,1,0,0,0,<br>
+&nbsp&nbsp&nbsp   0,0,1,0,0,<br>
+&nbsp&nbsp&nbsp   0,0,0,1,0,<br>
+&nbsp&nbsp&nbsp   0,0,0,0,1,<br>
+&nbsp&nbsp&nbsp   0,2,2,2,2,<br>
+&nbsp&nbsp&nbsp   0,2,5,5,5,<br>
+&nbsp&nbsp&nbsp   0,2,5,8,8,<br>
+&nbsp&nbsp&nbsp   1,0,0,1,0,<br>
+&nbsp&nbsp&nbsp   0,1,0,1,0,<br>
+&nbsp&nbsp&nbsp   0,1,1,1,0,<br>
+&nbsp&nbsp&nbsp   1,0,0,0,1,<br>
+&nbsp&nbsp&nbsp   0,1,0,0,1,<br>
+&nbsp&nbsp&nbsp   1,0,1,0,1,<br>
+&nbsp&nbsp&nbsp   1,1,0,1,1 <br>
+[2]:<br>
+&nbsp&nbsp&nbsp   6,7,2,<br>
+&nbsp&nbsp&nbsp   7,8,2,<br>
+&nbsp&nbsp&nbsp   2,6,2,<br>
+&nbsp&nbsp&nbsp   3,7,2,<br>
+&nbsp&nbsp&nbsp   4,8,2,<br>
+&nbsp&nbsp&nbsp   9,1,3,<br>
+&nbsp&nbsp&nbsp   9,4,3,<br>
+&nbsp&nbsp&nbsp   10,2,5,<br>
+&nbsp&nbsp&nbsp   10,4,5,<br>
+&nbsp&nbsp&nbsp   11,2,1,<br>
+&nbsp&nbsp&nbsp   11,3,2,<br>
+&nbsp&nbsp&nbsp   11,4,1,<br>
+&nbsp&nbsp&nbsp   12,1,6,<br>
+&nbsp&nbsp&nbsp   12,5,6,<br>
+&nbsp&nbsp&nbsp   13,2,3,<br>
+&nbsp&nbsp&nbsp   13,5,3,<br>
+&nbsp&nbsp&nbsp   14,1,2,<br>
+&nbsp&nbsp&nbsp   14,3,4,<br>
+&nbsp&nbsp&nbsp   14,5,2,<br>
+&nbsp&nbsp&nbsp   15,1,1,<br>
+&nbsp&nbsp&nbsp   15,2,1,<br>
+&nbsp&nbsp&nbsp   15,4,1,<br>
+&nbsp&nbsp&nbsp   15,5,1 <br>
+[3]:<br>
+&nbsp&nbsp&nbsp   [1]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      D0 <br>
+&nbsp&nbsp&nbsp   [2]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      D1 <br>
+&nbsp&nbsp&nbsp   [3]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      D2 <br>
+&nbsp&nbsp&nbsp   [4]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      D3 <br>
+&nbsp&nbsp&nbsp   [5]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      D4 <br>
+&nbsp&nbsp&nbsp   [6]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      E1 <br>
+&nbsp&nbsp&nbsp   [7]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      E2 <br>
+&nbsp&nbsp&nbsp   [8]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      E3 <br>
+&nbsp&nbsp&nbsp   [9]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      F1,0,0,1,0 <br>
+&nbsp&nbsp&nbsp   [10]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      F0,1,0,1,0 <br>
+&nbsp&nbsp&nbsp   [11]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      F0,1,1,1,0 <br>
+&nbsp&nbsp&nbsp   [12]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      F1,0,0,0,1 <br>
+&nbsp&nbsp&nbsp   [13]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      F0,1,0,0,1 <br>
+&nbsp&nbsp&nbsp   [14]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      F1,0,1,0,1 <br>
+&nbsp&nbsp&nbsp   [15]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      F1,1,0,1,1 <br>
+[4]:<br>
+&nbsp&nbsp&nbsp   [1]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      E1 <br>
+&nbsp&nbsp&nbsp   [2]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      E2 <br>
+&nbsp&nbsp&nbsp   [3]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      D1 <br>
+&nbsp&nbsp&nbsp   [4]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      D2 <br>
+&nbsp&nbsp&nbsp   [5]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      D3 <br>
+&nbsp&nbsp&nbsp   [6]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      F1,0,0,1,0:0 <br>
+&nbsp&nbsp&nbsp   [7]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      F1,0,0,1,0:3 <br>
+&nbsp&nbsp&nbsp   [8]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      F0,1,0,1,0:1 <br>
+&nbsp&nbsp&nbsp   [9]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      F0,1,0,1,0:3 <br>
+&nbsp&nbsp&nbsp   [10]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      F0,1,1,1,0:1 <br>
+&nbsp&nbsp&nbsp   [11]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      F0,1,1,1,0:2 <br>
+&nbsp&nbsp&nbsp   [12]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      F0,1,1,1,0:3 <br>
+&nbsp&nbsp&nbsp   [13]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      F1,0,0,0,1:0 <br>
+&nbsp&nbsp&nbsp   [14]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      F1,0,0,0,1:4 <br>
+&nbsp&nbsp&nbsp   [15]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      F0,1,0,0,1:1 <br>
+&nbsp&nbsp&nbsp   [16]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      F0,1,0,0,1:4 <br>
+&nbsp&nbsp&nbsp   [17]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      F1,0,1,0,1:0 <br>
+&nbsp&nbsp&nbsp   [18]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      F1,0,1,0,1:2 <br>
+&nbsp&nbsp&nbsp   [19]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      F1,0,1,0,1:4 <br>
+&nbsp&nbsp&nbsp   [20]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      F1,1,0,1,1:0 <br>
+&nbsp&nbsp&nbsp   [21]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      F1,1,0,1,1:1 <br>
+&nbsp&nbsp&nbsp   [22]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      F1,1,0,1,1:3 <br>
+&nbsp&nbsp&nbsp   [23]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      F1,1,0,1,1:4 <br>
+[5]:<br>
+&nbsp&nbsp&nbsp   [1]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      E1;F0,1,1,1,0:2;1 <br>
+&nbsp&nbsp&nbsp   [2]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      E2;F0,1,1,1,0:2;1 <br>
+&nbsp&nbsp&nbsp   [3]:<br>
+&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp      D2;F0,1,1,1,0:2;2 <br>
+</tt>
+<br>
+
+<h2>Suggestions and Bugs</h2>
+
+While our code is unpolished, we are still interested in knowing if
+there are any bugs. If you find any errors in the code or have any
+comments or suggestions, please do not hesitate to contact Shaowei Lin
+at <blockquote>
+<tt>shaowei [at] math [dot] berkeley [dot] edu</tt>
+</blockquote>
+
+<br>
+<br>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+var m = document.lastModified;
+var p = m.length-12;
+document.write("Last Updated: "+m);
+//--></SCRIPT>
+
+</body>
+</HTML>
