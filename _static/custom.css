@@ -35,16 +35,16 @@ ul.ablog-archive {
     padding-left: 0px;
 }
 
-.bd-sidebar h2 {
+div.bd-sidebar h2 {
     font-size: 1.4em;
 }
 
-.bd-sidebar ul {
+div.bd-sidebar ul {
     padding-left: 0;
     list-style-type: none;
 }
 
-.bd-sidebar li {
+div.bd-sidebar li {
     padding-bottom: .5em;
 }
 
@@ -102,7 +102,7 @@ div.timeline div.entry.right::after {
 }
 
 /* Blog post headers */
-.bd-content h2 {
+main.bd-content h2 {
     font-size: 1.5em;
 }
 
