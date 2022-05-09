@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://shaoweilin.github.io</id>
   <title>Types from Spikes</title>
-  <updated>2022-05-09T05:08:54.253020+00:00</updated>
+  <updated>2022-05-09T05:18:59.350619+00:00</updated>
   <link href="https://shaoweilin.github.io"/>
   <link href="https://shaoweilin.github.io/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.org/" version="0.10.25">ABlog</generator>
@@ -11,12 +11,12 @@
     <title>Studying model asymptotics with singular learning theory</title>
     <updated>2012-07-13T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;Non-consecutive header level increase; H1 to H3 [myst.header]&lt;/p&gt;
 &lt;p&gt;Singular statistical models occur frequently in machine learning and computational biology. An important prob-lem in the learning theory of singular models is determin-ing their asymptotic behavior for massive data sets. In this talk, we give a brief introduction to Sumio Watanabe’s Singular Learning Theory, as outlined in his book “Algebraic Geometry and Statistical Learning Theory.” We will also explore the rich algebraic geometry and combinatorics that arise from studying the asymptotics of Bayesian integrals.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.youtube.com/playlist?list=PLl_tHArJvfnBS-OPQa2jFYhb1ZrCAnyyL"&gt;Modern Massive Data Sets&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </content>
     <link href="https://shaoweilin.github.io/posts/2012-07-13-studying-model-asymptotics-with-singular-learning-theory/" rel="alternate"/>
-    <summary>Non-consecutive header level increase; H1 to H3 [myst.header]Singular statistical models occur frequently in machine learning and computational biology. An important prob-lem in the learning theory of singular models is determin-ing their asymptotic behavior for massive data sets. In this talk, we give a brief introduction to Sumio Watanabe’s Singular Learning Theory, as outlined in his book “Algebraic Geometry and Statistical Learning Theory.” We will also explore the rich algebraic geometry and combinatorics that arise from studying the asymptotics of Bayesian integrals.</summary>
+    <summary>Singular statistical models occur frequently in machine learning and computational biology. An important prob-lem in the learning theory of singular models is determin-ing their asymptotic behavior for massive data sets. In this talk, we give a brief introduction to Sumio Watanabe’s Singular Learning Theory, as outlined in his book “Algebraic Geometry and Statistical Learning Theory.” We will also explore the rich algebraic geometry and combinatorics that arise from studying the asymptotics of Bayesian integrals.Modern Massive Data Sets</summary>
     <published>2012-07-13T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -67,12 +67,11 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <title>Exercise on deep neural networks</title>
     <updated>2016-05-03T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;Non-consecutive header level increase; H1 to H3 [myst.header]&lt;/p&gt;
 &lt;p&gt;Read the notes and complete the exercises for the section on “Building Deep Networks for Classification” in the &lt;a class="reference external" href="http://deeplearning.stanford.edu/wiki/index.php/UFLDL_Tutorial"&gt;UFLDL Tutorial&lt;/a&gt;. Complete all the programming tasks in Python. No starter code will be given for these exercises, but you may refer to the given Matlab codes for hints if you are stuck&lt;/p&gt;
 &lt;/div&gt;
 </content>
     <link href="https://shaoweilin.github.io/posts/2016-05-03-exercise-on-deep-neural-networks/" rel="alternate"/>
-    <summary>Non-consecutive header level increase; H1 to H3 [myst.header]Read the notes and complete the exercises for the section on “Building Deep Networks for Classification” in the UFLDL Tutorial. Complete all the programming tasks in Python. No starter code will be given for these exercises, but you may refer to the given Matlab codes for hints if you are stuck</summary>
+    <summary>Read the notes and complete the exercises for the section on “Building Deep Networks for Classification” in the UFLDL Tutorial. Complete all the programming tasks in Python. No starter code will be given for these exercises, but you may refer to the given Matlab codes for hints if you are stuck</summary>
     <published>2016-05-03T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -80,12 +79,12 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <title>Exercise on sparse autoencoders</title>
     <updated>2016-05-03T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;Non-consecutive header level increase; H1 to H3 [myst.header]&lt;/p&gt;
 &lt;p&gt;This exercise is the first of several posts I am writing, for those who want a mathematical and hands-on introduction to deep neural networks.&lt;/p&gt;
+&lt;p&gt;Read the series of notes on the topic of “Sparse Autoencoder” in the &lt;a class="reference external" href="http://deeplearning.stanford.edu/wiki/index.php/UFLDL_Tutorial"&gt;UFLDL Tutorial&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 </content>
     <link href="https://shaoweilin.github.io/posts/2016-05-03-exercise-on-sparse-autoencoders/" rel="alternate"/>
-    <summary>Non-consecutive header level increase; H1 to H3 [myst.header]This exercise is the first of several posts I am writing, for those who want a mathematical and hands-on introduction to deep neural networks.</summary>
+    <summary>This exercise is the first of several posts I am writing, for those who want a mathematical and hands-on introduction to deep neural networks.Read the series of notes on the topic of “Sparse Autoencoder” in the UFLDL Tutorial.</summary>
     <published>2016-05-03T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -93,12 +92,12 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <title>Artificial general intelligence for the internet of things</title>
     <updated>2017-05-08T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;Non-consecutive header level increase; H1 to H3 [myst.header]&lt;/p&gt;
 &lt;p&gt;What do we need to achieve artificial general intelligence? How do we distribute intelligence over the internet-of-things? We’ll dive deep into the heart of the matter, which is machine reasoning. Following recent advances in mathematical foundations and homotopy type theory, we conclude that the crux is to formally separate intents from implementations. We can teach neural networks to understand these intents and to use a divide-and-conquer method for compiling these intents into implementations. Our goal is to outline a distributed strategy for accomplishing this moonshot.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://on-demand-gtc.gputechconf.com/gtcnew/sessionview.php?sessionName=s7239-artificial+general+intelligence+for+the+internet+of+things"&gt;GPU Technology Conference&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </content>
     <link href="https://shaoweilin.github.io/posts/2017-05-08-artificial-general-intelligence-for-the-internet-of-things/" rel="alternate"/>
-    <summary>Non-consecutive header level increase; H1 to H3 [myst.header]What do we need to achieve artificial general intelligence? How do we distribute intelligence over the internet-of-things? We’ll dive deep into the heart of the matter, which is machine reasoning. Following recent advances in mathematical foundations and homotopy type theory, we conclude that the crux is to formally separate intents from implementations. We can teach neural networks to understand these intents and to use a divide-and-conquer method for compiling these intents into implementations. Our goal is to outline a distributed strategy for accomplishing this moonshot.</summary>
+    <summary>What do we need to achieve artificial general intelligence? How do we distribute intelligence over the internet-of-things? We’ll dive deep into the heart of the matter, which is machine reasoning. Following recent advances in mathematical foundations and homotopy type theory, we conclude that the crux is to formally separate intents from implementations. We can teach neural networks to understand these intents and to use a divide-and-conquer method for compiling these intents into implementations. Our goal is to outline a distributed strategy for accomplishing this moonshot.GPU Technology Conference</summary>
     <published>2017-05-08T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -106,12 +105,12 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <title>Machine reasoning and deep spiking networks</title>
     <updated>2018-05-26T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;Non-consecutive header level increase; H1 to H3 [myst.header]&lt;/p&gt;
 &lt;p&gt;This is a short presentation which I shared at the Visions of AI Futures workshop organized by AI Singapore. I talked about the goal of building next-generation machine intelligence, through neural and symbolic modules that work seamlessly together to accomplish intuitive reasoning, as well as efficient, effective neural chips for every device.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.aisingapore.org/event/visions-of-ai-futures/"&gt;Visions of AI Futures&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </content>
     <link href="https://shaoweilin.github.io/posts/2018-05-26-machine-reasoning-and-deep-spiking-networks/" rel="alternate"/>
-    <summary>Non-consecutive header level increase; H1 to H3 [myst.header]This is a short presentation which I shared at the Visions of AI Futures workshop organized by AI Singapore. I talked about the goal of building next-generation machine intelligence, through neural and symbolic modules that work seamlessly together to accomplish intuitive reasoning, as well as efficient, effective neural chips for every device.</summary>
+    <summary>This is a short presentation which I shared at the Visions of AI Futures workshop organized by AI Singapore. I talked about the goal of building next-generation machine intelligence, through neural and symbolic modules that work seamlessly together to accomplish intuitive reasoning, as well as efficient, effective neural chips for every device.Visions of AI Futures</summary>
     <published>2018-05-26T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -120,12 +119,12 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <updated>2020-05-21T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
 &lt;p&gt;Logical frameworks are formal meta-languages for specifying different kinds of object theories (e.g. logical theories and type theories).&lt;/p&gt;
-&lt;p&gt;Non-consecutive header level increase; H1 to H3 [myst.header]&lt;/p&gt;
+&lt;p&gt;LF is a logical framework &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2020-05-21-logical-frameworks/#id62" title="Robert Harper, Furio Honsell, and Gordon Plotkin. A framework for defining logics. Journal of the ACM (JACM), 40(1):143–184, 1993."&gt;HHP93&lt;/a&gt;]&lt;/span&gt; that formalizes Martin-Lof’s logical framework and is itself based on type theory. It was designed to unify similarities between two forms of judgments.&lt;/p&gt;
 &lt;img alt="logical-framework-rules" src="../_images/logical-framework-rules.png" /&gt;
 &lt;/div&gt;
 </content>
     <link href="https://shaoweilin.github.io/posts/2020-05-21-logical-frameworks/" rel="alternate"/>
-    <summary>Logical frameworks are formal meta-languages for specifying different kinds of object theories (e.g. logical theories and type theories).Non-consecutive header level increase; H1 to H3 [myst.header]logical-framework-rules</summary>
+    <summary>Logical frameworks are formal meta-languages for specifying different kinds of object theories (e.g. logical theories and type theories).LF is a logical framework harper1993framework that formalizes Martin-Lof’s logical framework and is itself based on type theory. It was designed to unify similarities between two forms of judgments.logical-framework-rules</summary>
     <published>2020-05-21T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -173,11 +172,11 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <updated>2020-08-28T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
 &lt;p&gt;I’m writing a series of posts that will explore the connections between these topics. Here is a rough outline of the series, which I will fill in slowly over time.&lt;/p&gt;
-&lt;p&gt;Non-consecutive header level increase; H1 to H3 [myst.header]&lt;/p&gt;
+&lt;p&gt;&lt;span class="xref myst"&gt;Building foundations of information theory on relative information&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;
 </content>
     <link href="https://shaoweilin.github.io/posts/2020-08-28-motivic-information-path-integrals-and-spiking-networks/" rel="alternate"/>
-    <summary>I’m writing a series of posts that will explore the connections between these topics. Here is a rough outline of the series, which I will fill in slowly over time.Non-consecutive header level increase; H1 to H3 [myst.header]</summary>
+    <summary>I’m writing a series of posts that will explore the connections between these topics. Here is a rough outline of the series, which I will fill in slowly over time.Building foundations of information theory on relative information</summary>
     <published>2020-08-28T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -315,12 +314,12 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <title>Proofs as programs - challenges and strategies for program synthesis</title>
     <updated>2021-04-22T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;Non-consecutive header level increase; H1 to H3 [myst.header]&lt;/p&gt;
 &lt;p&gt;The Curry-Howard correspondence between proofs and programs suggests that we can exploit proof assistants for writing software. I will discuss the challenges behind a naïve execution of this idea, and some preliminary strategies for overcoming them. As an example, we will organize higher-order information in knowledge graphs using dependent type theory, and automate the answering of queries using a proof assistant. In another example, we will explore how decentralized proof assistants can enable mathematicians or programmers to work collaboratively on a theorem or application. If time permits, I will outline connections to canonical structures, reflection (ssreflect), transport, unification and universe management.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://topos.site/topos-colloquium/"&gt;Topos Institute Colloquium&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </content>
     <link href="https://shaoweilin.github.io/posts/2021-04-22-proofs-as-programs-challenges-and-strategies-for-program-synthesis/" rel="alternate"/>
-    <summary>Non-consecutive header level increase; H1 to H3 [myst.header]The Curry-Howard correspondence between proofs and programs suggests that we can exploit proof assistants for writing software. I will discuss the challenges behind a naïve execution of this idea, and some preliminary strategies for overcoming them. As an example, we will organize higher-order information in knowledge graphs using dependent type theory, and automate the answering of queries using a proof assistant. In another example, we will explore how decentralized proof assistants can enable mathematicians or programmers to work collaboratively on a theorem or application. If time permits, I will outline connections to canonical structures, reflection (ssreflect), transport, unification and universe management.</summary>
+    <summary>The Curry-Howard correspondence between proofs and programs suggests that we can exploit proof assistants for writing software. I will discuss the challenges behind a naïve execution of this idea, and some preliminary strategies for overcoming them. As an example, we will organize higher-order information in knowledge graphs using dependent type theory, and automate the answering of queries using a proof assistant. In another example, we will explore how decentralized proof assistants can enable mathematicians or programmers to work collaboratively on a theorem or application. If time permits, I will outline connections to canonical structures, reflection (ssreflect), transport, unification and universe management.Topos Institute Colloquium</summary>
     <published>2021-04-22T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -367,12 +366,12 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <title>All you need is relative information</title>
     <updated>2021-09-09T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;Non-consecutive header level increase; H1 to H3 [myst.header]&lt;/p&gt;
 &lt;p&gt;Relative information (relative entropy, KL divergence) and variational inference are powerful tools for deriving learning algorithms and their asymptotic properties, for both static systems and dynamic systems. The goal of this talk is to motivate a general online stochastic learning algorithm for stochastic processes with latent variables or memory, that provably converges under some regularity conditions. Please visit &lt;a class="reference external" href="https://bit.ly/3kmovql"&gt;https://bit.ly/3kmovql&lt;/a&gt; for details.&lt;/p&gt;
+&lt;p&gt;In the first half of the talk, we study static systems, viewing maximum likelihood and Bayesian inference through the lens of relative information. In particular, their generalization errors may be derived by resolving the singularities of relative information. We then frame the two learning algorithms as special cases of variational inference with different computational constraints.&lt;/p&gt;
 &lt;/div&gt;
 </content>
     <link href="https://shaoweilin.github.io/posts/2021-09-09-all-you-need-is-relative-information/" rel="alternate"/>
-    <summary>Non-consecutive header level increase; H1 to H3 [myst.header]Relative information (relative entropy, KL divergence) and variational inference are powerful tools for deriving learning algorithms and their asymptotic properties, for both static systems and dynamic systems. The goal of this talk is to motivate a general online stochastic learning algorithm for stochastic processes with latent variables or memory, that provably converges under some regularity conditions. Please visit https://bit.ly/3kmovql for details.</summary>
+    <summary>Relative information (relative entropy, KL divergence) and variational inference are powerful tools for deriving learning algorithms and their asymptotic properties, for both static systems and dynamic systems. The goal of this talk is to motivate a general online stochastic learning algorithm for stochastic processes with latent variables or memory, that provably converges under some regularity conditions. Please visit https://bit.ly/3kmovql for details.In the first half of the talk, we study static systems, viewing maximum likelihood and Bayesian inference through the lens of relative information. In particular, their generalization errors may be derived by resolving the singularities of relative information. We then frame the two learning algorithms as special cases of variational inference with different computational constraints.</summary>
     <published>2021-09-09T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -394,11 +393,11 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <updated>2022-01-22T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
 &lt;p&gt;We envision programming being done in top-down fashion. The human describes the goal (e.g. sorting), and the machine reduces it to smaller subgoals based on well-known heuristics (e.g. divide and conquer). The easier subgoals could even be fulfilled automatically. This top-down heuristics approach will be more amenable to machine learning. See my &lt;a class="reference download internal" download="" href="../_downloads/0d6c348fef680eeb3dae84dfe053bb53/2021-04-22-proofs-as-programs-challenges-and-strategies-for-program-synthesis.md"&gt;&lt;span class="xref download myst"&gt;Topos Institute talk&lt;/span&gt;&lt;/a&gt; for more info.&lt;/p&gt;
-&lt;p&gt;Non-consecutive header level increase; H1 to H3 [myst.header]&lt;/p&gt;
+&lt;p&gt;The problem with the current approach in type theory is as follows.&lt;/p&gt;
 &lt;/div&gt;
 </content>
     <link href="https://shaoweilin.github.io/posts/2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/" rel="alternate"/>
-    <summary>We envision programming being done in top-down fashion. The human describes the goal (e.g. sorting), and the machine reduces it to smaller subgoals based on well-known heuristics (e.g. divide and conquer). The easier subgoals could even be fulfilled automatically. This top-down heuristics approach will be more amenable to machine learning. See my Topos Institute talk for more info.Non-consecutive header level increase; H1 to H3 [myst.header]</summary>
+    <summary>We envision programming being done in top-down fashion. The human describes the goal (e.g. sorting), and the machine reduces it to smaller subgoals based on well-known heuristics (e.g. divide and conquer). The easier subgoals could even be fulfilled automatically. This top-down heuristics approach will be more amenable to machine learning. See my Topos Institute talk for more info.The problem with the current approach in type theory is as follows.</summary>
     <published>2022-01-22T00:00:00+00:00</published>
   </entry>
 </feed>

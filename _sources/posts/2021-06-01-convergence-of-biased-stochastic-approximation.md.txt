@@ -32,7 +32,7 @@ where $\xi(X_{n+1} \vert X_n)$ is a function of the environment $X_{n+1}, X_n$ t
 This post is a continuation from our [series](2020-08-28-motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 
 
-### How do we frame the problem in the language of {cite}`karimi2019non`?
+## How do we frame the problem in the language of {cite}`karimi2019non`?
 
 To prove the convergence of our [biased](2020-12-01-biased-stochastic-approximation/) stochastic approximation, we cannot apply the standard unbiased stochastic approximation theory of Robbins and Monro. We can however apply the work of {cite}`karimi2019non` which gives some guarantees for biased stochastic approximation involving Markov updates. In this section, we will now derive sufficient conditions for the [convergence](2020-12-01-biased-stochastic-approximation/#theorem-convergence-of-biased-stochastic-approximation) of our biased stochastic approximation.
 
@@ -168,7 +168,7 @@ $$\begin{array}{rl}
 Note that the _total expectation_ (with respect to the stationary distribution $\bar{\pi}_\lambda$ on $W_{n+1}$) of each correction term is zero by definition. Now, if the _conditional expectation_ (given the past $W_{n}, \ldots, W_1$) is zero, then the stochastic approximation is _unbiased_. Otherwise, the stochastic approximation is _biased_, which is the case for our problem. 
 
 
-### How do we prove convergence?
+## How do we prove convergence?
 
 First, we make some common assumptions about the step sizes and the stop time for the stochastic approximation.
 
@@ -264,7 +264,7 @@ then we can bound $\sum_{n=0}^T \eta_{n+1}\left\Vert g_\lambda(\lambda_n,\theta_
 
 Bounding the above two terms will require solutions of the Poisson equations for $E_\lambda(W_{n+1}; \lambda_n,\theta_{n})$ and $E_\theta(W_{n+1}; \lambda_n,\theta_{n}).$
 
-### What are the corresponding Poisson equations?
+## What are the corresponding Poisson equations?
 
 We study the first Poisson equation
 
@@ -452,7 +452,7 @@ where the maximum time $T$ was defined in [C3](#assumption-step-sizes-and-stop-t
 
 ----
 
-### Appendix : Poisson equation for discriminative model update
+## Appendix : Poisson equation for discriminative model update
 
 In this section, we derive the terms $Q_\lambda^t G_{\lambda}(w;\lambda,\theta)$ appearing in our candidate solution to the Poisson equation for the discriminative model update.
 
@@ -542,7 +542,7 @@ $$ \begin{array}{rl} &
 \displaystyle + \frac{\partial}{\partial \lambda} I_{\hat{Q}_\lambda\Vert P_\theta}(Z_t,X_t\vert Z_{t-1},X_{t-1})
 . \end{array}$$
 
-### References
+## References
 
 ```{bibliography}
 :filter: docname in docnames

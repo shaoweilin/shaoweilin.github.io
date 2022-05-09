@@ -26,7 +26,7 @@ Some personal resources for understanding and applying singular learning theory.
   - Macaulay2 library for computing RLCTs using Newton polyhedra
 ```
 
-### Motivic Invariants and Singularities
+## Motivic Invariants and Singularities
 
 My slides and problem sets on Singular Learning Theory from the [Motivic Invariants and Singularities](http://www3.nd.edu/~cmnd/programs/mis2013/) workshop at the Center for Mathematics at Notre Dame (May 2013).
 

@@ -39,7 +39,7 @@ There should also be a generalization of the Dyson formula or the path integral 
 
 [Freeman Dyson - Linking the ideas of Feynman, Schwinger and Tomanaga]<https://www.youtube.com/watch?v=i3RcN5UGwgI>
 
-### References
+## References
 
 ```{bibliography}
 :filter: docname in docnames

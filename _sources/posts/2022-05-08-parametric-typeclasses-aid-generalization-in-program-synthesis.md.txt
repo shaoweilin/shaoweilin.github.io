@@ -7,7 +7,7 @@ excerpts: 2
 
 We envision programming being done in top-down fashion. The human describes the goal (e.g. sorting), and the machine reduces it to smaller subgoals based on well-known heuristics (e.g. divide and conquer). The easier subgoals could even be fulfilled automatically. This top-down heuristics approach will be more amenable to machine learning. See my [Topos Institute talk](2021-04-22-proofs-as-programs-challenges-and-strategies-for-program-synthesis.md/) for more info.
 
-### Challenges in applying machine learning to program synthesis
+## Challenges in applying machine learning to program synthesis
 
 The problem with the current approach in type theory is as follows.
 
@@ -15,19 +15,19 @@ The problem with the current approach in type theory is as follows.
 
 2. When solving for a goal, the human/machine needs to remember the specific name (e.g. list_recursion) of the theorem to apply, rather than a general name (e.g. tree_recursion) parametrized by types/operators - parameters which can then be solved during proof search. As a result, a learning machine may think an algorithm works because of a specific function, rather than a more general principle.
 
-### Parametricity to the rescue
+## Parametricity to the rescue
 
 This second point about using parametric classes to organize types (e.g. reflexivity) and operators (e.g. equality) and to overload notation, is known as parametricity. This idea is not new and has been explored by both category theorists and type theorists.
 
 However, I believe Haskell was the first programming language to make serious use of classes (not the same as interfaces in object-oriented programming) to simplify code, and Coq and other proof assistants followed suit. As Bas Spitters mentioned in his paper, there is more we need to do to really make this a game changer, e.g. unification hints and rewriting/normalization rules.
 
-### Examples of parametric strategy
+## Examples of parametric strategy
 
 For example, equivalence between types can be captured by parametric classes, and the seminal paper *Changing Data Structures in Type Theory: A Study of Natural Numbers*(2000) by Magaud and Bertot {cite}`magaud2000changing` describes how to extend types equivalences to constructions involving those types in a systematic way. Automated transport along equivalences is important if we want to switch between unary and binary numbers for efficiency in automated programming.
 
 The 2021 paper *The Marriage of Univalence and Parametricity *(2021) by Tabareau, Tanter and Sozeau {cite}`tabareau2021marriage` summarizes the latest strategies in parametric transport, and relates them to univalent transport from homotopy type theory. There is also heavy use of classes in their approach.
 
-### Example - Noetherian induction
+## Example - Noetherian induction
 
 Let me end with a specific example involving well-founded relations and Noetherian induction.
 
@@ -89,11 +89,11 @@ End BinaryTree.
 
 In Coq, a similar proof-search is done when we use the tactic "reflexivity." The proof assistant searches for instances of the Reflexive class. Users can extend the Reflexive class with their own instances to make the tactic more powerful.
 
-### Conclusion
+## Conclusion
 
 You can see why such parametric strategies make problem-solving extremely compositional and top-down. They are inherently categorical (generalized algebraic theoretical to be precise) because the classes encode the relational properties of the types/operators but hides the underlying implementations. Proof-search at the top level can automatically trigger appropriate proof-search at lower levels.
 
-### References
+## References
 
 ```{bibliography}
 :filter: docname in docnames

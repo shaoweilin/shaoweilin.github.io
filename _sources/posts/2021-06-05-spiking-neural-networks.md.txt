@@ -14,7 +14,7 @@ This post is a continuation from our [series](2020-08-28-motivic-information-pat
 For background material in statistical learning, relative information, relative inference, process learning, mutable processes and biased stochastic approximation, you may follow the recommended sequence of posts under _Spiking Networks_ in this [outline](2020-08-28-motivic-information-path-integrals-and-spiking-networks/).
 
 
-### What are the states and parameters of the spiking network model?
+## What are the states and parameters of the spiking network model?
 
 Let $\mathcal{V}_X$ be a finite set representing the collection of random variables which capture the state of the environment or universe. For [simplicity](2021-03-23-biased-stochastic-approximation-with-mutable-processes/#what-do-we-assume-about-the-true-distribution-the-model-and-the-learning-objective), we assume that each of these variables have the same state space as the neurons in our model, so we will call them _environment neurons_ for convenience. We also assume that these neurons contain enough information about the environment such that its true distribution is Markov. A subset of these neurons will be observed for inference and learning; the other neurons could remain unobserved or inaccessible.
 
@@ -63,7 +63,7 @@ $$w^{(P)} := (w^{(P)}_{e} : e \in \mathcal{E}_P).$$
 
 We now describe the transitions allowed in our spiking network model. We require the states $(R_t,S_t)$ to be piecewise constant in time, with only finitely many transitions in any finite time interval. If we have a transition from $(R,S)$ to $(R',S'),$ and $S$ and $S'$ differ at exactly $k$ different neurons, then we say the transition is _$k$-hop_. For the environment process $\{X_t\},$ we will allow multi-hop transitions, even if such coupling of neurons is biologically rare or impossible.
 
-### What are the dynamics of the generative model?
+## What are the dynamics of the generative model?
 
 Suppose we fix the parameters $w^{(P)}$ and drop the $(P)$ annotation for convenience. We now define the generative model distribution $P_w$ as a $w$-controlled continuous-time [Markov](2020-10-14-path-integrals-and-continuous-time-markov-chains/#what-is-a-continuous-time-markov-chain) chain with rate kernel $\Gamma$ and a countable state space
 
@@ -115,7 +115,7 @@ $$\displaystyle
 
 As mentioned previously, models typically represent the spiking of the neurons as a deterministic process, with the neurons firing when the membrane potential exceeds a fixed threshold. In our model, the membrane potentials $U_{jt}$ should be interpreted as the mean potential of neuron $j$ conditioned on the history of incoming spikes and the strength of synaptic connections.
 
-### Why does the recovery rate vary inversely with the membrane potential in the refractory state?
+## Why does the recovery rate vary inversely with the membrane potential in the refractory state?
 
 We give three distinct reasons for introducing this inverse relationship in our model.
 
@@ -131,7 +131,7 @@ The second reason is direct biological evidence from sodium channel studies. Ear
 
 The third reason is indirect biological evidence from Spike Timing Dependent Plasticity (STDP). When the presynaptic neuron spikes _after_ the postsynaptic neuron, there is a weakening in the synaptic strength between the neurons. Moreover, as the time interval between the presynaptic and postsynaptic spikes become shorter, the amount of weakening becomes exponentially greater. If STDP is the neural network's algorithm for reinforcement learning, then this weakening must be reinforcing the effect that the synaptic weight has on reducing the recovery time. More precisely, as the interspike timings become shorter, the need to decrease the weights become greater, so decreasing the weights probably has the effect of further reducing the recovery time. In other words, decreasing the membrane potential increases the recovery rate. 
 
-### How does our spiking network model compare to others in the literature?
+## How does our spiking network model compare to others in the literature?
 
 Compared to the spiking network model of {cite}`rezende2014stochastic`, our model is different in the following ways.
 
@@ -143,7 +143,7 @@ Compared to the spiking network model of {cite}`rezende2014stochastic`, our mode
 
 4. Because of the inverse relationship between the membrane potential and refractory period, we will be able to prove directly that our learning updates satisfy the full Spike Timing Dependent Plasticity (STDP). In {cite}`pfister2006optimal`, the learning updates satisfy only a simplified kind of STDP unless some form of out-of-model regularization is added to the objective function.
 
-### What are the dynamics of the discriminative model?
+## What are the dynamics of the discriminative model?
 
 For the discriminative model $Q_w$ with parameters $w = w^{(Q)},$ we start by characterizing the true distribution $Q_*(X).$ Because $\{X_t\}$ is a continuous-time Markov chain by assumption, it has a rate kernel $\Gamma^{(X)}.$ Recall that we allow multi-hop transitions in $\{X_t\}$.
 
@@ -203,7 +203,7 @@ $$\rho_{*} = \sum_{j \in \mathcal{V}_Z} \rho_j.$$
 
 All other transition rates are defined to be zero.
 
-### How do we simulate the continuous-time spiking neural networks on a discrete-time digital computer?
+## How do we simulate the continuous-time spiking neural networks on a discrete-time digital computer?
 
 We have presented the discriminative model $Q$ and generative model $P$ as parametric spiking neural networks in continuous time. We have a relative inference [recipe](2021-06-01-convergence-of-biased-stochastic-approximation/) for online learning that updates the parameters in continuous time. 
 
@@ -321,7 +321,7 @@ The discrete-time Bernoulli model for the discriminative process is similarly de
  
 Finally, let the environment and memory components of $\hat{Y}_n$ be $\hat{X}_n$ and $\hat{Z}_n.$ Let $\{\hat{Q}\}$ and $\{\hat{P}\}$ denote the discrete-time discrimative and generative Bernoulli models derived from the continuous-time models $\{Q\}$ and $\{P\}$ respectively.
 
-### What are the learning updates in discrete time?
+## What are the learning updates in discrete time?
 
 Let $\bar{\pi}_*$ be the stationary distribution of the true distribution $\hat{Q}_*$ of the environment $\{\hat{X}_n\}$ and $\bar{\pi}_Q$ the stationary distribution of the full discriminative $\hat{Q}.$ Let $\bar{Q}$ be the discrete-time Markov chain with initial distribution $\bar{\pi}_Q$ and the same transition probabilities as $\hat{Q}.$
 
@@ -492,7 +492,7 @@ $$ \displaystyle
 
 where $N$ is the random stop time and $T$ is the maximum time horizon for the algorithm as described in this [post](2021-06-01-convergence-of-biased-stochastic-approximation/).
 
-### What are the learning updates in continuous time?
+## What are the learning updates in continuous time?
 
 In continuous time, we may derive the learning updates directly from our relative inference recipe, or in this case we may derive them from the discrete-time updates by considering the limit $\delta \rightarrow 0.$
 
@@ -652,7 +652,7 @@ $$ \displaystyle
 
 where $N$ and $T$ are continuous-time analogues of the random stop time and maximum time horizon described in this [post](2021-06-01-convergence-of-biased-stochastic-approximation/).
 
-### How nature could derive such a complex learning algorithm?
+## How nature could derive such a complex learning algorithm?
  
 In the previous section, we derived a statistically-sound online learning algorithm for updating parameters $w$ such that the given $w$-controlled stochastic process would eventually learn a good approximation of the true distribution.
 
@@ -666,7 +666,7 @@ The second is information theory. Information is energy. The relative informatio
 
 > "All these contrived, anthropomorphized explanations of purpose and survival and the like all seemed to just peel away, and the thing you were observing just was. In the sense that it could be no other way." 
 
-### Unfinished tasks
+## Unfinished tasks
 
 The $\alpha^{(Q)}_e$ updates described above may cause the learning algorithm to be numerically unstable and prevent the parameter updates from converging. This instability can be seen in the [condition](2021-06-01-convergence-of-biased-stochastic-approximation/) C5 that has to be satisfied by the corresponding Poisson equation solutions for the discriminative correction terms.
 
@@ -788,7 +788,7 @@ with the following analogous notations.
 
 The analogy is not perfect, since the rewards in our problem depend on generative parameters $w^{(P)}$ that also need to be optimized, but the proof ideas are similar.
 
-### References
+## References
 
 ```{bibliography}
 :filter: docname in docnames

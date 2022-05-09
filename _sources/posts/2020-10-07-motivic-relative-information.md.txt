@@ -9,7 +9,7 @@ So far, our definition of relative information studies the divergence between re
 
 This post is a continuation from our [series](2020-08-28-motivic-information-path-integrals-and-spiking-networks/) on spiking networks, path integrals and motivic information.
 
-### How do we define measures which are not real-valued?
+## How do we define measures which are not real-valued?
 
 When studying logical objects (described by logical formulas possibly involving existential or universal quantifiers) such as algebraic varieties or quantum events, we could be interested in more general measurements such as Euler characteristics or path integrals. These measurements could have values in some polynomial ring. Loosely we will call them _measures_, even though they do not satisfy the classical definition in measure theory.
 
@@ -41,7 +41,7 @@ It should also be possible to extend these Grothendieck rings to universes of ty
 
 It may seem advantageous to work directly in the Grothendieck ring $K_0(\mathcal{C})$ rather than with the motivic measure $\mu : K_0(\mathcal{C}) \rightarrow R.$ However, the Grothendieck ring is often not well-understood. For example, it was only discovered fairly recently that the Grothendieck ring of varieties $K_0(\mathcal{V}_k)$ has zero-divisors {cite}`poonen2002grothendieck`. On the other hand, a motivic measure lets us tease out a particular aspect of the Grothendieck ring.
 
-### How do we define the entropy of a variety with respect to its zeta function?
+## How do we define the entropy of a variety with respect to its zeta function?
 
 We follow the work of {cite}`marcolli2019motivic` and rewrite her results in our notation.
 
@@ -99,7 +99,7 @@ where $\#V(\mathbb{F}_{q^m})$ is the number of points of $V$ over the field exte
 
 $$H_V(z) = \displaystyle \sum_{m \geq 1} \left(\frac{1}{m}+z\log q \right) \#V(\mathbb{F}_{q^m})q^{-zm}.$$
 
-### How do we extend relative information to motivic measures?
+## How do we extend relative information to motivic measures?
 
 Suppose that we have a zeta function of the form
 
@@ -149,7 +149,7 @@ Note that the different measures discussed above should not be confused with eac
 2.  the motivic measure $\mu: K_0(\mathcal{V}_k) \rightarrow R$;
 3.  the motivic measure $Z_{\mu}:\mathcal{V}_k \rightarrow W(R)$ which maps varieties $V$ to some formal power series.
 
-### What is the relative information of morphisms between algebraic varieties?
+## What is the relative information of morphisms between algebraic varieties?
 
 We consider the relative information of proper morphisms and flat morphisms as described in §4.5-§4.7 of {cite}`marcolli2019motivic`.
 
@@ -191,7 +191,7 @@ so the relative information simplifies to
 
 $$I_{P_Y \Vert P_X \circ f^*}(t) =\displaystyle \log \frac{Z_X(t)}{Z_Y(t)} - (\delta-1) (t \log t) \frac{d}{dt} \log Z_Y(t).$$
 
-### References
+## References
 
 ```{bibliography}
 :filter: docname in docnames
