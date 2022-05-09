@@ -11,21 +11,21 @@ div.profile-pic img {
     display: block;
 }
 
-.bio-info {
+div.bio-info {
     margin: 1em auto;
     max-width: 220px;
 }
 
-.name {
+div.name {
     font-size: 1.5em;
 }
 
-.focusareas {
+div.focusareas {
     font-size: .9em;
     font-weight: bold;
 }
 
-.whatido {
+div.whatido {
     margin-top: 1em;
 }
 
@@ -106,26 +106,26 @@ main.bd-content h2 {
     font-size: 1.5em;
 }
 
-.bd-content .h3,h3 {
+main.bd-content h3 {
     font-size: 1.25em;
 }
 
-.bd-content .h4,h4 {
-    font-size: 1.125em;
+main.bd-content h4 {
+    font-size: 1.1em;
 }
 
-.bd-content .h5,h5 {
-    font-size: 1.0625em;
+main.bd-content h5 {
+    font-size: 1.05em;
 }
 
-.bd-content .h6,h6 {
+main.bd-content h6 {
     font-size: 1em;
 }
 
 /* Blog post comments */
-.gsc-reactions {
+/* .gsc-reactions {
     margin-top: 1em;
-}
+} */
 
 /* list-table style */
 table.tight-table {
@@ -134,7 +134,7 @@ table.tight-table {
     width: 80%;
 }
 
-.tight-table td {
+table.tight-table td {
     text-align: left;
     white-space: normal !important;
 }
