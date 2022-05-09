@@ -58,7 +58,8 @@ ul.postlist {
 }
 
 ul.postlist > li > p:first-child {
-    font-size: 1.1em;
+    font-style: normal;
+    font-size: 1.2em;
 }
 
 ul.postlist li + li {
@@ -67,7 +68,7 @@ ul.postlist li + li {
 
 ul.postlist li > p:first-child > a {
     font-style: normal;
-    font-size: 1.1em;
+    font-size: 1.2em;
 }
 
 /* Timeline CSS */
