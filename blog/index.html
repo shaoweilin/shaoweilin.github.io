@@ -163,7 +163,7 @@
 <ul>
    
   <li>
-    <a href="2022/">2022 (2)</a>
+    <a href="2022/">2022 (3)</a>
   </li>
     
   <li>
@@ -223,6 +223,29 @@
      All  Posts 
   </h1>
    
+
+  <div class="section ablog-post">
+    <h2 class="ablog-post-title">
+      <a href="../posts/2022-05-28-likelihood-greed-and-temperature-in-sequence-learning/"
+        >Likelihood, greed and temperature in sequence learning</a
+      >
+    </h2>
+
+    <ul class="ablog-archive">
+      <li>
+         <i class="fa fa-calendar"></i> 28 May 2022 
+      </li>
+            
+    </ul>
+    <div class="ablog-post-excerpt docutils container">
+<p>Imagine we have a model <span class="math notranslate nohighlight">\(D(w)\)</span> of a dynamical system with states <span class="math notranslate nohighlight">\(s \in S,\)</span> that is parametrized by some weight <span class="math notranslate nohighlight">\(w \in W\)</span>. Each state <span class="math notranslate nohighlight">\(s\)</span> comes with a set <span class="math notranslate nohighlight">\(N(s) \subset S\)</span> of neighbors and an associated energy function <span class="math notranslate nohighlight">\(E(s'|s,w) \in \mathbb{R}\)</span> that assigns an energy to each neighbor <span class="math notranslate nohighlight">\(s' \in N(s)\)</span>.</p>
+<p>For simplicity, we assume the following dynamics: when the system is in state <span class="math notranslate nohighlight">\(s\)</span>, it picks the neighbor <span class="math notranslate nohighlight">\(s'\)</span> with the lowest energy <span class="math notranslate nohighlight">\(E(s'|s,w)\)</span> and jumps to state <span class="math notranslate nohighlight">\(s'\)</span> in the next time step (more to come later about what we mean by <em>time step</em>).</p>
+</div>
+
+    <p class="ablog-post-expand"><a href="../posts/2022-05-28-likelihood-greed-and-temperature-in-sequence-learning/"><em>Read more ...</em></a></p>
+    <hr />
+  </div>
+  
 
   <div class="section ablog-post">
     <h2 class="ablog-post-title">
@@ -330,7 +353,7 @@
             
     </ul>
     <div class="ablog-post-excerpt docutils container">
-<p>Using techniques from <span class="xref myst">biased</span> stochastic approximation <span id="id1">[<a class="reference internal" href="../posts/2021-06-05-spiking-neural-networks/#id40" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span>, we prove under some regularity conditions the convergence of the online learning algorithm proposed <span class="xref myst">previously</span> for mutable Markov processes.</p>
+<p>Using techniques from <span class="xref myst">biased</span> stochastic approximation <span id="id1">[<a class="reference internal" href="../posts/2021-06-05-spiking-neural-networks/#id43" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span>, we prove under some regularity conditions the convergence of the online learning algorithm proposed <span class="xref myst">previously</span> for mutable Markov processes.</p>
 <p>Recall that the algorithm is described by the following updates.</p>
 </div>
 
@@ -353,7 +376,7 @@
             
     </ul>
     <div class="ablog-post-excerpt docutils container">
-<p>One of the deepest results in quantum field theory, to me, is the Dyson formula <span id="id1">[<a class="reference internal" href="../posts/2021-05-10-path-integrals-and-the-dyson-formula/#id21" title="nLab. Dyson formula. \url https://ncatlab.org/nlab/show/Dyson+formula. Accessed: 2021.">nLa</a>]</span>. It describes the solution to the differential equation</p>
+<p>One of the deepest results in quantum field theory, to me, is the Dyson formula <span id="id1">[<a class="reference internal" href="../posts/2021-05-10-path-integrals-and-the-dyson-formula/#id24" title="nLab. Dyson formula. \url https://ncatlab.org/nlab/show/Dyson+formula. Accessed: 2021.">nLa</a>]</span>. It describes the solution to the differential equation</p>
 <p>in terms of the exponential of the path integral of the operator <span class="math notranslate nohighlight">\(A(t)\)</span>,</p>
 </div>
 
@@ -468,7 +491,7 @@
             
     </ul>
     <div class="ablog-post-excerpt docutils container">
-<p>We explore the convergence of continuous-time ordinary differential equations and their discrete-time analogs, such as stochastic approximation and gradient descent, through the lens of Lyapunov theory <span id="id1">[<a class="reference internal" href="../posts/2020-12-01-biased-stochastic-approximation/#id36" title="Léon Bottou and others. Online learning and stochastic approximations. On-line learning in neural networks, 17(9):142, 1998.">B+98</a>]</span> <span id="id2">[<a class="reference internal" href="../posts/2020-12-01-biased-stochastic-approximation/#id33" title="Yingshen Li and Mark Rowland. Stochastic approximation theory (slides). \url http://yingzhenli.net/home/pdf/SA.pdf, 2015.">LR15</a>]</span>. From this perspective, we will study biased stochastic approximation <span id="id3">[<a class="reference internal" href="../posts/2021-06-05-spiking-neural-networks/#id40" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span> where the expectation of the stochastic updates conditioned on the past (which we call the <em>conditional expectation</em>) is not the same as the expectation of the stochastic updates under the stationary distribution (which we call the <em>total expectation</em>).</p>
+<p>We explore the convergence of continuous-time ordinary differential equations and their discrete-time analogs, such as stochastic approximation and gradient descent, through the lens of Lyapunov theory <span id="id1">[<a class="reference internal" href="../posts/2020-12-01-biased-stochastic-approximation/#id39" title="Léon Bottou and others. Online learning and stochastic approximations. On-line learning in neural networks, 17(9):142, 1998.">B+98</a>]</span> <span id="id2">[<a class="reference internal" href="../posts/2020-12-01-biased-stochastic-approximation/#id36" title="Yingshen Li and Mark Rowland. Stochastic approximation theory (slides). \url http://yingzhenli.net/home/pdf/SA.pdf, 2015.">LR15</a>]</span>. From this perspective, we will study biased stochastic approximation <span id="id3">[<a class="reference internal" href="../posts/2021-06-05-spiking-neural-networks/#id43" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span> where the expectation of the stochastic updates conditioned on the past (which we call the <em>conditional expectation</em>) is not the same as the expectation of the stochastic updates under the stationary distribution (which we call the <em>total expectation</em>).</p>
 <p>This post is a continuation from our <span class="xref myst">series</span> on spiking networks, path integrals and motivic information.</p>
 </div>
 
@@ -606,7 +629,7 @@
             
     </ul>
     <div class="ablog-post-excerpt docutils container">
-<p>The relative information <span id="id1">[<a class="reference internal" href="../posts/2022-01-22-information-topos-theory-motivation/#id55" title="JC Baez and T Fritz. A bayesian characterization of relative entropy. Theory and Applications of Categories, 29:422–456, 2014.">BF14</a>]</span> (also known as relative entropy or Kullback-Leibler divergence) is an important object in information theory for measuring how far a probability measure <span class="math notranslate nohighlight">\(Q\)</span> is from another probability measure <span class="math notranslate nohighlight">\(P.\)</span> Here, <span class="math notranslate nohighlight">\(Q\)</span> is usually the true distribution of some real phenomenon, and <span class="math notranslate nohighlight">\(P\)</span> is some model distribution.</p>
+<p>The relative information <span id="id1">[<a class="reference internal" href="../posts/2022-01-22-information-topos-theory-motivation/#id58" title="JC Baez and T Fritz. A bayesian characterization of relative entropy. Theory and Applications of Categories, 29:422–456, 2014.">BF14</a>]</span> (also known as relative entropy or Kullback-Leibler divergence) is an important object in information theory for measuring how far a probability measure <span class="math notranslate nohighlight">\(Q\)</span> is from another probability measure <span class="math notranslate nohighlight">\(P.\)</span> Here, <span class="math notranslate nohighlight">\(Q\)</span> is usually the true distribution of some real phenomenon, and <span class="math notranslate nohighlight">\(P\)</span> is some model distribution.</p>
 <p>In this post, we emphasize that the relative information is fundamental in the sense that all other interesting information-theoretic objects may be derived from it. We also outline how relative information can be defined without probability mass functions or probability density functions, or even in the absence of absolute continuity.</p>
 </div>
 
@@ -722,7 +745,7 @@
     </ul>
     <div class="ablog-post-excerpt docutils container">
 <p>Logical frameworks are formal meta-languages for specifying different kinds of object theories (e.g. logical theories and type theories).</p>
-<p>LF is a logical framework <span id="id1">[<a class="reference internal" href="../posts/2020-05-21-logical-frameworks/#id62" title="Robert Harper, Furio Honsell, and Gordon Plotkin. A framework for defining logics. Journal of the ACM (JACM), 40(1):143–184, 1993.">HHP93</a>]</span> that formalizes Martin-Lof’s logical framework and is itself based on type theory. It was designed to unify similarities between two forms of judgments.</p>
+<p>LF is a logical framework <span id="id1">[<a class="reference internal" href="../posts/2020-05-21-logical-frameworks/#id65" title="Robert Harper, Furio Honsell, and Gordon Plotkin. A framework for defining logics. Journal of the ACM (JACM), 40(1):143–184, 1993.">HHP93</a>]</span> that formalizes Martin-Lof’s logical framework and is itself based on type theory. It was designed to unify similarities between two forms of judgments.</p>
 <img alt="logical-framework-rules" src="../_images/logical-framework-rules.png" />
 </div>
 

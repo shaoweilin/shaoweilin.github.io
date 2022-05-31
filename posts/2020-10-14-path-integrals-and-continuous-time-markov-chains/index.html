@@ -186,6 +186,12 @@
 <ul>
    
   <li>
+    <a href="../2022-05-28-likelihood-greed-and-temperature-in-sequence-learning/"
+      >28 May - Likelihood, greed and temperature in sequence learning</a
+    >
+  </li>
+  
+  <li>
     <a href="../2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/"
       >22 January - Parametric typeclasses aid generalization in program synthesis</a
     >
@@ -209,12 +215,6 @@
     >
   </li>
   
-  <li>
-    <a href="../2021-06-01-convergence-of-biased-stochastic-approximation/"
-      >01 June - Convergence of biased stochastic approximation</a
-    >
-  </li>
-  
 </ul>
 
 <h3>
@@ -223,7 +223,7 @@
 <ul>
    
   <li>
-    <a href="../../blog/2022/">2022 (2)</a>
+    <a href="../../blog/2022/">2022 (3)</a>
   </li>
     
   <li>
@@ -332,7 +332,7 @@
 <p>This post is a continuation from our <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">series</span></a> on spiking networks, path integrals and motivic information.</p>
 <div class="section" id="what-is-a-stochastic-process">
 <h2>What is a stochastic process?<a class="headerlink" href="#what-is-a-stochastic-process" title="Permalink to this headline">#</a></h2>
-<p>A stochastic process <span id="id1">[<a class="reference internal" href="#id41" title="Sergio Albeverio, Sonia Mazzucchi, and Zdzislaw Brzezniak. Probabilistic integrals: mathematical aspects. Scholarpedia, 12(5):10429, 2017.">AMB17</a>]</span> on a measure space <span class="math notranslate nohighlight">\((\Omega, \mathcal{A},P)\)</span> indexed by a set <span class="math notranslate nohighlight">\(I\)</span> is a family <span class="math notranslate nohighlight">\(\{X_t \}_{t \in I}\)</span> of random variables <span class="math notranslate nohighlight">\(X_t : \Omega \rightarrow R\)</span> on <span class="math notranslate nohighlight">\(\Omega,\)</span> where <span class="math notranslate nohighlight">\((R\)</span> is some measure space. This allows us to compute <em>finite joint distributions</em> of the form</p>
+<p>A stochastic process <span id="id1">[<a class="reference internal" href="#id44" title="Sergio Albeverio, Sonia Mazzucchi, and Zdzislaw Brzezniak. Probabilistic integrals: mathematical aspects. Scholarpedia, 12(5):10429, 2017.">AMB17</a>]</span> on a measure space <span class="math notranslate nohighlight">\((\Omega, \mathcal{A},P)\)</span> indexed by a set <span class="math notranslate nohighlight">\(I\)</span> is a family <span class="math notranslate nohighlight">\(\{X_t \}_{t \in I}\)</span> of random variables <span class="math notranslate nohighlight">\(X_t : \Omega \rightarrow R\)</span> on <span class="math notranslate nohighlight">\(\Omega,\)</span> where <span class="math notranslate nohighlight">\((R\)</span> is some measure space. This allows us to compute <em>finite joint distributions</em> of the form</p>
 <div class="math notranslate nohighlight">
 \[P(\{\omega \in \Omega \vert X_{t_1}(\omega) \in \mathcal{A}_1, \ldots, X_{t_n}(\omega) \in \mathcal{A}_n\})\]</div>
 <p>for some finite set <span class="math notranslate nohighlight">\(\{t_1, \ldots, t_n\}\)</span> of indices and some measurable subsets <span class="math notranslate nohighlight">\(\mathcal{A}_1, \ldots, \mathcal{A}_n\)</span> of <span class="math notranslate nohighlight">\(R.\)</span></p>
@@ -400,8 +400,8 @@
 <div class="math notranslate nohighlight">
 \[\displaystyle Z^{-1} \int_{R^I} f(\gamma) e^{-S(\gamma)} D\gamma.\]</div>
 <p>Of course, these path integrals are not well-defined in the Lebesgue sense and should be interpreted as alternative notations for usual path integrals over the Wiener measure.</p>
-<p>There has been a lot of work <span id="id2">[<a class="reference internal" href="#id42" title="Sergio Albeverio and Sonia Mazzucchi. Path integral: mathematical aspects. Scholarpedia, 6(1):8832, 2011.">AM11</a>]</span> <span id="id3">[<a class="reference internal" href="#id41" title="Sergio Albeverio, Sonia Mazzucchi, and Zdzislaw Brzezniak. Probabilistic integrals: mathematical aspects. Scholarpedia, 12(5):10429, 2017.">AMB17</a>]</span> in the last few decades on formalizing these path measures and path integrals.</p>
-<p>Most notable was the breakthrough on understanding line integrals such as <span class="math notranslate nohighlight">\(S(\gamma)\)</span> driven by a fixed path <span class="math notranslate nohighlight">\(\gamma\)</span>, using Martin Hairer’s theory of regularity structures which was inspired by rough path theory <span id="id4">[<a class="reference internal" href="../2020-12-01-biased-stochastic-approximation/#id42" title="Martin Hairer. A theory of regularity structures. Inventiones mathematicae, 198(2):269–504, 2014.">Hai14</a>]</span>. Path integrals of these line integrals over some path measure can then be defined formally using the Lyon-Ito map from rough path theory without a need to define any densities with respect to a “Lebesgue path measure” <span id="id5">[<a class="reference internal" href="#id38" title="Yuzuru Inahama. Rough path theory and stochastic calculus. Sugaku Expositions, 32(1):113–136, 2019.">Ina19</a>]</span>. Thus, line integrals and path integrals are decoupled.</p>
+<p>There has been a lot of work <span id="id2">[<a class="reference internal" href="#id45" title="Sergio Albeverio and Sonia Mazzucchi. Path integral: mathematical aspects. Scholarpedia, 6(1):8832, 2011.">AM11</a>]</span> <span id="id3">[<a class="reference internal" href="#id44" title="Sergio Albeverio, Sonia Mazzucchi, and Zdzislaw Brzezniak. Probabilistic integrals: mathematical aspects. Scholarpedia, 12(5):10429, 2017.">AMB17</a>]</span> in the last few decades on formalizing these path measures and path integrals.</p>
+<p>Most notable was the breakthrough on understanding line integrals such as <span class="math notranslate nohighlight">\(S(\gamma)\)</span> driven by a fixed path <span class="math notranslate nohighlight">\(\gamma\)</span>, using Martin Hairer’s theory of regularity structures which was inspired by rough path theory <span id="id4">[<a class="reference internal" href="../2020-12-01-biased-stochastic-approximation/#id45" title="Martin Hairer. A theory of regularity structures. Inventiones mathematicae, 198(2):269–504, 2014.">Hai14</a>]</span>. Path integrals of these line integrals over some path measure can then be defined formally using the Lyon-Ito map from rough path theory without a need to define any densities with respect to a “Lebesgue path measure” <span id="id5">[<a class="reference internal" href="#id41" title="Yuzuru Inahama. Rough path theory and stochastic calculus. Sugaku Expositions, 32(1):113–136, 2019.">Ina19</a>]</span>. Thus, line integrals and path integrals are decoupled.</p>
 <p>Absorbing the normalization constant <span class="math notranslate nohighlight">\(Z^{-1}\)</span> into the action <span class="math notranslate nohighlight">\(S(\gamma)\)</span> for convenience, the path integral</p>
 <div class="math notranslate nohighlight">
 \[\displaystyle F(s) = \int_{R^I} e^{-s S(\gamma)} f(\gamma) D\gamma\]</div>
@@ -450,7 +450,7 @@
 \mathbb{P}[N=n] = \displaystyle e^{-\lambda T} \frac{(\lambda T)^n}{n!}.
 \]</div>
 <p>Given <span class="math notranslate nohighlight">\(N,\)</span> we then choose <span class="math notranslate nohighlight">\(N\)</span> observations uniformly within the interval <span class="math notranslate nohighlight">\([0,T].\)</span> The probabilities of particular observations at these <span class="math notranslate nohighlight">\(N\)</span> timings are then given by the cylinder probabilities described earlier in this post.</p>
-<p>As we let the observation rate <span class="math notranslate nohighlight">\(\lambda\)</span> tend to infinity, we get better approximations of the continuous-time Markov chain and the limits of integrals should also behave well. This strategy also works well for path integrals in relativistic quantum theory, e.g. see §5 of <span id="id6">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id49" title="Tepper L Gill and WW Zachary. Foundations for relativistic quantum theory. i. feynman’s operator calculus and the dyson conjectures. Journal of Mathematical Physics, 43(1):69–93, 2002.">GZ02</a>]</span>.</p>
+<p>As we let the observation rate <span class="math notranslate nohighlight">\(\lambda\)</span> tend to infinity, we get better approximations of the continuous-time Markov chain and the limits of integrals should also behave well. This strategy also works well for path integrals in relativistic quantum theory, e.g. see §5 of <span id="id6">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id52" title="Tepper L Gill and WW Zachary. Foundations for relativistic quantum theory. i. feynman’s operator calculus and the dyson conjectures. Journal of Mathematical Physics, 43(1):69–93, 2002.">GZ02</a>]</span>.</p>
 <p>The second way involving transition timings works only when each state <span class="math notranslate nohighlight">\(X(t)\)</span> of the stochastic process is unchanging for some nonzero time interval. This is true for continuous-time Markov chains with finite or countable state space <span class="math notranslate nohighlight">\(\mathcal{X}\)</span>. In our discussion, we will trivially allow transitions to be from a state <span class="math notranslate nohighlight">\(x\)</span> back to itself for the sake of generality.</p>
 <p>Suppose that the Markov chain with state <span class="math notranslate nohighlight">\(X(t) = x \in \mathcal{X}\)</span> at time <span class="math notranslate nohighlight">\(t\)</span> has a Poisson rate <span class="math notranslate nohighlight">\(F_{xy}\)</span> of transitioning to some state <span class="math notranslate nohighlight">\(y \in \mathcal{X},\)</span> where <span class="math notranslate nohighlight">\(y\)</span> is allowed to be equal to <span class="math notranslate nohighlight">\(x.\)</span> Then, the rate transition matrix <span class="math notranslate nohighlight">\((\Gamma_{xy})\)</span> has entries <span class="math notranslate nohighlight">\(\Gamma_{xy} = F_{xy}\)</span> for <span class="math notranslate nohighlight">\(y \neq x\)</span>, and <span class="math notranslate nohighlight">\(\Gamma_{xx} = -\sum_{y\neq x} F_{xy}\)</span> otherwise. At state <span class="math notranslate nohighlight">\(x\)</span>, the Poisson rate to any transition event is</p>
 <div class="math notranslate nohighlight">
@@ -464,19 +464,19 @@
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <div class="docutils container" id="id7">
 <dl class="citation">
-<dt class="label" id="id42"><span class="brackets"><a class="fn-backref" href="#id2">AM11</a></span></dt>
+<dt class="label" id="id45"><span class="brackets"><a class="fn-backref" href="#id2">AM11</a></span></dt>
 <dd><p>Sergio Albeverio and Sonia Mazzucchi. Path integral: mathematical aspects. <em>Scholarpedia</em>, 6(1):8832, 2011.</p>
 </dd>
-<dt class="label" id="id41"><span class="brackets">AMB17</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id3">2</a>)</span></dt>
+<dt class="label" id="id44"><span class="brackets">AMB17</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id3">2</a>)</span></dt>
 <dd><p>Sergio Albeverio, Sonia Mazzucchi, and Zdzislaw Brzezniak. Probabilistic integrals: mathematical aspects. <em>Scholarpedia</em>, 12(5):10429, 2017.</p>
 </dd>
-<dt class="label" id="id40"><span class="brackets"><a class="fn-backref" href="#id6">GZ02</a></span></dt>
+<dt class="label" id="id43"><span class="brackets"><a class="fn-backref" href="#id6">GZ02</a></span></dt>
 <dd><p>Tepper L Gill and WW Zachary. Foundations for relativistic quantum theory. i. feynman’s operator calculus and the dyson conjectures. <em>Journal of Mathematical Physics</em>, 43(1):69–93, 2002.</p>
 </dd>
-<dt class="label" id="id39"><span class="brackets"><a class="fn-backref" href="#id4">Hai14</a></span></dt>
+<dt class="label" id="id42"><span class="brackets"><a class="fn-backref" href="#id4">Hai14</a></span></dt>
 <dd><p>Martin Hairer. A theory of regularity structures. <em>Inventiones mathematicae</em>, 198(2):269–504, 2014.</p>
 </dd>
-<dt class="label" id="id38"><span class="brackets"><a class="fn-backref" href="#id5">Ina19</a></span></dt>
+<dt class="label" id="id41"><span class="brackets"><a class="fn-backref" href="#id5">Ina19</a></span></dt>
 <dd><p>Yuzuru Inahama. Rough path theory and stochastic calculus. <em>Sugaku Expositions</em>, 32(1):113–136, 2019.</p>
 </dd>
 </dl>

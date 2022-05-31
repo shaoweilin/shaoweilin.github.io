@@ -163,6 +163,12 @@
 <ul>
    
   <li>
+    <a href="../../posts/2022-05-28-likelihood-greed-and-temperature-in-sequence-learning/"
+      >28 May - Likelihood, greed and temperature in sequence learning</a
+    >
+  </li>
+  
+  <li>
     <a href="../../posts/2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/"
       >22 January - Parametric typeclasses aid generalization in program synthesis</a
     >
@@ -186,12 +192,6 @@
     >
   </li>
   
-  <li>
-    <a href="../../posts/2021-06-01-convergence-of-biased-stochastic-approximation/"
-      >01 June - Convergence of biased stochastic approximation</a
-    >
-  </li>
-  
 </ul>
 
 <h3>
@@ -200,7 +200,7 @@
 <ul>
    
   <li>
-    <a href="#">2022 (2)</a>
+    <a href="#">2022 (3)</a>
   </li>
     
   <li>
@@ -260,6 +260,29 @@
      Posted in  2022 
   </h1>
    
+
+  <div class="section ablog-post">
+    <h2 class="ablog-post-title">
+      <a href="../../posts/2022-05-28-likelihood-greed-and-temperature-in-sequence-learning/"
+        >Likelihood, greed and temperature in sequence learning</a
+      >
+    </h2>
+
+    <ul class="ablog-archive">
+      <li>
+         <i class="fa fa-calendar"></i> 28 May 2022 
+      </li>
+            
+    </ul>
+    <div class="ablog-post-excerpt docutils container">
+<p>Imagine we have a model <span class="math notranslate nohighlight">\(D(w)\)</span> of a dynamical system with states <span class="math notranslate nohighlight">\(s \in S,\)</span> that is parametrized by some weight <span class="math notranslate nohighlight">\(w \in W\)</span>. Each state <span class="math notranslate nohighlight">\(s\)</span> comes with a set <span class="math notranslate nohighlight">\(N(s) \subset S\)</span> of neighbors and an associated energy function <span class="math notranslate nohighlight">\(E(s'|s,w) \in \mathbb{R}\)</span> that assigns an energy to each neighbor <span class="math notranslate nohighlight">\(s' \in N(s)\)</span>.</p>
+<p>For simplicity, we assume the following dynamics: when the system is in state <span class="math notranslate nohighlight">\(s\)</span>, it picks the neighbor <span class="math notranslate nohighlight">\(s'\)</span> with the lowest energy <span class="math notranslate nohighlight">\(E(s'|s,w)\)</span> and jumps to state <span class="math notranslate nohighlight">\(s'\)</span> in the next time step (more to come later about what we mean by <em>time step</em>).</p>
+</div>
+
+    <p class="ablog-post-expand"><a href="../../posts/2022-05-28-likelihood-greed-and-temperature-in-sequence-learning/"><em>Read more ...</em></a></p>
+    <hr />
+  </div>
+  
 
   <div class="section ablog-post">
     <h2 class="ablog-post-title">

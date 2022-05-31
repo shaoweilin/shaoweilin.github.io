@@ -163,6 +163,12 @@
 <ul>
    
   <li>
+    <a href="../../posts/2022-05-28-likelihood-greed-and-temperature-in-sequence-learning/"
+      >28 May - Likelihood, greed and temperature in sequence learning</a
+    >
+  </li>
+  
+  <li>
     <a href="../../posts/2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/"
       >22 January - Parametric typeclasses aid generalization in program synthesis</a
     >
@@ -186,12 +192,6 @@
     >
   </li>
   
-  <li>
-    <a href="../../posts/2021-06-01-convergence-of-biased-stochastic-approximation/"
-      >01 June - Convergence of biased stochastic approximation</a
-    >
-  </li>
-  
 </ul>
 
 <h3>
@@ -200,7 +200,7 @@
 <ul>
    
   <li>
-    <a href="../2022/">2022 (2)</a>
+    <a href="../2022/">2022 (3)</a>
   </li>
     
   <li>
@@ -275,7 +275,7 @@
             
     </ul>
     <div class="ablog-post-excerpt docutils container">
-<p>We explore the convergence of continuous-time ordinary differential equations and their discrete-time analogs, such as stochastic approximation and gradient descent, through the lens of Lyapunov theory <span id="id1">[<a class="reference internal" href="../../posts/2020-12-01-biased-stochastic-approximation/#id36" title="Léon Bottou and others. Online learning and stochastic approximations. On-line learning in neural networks, 17(9):142, 1998.">B+98</a>]</span> <span id="id2">[<a class="reference internal" href="../../posts/2020-12-01-biased-stochastic-approximation/#id33" title="Yingshen Li and Mark Rowland. Stochastic approximation theory (slides). \url http://yingzhenli.net/home/pdf/SA.pdf, 2015.">LR15</a>]</span>. From this perspective, we will study biased stochastic approximation <span id="id3">[<a class="reference internal" href="../../posts/2021-06-05-spiking-neural-networks/#id40" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span> where the expectation of the stochastic updates conditioned on the past (which we call the <em>conditional expectation</em>) is not the same as the expectation of the stochastic updates under the stationary distribution (which we call the <em>total expectation</em>).</p>
+<p>We explore the convergence of continuous-time ordinary differential equations and their discrete-time analogs, such as stochastic approximation and gradient descent, through the lens of Lyapunov theory <span id="id1">[<a class="reference internal" href="../../posts/2020-12-01-biased-stochastic-approximation/#id39" title="Léon Bottou and others. Online learning and stochastic approximations. On-line learning in neural networks, 17(9):142, 1998.">B+98</a>]</span> <span id="id2">[<a class="reference internal" href="../../posts/2020-12-01-biased-stochastic-approximation/#id36" title="Yingshen Li and Mark Rowland. Stochastic approximation theory (slides). \url http://yingzhenli.net/home/pdf/SA.pdf, 2015.">LR15</a>]</span>. From this perspective, we will study biased stochastic approximation <span id="id3">[<a class="reference internal" href="../../posts/2021-06-05-spiking-neural-networks/#id43" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span> where the expectation of the stochastic updates conditioned on the past (which we call the <em>conditional expectation</em>) is not the same as the expectation of the stochastic updates under the stationary distribution (which we call the <em>total expectation</em>).</p>
 <p>This post is a continuation from our <span class="xref myst">series</span> on spiking networks, path integrals and motivic information.</p>
 </div>
 
@@ -413,7 +413,7 @@
             
     </ul>
     <div class="ablog-post-excerpt docutils container">
-<p>The relative information <span id="id1">[<a class="reference internal" href="../../posts/2022-01-22-information-topos-theory-motivation/#id55" title="JC Baez and T Fritz. A bayesian characterization of relative entropy. Theory and Applications of Categories, 29:422–456, 2014.">BF14</a>]</span> (also known as relative entropy or Kullback-Leibler divergence) is an important object in information theory for measuring how far a probability measure <span class="math notranslate nohighlight">\(Q\)</span> is from another probability measure <span class="math notranslate nohighlight">\(P.\)</span> Here, <span class="math notranslate nohighlight">\(Q\)</span> is usually the true distribution of some real phenomenon, and <span class="math notranslate nohighlight">\(P\)</span> is some model distribution.</p>
+<p>The relative information <span id="id1">[<a class="reference internal" href="../../posts/2022-01-22-information-topos-theory-motivation/#id58" title="JC Baez and T Fritz. A bayesian characterization of relative entropy. Theory and Applications of Categories, 29:422–456, 2014.">BF14</a>]</span> (also known as relative entropy or Kullback-Leibler divergence) is an important object in information theory for measuring how far a probability measure <span class="math notranslate nohighlight">\(Q\)</span> is from another probability measure <span class="math notranslate nohighlight">\(P.\)</span> Here, <span class="math notranslate nohighlight">\(Q\)</span> is usually the true distribution of some real phenomenon, and <span class="math notranslate nohighlight">\(P\)</span> is some model distribution.</p>
 <p>In this post, we emphasize that the relative information is fundamental in the sense that all other interesting information-theoretic objects may be derived from it. We also outline how relative information can be defined without probability mass functions or probability density functions, or even in the absence of absolute continuity.</p>
 </div>
 
@@ -529,7 +529,7 @@
     </ul>
     <div class="ablog-post-excerpt docutils container">
 <p>Logical frameworks are formal meta-languages for specifying different kinds of object theories (e.g. logical theories and type theories).</p>
-<p>LF is a logical framework <span id="id1">[<a class="reference internal" href="../../posts/2020-05-21-logical-frameworks/#id62" title="Robert Harper, Furio Honsell, and Gordon Plotkin. A framework for defining logics. Journal of the ACM (JACM), 40(1):143–184, 1993.">HHP93</a>]</span> that formalizes Martin-Lof’s logical framework and is itself based on type theory. It was designed to unify similarities between two forms of judgments.</p>
+<p>LF is a logical framework <span id="id1">[<a class="reference internal" href="../../posts/2020-05-21-logical-frameworks/#id65" title="Robert Harper, Furio Honsell, and Gordon Plotkin. A framework for defining logics. Journal of the ACM (JACM), 40(1):143–184, 1993.">HHP93</a>]</span> that formalizes Martin-Lof’s logical framework and is itself based on type theory. It was designed to unify similarities between two forms of judgments.</p>
 <img alt="logical-framework-rules" src="../../_images/logical-framework-rules.png" />
 </div>
 
