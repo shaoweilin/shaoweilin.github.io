@@ -7,7 +7,7 @@ excerpts: 4
 
 Imagine we have a model $D(w)$ of a dynamical system with states $s \in S,$ that is parametrized by some weight $w \in W$. Each state $s$ comes with a set $N(s) \subset S$ of neighbors and an associated energy function $E(s'|s,w) \in \mathbb{R}$ that assigns an energy to each neighbor $s' \in N(s)$. 
 
-For simplicity, we assume the following dynamics: when the system is in state $s$, it picks the neighbor $s'$ with the lowest energy $E(s'|s,w)$ and jumps to state $s'$ in the next time step (more to come later about what we mean by _time step_).
+For simplicity, we assume the following dynamics: when the system is in state $s$, it picks the neighbor $s'$ with the lowest energy $E(s'|s,w)$ and jumps to state $s'$ in the next time step (more to come later about what we mean by *time step*).
 
 Suppose also that we have an observed sequence $\{\hat{s}_t\}$ with each $t\in \{0, 1, \ldots, T\}.$ Roughly, the goal is to find a dynamical system $D(\hat{w})$ that is able to reproduce $\hat{s}_t$. This is the *sequence learning* problem for the model $D(w)$.
 
@@ -22,27 +22,30 @@ More specifically, we want to answer the following questions.
 
 Given the (conditional) energy function $E(s'|s,w),$ we consider a discrete-time Markov chain with transition probabilities
 
-$$ \begin{array}{rl}
-P(s'|s, w) &= \displaystyle \frac{\exp(-\beta E(s'|s,w)) }{Z(s,w)} 
-\end{array}
 $$
-where we have the _partition function_
-$$ \begin{array}{rl}
-Z(s,w) &= \displaystyle \sum_{s' \in N(s)} \exp(-\beta E(s'|s,w)) 
-\end{array}
+P(s'|s, w) = \displaystyle \frac{\exp(-\beta E(s'|s,w)) }{Z(s,w)} 
 $$
-and the _inverse temperature_ $\beta$.
+
+where we have the *partition function*
+
+$$
+Z(s,w) = \displaystyle \sum_{s' \in N(s)} \exp(-\beta E(s'|s,w))
+$$
+
+and the *inverse temperature* $\beta$.
 
 The traditional maximum likelihood method for sequence learning tells us to maximize the product
+
 $$
 L(w) = \prod_{t=0}^{T-1} P(\hat{s}_{t+1}|\hat{s}_t, w).
 $$
+
 The negative log-likelihood is
-$$ \begin{array}{rl}
-\ell(w) &= \displaystyle \sum_{t=0}^{T-1} \log Z(\hat{s}_t,w)+\beta \sum_{t=0}^{T-1} E(\hat{s}_{t+1}|\hat{s}_t, w) \\ & \\
+
+\begin{align*}
+\ell(w) &= \displaystyle \sum_{t=0}^{T-1} \log Z(\hat{s}_t,w)+\beta \sum_{t=0}^{T-1} E(\hat{s}_{t+1}|\hat{s}_t, w) \\ 
 &= \displaystyle \sum_{t=0}^{T-1} \log \sum_{s' \in N(\hat{s}_t)} e^{-\beta E(s'|\hat{s}_t,w)}+\beta \sum_{t=0}^{T-1} E(\hat{s}_{t+1}|\hat{s}_t, w) 
-\end{array}
-$$
+\end{align*}
 
 The tricky issue here is the intractable logarithmic partition function $\log Z(s,w)$ when we have a large number of neighboring states.
 
@@ -61,34 +64,33 @@ $$
 $$
 
 If we assume a small time interval $\delta > 0$ and construct a continuous time series $\hat{x}(t)$ such that 
+
 $$
 \hat{x}_{\delta t} =  \hat{s}_{\lfloor t\rfloor} ,
 \quad \text{for all }0 \leq t \leq T,
 $$
+
 then the likelihood of $\hat{x}$ is
-$$ \begin{array}{rl}
+
+\begin{align*}
 L(w) & =\displaystyle \prod_{t=0}^{N-1} 
-Z(\hat{s}_{t},w) \exp \big(-\delta Z(\hat{s}_t,w) \big) \, \displaystyle \frac{\exp(-\beta E(s'|s,w))}{Z(\hat{s}_t,w)} \\ & \\
+Z(\hat{s}_{t},w) \exp \big(-\delta Z(\hat{s}_t,w) \big) \, \displaystyle \frac{\exp(-\beta E(s'|s,w))}{Z(\hat{s}_t,w)} \\ 
 & =\displaystyle \prod_{t=0}^{N-1} 
   \exp \big(-\delta Z(\hat{s}_t,w) \big) \, \exp(-\beta E(s'|s,w)).
-\end{array}
-$$
-The negative log-likelihood is
-$$ \begin{array}{rl}
-\ell(w) &= \displaystyle\delta \sum_{t=0}^{T-1} Z(\hat{s}_t,w) +\beta \sum_{t=0}^{T-1} E(\hat{s}_{t+1}|\hat{s}_t, w)\\ & \\ &= \displaystyle\delta\sum_{t=0}^{T-1} \sum_{s' \in N(\hat{s}_t)} e^{-\beta E(s'|\hat{s}_t,w)} +\beta \sum_{t=0}^{T-1} E(\hat{s}_{t+1}|\hat{s}_t, w).
-\end{array}
-$$
+\end{align*}
 
-\begin{align}
-\ell(w) &= \displaystyle\delta \sum_{t=0}^{T-1} Z(\hat{s}_t,w) +\beta \sum_{t=0}^{T-1} E(\hat{s}_{t+1}|\hat{s}_t, w)\\ & \\ &= \displaystyle\delta\sum_{t=0}^{T-1} \sum_{s' \in N(\hat{s}_t)} e^{-\beta E(s'|\hat{s}_t,w)} +\beta \sum_{t=0}^{T-1} E(\hat{s}_{t+1}|\hat{s}_t, w).
-\end{align}
+The negative log-likelihood is
+
+\begin{align*}
+\ell(w) &= \displaystyle\delta \sum_{t=0}^{T-1} Z(\hat{s}_t,w) +\beta \sum_{t=0}^{T-1} E(\hat{s}_{t+1}|\hat{s}_t, w)\\ &= \displaystyle\delta\sum_{t=0}^{T-1} \sum_{s' \in N(\hat{s}_t)} e^{-\beta E(s'|\hat{s}_t,w)} +\beta \sum_{t=0}^{T-1} E(\hat{s}_{t+1}|\hat{s}_t, w).
+\end{align*}
 
 Again, the intractable partition function appears but without a logarithm, so it is easier to differentiate under the sum over the neighboring states. We can reduce its contribution by either making $\beta$ large or making $\delta$ small. Note that we cannot make the hyperparameter $\delta$ go away  in the objective function just by scaling $\beta.$
 
 
 ## Relative information
 
-The negative log-likelihoods for both the discrete-time and continuous-time models can be interpreted in terms of (conditional) relative information. See [this post](https://shaoweilin.github.io/posts/2020-10-23-machine-learning-with-relative-information/) for more details. These _energy-based_ methods can be thought of as _information-based_ methods. 
+The negative log-likelihoods for both the discrete-time and continuous-time models can be interpreted in terms of (conditional) relative information. See [this post](https://shaoweilin.github.io/posts/2020-10-23-machine-learning-with-relative-information/) for more details. These *energy-based* methods can be thought of as *information-based* methods. 
 
 ## Greedy method
 
@@ -98,7 +100,7 @@ $$
 E(s'|\hat{s}_t, w) \leq E(\hat{s}_{t-1}|\hat{s}_t, w).
 $$
 
-If such a weight $\hat{w}$ exists, then the dynamical system $D(\hat{w})$ will faithfully reproduce the sequence $\{\hat{s}_t\}.$ We say that $\hat{w}$ is _faithful_ to $\{\hat{s}_t\}$.
+If such a weight $\hat{w}$ exists, then the dynamical system $D(\hat{w})$ will faithfully reproduce the sequence $\{\hat{s}_t\}.$ We say that $\hat{w}$ is *faithful* to $\{\hat{s}_t\}$.
 
 If such a weight $\hat{w}$ is not faithful to $\{\hat{s}_t\}$, then we need to fall back to the likelihood methods to find a dynamical system $D(\hat{w})$ that best approximates the observed sequence. 
 
@@ -114,13 +116,17 @@ In the discrete-time model, the transition probability of $s^*_{t+1}$ conditione
 If $w$ is faithful the the observed sequence $\{\hat{s}_t\},$ then the likelihood $L(w)$ will tend to $1$ as $\beta$ goes to infinity. If $w$ is not faithful, then $L(w)$ will tend to $0.$ If the region of faithful weights is non-empty, then as the maximum likelihood estimate $\hat{w}$ will lie in this region for sufficiently large $\beta.$
 
 The log partition function 
+
 $$
 \log Z(s_t, w) = \log \sum_{s'\in N(s_t)}  e^{-\beta E(s'|s_t,w)}
 $$
+
 tends to $-\beta E(s^*_{t+1}|s_t,w)$ as $\beta$ goes to infinity (assuming there is a unique minimal energy state $\hat{s}^*_{t+1}.$) Consequently, the negative log-likelihood $\ell(w)$ tends to
+
 $$
 \beta \sum_{t=0}^{T-1} \Big( E(\hat{s}_{t+1}|\hat{s}_t, w) - E(\hat{s}^*_{t+1}|\hat{s}_t, w) \Big),
 $$
+
 which is $0$ if $w$ is faithful to the sequence but positive if $w$ is not faithful.
 
 In the large $\beta$ limit, we generate an optimal sequence or path by running the dynamical system described at the beginning of this post - namely, at each state $s$, we pick the next state $s'$ that minimizes the energy $E(s'|s,w),$ and we repeat this for $T$ time steps. We say that the optimal path is generated by _stepwise energy minimization_.
@@ -134,18 +140,21 @@ The holding rates $Z(s_t, w)$ will, however, tend to $0.$ This means that the ti
 In fact, for large $\beta,$ the negative log density grows like $\beta E(\hat{s}^*_{t+1}|\hat{s}_t, w),$ the transition energy that is mimimal over all $\beta E(s'|\hat{s}_t, w)$ for $s' \in N(\hat{s}_t).$ This means that for lower minimal transition energies $E(\hat{s}^*_{t+1}|\hat{s}_t, w),$ the holding time period in state $\hat{s}_t$ is shorter.
 
 Consequently, the negative log-likelihood $\ell(w)$ tends to
+
 $$
 \beta \sum_{t=0}^{T-1} E(\hat{s}_{t+1}|\hat{s}_t, w),
 $$ 
+
 the sum of the transition energies. The objective here is different from that in the discrete-time model which 
 subtracts the minimal transition energy from each time step.
 
 Suppose that we have a time interval of length $T$ and the initial state is $s_0$. By the stochastic summation algorithm of Gillespie {cite}`weber2017master`, the negative log density of observing a path with states $s_0, \ldots, s_n$ and holding periods $\delta_0, \ldots, \delta_n$ satisfying $\delta_0 + \cdots +\delta_n = T,$ is given by
+
 $$
 \sum_{t=0}^n \delta_t Z(s_t,w) + \beta \sum_{t=0}^{n-1} E(s_{t+1}|s_t,w).
 $$
 
-For large $\beta$, the latter summand dominates the log density, and the optimal paths are determined by _pathwise energy minimization_. This _pathwise energy minimization_ is analogous to the principle of least action in classical or quantum physics.
+For large $\beta$, the latter summand dominates the log density, and the optimal paths are determined by *pathwise energy minimization*. This pathwise minimization is analogous to the principle of least action in classical or quantum physics.
 
 
 ## Natural language processing
@@ -166,7 +175,7 @@ Why would nature choose such a strategy over the simpler stepwise greedy approac
 
 ## Reinforcement learning
 
-One possible answer is that many natural problems are best solved by _trial and error_. One has to try many _likely_ solutions in a short period of time, as opposed to getting the correct solution but only after a long deliberation. 
+One possible answer is that many natural problems are best solved by *trial and error*. One has to try many *likely* solutions in a short period of time, as opposed to getting the correct solution but only after a long deliberation. 
 
 In a continuous-time Markov chain, a path with optimal stepwise energy may suffer from large minimal transition energies $E(\hat{s}^*_{t+1}|\hat{s}_t, w)$ which lead to long holding times. 
 
@@ -180,13 +189,17 @@ Even in problems where small mistakes are catastrophic, the ability to brainstor
 We end with an interesting connection between the continuous-time likelihood method for sequence learning and the minimum energy flow (MEF) method for training Hopfield networks efficiently {cite}`hillar2021hidden`.
 
 Recall that the negative log likelihood is
+
 $$
 \ell(w) = \displaystyle\delta\sum_{t=0}^{T-1} \sum_{s' \in N(\hat{s}_t)} e^{-\beta E(s'|\hat{s}_t,w)} +\beta \sum_{t=0}^{T-1} E(\hat{s}_{t+1}|\hat{s}_t, w).
 $$
+
 On the other hand, the energy flow function is
+
 $$
 \text{EF}(w) = \displaystyle\sum_{t=0}^{T-1} \sum_{s' \in N(\hat{s}_t)} e^{- E(s'|\hat{s}_t,w)},
 $$
+
 which is proportional to the limit of $\ell(w)$ at $\beta =1$ as $\delta$ tends to infinity.
 
 This limit makes sense because energy flow is used in the paper for training Hopfield networks with attractor dynamics. The observed data $\{\hat{s}_t\}$ is not actually a sequence, but a list of attractors. Each  attractor may be thought of as a one-state sequence with infinite holding time $\delta$.

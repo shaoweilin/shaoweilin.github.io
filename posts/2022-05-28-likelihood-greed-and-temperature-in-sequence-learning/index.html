@@ -363,26 +363,26 @@
 <h2>Likelihood method in discrete time<a class="headerlink" href="#likelihood-method-in-discrete-time" title="Permalink to this headline">#</a></h2>
 <p>Given the (conditional) energy function <span class="math notranslate nohighlight">\(E(s'|s,w),\)</span> we consider a discrete-time Markov chain with transition probabilities</p>
 <div class="math notranslate nohighlight">
-\[ \begin{array}{rl}
-P(s'|s, w) &amp;= \displaystyle \frac{\exp(-\beta E(s'|s,w)) }{Z(s,w)} 
-\end{array}
+\[
+P(s'|s, w) = \displaystyle \frac{\exp(-\beta E(s'|s,w)) }{Z(s,w)} 
 \]</div>
-<p>where we have the <em>partition function</em>
-$<span class="math notranslate nohighlight">\( \begin{array}{rl}
-Z(s,w) &amp;= \displaystyle \sum_{s' \in N(s)} \exp(-\beta E(s'|s,w)) 
-\end{array}
-\)</span><span class="math notranslate nohighlight">\(
-and the _inverse temperature_ \)</span>\beta$.</p>
-<p>The traditional maximum likelihood method for sequence learning tells us to maximize the product
-$<span class="math notranslate nohighlight">\(
+<p>where we have the <em>partition function</em></p>
+<div class="math notranslate nohighlight">
+\[
+Z(s,w) = \displaystyle \sum_{s' \in N(s)} \exp(-\beta E(s'|s,w))
+\]</div>
+<p>and the <em>inverse temperature</em> <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
+<p>The traditional maximum likelihood method for sequence learning tells us to maximize the product</p>
+<div class="math notranslate nohighlight">
+\[
 L(w) = \prod_{t=0}^{T-1} P(\hat{s}_{t+1}|\hat{s}_t, w).
-\)</span><span class="math notranslate nohighlight">\(
-The negative log-likelihood is
-\)</span><span class="math notranslate nohighlight">\( \begin{array}{rl}
-\ell(w) &amp;= \displaystyle \sum_{t=0}^{T-1} \log Z(\hat{s}_t,w)+\beta \sum_{t=0}^{T-1} E(\hat{s}_{t+1}|\hat{s}_t, w) \\ &amp; \\
+\]</div>
+<p>The negative log-likelihood is</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\ell(w) &amp;= \displaystyle \sum_{t=0}^{T-1} \log Z(\hat{s}_t,w)+\beta \sum_{t=0}^{T-1} E(\hat{s}_{t+1}|\hat{s}_t, w) \\ 
 &amp;= \displaystyle \sum_{t=0}^{T-1} \log \sum_{s' \in N(\hat{s}_t)} e^{-\beta E(s'|\hat{s}_t,w)}+\beta \sum_{t=0}^{T-1} E(\hat{s}_{t+1}|\hat{s}_t, w) 
-\end{array}
-\)</span>$</p>
+\end{align*}\]</div>
 <p>The tricky issue here is the intractable logarithmic partition function <span class="math notranslate nohighlight">\(\log Z(s,w)\)</span> when we have a large number of neighboring states.</p>
 </div>
 <div class="section" id="likelihood-method-in-continuous-time">
@@ -397,28 +397,25 @@ The negative log-likelihood is
 \[ 
 \Gamma(s|s,w) = - \sum_{s'\in N(s)} \Gamma(s'|s,w) = - Z(s,w)
 \]</div>
-<p>If we assume a small time interval <span class="math notranslate nohighlight">\(\delta &gt; 0\)</span> and construct a continuous time series <span class="math notranslate nohighlight">\(\hat{x}(t)\)</span> such that
-$<span class="math notranslate nohighlight">\(
+<p>If we assume a small time interval <span class="math notranslate nohighlight">\(\delta &gt; 0\)</span> and construct a continuous time series <span class="math notranslate nohighlight">\(\hat{x}(t)\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[
 \hat{x}_{\delta t} =  \hat{s}_{\lfloor t\rfloor} ,
 \quad \text{for all }0 \leq t \leq T,
-\)</span><span class="math notranslate nohighlight">\(
-then the likelihood of \)</span>\hat{x}<span class="math notranslate nohighlight">\( is
-\)</span><span class="math notranslate nohighlight">\( \begin{array}{rl}
+\]</div>
+<p>then the likelihood of <span class="math notranslate nohighlight">\(\hat{x}\)</span> is</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
 L(w) &amp; =\displaystyle \prod_{t=0}^{N-1} 
-Z(\hat{s}_{t},w) \exp \big(-\delta Z(\hat{s}_t,w) \big) \, \displaystyle \frac{\exp(-\beta E(s'|s,w))}{Z(\hat{s}_t,w)} \\ &amp; \\
+Z(\hat{s}_{t},w) \exp \big(-\delta Z(\hat{s}_t,w) \big) \, \displaystyle \frac{\exp(-\beta E(s'|s,w))}{Z(\hat{s}_t,w)} \\ 
 &amp; =\displaystyle \prod_{t=0}^{N-1} 
   \exp \big(-\delta Z(\hat{s}_t,w) \big) \, \exp(-\beta E(s'|s,w)).
-\end{array}
-\)</span><span class="math notranslate nohighlight">\(
-The negative log-likelihood is
-\)</span><span class="math notranslate nohighlight">\( \begin{array}{rl}
-\ell(w) &amp;= \displaystyle\delta \sum_{t=0}^{T-1} Z(\hat{s}_t,w) +\beta \sum_{t=0}^{T-1} E(\hat{s}_{t+1}|\hat{s}_t, w)\\ &amp; \\ &amp;= \displaystyle\delta\sum_{t=0}^{T-1} \sum_{s' \in N(\hat{s}_t)} e^{-\beta E(s'|\hat{s}_t,w)} +\beta \sum_{t=0}^{T-1} E(\hat{s}_{t+1}|\hat{s}_t, w).
-\end{array}
-\)</span>$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-34dc9a98-42b2-4fe5-a4f1-02a215ccf820">
-<span class="eqno">(1)<a class="headerlink" href="#equation-34dc9a98-42b2-4fe5-a4f1-02a215ccf820" title="Permalink to this equation">#</a></span>\[\begin{align}
-\ell(w) &amp;= \displaystyle\delta \sum_{t=0}^{T-1} Z(\hat{s}_t,w) +\beta \sum_{t=0}^{T-1} E(\hat{s}_{t+1}|\hat{s}_t, w)\\ &amp; \\ &amp;= \displaystyle\delta\sum_{t=0}^{T-1} \sum_{s' \in N(\hat{s}_t)} e^{-\beta E(s'|\hat{s}_t,w)} +\beta \sum_{t=0}^{T-1} E(\hat{s}_{t+1}|\hat{s}_t, w).
-\end{align}\]</div>
+\end{align*}\]</div>
+<p>The negative log-likelihood is</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\ell(w) &amp;= \displaystyle\delta \sum_{t=0}^{T-1} Z(\hat{s}_t,w) +\beta \sum_{t=0}^{T-1} E(\hat{s}_{t+1}|\hat{s}_t, w)\\ &amp;= \displaystyle\delta\sum_{t=0}^{T-1} \sum_{s' \in N(\hat{s}_t)} e^{-\beta E(s'|\hat{s}_t,w)} +\beta \sum_{t=0}^{T-1} E(\hat{s}_{t+1}|\hat{s}_t, w).
+\end{align*}\]</div>
 <p>Again, the intractable partition function appears but without a logarithm, so it is easier to differentiate under the sum over the neighboring states. We can reduce its contribution by either making <span class="math notranslate nohighlight">\(\beta\)</span> large or making <span class="math notranslate nohighlight">\(\delta\)</span> small. Note that we cannot make the hyperparameter <span class="math notranslate nohighlight">\(\delta\)</span> go away  in the objective function just by scaling <span class="math notranslate nohighlight">\(\beta.\)</span></p>
 </div>
 <div class="section" id="relative-information">
@@ -441,15 +438,17 @@ E(s'|\hat{s}_t, w) \leq E(\hat{s}_{t-1}|\hat{s}_t, w).
 <h2>Temperature in discrete time<a class="headerlink" href="#temperature-in-discrete-time" title="Permalink to this headline">#</a></h2>
 <p>In the discrete-time model, the transition probability of <span class="math notranslate nohighlight">\(s^*_{t+1}\)</span> conditioned on <span class="math notranslate nohighlight">\(s_t\)</span> will tend to <span class="math notranslate nohighlight">\(1,\)</span> while the transition probabilities of other neighbors of <span class="math notranslate nohighlight">\(s_t\)</span> will tend to <span class="math notranslate nohighlight">\(0\)</span>.</p>
 <p>If <span class="math notranslate nohighlight">\(w\)</span> is faithful the the observed sequence <span class="math notranslate nohighlight">\(\{\hat{s}_t\},\)</span> then the likelihood <span class="math notranslate nohighlight">\(L(w)\)</span> will tend to <span class="math notranslate nohighlight">\(1\)</span> as <span class="math notranslate nohighlight">\(\beta\)</span> goes to infinity. If <span class="math notranslate nohighlight">\(w\)</span> is not faithful, then <span class="math notranslate nohighlight">\(L(w)\)</span> will tend to <span class="math notranslate nohighlight">\(0.\)</span> If the region of faithful weights is non-empty, then as the maximum likelihood estimate <span class="math notranslate nohighlight">\(\hat{w}\)</span> will lie in this region for sufficiently large <span class="math notranslate nohighlight">\(\beta.\)</span></p>
-<p>The log partition function
-$<span class="math notranslate nohighlight">\(
+<p>The log partition function</p>
+<div class="math notranslate nohighlight">
+\[
 \log Z(s_t, w) = \log \sum_{s'\in N(s_t)}  e^{-\beta E(s'|s_t,w)}
-\)</span><span class="math notranslate nohighlight">\(
-tends to \)</span>-\beta E(s^<em>_{t+1}|s_t,w)<span class="math notranslate nohighlight">\( as \)</span>\beta<span class="math notranslate nohighlight">\( goes to infinity (assuming there is a unique minimal energy state \)</span>\hat{s}^</em>_{t+1}.<span class="math notranslate nohighlight">\() Consequently, the negative log-likelihood \)</span>\ell(w)<span class="math notranslate nohighlight">\( tends to
-\)</span><span class="math notranslate nohighlight">\(
+\]</div>
+<p>tends to <span class="math notranslate nohighlight">\(-\beta E(s^*_{t+1}|s_t,w)\)</span> as <span class="math notranslate nohighlight">\(\beta\)</span> goes to infinity (assuming there is a unique minimal energy state <span class="math notranslate nohighlight">\(\hat{s}^*_{t+1}.\)</span>) Consequently, the negative log-likelihood <span class="math notranslate nohighlight">\(\ell(w)\)</span> tends to</p>
+<div class="math notranslate nohighlight">
+\[
 \beta \sum_{t=0}^{T-1} \Big( E(\hat{s}_{t+1}|\hat{s}_t, w) - E(\hat{s}^*_{t+1}|\hat{s}_t, w) \Big),
-\)</span><span class="math notranslate nohighlight">\(
-which is \)</span>0<span class="math notranslate nohighlight">\( if \)</span>w<span class="math notranslate nohighlight">\( is faithful to the sequence but positive if \)</span>w$ is not faithful.</p>
+\]</div>
+<p>which is <span class="math notranslate nohighlight">\(0\)</span> if <span class="math notranslate nohighlight">\(w\)</span> is faithful to the sequence but positive if <span class="math notranslate nohighlight">\(w\)</span> is not faithful.</p>
 <p>In the large <span class="math notranslate nohighlight">\(\beta\)</span> limit, we generate an optimal sequence or path by running the dynamical system described at the beginning of this post - namely, at each state <span class="math notranslate nohighlight">\(s\)</span>, we pick the next state <span class="math notranslate nohighlight">\(s'\)</span> that minimizes the energy <span class="math notranslate nohighlight">\(E(s'|s,w),\)</span> and we repeat this for <span class="math notranslate nohighlight">\(T\)</span> time steps. We say that the optimal path is generated by <em>stepwise energy minimization</em>.</p>
 </div>
 <div class="section" id="temperature-in-continuous-time">
@@ -457,17 +456,19 @@ which is \)</span>0<span class="math notranslate nohighlight">\( if \)</span>w<s
 <p>In the continuous-time model, as <span class="math notranslate nohighlight">\(\beta\)</span> goes to infinity, the transition probability of <span class="math notranslate nohighlight">\(s^*_{t+1}\)</span> given <span class="math notranslate nohighlight">\(s_t\)</span> tends to <span class="math notranslate nohighlight">\(1\)</span> while the transition probability of other neighbors <span class="math notranslate nohighlight">\(s'_{t+1}\)</span> given <span class="math notranslate nohighlight">\(s_t\)</span> tends to <span class="math notranslate nohighlight">\(0,\)</span> just like in the discrete-time case. As seen previously, the negative log probability grows like <span class="math notranslate nohighlight">\(\beta \big( E(\hat{s}_{t+1}|\hat{s}_t, w) - E(\hat{s}^*_{t+1}|\hat{s}_t, w) \big) \)</span> for large <span class="math notranslate nohighlight">\(\beta.\)</span></p>
 <p>The holding rates <span class="math notranslate nohighlight">\(Z(s_t, w)\)</span> will, however, tend to <span class="math notranslate nohighlight">\(0.\)</span> This means that the time held in state <span class="math notranslate nohighlight">\(s_t\)</span> will increase to infinity as <span class="math notranslate nohighlight">\(\beta\)</span> increases.</p>
 <p>In fact, for large <span class="math notranslate nohighlight">\(\beta,\)</span> the negative log density grows like <span class="math notranslate nohighlight">\(\beta E(\hat{s}^*_{t+1}|\hat{s}_t, w),\)</span> the transition energy that is mimimal over all <span class="math notranslate nohighlight">\(\beta E(s'|\hat{s}_t, w)\)</span> for <span class="math notranslate nohighlight">\(s' \in N(\hat{s}_t).\)</span> This means that for lower minimal transition energies <span class="math notranslate nohighlight">\(E(\hat{s}^*_{t+1}|\hat{s}_t, w),\)</span> the holding time period in state <span class="math notranslate nohighlight">\(\hat{s}_t\)</span> is shorter.</p>
-<p>Consequently, the negative log-likelihood <span class="math notranslate nohighlight">\(\ell(w)\)</span> tends to
-$<span class="math notranslate nohighlight">\(
+<p>Consequently, the negative log-likelihood <span class="math notranslate nohighlight">\(\ell(w)\)</span> tends to</p>
+<div class="math notranslate nohighlight">
+\[
 \beta \sum_{t=0}^{T-1} E(\hat{s}_{t+1}|\hat{s}_t, w),
-\)</span>$
-the sum of the transition energies. The objective here is different from that in the discrete-time model which
+\]</div>
+<p>the sum of the transition energies. The objective here is different from that in the discrete-time model which
 subtracts the minimal transition energy from each time step.</p>
-<p>Suppose that we have a time interval of length <span class="math notranslate nohighlight">\(T\)</span> and the initial state is <span class="math notranslate nohighlight">\(s_0\)</span>. By the stochastic summation algorithm of Gillespie <span id="id1">[<a class="reference internal" href="#id5" title="Markus F Weber and Erwin Frey. Master equations and the theory of stochastic path integrals. Reports on Progress in Physics, 80(4):046601, 2017.">WF17</a>]</span>, the negative log density of observing a path with states <span class="math notranslate nohighlight">\(s_0, \ldots, s_n\)</span> and holding periods <span class="math notranslate nohighlight">\(\delta_0, \ldots, \delta_n\)</span> satisfying <span class="math notranslate nohighlight">\(\delta_0 + \cdots +\delta_n = T,\)</span> is given by
-$<span class="math notranslate nohighlight">\(
+<p>Suppose that we have a time interval of length <span class="math notranslate nohighlight">\(T\)</span> and the initial state is <span class="math notranslate nohighlight">\(s_0\)</span>. By the stochastic summation algorithm of Gillespie <span id="id1">[<a class="reference internal" href="#id5" title="Markus F Weber and Erwin Frey. Master equations and the theory of stochastic path integrals. Reports on Progress in Physics, 80(4):046601, 2017.">WF17</a>]</span>, the negative log density of observing a path with states <span class="math notranslate nohighlight">\(s_0, \ldots, s_n\)</span> and holding periods <span class="math notranslate nohighlight">\(\delta_0, \ldots, \delta_n\)</span> satisfying <span class="math notranslate nohighlight">\(\delta_0 + \cdots +\delta_n = T,\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[
 \sum_{t=0}^n \delta_t Z(s_t,w) + \beta \sum_{t=0}^{n-1} E(s_{t+1}|s_t,w).
-\)</span>$</p>
-<p>For large <span class="math notranslate nohighlight">\(\beta\)</span>, the latter summand dominates the log density, and the optimal paths are determined by <em>pathwise energy minimization</em>. This <em>pathwise energy minimization</em> is analogous to the principle of least action in classical or quantum physics.</p>
+\]</div>
+<p>For large <span class="math notranslate nohighlight">\(\beta\)</span>, the latter summand dominates the log density, and the optimal paths are determined by <em>pathwise energy minimization</em>. This pathwise minimization is analogous to the principle of least action in classical or quantum physics.</p>
 </div>
 <div class="section" id="natural-language-processing">
 <h2>Natural language processing<a class="headerlink" href="#natural-language-processing" title="Permalink to this headline">#</a></h2>
@@ -491,15 +492,17 @@ $<span class="math notranslate nohighlight">\(
 <div class="section" id="minimum-energy-flow">
 <h2>Minimum energy flow<a class="headerlink" href="#minimum-energy-flow" title="Permalink to this headline">#</a></h2>
 <p>We end with an interesting connection between the continuous-time likelihood method for sequence learning and the minimum energy flow (MEF) method for training Hopfield networks efficiently <span id="id3">[<a class="reference internal" href="#id7" title="Christopher Hillar, Tenzin Chan, Rachel Taubman, and David Rolnick. Hidden hypergraphs, error-correcting codes, and critical learning in hopfield networks. Entropy, 23(11):1494, 2021.">HCTR21</a>]</span>.</p>
-<p>Recall that the negative log likelihood is
-$<span class="math notranslate nohighlight">\(
+<p>Recall that the negative log likelihood is</p>
+<div class="math notranslate nohighlight">
+\[
 \ell(w) = \displaystyle\delta\sum_{t=0}^{T-1} \sum_{s' \in N(\hat{s}_t)} e^{-\beta E(s'|\hat{s}_t,w)} +\beta \sum_{t=0}^{T-1} E(\hat{s}_{t+1}|\hat{s}_t, w).
-\)</span><span class="math notranslate nohighlight">\(
-On the other hand, the energy flow function is
-\)</span><span class="math notranslate nohighlight">\(
+\]</div>
+<p>On the other hand, the energy flow function is</p>
+<div class="math notranslate nohighlight">
+\[
 \text{EF}(w) = \displaystyle\sum_{t=0}^{T-1} \sum_{s' \in N(\hat{s}_t)} e^{- E(s'|\hat{s}_t,w)},
-\)</span><span class="math notranslate nohighlight">\(
-which is proportional to the limit of \)</span>\ell(w)<span class="math notranslate nohighlight">\( at \)</span>\beta =1<span class="math notranslate nohighlight">\( as \)</span>\delta$ tends to infinity.</p>
+\]</div>
+<p>which is proportional to the limit of <span class="math notranslate nohighlight">\(\ell(w)\)</span> at <span class="math notranslate nohighlight">\(\beta =1\)</span> as <span class="math notranslate nohighlight">\(\delta\)</span> tends to infinity.</p>
 <p>This limit makes sense because energy flow is used in the paper for training Hopfield networks with attractor dynamics. The observed data <span class="math notranslate nohighlight">\(\{\hat{s}_t\}\)</span> is not actually a sequence, but a list of attractors. Each  attractor may be thought of as a one-state sequence with infinite holding time <span class="math notranslate nohighlight">\(\delta\)</span>.</p>
 <p>The negative log likelihood <span class="math notranslate nohighlight">\(\ell(w)\)</span> provides a family of objective functions with hyperparameters <span class="math notranslate nohighlight">\(\delta\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> that could be used in sequence learning.</p>
 </div>
