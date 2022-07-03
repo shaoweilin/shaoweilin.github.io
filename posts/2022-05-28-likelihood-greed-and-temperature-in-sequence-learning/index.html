@@ -516,19 +516,9 @@ subtracts the minimal transition energy from each time step.</p>
 <p>which is proportional to the limit of <span class="math notranslate nohighlight">\(\ell(w)\)</span> at <span class="math notranslate nohighlight">\(\beta =1\)</span> as <span class="math notranslate nohighlight">\(\delta\)</span> tends to infinity.</p>
 <p>This limit makes sense because energy flow is used in the paper for training Hopfield networks with attractor dynamics. The observed data <span class="math notranslate nohighlight">\(\{\hat{s}_t\}\)</span> is not actually a sequence, but a list of attractors. Each  attractor may be thought of as a one-state sequence with infinite holding time <span class="math notranslate nohighlight">\(\delta\)</span>.</p>
 <p>The negative log likelihood <span class="math notranslate nohighlight">\(\ell(w)\)</span> provides a family of objective functions with hyperparameters <span class="math notranslate nohighlight">\(\delta\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> that could be used in sequence learning.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\usepackage{tikz}
-\usetikzlibrary{matrix}
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
-  {
-     F &amp; B \\
-      &amp; A \\};
-  \path[-stealth]
-    (m-1-1) edge node [above] {$\beta$} (m-1-2)
-    (m-1-2) edge node [right] {$\rho$} (m-2-2)
-    (m-1-1) edge node [left] {$\alpha$} (m-2-2);
-\end{tikzpicture}\end{split}\]</div>
+<p>.. tikz:: [&gt;=latex’,dotted,thick] \draw[-&gt;] (0,0) – (1,1) – (1,0)
+– (2,0);
+:libs: arrows</p>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
