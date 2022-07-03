@@ -111,7 +111,7 @@ Given a weight $w \in W$ and state $s_t \in S$ at time $t,$ let $s^*_{t+1} \in N
 
 ## Temperature in discrete time
 
-In the discrete-time model, the transition probability of $s^*_{t+1}$ conditioned on $s_t$ will tend to $1,$ while the transition probabilities of other neighbors of $s_t$ will tend to $0$.
+In the discrete-time model, the transition probability $P(s^*_{t+1}|s_t, w)$ will tend to $1,$ while the transition probabilities of other neighbors of $s_t$ will tend to $0$.
 
 If $w$ is faithful the the observed sequence $\{\hat{s}_t\},$ then the likelihood $L(w)$ will tend to $1$ as $\beta$ goes to infinity. If $w$ is not faithful, then $L(w)$ will tend to $0.$ If the region of faithful weights is non-empty, then as the maximum likelihood estimate $\hat{w}$ will lie in this region for sufficiently large $\beta.$
 
@@ -133,11 +133,11 @@ In the large $\beta$ limit, we generate an optimal sequence or path by running t
 
 ## Temperature in continuous time
 
-In the continuous-time model, as $\beta$ goes to infinity, the transition probability of $s^*_{t+1}$ given $s_t$ tends to $1$ while the transition probability of other neighbors $s'_{t+1}$ given $s_t$ tends to $0,$ just like in the discrete-time case. As seen previously, the negative log probability grows like $\beta \big( E(\hat{s}_{t+1}|\hat{s}_t, w) - E(\hat{s}^*_{t+1}|\hat{s}_t, w) \big) $ for large $\beta.$
+In the continuous-time model, as $\beta$ goes to infinity, the transition probability $P(s^*_{t+1}|s_t, w)$ tends to $1$ while the transition probability of other neighbors $s'_{t+1}$ given $s_t$ tends to $0,$ just like in the discrete-time case. As seen previously, the negative log probability grows like $\beta \big( E(\hat{s}_{t+1}|\hat{s}_t, w) - E(\hat{s}^*_{t+1}|\hat{s}_t, w) \big) $ for large $\beta.$
 
 The holding rates $Z(s_t, w)$ will, however, tend to $0.$ This means that the time held in state $s_t$ will increase to infinity as $\beta$ increases. 
 
-In fact, for large $\beta,$ the negative log density grows like $\beta E(\hat{s}^*_{t+1}|\hat{s}_t, w),$ the transition energy that is mimimal over all $\beta E(s'|\hat{s}_t, w)$ for $s' \in N(\hat{s}_t).$ This means that for lower minimal transition energies $E(\hat{s}^*_{t+1}|\hat{s}_t, w),$ the holding time period in state $\hat{s}_t$ is shorter.
+In fact, for large $\beta,$ the negative log density $\ell(w)$ grows like $\beta E(\hat{s}^*_{t+1}|\hat{s}_t, w),$ the transition energy that is mimimal over all $\beta E(s'|\hat{s}_t, w)$ for $s' \in N(\hat{s}_t).$ This means that for lower minimal transition energies $E(\hat{s}^*_{t+1}|\hat{s}_t, w),$ the holding time period in state $\hat{s}_t$ is shorter.
 
 Consequently, the negative log-likelihood $\ell(w)$ tends to
 
@@ -206,9 +206,11 @@ This limit makes sense because energy flow is used in the paper for training Hop
 
 The negative log likelihood $\ell(w)$ provides a family of objective functions with hyperparameters $\delta$ and $\beta$ that could be used in sequence learning.
 
-.. tikz:: [>=latex',dotted,thick] \draw[->] (0,0) -- (1,1) -- (1,0)
-   -- (2,0);
-   :libs: arrows
+```{tikz} [>=latex',dotted,thick] \draw[->] (0,0) -- (1,1) -- (1,0)
+---
+libs: arrows
+---
+``` 
 
 ## References
 
