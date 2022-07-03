@@ -206,7 +206,7 @@ This limit makes sense because energy flow is used in the paper for training Hop
 
 The negative log likelihood $\ell(w)$ provides a family of objective functions with hyperparameters $\delta$ and $\beta$ that could be used in sequence learning.
 
-```{tikz} [>=latex',dotted,thick] \draw[->] (0,0) -- (1,1) -- (1,0)
+```{tikz} \draw[->] (0,0) -- (1,1) -- (1,0)
 ---
 libs: arrows
 ---
