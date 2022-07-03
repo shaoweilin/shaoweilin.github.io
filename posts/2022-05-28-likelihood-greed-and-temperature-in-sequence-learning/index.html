@@ -517,10 +517,8 @@ subtracts the minimal transition energy from each time step.</p>
 <p>This limit makes sense because energy flow is used in the paper for training Hopfield networks with attractor dynamics. The observed data <span class="math notranslate nohighlight">\(\{\hat{s}_t\}\)</span> is not actually a sequence, but a list of attractors. Each  attractor may be thought of as a one-state sequence with infinite holding time <span class="math notranslate nohighlight">\(\delta\)</span>.</p>
 <p>The negative log likelihood <span class="math notranslate nohighlight">\(\ell(w)\)</span> provides a family of objective functions with hyperparameters <span class="math notranslate nohighlight">\(\delta\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> that could be used in sequence learning.</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\documentclass{standalone}
-\usepackage{tikz}
+\[\begin{split}\usepackage{tikz}
 \usetikzlibrary{matrix}
-\begin{document}
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
   {
@@ -530,8 +528,7 @@ subtracts the minimal transition energy from each time step.</p>
     (m-1-1) edge node [above] {$\beta$} (m-1-2)
     (m-1-2) edge node [right] {$\rho$} (m-2-2)
     (m-1-1) edge node [left] {$\alpha$} (m-2-2);
-\end{tikzpicture}
-\end{document}\end{split}\]</div>
+\end{tikzpicture}\end{split}\]</div>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
