@@ -137,7 +137,13 @@ In the continuous-time model, as $\beta$ goes to infinity, the transition probab
 
 The holding rates $Z(s_t, w)$ will, however, tend to $0.$ This means that the time held in state $s_t$ will increase to infinity as $\beta$ increases. 
 
-In fact, for large $\beta,$ the negative log density $\ell(w)$ grows like $\beta E(\hat{s}^*_{t+1}|\hat{s}_t, w),$ the transition energy that is mimimal over all $\beta E(s'|\hat{s}_t, w)$ for $s' \in N(\hat{s}_t).$ This means that for lower minimal transition energies $E(\hat{s}^*_{t+1}|\hat{s}_t, w),$ the holding time period in state $\hat{s}_t$ is shorter.
+In fact, for large $\beta,$ the negative log density 
+
+$$
+-\log \left[ Z(\hat{s}_{t},w) \exp \big(-\delta Z(\hat{s}_t,w) \big) \right] = \delta Z(\hat{s}_t,w) -\log Z(\hat{s}_{t},w) 
+$$
+
+of exponentially-distributed holding time grows like $\beta E(\hat{s}^*_{t+1}|\hat{s}_t, w),$ the transition energy that is mimimal over all $\beta E(s'|\hat{s}_t, w)$ for $s' \in N(\hat{s}_t).$ This means that for lower minimal transition energies $E(\hat{s}^*_{t+1}|\hat{s}_t, w),$ the holding time period in state $\hat{s}_t$ is shorter.
 
 Consequently, the negative log-likelihood $\ell(w)$ tends to
 
