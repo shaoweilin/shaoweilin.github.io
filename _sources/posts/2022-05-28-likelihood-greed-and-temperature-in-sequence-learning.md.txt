@@ -168,10 +168,18 @@ The following Markov chain demonstrates the difference between stepwise and path
 
 ```{graphviz}
 
-   digraph foo {
-      "bar" -> "baz";
-   }
-   
+digraph markov_chain {
+	fontname="Helvetica,Arial,sans-serif"
+	node [fontname="Helvetica,Arial,sans-serif"]
+	edge [fontname="Helvetica,Arial,sans-serif"]
+	rankdir=LR;
+	node [shape = circle];
+	A -> B [label = "2"];
+	A -> C [label = "1"];
+	B -> D [label = "100"];
+	C -> D [label = "1"];
+}
+
 ```
 
 Under stepwise minimization, we will choose the transition $A \rightarrow B$ because it has a lower energy than $A \rightarrow C$. However, there is only one transition $B \rightarrow D$ so that is automatically chosen. The total path energy is $101$.
