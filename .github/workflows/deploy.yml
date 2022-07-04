@@ -26,10 +26,8 @@ jobs:
 
     - name: Install texlive
       run: |
-        sudo apt install texlive texlive-pictures pdf2svg
-        tlmgr init-usertree
-        tlmgr install standalone
-
+        sudo apt install texlive texlive-pictures texlive-latex-extra pdf2svg
+        
     - name: Install graphviz
       run: |
         sudo apt install graphviz
