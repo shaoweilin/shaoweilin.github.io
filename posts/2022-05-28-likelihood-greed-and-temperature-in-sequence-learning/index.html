@@ -514,19 +514,19 @@ subtracts the minimal transition energy from each time step.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
-\mathcal{E}(x,0) &amp;= 0 &amp; &amp; \text{for all }x,\\
-\mathcal{E}(x,n+1) &amp;= \min_{y \in N(x)} \left( E(y|x) + \mathcal{E}(y, n) \right) &amp; &amp; \text{for all }x,n,
+\mathcal{E}(x,0) &amp;= 0\\
+\mathcal{E}(x,n+1) &amp;= \min_{y \in N(x)} \left( E(y|x) + \mathcal{E}(y, n) \right)
 \end{align*}
 \end{split}\]</div>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
-\mathcal{P}(x,0) &amp;= \{x\} &amp; &amp;\text{for all }x, \\
-\mathcal{P}(x,n+1) &amp;= \{x \rightarrow p \mid y \in S, p \in \mathcal{P}(y, n), &amp; &amp; \\
-&amp; \qquad \qquad \mathcal{E}(x,n+1) = E(y|x)+\mathcal{E}(y,n) \} &amp;&amp; \text{for all }x,n,
+\mathcal{P}(x,0) &amp;= \{x\}\\
+\mathcal{P}(x,n+1) &amp;= \{x \rightarrow p \mid y \in S, p \in \mathcal{P}(y, n), \\
+&amp; \qquad \mathcal{E}(x,n+1) = E(y|x)+\mathcal{E}(y,n) \}
 \end{align*}
 \end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(x \rightarrow p\)</span> denotes the prepending of a state <span class="math notranslate nohighlight">\(x\)</span> to a path <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<p>for all states <span class="math notranslate nohighlight">\(x\)</span> and lengths <span class="math notranslate nohighlight">\(n,\)</span> where <span class="math notranslate nohighlight">\(x \rightarrow p\)</span> denotes the prepending of a state <span class="math notranslate nohighlight">\(x\)</span> to a path <span class="math notranslate nohighlight">\(p\)</span>.</p>
 </div>
 <div class="section" id="natural-language-processing">
 <h2>Natural language processing<a class="headerlink" href="#natural-language-processing" title="Permalink to this headline">#</a></h2>
