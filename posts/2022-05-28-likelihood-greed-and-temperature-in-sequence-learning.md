@@ -166,6 +166,12 @@ For large $\beta$, the latter summand dominates the log density, and the optimal
 
 The following Markov chain demonstrates the difference between stepwise and pathwise energy minimization. It has four states $A,B,C,D$ and an arrow between states from state $i$ to state $j$ with weight $w$ indicates that the energy is $E(j|i) = w$.
 
+```{tikz} [>=latex',dotted,thick] \draw[->] (0,0) -- (1,1) -- (1,0) -- (2,0);
+---
+libs: arrows
+---
+```
+
 ```{graphviz}
 ---
 align: center
@@ -185,9 +191,26 @@ digraph markov_chain {
 
 ```
 
-Under stepwise minimization, we will choose the transition $A \rightarrow B$ because it has a lower energy than $A \rightarrow C$. However, there is only one transition $B \rightarrow D$ so that is automatically chosen. The total path energy is $101$.
+Under stepwise minimization, the transition $A \rightarrow B$ is chosen because it has a lower energy than $A \rightarrow C$. There is only one transition $B \rightarrow D$ so that is automatically picked. The total path energy is $101$.
 
 Under pathwise minimization, there are two paths: $A \rightarrow B \rightarrow D$ with energy $101$, and $A \rightarrow C \rightarrow D$ with energy $3$. Therefore, the chosen path will be $A \rightarrow C \rightarrow D$.
+
+Given a natural number $n > 0$ and state $x,$ let $\mathcal{P}(x,n)$ denote the set of paths with minimum path energies among all paths of length $n$ starting at state $x,$ and let $\mathcal{E}(x, n)$ be the minimum energy attained. Here, the length of a path is the number of edges in the path. We can recursively compute them by
+
+$$
+\begin{align*}
+\mathcal{E}(x,0) &= 0 & & \text{for all }x,\\
+\mathcal{E}(x,n+1) &= \min_{y \in N(x)} \left( E(y|x) + \mathcal{E}(y, n) \right) & & \text{for all }x,n;
+\end{align*}
+$$
+
+$$
+\begin{align*}
+\mathcal{P}(x,0) &= \{x\} & &\text{for all }x, \\
+\mathcal{P}(x,n+1) &= \{x \rightarrow p \mid y \in S, p \in \mathcal{P}(y, n), & & \\
+& \qquad \qquad \mathcal{E}(x,n+1) = E(y|x)+\mathcal{E}(y,n) \} && \text{for all }x,n.
+\end{align*}
+$$
 
 ## Natural language processing
 

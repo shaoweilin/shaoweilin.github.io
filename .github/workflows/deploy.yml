@@ -24,6 +24,10 @@ jobs:
       run: |
         pip install -r requirements.txt
 
+    - name: Install texlive
+      run: |
+        sudo apt install texlive texlive-pictures pdf2svg
+
     - name: Install graphviz
       run: |
         sudo apt install graphviz

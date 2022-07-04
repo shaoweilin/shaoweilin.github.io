@@ -35,6 +35,7 @@ extensions = [
     "sphinxext.opengraph",
     "sphinxext.rediraffe",
     "sphinx.ext.graphviz",
+    "sphinxcontrib.tikz",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
