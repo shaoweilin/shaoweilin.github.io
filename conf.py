@@ -59,6 +59,9 @@ html_theme_options = {
   "github_url": "https://github.com/shaoweilin/",
   "search_bar_text": "Search this site...",
   "navbar_end": ["search-field.html", "navbar-icon-links"],
+  "logo": {
+    "text": "My awesome documentation",
+  },
 }
 
 html_favicon = "_static/favicon.ico"
