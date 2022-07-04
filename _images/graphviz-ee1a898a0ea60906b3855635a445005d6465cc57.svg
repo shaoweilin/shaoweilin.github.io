@@ -26,7 +26,7 @@
 <title>A&#45;&gt;B</title>
 <path fill="none" stroke="black" d="M35.16,-50.59C45.62,-54.21 59.46,-59.01 71.4,-63.14"/>
 <polygon fill="black" stroke="black" points="70.26,-66.45 80.86,-66.41 72.55,-59.83 70.26,-66.45"/>
-<text text-anchor="middle" x="58" y="-62.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">2</text>
+<text text-anchor="middle" x="58" y="-62.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">1</text>
 </g>
 <!-- C -->
 <g id="node3" class="node">
@@ -39,7 +39,7 @@
 <title>A&#45;&gt;C</title>
 <path fill="none" stroke="black" d="M35.16,-39.41C45.62,-35.79 59.46,-30.99 71.4,-26.86"/>
 <polygon fill="black" stroke="black" points="72.55,-30.17 80.86,-23.59 70.26,-23.55 72.55,-30.17"/>
-<text text-anchor="middle" x="58" y="-35.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">1</text>
+<text text-anchor="middle" x="58" y="-35.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">2</text>
 </g>
 <!-- D -->
 <g id="node4" class="node">
