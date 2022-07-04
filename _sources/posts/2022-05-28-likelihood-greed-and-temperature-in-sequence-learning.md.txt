@@ -166,12 +166,12 @@ For large $\beta$, the latter summand dominates the log density, and the optimal
 
 The following Markov chain demonstrates the difference between stepwise and pathwise energy minimization. It has four states $A,B,C,D$ and an arrow between states from state $i$ to state $j$ with weight $w$ indicates that the energy is $E(j|i) = w$.
 
-```{eval-rst}
-.. graphviz::
+```{graphviz}
 
    digraph foo {
       "bar" -> "baz";
    }
+   
 ```
 
 Under stepwise minimization, we will choose the transition $A \rightarrow B$ because it has a lower energy than $A \rightarrow C$. However, there is only one transition $B \rightarrow D$ so that is automatically chosen. The total path energy is $101$.
