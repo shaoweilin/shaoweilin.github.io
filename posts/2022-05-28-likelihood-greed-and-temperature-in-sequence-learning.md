@@ -193,20 +193,20 @@ Given a natural number $n > 0$ and state $x,$ let $\mathcal{P}(x,n)$ denote the 
 
 $$
 \begin{align*}
-\mathcal{E}(x,0) &= 0 & & \text{for all }x,\\
-\mathcal{E}(x,n+1) &= \min_{y \in N(x)} \left( E(y|x) + \mathcal{E}(y, n) \right) & & \text{for all }x,n,
+\mathcal{E}(x,0) &= 0\\
+\mathcal{E}(x,n+1) &= \min_{y \in N(x)} \left( E(y|x) + \mathcal{E}(y, n) \right)
 \end{align*}
 $$
 
 $$
 \begin{align*}
-\mathcal{P}(x,0) &= \{x\} & &\text{for all }x, \\
-\mathcal{P}(x,n+1) &= \{x \rightarrow p \mid y \in S, p \in \mathcal{P}(y, n), & & \\
-& \qquad \qquad \mathcal{E}(x,n+1) = E(y|x)+\mathcal{E}(y,n) \} && \text{for all }x,n,
+\mathcal{P}(x,0) &= \{x\}\\
+\mathcal{P}(x,n+1) &= \{x \rightarrow p \mid y \in S, p \in \mathcal{P}(y, n), \\
+& \qquad \mathcal{E}(x,n+1) = E(y|x)+\mathcal{E}(y,n) \}
 \end{align*}
 $$
 
-where $x \rightarrow p$ denotes the prepending of a state $x$ to a path $p$. 
+for all states $x$ and lengths $n,$ where $x \rightarrow p$ denotes the prepending of a state $x$ to a path $p$. 
 
 ## Natural language processing
 
