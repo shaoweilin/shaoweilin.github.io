@@ -166,10 +166,24 @@ For large $\beta$, the latter summand dominates the log density, and the optimal
 
 The following Markov chain demonstrates the difference between stepwise and pathwise energy minimization. It has four states $A,B,C,D$ and an arrow between states from state $i$ to state $j$ with weight $w$ indicates that the energy is $E(j|i) = w$.
 
-```{tikz} [>=latex',dotted,thick] \draw[->] (0,0) -- (1,1) -- (1,0) -- (2,0);
+```{tikz} 
 ---
 libs: arrows
 ---
+[
+roundnode/.style={circle, draw=green!60, fill=green!5, very thick, minimum size=7mm},
+squarednode/.style={rectangle, draw=red!60, fill=red!5, very thick, minimum size=5mm},
+]
+%Nodes
+\node[squarednode]      (maintopic)                              {2};
+\node[roundnode]        (uppercircle)       [above=of maintopic] {1};
+\node[squarednode]      (rightsquare)       [right=of maintopic] {3};
+\node[roundnode]        (lowercircle)       [below=of maintopic] {4};
+
+%Lines
+\draw[->] (uppercircle.south) -- (maintopic.north);
+\draw[->] (maintopic.east) -- (rightsquare.west);
+\draw[->] (rightsquare.south) .. controls +(down:7mm) and +(right:7mm) .. (lowercircle.east);
 ```
 
 ```{graphviz}
