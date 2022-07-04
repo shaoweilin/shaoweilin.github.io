@@ -495,7 +495,24 @@ subtracts the minimal transition energy from each time step.</p>
 <div class="section" id="stepwise-vs-pathwise-minimization">
 <h2>Stepwise vs pathwise minimization<a class="headerlink" href="#stepwise-vs-pathwise-minimization" title="Permalink to this headline">#</a></h2>
 <p>The following Markov chain demonstrates the difference between stepwise and pathwise energy minimization. It has four states <span class="math notranslate nohighlight">\(A,B,C,D\)</span> and an arrow between states from state <span class="math notranslate nohighlight">\(i\)</span> to state <span class="math notranslate nohighlight">\(j\)</span> with weight <span class="math notranslate nohighlight">\(w\)</span> indicates that the energy is <span class="math notranslate nohighlight">\(E(j|i) = w\)</span>.</p>
-<div align="center" class="align-center"><div class="graphviz"><object data="../../_images/graphviz-ee1a898a0ea60906b3855635a445005d6465cc57.svg" type="image/svg+xml" class="graphviz">
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">[&gt;=latex',dotted,thick] \draw[-&gt;] (0,0) -- (1,1) -- (1,0) -- (2,0);</span>)</p>
+<p>! LaTeX Error: File `standalone.cls' not found.
+
+Type X to quit or &lt;RETURN&gt; to proceed,
+or enter new name. (Default extension: cls)
+
+Enter file name: 
+! Emergency stop.
+&lt;read *&gt; 
+         
+l.3 \\usepackage
+               [utf8]{inputenc}^^M
+!  ==&gt; Fatal error occurred, no output PDF file produced!
+Transcript written on tikz-34f40c0cdc9415910f5b8f3dc926508d89e2dd69.log.
+&quot;</p>
+</div>
+</div><div align="center" class="align-center"><div class="graphviz"><object data="../../_images/graphviz-ee1a898a0ea60906b3855635a445005d6465cc57.svg" type="image/svg+xml" class="graphviz">
 <p class="warning">digraph markov_chain {
 	fontname=&quot;Helvetica,Arial,sans-serif&quot;
 	node [fontname=&quot;Helvetica,Arial,sans-serif&quot;]
@@ -508,8 +525,24 @@ subtracts the minimal transition energy from each time step.</p>
 	C -&gt; D [label = &quot;1&quot;];
 }</p></object></div>
 </div>
-<p>Under stepwise minimization, we will choose the transition <span class="math notranslate nohighlight">\(A \rightarrow B\)</span> because it has a lower energy than <span class="math notranslate nohighlight">\(A \rightarrow C\)</span>. However, there is only one transition <span class="math notranslate nohighlight">\(B \rightarrow D\)</span> so that is automatically chosen. The total path energy is <span class="math notranslate nohighlight">\(101\)</span>.</p>
+<p>Under stepwise minimization, the transition <span class="math notranslate nohighlight">\(A \rightarrow B\)</span> is chosen because it has a lower energy than <span class="math notranslate nohighlight">\(A \rightarrow C\)</span>. There is only one transition <span class="math notranslate nohighlight">\(B \rightarrow D\)</span> so that is automatically picked. The total path energy is <span class="math notranslate nohighlight">\(101\)</span>.</p>
 <p>Under pathwise minimization, there are two paths: <span class="math notranslate nohighlight">\(A \rightarrow B \rightarrow D\)</span> with energy <span class="math notranslate nohighlight">\(101\)</span>, and <span class="math notranslate nohighlight">\(A \rightarrow C \rightarrow D\)</span> with energy <span class="math notranslate nohighlight">\(3\)</span>. Therefore, the chosen path will be <span class="math notranslate nohighlight">\(A \rightarrow C \rightarrow D\)</span>.</p>
+<p>Given a natural number <span class="math notranslate nohighlight">\(n &gt; 0\)</span> and state <span class="math notranslate nohighlight">\(x,\)</span> let <span class="math notranslate nohighlight">\(\mathcal{P}(x,n)\)</span> denote the set of paths with minimum path energies among all paths of length <span class="math notranslate nohighlight">\(n\)</span> starting at state <span class="math notranslate nohighlight">\(x,\)</span> and let <span class="math notranslate nohighlight">\(\mathcal{E}(x, n)\)</span> be the minimum energy attained. Here, the length of a path is the number of edges in the path. We can recursively compute them by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\mathcal{E}(x,0) &amp;= 0 &amp; &amp; \text{for all }x,\\
+\mathcal{E}(x,n+1) &amp;= \min_{y \in N(x)} \left( E(y|x) + \mathcal{E}(y, n) \right) &amp; &amp; \text{for all }x,n;
+\end{align*}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\mathcal{P}(x,0) &amp;= \{x\} &amp; &amp;\text{for all }x, \\
+\mathcal{P}(x,n+1) &amp;= \{x \rightarrow p \mid y \in S, p \in \mathcal{P}(y, n), &amp; &amp; \\
+&amp; \qquad \qquad \mathcal{E}(x,n+1) = E(y|x)+\mathcal{E}(y,n) \} &amp;&amp; \text{for all }x,n.
+\end{align*}
+\end{split}\]</div>
 </div>
 <div class="section" id="natural-language-processing">
 <h2>Natural language processing<a class="headerlink" href="#natural-language-processing" title="Permalink to this headline">#</a></h2>
