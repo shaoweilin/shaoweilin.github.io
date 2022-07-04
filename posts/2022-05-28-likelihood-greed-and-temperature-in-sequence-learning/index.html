@@ -38,6 +38,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
@@ -319,6 +320,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stepwise-vs-pathwise-minimization">
+   Stepwise vs pathwise minimization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#natural-language-processing">
    Natural language processing
   </a>
@@ -466,7 +472,12 @@ E(s'|\hat{s}_t, w) \leq E(\hat{s}_{t-1}|\hat{s}_t, w).
 <h2>Temperature in continuous time<a class="headerlink" href="#temperature-in-continuous-time" title="Permalink to this headline">#</a></h2>
 <p>In the continuous-time model, as <span class="math notranslate nohighlight">\(\beta\)</span> goes to infinity, the transition probability <span class="math notranslate nohighlight">\(P(s^*_{t+1}|s_t, w)\)</span> tends to <span class="math notranslate nohighlight">\(1\)</span> while the transition probability of other neighbors <span class="math notranslate nohighlight">\(s'_{t+1}\)</span> given <span class="math notranslate nohighlight">\(s_t\)</span> tends to <span class="math notranslate nohighlight">\(0,\)</span> just like in the discrete-time case. As seen previously, the negative log probability grows like <span class="math notranslate nohighlight">\(\beta \big( E(\hat{s}_{t+1}|\hat{s}_t, w) - E(\hat{s}^*_{t+1}|\hat{s}_t, w) \big) \)</span> for large <span class="math notranslate nohighlight">\(\beta.\)</span></p>
 <p>The holding rates <span class="math notranslate nohighlight">\(Z(s_t, w)\)</span> will, however, tend to <span class="math notranslate nohighlight">\(0.\)</span> This means that the time held in state <span class="math notranslate nohighlight">\(s_t\)</span> will increase to infinity as <span class="math notranslate nohighlight">\(\beta\)</span> increases.</p>
-<p>In fact, for large <span class="math notranslate nohighlight">\(\beta,\)</span> the negative log density <span class="math notranslate nohighlight">\(\ell(w)\)</span> grows like <span class="math notranslate nohighlight">\(\beta E(\hat{s}^*_{t+1}|\hat{s}_t, w),\)</span> the transition energy that is mimimal over all <span class="math notranslate nohighlight">\(\beta E(s'|\hat{s}_t, w)\)</span> for <span class="math notranslate nohighlight">\(s' \in N(\hat{s}_t).\)</span> This means that for lower minimal transition energies <span class="math notranslate nohighlight">\(E(\hat{s}^*_{t+1}|\hat{s}_t, w),\)</span> the holding time period in state <span class="math notranslate nohighlight">\(\hat{s}_t\)</span> is shorter.</p>
+<p>In fact, for large <span class="math notranslate nohighlight">\(\beta,\)</span> the negative log density</p>
+<div class="math notranslate nohighlight">
+\[
+-\log \left[ Z(\hat{s}_{t},w) \exp \big(-\delta Z(\hat{s}_t,w) \big) \right] = \delta Z(\hat{s}_t,w) -\log Z(\hat{s}_{t},w) 
+\]</div>
+<p>of exponentially-distributed holding time grows like <span class="math notranslate nohighlight">\(\beta E(\hat{s}^*_{t+1}|\hat{s}_t, w),\)</span> the transition energy that is mimimal over all <span class="math notranslate nohighlight">\(\beta E(s'|\hat{s}_t, w)\)</span> for <span class="math notranslate nohighlight">\(s' \in N(\hat{s}_t).\)</span> This means that for lower minimal transition energies <span class="math notranslate nohighlight">\(E(\hat{s}^*_{t+1}|\hat{s}_t, w),\)</span> the holding time period in state <span class="math notranslate nohighlight">\(\hat{s}_t\)</span> is shorter.</p>
 <p>Consequently, the negative log-likelihood <span class="math notranslate nohighlight">\(\ell(w)\)</span> tends to</p>
 <div class="math notranslate nohighlight">
 \[
@@ -481,6 +492,31 @@ subtracts the minimal transition energy from each time step.</p>
 \]</div>
 <p>For large <span class="math notranslate nohighlight">\(\beta\)</span>, the latter summand dominates the log density, and the optimal paths are determined by <em>pathwise energy minimization</em>. This pathwise minimization is analogous to the principle of least action in classical or quantum physics.</p>
 </div>
+<div class="section" id="stepwise-vs-pathwise-minimization">
+<h2>Stepwise vs pathwise minimization<a class="headerlink" href="#stepwise-vs-pathwise-minimization" title="Permalink to this headline">#</a></h2>
+<p>The following Markov chain demonstrates the difference between stepwise and pathwise energy minimization. It has four states <span class="math notranslate nohighlight">\(A,B,C,D\)</span> and an arrow between states from state <span class="math notranslate nohighlight">\(i\)</span> to state <span class="math notranslate nohighlight">\(j\)</span> with weight <span class="math notranslate nohighlight">\(w\)</span> indicates that the energy is <span class="math notranslate nohighlight">\(E(j|i) = w\)</span>.</p>
+digraph finite_state_machine {
+	fontname=&quot;Helvetica,Arial,sans-serif&quot;
+	node [fontname=&quot;Helvetica,Arial,sans-serif&quot;]
+	edge [fontname=&quot;Helvetica,Arial,sans-serif&quot;]
+	rankdir=LR;
+	node [shape = doublecircle]; 0 3 4 8;
+	node [shape = circle];
+	0 -&gt; 2 [label = &quot;SS(B)&quot;];
+	0 -&gt; 1 [label = &quot;SS(S)&quot;];
+	1 -&gt; 3 [label = &quot;S($end)&quot;];
+	2 -&gt; 6 [label = &quot;SS(b)&quot;];
+	2 -&gt; 5 [label = &quot;SS(a)&quot;];
+	2 -&gt; 4 [label = &quot;S(A)&quot;];
+	5 -&gt; 7 [label = &quot;S(b)&quot;];
+	5 -&gt; 5 [label = &quot;S(a)&quot;];
+	6 -&gt; 6 [label = &quot;S(b)&quot;];
+	6 -&gt; 5 [label = &quot;S(a)&quot;];
+	7 -&gt; 8 [label = &quot;S(b)&quot;];
+	7 -&gt; 5 [label = &quot;S(a)&quot;];
+	8 -&gt; 6 [label = &quot;S(b)&quot;];
+	8 -&gt; 5 [label = &quot;S(a)&quot;];
+}</div>
 <div class="section" id="natural-language-processing">
 <h2>Natural language processing<a class="headerlink" href="#natural-language-processing" title="Permalink to this headline">#</a></h2>
 <p>The difference between stepwise energy minimization and pathwise energy minimization is easily seen in natural language processing.</p>
@@ -516,11 +552,7 @@ subtracts the minimal transition energy from each time step.</p>
 <p>which is proportional to the limit of <span class="math notranslate nohighlight">\(\ell(w)\)</span> at <span class="math notranslate nohighlight">\(\beta =1\)</span> as <span class="math notranslate nohighlight">\(\delta\)</span> tends to infinity.</p>
 <p>This limit makes sense because energy flow is used in the paper for training Hopfield networks with attractor dynamics. The observed data <span class="math notranslate nohighlight">\(\{\hat{s}_t\}\)</span> is not actually a sequence, but a list of attractors. Each  attractor may be thought of as a one-state sequence with infinite holding time <span class="math notranslate nohighlight">\(\delta\)</span>.</p>
 <p>The negative log likelihood <span class="math notranslate nohighlight">\(\ell(w)\)</span> provides a family of objective functions with hyperparameters <span class="math notranslate nohighlight">\(\delta\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> that could be used in sequence learning.</p>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">\draw[-&gt;] (0,0) -- (1,1) -- (1,0)</span>)</p>
-<p>!pdflatex command cannot be run</p>
 </div>
-</div></div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <div class="docutils container" id="id4">
