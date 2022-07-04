@@ -8,4 +8,3 @@ sphinx-panels
 sphinxcontrib-bibtex
 sphinxext-opengraph
 sphinxext-rediraffe
-sphinxcontrib-tikz
