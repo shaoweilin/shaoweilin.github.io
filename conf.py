@@ -34,12 +34,8 @@ extensions = [
     "sphinxcontrib.bibtex",
     "sphinxext.opengraph",
     "sphinxext.rediraffe",
-    "sphinxcontrib.tikz",
+    "sphinx.ext.graphviz",
 ]
-
-latex_elements = {
-    'preamble': '\usepackage{tikz}',
-}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
