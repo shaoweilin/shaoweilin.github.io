@@ -166,30 +166,17 @@ For large $\beta$, the latter summand dominates the log density, and the optimal
 
 The following Markov chain demonstrates the difference between stepwise and pathwise energy minimization. It has four states $A,B,C,D$ and an arrow between states from state $i$ to state $j$ with weight $w$ indicates that the energy is $E(j|i) = w$.
 
-```{graphviz}
-digraph finite_state_machine {
-	fontname="Helvetica,Arial,sans-serif"
-	node [fontname="Helvetica,Arial,sans-serif"]
-	edge [fontname="Helvetica,Arial,sans-serif"]
-	rankdir=LR;
-	node [shape = doublecircle]; 0 3 4 8;
-	node [shape = circle];
-	0 -> 2 [label = "SS(B)"];
-	0 -> 1 [label = "SS(S)"];
-	1 -> 3 [label = "S($end)"];
-	2 -> 6 [label = "SS(b)"];
-	2 -> 5 [label = "SS(a)"];
-	2 -> 4 [label = "S(A)"];
-	5 -> 7 [label = "S(b)"];
-	5 -> 5 [label = "S(a)"];
-	6 -> 6 [label = "S(b)"];
-	6 -> 5 [label = "S(a)"];
-	7 -> 8 [label = "S(b)"];
-	7 -> 5 [label = "S(a)"];
-	8 -> 6 [label = "S(b)"];
-	8 -> 5 [label = "S(a)"];
-}
+```{eval-rst}
+.. graphviz::
+
+   digraph foo {
+      "bar" -> "baz";
+   }
 ```
+
+Under stepwise minimization, we will choose the transition $A \rightarrow B$ because it has a lower energy than $A \rightarrow C$. However, there is only one transition $B \rightarrow D$ so that is automatically chosen. The total path energy is $101$.
+
+Under pathwise minimization, there are two paths: $A \rightarrow B \rightarrow D$ with energy $101$, and $A \rightarrow C \rightarrow D$ with energy $3$. Therefore, the chosen path will be $A \rightarrow C \rightarrow D$.
 
 ## Natural language processing
 

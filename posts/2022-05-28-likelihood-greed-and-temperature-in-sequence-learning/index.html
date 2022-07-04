@@ -495,28 +495,11 @@ subtracts the minimal transition energy from each time step.</p>
 <div class="section" id="stepwise-vs-pathwise-minimization">
 <h2>Stepwise vs pathwise minimization<a class="headerlink" href="#stepwise-vs-pathwise-minimization" title="Permalink to this headline">#</a></h2>
 <p>The following Markov chain demonstrates the difference between stepwise and pathwise energy minimization. It has four states <span class="math notranslate nohighlight">\(A,B,C,D\)</span> and an arrow between states from state <span class="math notranslate nohighlight">\(i\)</span> to state <span class="math notranslate nohighlight">\(j\)</span> with weight <span class="math notranslate nohighlight">\(w\)</span> indicates that the energy is <span class="math notranslate nohighlight">\(E(j|i) = w\)</span>.</p>
-digraph finite_state_machine {
-	fontname=&quot;Helvetica,Arial,sans-serif&quot;
-	node [fontname=&quot;Helvetica,Arial,sans-serif&quot;]
-	edge [fontname=&quot;Helvetica,Arial,sans-serif&quot;]
-	rankdir=LR;
-	node [shape = doublecircle]; 0 3 4 8;
-	node [shape = circle];
-	0 -&gt; 2 [label = &quot;SS(B)&quot;];
-	0 -&gt; 1 [label = &quot;SS(S)&quot;];
-	1 -&gt; 3 [label = &quot;S($end)&quot;];
-	2 -&gt; 6 [label = &quot;SS(b)&quot;];
-	2 -&gt; 5 [label = &quot;SS(a)&quot;];
-	2 -&gt; 4 [label = &quot;S(A)&quot;];
-	5 -&gt; 7 [label = &quot;S(b)&quot;];
-	5 -&gt; 5 [label = &quot;S(a)&quot;];
-	6 -&gt; 6 [label = &quot;S(b)&quot;];
-	6 -&gt; 5 [label = &quot;S(a)&quot;];
-	7 -&gt; 8 [label = &quot;S(b)&quot;];
-	7 -&gt; 5 [label = &quot;S(a)&quot;];
-	8 -&gt; 6 [label = &quot;S(b)&quot;];
-	8 -&gt; 5 [label = &quot;S(a)&quot;];
-}</div>
+digraph foo {
+   &quot;bar&quot; -&gt; &quot;baz&quot;;
+}<p>Under stepwise minimization, we will choose the transition <span class="math notranslate nohighlight">\(A \rightarrow B\)</span> because it has a lower energy than <span class="math notranslate nohighlight">\(A \rightarrow C\)</span>. However, there is only one transition <span class="math notranslate nohighlight">\(B \rightarrow D\)</span> so that is automatically chosen. The total path energy is <span class="math notranslate nohighlight">\(101\)</span>.</p>
+<p>Under pathwise minimization, there are two paths: <span class="math notranslate nohighlight">\(A \rightarrow B \rightarrow D\)</span> with energy <span class="math notranslate nohighlight">\(101\)</span>, and <span class="math notranslate nohighlight">\(A \rightarrow C \rightarrow D\)</span> with energy <span class="math notranslate nohighlight">\(3\)</span>. Therefore, the chosen path will be <span class="math notranslate nohighlight">\(A \rightarrow C \rightarrow D\)</span>.</p>
+</div>
 <div class="section" id="natural-language-processing">
 <h2>Natural language processing<a class="headerlink" href="#natural-language-processing" title="Permalink to this headline">#</a></h2>
 <p>The difference between stepwise energy minimization and pathwise energy minimization is easily seen in natural language processing.</p>
