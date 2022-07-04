@@ -495,9 +495,10 @@ subtracts the minimal transition energy from each time step.</p>
 <div class="section" id="stepwise-vs-pathwise-minimization">
 <h2>Stepwise vs pathwise minimization<a class="headerlink" href="#stepwise-vs-pathwise-minimization" title="Permalink to this headline">#</a></h2>
 <p>The following Markov chain demonstrates the difference between stepwise and pathwise energy minimization. It has four states <span class="math notranslate nohighlight">\(A,B,C,D\)</span> and an arrow between states from state <span class="math notranslate nohighlight">\(i\)</span> to state <span class="math notranslate nohighlight">\(j\)</span> with weight <span class="math notranslate nohighlight">\(w\)</span> indicates that the energy is <span class="math notranslate nohighlight">\(E(j|i) = w\)</span>.</p>
-<div class="graphviz"><img src="../../_images/graphviz-f231827ccfc14b7f035f5d678e57b973cba2373b.png" alt="digraph foo {
+<div class="graphviz"><object data="../../_images/graphviz-f231827ccfc14b7f035f5d678e57b973cba2373b.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph foo {
    &quot;bar&quot; -&gt; &quot;baz&quot;;
-}" class="graphviz" /></div>
+}</p></object></div>
 <p>Under stepwise minimization, we will choose the transition <span class="math notranslate nohighlight">\(A \rightarrow B\)</span> because it has a lower energy than <span class="math notranslate nohighlight">\(A \rightarrow C\)</span>. However, there is only one transition <span class="math notranslate nohighlight">\(B \rightarrow D\)</span> so that is automatically chosen. The total path energy is <span class="math notranslate nohighlight">\(101\)</span>.</p>
 <p>Under pathwise minimization, there are two paths: <span class="math notranslate nohighlight">\(A \rightarrow B \rightarrow D\)</span> with energy <span class="math notranslate nohighlight">\(101\)</span>, and <span class="math notranslate nohighlight">\(A \rightarrow C \rightarrow D\)</span> with energy <span class="math notranslate nohighlight">\(3\)</span>. Therefore, the chosen path will be <span class="math notranslate nohighlight">\(A \rightarrow C \rightarrow D\)</span>.</p>
 </div>
