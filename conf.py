@@ -60,7 +60,7 @@ html_theme_options = {
   "search_bar_text": "Search this site...",
   "navbar_end": ["search-field.html", "navbar-icon-links"],
   "logo": {
-    "text": "My awesome documentation",
+    "text": "Types from Spikes",
   },
 }
 
