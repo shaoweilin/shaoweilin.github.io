@@ -495,57 +495,7 @@ subtracts the minimal transition energy from each time step.</p>
 <div class="section" id="stepwise-vs-pathwise-minimization">
 <h2>Stepwise vs pathwise minimization<a class="headerlink" href="#stepwise-vs-pathwise-minimization" title="Permalink to this headline">#</a></h2>
 <p>The following Markov chain demonstrates the difference between stepwise and pathwise energy minimization. It has four states <span class="math notranslate nohighlight">\(A,B,C,D\)</span> and an arrow between states from state <span class="math notranslate nohighlight">\(i\)</span> to state <span class="math notranslate nohighlight">\(j\)</span> with weight <span class="math notranslate nohighlight">\(w\)</span> indicates that the energy is <span class="math notranslate nohighlight">\(E(j|i) = w\)</span>.</p>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">[
-roundnode/.style={circle, draw=green!60, fill=green!5, very thick, minimum size=7mm},
-squarednode/.style={rectangle, draw=red!60, fill=red!5, very thick, minimum size=5mm},
-]
-%Nodes
-\node[squarednode]      (maintopic)                              {2};
-\node[roundnode]        (uppercircle)       [above=of maintopic] {1};
-\node[squarednode]      (rightsquare)       [right=of maintopic] {3};
-\node[roundnode]        (lowercircle)       [below=of maintopic] {4};
-
-%Lines
-\draw[-&gt;] (uppercircle.south) -- (maintopic.north);
-\draw[-&gt;] (maintopic.east) -- (rightsquare.west);
-\draw[-&gt;] (rightsquare.south) .. controls +(down:7mm) and +(right:7mm) .. (lowercircle.east);</span>)</p>
-<p>! Package PGF Math Error: Unknown function `of' (in 'of maintopic').
-
-See the PGF Math package documentation for explanation.
-Type  H &lt;return&gt;  for immediate help.
- ...                                              
-                                                  
-l.16 ...  (uppercircle)       [above=of maintopic]
-                                                   {1};
-
-! Package PGF Math Error: Unknown function `of' (in 'of maintopic').
-
-See the PGF Math package documentation for explanation.
-Type  H &lt;return&gt;  for immediate help.
- ...                                              
-                                                  
-l.17 ...  (rightsquare)       [right=of maintopic]
-                                                   {3};
-
-! Package PGF Math Error: Unknown function `of' (in 'of maintopic').
-
-See the PGF Math package documentation for explanation.
-Type  H &lt;return&gt;  for immediate help.
- ...                                              
-                                                  
-l.18 ...  (lowercircle)       [below=of maintopic]
-                                                   {4};
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-(./tikz-922383d92dc8df17b9a507df80109341e0277385.aux) )
-(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmr12.pfb&gt;
-Output written on tikz-922383d92dc8df17b9a507df80109341e0277385.pdf (1 page, 93
-20 bytes).
-Transcript written on tikz-922383d92dc8df17b9a507df80109341e0277385.log.
-&quot;</p>
-</div>
-</div><div align="center" class="align-center"><div class="graphviz"><object data="../../_images/graphviz-ee1a898a0ea60906b3855635a445005d6465cc57.svg" type="image/svg+xml" class="graphviz">
+<div align="center" class="align-center"><div class="graphviz"><object data="../../_images/graphviz-ee1a898a0ea60906b3855635a445005d6465cc57.svg" type="image/svg+xml" class="graphviz">
 <p class="warning">digraph markov_chain {
 	fontname=&quot;Helvetica,Arial,sans-serif&quot;
 	node [fontname=&quot;Helvetica,Arial,sans-serif&quot;]
