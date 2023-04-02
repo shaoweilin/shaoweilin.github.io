@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://shaoweilin.github.io</id>
   <title>Types from Spikes</title>
-  <updated>2022-07-04T05:53:40.490798+00:00</updated>
+  <updated>2023-04-02T05:27:48.646903+00:00</updated>
   <link href="https://shaoweilin.github.io"/>
   <link href="https://shaoweilin.github.io/blog/atom.xml" rel="self"/>
-  <generator uri="https://ablog.readthedocs.org/" version="0.10.25">ABlog</generator>
+  <generator uri="https://ablog.readthedocs.org/" version="0.10.33.post1">ABlog</generator>
   <entry>
     <id>https://shaoweilin.github.io/posts/2012-07-13-studying-model-asymptotics-with-singular-learning-theory/</id>
     <title>Studying model asymptotics with singular learning theory</title>
@@ -262,7 +262,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <title>Biased stochastic approximation</title>
     <updated>2020-12-01T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;We explore the convergence of continuous-time ordinary differential equations and their discrete-time analogs, such as stochastic approximation and gradient descent, through the lens of Lyapunov theory &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2020-12-01-biased-stochastic-approximation/#id39" title="Léon Bottou and others. Online learning and stochastic approximations. On-line learning in neural networks, 17(9):142, 1998."&gt;B+98&lt;/a&gt;]&lt;/span&gt; &lt;span id="id2"&gt;[&lt;a class="reference internal" href="../posts/2020-12-01-biased-stochastic-approximation/#id36" title="Yingshen Li and Mark Rowland. Stochastic approximation theory (slides). \url http://yingzhenli.net/home/pdf/SA.pdf, 2015."&gt;LR15&lt;/a&gt;]&lt;/span&gt;. From this perspective, we will study biased stochastic approximation &lt;span id="id3"&gt;[&lt;a class="reference internal" href="../posts/2021-06-05-spiking-neural-networks/#id43" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019."&gt;KMMW19&lt;/a&gt;]&lt;/span&gt; where the expectation of the stochastic updates conditioned on the past (which we call the &lt;em&gt;conditional expectation&lt;/em&gt;) is not the same as the expectation of the stochastic updates under the stationary distribution (which we call the &lt;em&gt;total expectation&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;We explore the convergence of continuous-time ordinary differential equations and their discrete-time analogs, such as stochastic approximation and gradient descent, through the lens of Lyapunov theory &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2020-12-01-biased-stochastic-approximation/#id39" title="Léon Bottou and others. Online learning and stochastic approximations. On-line learning in neural networks, 17(9):142, 1998."&gt;B+98&lt;/a&gt;]&lt;/span&gt; &lt;span id="id2"&gt;[&lt;a class="reference internal" href="../posts/2020-12-01-biased-stochastic-approximation/#id36" title="Yingshen Li and Mark Rowland. Stochastic approximation theory (slides). http://yingzhenli.net/home/pdf/SA.pdf, 2015."&gt;LR15&lt;/a&gt;]&lt;/span&gt;. From this perspective, we will study biased stochastic approximation &lt;span id="id3"&gt;[&lt;a class="reference internal" href="../posts/2021-06-05-spiking-neural-networks/#id43" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019."&gt;KMMW19&lt;/a&gt;]&lt;/span&gt; where the expectation of the stochastic updates conditioned on the past (which we call the &lt;em&gt;conditional expectation&lt;/em&gt;) is not the same as the expectation of the stochastic updates under the stationary distribution (which we call the &lt;em&gt;total expectation&lt;/em&gt;).&lt;/p&gt;
 &lt;p&gt;This post is a continuation from our &lt;span class="xref myst"&gt;series&lt;/span&gt; on spiking networks, path integrals and motivic information.&lt;/p&gt;
 &lt;/div&gt;
 </content>
@@ -327,7 +327,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <title>Path integrals and the Dyson formula</title>
     <updated>2021-05-10T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;One of the deepest results in quantum field theory, to me, is the Dyson formula &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2021-05-10-path-integrals-and-the-dyson-formula/#id24" title="nLab. Dyson formula. \url https://ncatlab.org/nlab/show/Dyson+formula. Accessed: 2021."&gt;nLa&lt;/a&gt;]&lt;/span&gt;. It describes the solution to the differential equation&lt;/p&gt;
+&lt;p&gt;One of the deepest results in quantum field theory, to me, is the Dyson formula &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2021-05-10-path-integrals-and-the-dyson-formula/#id24" title="nLab. Dyson formula. https://ncatlab.org/nlab/show/Dyson+formula. Accessed: 2021."&gt;nLa&lt;/a&gt;]&lt;/span&gt;. It describes the solution to the differential equation&lt;/p&gt;
 &lt;p&gt;in terms of the exponential of the path integral of the operator &lt;span class="math notranslate nohighlight"&gt;\(A(t)\)&lt;/span&gt;,&lt;/p&gt;
 &lt;/div&gt;
 </content>
@@ -412,5 +412,17 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <link href="https://shaoweilin.github.io/posts/2022-05-28-likelihood-greed-and-temperature-in-sequence-learning/" rel="alternate"/>
     <summary>Imagine we have a model D(w) of a dynamical system with states s \in S, that is parametrized by some weight w \in W. Each state s comes with a set N(s) \subset S of neighbors and an associated energy function E(s'|s,w) \in \mathbb{R} that assigns an energy to each neighbor s' \in N(s).For simplicity, we assume the following dynamics: when the system is in state s, it picks the neighbor s' with the lowest energy E(s'|s,w) and jumps to state s' in the next time step (more to come later about what we mean by time step).</summary>
     <published>2022-05-28T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://shaoweilin.github.io/posts/2023-04-01-relative-information-is-motivic/</id>
+    <title>Relative information is motivic</title>
+    <updated>2023-04-01T00:00:00+00:00</updated>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;A (Hochschild) cohomological view of relative information must be motivic!&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://shaoweilin.github.io/posts/2023-04-01-relative-information-is-motivic/" rel="alternate"/>
+    <summary>A (Hochschild) cohomological view of relative information must be motivic!</summary>
+    <published>2023-04-01T00:00:00+00:00</published>
   </entry>
 </feed>
