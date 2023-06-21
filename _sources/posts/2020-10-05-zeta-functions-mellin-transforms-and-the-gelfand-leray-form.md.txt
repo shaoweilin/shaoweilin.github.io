@@ -25,6 +25,8 @@ These functions often have asymptotic expansions of the form
 
 $$J(t) = \displaystyle \sum_\alpha \sum_{i=1}^d m_{\alpha,i} t^\alpha (\log t)^{i-1}.$$
 
+Here, the $\alpha$'s are poles and the $i$'s are their multiplicities.
+
 ## Zeta functions
 
 Informally, zeta functions are complex functions of the form
@@ -57,7 +59,9 @@ of the theta function
 
 $$\theta(t) = \displaystyle \sum_{\lambda} m_\lambda e^{- \lambda t}.$$
 
-However, I do not know if the theta function can be expressed as the Gelfand-Leray function of a differential form with respect to an energy function.
+Here, if we expand each $e^{-\lambda t}$ by its Taylor series, we see that we can think of it as a kind of Gelfand-Leray function with non-negative integer poles and unit multiplicities. 
+
+However, I do not know if the theta function can actually be expressed as the Gelfand-Leray function of a differential form with respect to an energy function.
 
 Zeta functions are also useful for defining infinite products {cite}`manin1995lectures`
 
