@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://shaoweilin.github.io</id>
   <title>Types from Spikes</title>
-  <updated>2023-07-04T12:13:34.552132+00:00</updated>
+  <updated>2023-07-18T15:54:05.389138+00:00</updated>
   <link href="https://shaoweilin.github.io"/>
   <link href="https://shaoweilin.github.io/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.org/" version="0.10.33.post1">ABlog</generator>
@@ -424,5 +424,56 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <link href="https://shaoweilin.github.io/posts/2023-04-01-relative-information-is-motivic/" rel="alternate"/>
     <summary>A (Hochschild) cohomological view of relative information must be motivic!</summary>
     <published>2023-04-01T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://shaoweilin.github.io/posts/2023-07-18-all-you-need-is-relative-information/</id>
+    <title>All you need is relative information</title>
+    <updated>2023-06-26T00:00:00+00:00</updated>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;SLT has taught me that relative information
+(or Kullback-Leibler divergence) is all you need.
+For instance, the level sets of relative information
+give us state density functions, whose Fourier,
+Laplace and Mellin transforms reveal different
+facets of learning algorithms and their ability
+to generalize. In this talk, I will outline two
+ongoing projects involving relative information.
+The first project explores the information theory
+of time series, for the purpose of understanding
+language models and reinforcement learning. Using
+relative information rate, we derive stochastic
+learning algorithms for spiking neural networks
+with memory. The second project explores cohomological
+generalizations of relative information, building on
+recent work by Pierre Baudot and Daniel Bennequin
+and by Tai-Danae Bradley. The hope is to uncover
+new tools for studying non-statistical spaces,
+by analyzing the level sets of generalized
+relative information and their transforms.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://singularlearningtheory.com/2023"&gt;Singular Learning Theory and Alignment Summit&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://shaoweilin.github.io/posts/2023-07-18-all-you-need-is-relative-information/" rel="alternate"/>
+    <summary>SLT has taught me that relative information
+(or Kullback-Leibler divergence) is all you need.
+For instance, the level sets of relative information
+give us state density functions, whose Fourier,
+Laplace and Mellin transforms reveal different
+facets of learning algorithms and their ability
+to generalize. In this talk, I will outline two
+ongoing projects involving relative information.
+The first project explores the information theory
+of time series, for the purpose of understanding
+language models and reinforcement learning. Using
+relative information rate, we derive stochastic
+learning algorithms for spiking neural networks
+with memory. The second project explores cohomological
+generalizations of relative information, building on
+recent work by Pierre Baudot and Daniel Bennequin
+and by Tai-Danae Bradley. The hope is to uncover
+new tools for studying non-statistical spaces,
+by analyzing the level sets of generalized
+relative information and their transforms.Singular Learning Theory and Alignment Summit</summary>
+    <published>2023-06-26T00:00:00+00:00</published>
   </entry>
 </feed>
