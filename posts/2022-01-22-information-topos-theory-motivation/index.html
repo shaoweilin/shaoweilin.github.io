@@ -374,6 +374,12 @@ document.write(`
   </li>
   
   <li>
+    <a href="../2023-08-20-references-on-information-cohomology/"
+      >01 April - References on information cohomology</a
+    >
+  </li>
+  
+  <li>
     <a href="../2022-05-28-likelihood-greed-and-temperature-in-sequence-learning/"
       >28 May - Likelihood, greed and temperature in sequence learning</a
     >
@@ -382,12 +388,6 @@ document.write(`
   <li>
     <a href="../2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/"
       >22 January - Parametric typeclasses aid generalization in program synthesis</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2021-09-09-all-you-need-is-relative-information/"
-      >09 September - All you need is relative information</a
     >
   </li>
   
@@ -400,7 +400,7 @@ document.write(`
 <ul>
    
   <li>
-    <a href="../../blog/2023/">2023 (2)</a>
+    <a href="../../blog/2023/">2023 (3)</a>
   </li>
     
   <li>
@@ -502,7 +502,7 @@ I_{q \Vert p}(Z|X) = \int q(X) \int q(Z|X) \log \frac{q(Z|X)}{p(Z|X)} dZ\, dX\]<
 <p>In this post, we will motivate the development of an information theory for topoi, without invoking any logarithms, integrals, probabilities or measure theory. The mathematical foundations will be postponed to a later post.</p>
 <div class="section" id="bayesian-bundles">
 <h2>Bayesian bundles<a class="headerlink" href="#bayesian-bundles" title="Permalink to this headline">#</a></h2>
-<p>John Baez and Tobias Fritz <span id="id1">[<a class="reference internal" href="#id58" title="JC Baez and T Fritz. A bayesian characterization of relative entropy. Theory and Applications of Categories, 29:422–456, 2014.">BF14</a>]</span> have a nice characterization of <em>conditional</em> relative information as the unique functor (up to scaling) from the category of probability distributions on finite sets to the additive monoid <span class="math notranslate nohighlight">\([0,\infty]\)</span> satisfying some basic linearity, convexity and continuity conditions.</p>
+<p>John Baez and Tobias Fritz <span id="id1">[<a class="reference internal" href="#id65" title="JC Baez and T Fritz. A bayesian characterization of relative entropy. Theory and Applications of Categories, 29:422–456, 2014.">BF14</a>]</span> have a nice characterization of <em>conditional</em> relative information as the unique functor (up to scaling) from the category of probability distributions on finite sets to the additive monoid <span class="math notranslate nohighlight">\([0,\infty]\)</span> satisfying some basic linearity, convexity and continuity conditions.</p>
 <p>Instead of defining relative information as a function of a conditional relationship, they provide a measure-preserving morphism <span class="math notranslate nohighlight">\(f: X \rightarrow Y\)</span>
 paired with a stochastic right inverse <span class="math notranslate nohighlight">\(s: Y \rightarrow X.\)</span> I prefer to think in terms of a bundle <span class="math notranslate nohighlight">\(\pi_f : \Delta_X \rightarrow \Delta_Y\)</span> that projects from the space of distributions over <span class="math notranslate nohighlight">\(X\)</span> to the space of distributions over <span class="math notranslate nohighlight">\(Y\)</span> by marginalization, and a section <span class="math notranslate nohighlight">\(\sigma_s : \Delta_Y \rightarrow \Delta_X\)</span> that lifts a distribution over <span class="math notranslate nohighlight">\(Y\)</span> to a distribution over <span class="math notranslate nohighlight">\(X\)</span> by multiplication with a conditional distribution. Perhaps this interpretation was an intent of the authors too.</p>
 <p>Suppose we have a bundle <span class="math notranslate nohighlight">\(\pi: \Delta \rightarrow \Gamma\)</span> and three sections - a true <span class="math notranslate nohighlight">\(\sigma_q : \Gamma \rightarrow \Delta\)</span>, a model <span class="math notranslate nohighlight">\(\sigma_p : \Gamma \rightarrow \Delta\)</span> and a base point <span class="math notranslate nohighlight">\(\omega_q : * \rightarrow \Gamma.\)</span> Here, <span class="math notranslate nohighlight">\(*\)</span> is the one-point space. We may then consider the relative information for this bundle <span class="math notranslate nohighlight">\(\pi,\)</span> from the model <span class="math notranslate nohighlight">\(\sigma_p\)</span> to the true <span class="math notranslate nohighlight">\(\sigma_q,\)</span> weighted by the distribution <span class="math notranslate nohighlight">\(\omega_q(*)\)</span> (which you may think of as a prior).</p>
@@ -510,7 +510,7 @@ paired with a stochastic right inverse <span class="math notranslate nohighlight
 </div>
 <div class="section" id="from-bundles-to-presheaves">
 <h2>From bundles to presheaves<a class="headerlink" href="#from-bundles-to-presheaves" title="Permalink to this headline">#</a></h2>
-<p>If we have a bundle <span class="math notranslate nohighlight">\(\pi:\Delta \rightarrow \Gamma\)</span> and some topology <span class="math notranslate nohighlight">\(C\)</span> of open sets over the base space <span class="math notranslate nohighlight">\(\Gamma,\)</span> we may construct a presheaf <span class="math notranslate nohighlight">\(U: C^\text{op}\rightarrow \text{Set}\)</span> from <span class="math notranslate nohighlight">\(\pi\)</span> by associating to each open set the set of sections over that open set. See the tutorial <span id="id2">[<a class="reference internal" href="#id11" title="John Baez. Topos theory (part 2). https://johncarlosbaez.wordpress.com/2020/01/07/topos-theory-part-2/, 2020.">Bae20</a>]</span> by John Baez for an excellent description of this construction.</p>
+<p>If we have a bundle <span class="math notranslate nohighlight">\(\pi:\Delta \rightarrow \Gamma\)</span> and some topology <span class="math notranslate nohighlight">\(C\)</span> of open sets over the base space <span class="math notranslate nohighlight">\(\Gamma,\)</span> we may construct a presheaf <span class="math notranslate nohighlight">\(U: C^\text{op}\rightarrow \text{Set}\)</span> from <span class="math notranslate nohighlight">\(\pi\)</span> by associating to each open set the set of sections over that open set. See the tutorial <span id="id2">[<a class="reference internal" href="#id18" title="John Baez. Topos theory (part 2). https://johncarlosbaez.wordpress.com/2020/01/07/topos-theory-part-2/, 2020.">Bae20</a>]</span> by John Baez for an excellent description of this construction.</p>
 <p>For the rest of this post, we will be using presheaves instead of bundles, but the two ideas are somewhat interchangeable if you prefer to think in terms of bundles.</p>
 <p>So far, we have glossed over what it means to be an “open set” of the base space <span class="math notranslate nohighlight">\(\Gamma.\)</span> In statistics, when <span class="math notranslate nohighlight">\(\Gamma\)</span> is a space of distributions, there is a natural choice of topology inherited from the topology of the real numbers which are used in defining the distributions or measures. However, we <em>want to avoid</em> this topology.</p>
 <p>Instead, we want to think of <span class="math notranslate nohighlight">\(\Gamma\)</span> as a kind of <em>context</em> and an open set of <span class="math notranslate nohighlight">\(\Gamma\)</span> should be some kind of <em>subcontext</em>. This subcontext should lead us to other bundles and sections. In our example involving the bundles <span class="math notranslate nohighlight">\(\Delta \rightarrow \Gamma\)</span> and <span class="math notranslate nohighlight">\(\Gamma \rightarrow *,\)</span> we want to think of <span class="math notranslate nohighlight">\(\Delta, \Gamma, *\)</span> as contexts in our category <span class="math notranslate nohighlight">\(C.\)</span> We then have sections <span class="math notranslate nohighlight">\(\sigma_q, \sigma_p \in U(\Gamma)\)</span> and <span class="math notranslate nohighlight">\(\omega_q \in U(*)\)</span> where <span class="math notranslate nohighlight">\(U : C^\text{op} \rightarrow \text{Set}\)</span> is our presheaf. We will make these ideas more rigorous later.</p>
@@ -527,7 +527,7 @@ paired with a stochastic right inverse <span class="math notranslate nohighlight
 <h2>Natural models<a class="headerlink" href="#natural-models" title="Permalink to this headline">#</a></h2>
 <p>Recall that we had a presheaf <span class="math notranslate nohighlight">\(U : C^\text{op} \rightarrow \text{Set},\)</span> a context <span class="math notranslate nohighlight">\(\Gamma\)</span> in <span class="math notranslate nohighlight">\(C\)</span> and a section <span class="math notranslate nohighlight">\(\sigma \in U(\Gamma).\)</span> In the statistical setting, the section is a map <span class="math notranslate nohighlight">\(\sigma : \Gamma \rightarrow \Delta.\)</span> We want to think of the image <span class="math notranslate nohighlight">\(\Gamma.\sigma := \sigma(\Gamma)\)</span> also as a context, with the projection <span class="math notranslate nohighlight">\(\Gamma.\sigma \rightarrow \Gamma\)</span> as a morphism in <span class="math notranslate nohighlight">\(C.\)</span></p>
 <p>In the non-statistical setting, how do we go about extending the context <span class="math notranslate nohighlight">\(\Gamma\)</span> by a section <span class="math notranslate nohighlight">\(\sigma \in U(\Gamma)?\)</span> How do we check if <span class="math notranslate nohighlight">\(\Gamma.\sigma\)</span> is a context in the category <span class="math notranslate nohighlight">\(C\)</span> without forcefully requiring <span class="math notranslate nohighlight">\(C\)</span> to be expanded to include these extensions?</p>
-<p>Awodey has a beautiful way of constructing context extensions by imposing a simple requirement on the presheaf category <span id="id4">[<a class="reference internal" href="#id64" title="Steve Awodey. Natural models of homotopy type theory. Mathematical Structures in Computer Science, 28(2):241–286, 2018.">Awo18</a>]</span>. He begins with a fixed natural transformation <span class="math notranslate nohighlight">\(p: \dot{U} \rightarrow U\)</span> of presheaves on a category <span class="math notranslate nohighlight">\(C.\)</span> He then requires this natural transformation to be <em>representable</em>, i.e. its pullback along any natural transformation <span class="math notranslate nohighlight">\(\text{Hom}(-,\Gamma) \rightarrow U\)</span> is representable.</p>
+<p>Awodey has a beautiful way of constructing context extensions by imposing a simple requirement on the presheaf category <span id="id4">[<a class="reference internal" href="#id71" title="Steve Awodey. Natural models of homotopy type theory. Mathematical Structures in Computer Science, 28(2):241–286, 2018.">Awo18</a>]</span>. He begins with a fixed natural transformation <span class="math notranslate nohighlight">\(p: \dot{U} \rightarrow U\)</span> of presheaves on a category <span class="math notranslate nohighlight">\(C.\)</span> He then requires this natural transformation to be <em>representable</em>, i.e. its pullback along any natural transformation <span class="math notranslate nohighlight">\(\text{Hom}(-,\Gamma) \rightarrow U\)</span> is representable.</p>
 <p>Given a representable natural transformation <span class="math notranslate nohighlight">\(p: \dot{U} \rightarrow U,\)</span> we can build a dependent type theory with <span class="math notranslate nohighlight">\(C\)</span> as the category of contexts and substitutions in the theory. The map <span class="math notranslate nohighlight">\(p\)</span> then takes each term in the universe <span class="math notranslate nohighlight">\(\dot{U}\)</span> to its type in <span class="math notranslate nohighlight">\(U.\)</span> A representable natural transformation (together with a choice of pullbacks in some presheaf category) is also called a <em>natural model of type theory</em>.</p>
 </div>
 <div class="section" id="conclusion">
@@ -538,13 +538,13 @@ paired with a stochastic right inverse <span class="math notranslate nohighlight
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <div class="docutils container" id="id5">
 <dl class="citation">
-<dt class="label" id="id64"><span class="brackets"><a class="fn-backref" href="#id4">Awo18</a></span></dt>
+<dt class="label" id="id71"><span class="brackets"><a class="fn-backref" href="#id4">Awo18</a></span></dt>
 <dd><p>Steve Awodey. Natural models of homotopy type theory. <em>Mathematical Structures in Computer Science</em>, 28(2):241–286, 2018.</p>
 </dd>
-<dt class="label" id="id58"><span class="brackets"><a class="fn-backref" href="#id1">BF14</a></span></dt>
+<dt class="label" id="id65"><span class="brackets"><a class="fn-backref" href="#id1">BF14</a></span></dt>
 <dd><p>JC Baez and T Fritz. A bayesian characterization of relative entropy. <em>Theory and Applications of Categories</em>, 29:422–456, 2014.</p>
 </dd>
-<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id2">Bae20</a></span></dt>
+<dt class="label" id="id18"><span class="brackets"><a class="fn-backref" href="#id2">Bae20</a></span></dt>
 <dd><p>John Baez. Topos theory (part 2). <a class="reference external" href="https://johncarlosbaez.wordpress.com/2020/01/07/topos-theory-part-2/">https://johncarlosbaez.wordpress.com/2020/01/07/topos-theory-part-2/</a>, 2020.</p>
 </dd>
 </dl>

@@ -374,6 +374,12 @@ document.write(`
   </li>
   
   <li>
+    <a href="../2023-08-20-references-on-information-cohomology/"
+      >01 April - References on information cohomology</a
+    >
+  </li>
+  
+  <li>
     <a href="../2022-05-28-likelihood-greed-and-temperature-in-sequence-learning/"
       >28 May - Likelihood, greed and temperature in sequence learning</a
     >
@@ -382,12 +388,6 @@ document.write(`
   <li>
     <a href="../2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/"
       >22 January - Parametric typeclasses aid generalization in program synthesis</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2022-01-22-information-topos-theory-motivation/"
-      >22 January - Information topos theory - motivation</a
     >
   </li>
   
@@ -400,7 +400,7 @@ document.write(`
 <ul>
    
   <li>
-    <a href="../../blog/2023/">2023 (2)</a>
+    <a href="../../blog/2023/">2023 (3)</a>
   </li>
     
   <li>
@@ -490,7 +490,7 @@ document.write(`
                 <article class="bd-article" role="main">
                    <div class="tex2jax_ignore mathjax_ignore section" id="convergence-of-biased-stochastic-approximation">
 <h1>Convergence of biased stochastic approximation<a class="headerlink" href="#convergence-of-biased-stochastic-approximation" title="Permalink to this headline">#</a></h1>
-<p>Using techniques from <a class="reference internal" href="../2020-12-01-biased-stochastic-approximation/"><span class="doc std std-doc">biased</span></a> stochastic approximation <span id="id1">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id43" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span>, we prove under some regularity conditions the convergence of the online learning algorithm proposed <a class="reference internal" href="../2021-03-23-biased-stochastic-approximation-with-mutable-processes/"><span class="doc std std-doc">previously</span></a> for mutable Markov processes.</p>
+<p>Using techniques from <a class="reference internal" href="../2020-12-01-biased-stochastic-approximation/"><span class="doc std std-doc">biased</span></a> stochastic approximation <span id="id1">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id50" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span>, we prove under some regularity conditions the convergence of the online learning algorithm proposed <a class="reference internal" href="../2021-03-23-biased-stochastic-approximation-with-mutable-processes/"><span class="doc std std-doc">previously</span></a> for mutable Markov processes.</p>
 <p>Recall that the algorithm is described by the following updates.</p>
 <div class="math notranslate nohighlight">
 \[ \displaystyle 
@@ -513,8 +513,8 @@ Z_{n+1} \sim Q_{\lambda_{n}}(Z_{n+1} \vert Z_{n}, X_{n})\]</div>
 <p>where <span class="math notranslate nohighlight">\(\xi(X_{n+1} \vert X_n)\)</span> is a function of the environment <span class="math notranslate nohighlight">\(X_{n+1}, X_n\)</span> that is independent of the parameters <span class="math notranslate nohighlight">\(\theta,\lambda\)</span> and the beliefs <span class="math notranslate nohighlight">\(Z_{n+1},Z_n.\)</span></p>
 <p>This post is a continuation from our <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">series</span></a> on spiking networks, path integrals and motivic information.</p>
 <div class="section" id="how-do-we-frame-the-problem-in-the-language-of-karimi2019non">
-<h2>How do we frame the problem in the language of <span id="id2">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id43" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span>?<a class="headerlink" href="#how-do-we-frame-the-problem-in-the-language-of-karimi2019non" title="Permalink to this headline">#</a></h2>
-<p>To prove the convergence of our <a class="reference internal" href="../2020-12-01-biased-stochastic-approximation/"><span class="doc std std-doc">biased</span></a> stochastic approximation, we cannot apply the standard unbiased stochastic approximation theory of Robbins and Monro. We can however apply the work of <span id="id3">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id43" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span> which gives some guarantees for biased stochastic approximation involving Markov updates. In this section, we will now derive sufficient conditions for the <span class="xref myst">convergence</span> of our biased stochastic approximation.</p>
+<h2>How do we frame the problem in the language of <span id="id2">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id50" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span>?<a class="headerlink" href="#how-do-we-frame-the-problem-in-the-language-of-karimi2019non" title="Permalink to this headline">#</a></h2>
+<p>To prove the convergence of our <a class="reference internal" href="../2020-12-01-biased-stochastic-approximation/"><span class="doc std std-doc">biased</span></a> stochastic approximation, we cannot apply the standard unbiased stochastic approximation theory of Robbins and Monro. We can however apply the work of <span id="id3">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id50" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span> which gives some guarantees for biased stochastic approximation involving Markov updates. In this section, we will now derive sufficient conditions for the <span class="xref myst">convergence</span> of our biased stochastic approximation.</p>
 <p>We <span class="xref myst">recall</span> some key assumptions about our disciminative model <span class="math notranslate nohighlight">\(\{Q_\lambda:\lambda\in\Lambda\},\)</span> generative model <span class="math notranslate nohighlight">\(\{P_\theta:\theta \in \Theta\}\)</span> and true distribution <span class="math notranslate nohighlight">\(Q_*.\)</span></p>
 <hr class="docutils" />
 <p><strong>C1 (Markov property and stationarity).</strong> Under the true distribution <span class="math notranslate nohighlight">\(Q_*,\)</span> the process <span class="math notranslate nohighlight">\(\{X_t\}\)</span> is Markov. Under each <span class="math notranslate nohighlight">\(Q_\lambda\)</span> and each <span class="math notranslate nohighlight">\(P_\theta,\)</span> the process <span class="math notranslate nohighlight">\(\{(Z_t, X_t)\}\)</span> is Markov, and <span class="math notranslate nohighlight">\(Z_t\)</span> and <span class="math notranslate nohighlight">\(X_t\)</span> are independent given their past. The true distribution <span class="math notranslate nohighlight">\(Q_*\)</span> has a stationary distribution <span class="math notranslate nohighlight">\(\bar{\pi}_*,\)</span> and each <span class="math notranslate nohighlight">\(Q_\lambda\)</span> has a stationary distribution <span class="math notranslate nohighlight">\(\bar{\pi}_\lambda.\)</span></p>
@@ -957,7 +957,7 @@ H_{\hat{Q}_*}(X_t\vert X_{t-1}) + \xi_{\hat{Q}_*}(X_{t} \vert X_{t-1})
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <div class="docutils container" id="id4">
 <dl class="citation">
-<dt class="label" id="id31"><span class="brackets">KMMW19</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>,<a href="#id3">3</a>)</span></dt>
+<dt class="label" id="id38"><span class="brackets">KMMW19</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>,<a href="#id3">3</a>)</span></dt>
 <dd><p>Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In <em>Conference on Learning Theory</em>, 1944–1974. PMLR, 2019.</p>
 </dd>
 </dl>

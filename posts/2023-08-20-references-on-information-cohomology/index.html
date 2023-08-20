@@ -7,16 +7,16 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta property="og:title" content="Process learning with relative information" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta property="og:title" content="References on information cohomology" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://shaoweilin.github.io/posts/2021-03-21-process-learning-with-relative-information/" />
+<meta property="og:url" content="https://shaoweilin.github.io/posts/2023-08-20-references-on-information-cohomology/" />
 <meta property="og:site_name" content="Types from Spikes" />
-<meta property="og:description" content="Over the next few posts, we will derive a distributed learning algorithm for spiking neural networks with mutable variables that minimizes some natural notion of relative information and provably c..." />
+<meta property="og:description" content="Some references on the cohomological nature of various information theoretic concepts such as entropy and relative information. Markov categories: Markov categories were defined by Fritz[ Fri20]. P..." />
 <meta property="og:image" content="https://shaoweilin.github.io/_static/profile.jpg" />
 <meta property="og:image:alt" content="Types from Spikes" />
-<meta name="description" content="Over the next few posts, we will derive a distributed learning algorithm for spiking neural networks with mutable variables that minimizes some natural notion of relative information and provably c..." />
+<meta name="description" content="Some references on the cohomological nature of various information theoretic concepts such as entropy and relative information. Markov categories: Markov categories were defined by Fritz[ Fri20]. P..." />
 
-    <title>Process learning with relative information &#8212; Types from Spikes  documentation</title>
+    <title>References on information cohomology &#8212; Types from Spikes  documentation</title>
   
   
   
@@ -51,9 +51,7 @@
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2021-03-21-process-learning-with-relative-information';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2023-08-20-references-on-information-cohomology';</script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about/" />
     <link rel="index" title="Index" href="../../genindex/" />
@@ -348,7 +346,7 @@ document.write(`
         <div class="sidebar-primary-item">  
 <h2>
    <i class="fa fa-calendar"></i>
-  21 March 2021 
+  01 April 2023 
 </h2>
 
 <ul>
@@ -374,12 +372,6 @@ document.write(`
   </li>
   
   <li>
-    <a href="../2023-08-20-references-on-information-cohomology/"
-      >01 April - References on information cohomology</a
-    >
-  </li>
-  
-  <li>
     <a href="../2022-05-28-likelihood-greed-and-temperature-in-sequence-learning/"
       >28 May - Likelihood, greed and temperature in sequence learning</a
     >
@@ -388,6 +380,12 @@ document.write(`
   <li>
     <a href="../2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/"
       >22 January - Parametric typeclasses aid generalization in program synthesis</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2022-01-22-information-topos-theory-motivation/"
+      >22 January - Information topos theory - motivation</a
     >
   </li>
   
@@ -471,7 +469,7 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">Process learning with relative information</li>
+    <li class="breadcrumb-item active" aria-current="page">References on information cohomology</li>
   </ul>
 </nav>
 </div>
@@ -488,62 +486,39 @@ document.write(`
                 
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
-                   <div class="tex2jax_ignore mathjax_ignore section" id="process-learning-with-relative-information">
-<h1>Process learning with relative information<a class="headerlink" href="#process-learning-with-relative-information" title="Permalink to this headline">#</a></h1>
-<p>Over the next few posts, we will derive a distributed learning algorithm for spiking neural networks with <span class="xref myst">mutable</span> variables that minimizes some natural notion of relative information and provably converges over time. We will model these spiking neural networks with stochastic processes: both discrete-time and continuous-time processes, with or without mutable variables.</p>
-<p>In this post, we give a general overview of information-theoretic approaches to training stochastic processes, while postponing discussions about issues that arise from mutable variables.</p>
-<p>The actual process that generates the data could possibly be different from the model that we are training on the data. This problem is called model misspecification, which we are not addressing in this series. Our goal is to find a distribution in the model that fits the data well according to some sensible metric.</p>
-<p>This post is a continuation from our <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">series</span></a> on spiking networks, path integrals and motivic information.</p>
-<div class="section" id="how-do-we-train-a-stochastic-process-using-relative-information">
-<h2>How do we train a stochastic process using relative information?<a class="headerlink" href="#how-do-we-train-a-stochastic-process-using-relative-information" title="Permalink to this headline">#</a></h2>
-<p>Suppose that we have a stochastic process <span class="math notranslate nohighlight">\( \{X_t\}\)</span> where <span class="math notranslate nohighlight">\( X: I \rightarrow \mathcal{X}\)</span> is a map from some time interval <span class="math notranslate nohighlight">\( I \subset \mathbb{R}\)</span> to some state space <span class="math notranslate nohighlight">\( \mathcal{X}\)</span>. If <span class="math notranslate nohighlight">\( I\)</span> is the continuous interval <span class="math notranslate nohighlight">\( [0, T],\)</span> then <span class="math notranslate nohighlight">\( X\)</span> is a continuous-time stochastic process. If <span class="math notranslate nohighlight">\( I\)</span> is the discrete interval <span class="math notranslate nohighlight">\( \{0, 1, \ldots, T\},\)</span> then <span class="math notranslate nohighlight">\( X\)</span> is a discrete-time stochastic process.</p>
-<p>Let the true distribution of <span class="math notranslate nohighlight">\( \{X_t\}\)</span> be given by some path measure <span class="math notranslate nohighlight">\( Q_*(\gamma)\)</span> over paths <span class="math notranslate nohighlight">\( \gamma : I \rightarrow R\)</span>. Suppose that we have a model or a family of path measures <span class="math notranslate nohighlight">\( P_\theta(\gamma)\)</span> parametrized by <span class="math notranslate nohighlight">\( \theta \in \Theta.\)</span> We also assume absolute continuity for our model, i.e. <span class="math notranslate nohighlight">\( Q_* \ll P_\theta\)</span> for all <span class="math notranslate nohighlight">\( \theta\)</span>. This assumption is trivially satisfied if each model distribution assigns a non-zero measure to every cylinder in the sigma-algebra of our path space. Let <span class="math notranslate nohighlight">\( X_{a\ldots b}\)</span> denote the stochastic process over the interval <span class="math notranslate nohighlight">\( [a,b]\)</span>, i.e. the family <span class="math notranslate nohighlight">\( \{X_t\}_{t \in [a,b]}.\)</span></p>
-<p>Because we have absolute continuity, the Radon-Nikodym derivative <span class="math notranslate nohighlight">\( dQ_*/dP_\theta\)</span> exists, and we may define the time-averaged relative information</p>
-<div class="math notranslate nohighlight">
-\[\displaystyle \frac{1}{T} I_{Q_*\Vert P_\theta}(X_{0\ldots T}) = \frac{1}{T} \int \log \frac{dQ_*}{dP_\theta} dQ_*. \]</div>
-<p>To find the best model distribution <span class="math notranslate nohighlight">\( P_\theta\)</span> for approximation the true distribution <span class="math notranslate nohighlight">\( Q_*\)</span>, we will minimize this relative information with respect to <span class="math notranslate nohighlight">\( \theta\)</span>. As the time horizon <span class="math notranslate nohighlight">\( T\)</span> tends to infinity, we may also consider minimizing the limit of the time-averaged relative information</p>
-<div class="math notranslate nohighlight">
-\[\displaystyle \lim_{T\rightarrow \infty} \frac{1}{T} I_{Q_*\Vert P_\theta}(X_{0\ldots T}).\]</div>
+                   <div class="tex2jax_ignore mathjax_ignore section" id="references-on-information-cohomology">
+<h1>References on information cohomology<a class="headerlink" href="#references-on-information-cohomology" title="Permalink to this headline">#</a></h1>
+<p>Some references on the cohomological nature of various information theoretic concepts such as entropy and relative information.</p>
+<div class="section" id="markov-categories">
+<h2>Markov categories<a class="headerlink" href="#markov-categories" title="Permalink to this headline">#</a></h2>
+<p>Markov categories were defined by Fritz <span id="id1">[<a class="reference internal" href="#id11" title="Tobias Fritz. A synthetic approach to markov kernels, conditional independence and theorems on sufficient statistics. Advances in Mathematics, 370:107239, 2020.">Fri20</a>]</span>.</p>
+<p>Perrone on Markov categories and entropy <span id="id2">[<a class="reference internal" href="#id12" title="Paolo Perrone. Markov categories and entropy. arXiv preprint arXiv:2212.11719, 2022.">Per22</a>]</span>.</p>
+<p>Kochen reconstructs quantum mechanics using sigma complexes <span id="id3">[<a class="reference internal" href="#id13" title="Simon Kochen. A reconstruction of quantum mechanics. Foundations of Physics, 45:557–590, 2015.">Koc15</a>]</span>.</p>
 </div>
-<div class="section" id="how-do-we-train-a-stochastic-process-using-relative-information-rate">
-<h2>How do we train a stochastic process using relative information rate?<a class="headerlink" href="#how-do-we-train-a-stochastic-process-using-relative-information-rate" title="Permalink to this headline">#</a></h2>
-<p>In discrete time, by the chain rule (<span class="xref myst">CR</span>), the relative information decomposes into the sum</p>
-<div class="math notranslate nohighlight">
-\[\begin{split} \begin{array}{rl} I_{Q \Vert P}(X_{0\ldots n}) &amp;= I_{Q \Vert P}(X_n \vert X_{0\ldots (n-1)}) \\ &amp; \\ &amp; \quad + I_{Q \Vert P}(X_{n-1} \vert X_{0\ldots (n-2)}) \\ &amp; \\ &amp; \quad + \cdots + I_{Q \Vert P}(X_1 \vert X_0) +I_{Q \Vert P}( X_0). \end{array}\end{split}\]</div>
-<p>In continuous time, we have the analogous result</p>
-<div class="math notranslate nohighlight">
-\[ \displaystyle I_{Q \Vert P}(X_{0\ldots T}) = \int_0^T \frac{d}{ds}I_{Q \Vert P}(X_{0\ldots s}) \,ds \]</div>
-<p>where</p>
-<div class="math notranslate nohighlight">
-\[\begin{split} \begin{array}{rl} &amp;\displaystyle \frac{d}{ds}I_{Q \Vert P} (X_{0\ldots s}) \\ &amp; \\ &amp;= \lim_{\delta \rightarrow 0} \frac{1}{\delta} \left[ I_{Q \Vert P} (X_{0\ldots s+\delta}) - I_{Q \Vert P} (X_{0\ldots s})\right] \\ &amp; \\ &amp;= \lim_{\delta \rightarrow 0} \frac{1}{\delta} I_{Q \Vert P} (X_{s\ldots s+\delta}\vert X_{0\ldots s}) \end{array}\end{split}\]</div>
-<p>is also known as the <em>relative information rate</em> of <span class="math notranslate nohighlight">\( X_t\)</span>. The differential operator acting on the function <span class="math notranslate nohighlight">\( I_{Q \Vert P}\)</span> of the path <span class="math notranslate nohighlight">\( X_{0\ldots s}\)</span> may be seen as a generalization of the infinitesimal generator for Markov processes.</p>
-<p>In fact, using Kingman’s subadditive ergodic theory <span id="id1">[<a class="reference internal" href="#id33" title="Brian G Leroux. Maximum-likelihood estimation for hidden markov models. Stochastic processes and their applications, 40(1):127–143, 1992.">Ler92</a>]</span>, we can show that under mild regularity conditions,</p>
-<div class="math notranslate nohighlight">
-\[ \displaystyle \lim_{n\rightarrow \infty} \frac{1}{n} I_{Q \Vert P}(X_{0\ldots n}) = \lim_{n\rightarrow \infty} I_{Q \Vert P}(X_n \vert X_{0\ldots (n-1)}).\]</div>
-<p>In continuous time, we have the corresponding relation</p>
-<div class="math notranslate nohighlight">
-\[ \displaystyle \lim_{T\rightarrow \infty} \frac{1}{T} I_{Q \Vert P}(X_{0\ldots T}) = \lim_{T\rightarrow \infty} \frac{d}{dT}I_{Q \Vert P}(X_{0\ldots T}).\]</div>
-<p>This gives us an asymptotic relationship between relative information and relative information rate.</p>
-<p>Hence, to learn a strongly-stationary stochastic process, instead of minimizing the relative information to <span class="math notranslate nohighlight">\( Q_*\)</span> from <span class="math notranslate nohighlight">\( P_\theta\)</span>, we may minimize their relative information rate. We will assume strong stationarity for the rest of this series.</p>
-<p>In the case where we do not have strong stationarity, it will be hard to guarantee convergence of the learning algorithm. Greedily minimizing the terms <span class="math notranslate nohighlight">\(I_{Q \Vert P}(X_t \vert X_{0\ldots (t-1)})\)</span> of the decomposition</p>
-<div class="math notranslate nohighlight">
-\[\begin{split} \begin{array}{rl} I_{Q \Vert P}(X_{0\ldots n}) &amp;= I_{Q \Vert P}(X_n \vert X_{0\ldots (n-1)}) \\ &amp; \\ &amp; \quad + I_{Q \Vert P}(X_{n-1} \vert X_{0\ldots (n-2)}) \\ &amp; \\ &amp; \quad + \cdots + I_{Q \Vert P}(X_1 \vert X_0) +I_{Q \Vert P}( X_0). \end{array}\end{split}\]</div>
-<p>may not help in minimizing the asymptotic time-averaged relative information, since a parameter update to reduce <span class="math notranslate nohighlight">\(I_{Q \Vert P}(X_t \vert X_{0\ldots (t-1)})\)</span> may cause earlier terms <span class="math notranslate nohighlight">\(I_{Q \Vert P}(X_s \vert X_{0\ldots (s-1)}), s &lt; t,\)</span> to increase more than the amount reduced. Getting this balance to work with stochastic updates is tricky and will require some kind of stationarity as well as new mathematical techniques from the field of biased stochastic approximation.</p>
-<p>Note that the relative information rate does not depend on the initial distributions <span class="math notranslate nohighlight">\( Q(X_0)\)</span> and <span class="math notranslate nohighlight">\( P(X_0).\)</span> Therefore, by using the time-averaged relative information (or equivalently the relative information rate) as the learning objective, we are declaring that our main focus is learning the transition kernel of the true distribution.</p>
-<p>I prefer to write the relative information rate as</p>
-<div class="math notranslate nohighlight">
-\[ \displaystyle \frac{d}{ds}I_{Q \Vert P} (X_{0\ldots s}) = \frac{d X_{0\ldots s}}{ds} * \frac{\partial}{\partial X_{0\ldots s}} I_{Q \Vert P} (X_{0\ldots s})\]</div>
-<p>where <span class="math notranslate nohighlight">\( *\)</span> is the inner product in some appropriate Hilbert space and</p>
-<div class="math notranslate nohighlight">
-\[ \displaystyle \frac{\partial}{\partial X_{0\ldots s}} F (X_{0\ldots s})\]</div>
-<p>is the functional derivative of a path function <span class="math notranslate nohighlight">\( F\)</span> with respect to the path <span class="math notranslate nohighlight">\( X_{0\ldots s}.\)</span> We will formalize the Hilbert space and functional derivative in another post.</p>
 </div>
+<div class="tex2jax_ignore mathjax_ignore section" id="information-cohomology">
+<h1>Information cohomology<a class="headerlink" href="#information-cohomology" title="Permalink to this headline">#</a></h1>
+<p>Homological nature of entropy by Baudot and Bennequin <span id="id4">[<a class="reference internal" href="#id10" title="Pierre Baudot and Daniel Bennequin. The homological nature of entropy. Entropy, 17(5):3253–3318, 2015.">BB15</a>]</span>.</p>
+<p>Generalized information structures by Vigneaux <span id="id5">[<a class="reference internal" href="#id9" title="Juan Pablo Vigneaux. Information structures and their cohomology. arXiv preprint arXiv:1709.07807, 2017.">Vig17</a>]</span>.</p>
+<p>Bradley describes entropy as a topological operad derivation {cite} <code class="docutils literal notranslate"><span class="pre">bradley2021entropy</span></code>.</p>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
-<div class="docutils container" id="id2">
+<div class="docutils container" id="id6">
 <dl class="citation">
-<dt class="label" id="id33"><span class="brackets"><a class="fn-backref" href="#id1">Ler92</a></span></dt>
-<dd><p>Brian G Leroux. Maximum-likelihood estimation for hidden markov models. <em>Stochastic processes and their applications</em>, 40(1):127–143, 1992.</p>
+<dt class="label" id="id10"><span class="brackets"><a class="fn-backref" href="#id4">BB15</a></span></dt>
+<dd><p>Pierre Baudot and Daniel Bennequin. The homological nature of entropy. <em>Entropy</em>, 17(5):3253–3318, 2015.</p>
+</dd>
+<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id1">Fri20</a></span></dt>
+<dd><p>Tobias Fritz. A synthetic approach to markov kernels, conditional independence and theorems on sufficient statistics. <em>Advances in Mathematics</em>, 370:107239, 2020.</p>
+</dd>
+<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="#id3">Koc15</a></span></dt>
+<dd><p>Simon Kochen. A reconstruction of quantum mechanics. <em>Foundations of Physics</em>, 45:557–590, 2015.</p>
+</dd>
+<dt class="label" id="id12"><span class="brackets"><a class="fn-backref" href="#id2">Per22</a></span></dt>
+<dd><p>Paolo Perrone. Markov categories and entropy. <em>arXiv preprint arXiv:2212.11719</em>, 2022.</p>
+</dd>
+<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id5">Vig17</a></span></dt>
+<dd><p>Juan Pablo Vigneaux. Information structures and their cohomology. <em>arXiv preprint arXiv:1709.07807</em>, 2017.</p>
 </dd>
 </dl>
 </div>
@@ -556,16 +531,16 @@ document.write(`
 <div class="section">
   <span style="float: left">
      
-    <a href="../2020-12-01-biased-stochastic-approximation/">
-      <i class="fa fa-arrow-circle-left"></i> Biased stochastic approximation
+    <a href="../2022-05-28-likelihood-greed-and-temperature-in-sequence-learning/">
+      <i class="fa fa-arrow-circle-left"></i> Likelihood, greed and temperature in sequence learning
     </a>
     
   </span>
   <span>&nbsp;</span>
   <span style="float: right">
      
-    <a href="../2021-03-22-relative-inference-with-mutable-processes/">
-      Relative inference with mutable processes <i
+    <a href="../2023-04-01-relative-information-is-motivic/">
+      Relative information is motivic <i
         class="fa fa-arrow-circle-right"
       ></i
       >
@@ -621,15 +596,21 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-train-a-stochastic-process-using-relative-information">How do we train a stochastic process using relative information?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-train-a-stochastic-process-using-relative-information-rate">How do we train a stochastic process using relative information rate?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">References on information cohomology</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-categories">Markov categories</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#information-cohomology">Information cohomology</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">
-    <a href="../../_sources/posts/2021-03-21-process-learning-with-relative-information.md.txt">
+    <a href="../../_sources/posts/2023-08-20-references-on-information-cohomology.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

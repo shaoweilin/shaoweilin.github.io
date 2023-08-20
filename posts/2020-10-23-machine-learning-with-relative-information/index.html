@@ -374,6 +374,12 @@ document.write(`
   </li>
   
   <li>
+    <a href="../2023-08-20-references-on-information-cohomology/"
+      >01 April - References on information cohomology</a
+    >
+  </li>
+  
+  <li>
     <a href="../2022-05-28-likelihood-greed-and-temperature-in-sequence-learning/"
       >28 May - Likelihood, greed and temperature in sequence learning</a
     >
@@ -382,12 +388,6 @@ document.write(`
   <li>
     <a href="../2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/"
       >22 January - Parametric typeclasses aid generalization in program synthesis</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2022-01-22-information-topos-theory-motivation/"
-      >22 January - Information topos theory - motivation</a
     >
   </li>
   
@@ -400,7 +400,7 @@ document.write(`
 <ul>
    
   <li>
-    <a href="../../blog/2023/">2023 (2)</a>
+    <a href="../../blog/2023/">2023 (3)</a>
   </li>
     
   <li>
@@ -517,7 +517,7 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[\displaystyle \mathbb{E}_{X\sim Q_*} \left[ \log P_\theta(X) \right] = \frac{1}{\left\vert  \mathcal{D}\right\vert }\sum_{x \in \mathcal{D}} \log P_\theta (x)\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> is a finite i.i.d. sample of <span class="math notranslate nohighlight">\(Q_*\)</span>. This approximation is called the <em>log -likelihood</em> of the data set <span class="math notranslate nohighlight">\(\mathcal{D}\)</span>. The best model parameter <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> may be estimated by maximizing the log-likelihood. The resulting algorithm is known as the <em>maximum likelihood</em> method.</p>
-<p>If the true distribution can be represented by <span class="math notranslate nohighlight">\(Q_* = P_{\theta^*}\)</span> for some parameter <span class="math notranslate nohighlight">\(\theta^*,\)</span> it can be shown that as the sample size grows to infinity, the estimated parameter <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> converges quickly to the true parameter <span class="math notranslate nohighlight">\(\theta^*.\)</span> The asymptotic behavior of the maximum likelihood method is analyzed in <span id="id1">[<a class="reference internal" href="#id50" title="Sumio Watanabe. Algebraic geometry and statistical learning theory. Number 25. Cambridge university press, 2009.">Wat09</a>]</span>.</p>
+<p>If the true distribution can be represented by <span class="math notranslate nohighlight">\(Q_* = P_{\theta^*}\)</span> for some parameter <span class="math notranslate nohighlight">\(\theta^*,\)</span> it can be shown that as the sample size grows to infinity, the estimated parameter <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> converges quickly to the true parameter <span class="math notranslate nohighlight">\(\theta^*.\)</span> The asymptotic behavior of the maximum likelihood method is analyzed in <span id="id1">[<a class="reference internal" href="#id57" title="Sumio Watanabe. Algebraic geometry and statistical learning theory. Number 25. Cambridge university press, 2009.">Wat09</a>]</span>.</p>
 </div>
 <div class="section" id="second-method-stochastic-gradient">
 <h2>Second method (stochastic gradient)<a class="headerlink" href="#second-method-stochastic-gradient" title="Permalink to this headline">#</a></h2>
@@ -528,7 +528,7 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[\displaystyle \mathbb{E}_{X\sim Q_*} \left[ \frac{d}{d\theta} \log P_\theta(X) \right] = \frac{1}{\left\vert  \mathcal{B}\right\vert }\sum_{x \in \mathcal{B}} \frac{d}{d\theta} \log P_\theta (x)\]</div>
 <p>where the <em>batch</em> <span class="math notranslate nohighlight">\(\mathcal{B}\)</span> is a finite i.i.d. sample of <span class="math notranslate nohighlight">\(Q_*\)</span>. This approximation is called the <em>score</em>. We often sample batches of a small fixed size with replacement from a large data set <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> and perform gradient ascent via the batch score. The resulting algorithm is known as the <em>stochastic gradient</em> method.</p>
-<p>Batch stochastic gradients have a regularizing effect on the estimator <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> as compared to the gradient of the log-likelihood of the full data set. They ensure that the estimator does not get stuck in a local minima of the log-likelihood function, which corresponds to overfitting of the model to the full data set. The asymptotic behavior of the stochastic gradient method is analyzed in <span id="id2">[<a class="reference internal" href="#id50" title="Sumio Watanabe. Algebraic geometry and statistical learning theory. Number 25. Cambridge university press, 2009.">Wat09</a>]</span>.</p>
+<p>Batch stochastic gradients have a regularizing effect on the estimator <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> as compared to the gradient of the log-likelihood of the full data set. They ensure that the estimator does not get stuck in a local minima of the log-likelihood function, which corresponds to overfitting of the model to the full data set. The asymptotic behavior of the stochastic gradient method is analyzed in <span id="id2">[<a class="reference internal" href="#id57" title="Sumio Watanabe. Algebraic geometry and statistical learning theory. Number 25. Cambridge university press, 2009.">Wat09</a>]</span>.</p>
 </div>
 <div class="section" id="how-do-we-apply-stochastic-approximation-via-relative-information">
 <h2>How do we apply stochastic approximation via relative information?<a class="headerlink" href="#how-do-we-apply-stochastic-approximation-via-relative-information" title="Permalink to this headline">#</a></h2>
@@ -593,7 +593,7 @@ document.write(`
 <li><p>repeat.</p></li>
 </ol>
 <p>This minimization can be done in an alternating fashion, i.e. fix <span class="math notranslate nohighlight">\(\theta_n\)</span> to find <span class="math notranslate nohighlight">\(Q_{n+1},\)</span> then fix <span class="math notranslate nohighlight">\(Q_{n+1}\)</span> to find <span class="math notranslate nohighlight">\(\theta_{n+1}\)</span>; or it can be done in parallel, i.e. fix <span class="math notranslate nohighlight">\(\theta_n\)</span> to find <span class="math notranslate nohighlight">\(Q_{n+1},\)</span> and fix <span class="math notranslate nohighlight">\(Q_n\)</span> to find <span class="math notranslate nohighlight">\(\theta_{n+1}\)</span> at the same time.</p>
-<p>In information geometry <span id="id3">[<a class="reference internal" href="#id40" title="Shun-ichi Amari. Information geometry of the em and em algorithms for neural networks. Neural networks, 8(9):1379–1408, 1995.">Ama95</a>]</span>, the first step is called <em>exponential projection</em> (e-projection) while the second step is called <em>mixture projection</em> (m-projection) (of the log-likelihood, as opposed to minimization of the relative information). This <em>exponential-mixture algorithm</em> (em algorithm) is also related to the <em>expectation-maximization algorithm</em> (EM algorithm) <span id="id4">[<a class="reference internal" href="#id38" title="Arthur P Dempster, Nan M Laird, and Donald B Rubin. Maximum likelihood from incomplete data via the em algorithm. Journal of the Royal Statistical Society: Series B (Methodological), 39(1):1–22, 1977.">DLR77</a>]</span>.</p>
+<p>In information geometry <span id="id3">[<a class="reference internal" href="#id47" title="Shun-ichi Amari. Information geometry of the em and em algorithms for neural networks. Neural networks, 8(9):1379–1408, 1995.">Ama95</a>]</span>, the first step is called <em>exponential projection</em> (e-projection) while the second step is called <em>mixture projection</em> (m-projection) (of the log-likelihood, as opposed to minimization of the relative information). This <em>exponential-mixture algorithm</em> (em algorithm) is also related to the <em>expectation-maximization algorithm</em> (EM algorithm) <span id="id4">[<a class="reference internal" href="#id45" title="Arthur P Dempster, Nan M Laird, and Donald B Rubin. Maximum likelihood from incomplete data via the em algorithm. Journal of the Royal Statistical Society: Series B (Methodological), 39(1):1–22, 1977.">DLR77</a>]</span>.</p>
 <p>Sometimes, the variational parameter <span class="math notranslate nohighlight">\(Q(Z\vert X)\)</span> is constrained to a space of tractable conditional distributions, or a space of distributions for which the maximization step has an exact solution. In these cases, the optimal value of <span class="math notranslate nohighlight">\(I_{Q\Vert P_\theta}(Z, X)\)</span> may not equal the optimal value of <span class="math notranslate nohighlight">\(I_{Q_* \Vert P_\theta}(X)\)</span>, but it will be an upper bound to the latter. The em algorithm becomes an approximate inference technique, because it minimizes an upper bound and not the desired relative information itself.</p>
 <p>From a computational point of view, gaining efficiency in inference at the cost of approximation is a good thing, especially if there are performance guarantees in the form of an upper bound.</p>
 </div>
@@ -602,7 +602,7 @@ document.write(`
 <p>We consider a variety of contexts where the interpretations of <span class="math notranslate nohighlight">\(Q(Z\vert X)\)</span> are different.</p>
 <div class="section" id="context-of-bayesian-statistics">
 <h3>Context of Bayesian statistics<a class="headerlink" href="#context-of-bayesian-statistics" title="Permalink to this headline">#</a></h3>
-<p>Historically, variational inference was introduced <span id="id5">[<a class="reference internal" href="#id37" title="Michael I Jordan, Zoubin Ghahramani, Tommi S Jaakkola, and Lawrence K Saul. An introduction to variational methods for graphical models. Machine learning, 37(2):183–233, 1999.">JGJS99</a>]</span> to approximate posterior distributions in the context of Bayesian statistics, as an alternative to Markov chain Monte Carlo methods <span id="id6">[<a class="reference internal" href="#id39" title="David M Blei, Alp Kucukelbir, and Jon D McAuliffe. Variational inference: a review for statisticians. Journal of the American statistical Association, 112(518):859–877, 2017.">BKM17</a>]</span>.</p>
+<p>Historically, variational inference was introduced <span id="id5">[<a class="reference internal" href="#id44" title="Michael I Jordan, Zoubin Ghahramani, Tommi S Jaakkola, and Lawrence K Saul. An introduction to variational methods for graphical models. Machine learning, 37(2):183–233, 1999.">JGJS99</a>]</span> to approximate posterior distributions in the context of Bayesian statistics, as an alternative to Markov chain Monte Carlo methods <span id="id6">[<a class="reference internal" href="#id46" title="David M Blei, Alp Kucukelbir, and Jon D McAuliffe. Variational inference: a review for statisticians. Journal of the American statistical Association, 112(518):859–877, 2017.">BKM17</a>]</span>.</p>
 <p>Suppose we have a distribution <span class="math notranslate nohighlight">\(P(X\vert Z)\)</span> and prior <span class="math notranslate nohighlight">\(P(Z)\)</span> for some observed variable <span class="math notranslate nohighlight">\(X\)</span> and some latent variable <span class="math notranslate nohighlight">\(Z.\)</span> The goal is to find the posterior distribution <span class="math notranslate nohighlight">\(P(Z\vert X_*)\)</span> given some data <span class="math notranslate nohighlight">\(X_*.\)</span></p>
 <p>Variational inference frames this goal as an optimization problem. Let <span class="math notranslate nohighlight">\(Q_*(X)\)</span> be the atomic distribution with <span class="math notranslate nohighlight">\(Q_*(X_*)=1.\)</span> Let <span class="math notranslate nohighlight">\(\Delta\)</span> be the space of joint distributions on <span class="math notranslate nohighlight">\(Z\)</span> and <span class="math notranslate nohighlight">\(X\)</span> which factors as</p>
 <div class="math notranslate nohighlight">
@@ -657,19 +657,19 @@ optimizing over a smaller space <span class="math notranslate nohighlight">\(\De
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <div class="docutils container" id="id7">
 <dl class="citation">
-<dt class="label" id="id40"><span class="brackets"><a class="fn-backref" href="#id3">Ama95</a></span></dt>
+<dt class="label" id="id47"><span class="brackets"><a class="fn-backref" href="#id3">Ama95</a></span></dt>
 <dd><p>Shun-ichi Amari. Information geometry of the em and em algorithms for neural networks. <em>Neural networks</em>, 8(9):1379–1408, 1995.</p>
 </dd>
-<dt class="label" id="id39"><span class="brackets"><a class="fn-backref" href="#id6">BKM17</a></span></dt>
+<dt class="label" id="id46"><span class="brackets"><a class="fn-backref" href="#id6">BKM17</a></span></dt>
 <dd><p>David M Blei, Alp Kucukelbir, and Jon D McAuliffe. Variational inference: a review for statisticians. <em>Journal of the American statistical Association</em>, 112(518):859–877, 2017.</p>
 </dd>
-<dt class="label" id="id38"><span class="brackets"><a class="fn-backref" href="#id4">DLR77</a></span></dt>
+<dt class="label" id="id45"><span class="brackets"><a class="fn-backref" href="#id4">DLR77</a></span></dt>
 <dd><p>Arthur P Dempster, Nan M Laird, and Donald B Rubin. Maximum likelihood from incomplete data via the em algorithm. <em>Journal of the Royal Statistical Society: Series B (Methodological)</em>, 39(1):1–22, 1977.</p>
 </dd>
-<dt class="label" id="id37"><span class="brackets"><a class="fn-backref" href="#id5">JGJS99</a></span></dt>
+<dt class="label" id="id44"><span class="brackets"><a class="fn-backref" href="#id5">JGJS99</a></span></dt>
 <dd><p>Michael I Jordan, Zoubin Ghahramani, Tommi S Jaakkola, and Lawrence K Saul. An introduction to variational methods for graphical models. <em>Machine learning</em>, 37(2):183–233, 1999.</p>
 </dd>
-<dt class="label" id="id50"><span class="brackets">Wat09</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>)</span></dt>
+<dt class="label" id="id57"><span class="brackets">Wat09</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>)</span></dt>
 <dd><p>Sumio Watanabe. <em>Algebraic geometry and statistical learning theory</em>. Number 25. Cambridge university press, 2009.</p>
 </dd>
 </dl>

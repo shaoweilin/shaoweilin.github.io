@@ -374,6 +374,12 @@ document.write(`
   </li>
   
   <li>
+    <a href="../2023-08-20-references-on-information-cohomology/"
+      >01 April - References on information cohomology</a
+    >
+  </li>
+  
+  <li>
     <a href="../2022-05-28-likelihood-greed-and-temperature-in-sequence-learning/"
       >28 May - Likelihood, greed and temperature in sequence learning</a
     >
@@ -382,12 +388,6 @@ document.write(`
   <li>
     <a href="../2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/"
       >22 January - Parametric typeclasses aid generalization in program synthesis</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2022-01-22-information-topos-theory-motivation/"
-      >22 January - Information topos theory - motivation</a
     >
   </li>
   
@@ -400,7 +400,7 @@ document.write(`
 <ul>
    
   <li>
-    <a href="../../blog/2023/">2023 (2)</a>
+    <a href="../../blog/2023/">2023 (3)</a>
   </li>
     
   <li>
@@ -490,7 +490,7 @@ document.write(`
                 <article class="bd-article" role="main">
                    <div class="tex2jax_ignore mathjax_ignore section" id="path-integrals-and-the-dyson-formula">
 <h1>Path integrals and the Dyson formula<a class="headerlink" href="#path-integrals-and-the-dyson-formula" title="Permalink to this headline">#</a></h1>
-<p>One of the deepest results in quantum field theory, to me, is the Dyson formula <span id="id1">[<a class="reference internal" href="#id24" title="nLab. Dyson formula. https://ncatlab.org/nlab/show/Dyson+formula. Accessed: 2021.">nLa</a>]</span>. It describes the solution to the differential equation</p>
+<p>One of the deepest results in quantum field theory, to me, is the Dyson formula <span id="id1">[<a class="reference internal" href="#id31" title="nLab. Dyson formula. https://ncatlab.org/nlab/show/Dyson+formula. Accessed: 2021.">nLa</a>]</span>. It describes the solution to the differential equation</p>
 <div class="math notranslate nohighlight">
 \[ i\frac{\partial}{\partial t} \Psi(t) = A(t)\Psi(t) \]</div>
 <p>in terms of the exponential of the path integral of the operator <span class="math notranslate nohighlight">\(A(t)\)</span>,</p>
@@ -498,7 +498,7 @@ document.write(`
 \[\begin{split}\begin{array}{rl} \Psi(t) &amp; = U(t,0) \, \Psi(0) \\ &amp; \\
 U(t,0) &amp; = \displaystyle \mathcal{T}\exp \left\{ i\int_0^t A(s) ds \right\} \end{array} \end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> is the time-ordering operator. Here, <span class="math notranslate nohighlight">\(U(t,0)\)</span> is known as the <em>time-evolution operator</em>.</p>
-<p>The proof of this formula is given by Picard integration and iterated integrals <span id="id2">[<a class="reference internal" href="#id23" title="Francis Brown. Iterated integrals in quantum field theory. 6th Summer School on Geometric and Topological Methods for Quantum Field Theory, pages 188–240, 2013.">Bro13</a>]</span>.</p>
+<p>The proof of this formula is given by Picard integration and iterated integrals <span id="id2">[<a class="reference internal" href="#id30" title="Francis Brown. Iterated integrals in quantum field theory. 6th Summer School on Geometric and Topological Methods for Quantum Field Theory, pages 188–240, 2013.">Bro13</a>]</span>.</p>
 <p>On the other hand, we have the Feynman path integral</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} \begin{array}{rl}
@@ -506,7 +506,7 @@ U(t,0) &amp; = \displaystyle \mathcal{T}\exp \left\{ i\int_0^t A(s) ds \right\} 
 K(y,t; x,0) &amp; = \displaystyle \int \exp\left\{iS(q,\dot{q})\right\} Dq \\ &amp; \\ &amp;  = \langle y \vert \, U(t,0)  \, \vert x\rangle\end{array}
 \end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\psi(y,t)\)</span> is the value of the state vector <span class="math notranslate nohighlight">\(\Psi(t)\)</span> at position <span class="math notranslate nohighlight">\(y,\)</span> <span class="math notranslate nohighlight">\(\int Dq\)</span> is an integral over all paths <span class="math notranslate nohighlight">\(q\)</span> from <span class="math notranslate nohighlight">\(x\)</span> to <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(S(q,\dot{q})\)</span> is the action of the path <span class="math notranslate nohighlight">\(q.\)</span> Here, <span class="math notranslate nohighlight">\(K(y,t;x,0)\)</span> is known as the <em>kernel</em> or <em>propagator</em>.</p>
-<p>The time-ordered exponential in the Dyson series can be related to the Feynman path integral by viewing the Hamiltonian operators in a von Neumann infinite tensor product Hilbert space <span id="id3">[<a class="reference internal" href="#id22" title="Tepper L Gill. The feynman-dyson view. In Journal of Physics: Conference Series, volume 845, 012023. IOP Publishing, 2017.">Gil17</a>]</span>.</p>
+<p>The time-ordered exponential in the Dyson series can be related to the Feynman path integral by viewing the Hamiltonian operators in a von Neumann infinite tensor product Hilbert space <span id="id3">[<a class="reference internal" href="#id29" title="Tepper L Gill. The feynman-dyson view. In Journal of Physics: Conference Series, volume 845, 012023. IOP Publishing, 2017.">Gil17</a>]</span>.</p>
 <p>The Dyson formula frames the dynamics of the system in terms of the time-evolution operator, while the path integral frames the dynamics in terms of the kernel.</p>
 <p>The action gives a “particle” interpretation to the quantum or stochastic dynamical system. These “particles” are real only to the extent that this action is well-defined.</p>
 <p>It would be interesting to study the Dyson formula through the algebraic lens of regularity structures.</p>
@@ -516,13 +516,13 @@ K(y,t; x,0) &amp; = \displaystyle \int \exp\left\{iS(q,\dot{q})\right\} Dq \\ &a
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <div class="docutils container" id="id4">
 <dl class="citation">
-<dt class="label" id="id23"><span class="brackets"><a class="fn-backref" href="#id2">Bro13</a></span></dt>
+<dt class="label" id="id30"><span class="brackets"><a class="fn-backref" href="#id2">Bro13</a></span></dt>
 <dd><p>Francis Brown. Iterated integrals in quantum field theory. <em>6th Summer School on Geometric and Topological Methods for Quantum Field Theory</em>, pages 188–240, 2013.</p>
 </dd>
-<dt class="label" id="id22"><span class="brackets"><a class="fn-backref" href="#id3">Gil17</a></span></dt>
+<dt class="label" id="id29"><span class="brackets"><a class="fn-backref" href="#id3">Gil17</a></span></dt>
 <dd><p>Tepper L Gill. The feynman-dyson view. In <em>Journal of Physics: Conference Series</em>, volume 845, 012023. IOP Publishing, 2017.</p>
 </dd>
-<dt class="label" id="id24"><span class="brackets"><a class="fn-backref" href="#id1">nLa</a></span></dt>
+<dt class="label" id="id31"><span class="brackets"><a class="fn-backref" href="#id1">nLa</a></span></dt>
 <dd><p>nLab. Dyson formula. <a class="reference external" href="https://ncatlab.org/nlab/show/Dyson+formula">https://ncatlab.org/nlab/show/Dyson+formula</a>. Accessed: 2021.</p>
 </dd>
 </dl>
