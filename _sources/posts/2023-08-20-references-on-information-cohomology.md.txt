@@ -1,5 +1,5 @@
 ---
-date: 2023-04-01
+date: 2023-08-20
 excerpts: 2
 ---
 
@@ -19,9 +19,9 @@ Kochen reconstructs quantum mechanics using sigma complexes {cite}`kochen2015rec
 
 Homological nature of entropy by Baudot and Bennequin {cite}`baudot2015homological`.
 
-Generalized information structures by Vigneaux {cite}`vigneaux2017information`.
+Generalized information structures by Vigneaux {cite}`vigneaux2017information`. Vigneaux's PhD thesis can be found [here](https://arxiv.org/pdf/1709.07807v1.pdf).
 
-Bradley describes entropy as a topological operad derivation {cite} `bradley2021entropy`.
+Bradley describes entropy as a topological operad derivation {cite}`bradley2021entropy`.
 
 
 

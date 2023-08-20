@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://shaoweilin.github.io</id>
   <title>Types from Spikes</title>
-  <updated>2023-08-20T20:54:39.135428+00:00</updated>
+  <updated>2023-08-20T21:07:08.365422+00:00</updated>
   <link href="https://shaoweilin.github.io"/>
   <link href="https://shaoweilin.github.io/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.org/" version="0.10.33.post1">ABlog</generator>
@@ -414,19 +414,6 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <published>2022-05-28T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://shaoweilin.github.io/posts/2023-08-20-references-on-information-cohomology/</id>
-    <title>References on information cohomology</title>
-    <updated>2023-04-01T00:00:00+00:00</updated>
-    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;Some references on the cohomological nature of various information theoretic concepts such as entropy and relative information.&lt;/p&gt;
-&lt;p&gt;Markov categories were defined by Fritz &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2023-08-20-references-on-information-cohomology/#id11" title="Tobias Fritz. A synthetic approach to markov kernels, conditional independence and theorems on sufficient statistics. Advances in Mathematics, 370:107239, 2020."&gt;Fri20&lt;/a&gt;]&lt;/span&gt;.&lt;/p&gt;
-&lt;/div&gt;
-</content>
-    <link href="https://shaoweilin.github.io/posts/2023-08-20-references-on-information-cohomology/" rel="alternate"/>
-    <summary>Some references on the cohomological nature of various information theoretic concepts such as entropy and relative information.Markov categories were defined by Fritz fritz2020synthetic.</summary>
-    <published>2023-04-01T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://shaoweilin.github.io/posts/2023-04-01-relative-information-is-motivic/</id>
     <title>Relative information is motivic</title>
     <updated>2023-04-01T00:00:00+00:00</updated>
@@ -489,5 +476,18 @@ new tools for studying non-statistical spaces,
 by analyzing the level sets of generalized
 relative information and their transforms.Singular Learning Theory and Alignment Summit</summary>
     <published>2023-06-26T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://shaoweilin.github.io/posts/2023-08-20-references-on-information-cohomology/</id>
+    <title>References on information cohomology</title>
+    <updated>2023-08-20T00:00:00+00:00</updated>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;Some references on the cohomological nature of various information theoretic concepts such as entropy and relative information.&lt;/p&gt;
+&lt;p&gt;Markov categories were defined by Fritz &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2023-08-20-references-on-information-cohomology/#id12" title="Tobias Fritz. A synthetic approach to markov kernels, conditional independence and theorems on sufficient statistics. Advances in Mathematics, 370:107239, 2020."&gt;Fri20&lt;/a&gt;]&lt;/span&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://shaoweilin.github.io/posts/2023-08-20-references-on-information-cohomology/" rel="alternate"/>
+    <summary>Some references on the cohomological nature of various information theoretic concepts such as entropy and relative information.Markov categories were defined by Fritz fritz2020synthetic.</summary>
+    <published>2023-08-20T00:00:00+00:00</published>
   </entry>
 </feed>
