@@ -610,7 +610,7 @@ E(s'|\hat{s}_t, w) \leq E(\hat{s}_{t-1}|\hat{s}_t, w).
 \]</div>
 <p>the sum of the transition energies. The objective here is different from that in the discrete-time model which
 subtracts the minimal transition energy from each time step.</p>
-<p>Suppose that we have a time interval of length <span class="math notranslate nohighlight">\(T\)</span> and the initial state is <span class="math notranslate nohighlight">\(s_0\)</span>. By the stochastic summation algorithm of Gillespie <span id="id1">[<a class="reference internal" href="#id12" title="Markus F Weber and Erwin Frey. Master equations and the theory of stochastic path integrals. Reports on Progress in Physics, 80(4):046601, 2017.">WF17</a>]</span>, the negative log density of observing a path with states <span class="math notranslate nohighlight">\(s_0, \ldots, s_n\)</span> and holding periods <span class="math notranslate nohighlight">\(\delta_0, \ldots, \delta_n\)</span> satisfying <span class="math notranslate nohighlight">\(\delta_0 + \cdots +\delta_n = T,\)</span> is given by</p>
+<p>Suppose that we have a time interval of length <span class="math notranslate nohighlight">\(T\)</span> and the initial state is <span class="math notranslate nohighlight">\(s_0\)</span>. By the stochastic summation algorithm of Gillespie <span id="id1">[<a class="reference internal" href="#id13" title="Markus F Weber and Erwin Frey. Master equations and the theory of stochastic path integrals. Reports on Progress in Physics, 80(4):046601, 2017.">WF17</a>]</span>, the negative log density of observing a path with states <span class="math notranslate nohighlight">\(s_0, \ldots, s_n\)</span> and holding periods <span class="math notranslate nohighlight">\(\delta_0, \ldots, \delta_n\)</span> satisfying <span class="math notranslate nohighlight">\(\delta_0 + \cdots +\delta_n = T,\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[
 \sum_{t=0}^n \delta_t Z(s_t,w) + \beta \sum_{t=0}^{n-1} E(s_{t+1}|s_t,w).
@@ -656,7 +656,7 @@ subtracts the minimal transition energy from each time step.</p>
 <div class="section" id="natural-language-processing">
 <h2>Natural language processing<a class="headerlink" href="#natural-language-processing" title="Permalink to this headline">#</a></h2>
 <p>The difference between stepwise energy minimization and pathwise energy minimization is easily seen in natural language processing.</p>
-<p>In his blog <span id="id2">[<a class="reference internal" href="#id13" title="Andrej Karpathy Blog. The unreasonable effectiveness of recurrent neural networks. URL: http://karpathy. github. io/2015/05/21/rnn-effectiveness/dated May, 21:33, 2015.">Blo15</a>]</span> about the unreasonable effectiveness of recurrent neural networks (RNN), Karpathy trained a small character-level LSTM (long short-term memory) network on the writings of Paul Graham.</p>
+<p>In his blog <span id="id2">[<a class="reference internal" href="#id14" title="Andrej Karpathy Blog. The unreasonable effectiveness of recurrent neural networks. URL: http://karpathy. github. io/2015/05/21/rnn-effectiveness/dated May, 21:33, 2015.">Blo15</a>]</span> about the unreasonable effectiveness of recurrent neural networks (RNN), Karpathy trained a small character-level LSTM (long short-term memory) network on the writings of Paul Graham.</p>
 <p>He found that for large inverse temperatures <span class="math notranslate nohighlight">\(\beta,\)</span> the network generated the following stepwise greedy sequence of words:</p>
 <blockquote>
 <div><p>is that they were all the same thing that was a startup is that they were all the same thing that was a startup is that they were all the same thing that was a startup is that they were all the same…</p>
@@ -674,7 +674,7 @@ subtracts the minimal transition energy from each time step.</p>
 </div>
 <div class="section" id="minimum-energy-flow">
 <h2>Minimum energy flow<a class="headerlink" href="#minimum-energy-flow" title="Permalink to this headline">#</a></h2>
-<p>We end with an interesting connection between the continuous-time likelihood method for sequence learning and the minimum energy flow (MEF) method for training Hopfield networks efficiently <span id="id3">[<a class="reference internal" href="#id14" title="Christopher Hillar, Tenzin Chan, Rachel Taubman, and David Rolnick. Hidden hypergraphs, error-correcting codes, and critical learning in hopfield networks. Entropy, 23(11):1494, 2021.">HCTR21</a>]</span>.</p>
+<p>We end with an interesting connection between the continuous-time likelihood method for sequence learning and the minimum energy flow (MEF) method for training Hopfield networks efficiently <span id="id3">[<a class="reference internal" href="#id15" title="Christopher Hillar, Tenzin Chan, Rachel Taubman, and David Rolnick. Hidden hypergraphs, error-correcting codes, and critical learning in hopfield networks. Entropy, 23(11):1494, 2021.">HCTR21</a>]</span>.</p>
 <p>Recall that the negative log likelihood is</p>
 <div class="math notranslate nohighlight">
 \[
@@ -693,13 +693,13 @@ subtracts the minimal transition energy from each time step.</p>
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <div class="docutils container" id="id4">
 <dl class="citation">
-<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="#id2">Blo15</a></span></dt>
+<dt class="label" id="id14"><span class="brackets"><a class="fn-backref" href="#id2">Blo15</a></span></dt>
 <dd><p>Andrej Karpathy Blog. The unreasonable effectiveness of recurrent neural networks. <em>URL: http://karpathy. github. io/2015/05/21/rnn-effectiveness/dated May</em>, 21:33, 2015.</p>
 </dd>
-<dt class="label" id="id14"><span class="brackets"><a class="fn-backref" href="#id3">HCTR21</a></span></dt>
+<dt class="label" id="id15"><span class="brackets"><a class="fn-backref" href="#id3">HCTR21</a></span></dt>
 <dd><p>Christopher Hillar, Tenzin Chan, Rachel Taubman, and David Rolnick. Hidden hypergraphs, error-correcting codes, and critical learning in hopfield networks. <em>Entropy</em>, 23(11):1494, 2021.</p>
 </dd>
-<dt class="label" id="id12"><span class="brackets"><a class="fn-backref" href="#id1">WF17</a></span></dt>
+<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="#id1">WF17</a></span></dt>
 <dd><p>Markus F Weber and Erwin Frey. Master equations and the theory of stochastic path integrals. <em>Reports on Progress in Physics</em>, 80(4):046601, 2017.</p>
 </dd>
 </dl>

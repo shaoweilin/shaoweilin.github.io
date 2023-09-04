@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://shaoweilin.github.io</id>
   <title>Types from Spikes</title>
-  <updated>2023-09-04T22:14:27.425786+00:00</updated>
+  <updated>2023-09-04T22:26:20.809896+00:00</updated>
   <link href="https://shaoweilin.github.io"/>
   <link href="https://shaoweilin.github.io/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.org/" version="0.10.33.post1">ABlog</generator>
@@ -119,7 +119,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <updated>2020-05-21T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
 &lt;p&gt;Logical frameworks are formal meta-languages for specifying different kinds of object theories (e.g. logical theories and type theories).&lt;/p&gt;
-&lt;p&gt;LF is a logical framework &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2020-05-21-logical-frameworks/#id72" title="Robert Harper, Furio Honsell, and Gordon Plotkin. A framework for defining logics. Journal of the ACM (JACM), 40(1):143–184, 1993."&gt;HHP93&lt;/a&gt;]&lt;/span&gt; that formalizes Martin-Lof’s logical framework and is itself based on type theory. It was designed to unify similarities between two forms of judgments.&lt;/p&gt;
+&lt;p&gt;LF is a logical framework &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2020-05-21-logical-frameworks/#id73" title="Robert Harper, Furio Honsell, and Gordon Plotkin. A framework for defining logics. Journal of the ACM (JACM), 40(1):143–184, 1993."&gt;HHP93&lt;/a&gt;]&lt;/span&gt; that formalizes Martin-Lof’s logical framework and is itself based on type theory. It was designed to unify similarities between two forms of judgments.&lt;/p&gt;
 &lt;img alt="logical-framework-rules" src="../_images/logical-framework-rules.png" /&gt;
 &lt;/div&gt;
 </content>
@@ -184,7 +184,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <title>Building foundations of information theory on relative information</title>
     <updated>2020-09-08T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;The relative information &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2022-01-22-information-topos-theory-motivation/#id65" title="JC Baez and T Fritz. A bayesian characterization of relative entropy. Theory and Applications of Categories, 29:422–456, 2014."&gt;BF14&lt;/a&gt;]&lt;/span&gt; (also known as relative entropy or Kullback-Leibler divergence) is an important object in information theory for measuring how far a probability measure &lt;span class="math notranslate nohighlight"&gt;\(Q\)&lt;/span&gt; is from another probability measure &lt;span class="math notranslate nohighlight"&gt;\(P.\)&lt;/span&gt; Here, &lt;span class="math notranslate nohighlight"&gt;\(Q\)&lt;/span&gt; is usually the true distribution of some real phenomenon, and &lt;span class="math notranslate nohighlight"&gt;\(P\)&lt;/span&gt; is some model distribution.&lt;/p&gt;
+&lt;p&gt;The relative information &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2022-01-22-information-topos-theory-motivation/#id66" title="JC Baez and T Fritz. A bayesian characterization of relative entropy. Theory and Applications of Categories, 29:422–456, 2014."&gt;BF14&lt;/a&gt;]&lt;/span&gt; (also known as relative entropy or Kullback-Leibler divergence) is an important object in information theory for measuring how far a probability measure &lt;span class="math notranslate nohighlight"&gt;\(Q\)&lt;/span&gt; is from another probability measure &lt;span class="math notranslate nohighlight"&gt;\(P.\)&lt;/span&gt; Here, &lt;span class="math notranslate nohighlight"&gt;\(Q\)&lt;/span&gt; is usually the true distribution of some real phenomenon, and &lt;span class="math notranslate nohighlight"&gt;\(P\)&lt;/span&gt; is some model distribution.&lt;/p&gt;
 &lt;p&gt;In this post, we emphasize that the relative information is fundamental in the sense that all other interesting information-theoretic objects may be derived from it. We also outline how relative information can be defined without probability mass functions or probability density functions, or even in the absence of absolute continuity.&lt;/p&gt;
 &lt;/div&gt;
 </content>
@@ -262,7 +262,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <title>Biased stochastic approximation</title>
     <updated>2020-12-01T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;We explore the convergence of continuous-time ordinary differential equations and their discrete-time analogs, such as stochastic approximation and gradient descent, through the lens of Lyapunov theory &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2020-12-01-biased-stochastic-approximation/#id46" title="Léon Bottou and others. Online learning and stochastic approximations. On-line learning in neural networks, 17(9):142, 1998."&gt;B+98&lt;/a&gt;]&lt;/span&gt; &lt;span id="id2"&gt;[&lt;a class="reference internal" href="../posts/2020-12-01-biased-stochastic-approximation/#id43" title="Yingshen Li and Mark Rowland. Stochastic approximation theory (slides). http://yingzhenli.net/home/pdf/SA.pdf, 2015."&gt;LR15&lt;/a&gt;]&lt;/span&gt;. From this perspective, we will study biased stochastic approximation &lt;span id="id3"&gt;[&lt;a class="reference internal" href="../posts/2021-06-05-spiking-neural-networks/#id50" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019."&gt;KMMW19&lt;/a&gt;]&lt;/span&gt; where the expectation of the stochastic updates conditioned on the past (which we call the &lt;em&gt;conditional expectation&lt;/em&gt;) is not the same as the expectation of the stochastic updates under the stationary distribution (which we call the &lt;em&gt;total expectation&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;We explore the convergence of continuous-time ordinary differential equations and their discrete-time analogs, such as stochastic approximation and gradient descent, through the lens of Lyapunov theory &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2020-12-01-biased-stochastic-approximation/#id47" title="Léon Bottou and others. Online learning and stochastic approximations. On-line learning in neural networks, 17(9):142, 1998."&gt;B+98&lt;/a&gt;]&lt;/span&gt; &lt;span id="id2"&gt;[&lt;a class="reference internal" href="../posts/2020-12-01-biased-stochastic-approximation/#id44" title="Yingshen Li and Mark Rowland. Stochastic approximation theory (slides). http://yingzhenli.net/home/pdf/SA.pdf, 2015."&gt;LR15&lt;/a&gt;]&lt;/span&gt;. From this perspective, we will study biased stochastic approximation &lt;span id="id3"&gt;[&lt;a class="reference internal" href="../posts/2021-06-05-spiking-neural-networks/#id51" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019."&gt;KMMW19&lt;/a&gt;]&lt;/span&gt; where the expectation of the stochastic updates conditioned on the past (which we call the &lt;em&gt;conditional expectation&lt;/em&gt;) is not the same as the expectation of the stochastic updates under the stationary distribution (which we call the &lt;em&gt;total expectation&lt;/em&gt;).&lt;/p&gt;
 &lt;p&gt;This post is a continuation from our &lt;span class="xref myst"&gt;series&lt;/span&gt; on spiking networks, path integrals and motivic information.&lt;/p&gt;
 &lt;/div&gt;
 </content>
@@ -327,7 +327,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <title>Path integrals and the Dyson formula</title>
     <updated>2021-05-10T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;One of the deepest results in quantum field theory, to me, is the Dyson formula &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2021-05-10-path-integrals-and-the-dyson-formula/#id31" title="nLab. Dyson formula. https://ncatlab.org/nlab/show/Dyson+formula. Accessed: 2021."&gt;nLa&lt;/a&gt;]&lt;/span&gt;. It describes the solution to the differential equation&lt;/p&gt;
+&lt;p&gt;One of the deepest results in quantum field theory, to me, is the Dyson formula &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2021-05-10-path-integrals-and-the-dyson-formula/#id32" title="nLab. Dyson formula. https://ncatlab.org/nlab/show/Dyson+formula. Accessed: 2021."&gt;nLa&lt;/a&gt;]&lt;/span&gt;. It describes the solution to the differential equation&lt;/p&gt;
 &lt;p&gt;in terms of the exponential of the path integral of the operator &lt;span class="math notranslate nohighlight"&gt;\(A(t)\)&lt;/span&gt;,&lt;/p&gt;
 &lt;/div&gt;
 </content>
@@ -340,7 +340,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <title>Convergence of biased stochastic approximation</title>
     <updated>2021-06-01T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;Using techniques from &lt;span class="xref myst"&gt;biased&lt;/span&gt; stochastic approximation &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2021-06-05-spiking-neural-networks/#id50" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019."&gt;KMMW19&lt;/a&gt;]&lt;/span&gt;, we prove under some regularity conditions the convergence of the online learning algorithm proposed &lt;span class="xref myst"&gt;previously&lt;/span&gt; for mutable Markov processes.&lt;/p&gt;
+&lt;p&gt;Using techniques from &lt;span class="xref myst"&gt;biased&lt;/span&gt; stochastic approximation &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2021-06-05-spiking-neural-networks/#id51" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019."&gt;KMMW19&lt;/a&gt;]&lt;/span&gt;, we prove under some regularity conditions the convergence of the online learning algorithm proposed &lt;span class="xref myst"&gt;previously&lt;/span&gt; for mutable Markov processes.&lt;/p&gt;
 &lt;p&gt;Recall that the algorithm is described by the following updates.&lt;/p&gt;
 &lt;/div&gt;
 </content>
@@ -419,7 +419,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <updated>2023-04-01T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
 &lt;p&gt;A (Hochschild) cohomological view of relative information must be motivic!&lt;/p&gt;
-&lt;p&gt;Vigneaux gives some hints of this &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2023-04-01-relative-information-is-motivic/#id4" title="Juan Pablo Vigneaux. Information cohomology of classical vector-valued observables. In Geometric Science of Information: 5th International Conference, GSI 2021, Paris, France, July 21–23, 2021, Proceedings 5, 537–546. Springer, 2021."&gt;Vig21&lt;/a&gt;]&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Vigneaux gives some hints of this &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2023-04-01-relative-information-is-motivic/#id5" title="Juan Pablo Vigneaux. Information cohomology of classical vector-valued observables. In Geometric Science of Information: 5th International Conference, GSI 2021, Paris, France, July 21–23, 2021, Proceedings 5, 537–546. Springer, 2021."&gt;Vig21&lt;/a&gt;]&lt;/span&gt;.&lt;/p&gt;
 &lt;/div&gt;
 </content>
     <link href="https://shaoweilin.github.io/posts/2023-04-01-relative-information-is-motivic/" rel="alternate"/>
@@ -483,7 +483,7 @@ relative information and their transforms.Singular Learning Theory and Alignment
     <updated>2023-08-20T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
 &lt;p&gt;Some references on the cohomological nature of various information theoretic concepts such as entropy and relative information.&lt;/p&gt;
-&lt;p&gt;Markov categories were defined by Fritz &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2023-08-20-references-on-information-cohomology/#id13" title="Tobias Fritz. A synthetic approach to markov kernels, conditional independence and theorems on sufficient statistics. Advances in Mathematics, 370:107239, 2020."&gt;Fri20&lt;/a&gt;]&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Markov categories were defined by Fritz &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2023-08-20-references-on-information-cohomology/#id14" title="Tobias Fritz. A synthetic approach to markov kernels, conditional independence and theorems on sufficient statistics. Advances in Mathematics, 370:107239, 2020."&gt;Fri20&lt;/a&gt;]&lt;/span&gt;.&lt;/p&gt;
 &lt;/div&gt;
 </content>
     <link href="https://shaoweilin.github.io/posts/2023-08-20-references-on-information-cohomology/" rel="alternate"/>
