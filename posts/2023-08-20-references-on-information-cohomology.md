@@ -23,6 +23,7 @@ Generalized information structures by Vigneaux {cite}`vigneaux2017information`. 
 
 Bradley describes entropy as a topological operad derivation {cite}`bradley2021entropy`.
 
+Manin and Marcolli explores homotopy-theoretic and categorical models of neural information networks {cite}`manin2020homotopy`.
 
 
 ## References
