@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://shaoweilin.github.io</id>
   <title>Types from Spikes</title>
-  <updated>2023-09-04T22:26:20.809896+00:00</updated>
+  <updated>2023-10-27T20:38:14.625914+00:00</updated>
   <link href="https://shaoweilin.github.io"/>
   <link href="https://shaoweilin.github.io/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.org/" version="0.10.33.post1">ABlog</generator>
@@ -489,5 +489,18 @@ relative information and their transforms.Singular Learning Theory and Alignment
     <link href="https://shaoweilin.github.io/posts/2023-08-20-references-on-information-cohomology/" rel="alternate"/>
     <summary>Some references on the cohomological nature of various information theoretic concepts such as entropy and relative information.Markov categories were defined by Fritz fritz2020synthetic.</summary>
     <published>2023-08-20T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://shaoweilin.github.io/posts/2023-10-25-relative-information-and-the-dual-numbers/</id>
+    <title>Relative Information and the Dual Numbers</title>
+    <updated>2023-10-25T00:00:00+00:00</updated>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;Relative information (Kullback-Leibler divergence) is a fundamental concept in statistics, machine learning and information theory.&lt;/p&gt;
+&lt;p&gt;In the first half of the talk, I will define conditional relative information, list its axiomatic properties, and describe how it is used in machine learning. For example, the generalization error of a learning algorithm depends on the structure of algebraic geometric singularities of relative information.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://shaoweilin.github.io/posts/2023-10-25-relative-information-and-the-dual-numbers/" rel="alternate"/>
+    <summary>Relative information (Kullback-Leibler divergence) is a fundamental concept in statistics, machine learning and information theory.In the first half of the talk, I will define conditional relative information, list its axiomatic properties, and describe how it is used in machine learning. For example, the generalization error of a learning algorithm depends on the structure of algebraic geometric singularities of relative information.</summary>
+    <published>2023-10-25T00:00:00+00:00</published>
   </entry>
 </feed>

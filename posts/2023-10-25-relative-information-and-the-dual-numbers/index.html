@@ -7,16 +7,16 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta property="og:title" content="Path integrals and the Dyson formula" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta property="og:title" content="Relative Information and the Dual Numbers" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://shaoweilin.github.io/posts/2021-05-10-path-integrals-and-the-dyson-formula/" />
+<meta property="og:url" content="https://shaoweilin.github.io/posts/2023-10-25-relative-information-and-the-dual-numbers/" />
 <meta property="og:site_name" content="Types from Spikes" />
-<meta property="og:description" content="One of the deepest results in quantum field theory, to me, is the Dyson formula[ nLa]. It describes the solution to the differential equation i\frac{\partial}{\partial t} \Psi(t) = A(t)\Psi(t) in t..." />
+<meta property="og:description" content="Abstract: Relative information (Kullback-Leibler divergence) is a fundamental concept in statistics, machine learning and information theory. In the first half of the talk, I will define conditiona..." />
 <meta property="og:image" content="https://shaoweilin.github.io/_static/profile.jpg" />
 <meta property="og:image:alt" content="Types from Spikes" />
-<meta name="description" content="One of the deepest results in quantum field theory, to me, is the Dyson formula[ nLa]. It describes the solution to the differential equation i\frac{\partial}{\partial t} \Psi(t) = A(t)\Psi(t) in t..." />
+<meta name="description" content="Abstract: Relative information (Kullback-Leibler divergence) is a fundamental concept in statistics, machine learning and information theory. In the first half of the talk, I will define conditiona..." />
 
-    <title>Path integrals and the Dyson formula &#8212; Types from Spikes  documentation</title>
+    <title>Relative Information and the Dual Numbers &#8212; Types from Spikes  documentation</title>
   
   
   
@@ -51,9 +51,7 @@
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2021-05-10-path-integrals-and-the-dyson-formula';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2023-10-25-relative-information-and-the-dual-numbers';</script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about/" />
     <link rel="index" title="Index" href="../../genindex/" />
@@ -348,7 +346,7 @@ document.write(`
         <div class="sidebar-primary-item">  
 <h2>
    <i class="fa fa-calendar"></i>
-  10 May 2021 
+  25 October 2023 
 </h2>
 
 <ul>
@@ -361,12 +359,6 @@ document.write(`
 </h3>
 <ul>
    
-  <li>
-    <a href="../2023-10-25-relative-information-and-the-dual-numbers/"
-      >25 October - Relative Information and the Dual Numbers</a
-    >
-  </li>
-  
   <li>
     <a href="../2023-08-20-references-on-information-cohomology/"
       >20 August - References on information cohomology</a
@@ -388,6 +380,12 @@ document.write(`
   <li>
     <a href="../2022-05-28-likelihood-greed-and-temperature-in-sequence-learning/"
       >28 May - Likelihood, greed and temperature in sequence learning</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/"
+      >22 January - Parametric typeclasses aid generalization in program synthesis</a
     >
   </li>
   
@@ -471,7 +469,7 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">Path integrals and the Dyson formula</li>
+    <li class="breadcrumb-item active" aria-current="page">Relative Information and the Dual Numbers</li>
   </ul>
 </nav>
 </div>
@@ -488,45 +486,22 @@ document.write(`
                 
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
-                   <div class="tex2jax_ignore mathjax_ignore section" id="path-integrals-and-the-dyson-formula">
-<h1>Path integrals and the Dyson formula<a class="headerlink" href="#path-integrals-and-the-dyson-formula" title="Permalink to this headline">#</a></h1>
-<p>One of the deepest results in quantum field theory, to me, is the Dyson formula <span id="id1">[<a class="reference internal" href="#id32" title="nLab. Dyson formula. https://ncatlab.org/nlab/show/Dyson+formula. Accessed: 2021.">nLa</a>]</span>. It describes the solution to the differential equation</p>
-<div class="math notranslate nohighlight">
-\[ i\frac{\partial}{\partial t} \Psi(t) = A(t)\Psi(t) \]</div>
-<p>in terms of the exponential of the path integral of the operator <span class="math notranslate nohighlight">\(A(t)\)</span>,</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{rl} \Psi(t) &amp; = U(t,0) \, \Psi(0) \\ &amp; \\
-U(t,0) &amp; = \displaystyle \mathcal{T}\exp \left\{ i\int_0^t A(s) ds \right\} \end{array} \end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> is the time-ordering operator. Here, <span class="math notranslate nohighlight">\(U(t,0)\)</span> is known as the <em>time-evolution operator</em>.</p>
-<p>The proof of this formula is given by Picard integration and iterated integrals <span id="id2">[<a class="reference internal" href="#id31" title="Francis Brown. Iterated integrals in quantum field theory. 6th Summer School on Geometric and Topological Methods for Quantum Field Theory, pages 188–240, 2013.">Bro13</a>]</span>.</p>
-<p>On the other hand, we have the Feynman path integral</p>
-<div class="math notranslate nohighlight">
-\[\begin{split} \begin{array}{rl}
-\psi(y,t) &amp; = K(y,t; x,0)  \, \psi(x,0) \\ &amp; \\ 
-K(y,t; x,0) &amp; = \displaystyle \int \exp\left\{iS(q,\dot{q})\right\} Dq \\ &amp; \\ &amp;  = \langle y \vert \, U(t,0)  \, \vert x\rangle\end{array}
-\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\psi(y,t)\)</span> is the value of the state vector <span class="math notranslate nohighlight">\(\Psi(t)\)</span> at position <span class="math notranslate nohighlight">\(y,\)</span> <span class="math notranslate nohighlight">\(\int Dq\)</span> is an integral over all paths <span class="math notranslate nohighlight">\(q\)</span> from <span class="math notranslate nohighlight">\(x\)</span> to <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(S(q,\dot{q})\)</span> is the action of the path <span class="math notranslate nohighlight">\(q.\)</span> Here, <span class="math notranslate nohighlight">\(K(y,t;x,0)\)</span> is known as the <em>kernel</em> or <em>propagator</em>.</p>
-<p>The time-ordered exponential in the Dyson series can be related to the Feynman path integral by viewing the Hamiltonian operators in a von Neumann infinite tensor product Hilbert space <span id="id3">[<a class="reference internal" href="#id30" title="Tepper L Gill. The feynman-dyson view. In Journal of Physics: Conference Series, volume 845, 012023. IOP Publishing, 2017.">Gil17</a>]</span>.</p>
-<p>The Dyson formula frames the dynamics of the system in terms of the time-evolution operator, while the path integral frames the dynamics in terms of the kernel.</p>
-<p>The action gives a “particle” interpretation to the quantum or stochastic dynamical system. These “particles” are real only to the extent that this action is well-defined.</p>
-<p>It would be interesting to study the Dyson formula through the algebraic lens of regularity structures.</p>
-<p>There should also be a generalization of the Dyson formula or the path integral to coends in category theory.</p>
-<p>[Freeman Dyson - Linking the ideas of Feynman, Schwinger and Tomanaga]<a class="reference external" href="https://www.youtube.com/watch?v=i3RcN5UGwgI">https://www.youtube.com/watch?v=i3RcN5UGwgI</a></p>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
-<div class="docutils container" id="id4">
-<dl class="citation">
-<dt class="label" id="id31"><span class="brackets"><a class="fn-backref" href="#id2">Bro13</a></span></dt>
-<dd><p>Francis Brown. Iterated integrals in quantum field theory. <em>6th Summer School on Geometric and Topological Methods for Quantum Field Theory</em>, pages 188–240, 2013.</p>
-</dd>
-<dt class="label" id="id30"><span class="brackets"><a class="fn-backref" href="#id3">Gil17</a></span></dt>
-<dd><p>Tepper L Gill. The feynman-dyson view. In <em>Journal of Physics: Conference Series</em>, volume 845, 012023. IOP Publishing, 2017.</p>
-</dd>
-<dt class="label" id="id32"><span class="brackets"><a class="fn-backref" href="#id1">nLa</a></span></dt>
-<dd><p>nLab. Dyson formula. <a class="reference external" href="https://ncatlab.org/nlab/show/Dyson+formula">https://ncatlab.org/nlab/show/Dyson+formula</a>. Accessed: 2021.</p>
-</dd>
-</dl>
+                   <div class="tex2jax_ignore mathjax_ignore section" id="relative-information-and-the-dual-numbers">
+<h1>Relative Information and the Dual Numbers<a class="headerlink" href="#relative-information-and-the-dual-numbers" title="Permalink to this headline">#</a></h1>
+<div class="section" id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">#</a></h2>
+<p>Relative information (Kullback-Leibler divergence) is a fundamental concept in statistics, machine learning and information theory.</p>
+<p>In the first half of the talk, I will define conditional relative information, list its axiomatic properties, and describe how it is used in machine learning. For example, the generalization error of a learning algorithm depends on the structure of algebraic geometric singularities of relative information.</p>
+<p>In the second half of the talk, I will define the rig category InfoRig of random variables and their conditional maps, as well as the rig category R(e) of dual numbers. Relative information can then be constructed, up to a scalar multiple, via rig functors from InfoRig to R(e). If time permits, I may discuss how this construction relates to the information cohomology of Baudot, Bennequin and Vigneaux, and to the operad derivations of Bradley.</p>
 </div>
+<div class="section" id="pre-requisites">
+<h2>Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permalink to this headline">#</a></h2>
+<p>Random variables, probability distribution, conditional probability; category, object, morphism, functor; rig (semiring).</p>
+</div>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://sites.google.com/view/sfsuagc/fall-2023">San Francisco State University; Algebra, Geometry and Combinatorics Seminar</a></p>
+<p><a class="reference external" href="https://w3id.org/people/shaoweilin/public/20231025-sfsu.pdf">Slides</a></p>
 </div>
 </div>
 
@@ -536,20 +511,13 @@ K(y,t; x,0) &amp; = \displaystyle \int \exp\left\{iS(q,\dot{q})\right\} Dq \\ &a
 <div class="section">
   <span style="float: left">
      
-    <a href="../2021-04-22-proofs-as-programs-challenges-and-strategies-for-program-synthesis/">
-      <i class="fa fa-arrow-circle-left"></i> Proofs as programs - challenges and strategies for program synthesis
+    <a href="../2023-08-20-references-on-information-cohomology/">
+      <i class="fa fa-arrow-circle-left"></i> References on information cohomology
     </a>
     
   </span>
   <span>&nbsp;</span>
   <span style="float: right">
-     
-    <a href="../2021-06-01-convergence-of-biased-stochastic-approximation/">
-      Convergence of biased stochastic approximation <i
-        class="fa fa-arrow-circle-right"
-      ></i
-      >
-    </a>
     
   </span>
 </div>
@@ -601,13 +569,15 @@ K(y,t; x,0) &amp; = \displaystyle \int \exp\left\{iS(q,\dot{q})\right\} Dq \\ &a
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abstract">Abstract</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-requisites">Pre-requisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#details">Details</a></li>
 </ul>
   </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">
-    <a href="../../_sources/posts/2021-05-10-path-integrals-and-the-dyson-formula.md.txt">
+    <a href="../../_sources/posts/2023-10-25-relative-information-and-the-dual-numbers.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>
