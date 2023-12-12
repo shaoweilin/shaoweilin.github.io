@@ -7,16 +7,16 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta property="og:title" content="References on information cohomology" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta property="og:title" content="Online learning for spiking neural networks with relative information rate" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://shaoweilin.github.io/posts/2023-08-20-references-on-information-cohomology/" />
+<meta property="og:url" content="https://shaoweilin.github.io/posts/2023-12-11-online-learning-for-spiking-neural-networks-with-relative-information-rate/" />
 <meta property="og:site_name" content="Types from Spikes" />
-<meta property="og:description" content="Some references on the cohomological nature of various information theoretic concepts such as entropy and relative information. Markov categories: Markov categories were defined by Fritz[ Fri20]. P..." />
+<meta property="og:description" content="Abstract: Spiking neural networks (SNNs) mimic biological neural networks more closely than feedforward neural networks (FNNs), and are pursued because of the promise of low-energy training and inf..." />
 <meta property="og:image" content="https://shaoweilin.github.io/_static/profile.jpg" />
 <meta property="og:image:alt" content="Types from Spikes" />
-<meta name="description" content="Some references on the cohomological nature of various information theoretic concepts such as entropy and relative information. Markov categories: Markov categories were defined by Fritz[ Fri20]. P..." />
+<meta name="description" content="Abstract: Spiking neural networks (SNNs) mimic biological neural networks more closely than feedforward neural networks (FNNs), and are pursued because of the promise of low-energy training and inf..." />
 
-    <title>References on information cohomology &#8212; Types from Spikes  documentation</title>
+    <title>Online learning for spiking neural networks with relative information rate &#8212; Types from Spikes  documentation</title>
   
   
   
@@ -51,7 +51,7 @@
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2023-08-20-references-on-information-cohomology';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2023-12-11-online-learning-for-spiking-neural-networks-with-relative-information-rate';</script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about/" />
     <link rel="index" title="Index" href="../../genindex/" />
@@ -346,7 +346,7 @@ document.write(`
         <div class="sidebar-primary-item">  
 <h2>
    <i class="fa fa-calendar"></i>
-  20 August 2023 
+  11 December 2023 
 </h2>
 
 <ul>
@@ -360,14 +360,14 @@ document.write(`
 <ul>
    
   <li>
-    <a href="../2023-12-11-online-learning-for-spiking-neural-networks-with-relative-information-rate/"
-      >11 December - Online learning for spiking neural networks with relative information rate</a
+    <a href="../2023-10-25-relative-information-and-the-dual-numbers/"
+      >25 October - Relative Information and the Dual Numbers</a
     >
   </li>
   
   <li>
-    <a href="../2023-10-25-relative-information-and-the-dual-numbers/"
-      >25 October - Relative Information and the Dual Numbers</a
+    <a href="../2023-08-20-references-on-information-cohomology/"
+      >20 August - References on information cohomology</a
     >
   </li>
   
@@ -469,7 +469,7 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">References on information cohomology</li>
+    <li class="breadcrumb-item active" aria-current="page">Online learning for spiking neural networks with relative information rate</li>
   </ul>
 </nav>
 </div>
@@ -486,49 +486,16 @@ document.write(`
                 
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
-                   <div class="tex2jax_ignore mathjax_ignore section" id="references-on-information-cohomology">
-<h1>References on information cohomology<a class="headerlink" href="#references-on-information-cohomology" title="Permalink to this headline">#</a></h1>
-<p>Some references on the cohomological nature of various information theoretic concepts such as entropy and relative information.</p>
-<div class="section" id="markov-categories">
-<h2>Markov categories<a class="headerlink" href="#markov-categories" title="Permalink to this headline">#</a></h2>
-<p>Markov categories were defined by Fritz <span id="id1">[<a class="reference internal" href="#id14" title="Tobias Fritz. A synthetic approach to markov kernels, conditional independence and theorems on sufficient statistics. Advances in Mathematics, 370:107239, 2020.">Fri20</a>]</span>.</p>
-<p>Perrone on Markov categories and entropy <span id="id2">[<a class="reference internal" href="#id15" title="Paolo Perrone. Markov categories and entropy. arXiv preprint arXiv:2212.11719, 2022.">Per22</a>]</span>.</p>
-<p>Kochen reconstructs quantum mechanics using sigma complexes <span id="id3">[<a class="reference internal" href="#id16" title="Simon Kochen. A reconstruction of quantum mechanics. Foundations of Physics, 45:557–590, 2015.">Koc15</a>]</span>.</p>
+                   <div class="tex2jax_ignore mathjax_ignore section" id="online-learning-for-spiking-neural-networks-with-relative-information-rate">
+<h1>Online learning for spiking neural networks with relative information rate<a class="headerlink" href="#online-learning-for-spiking-neural-networks-with-relative-information-rate" title="Permalink to this headline">#</a></h1>
+<div class="section" id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">#</a></h2>
+<p>Spiking neural networks (SNNs) mimic biological neural networks more closely than feedforward neural networks (FNNs), and are pursued because of the promise of low-energy training and inference. While learning methods such as Hebbian algorithms and STDP (spiking-timing-dependent plasticity) exist, the learning theory of SNNs is poorly understood. In particular, little is known about how SNNs with memory (i.e. latent or hidden variables) can be trained effectively, making it difficult to build large SNNs that rival the performance of large FNNs. In this talk, we attack this problem with the information theory of time series. Using relative information rate, Amari’s em algorithm and stochastic approximation theory, we derive online learning algorithms for SNNs with memory. It turns out that STDP is a consequence of this algorithm, rather than its basis. This is joint work with Tenzin Chan, Chris Hillar and Sarah Marzen.</p>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="information-cohomology">
-<h1>Information cohomology<a class="headerlink" href="#information-cohomology" title="Permalink to this headline">#</a></h1>
-<p>Homological nature of entropy by Baudot and Bennequin <span id="id4">[<a class="reference internal" href="#id13" title="Pierre Baudot and Daniel Bennequin. The homological nature of entropy. Entropy, 17(5):3253–3318, 2015.">BB15</a>]</span>.</p>
-<p>Generalized information structures by Vigneaux <span id="id5">[<a class="reference internal" href="#id12" title="Juan Pablo Vigneaux. Information structures and their cohomology. arXiv preprint arXiv:1709.07807, 2017.">Vig17</a>]</span>. Vigneaux’s PhD thesis can be found <a class="reference external" href="https://arxiv.org/pdf/1709.07807v1.pdf">here</a>.</p>
-<p>Bradley describes entropy as a topological operad derivation <span id="id6">[<a class="reference internal" href="#id10" title="Tai-Danae Bradley. Entropy as a topological operad derivation. Entropy, 23(9):1195, 2021.">Bra21</a>]</span>.</p>
-<p>Manin and Marcolli explores homotopy-theoretic and categorical models of neural information networks <span id="id7">[<a class="reference internal" href="#id9" title="Yuri Manin and Matilde Marcolli. Homotopy theoretic and categorical models of neural information networks. arXiv preprint arXiv:2006.15136, 2020.">MM20</a>]</span>.</p>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
-<div class="docutils container" id="id8">
-<dl class="citation">
-<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="#id4">BB15</a></span></dt>
-<dd><p>Pierre Baudot and Daniel Bennequin. The homological nature of entropy. <em>Entropy</em>, 17(5):3253–3318, 2015.</p>
-</dd>
-<dt class="label" id="id10"><span class="brackets"><a class="fn-backref" href="#id6">Bra21</a></span></dt>
-<dd><p>Tai-Danae Bradley. Entropy as a topological operad derivation. <em>Entropy</em>, 23(9):1195, 2021.</p>
-</dd>
-<dt class="label" id="id14"><span class="brackets"><a class="fn-backref" href="#id1">Fri20</a></span></dt>
-<dd><p>Tobias Fritz. A synthetic approach to markov kernels, conditional independence and theorems on sufficient statistics. <em>Advances in Mathematics</em>, 370:107239, 2020.</p>
-</dd>
-<dt class="label" id="id16"><span class="brackets"><a class="fn-backref" href="#id3">Koc15</a></span></dt>
-<dd><p>Simon Kochen. A reconstruction of quantum mechanics. <em>Foundations of Physics</em>, 45:557–590, 2015.</p>
-</dd>
-<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id7">MM20</a></span></dt>
-<dd><p>Yuri Manin and Matilde Marcolli. Homotopy theoretic and categorical models of neural information networks. <em>arXiv preprint arXiv:2006.15136</em>, 2020.</p>
-</dd>
-<dt class="label" id="id15"><span class="brackets"><a class="fn-backref" href="#id2">Per22</a></span></dt>
-<dd><p>Paolo Perrone. Markov categories and entropy. <em>arXiv preprint arXiv:2212.11719</em>, 2022.</p>
-</dd>
-<dt class="label" id="id12"><span class="brackets"><a class="fn-backref" href="#id5">Vig17</a></span></dt>
-<dd><p>Juan Pablo Vigneaux. Information structures and their cohomology. <em>arXiv preprint arXiv:1709.07807</em>, 2017.</p>
-</dd>
-</dl>
-</div>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://www.imsi.institute/activities/bayesian-statistics-and-statistical-learning-new-directions-in-algebraic-statistics/">Institute for Mathematical and Statistical Innovation; Bayesian Statistics and Statistical Learning</a></p>
+<p><a class="reference external" href="https://w3id.org/people/shaoweilin/public/20231211-imsi.pdf">Slides</a></p>
 </div>
 </div>
 
@@ -538,20 +505,13 @@ document.write(`
 <div class="section">
   <span style="float: left">
      
-    <a href="../2023-06-26-all-you-need-is-relative-information/">
-      <i class="fa fa-arrow-circle-left"></i> All you need is relative information
+    <a href="../2023-10-25-relative-information-and-the-dual-numbers/">
+      <i class="fa fa-arrow-circle-left"></i> Relative Information and the Dual Numbers
     </a>
     
   </span>
   <span>&nbsp;</span>
   <span style="float: right">
-     
-    <a href="../2023-10-25-relative-information-and-the-dual-numbers/">
-      Relative Information and the Dual Numbers <i
-        class="fa fa-arrow-circle-right"
-      ></i
-      >
-    </a>
     
   </span>
 </div>
@@ -603,21 +563,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">References on information cohomology</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-categories">Markov categories</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abstract">Abstract</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#details">Details</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#information-cohomology">Information cohomology</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
-</ul>
-</li>
-</ul>
-
   </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">
-    <a href="../../_sources/posts/2023-08-20-references-on-information-cohomology.md.txt">
+    <a href="../../_sources/posts/2023-12-11-online-learning-for-spiking-neural-networks-with-relative-information-rate.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

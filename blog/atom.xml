@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://shaoweilin.github.io</id>
   <title>Types from Spikes</title>
-  <updated>2023-10-27T20:38:14.625914+00:00</updated>
+  <updated>2023-12-12T03:49:16.231840+00:00</updated>
   <link href="https://shaoweilin.github.io"/>
   <link href="https://shaoweilin.github.io/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.org/" version="0.10.33.post1">ABlog</generator>
@@ -502,5 +502,18 @@ relative information and their transforms.Singular Learning Theory and Alignment
     <link href="https://shaoweilin.github.io/posts/2023-10-25-relative-information-and-the-dual-numbers/" rel="alternate"/>
     <summary>Relative information (Kullback-Leibler divergence) is a fundamental concept in statistics, machine learning and information theory.In the first half of the talk, I will define conditional relative information, list its axiomatic properties, and describe how it is used in machine learning. For example, the generalization error of a learning algorithm depends on the structure of algebraic geometric singularities of relative information.</summary>
     <published>2023-10-25T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://shaoweilin.github.io/posts/2023-12-11-online-learning-for-spiking-neural-networks-with-relative-information-rate/</id>
+    <title>Online learning for spiking neural networks with relative information rate</title>
+    <updated>2023-12-11T00:00:00+00:00</updated>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;Spiking neural networks (SNNs) mimic biological neural networks more closely than feedforward neural networks (FNNs), and are pursued because of the promise of low-energy training and inference. While learning methods such as Hebbian algorithms and STDP (spiking-timing-dependent plasticity) exist, the learning theory of SNNs is poorly understood. In particular, little is known about how SNNs with memory (i.e. latent or hidden variables) can be trained effectively, making it difficult to build large SNNs that rival the performance of large FNNs. In this talk, we attack this problem with the information theory of time series. Using relative information rate, Amari’s em algorithm and stochastic approximation theory, we derive online learning algorithms for SNNs with memory. It turns out that STDP is a consequence of this algorithm, rather than its basis. This is joint work with Tenzin Chan, Chris Hillar and Sarah Marzen.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.imsi.institute/activities/bayesian-statistics-and-statistical-learning-new-directions-in-algebraic-statistics/"&gt;Institute for Mathematical and Statistical Innovation; Bayesian Statistics and Statistical Learning&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://shaoweilin.github.io/posts/2023-12-11-online-learning-for-spiking-neural-networks-with-relative-information-rate/" rel="alternate"/>
+    <summary>Spiking neural networks (SNNs) mimic biological neural networks more closely than feedforward neural networks (FNNs), and are pursued because of the promise of low-energy training and inference. While learning methods such as Hebbian algorithms and STDP (spiking-timing-dependent plasticity) exist, the learning theory of SNNs is poorly understood. In particular, little is known about how SNNs with memory (i.e. latent or hidden variables) can be trained effectively, making it difficult to build large SNNs that rival the performance of large FNNs. In this talk, we attack this problem with the information theory of time series. Using relative information rate, Amari’s em algorithm and stochastic approximation theory, we derive online learning algorithms for SNNs with memory. It turns out that STDP is a consequence of this algorithm, rather than its basis. This is joint work with Tenzin Chan, Chris Hillar and Sarah Marzen.Institute for Mathematical and Statistical Innovation; Bayesian Statistics and Statistical Learning</summary>
+    <published>2023-12-11T00:00:00+00:00</published>
   </entry>
 </feed>
