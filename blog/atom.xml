@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://shaoweilin.github.io</id>
   <title>Types from Spikes</title>
-  <updated>2023-12-12T03:49:16.231840+00:00</updated>
+  <updated>2024-02-28T16:54:54.477950+00:00</updated>
   <link href="https://shaoweilin.github.io"/>
   <link href="https://shaoweilin.github.io/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.org/" version="0.10.33.post1">ABlog</generator>
@@ -15,7 +15,7 @@
 &lt;p&gt;&lt;a class="reference external" href="https://www.youtube.com/playlist?list=PLl_tHArJvfnBS-OPQa2jFYhb1ZrCAnyyL"&gt;Modern Massive Data Sets&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2012-07-13-studying-model-asymptotics-with-singular-learning-theory/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2012-07-13-studying-model-asymptotics-with-singular-learning-theory/"/>
     <summary>Singular statistical models occur frequently in machine learning and computational biology. An important prob-lem in the learning theory of singular models is determin-ing their asymptotic behavior for massive data sets. In this talk, we give a brief introduction to Sumio Watanabe’s Singular Learning Theory, as outlined in his book “Algebraic Geometry and Statistical Learning Theory.” We will also explore the rich algebraic geometry and combinatorics that arise from studying the asymptotics of Bayesian integrals.Modern Massive Data Sets</summary>
     <published>2012-07-13T00:00:00+00:00</published>
   </entry>
@@ -28,7 +28,7 @@
 &lt;p&gt;If the energy of the model is a polynomial of higher degree (e.g. cubic, quartic), then the model is &lt;em&gt;hierarchical&lt;/em&gt;. They are a kind of &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Graphical_model"&gt;graphical model&lt;/a&gt; where the underlying graph is a &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Simplicial_complex"&gt;simplicial complex&lt;/a&gt; (a special type of &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Hypergraph"&gt;hypergraph&lt;/a&gt;). Here are some slides and papers on hierachical models:&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2014-08-02-boltzmann-machines-and-hierarchical-models/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2014-08-02-boltzmann-machines-and-hierarchical-models/"/>
     <summary>The restricted Boltzmann machine (RBM) is a key statistical model used in deep learning. They are special form of Boltzmann machines where the underlying graph is a bipartite graph. Personally, I am more interested in Boltzmann machines because they represent a class of discrete energy models where the energy is quadratic. The dynamics of the model bears a lot of resemblance to those of Hopfield networks and Ising models. As an aside, normal distributions are continuous energy models where the energy is quadratic and positive definite.If the energy of the model is a polynomial of higher degree (e.g. cubic, quartic), then the model is hierarchical. They are a kind of graphical model where the underlying graph is a simplicial complex (a special type of hypergraph). Here are some slides and papers on hierachical models:</summary>
     <published>2014-08-02T00:00:00+00:00</published>
   </entry>
@@ -43,7 +43,7 @@
 This book covers combinatorics and stuff. For undergraduates. Might be too easy.&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2014-08-13-statistics-and-machine-learning/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2014-08-13-statistics-and-machine-learning/"/>
     <summary>Below are some introductory texts for probability, statistics, machine learning and statistical learning theory. They are sorted roughly according to difficulty, so you can find a book that is suitable for where you are and what you need.A First Course in Probability (9th Edition)&lt;br /&gt;
 Sheldon M. Ross&lt;br /&gt;
 This book covers combinatorics and stuff. For undergraduates. Might be too easy.</summary>
@@ -58,7 +58,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;Hashing goes all the way back to Shannon, the father of information theory, who looked at random hashes in his source coding theorem. There are also interesting connections to compressed sensing which have not been fully explored as yet.&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2016-02-04-hashing/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2016-02-04-hashing/"/>
     <summary>Hashing is a method for compressing information from a high dimensional space into a smaller space. Hashing is commonly used in computer science to help us with many tasks. For instance, if two documents are (randomly) hashed to the same code, it is very likely that they are exactly the same. Also, in computer vision, we sometimes hash images in a clever way to find similar or related images through their codes.Hashing goes all the way back to Shannon, the father of information theory, who looked at random hashes in his source coding theorem. There are also interesting connections to compressed sensing which have not been fully explored as yet.</summary>
     <published>2016-02-04T00:00:00+00:00</published>
   </entry>
@@ -70,7 +70,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;Read the notes and complete the exercises for the section on “Building Deep Networks for Classification” in the &lt;a class="reference external" href="http://deeplearning.stanford.edu/wiki/index.php/UFLDL_Tutorial"&gt;UFLDL Tutorial&lt;/a&gt;. Complete all the programming tasks in Python. No starter code will be given for these exercises, but you may refer to the given Matlab codes for hints if you are stuck&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2016-05-03-exercise-on-deep-neural-networks/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2016-05-03-exercise-on-deep-neural-networks/"/>
     <summary>Read the notes and complete the exercises for the section on “Building Deep Networks for Classification” in the UFLDL Tutorial. Complete all the programming tasks in Python. No starter code will be given for these exercises, but you may refer to the given Matlab codes for hints if you are stuck</summary>
     <published>2016-05-03T00:00:00+00:00</published>
   </entry>
@@ -83,7 +83,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;Read the series of notes on the topic of “Sparse Autoencoder” in the &lt;a class="reference external" href="http://deeplearning.stanford.edu/wiki/index.php/UFLDL_Tutorial"&gt;UFLDL Tutorial&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2016-05-03-exercise-on-sparse-autoencoders/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2016-05-03-exercise-on-sparse-autoencoders/"/>
     <summary>This exercise is the first of several posts I am writing, for those who want a mathematical and hands-on introduction to deep neural networks.Read the series of notes on the topic of “Sparse Autoencoder” in the UFLDL Tutorial.</summary>
     <published>2016-05-03T00:00:00+00:00</published>
   </entry>
@@ -96,7 +96,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;&lt;a class="reference external" href="https://on-demand-gtc.gputechconf.com/gtcnew/sessionview.php?sessionName=s7239-artificial+general+intelligence+for+the+internet+of+things"&gt;GPU Technology Conference&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2017-05-08-artificial-general-intelligence-for-the-internet-of-things/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2017-05-08-artificial-general-intelligence-for-the-internet-of-things/"/>
     <summary>What do we need to achieve artificial general intelligence? How do we distribute intelligence over the internet-of-things? We’ll dive deep into the heart of the matter, which is machine reasoning. Following recent advances in mathematical foundations and homotopy type theory, we conclude that the crux is to formally separate intents from implementations. We can teach neural networks to understand these intents and to use a divide-and-conquer method for compiling these intents into implementations. Our goal is to outline a distributed strategy for accomplishing this moonshot.GPU Technology Conference</summary>
     <published>2017-05-08T00:00:00+00:00</published>
   </entry>
@@ -109,7 +109,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;&lt;a class="reference external" href="https://www.aisingapore.org/event/visions-of-ai-futures/"&gt;Visions of AI Futures&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2018-05-26-machine-reasoning-and-deep-spiking-networks/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2018-05-26-machine-reasoning-and-deep-spiking-networks/"/>
     <summary>This is a short presentation which I shared at the Visions of AI Futures workshop organized by AI Singapore. I talked about the goal of building next-generation machine intelligence, through neural and symbolic modules that work seamlessly together to accomplish intuitive reasoning, as well as efficient, effective neural chips for every device.Visions of AI Futures</summary>
     <published>2018-05-26T00:00:00+00:00</published>
   </entry>
@@ -123,7 +123,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;img alt="logical-framework-rules" src="../_images/logical-framework-rules.png" /&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2020-05-21-logical-frameworks/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2020-05-21-logical-frameworks/"/>
     <summary>Logical frameworks are formal meta-languages for specifying different kinds of object theories (e.g. logical theories and type theories).LF is a logical framework harper1993framework that formalizes Martin-Lof’s logical framework and is itself based on type theory. It was designed to unify similarities between two forms of judgments.logical-framework-rules</summary>
     <published>2020-05-21T00:00:00+00:00</published>
   </entry>
@@ -136,7 +136,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;There is a concept of &lt;a class="reference external" href="https://ncatlab.org/nlab/show/directed+topological+space"&gt;Directed Spaces&lt;/a&gt;. Since Types can be thought of as Spaces, the question is what kind of additional information we would need to construct such a Type (e.g. for undirected types, we can construct these types using identity types as additional information).&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2020-05-26-directed-spaces-and-types/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2020-05-26-directed-spaces-and-types/"/>
     <summary>Joint work with Jin Xing Lim, Liang Ze Wong, Georgios Piliouras.There is a concept of Directed Spaces. Since Types can be thought of as Spaces, the question is what kind of additional information we would need to construct such a Type (e.g. for undirected types, we can construct these types using identity types as additional information).</summary>
     <published>2020-05-26T00:00:00+00:00</published>
   </entry>
@@ -149,7 +149,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;&lt;a class="reference external" href="http://arca.di.uminho.pt/quantum-logic-1920/CategoriesAndLogic.pdf"&gt;http://arca.di.uminho.pt/quantum-logic-1920/CategoriesAndLogic.pdf&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2020-07-23-adjunctions/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2020-07-23-adjunctions/"/>
     <summary>Read about the Curry-Howard-Lambek correspondence. Some call it the holy trinity of Logic, Computation and Categories. Lambek adds the “objects as propositions” and “arrows as proofs” part to the mix. You may need to learn some basic category theory.http://arca.di.uminho.pt/quantum-logic-1920/CategoriesAndLogic.pdf</summary>
     <published>2020-07-23T00:00:00+00:00</published>
   </entry>
@@ -162,7 +162,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;“There are many views, and each one has only partial information about the rest of the universe. We propose as a principle of dynamics that each view should be unique. That idea comes from Leibniz’s principle of the identity of indiscernibles. Two events whose views are exactly mappable onto each other are the same event, by definition. So each view is unique, and you can measure how distinct one is from another by defining a quantity called the “variety.” If you think of a node on a graph, you can go one step out, two steps out, three steps out. Each step gives you a neighborhood — the one-step neighborhood, the two-step neighborhood, the three-step neighborhood. So for any two events you can ask: How many steps do you have to go out until their views diverge? In what neighborhood are they different? The fewer steps you have to go, the more distinguishable the views are from one another. The idea in this theory is that the laws of physics — the dynamics of the system — work to maximize variety. That principle — that nature wants to maximize variety — actually leads, within the framework I’ve been describing, to the Schrödinger equation, and hence to a recovery, in an appropriate limit, of quantum mechanics.” - Les Smolin&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2020-08-07-processes-and-variety-maximization/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2020-08-07-processes-and-variety-maximization/"/>
     <summary>“It’s a theory about processes, about the sequences and causal relations among things that happen, not the inherent properties of things that are. The fundamental ingredient is what we call an “event.” Events are things that happen at a single place and time; at each event there’s some momentum, energy, charge or other various physical quantity that’s measurable. The event has relations with the rest of the universe, and that set of relations constitutes its “view” of the universe. Rather than describing an isolated system in terms of things that are measured from the outside, we’re taking the universe as constituted of relations among events. The idea is to try to reformulate physics in terms of these views from the inside, what it looks like from inside the universe.”“There are many views, and each one has only partial information about the rest of the universe. We propose as a principle of dynamics that each view should be unique. That idea comes from Leibniz’s principle of the identity of indiscernibles. Two events whose views are exactly mappable onto each other are the same event, by definition. So each view is unique, and you can measure how distinct one is from another by defining a quantity called the “variety.” If you think of a node on a graph, you can go one step out, two steps out, three steps out. Each step gives you a neighborhood — the one-step neighborhood, the two-step neighborhood, the three-step neighborhood. So for any two events you can ask: How many steps do you have to go out until their views diverge? In what neighborhood are they different? The fewer steps you have to go, the more distinguishable the views are from one another. The idea in this theory is that the laws of physics — the dynamics of the system — work to maximize variety. That principle — that nature wants to maximize variety — actually leads, within the framework I’ve been describing, to the Schrödinger equation, and hence to a recovery, in an appropriate limit, of quantum mechanics.” - Les Smolin</summary>
     <published>2020-08-07T00:00:00+00:00</published>
   </entry>
@@ -175,7 +175,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;&lt;span class="xref myst"&gt;Building foundations of information theory on relative information&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2020-08-28-motivic-information-path-integrals-and-spiking-networks/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2020-08-28-motivic-information-path-integrals-and-spiking-networks/"/>
     <summary>I’m writing a series of posts that will explore the connections between these topics. Here is a rough outline of the series, which I will fill in slowly over time.Building foundations of information theory on relative information</summary>
     <published>2020-08-28T00:00:00+00:00</published>
   </entry>
@@ -188,7 +188,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;In this post, we emphasize that the relative information is fundamental in the sense that all other interesting information-theoretic objects may be derived from it. We also outline how relative information can be defined without probability mass functions or probability density functions, or even in the absence of absolute continuity.&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2020-09-08-building-foundations-of-information-theory-on-relative-information/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2020-09-08-building-foundations-of-information-theory-on-relative-information/"/>
     <summary>The relative information baez2014bayesian (also known as relative entropy or Kullback-Leibler divergence) is an important object in information theory for measuring how far a probability measure Q is from another probability measure P. Here, Q is usually the true distribution of some real phenomenon, and P is some model distribution.In this post, we emphasize that the relative information is fundamental in the sense that all other interesting information-theoretic objects may be derived from it. We also outline how relative information can be defined without probability mass functions or probability density functions, or even in the absence of absolute continuity.</summary>
     <published>2020-09-08T00:00:00+00:00</published>
   </entry>
@@ -201,7 +201,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;This post is a continuation from our &lt;span class="xref myst"&gt;series&lt;/span&gt; on spiking networks, path integrals and motivic information.&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2020-09-18-conditional-relative-information-and-its-axiomatizations/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2020-09-18-conditional-relative-information-and-its-axiomatizations/"/>
     <summary>In this post, we will study the conditional form of relative information. We will also look at how conditional relative information can be axiomatized and extended to non-real-valued measures.This post is a continuation from our series on spiking networks, path integrals and motivic information.</summary>
     <published>2020-09-18T00:00:00+00:00</published>
   </entry>
@@ -214,7 +214,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;This post is a continuation from our &lt;span class="xref myst"&gt;series&lt;/span&gt; on spiking networks, path integrals and motivic information.&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2020-10-05-zeta-functions-mellin-transforms-and-the-gelfand-leray-form/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2020-10-05-zeta-functions-mellin-transforms-and-the-gelfand-leray-form/"/>
     <summary>We outline the similarities between zeta functions appearing in number theory and in statistical learning.This post is a continuation from our series on spiking networks, path integrals and motivic information.</summary>
     <published>2020-10-05T00:00:00+00:00</published>
   </entry>
@@ -227,7 +227,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;This post is a continuation from our &lt;span class="xref myst"&gt;series&lt;/span&gt; on spiking networks, path integrals and motivic information.&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2020-10-07-motivic-relative-information/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2020-10-07-motivic-relative-information/"/>
     <summary>So far, our definition of relative information studies the divergence between real-valued measures. In this post, we will explore motivic measures which take values more generally in some ring R, and have some fun applying motivic relative information to zeta functions.This post is a continuation from our series on spiking networks, path integrals and motivic information.</summary>
     <published>2020-10-07T00:00:00+00:00</published>
   </entry>
@@ -240,7 +240,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;This post is a continuation from our &lt;span class="xref myst"&gt;series&lt;/span&gt; on spiking networks, path integrals and motivic information.&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2020-10-14-path-integrals-and-continuous-time-markov-chains/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2020-10-14-path-integrals-and-continuous-time-markov-chains/"/>
     <summary>We give an introduction to continuous-time Markov chains, and define path measures for these objects.This post is a continuation from our series on spiking networks, path integrals and motivic information.</summary>
     <published>2020-10-14T00:00:00+00:00</published>
   </entry>
@@ -253,7 +253,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;This post is a continuation from our &lt;span class="xref myst"&gt;series&lt;/span&gt; on spiking networks, path integrals and motivic information.&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2020-10-23-machine-learning-with-relative-information/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2020-10-23-machine-learning-with-relative-information/"/>
     <summary>We will reframe some common machine learning paradigms, such as maximum likelihood, stochastic gradients, stochastic approximation and variational inference, in terms of relative information.This post is a continuation from our series on spiking networks, path integrals and motivic information.</summary>
     <published>2020-10-23T00:00:00+00:00</published>
   </entry>
@@ -266,7 +266,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;This post is a continuation from our &lt;span class="xref myst"&gt;series&lt;/span&gt; on spiking networks, path integrals and motivic information.&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2020-12-01-biased-stochastic-approximation/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2020-12-01-biased-stochastic-approximation/"/>
     <summary>We explore the convergence of continuous-time ordinary differential equations and their discrete-time analogs, such as stochastic approximation and gradient descent, through the lens of Lyapunov theory bottou1998online li2015stochastic. From this perspective, we will study biased stochastic approximation karimi2019non where the expectation of the stochastic updates conditioned on the past (which we call the conditional expectation) is not the same as the expectation of the stochastic updates under the stationary distribution (which we call the total expectation).This post is a continuation from our series on spiking networks, path integrals and motivic information.</summary>
     <published>2020-12-01T00:00:00+00:00</published>
   </entry>
@@ -279,7 +279,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;In this post, we give a general overview of information-theoretic approaches to training stochastic processes, while postponing discussions about issues that arise from mutable variables.&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2021-03-21-process-learning-with-relative-information/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2021-03-21-process-learning-with-relative-information/"/>
     <summary>Over the next few posts, we will derive a distributed learning algorithm for spiking neural networks with mutable variables that minimizes some natural notion of relative information and provably converges over time. We will model these spiking neural networks with stochastic processes: both discrete-time and continuous-time processes, with or without mutable variables.In this post, we give a general overview of information-theoretic approaches to training stochastic processes, while postponing discussions about issues that arise from mutable variables.</summary>
     <published>2021-03-21T00:00:00+00:00</published>
   </entry>
@@ -292,7 +292,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;We discuss natural constraints on the discriminative and generative models, and the consequences of these constraints on:&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2021-03-22-relative-inference-with-mutable-processes/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2021-03-22-relative-inference-with-mutable-processes/"/>
     <summary>We introduce a information-theoretic objective, which is a form of relative information between a discriminative model and a generative model, for learning processes using models with mutable variables. This technique is known as relative inference (also called approximate inference, variational inference or variational Bayes). Such a technique is useful, for instance, for learning processes that contain latent variables.We discuss natural constraints on the discriminative and generative models, and the consequences of these constraints on:</summary>
     <published>2021-03-22T00:00:00+00:00</published>
   </entry>
@@ -305,7 +305,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;The variables &lt;span class="math notranslate nohighlight"&gt;\(Z\)&lt;/span&gt; of the mutable process are auxiliary variables that assist in inference and computation. During training, the distribution of &lt;span class="math notranslate nohighlight"&gt;\(Z\)&lt;/span&gt; given &lt;span class="math notranslate nohighlight"&gt;\(X\)&lt;/span&gt; is controlled by a discriminative model &lt;span class="math notranslate nohighlight"&gt;\(\{Q(Z\vert X)\}.\)&lt;/span&gt; Our method works in both discrete time and continuous time. We assume in the mutable process that for each time &lt;span class="math notranslate nohighlight"&gt;\(t,\)&lt;/span&gt; the variables &lt;span class="math notranslate nohighlight"&gt;\(Z_t\)&lt;/span&gt; and &lt;span class="math notranslate nohighlight"&gt;\(X_t\)&lt;/span&gt; are conditionally independent of each other given their past.&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2021-03-23-biased-stochastic-approximation-with-mutable-processes/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2021-03-23-biased-stochastic-approximation-with-mutable-processes/"/>
     <summary>The goal of this post is to derive a general online learning recipe for training a mutable process \{Z_t,X_t\} to learn the true distribution Q_*(X) of a partially-observed Markov process \{X_t\}. The recipe returns a generative distribution P(Z,X) whose marginal P(X) approximates Q_*(X).The variables Z of the mutable process are auxiliary variables that assist in inference and computation. During training, the distribution of Z given X is controlled by a discriminative model \{Q(Z\vert X)\}. Our method works in both discrete time and continuous time. We assume in the mutable process that for each time t, the variables Z_t and X_t are conditionally independent of each other given their past.</summary>
     <published>2021-03-23T00:00:00+00:00</published>
   </entry>
@@ -318,7 +318,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;&lt;a class="reference external" href="https://topos.site/topos-colloquium/"&gt;Topos Institute Colloquium&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2021-04-22-proofs-as-programs-challenges-and-strategies-for-program-synthesis/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2021-04-22-proofs-as-programs-challenges-and-strategies-for-program-synthesis/"/>
     <summary>The Curry-Howard correspondence between proofs and programs suggests that we can exploit proof assistants for writing software. I will discuss the challenges behind a naïve execution of this idea, and some preliminary strategies for overcoming them. As an example, we will organize higher-order information in knowledge graphs using dependent type theory, and automate the answering of queries using a proof assistant. In another example, we will explore how decentralized proof assistants can enable mathematicians or programmers to work collaboratively on a theorem or application. If time permits, I will outline connections to canonical structures, reflection (ssreflect), transport, unification and universe management.Topos Institute Colloquium</summary>
     <published>2021-04-22T00:00:00+00:00</published>
   </entry>
@@ -331,7 +331,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;in terms of the exponential of the path integral of the operator &lt;span class="math notranslate nohighlight"&gt;\(A(t)\)&lt;/span&gt;,&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2021-05-10-path-integrals-and-the-dyson-formula/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2021-05-10-path-integrals-and-the-dyson-formula/"/>
     <summary>One of the deepest results in quantum field theory, to me, is the Dyson formula nlab2021dysonformula. It describes the solution to the differential equationin terms of the exponential of the path integral of the operator A(t),</summary>
     <published>2021-05-10T00:00:00+00:00</published>
   </entry>
@@ -344,7 +344,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;Recall that the algorithm is described by the following updates.&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2021-06-01-convergence-of-biased-stochastic-approximation/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2021-06-01-convergence-of-biased-stochastic-approximation/"/>
     <summary>Using techniques from biased stochastic approximation karimi2019non, we prove under some regularity conditions the convergence of the online learning algorithm proposed previously for mutable Markov processes.Recall that the algorithm is described by the following updates.</summary>
     <published>2021-06-01T00:00:00+00:00</published>
   </entry>
@@ -357,7 +357,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;Using a &lt;span class="xref myst"&gt;relative inference&lt;/span&gt; recipe for online learning, we derive local Hebbian learning rules for the spiking network which are provably convergent to local minima of the relative information objective.&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2021-06-05-spiking-neural-networks/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2021-06-05-spiking-neural-networks/"/>
     <summary>In this post, we study a class of spiking network models based on continuous-time Markov chains with mutable  variables.Using a relative inference recipe for online learning, we derive local Hebbian learning rules for the spiking network which are provably convergent to local minima of the relative information objective.</summary>
     <published>2021-06-05T00:00:00+00:00</published>
   </entry>
@@ -370,7 +370,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;In the first half of the talk, we study static systems, viewing maximum likelihood and Bayesian inference through the lens of relative information. In particular, their generalization errors may be derived by resolving the singularities of relative information. We then frame the two learning algorithms as special cases of variational inference with different computational constraints.&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2021-09-09-all-you-need-is-relative-information/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2021-09-09-all-you-need-is-relative-information/"/>
     <summary>Relative information (relative entropy, KL divergence) and variational inference are powerful tools for deriving learning algorithms and their asymptotic properties, for both static systems and dynamic systems. The goal of this talk is to motivate a general online stochastic learning algorithm for stochastic processes with latent variables or memory, that provably converges under some regularity conditions. Please visit https://bit.ly/3kmovql for details.In the first half of the talk, we study static systems, viewing maximum likelihood and Bayesian inference through the lens of relative information. In particular, their generalization errors may be derived by resolving the singularities of relative information. We then frame the two learning algorithms as special cases of variational inference with different computational constraints.</summary>
     <published>2021-09-09T00:00:00+00:00</published>
   </entry>
@@ -383,7 +383,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;The (conditional) relative information&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2022-01-22-information-topos-theory-motivation/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2022-01-22-information-topos-theory-motivation/"/>
     <summary>Relative information (also known as the Kullback-Leibler divergence) is an important fundamental concept in statistical learning and information theory.The (conditional) relative information</summary>
     <published>2022-01-22T00:00:00+00:00</published>
   </entry>
@@ -396,7 +396,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;The problem with the current approach in type theory is as follows.&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/"/>
     <summary>We envision programming being done in top-down fashion. The human describes the goal (e.g. sorting), and the machine reduces it to smaller subgoals based on well-known heuristics (e.g. divide and conquer). The easier subgoals could even be fulfilled automatically. This top-down heuristics approach will be more amenable to machine learning. See my Topos Institute talk for more info.The problem with the current approach in type theory is as follows.</summary>
     <published>2022-01-22T00:00:00+00:00</published>
   </entry>
@@ -409,7 +409,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;For simplicity, we assume the following dynamics: when the system is in state &lt;span class="math notranslate nohighlight"&gt;\(s\)&lt;/span&gt;, it picks the neighbor &lt;span class="math notranslate nohighlight"&gt;\(s'\)&lt;/span&gt; with the lowest energy &lt;span class="math notranslate nohighlight"&gt;\(E(s'|s,w)\)&lt;/span&gt; and jumps to state &lt;span class="math notranslate nohighlight"&gt;\(s'\)&lt;/span&gt; in the next time step (more to come later about what we mean by &lt;em&gt;time step&lt;/em&gt;).&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2022-05-28-likelihood-greed-and-temperature-in-sequence-learning/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2022-05-28-likelihood-greed-and-temperature-in-sequence-learning/"/>
     <summary>Imagine we have a model D(w) of a dynamical system with states s \in S, that is parametrized by some weight w \in W. Each state s comes with a set N(s) \subset S of neighbors and an associated energy function E(s'|s,w) \in \mathbb{R} that assigns an energy to each neighbor s' \in N(s).For simplicity, we assume the following dynamics: when the system is in state s, it picks the neighbor s' with the lowest energy E(s'|s,w) and jumps to state s' in the next time step (more to come later about what we mean by time step).</summary>
     <published>2022-05-28T00:00:00+00:00</published>
   </entry>
@@ -422,7 +422,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
 &lt;p&gt;Vigneaux gives some hints of this &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2023-04-01-relative-information-is-motivic/#id5" title="Juan Pablo Vigneaux. Information cohomology of classical vector-valued observables. In Geometric Science of Information: 5th International Conference, GSI 2021, Paris, France, July 21–23, 2021, Proceedings 5, 537–546. Springer, 2021."&gt;Vig21&lt;/a&gt;]&lt;/span&gt;.&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2023-04-01-relative-information-is-motivic/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2023-04-01-relative-information-is-motivic/"/>
     <summary>A (Hochschild) cohomological view of relative information must be motivic!Vigneaux gives some hints of this vigneaux2021information.</summary>
     <published>2023-04-01T00:00:00+00:00</published>
   </entry>
@@ -454,7 +454,7 @@ relative information and their transforms.&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://singularlearningtheory.com/2023"&gt;Singular Learning Theory and Alignment Summit&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2023-06-26-all-you-need-is-relative-information/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2023-06-26-all-you-need-is-relative-information/"/>
     <summary>SLT has taught me that relative information
 (or Kullback-Leibler divergence) is all you need.
 For instance, the level sets of relative information
@@ -486,7 +486,7 @@ relative information and their transforms.Singular Learning Theory and Alignment
 &lt;p&gt;Markov categories were defined by Fritz &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2023-08-20-references-on-information-cohomology/#id14" title="Tobias Fritz. A synthetic approach to markov kernels, conditional independence and theorems on sufficient statistics. Advances in Mathematics, 370:107239, 2020."&gt;Fri20&lt;/a&gt;]&lt;/span&gt;.&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2023-08-20-references-on-information-cohomology/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2023-08-20-references-on-information-cohomology/"/>
     <summary>Some references on the cohomological nature of various information theoretic concepts such as entropy and relative information.Markov categories were defined by Fritz fritz2020synthetic.</summary>
     <published>2023-08-20T00:00:00+00:00</published>
   </entry>
@@ -499,7 +499,7 @@ relative information and their transforms.Singular Learning Theory and Alignment
 &lt;p&gt;In the first half of the talk, I will define conditional relative information, list its axiomatic properties, and describe how it is used in machine learning. For example, the generalization error of a learning algorithm depends on the structure of algebraic geometric singularities of relative information.&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2023-10-25-relative-information-and-the-dual-numbers/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2023-10-25-relative-information-and-the-dual-numbers/"/>
     <summary>Relative information (Kullback-Leibler divergence) is a fundamental concept in statistics, machine learning and information theory.In the first half of the talk, I will define conditional relative information, list its axiomatic properties, and describe how it is used in machine learning. For example, the generalization error of a learning algorithm depends on the structure of algebraic geometric singularities of relative information.</summary>
     <published>2023-10-25T00:00:00+00:00</published>
   </entry>
@@ -512,7 +512,7 @@ relative information and their transforms.Singular Learning Theory and Alignment
 &lt;p&gt;&lt;a class="reference external" href="https://www.imsi.institute/activities/bayesian-statistics-and-statistical-learning-new-directions-in-algebraic-statistics/"&gt;Institute for Mathematical and Statistical Innovation; Bayesian Statistics and Statistical Learning&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://shaoweilin.github.io/posts/2023-12-11-online-learning-for-spiking-neural-networks-with-relative-information-rate/" rel="alternate"/>
+    <link href="https://shaoweilin.github.io/posts/2023-12-11-online-learning-for-spiking-neural-networks-with-relative-information-rate/"/>
     <summary>Spiking neural networks (SNNs) mimic biological neural networks more closely than feedforward neural networks (FNNs), and are pursued because of the promise of low-energy training and inference. While learning methods such as Hebbian algorithms and STDP (spiking-timing-dependent plasticity) exist, the learning theory of SNNs is poorly understood. In particular, little is known about how SNNs with memory (i.e. latent or hidden variables) can be trained effectively, making it difficult to build large SNNs that rival the performance of large FNNs. In this talk, we attack this problem with the information theory of time series. Using relative information rate, Amari’s em algorithm and stochastic approximation theory, we derive online learning algorithms for SNNs with memory. It turns out that STDP is a consequence of this algorithm, rather than its basis. This is joint work with Tenzin Chan, Chris Hillar and Sarah Marzen.Institute for Mathematical and Statistical Innovation; Bayesian Statistics and Statistical Learning</summary>
     <published>2023-12-11T00:00:00+00:00</published>
   </entry>
