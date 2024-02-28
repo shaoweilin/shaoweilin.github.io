@@ -12,4 +12,6 @@ Spiking neural networks (SNNs) mimic biological neural networks more closely tha
 ## Details
 [Institute for Mathematical and Statistical Innovation; Bayesian Statistics and Statistical Learning](https://www.imsi.institute/activities/bayesian-statistics-and-statistical-learning-new-directions-in-algebraic-statistics/)
 
+[Video](https://www.imsi.institute/videos/online-learning-for-spiking-neural-networks-with-relative-information-rate/)
+
 [Slides](https://w3id.org/people/shaoweilin/public/20231211-imsi.pdf)
