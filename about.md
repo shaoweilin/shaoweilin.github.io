@@ -36,7 +36,7 @@ I am a mathematician working on the statistical learning theory of spiking neura
 - [Legendrian Knots](https://w3id.org/people/shaoweilin/public/legendrian.html)
 
 ## Students
-- 2023: [Tenzin CHAN](https://www.linkedin.com/in/tenzin-c-2a605012a/) (PhD 2023; [thesis](https://sutd.primo.exlibrisgroup.com/permalink/65SUTD_INST/19hmrhl/alma999682261802406); with Dewen Soh, Chris Hillar)
+- 2023: [Tenzin CHAN](https://www.linkedin.com/in/tenzin-c-2a605012a/) ([thesis](https://sutd.primo.exlibrisgroup.com/permalink/65SUTD_INST/19hmrhl/alma999682261802406); with Dewen Soh, Chris Hillar)
 - 2022: [Jin Xing LIM](https://jinxinglim.github.io/) ([thesis](https://sutd.primo.exlibrisgroup.com/permalink/65SUTD_INST/19hmrhl/alma999649164802406); with Georgios Piliouras)
 - 2020: [Gary PHUA](https://www.linkedin.com/in/gary-phua-8b7553201/) ([thesis](https://sutd.primo.exlibrisgroup.com/permalink/65SUTD_INST/19hmrhl/alma999583564202406); with Dario Poletti)
 - 2020: [Aik Beng NG](https://www.linkedin.com/in/aikbengng/) ([thesis](https://sutd.primo.exlibrisgroup.com/permalink/65SUTD_INST/19hmrhl/alma999583564502406); with Simon See)
