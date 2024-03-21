@@ -43,7 +43,7 @@ I am a mathematician working on the statistical learning theory of spiking neura
 - 2020: [Zhangsheng LAI](https://zunction.github.io/) ([thesis](https://sutd.primo.exlibrisgroup.com/permalink/65SUTD_INST/19hmrhl/alma999582764802406); with Simon See)
 - 2019: [Zackary XUEREB CONTI](https://www.zackxuerebconti.com/) ([thesis](https://sutd.primo.exlibrisgroup.com/permalink/65SUTD_INST/19hmrhl/alma999559964702406); with Sawako Kaijima, Sam Conrad Joyce)
 - 2019: [Zuozhu LIU](https://person.zju.edu.cn/en/lzz) ([thesis](https://sutd.primo.exlibrisgroup.com/permalink/65SUTD_INST/19hmrhl/alma999560164402406); with Tony Quek)
-- 2017: [Mohammad ABU ALSHEIKH](https://mabualsh.github.io/) ([thesis](https://hdl.handle.net/10356/70562); with Hwee-Pink Tan, Dusit Niyato).
+- 2017: [Mohammad ABU ALSHEIKH](https://mabualsh.github.io/) ([thesis](https://hdl.handle.net/10356/70562); with Hwee-Pink Tan, Dusit Niyato)
 
 
 ## Contact
