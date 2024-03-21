@@ -38,4 +38,4 @@ I am a mathematician working on the statistical learning theory of spiking neura
 ## Contact
 - shaoweilin × research + gmail × com
 
-*Website.* I was inspired by Chris Holdgraf's MyST-based [site](https://predictablynoisy.com/posts/2020/sphinx-blogging/). My [code](https://github.com/shaoweilin/shaoweilin.github.io) was modified from [his](https://github.com/choldgraf/choldgraf.github.io).
+*Website.* I was inspired by Chris Holdgraf's MyST-based [site](https://chrisholdgraf.com/). My [code](https://github.com/shaoweilin/shaoweilin.github.io) was modified from [his](https://github.com/choldgraf/choldgraf.github.io).
