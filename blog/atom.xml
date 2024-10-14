@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://shaoweilin.github.io</id>
   <title>Types from Spikes</title>
-  <updated>2024-03-21T23:39:32.236975+00:00</updated>
+  <updated>2024-10-14T19:18:41.628154+00:00</updated>
   <link href="https://shaoweilin.github.io"/>
   <link href="https://shaoweilin.github.io/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.org/" version="0.10.33.post1">ABlog</generator>
@@ -515,5 +515,44 @@ relative information and their transforms.Singular Learning Theory and Alignment
     <link href="https://shaoweilin.github.io/posts/2023-12-11-online-learning-for-spiking-neural-networks-with-relative-information-rate/"/>
     <summary>Spiking neural networks (SNNs) mimic biological neural networks more closely than feedforward neural networks (FNNs), and are pursued because of the promise of low-energy training and inference. While learning methods such as Hebbian algorithms and STDP (spiking-timing-dependent plasticity) exist, the learning theory of SNNs is poorly understood. In particular, little is known about how SNNs with memory (i.e. latent or hidden variables) can be trained effectively, making it difficult to build large SNNs that rival the performance of large FNNs. In this talk, we attack this problem with the information theory of time series. Using relative information rate, Amari’s em algorithm and stochastic approximation theory, we derive online learning algorithms for SNNs with memory. It turns out that STDP is a consequence of this algorithm, rather than its basis. This is joint work with Tenzin Chan, Chris Hillar and Sarah Marzen.Institute for Mathematical and Statistical Innovation; Bayesian Statistics and Statistical Learning</summary>
     <published>2023-12-11T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://shaoweilin.github.io/posts/2024-05-08-ai-assisted-coding-correct-by-construction-not-by-generation/</id>
+    <title>AI-assisted coding: correct by construction, not by generation</title>
+    <updated>2024-05-08T00:00:00+00:00</updated>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;Atlas and Topos has been working on a roadmap for AI-assisted code specification and synthesis. The thesis is that formal verification (FV) is our best bet for protecting our sociotechnical systems, especially from human-led and/or AI-enabled attacks. Formal AI-assisted coding could make FV widespread and turn the tide in favor of defense. The roadmap describes concrete projects towards that goal. In this talk, I will discuss various components of the roadmap and show simple demos of what language models can do out of the box. I will also dive into correct-by-construction code synthesis, and how that it preferable to token-by-token code generation.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://blogs.chapman.edu/scst/announcement/chapman-university-to-partner-with-topos-institute/"&gt;Topos-Chapman Workshop&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://shaoweilin.github.io/posts/2024-05-08-ai-assisted-coding-correct-by-construction-not-by-generation/"/>
+    <summary>Atlas and Topos has been working on a roadmap for AI-assisted code specification and synthesis. The thesis is that formal verification (FV) is our best bet for protecting our sociotechnical systems, especially from human-led and/or AI-enabled attacks. Formal AI-assisted coding could make FV widespread and turn the tide in favor of defense. The roadmap describes concrete projects towards that goal. In this talk, I will discuss various components of the roadmap and show simple demos of what language models can do out of the box. I will also dive into correct-by-construction code synthesis, and how that it preferable to token-by-token code generation.Topos-Chapman Workshop</summary>
+    <published>2024-05-08T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://shaoweilin.github.io/posts/2024-05-22-formal-ai-assisted-code-specification-and-synthesis-concrete-steps-towards-safe-sociotechnical-systems/</id>
+    <title>Formal AI-assisted code specification and synthesis: concrete steps towards safe sociotechnical systems</title>
+    <updated>2024-05-22T00:00:00+00:00</updated>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;Atlas and Topos has been working on a roadmap for AI-assisted code specification and synthesis. The thesis is that formal verification (FV) is our best bet for protecting our sociotechnical systems, especially from human-led and/or AI-enabled attacks. Formal AI-assisted coding could make FV widespread and turn the tide in favor of defense. The roadmap describes concrete projects towards that goal. In this talk, I will discuss various components of the roadmap and show simple demos of what language models can do out of the box. I will also dive into correct-by-construction code synthesis, and how that it preferable to token-by-token code generation.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://far.ai/labs/#:~:text=FAR%20Seminar,Labs%20community."&gt;FAR Seminar&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://shaoweilin.github.io/posts/2024-05-22-formal-ai-assisted-code-specification-and-synthesis-concrete-steps-towards-safe-sociotechnical-systems/"/>
+    <summary>Atlas and Topos has been working on a roadmap for AI-assisted code specification and synthesis. The thesis is that formal verification (FV) is our best bet for protecting our sociotechnical systems, especially from human-led and/or AI-enabled attacks. Formal AI-assisted coding could make FV widespread and turn the tide in favor of defense. The roadmap describes concrete projects towards that goal. In this talk, I will discuss various components of the roadmap and show simple demos of what language models can do out of the box. I will also dive into correct-by-construction code synthesis, and how that it preferable to token-by-token code generation.FAR Seminar</summary>
+    <published>2024-05-22T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://shaoweilin.github.io/posts/2024-09-24-safety-by-shared-synthesis/</id>
+    <title>Safety by shared synthesis</title>
+    <updated>2024-09-24T00:00:00+00:00</updated>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;Today, critical infrastructure is vulnerable to both malicious attacks and unintended failures, and these risks are expected to grow in the foreseeable future. Deploying formal verification (FV) across critical cyber physical systems would dramatically improve safety and security, but has historically been too costly to use outside the simplest or most critical subsystems. AI could allow widespread use of FV in years not decades, shifting cyber risks strongly in favor of defense. In this talk, I will outline our report with Atlas Computing on AI-enabled tools for scaling formal verification (https://atlascomputing.org/ai-assisted-fv-toolchain.pdf). I will also discuss some lessons that I learnt along the way, especially about shared synthesis - the collaborative construction of formal specifications, implementations and proofs.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://topos.site/events/berkeley-seminar/index.html"&gt;Topos Berkeley Semimar&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://shaoweilin.github.io/posts/2024-09-24-safety-by-shared-synthesis/"/>
+    <summary>Today, critical infrastructure is vulnerable to both malicious attacks and unintended failures, and these risks are expected to grow in the foreseeable future. Deploying formal verification (FV) across critical cyber physical systems would dramatically improve safety and security, but has historically been too costly to use outside the simplest or most critical subsystems. AI could allow widespread use of FV in years not decades, shifting cyber risks strongly in favor of defense. In this talk, I will outline our report with Atlas Computing on AI-enabled tools for scaling formal verification (https://atlascomputing.org/ai-assisted-fv-toolchain.pdf). I will also discuss some lessons that I learnt along the way, especially about shared synthesis - the collaborative construction of formal specifications, implementations and proofs.Topos Berkeley Semimar</summary>
+    <published>2024-09-24T00:00:00+00:00</published>
   </entry>
 </feed>
