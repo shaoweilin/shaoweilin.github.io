@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://shaoweilin.github.io</id>
   <title>Types from Spikes</title>
-  <updated>2024-10-14T19:18:41.628154+00:00</updated>
+  <updated>2024-10-15T18:42:04.630382+00:00</updated>
   <link href="https://shaoweilin.github.io"/>
   <link href="https://shaoweilin.github.io/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.org/" version="0.10.33.post1">ABlog</generator>
@@ -515,6 +515,19 @@ relative information and their transforms.Singular Learning Theory and Alignment
     <link href="https://shaoweilin.github.io/posts/2023-12-11-online-learning-for-spiking-neural-networks-with-relative-information-rate/"/>
     <summary>Spiking neural networks (SNNs) mimic biological neural networks more closely than feedforward neural networks (FNNs), and are pursued because of the promise of low-energy training and inference. While learning methods such as Hebbian algorithms and STDP (spiking-timing-dependent plasticity) exist, the learning theory of SNNs is poorly understood. In particular, little is known about how SNNs with memory (i.e. latent or hidden variables) can be trained effectively, making it difficult to build large SNNs that rival the performance of large FNNs. In this talk, we attack this problem with the information theory of time series. Using relative information rate, Amari’s em algorithm and stochastic approximation theory, we derive online learning algorithms for SNNs with memory. It turns out that STDP is a consequence of this algorithm, rather than its basis. This is joint work with Tenzin Chan, Chris Hillar and Sarah Marzen.Institute for Mathematical and Statistical Innovation; Bayesian Statistics and Statistical Learning</summary>
     <published>2023-12-11T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://shaoweilin.github.io/posts/2024-03-21-prior-work-on-program-synthesis/</id>
+    <title>Program Synthesis</title>
+    <updated>2024-03-21T00:00:00+00:00</updated>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;Here is a list of prior work I did with my collaborators and Ph.D. students on dependent type theory and program synthesis.&lt;/p&gt;
+&lt;p&gt;2024: Shaowei Lin. &lt;a class="reference external" href="https://shaoweilin.github.io/posts/2024-09-24-safety-by-shared-synthesis/"&gt;Safety by shared synthesis&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://shaoweilin.github.io/posts/2024-03-21-prior-work-on-program-synthesis/"/>
+    <summary>Here is a list of prior work I did with my collaborators and Ph.D. students on dependent type theory and program synthesis.2024: Shaowei Lin. Safety by shared synthesis.</summary>
+    <published>2024-03-21T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://shaoweilin.github.io/posts/2024-05-08-ai-assisted-coding-correct-by-construction-not-by-generation/</id>
