@@ -17,7 +17,7 @@ Here is a list of prior work I did with my collaborators and Ph.D. students on d
 
 2021: Shaowei Lin. [Proofs as programs: challenges and strategies for program synthesis](https://shaoweilin.github.io/posts/2021-04-22-proofs-as-programs-challenges-and-strategies-for-program-synthesis/).
 
-2018: Shaowei Lin. [Machine Reasoning and Deep Spiking Networks](https://shaoweilin.github.io/public/20180526-aisg.pdf).
+2018: Shaowei Lin. [Machine reasoning and deep spiking networks](https://shaoweilin.github.io/public/20180526-aisg.pdf).
 
 2017: Shaowei Lin. [Artificial general intelligence for the internet of things](https://shaoweilin.github.io/posts/2017-05-08-artificial-general-intelligence-for-the-internet-of-things/).
 
