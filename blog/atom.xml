@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://shaoweilin.github.io</id>
   <title>Types from Spikes</title>
-  <updated>2024-10-15T18:48:08.229936+00:00</updated>
+  <updated>2024-10-16T16:46:30.691651+00:00</updated>
   <link href="https://shaoweilin.github.io"/>
   <link href="https://shaoweilin.github.io/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.org/" version="0.10.33.post1">ABlog</generator>
@@ -567,5 +567,18 @@ relative information and their transforms.Singular Learning Theory and Alignment
     <link href="https://shaoweilin.github.io/posts/2024-09-24-safety-by-shared-synthesis/"/>
     <summary>Today, critical infrastructure is vulnerable to both malicious attacks and unintended failures, and these risks are expected to grow in the foreseeable future. Deploying formal verification (FV) across critical cyber physical systems would dramatically improve safety and security, but has historically been too costly to use outside the simplest or most critical subsystems. AI could allow widespread use of FV in years not decades, shifting cyber risks strongly in favor of defense. In this talk, I will outline our report with Atlas Computing on AI-enabled tools for scaling formal verification (https://atlascomputing.org/ai-assisted-fv-toolchain.pdf). I will also discuss some lessons that I learnt along the way, especially about shared synthesis - the collaborative construction of formal specifications, implementations and proofs.Topos Berkeley Semimar</summary>
     <published>2024-09-24T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://shaoweilin.github.io/posts/2024-10-16-singular-learning-relative-information-and-the-dual-numbers/</id>
+    <title>Singular learning, relative information and the dual numbers</title>
+    <updated>2024-10-16T00:00:00+00:00</updated>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;Relative information (Kullback-Leibler divergence) is a fundamental concept in statistics, machine learning and information theory. In the first half of the talk, I will define conditional relative information, list its axiomatic properties, and describe how it is used in machine learning. For example, according to Sumio Watanabe’s Singular Learning Theory, the generalization error of a learning algorithm depends on the structure of algebraic geometric singularities of relative information. In the second half of the talk, I will define the rig category Info of random variables and their conditional maps, as well as the rig category R(e) of dual numbers. Relative information can then be constructed, up to a scalar multiple, via rig monoidal functors from Info to R(e). If time permits, I may discuss how this construction relates to the information cohomology of Baudot, Bennequin and Vigneaux, and to the operad derivations of Bradley.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.ipam.ucla.edu/abstract/?tid=20677&amp;amp;pcode=MOIWS2"&gt;IPAM Theory and Practice of Deep Learning Workshop&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://shaoweilin.github.io/posts/2024-10-16-singular-learning-relative-information-and-the-dual-numbers/"/>
+    <summary>Relative information (Kullback-Leibler divergence) is a fundamental concept in statistics, machine learning and information theory. In the first half of the talk, I will define conditional relative information, list its axiomatic properties, and describe how it is used in machine learning. For example, according to Sumio Watanabe’s Singular Learning Theory, the generalization error of a learning algorithm depends on the structure of algebraic geometric singularities of relative information. In the second half of the talk, I will define the rig category Info of random variables and their conditional maps, as well as the rig category R(e) of dual numbers. Relative information can then be constructed, up to a scalar multiple, via rig monoidal functors from Info to R(e). If time permits, I may discuss how this construction relates to the information cohomology of Baudot, Bennequin and Vigneaux, and to the operad derivations of Bradley.IPAM Theory and Practice of Deep Learning Workshop</summary>
+    <published>2024-10-16T00:00:00+00:00</published>
   </entry>
 </feed>
