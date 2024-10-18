@@ -12,6 +12,6 @@ Relative information (Kullback-Leibler divergence) is a fundamental concept in s
 ## Details
 [IPAM Theory and Practice of Deep Learning Workshop](https://www.ipam.ucla.edu/abstract/?tid=20677&pcode=MOIWS2)
 
-[Video]
+[Video](https://youtu.be/VmZy1Fn48zo?si=6IYokCTIB8S9rx_l)
 
 [Slides](https://w3id.org/people/shaoweilin/public/20241016-ipam.pdf)
