@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
@@ -22,35 +22,38 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-dropdown.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2021-06-01-convergence-of-biased-stochastic-approximation';</script>
@@ -59,7 +62,7 @@
     <link rel="index" title="Index" href="../../genindex/" />
     <link rel="search" title="Search" href="../../search/" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/> 
+  <meta name="docsearch:language" content="en"/> 
 <link
   rel="alternate"
   type="application/atom+xml"
@@ -99,19 +102,23 @@
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -133,19 +140,29 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <label class="sidebar-toggle primary-toggle" for="__primary">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
-  </label>
+  </button>
   
-  <div class="navbar-header-items__start">
+  
+  <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="../../">
+  
   
   
   
@@ -157,33 +174,27 @@
     
   </div>
   
-  
   <div class="col-lg-9 navbar-header-items">
     
     <div class="me-auto navbar-header-items__center">
       
-        <div class="navbar-item"><nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
+        <div class="navbar-item">
+<nav>
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../about/">
-                        About
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about/">
+    About
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../blog/">
-                        Blog
-                      </a>
-                    </li>
-                
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../blog/">
+    Blog
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -194,13 +205,16 @@
       
         <div class="navbar-item navbar-persistent--container">
           
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
         </div>
       
       
@@ -222,7 +236,7 @@ document.write(`
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
       
-        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+        <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
         <li class="nav-item">
           
@@ -233,8 +247,8 @@ document.write(`
           
           
           
-          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
-            <label class="sr-only">GitHub</label></a>
+          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
         </li>
 </ul></div>
       
@@ -244,27 +258,35 @@ document.write(`
   
   
     <div class="navbar-persistent--mobile">
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
     </div>
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
-    </label>
+    </button>
   
 </div>
 
-    </nav>
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -275,30 +297,28 @@ document.write(`
     
       <div class="sidebar-header-items__center">
         
-          <div class="navbar-item"><nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
+          
+          
+            <div class="navbar-item">
+<nav>
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../about/">
-                        About
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about/">
+    About
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../blog/">
-                        Blog
-                      </a>
-                    </li>
-                
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../blog/">
+    Blog
+  </a>
+</li>
+
   </ul>
 </nav></div>
+          
         
       </div>
     
@@ -324,7 +344,7 @@ document.write(`
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
         
-          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+          <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
         <li class="nav-item">
           
@@ -335,8 +355,8 @@ document.write(`
           
           
           
-          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
-            <label class="sr-only">GitHub</label></a>
+          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
         </li>
 </ul></div>
         
@@ -362,6 +382,12 @@ document.write(`
 <ul>
    
   <li>
+    <a href="../2025-01-10-relative-information-and-the-dual-numbers/"
+      >10 January - Relative information and the dual numbers</a
+    >
+  </li>
+  
+  <li>
     <a href="../2024-10-16-singular-learning-relative-information-and-the-dual-numbers/"
       >16 October - Singular learning, relative information and the dual numbers</a
     >
@@ -385,12 +411,6 @@ document.write(`
     >
   </li>
   
-  <li>
-    <a href="../2024-03-21-prior-work-on-program-synthesis/"
-      >21 March - Program Synthesis</a
-    >
-  </li>
-  
 </ul>
 </div>
         <div class="sidebar-primary-item">
@@ -399,6 +419,10 @@ document.write(`
 </h3>
 <ul>
    
+  <li>
+    <a href="../../blog/2025/">2025 (1)</a>
+  </li>
+    
   <li>
     <a href="../../blog/2024/">2024 (5)</a>
   </li>
@@ -452,13 +476,13 @@ document.write(`
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -467,15 +491,15 @@ document.write(`
 
 
 
-<nav aria-label="Breadcrumbs">
-  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
       <a href="../../" class="nav-link" aria-label="Home">
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">Convergence of biased stochastic approximation</li>
+    <li class="breadcrumb-item active" aria-current="page">Convergence...</li>
   </ul>
 </nav>
 </div>
@@ -491,9 +515,9 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                    <div class="tex2jax_ignore mathjax_ignore section" id="convergence-of-biased-stochastic-approximation">
-<h1>Convergence of biased stochastic approximation<a class="headerlink" href="#convergence-of-biased-stochastic-approximation" title="Permalink to this headline">#</a></h1>
+<h1>Convergence of biased stochastic approximation<a class="headerlink" href="#convergence-of-biased-stochastic-approximation" title="Permalink to this heading">#</a></h1>
 <p>Using techniques from <a class="reference internal" href="../2020-12-01-biased-stochastic-approximation/"><span class="doc std std-doc">biased</span></a> stochastic approximation <span id="id1">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id51" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span>, we prove under some regularity conditions the convergence of the online learning algorithm proposed <a class="reference internal" href="../2021-03-23-biased-stochastic-approximation-with-mutable-processes/"><span class="doc std std-doc">previously</span></a> for mutable Markov processes.</p>
 <p>Recall that the algorithm is described by the following updates.</p>
 <div class="math notranslate nohighlight">
@@ -517,9 +541,9 @@ Z_{n+1} \sim Q_{\lambda_{n}}(Z_{n+1} \vert Z_{n}, X_{n})\]</div>
 <p>where <span class="math notranslate nohighlight">\(\xi(X_{n+1} \vert X_n)\)</span> is a function of the environment <span class="math notranslate nohighlight">\(X_{n+1}, X_n\)</span> that is independent of the parameters <span class="math notranslate nohighlight">\(\theta,\lambda\)</span> and the beliefs <span class="math notranslate nohighlight">\(Z_{n+1},Z_n.\)</span></p>
 <p>This post is a continuation from our <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">series</span></a> on spiking networks, path integrals and motivic information.</p>
 <div class="section" id="how-do-we-frame-the-problem-in-the-language-of-karimi2019non">
-<h2>How do we frame the problem in the language of <span id="id2">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id51" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span>?<a class="headerlink" href="#how-do-we-frame-the-problem-in-the-language-of-karimi2019non" title="Permalink to this headline">#</a></h2>
-<p>To prove the convergence of our <a class="reference internal" href="../2020-12-01-biased-stochastic-approximation/"><span class="doc std std-doc">biased</span></a> stochastic approximation, we cannot apply the standard unbiased stochastic approximation theory of Robbins and Monro. We can however apply the work of <span id="id3">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id51" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span> which gives some guarantees for biased stochastic approximation involving Markov updates. In this section, we will now derive sufficient conditions for the <span class="xref myst">convergence</span> of our biased stochastic approximation.</p>
-<p>We <span class="xref myst">recall</span> some key assumptions about our disciminative model <span class="math notranslate nohighlight">\(\{Q_\lambda:\lambda\in\Lambda\},\)</span> generative model <span class="math notranslate nohighlight">\(\{P_\theta:\theta \in \Theta\}\)</span> and true distribution <span class="math notranslate nohighlight">\(Q_*.\)</span></p>
+<h2>How do we frame the problem in the language of <span id="id2">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id51" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span>?<a class="headerlink" href="#how-do-we-frame-the-problem-in-the-language-of-karimi2019non" title="Permalink to this heading">#</a></h2>
+<p>To prove the convergence of our <a class="reference internal" href="../2020-12-01-biased-stochastic-approximation/"><span class="doc std std-doc">biased</span></a> stochastic approximation, we cannot apply the standard unbiased stochastic approximation theory of Robbins and Monro. We can however apply the work of <span id="id3">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id51" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span> which gives some guarantees for biased stochastic approximation involving Markov updates. In this section, we will now derive sufficient conditions for the <a class="reference internal" href="#2020-12-01-biased-stochastic-approximation/#theorem-convergence-of-biased-stochastic-approximation"><span class="xref myst">convergence</span></a> of our biased stochastic approximation.</p>
+<p>We <a class="reference internal" href="#2021-03-23-biased-stochastic-approximation-with-mutable-processes/#what-do-we-assume-about-the-true-distribution-the-model-and-the-learning-objective"><span class="xref myst">recall</span></a> some key assumptions about our disciminative model <span class="math notranslate nohighlight">\(\{Q_\lambda:\lambda\in\Lambda\},\)</span> generative model <span class="math notranslate nohighlight">\(\{P_\theta:\theta \in \Theta\}\)</span> and true distribution <span class="math notranslate nohighlight">\(Q_*.\)</span></p>
 <hr class="docutils" />
 <p><strong>C1 (Markov property and stationarity).</strong> Under the true distribution <span class="math notranslate nohighlight">\(Q_*,\)</span> the process <span class="math notranslate nohighlight">\(\{X_t\}\)</span> is Markov. Under each <span class="math notranslate nohighlight">\(Q_\lambda\)</span> and each <span class="math notranslate nohighlight">\(P_\theta,\)</span> the process <span class="math notranslate nohighlight">\(\{(Z_t, X_t)\}\)</span> is Markov, and <span class="math notranslate nohighlight">\(Z_t\)</span> and <span class="math notranslate nohighlight">\(X_t\)</span> are independent given their past. The true distribution <span class="math notranslate nohighlight">\(Q_*\)</span> has a stationary distribution <span class="math notranslate nohighlight">\(\bar{\pi}_*,\)</span> and each <span class="math notranslate nohighlight">\(Q_\lambda\)</span> has a stationary distribution <span class="math notranslate nohighlight">\(\bar{\pi}_\lambda.\)</span></p>
 <hr class="docutils" />
@@ -598,7 +622,7 @@ W_{n+1} &amp;\sim Q_{\lambda_{n}}(W_{n+1} \vert W_n).
 \\ &amp; \\ &amp; =
 \displaystyle \frac{\partial V}{\partial\lambda}(\lambda_n,\theta_{n+1}) 
 . \end{array}\end{split}\]</div>
-<p>where the last equality follows from a <span class="xref myst">formula</span> for integrals over the derivative of a stationary distribution:</p>
+<p>where the last equality follows from a <a class="reference internal" href="#2021-03-23-biased-stochastic-approximation-with-mutable-processes/#appendix-discriminative-model-update"><span class="xref myst">formula</span></a> for integrals over the derivative of a stationary distribution:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} \begin{array}{rl} &amp;
 \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_{\lambda_n}} \Bigg[ \left( -\log Q_*(X_{T+1}\vert X_T) + \xi(X_{T+1} \vert X_T) \right) \sum_{t=0}^{T} \left. \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \right\vert_{\lambda=\lambda_n} \Bigg]
@@ -632,7 +656,7 @@ W_{n+1} &amp;\sim Q_{\lambda_{n}}(W_{n+1} \vert W_n).
 <p>Note that the <em>total expectation</em> (with respect to the stationary distribution <span class="math notranslate nohighlight">\(\bar{\pi}_\lambda\)</span> on <span class="math notranslate nohighlight">\(W_{n+1}\)</span>) of each correction term is zero by definition. Now, if the <em>conditional expectation</em> (given the past <span class="math notranslate nohighlight">\(W_{n}, \ldots, W_1\)</span>) is zero, then the stochastic approximation is <em>unbiased</em>. Otherwise, the stochastic approximation is <em>biased</em>, which is the case for our problem.</p>
 </div>
 <div class="section" id="how-do-we-prove-convergence">
-<h2>How do we prove convergence?<a class="headerlink" href="#how-do-we-prove-convergence" title="Permalink to this headline">#</a></h2>
+<h2>How do we prove convergence?<a class="headerlink" href="#how-do-we-prove-convergence" title="Permalink to this heading">#</a></h2>
 <p>First, we make some common assumptions about the step sizes and the stop time for the stochastic approximation.</p>
 <hr class="docutils" />
 <p><strong><a id="assumption-step-sizes-and-stop-time"></a>C3 (Step sizes and stop time).</strong> For all <span class="math notranslate nohighlight">\(k \geq 1,\)</span> the step sizes are given by</p>
@@ -644,7 +668,7 @@ W_{n+1} &amp;\sim Q_{\lambda_{n}}(W_{n+1} \vert W_n).
 \[ \displaystyle 
 \mathbb{P}[N=k] = \eta_{k+1} \left(\sum_{j=0}^T \eta_{j+1} \right)^{-1}.\]</div>
 <hr class="docutils" />
-<p>Similar to a previous <span class="xref myst">analysis</span>, our goal is to find an upper bound such that</p>
+<p>Similar to a previous <a class="reference internal" href="#2020-12-01-biased-stochastic-approximation/#theorem-convergence-of-biased-stochastic-approximation"><span class="xref myst">analysis</span></a>, our goal is to find an upper bound such that</p>
 <div class="math notranslate nohighlight">
 \[ \displaystyle 
 \mathbb{E}\left[\left\Vert g_\theta(\lambda_N, \theta_N) \right\Vert^2\right] + \mathbb{E}\left[\left\Vert g_\lambda(\lambda_N,\theta_{N}) \right\Vert^2\right] \leq C(T) \rightarrow 0 \]</div>
@@ -658,7 +682,7 @@ W_{n+1} &amp;\sim Q_{\lambda_{n}}(W_{n+1} \vert W_n).
 <div class="math notranslate nohighlight">
 \[ \displaystyle
 \mathbb{E}\left[\left\Vert g_\lambda(\lambda_N, \theta_{N}) \right\Vert^2\right] = \frac{\sum_{n=0}^T \eta_{n+1} \mathbb{E}\left[ \left\Vert g_\lambda(\lambda_n, \theta_{n}) \right\Vert^2 \right]}{\sum_{n=0}^T \eta_{n+1}}. \]</div>
-<p>Following the previous <span class="xref myst">analysis</span>, the proof starts with the <span class="math notranslate nohighlight">\(\ell\)</span>-smoothness of <span class="math notranslate nohighlight">\(V(\lambda,\theta)\)</span> which implies</p>
+<p>Following the previous <a class="reference internal" href="#2020-12-01-biased-stochastic-approximation/#theorem-convergence-of-biased-stochastic-approximation"><span class="xref myst">analysis</span></a>, the proof starts with the <span class="math notranslate nohighlight">\(\ell\)</span>-smoothness of <span class="math notranslate nohighlight">\(V(\lambda,\theta)\)</span> which implies</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} \begin{array}{rl} &amp;
 \displaystyle
@@ -710,7 +734,7 @@ V(\lambda_{0},\theta_{0}) - V(\lambda_{T+1},\theta_{T+1})
 <p>Bounding the above two terms will require solutions of the Poisson equations for <span class="math notranslate nohighlight">\(E_\lambda(W_{n+1}; \lambda_n,\theta_{n})\)</span> and <span class="math notranslate nohighlight">\(E_\theta(W_{n+1}; \lambda_n,\theta_{n}).\)</span></p>
 </div>
 <div class="section" id="what-are-the-corresponding-poisson-equations">
-<h2>What are the corresponding Poisson equations?<a class="headerlink" href="#what-are-the-corresponding-poisson-equations" title="Permalink to this headline">#</a></h2>
+<h2>What are the corresponding Poisson equations?<a class="headerlink" href="#what-are-the-corresponding-poisson-equations" title="Permalink to this heading">#</a></h2>
 <p>We study the first Poisson equation</p>
 <div class="math notranslate nohighlight">
 \[ \displaystyle
@@ -761,7 +785,7 @@ L_{\lambda} \hat{E}_{\lambda} (w; \lambda,\theta) = E_{\lambda}(w; \lambda,\thet
 <div class="math notranslate nohighlight">
 \[ \displaystyle
 \hat{E}_{\lambda} (w;\lambda,\theta) = - \displaystyle \sum_{t=0}^\infty Q_{\lambda}^t E_{\lambda}(w;\lambda,\theta).\]</div>
-<p>Now, as shown in the <span class="xref myst">appendix</span>, for all <span class="math notranslate nohighlight">\(t \geq 1,\)</span></p>
+<p>Now, as shown in the <a class="reference internal" href="#2021-06-01-convergence-of-biased-stochastic-approximation/#appendix--poisson-equation-for-discriminative-model-update"><span class="xref myst">appendix</span></a>, for all <span class="math notranslate nohighlight">\(t \geq 1,\)</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{split} \begin{array}{rl} &amp; 
 \displaystyle Q_\lambda^t G_{\lambda}(w;\lambda,\theta) 
@@ -872,11 +896,11 @@ we have</p>
 <div class="math notranslate nohighlight">
 \[ \displaystyle
 \mathbb{E}\left[\left\Vert g_\theta(\lambda_N, \theta_N) \right\Vert^2\right] + \mathbb{E}\left[\left\Vert g_\lambda(\lambda_N,\theta_{N}) \right\Vert^2\right] = O(\log T / \sqrt{T} )\]</div>
-<p>where the maximum time <span class="math notranslate nohighlight">\(T\)</span> was defined in <span class="xref myst">C3</span>.</p>
+<p>where the maximum time <span class="math notranslate nohighlight">\(T\)</span> was defined in <a class="reference internal" href="#assumption-step-sizes-and-stop-time"><span class="xref myst">C3</span></a>.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="appendix-poisson-equation-for-discriminative-model-update">
-<h2>Appendix : Poisson equation for discriminative model update<a class="headerlink" href="#appendix-poisson-equation-for-discriminative-model-update" title="Permalink to this headline">#</a></h2>
+<h2>Appendix : Poisson equation for discriminative model update<a class="headerlink" href="#appendix-poisson-equation-for-discriminative-model-update" title="Permalink to this heading">#</a></h2>
 <p>In this section, we derive the terms <span class="math notranslate nohighlight">\(Q_\lambda^t G_{\lambda}(w;\lambda,\theta)\)</span> appearing in our candidate solution to the Poisson equation for the discriminative model update.</p>
 <p>Given <span class="math notranslate nohighlight">\(w = (z_1, x_1, z_0, x_0,\alpha_1),\)</span> for all <span class="math notranslate nohighlight">\(t \geq 1\)</span> we have</p>
 <div class="math notranslate nohighlight">
@@ -906,7 +930,7 @@ we have</p>
 \\ &amp; \\ &amp; =
 H_{\hat{Q}_*}(X_t\vert X_{t-1}) + \xi_{\hat{Q}_*}(X_{t} \vert X_{t-1})
 . \end{array}\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\hat{Q}_*\)</span> is the distribution of the Markov chain that initializes <span class="math notranslate nohighlight">\(X_0\)</span> with the state <span class="math notranslate nohighlight">\(x_1\)</span> and has transition probabilities <span class="math notranslate nohighlight">\(Q_*,\)</span> <span class="math notranslate nohighlight">\(H_{\hat{Q}_*}\)</span> is the <span class="xref myst">conditional entropy</span>, and</p>
+<p>where <span class="math notranslate nohighlight">\(\hat{Q}_*\)</span> is the distribution of the Markov chain that initializes <span class="math notranslate nohighlight">\(X_0\)</span> with the state <span class="math notranslate nohighlight">\(x_1\)</span> and has transition probabilities <span class="math notranslate nohighlight">\(Q_*,\)</span> <span class="math notranslate nohighlight">\(H_{\hat{Q}_*}\)</span> is the <a class="reference internal" href="#2020-09-08-building-foundations-of-information-theory-on-relative-information/#how-do-we-derive-entropy-from-relative-information"><span class="xref myst">conditional entropy</span></a>, and</p>
 <div class="math notranslate nohighlight">
 \[ \displaystyle
 \xi_{\hat{Q}_*}(X_{t} \vert X_{t-1}) = \mathbb{E}_{\hat{Q}_*}\left[\xi(X_{t} \vert X_{t-1})\right]. \]</div>
@@ -958,7 +982,7 @@ H_{\hat{Q}_*}(X_t\vert X_{t-1}) + \xi_{\hat{Q}_*}(X_{t} \vert X_{t-1})
 . \end{array}\end{split}\]</div>
 </div>
 <div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <div class="docutils container" id="id4">
 <dl class="citation">
 <dt class="label" id="id39"><span class="brackets">KMMW19</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>,<a href="#id3">3</a>)</span></dt>
@@ -1016,16 +1040,12 @@ H_{\hat{Q}_*}(X_t\vert X_{t-1}) + \xi_{\hat{Q}_*}(X_{t} \vert X_{t-1})
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer d-print-none">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1034,11 +1054,14 @@ H_{\hat{Q}_*}(X_t\vert X_{t-1}) + \xi_{\hat{Q}_*}(X_{t} \vert X_{t-1})
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
   </div>
-  <nav class="bd-toc-nav page-toc">
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-frame-the-problem-in-the-language-of-karimi2019non">How do we frame the problem in the language of <span class="xref cite">karimi2019non</span>?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-prove-convergence">How do we prove convergence?</a></li>
@@ -1049,6 +1072,7 @@ H_{\hat{Q}_*}(X_t\vert X_{t-1}) + \xi_{\hat{Q}_*}(X_{t} \vert X_{t-1})
   </nav></div>
 
   <div class="sidebar-secondary-item">
+
   <div class="tocsection sourcelink">
     <a href="../../_sources/posts/2021-06-01-convergence-of-biased-stochastic-approximation.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
@@ -1069,8 +1093,8 @@ H_{\hat{Q}_*}(X_t\vert X_{t-1}) + \xi_{\hat{Q}_*}(X_{t} \vert X_{t-1})
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1078,6 +1102,7 @@ H_{\hat{Q}_*}(X_t\vert X_{t-1}) + \xi_{\hat{Q}_*}(X_{t} \vert X_{t-1})
     <div class="footer-items__start">
       
         <div class="footer-item">
+
   <p class="copyright">
     
       © Copyright 2022, Shaowei Lin.
@@ -1087,8 +1112,9 @@ H_{\hat{Q}_*}(X_t\vert X_{t-1}) + \xi_{\hat{Q}_*}(X_{t} \vert X_{t-1})
 </div>
       
         <div class="footer-item">
+
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     <br/>
   </p>
 </div>
@@ -1096,10 +1122,12 @@ H_{\hat{Q}_*}(X_t\vert X_{t-1}) + \xi_{\hat{Q}_*}(X_{t} \vert X_{t-1})
     </div>
   
   
+  
     <div class="footer-items__end">
       
-        <div class="footer-item"><p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
 </p></div>
       
     </div>

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
@@ -22,35 +22,38 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-dropdown.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2020-09-08-building-foundations-of-information-theory-on-relative-information';</script>
@@ -59,7 +62,7 @@
     <link rel="index" title="Index" href="../../genindex/" />
     <link rel="search" title="Search" href="../../search/" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/> 
+  <meta name="docsearch:language" content="en"/> 
 <link
   rel="alternate"
   type="application/atom+xml"
@@ -99,19 +102,23 @@
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -133,19 +140,29 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <label class="sidebar-toggle primary-toggle" for="__primary">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
-  </label>
+  </button>
   
-  <div class="navbar-header-items__start">
+  
+  <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="../../">
+  
   
   
   
@@ -157,33 +174,27 @@
     
   </div>
   
-  
   <div class="col-lg-9 navbar-header-items">
     
     <div class="me-auto navbar-header-items__center">
       
-        <div class="navbar-item"><nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
+        <div class="navbar-item">
+<nav>
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../about/">
-                        About
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about/">
+    About
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../blog/">
-                        Blog
-                      </a>
-                    </li>
-                
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../blog/">
+    Blog
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -194,13 +205,16 @@
       
         <div class="navbar-item navbar-persistent--container">
           
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
         </div>
       
       
@@ -222,7 +236,7 @@ document.write(`
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
       
-        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+        <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
         <li class="nav-item">
           
@@ -233,8 +247,8 @@ document.write(`
           
           
           
-          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
-            <label class="sr-only">GitHub</label></a>
+          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
         </li>
 </ul></div>
       
@@ -244,27 +258,35 @@ document.write(`
   
   
     <div class="navbar-persistent--mobile">
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
     </div>
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
-    </label>
+    </button>
   
 </div>
 
-    </nav>
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -275,30 +297,28 @@ document.write(`
     
       <div class="sidebar-header-items__center">
         
-          <div class="navbar-item"><nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
+          
+          
+            <div class="navbar-item">
+<nav>
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../about/">
-                        About
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about/">
+    About
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../blog/">
-                        Blog
-                      </a>
-                    </li>
-                
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../blog/">
+    Blog
+  </a>
+</li>
+
   </ul>
 </nav></div>
+          
         
       </div>
     
@@ -324,7 +344,7 @@ document.write(`
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
         
-          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+          <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
         <li class="nav-item">
           
@@ -335,8 +355,8 @@ document.write(`
           
           
           
-          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
-            <label class="sr-only">GitHub</label></a>
+          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
         </li>
 </ul></div>
         
@@ -362,6 +382,12 @@ document.write(`
 <ul>
    
   <li>
+    <a href="../2025-01-10-relative-information-and-the-dual-numbers/"
+      >10 January - Relative information and the dual numbers</a
+    >
+  </li>
+  
+  <li>
     <a href="../2024-10-16-singular-learning-relative-information-and-the-dual-numbers/"
       >16 October - Singular learning, relative information and the dual numbers</a
     >
@@ -385,12 +411,6 @@ document.write(`
     >
   </li>
   
-  <li>
-    <a href="../2024-03-21-prior-work-on-program-synthesis/"
-      >21 March - Program Synthesis</a
-    >
-  </li>
-  
 </ul>
 </div>
         <div class="sidebar-primary-item">
@@ -399,6 +419,10 @@ document.write(`
 </h3>
 <ul>
    
+  <li>
+    <a href="../../blog/2025/">2025 (1)</a>
+  </li>
+    
   <li>
     <a href="../../blog/2024/">2024 (5)</a>
   </li>
@@ -452,13 +476,13 @@ document.write(`
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -467,15 +491,15 @@ document.write(`
 
 
 
-<nav aria-label="Breadcrumbs">
-  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
       <a href="../../" class="nav-link" aria-label="Home">
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">Building foundations of information theory on relative information</li>
+    <li class="breadcrumb-item active" aria-current="page">Building...</li>
   </ul>
 </nav>
 </div>
@@ -491,19 +515,19 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                    <div class="tex2jax_ignore mathjax_ignore section" id="building-foundations-of-information-theory-on-relative-information">
-<h1>Building foundations of information theory on relative information<a class="headerlink" href="#building-foundations-of-information-theory-on-relative-information" title="Permalink to this headline">#</a></h1>
+<h1>Building foundations of information theory on relative information<a class="headerlink" href="#building-foundations-of-information-theory-on-relative-information" title="Permalink to this heading">#</a></h1>
 <p>The relative information <span id="id1">[<a class="reference internal" href="../2022-01-22-information-topos-theory-motivation/#id66" title="JC Baez and T Fritz. A bayesian characterization of relative entropy. Theory and Applications of Categories, 29:422–456, 2014.">BF14</a>]</span> (also known as relative entropy or Kullback-Leibler divergence) is an important object in information theory for measuring how far a probability measure <span class="math notranslate nohighlight">\(Q\)</span> is from another probability measure <span class="math notranslate nohighlight">\(P.\)</span> Here, <span class="math notranslate nohighlight">\(Q\)</span> is usually the true distribution of some real phenomenon, and <span class="math notranslate nohighlight">\(P\)</span> is some model distribution.</p>
 <p>In this post, we emphasize that the relative information is fundamental in the sense that all other interesting information-theoretic objects may be derived from it. We also outline how relative information can be defined without probability mass functions or probability density functions, or even in the absence of absolute continuity.</p>
 <p>This is the first post in our <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">series</span></a> on spiking networks, path integrals and motivic information.</p>
 <div class="section" id="why-build-foundations-of-information-theory-on-relative-information">
-<h2>Why build foundations of information theory on relative information?<a class="headerlink" href="#why-build-foundations-of-information-theory-on-relative-information" title="Permalink to this headline">#</a></h2>
+<h2>Why build foundations of information theory on relative information?<a class="headerlink" href="#why-build-foundations-of-information-theory-on-relative-information" title="Permalink to this heading">#</a></h2>
 <p>Firstly, we want to show that relative information is the “right way” to think about machine learning problems. Many methods like max entropy or max likelihood can be framed in terms of min relative information. We can then use this reformulation to derive more robust learning algorithms (e.g. stochastic gradients) and we can prove asymptotic properties of these algorithms more easily. We will also be using (conditional) relative information to derive learning algorithms for statistical models with hidden variables. All of these will be explained in a later post.</p>
 <p>The second reason is because we will be extending relative information to take values in a motivic ring so as to get motivic information theory. This then allows us to write down path integrals that don’t run into convergence issues.</p>
 </div>
 <div class="section" id="what-is-relative-information">
-<h2>What is relative information?<a class="headerlink" href="#what-is-relative-information" title="Permalink to this headline">#</a></h2>
+<h2>What is relative information?<a class="headerlink" href="#what-is-relative-information" title="Permalink to this heading">#</a></h2>
 <p>Given probability measures <span class="math notranslate nohighlight">\(P, Q\)</span> on a finite state space <span class="math notranslate nohighlight">\(\{1, \ldots, n\},\)</span> the relative information to <span class="math notranslate nohighlight">\(Q\)</span> from <span class="math notranslate nohighlight">\(P\)</span> is the sum</p>
 <div class="math notranslate nohighlight">
 \[I_{Q\Vert P} = \displaystyle \sum_{i=1}^{n} Q(i) \log \frac{Q(i)}{P(i)}.\]</div>
@@ -513,7 +537,7 @@ document.write(`
 <p>It is not difficult to show that <span class="math notranslate nohighlight">\(I_{Q\Vert P} \geq 0\)</span> for all probability measures <span class="math notranslate nohighlight">\(P, Q\)</span> with equality if and only if <span class="math notranslate nohighlight">\(P = Q\)</span> almost everywhere.</p>
 </div>
 <div class="section" id="how-do-we-derive-entropy-from-relative-information">
-<h2>How do we derive entropy from relative information?<a class="headerlink" href="#how-do-we-derive-entropy-from-relative-information" title="Permalink to this headline">#</a></h2>
+<h2>How do we derive entropy from relative information?<a class="headerlink" href="#how-do-we-derive-entropy-from-relative-information" title="Permalink to this heading">#</a></h2>
 <p>Classical textbooks for information theory define the relative information in terms of entropy (and cross entropy). We could choose instead to think of the relative information as the fundamental object, and entropy as a special case <span id="id2">[<a class="reference internal" href="../2020-09-18-conditional-relative-information-and-its-axiomatizations/#id62" title="Robert M Gray. Entropy and information theory. Springer Science &amp; Business Media, 2011.">Gra11</a>]</span>, <span id="id3">[<a class="reference internal" href="#id66" title="Philip Chodrow. Divergence, entropy, information: an opinionated introduction to information theory. arXiv preprint arXiv:1708.07459, 2017.">Cho17</a>]</span>.</p>
 <p>Let <span class="math notranslate nohighlight">\(X\)</span> be a random variable with values in the measurable space <span class="math notranslate nohighlight">\((\Omega, \mathcal{B})\)</span>, and let <span class="math notranslate nohighlight">\(P_X\)</span> be its distribution. For discrete state spaces <span class="math notranslate nohighlight">\(\Omega\)</span>, the entropy of <span class="math notranslate nohighlight">\(X\)</span> is defined as</p>
 <div class="math notranslate nohighlight">
@@ -538,7 +562,7 @@ document.write(`
 <p>In many interesting problems, the uniform distribution is not well-defined, so this second definition of entropy in terms of relative information will not make sense. We will then revert to the first definition as the relative information to the dependent distribution from the independent distribution.</p>
 </div>
 <div class="section" id="how-do-we-define-relative-information-without-densities">
-<h2>How do we define relative information without densities?<a class="headerlink" href="#how-do-we-define-relative-information-without-densities" title="Permalink to this headline">#</a></h2>
+<h2>How do we define relative information without densities?<a class="headerlink" href="#how-do-we-define-relative-information-without-densities" title="Permalink to this heading">#</a></h2>
 <p>In our definition of relative information, the densities <span class="math notranslate nohighlight">\(p(x) = dP/dx\)</span> and <span class="math notranslate nohighlight">\(q(x) = dQ/dx\)</span> are Radon-Nikodym derivatives which exist if and only if <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span> are absolutely continuous with respect to the Lebesgue measure on <span class="math notranslate nohighlight">\(\mathbb{R}^n.\)</span> However, there are many important applications where this assumption is not true, such as in the case of path measures for stochastic processes.</p>
 <p>To avoid such technical difficulties, we may define the relative information in terms of the Radon-Nikodym derivative <span class="math notranslate nohighlight">\(dQ/dP,\)</span> which exists when <span class="math notranslate nohighlight">\(Q\)</span> is absolutely continuous with respect to <span class="math notranslate nohighlight">\(P\)</span> (i.e. <span class="math notranslate nohighlight">\(Q \ll P\)</span>).</p>
 <div class="math notranslate nohighlight">
@@ -551,7 +575,7 @@ document.write(`
 <p>arising from the chain rule for Radon-Nikodym derivatives, we get the earlier definition of the relative information in terms of densities.</p>
 </div>
 <div class="section" id="how-do-we-define-relative-information-without-absolute-continuity">
-<h2>How do we define relative information without absolute continuity?<a class="headerlink" href="#how-do-we-define-relative-information-without-absolute-continuity" title="Permalink to this headline">#</a></h2>
+<h2>How do we define relative information without absolute continuity?<a class="headerlink" href="#how-do-we-define-relative-information-without-absolute-continuity" title="Permalink to this heading">#</a></h2>
 <p>When <span class="math notranslate nohighlight">\(Q\)</span> is not absolutely continuous with respect to <span class="math notranslate nohighlight">\(P,\)</span> the Radon-Nikodym derivative <span class="math notranslate nohighlight">\(dQ/dP\)</span> does not exist and the above definition of <span class="math notranslate nohighlight">\(I_{Q\Vert P}\)</span> does not make sense. To extend the definition, we consider the relative information of a partition of <span class="math notranslate nohighlight">\(\Omega\)</span> <span id="id5">[<a class="reference internal" href="../2020-09-18-conditional-relative-information-and-its-axiomatizations/#id62" title="Robert M Gray. Entropy and information theory. Springer Science &amp; Business Media, 2011.">Gra11</a>]</span>.</p>
 <p>Let <span class="math notranslate nohighlight">\((\Omega, \mathcal{B})\)</span> be a measurable space and let <span class="math notranslate nohighlight">\(P, Q\)</span> be two probability measures on this space. For finite partitions <span class="math notranslate nohighlight">\(\mathcal{W}=\left\{ \mathcal{W}_1, \ldots, \mathcal{W}_k \right\}\)</span> of <span class="math notranslate nohighlight">\(\Omega\)</span>, we define</p>
 <div class="math notranslate nohighlight">
@@ -566,7 +590,7 @@ document.write(`
 <p>When <span class="math notranslate nohighlight">\(Q\)</span> is not absolutely continuous with respect to <span class="math notranslate nohighlight">\(P,\)</span> we can show that this definition tells us that the relative information is infinite.</p>
 </div>
 <div class="section" id="how-do-we-define-relative-information-when-the-total-measure-is-not-one">
-<h2>How do we define relative information when the total measure is not one?<a class="headerlink" href="#how-do-we-define-relative-information-when-the-total-measure-is-not-one" title="Permalink to this headline">#</a></h2>
+<h2>How do we define relative information when the total measure is not one?<a class="headerlink" href="#how-do-we-define-relative-information-when-the-total-measure-is-not-one" title="Permalink to this heading">#</a></h2>
 <p>Let us assume that both <span class="math notranslate nohighlight">\(P, Q\)</span> have the same total measure <span class="math notranslate nohighlight">\(T\)</span> which is not necessarily equal to one. Let <span class="math notranslate nohighlight">\(\bar{P} = P/T\)</span> and <span class="math notranslate nohighlight">\(\bar{Q}= Q/T\)</span> be the respective probability measures. We define</p>
 <div class="math notranslate nohighlight">
 \[I_{Q\Vert P} =\displaystyle \sum_{i=1}^{n} Q(i) \log \frac{Q(i)}{P(i)}.\]</div>
@@ -575,7 +599,7 @@ document.write(`
 \[I_{Q\Vert P} = T I_{\bar{Q}\Vert \bar{P}}.\]</div>
 </div>
 <div class="section" id="how-do-we-define-relative-information-when-the-total-measures-of-p-q-are-not-the-same">
-<h2>How do we define relative information when the total measures of <span class="math notranslate nohighlight">\(P, Q\)</span> are not the same?<a class="headerlink" href="#how-do-we-define-relative-information-when-the-total-measures-of-p-q-are-not-the-same" title="Permalink to this headline">#</a></h2>
+<h2>How do we define relative information when the total measures of <span class="math notranslate nohighlight">\(P, Q\)</span> are not the same?<a class="headerlink" href="#how-do-we-define-relative-information-when-the-total-measures-of-p-q-are-not-the-same" title="Permalink to this heading">#</a></h2>
 <p>The short answer is Don’t. It does not make sense to compare two measures with different total measures.</p>
 <p>The long answer is as follows. Suppose that we do want to go ahead and extend the definition of relative information to this situation. What property of relative information would we want to preserve?</p>
 <p>A reasonable property would be the nonnegativity of relative information. If we study the proof of nonnegativity in the classical situation, it hinges on the fact that</p>
@@ -593,7 +617,7 @@ document.write(`
 <p>We see that the value of <span class="math notranslate nohighlight">\(I_{Q\Vert P}\)</span> depends on the measures <span class="math notranslate nohighlight">\(P, Q\)</span> only through the classical relative information <span class="math notranslate nohighlight">\(I_{\bar{Q}\Vert \bar{P}}\)</span>, so we do not gain anything new. Relative information is only meaningful for understanding the distance between two measures that distribute the same total measure differently.</p>
 </div>
 <div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <div class="docutils container" id="id6">
 <dl class="citation">
 <dt class="label" id="id67"><span class="brackets"><a class="fn-backref" href="#id1">BF14</a></span></dt>
@@ -660,16 +684,12 @@ document.write(`
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer d-print-none">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -678,11 +698,14 @@ document.write(`
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
   </div>
-  <nav class="bd-toc-nav page-toc">
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-build-foundations-of-information-theory-on-relative-information">Why build foundations of information theory on relative information?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-relative-information">What is relative information?</a></li>
@@ -696,6 +719,7 @@ document.write(`
   </nav></div>
 
   <div class="sidebar-secondary-item">
+
   <div class="tocsection sourcelink">
     <a href="../../_sources/posts/2020-09-08-building-foundations-of-information-theory-on-relative-information.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
@@ -716,8 +740,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -725,6 +749,7 @@ document.write(`
     <div class="footer-items__start">
       
         <div class="footer-item">
+
   <p class="copyright">
     
       © Copyright 2022, Shaowei Lin.
@@ -734,8 +759,9 @@ document.write(`
 </div>
       
         <div class="footer-item">
+
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     <br/>
   </p>
 </div>
@@ -743,10 +769,12 @@ document.write(`
     </div>
   
   
+  
     <div class="footer-items__end">
       
-        <div class="footer-item"><p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
 </p></div>
       
     </div>

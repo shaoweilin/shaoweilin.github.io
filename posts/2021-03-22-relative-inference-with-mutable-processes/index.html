@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
@@ -22,35 +22,38 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-dropdown.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2021-03-22-relative-inference-with-mutable-processes';</script>
@@ -59,7 +62,7 @@
     <link rel="index" title="Index" href="../../genindex/" />
     <link rel="search" title="Search" href="../../search/" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/> 
+  <meta name="docsearch:language" content="en"/> 
 <link
   rel="alternate"
   type="application/atom+xml"
@@ -99,19 +102,23 @@
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -133,19 +140,29 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <label class="sidebar-toggle primary-toggle" for="__primary">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
-  </label>
+  </button>
   
-  <div class="navbar-header-items__start">
+  
+  <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="../../">
+  
   
   
   
@@ -157,33 +174,27 @@
     
   </div>
   
-  
   <div class="col-lg-9 navbar-header-items">
     
     <div class="me-auto navbar-header-items__center">
       
-        <div class="navbar-item"><nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
+        <div class="navbar-item">
+<nav>
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../about/">
-                        About
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about/">
+    About
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../blog/">
-                        Blog
-                      </a>
-                    </li>
-                
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../blog/">
+    Blog
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -194,13 +205,16 @@
       
         <div class="navbar-item navbar-persistent--container">
           
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
         </div>
       
       
@@ -222,7 +236,7 @@ document.write(`
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
       
-        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+        <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
         <li class="nav-item">
           
@@ -233,8 +247,8 @@ document.write(`
           
           
           
-          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
-            <label class="sr-only">GitHub</label></a>
+          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
         </li>
 </ul></div>
       
@@ -244,27 +258,35 @@ document.write(`
   
   
     <div class="navbar-persistent--mobile">
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
     </div>
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
-    </label>
+    </button>
   
 </div>
 
-    </nav>
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -275,30 +297,28 @@ document.write(`
     
       <div class="sidebar-header-items__center">
         
-          <div class="navbar-item"><nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
+          
+          
+            <div class="navbar-item">
+<nav>
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../about/">
-                        About
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about/">
+    About
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../blog/">
-                        Blog
-                      </a>
-                    </li>
-                
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../blog/">
+    Blog
+  </a>
+</li>
+
   </ul>
 </nav></div>
+          
         
       </div>
     
@@ -324,7 +344,7 @@ document.write(`
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
         
-          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+          <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
         <li class="nav-item">
           
@@ -335,8 +355,8 @@ document.write(`
           
           
           
-          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
-            <label class="sr-only">GitHub</label></a>
+          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
         </li>
 </ul></div>
         
@@ -362,6 +382,12 @@ document.write(`
 <ul>
    
   <li>
+    <a href="../2025-01-10-relative-information-and-the-dual-numbers/"
+      >10 January - Relative information and the dual numbers</a
+    >
+  </li>
+  
+  <li>
     <a href="../2024-10-16-singular-learning-relative-information-and-the-dual-numbers/"
       >16 October - Singular learning, relative information and the dual numbers</a
     >
@@ -385,12 +411,6 @@ document.write(`
     >
   </li>
   
-  <li>
-    <a href="../2024-03-21-prior-work-on-program-synthesis/"
-      >21 March - Program Synthesis</a
-    >
-  </li>
-  
 </ul>
 </div>
         <div class="sidebar-primary-item">
@@ -399,6 +419,10 @@ document.write(`
 </h3>
 <ul>
    
+  <li>
+    <a href="../../blog/2025/">2025 (1)</a>
+  </li>
+    
   <li>
     <a href="../../blog/2024/">2024 (5)</a>
   </li>
@@ -452,13 +476,13 @@ document.write(`
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -467,15 +491,15 @@ document.write(`
 
 
 
-<nav aria-label="Breadcrumbs">
-  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
       <a href="../../" class="nav-link" aria-label="Home">
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">Relative inference with mutable processes</li>
+    <li class="breadcrumb-item active" aria-current="page">Relative...</li>
   </ul>
 </nav>
 </div>
@@ -491,10 +515,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                    <div class="tex2jax_ignore mathjax_ignore section" id="relative-inference-with-mutable-processes">
-<h1>Relative inference with mutable processes<a class="headerlink" href="#relative-inference-with-mutable-processes" title="Permalink to this headline">#</a></h1>
-<p>We introduce a information-theoretic objective, which is a form of relative information between a discriminative model and a generative model, for learning processes using models with <span class="xref myst">mutable</span> variables. This technique is known as <span class="xref myst">relative inference</span> (also called approximate inference, variational inference or variational Bayes). Such a technique is useful, for instance, for learning processes that contain latent variables.</p>
+<h1>Relative inference with mutable processes<a class="headerlink" href="#relative-inference-with-mutable-processes" title="Permalink to this heading">#</a></h1>
+<p>We introduce a information-theoretic objective, which is a form of relative information between a discriminative model and a generative model, for learning processes using models with <a class="reference internal" href="#2020-10-23-machine-learning-with-relative-information/#why-should-we-consider-mutable-variables-rather-than-latent-variables"><span class="xref myst">mutable</span></a> variables. This technique is known as <a class="reference internal" href="#2020-10-23-machine-learning-with-relative-information/#why-do-we-need-a-better-name-for-variational-inference"><span class="xref myst">relative inference</span></a> (also called approximate inference, variational inference or variational Bayes). Such a technique is useful, for instance, for learning processes that contain latent variables.</p>
 <p>We discuss natural constraints on the discriminative and generative models, and the consequences of these constraints on:</p>
 <ul class="simple">
 <li><p>passive/active learning;</p></li>
@@ -504,7 +528,7 @@ document.write(`
 </ul>
 <p>This post is a continuation from our <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">series</span></a> on spiking networks, path integrals and motivic information.</p>
 <div class="section" id="what-is-a-mutable-process">
-<h2>What is a mutable process?<a class="headerlink" href="#what-is-a-mutable-process" title="Permalink to this headline">#</a></h2>
+<h2>What is a mutable process?<a class="headerlink" href="#what-is-a-mutable-process" title="Permalink to this heading">#</a></h2>
 <p>Suppose we have a random variable <span class="math notranslate nohighlight">\(X\)</span> which represents the state of reality, the environment or the universe. This random variable may have components which are observed (data is given) or observable (data can be obtained if we want it), and it may also have components which are latent or hidden. Let the true distribution of <span class="math notranslate nohighlight">\(X\)</span> be <span class="math notranslate nohighlight">\(Q_*(X),\)</span> which may be partially unknown or fully unknown. For now, we assume that we are passive observers incapable of changing this distribution.</p>
 <p>Suppose that we have a generative model <span class="math notranslate nohighlight">\(\{P(Z,X)\}\)</span> where <span class="math notranslate nohighlight">\(Z\)</span> is an auxiliary variable introduced to increase the model’s ability to approximate the true distribution. More precisely, we want to find a distribution <span class="math notranslate nohighlight">\(P(Z,X)\)</span> in the model such that the marginal <span class="math notranslate nohighlight">\(P(X)\)</span> is as close to the true distribution <span class="math notranslate nohighlight">\(Q_*(X)\)</span> as possible. Here, we may assume that closeness is measured by relative information.</p>
 <p>The auxiliary variable or memory <span class="math notranslate nohighlight">\(Z\)</span> need not reflect actual latent variables in the enviroment <span class="math notranslate nohighlight">\(X.\)</span> We are not looking for guarantees that the learning algorithm will infer the true hidden states of <span class="math notranslate nohighlight">\(X\)</span>. Our only goal is to approximate the true distribution.</p>
@@ -519,12 +543,12 @@ Q(Z,X) = Q(Z\vert X)Q_*(X).
 <p>We will show in this post that we can train generative models <span class="math notranslate nohighlight">\(\{P(Z,X)\}\)</span> using mutable processes <span class="math notranslate nohighlight">\(\{Q(Z,X)\}\)</span> and relative inference.</p>
 </div>
 <div class="section" id="how-do-we-perform-relative-inference-with-mutable-processes">
-<h2>How do we perform relative inference with mutable processes?<a class="headerlink" href="#how-do-we-perform-relative-inference-with-mutable-processes" title="Permalink to this headline">#</a></h2>
+<h2>How do we perform relative inference with mutable processes?<a class="headerlink" href="#how-do-we-perform-relative-inference-with-mutable-processes" title="Permalink to this heading">#</a></h2>
 <p>Suppose that we have two processes – the environment <span class="math notranslate nohighlight">\(X_t \in \mathcal{X},\)</span> and the memory <span class="math notranslate nohighlight">\(Z_t \in \mathcal{Z}\)</span>. Let <span class="math notranslate nohighlight">\(Q_*(X_{0\ldots T})\)</span> be the true distribution of <span class="math notranslate nohighlight">\(X_{0\ldots T}\)</span>. Suppose that we have a generative model <span class="math notranslate nohighlight">\(\{P(Z,X)\}.\)</span> Recall that our goal is to find a distribution in the model that minimizes the relative information</p>
 <div class="math notranslate nohighlight">
 \[\displaystyle I_{Q_*\Vert P}(X_{0\ldots T})\]</div>
 <p>(or equivalently the relative information rate if we assume strong stationarity.)</p>
-<p><a class="reference internal" href="../2020-10-23-machine-learning-with-relative-information/"><span class="doc std std-doc">Previously</span></a>, we discussed how this optimization problem over the space of distributions on <span class="math notranslate nohighlight">\(X\)</span> may be lifted to an optimization problem over the space of distributions on <span class="math notranslate nohighlight">\((Z,X)\)</span> using <span class="xref myst">relative inference</span>. For processes, this involves lifting the environment <span class="math notranslate nohighlight">\(X_{0\ldots T}\)</span> to a mutable process <span class="math notranslate nohighlight">\((Z_{0\ldots T}, X_{0\ldots T}).\)</span></p>
+<p><a class="reference internal" href="../2020-10-23-machine-learning-with-relative-information/"><span class="doc std std-doc">Previously</span></a>, we discussed how this optimization problem over the space of distributions on <span class="math notranslate nohighlight">\(X\)</span> may be lifted to an optimization problem over the space of distributions on <span class="math notranslate nohighlight">\((Z,X)\)</span> using <a class="reference internal" href="#2020-10-23-machine-learning-with-relative-information/#why-do-we-need-a-better-name-for-variational-inference"><span class="xref myst">relative inference</span></a>. For processes, this involves lifting the environment <span class="math notranslate nohighlight">\(X_{0\ldots T}\)</span> to a mutable process <span class="math notranslate nohighlight">\((Z_{0\ldots T}, X_{0\ldots T}).\)</span></p>
 <p>Specifically, we will be considering different models <span class="math notranslate nohighlight">\(\Delta\)</span> of discriminative distributions</p>
 <div class="math notranslate nohighlight">
 \[Q(Z_{0\ldots T},X_{0\ldots T}) = Q_*(X_{0\ldots T}) Q(Z_{0\ldots T}\vert X_{0\ldots T})\]</div>
@@ -534,7 +558,7 @@ Q(Z,X) = Q(Z\vert X)Q_*(X).
 <p>as <span class="math notranslate nohighlight">\(Q\)</span> varies over the space <span class="math notranslate nohighlight">\(\Delta.\)</span> We will focus on design considerations for the different computational constraints on <span class="math notranslate nohighlight">\(\Delta.\)</span></p>
 </div>
 <div class="section" id="is-relative-inference-necessarily-passive">
-<h2>Is relative inference necessarily passive?<a class="headerlink" href="#is-relative-inference-necessarily-passive" title="Permalink to this headline">#</a></h2>
+<h2>Is relative inference necessarily passive?<a class="headerlink" href="#is-relative-inference-necessarily-passive" title="Permalink to this heading">#</a></h2>
 <p>The form of relative inference we are considering here is passive by assumption. The true distribution <span class="math notranslate nohighlight">\(Q_*(X_{0\ldots T})\)</span> is unchangeable, so the states of the memory variables <span class="math notranslate nohighlight">\(Z_{0\ldots T}\)</span> have no effect on the environment <span class="math notranslate nohighlight">\(X_{0\ldots T}.\)</span></p>
 <p>Conceivably, we can design relative inference methods where the memory states have an effect on the enviroment, such as in active learning, reinforcement learning or partially-ordered Markov decision processes. The memory states could cause a learning agent to act on the environment and change the distribution of <span class="math notranslate nohighlight">\(X_{0\ldots T}.\)</span> Unfortunately, we will not be considering this active form of relative inference here. A complete understanding of biological intelligence must however analyze the active case.</p>
 <p>In our passive form of relative inference, the most general case for the space of joint path distributions <span class="math notranslate nohighlight">\(Q(Z_{0\ldots T}, X_{0\ldots T})\)</span> is the unconstrained space <span class="math notranslate nohighlight">\(\Delta\)</span> where <span class="math notranslate nohighlight">\(Q\)</span> factors as</p>
@@ -547,7 +571,7 @@ Q(Z,X) = Q(Z\vert X)Q_*(X).
 <p>so a minimum value for <span class="math notranslate nohighlight">\(I_{Q\Vert P}(Z_{0\ldots T},X_{0\ldots T})\)</span> will be a lower bound for the minimum value for <span class="math notranslate nohighlight">\(I_{Q_*\Vert P}(X_{0\ldots T}).\)</span> As shown <a class="reference internal" href="../2020-10-23-machine-learning-with-relative-information/"><span class="doc std std-doc">previously</span></a>, when minimizing with <span class="math notranslate nohighlight">\(Q\)</span> varying over the unconstrained space <span class="math notranslate nohighlight">\(\Delta\)</span>, the gap <span class="math notranslate nohighlight">\(I_{Q\Vert P}(Z_{0\ldots T}\vert X_{0\ldots T})\)</span> in the bound vanishes.</p>
 </div>
 <div class="section" id="how-do-we-perform-online-learning-with-mutable-processes">
-<h2>How do we perform online learning with mutable processes?<a class="headerlink" href="#how-do-we-perform-online-learning-with-mutable-processes" title="Permalink to this headline">#</a></h2>
+<h2>How do we perform online learning with mutable processes?<a class="headerlink" href="#how-do-we-perform-online-learning-with-mutable-processes" title="Permalink to this heading">#</a></h2>
 <p>In the training of hidden Markov models, the Baum-Welch algorithm or forward-backward algorithm is often used. It requires knowledge of the enviroment from the start to the end of the time interval. An algorithm that only uses data from the environment from the start to the present is called an <em>online</em> learning algorithm. Otherwise, the learning algorithm is said to be <em>offline</em>.</p>
 <p>To understand the difference between online learning and offline learning in relative inference, let us consider a joint distribution</p>
 <div class="math notranslate nohighlight">
@@ -588,7 +612,7 @@ Q(Z,X) = Q(Z\vert X)Q_*(X).
 <p>Online learning involves minimizing over the subspace <span class="math notranslate nohighlight">\(\Delta_\mathcal{C},\)</span> where the discriminative factors <span class="math notranslate nohighlight">\(Q(Z_t \vert Z_{0\ldots (t-1)}, X_{0\ldots (t-1)})\)</span> depend only on information from the past. When optimizing over <span class="math notranslate nohighlight">\(\Delta_\mathcal{C},\)</span> the information gap <span class="math notranslate nohighlight">\(I_{Q\Vert P}(Z_{0\ldots T}\vert X_{0\ldots T})\)</span> might not vanish. Loosely, the gap represents <em>the cost of present separation</em> and <em>the cost of future ignorance</em>. Indeed, if <span class="math notranslate nohighlight">\(Z_t\)</span> and <span class="math notranslate nohighlight">\(X_t\)</span> are not conditionally independent given their past, then either their states are entangled (e.g. <span class="math notranslate nohighlight">\(X_t\)</span> in one state bars <span class="math notranslate nohighlight">\(Z_t\)</span> from another state) or their dependence is coming from knowledge of the future. Since the gap vanishes when we optimize over distributions that allow such kinds of dependence, entanglements and future knowledge must be furnishing information for closing this gap.</p>
 </div>
 <div class="section" id="how-do-we-perform-relative-inference-with-limited-memory">
-<h2>How do we perform relative inference with limited memory?<a class="headerlink" href="#how-do-we-perform-relative-inference-with-limited-memory" title="Permalink to this headline">#</a></h2>
+<h2>How do we perform relative inference with limited memory?<a class="headerlink" href="#how-do-we-perform-relative-inference-with-limited-memory" title="Permalink to this heading">#</a></h2>
 <p>Suppose now that computationally, both the discriminative model and the generative model have limited memory. More precisely, the models cannot store the full histories <span class="math notranslate nohighlight">\(Z_{0\ldots t}, X_{0\ldots t}\)</span> but they can recall the most recent states <span class="math notranslate nohighlight">\(Z_t, X_t.\)</span> In other words, the distributions satisfy the Markov property. Hence, <span class="math notranslate nohighlight">\(Q(Z_{0\ldots T}\vert X_{0\ldots T})\)</span> has a factorization</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{rl} Q(Z_{0\ldots T}\vert X_{0\ldots T}) &amp; = Q(Z_0) \\ &amp; \\ &amp; \quad Q(Z_1 \vert Z_0,X_0) \cdots \\ &amp; \\ &amp; \quad Q(Z_T \vert Z_{T-1}, X_{T-1}). \end{array}\end{split}\]</div>
@@ -597,10 +621,10 @@ Q(Z,X) = Q(Z\vert X)Q_*(X).
 <p>Of course, the recent state <span class="math notranslate nohighlight">\(Z_t\)</span> could be used to store copies of older states <span class="math notranslate nohighlight">\(Z_{t-1}, Z_{t-2}, \ldots\)</span> but because the dimension of <span class="math notranslate nohighlight">\(Z_t\)</span> is finite, only a limited number of those states can be stored. A smarter way is to compress those states, or to only store pertinent information about those states.</p>
 </div>
 <div class="section" id="how-do-we-perform-relative-inference-with-limited-sensing">
-<h2>How do we perform relative inference with limited sensing?<a class="headerlink" href="#how-do-we-perform-relative-inference-with-limited-sensing" title="Permalink to this headline">#</a></h2>
+<h2>How do we perform relative inference with limited sensing?<a class="headerlink" href="#how-do-we-perform-relative-inference-with-limited-sensing" title="Permalink to this heading">#</a></h2>
 <p>For our mathematical analysis, we find it semantically convenient to assume that the process <span class="math notranslate nohighlight">\(X_{0\ldots T}\)</span> represents the history of <em>every particle in the universe</em> and that it is a Markov process. Some subprocesses of <span class="math notranslate nohighlight">\(X_{0\ldots T}\)</span> will be observed during training, while other subprocesses may remain hidden.</p>
 <p>Observability will be determined by structures in the discriminative model <span class="math notranslate nohighlight">\(\{Q(Z\vert X)\}\)</span> and generative model <span class="math notranslate nohighlight">\(\{P(Z, X)\}.\)</span> If a subprocess of <span class="math notranslate nohighlight">\(X_{0\ldots T}\)</span> is hidden, then the memory <span class="math notranslate nohighlight">\(Z_{0\ldots T}\)</span> will be independent of the subprocess in the discriminative model. In the generative model, we can assign a trivial distribution (e.g. assigning uniform distributions or assigning probability one to some fixed state) to the hidden subprocess.</p>
-<p>Such constraints on the discriminative model and generative model <span class="xref myst">could</span> cause the information gap <span class="math notranslate nohighlight">\(I_{Q\Vert P}(Z_{0\ldots T}\vert  X_{0\ldots T})\)</span> to increase yet again. We can think of this increase as the cost of <em>limited sensing</em>.</p>
+<p>Such constraints on the discriminative model and generative model <a class="reference internal" href="#2021-03-22-relative-inference-with-mutable-processes/#remark-cost-of-limited-sensing"><span class="xref myst">could</span></a> cause the information gap <span class="math notranslate nohighlight">\(I_{Q\Vert P}(Z_{0\ldots T}\vert  X_{0\ldots T})\)</span> to increase yet again. We can think of this increase as the cost of <em>limited sensing</em>.</p>
 <p>The reason we say that this Markov assumption is <em>semantically convenient</em> is as follows. We could alternatively model the universe as a joint process <span class="math notranslate nohighlight">\(X_{0\ldots T}, U_{0\ldots T}\)</span> where <span class="math notranslate nohighlight">\(X_{0\ldots T}\)</span> is observed and <span class="math notranslate nohighlight">\(U_{0\ldots T}\)</span> is hidden. However, the mathematical analysis becomes notationally complicated because of the need to write down both processes. It is easier to subsume the distinction between observed and hidden under assumptions for the discriminative model and generative model.</p>
 <p>Under this Markov assumption and under mild regularity conditions, the time-averaged relative information will be equal to the relative information rate.</p>
 <div class="math notranslate nohighlight">
@@ -612,7 +636,7 @@ Q(Z,X) = Q(Z\vert X)Q_*(X).
 <p>Biological spiking networks need to work with the constraints of not knowing the future and having limited memory and sensing. For the remainder of this series, we will also work with these constraints.</p>
 </div>
 <div class="section" id="remark-cost-of-limited-sensing">
-<h2>Remark: Cost of limited sensing<a class="headerlink" href="#remark-cost-of-limited-sensing" title="Permalink to this headline">#</a></h2>
+<h2>Remark: Cost of limited sensing<a class="headerlink" href="#remark-cost-of-limited-sensing" title="Permalink to this heading">#</a></h2>
 <p>Let <span class="math notranslate nohighlight">\(V_t\)</span> and <span class="math notranslate nohighlight">\(U_t\)</span> be the observed and hidden components of each <span class="math notranslate nohighlight">\(X_t.\)</span> Suppose the generative model <span class="math notranslate nohighlight">\(P(Z_{0\ldots T},X_{0\ldots T})\)</span> assigns probability one to some fixed path of <span class="math notranslate nohighlight">\(\{U_t\}.\)</span></p>
 <p>In the decomposition</p>
 <div class="math notranslate nohighlight">
@@ -672,16 +696,12 @@ Q(Z,X) = Q(Z\vert X)Q_*(X).
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer d-print-none">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -690,11 +710,14 @@ Q(Z,X) = Q(Z\vert X)Q_*(X).
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
   </div>
-  <nav class="bd-toc-nav page-toc">
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-mutable-process">What is a mutable process?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-perform-relative-inference-with-mutable-processes">How do we perform relative inference with mutable processes?</a></li>
@@ -707,6 +730,7 @@ Q(Z,X) = Q(Z\vert X)Q_*(X).
   </nav></div>
 
   <div class="sidebar-secondary-item">
+
   <div class="tocsection sourcelink">
     <a href="../../_sources/posts/2021-03-22-relative-inference-with-mutable-processes.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
@@ -727,8 +751,8 @@ Q(Z,X) = Q(Z\vert X)Q_*(X).
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -736,6 +760,7 @@ Q(Z,X) = Q(Z\vert X)Q_*(X).
     <div class="footer-items__start">
       
         <div class="footer-item">
+
   <p class="copyright">
     
       © Copyright 2022, Shaowei Lin.
@@ -745,8 +770,9 @@ Q(Z,X) = Q(Z\vert X)Q_*(X).
 </div>
       
         <div class="footer-item">
+
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     <br/>
   </p>
 </div>
@@ -754,10 +780,12 @@ Q(Z,X) = Q(Z\vert X)Q_*(X).
     </div>
   
   
+  
     <div class="footer-items__end">
       
-        <div class="footer-item"><p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
 </p></div>
       
     </div>

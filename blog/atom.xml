@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom">
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://shaoweilin.github.io</id>
   <title>Types from Spikes</title>
-  <updated>2024-10-18T16:50:22.136787+00:00</updated>
+  <updated>2025-01-10T07:13:54.466192+00:00</updated>
   <link href="https://shaoweilin.github.io"/>
   <link href="https://shaoweilin.github.io/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.org/" version="0.10.33.post1">ABlog</generator>
@@ -172,7 +172,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <updated>2020-08-28T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
 &lt;p&gt;I’m writing a series of posts that will explore the connections between these topics. Here is a rough outline of the series, which I will fill in slowly over time.&lt;/p&gt;
-&lt;p&gt;&lt;span class="xref myst"&gt;Building foundations of information theory on relative information&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference internal" href="#2020-09-08-building-foundations-of-information-theory-on-relative-information/"&gt;&lt;span class="xref myst"&gt;Building foundations of information theory on relative information&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </content>
     <link href="https://shaoweilin.github.io/posts/2020-08-28-motivic-information-path-integrals-and-spiking-networks/"/>
@@ -198,7 +198,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <updated>2020-09-18T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
 &lt;p&gt;In this post, we will study the conditional form of relative information. We will also look at how conditional relative information can be axiomatized and extended to non-real-valued measures.&lt;/p&gt;
-&lt;p&gt;This post is a continuation from our &lt;span class="xref myst"&gt;series&lt;/span&gt; on spiking networks, path integrals and motivic information.&lt;/p&gt;
+&lt;p&gt;This post is a continuation from our &lt;a class="reference internal" href="#2020-08-28-motivic-information-path-integrals-and-spiking-networks/"&gt;&lt;span class="xref myst"&gt;series&lt;/span&gt;&lt;/a&gt; on spiking networks, path integrals and motivic information.&lt;/p&gt;
 &lt;/div&gt;
 </content>
     <link href="https://shaoweilin.github.io/posts/2020-09-18-conditional-relative-information-and-its-axiomatizations/"/>
@@ -211,7 +211,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <updated>2020-10-05T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
 &lt;p&gt;We outline the similarities between zeta functions appearing in number theory and in statistical learning.&lt;/p&gt;
-&lt;p&gt;This post is a continuation from our &lt;span class="xref myst"&gt;series&lt;/span&gt; on spiking networks, path integrals and motivic information.&lt;/p&gt;
+&lt;p&gt;This post is a continuation from our &lt;a class="reference internal" href="#2020-08-28-motivic-information-path-integrals-and-spiking-networks/"&gt;&lt;span class="xref myst"&gt;series&lt;/span&gt;&lt;/a&gt; on spiking networks, path integrals and motivic information.&lt;/p&gt;
 &lt;/div&gt;
 </content>
     <link href="https://shaoweilin.github.io/posts/2020-10-05-zeta-functions-mellin-transforms-and-the-gelfand-leray-form/"/>
@@ -224,7 +224,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <updated>2020-10-07T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
 &lt;p&gt;So far, our definition of relative information studies the divergence between real-valued measures. In this post, we will explore motivic measures which take values more generally in some ring &lt;span class="math notranslate nohighlight"&gt;\(R\)&lt;/span&gt;, and have some fun applying motivic relative information to zeta functions.&lt;/p&gt;
-&lt;p&gt;This post is a continuation from our &lt;span class="xref myst"&gt;series&lt;/span&gt; on spiking networks, path integrals and motivic information.&lt;/p&gt;
+&lt;p&gt;This post is a continuation from our &lt;a class="reference internal" href="#2020-08-28-motivic-information-path-integrals-and-spiking-networks/"&gt;&lt;span class="xref myst"&gt;series&lt;/span&gt;&lt;/a&gt; on spiking networks, path integrals and motivic information.&lt;/p&gt;
 &lt;/div&gt;
 </content>
     <link href="https://shaoweilin.github.io/posts/2020-10-07-motivic-relative-information/"/>
@@ -237,7 +237,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <updated>2020-10-14T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
 &lt;p&gt;We give an introduction to continuous-time Markov chains, and define path measures for these objects.&lt;/p&gt;
-&lt;p&gt;This post is a continuation from our &lt;span class="xref myst"&gt;series&lt;/span&gt; on spiking networks, path integrals and motivic information.&lt;/p&gt;
+&lt;p&gt;This post is a continuation from our &lt;a class="reference internal" href="#2020-08-28-motivic-information-path-integrals-and-spiking-networks/"&gt;&lt;span class="xref myst"&gt;series&lt;/span&gt;&lt;/a&gt; on spiking networks, path integrals and motivic information.&lt;/p&gt;
 &lt;/div&gt;
 </content>
     <link href="https://shaoweilin.github.io/posts/2020-10-14-path-integrals-and-continuous-time-markov-chains/"/>
@@ -250,7 +250,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <updated>2020-10-23T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
 &lt;p&gt;We will reframe some common machine learning paradigms, such as maximum likelihood, stochastic gradients, stochastic approximation and variational inference, in terms of relative information.&lt;/p&gt;
-&lt;p&gt;This post is a continuation from our &lt;span class="xref myst"&gt;series&lt;/span&gt; on spiking networks, path integrals and motivic information.&lt;/p&gt;
+&lt;p&gt;This post is a continuation from our &lt;a class="reference internal" href="#2020-08-28-motivic-information-path-integrals-and-spiking-networks/"&gt;&lt;span class="xref myst"&gt;series&lt;/span&gt;&lt;/a&gt; on spiking networks, path integrals and motivic information.&lt;/p&gt;
 &lt;/div&gt;
 </content>
     <link href="https://shaoweilin.github.io/posts/2020-10-23-machine-learning-with-relative-information/"/>
@@ -263,7 +263,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <updated>2020-12-01T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
 &lt;p&gt;We explore the convergence of continuous-time ordinary differential equations and their discrete-time analogs, such as stochastic approximation and gradient descent, through the lens of Lyapunov theory &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2020-12-01-biased-stochastic-approximation/#id47" title="Léon Bottou and others. Online learning and stochastic approximations. On-line learning in neural networks, 17(9):142, 1998."&gt;B+98&lt;/a&gt;]&lt;/span&gt; &lt;span id="id2"&gt;[&lt;a class="reference internal" href="../posts/2020-12-01-biased-stochastic-approximation/#id44" title="Yingshen Li and Mark Rowland. Stochastic approximation theory (slides). http://yingzhenli.net/home/pdf/SA.pdf, 2015."&gt;LR15&lt;/a&gt;]&lt;/span&gt;. From this perspective, we will study biased stochastic approximation &lt;span id="id3"&gt;[&lt;a class="reference internal" href="../posts/2021-06-05-spiking-neural-networks/#id51" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019."&gt;KMMW19&lt;/a&gt;]&lt;/span&gt; where the expectation of the stochastic updates conditioned on the past (which we call the &lt;em&gt;conditional expectation&lt;/em&gt;) is not the same as the expectation of the stochastic updates under the stationary distribution (which we call the &lt;em&gt;total expectation&lt;/em&gt;).&lt;/p&gt;
-&lt;p&gt;This post is a continuation from our &lt;span class="xref myst"&gt;series&lt;/span&gt; on spiking networks, path integrals and motivic information.&lt;/p&gt;
+&lt;p&gt;This post is a continuation from our &lt;a class="reference internal" href="#2020-08-28-motivic-information-path-integrals-and-spiking-networks/"&gt;&lt;span class="xref myst"&gt;series&lt;/span&gt;&lt;/a&gt; on spiking networks, path integrals and motivic information.&lt;/p&gt;
 &lt;/div&gt;
 </content>
     <link href="https://shaoweilin.github.io/posts/2020-12-01-biased-stochastic-approximation/"/>
@@ -275,7 +275,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <title>Process learning with relative information</title>
     <updated>2021-03-21T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;Over the next few posts, we will derive a distributed learning algorithm for spiking neural networks with &lt;span class="xref myst"&gt;mutable&lt;/span&gt; variables that minimizes some natural notion of relative information and provably converges over time. We will model these spiking neural networks with stochastic processes: both discrete-time and continuous-time processes, with or without mutable variables.&lt;/p&gt;
+&lt;p&gt;Over the next few posts, we will derive a distributed learning algorithm for spiking neural networks with &lt;a class="reference internal" href="#2020-10-23-machine-learning-with-relative-information/#why-should-we-consider-mutable-variables-rather-than-latent-variables"&gt;&lt;span class="xref myst"&gt;mutable&lt;/span&gt;&lt;/a&gt; variables that minimizes some natural notion of relative information and provably converges over time. We will model these spiking neural networks with stochastic processes: both discrete-time and continuous-time processes, with or without mutable variables.&lt;/p&gt;
 &lt;p&gt;In this post, we give a general overview of information-theoretic approaches to training stochastic processes, while postponing discussions about issues that arise from mutable variables.&lt;/p&gt;
 &lt;/div&gt;
 </content>
@@ -288,7 +288,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <title>Relative inference with mutable processes</title>
     <updated>2021-03-22T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;We introduce a information-theoretic objective, which is a form of relative information between a discriminative model and a generative model, for learning processes using models with &lt;span class="xref myst"&gt;mutable&lt;/span&gt; variables. This technique is known as &lt;span class="xref myst"&gt;relative inference&lt;/span&gt; (also called approximate inference, variational inference or variational Bayes). Such a technique is useful, for instance, for learning processes that contain latent variables.&lt;/p&gt;
+&lt;p&gt;We introduce a information-theoretic objective, which is a form of relative information between a discriminative model and a generative model, for learning processes using models with &lt;a class="reference internal" href="#2020-10-23-machine-learning-with-relative-information/#why-should-we-consider-mutable-variables-rather-than-latent-variables"&gt;&lt;span class="xref myst"&gt;mutable&lt;/span&gt;&lt;/a&gt; variables. This technique is known as &lt;a class="reference internal" href="#2020-10-23-machine-learning-with-relative-information/#why-do-we-need-a-better-name-for-variational-inference"&gt;&lt;span class="xref myst"&gt;relative inference&lt;/span&gt;&lt;/a&gt; (also called approximate inference, variational inference or variational Bayes). Such a technique is useful, for instance, for learning processes that contain latent variables.&lt;/p&gt;
 &lt;p&gt;We discuss natural constraints on the discriminative and generative models, and the consequences of these constraints on:&lt;/p&gt;
 &lt;/div&gt;
 </content>
@@ -301,7 +301,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <title>Biased stochastic approximation with mutable processes</title>
     <updated>2021-03-23T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;The goal of this post is to derive a general online learning recipe for training a &lt;span class="xref myst"&gt;mutable&lt;/span&gt; process &lt;span class="math notranslate nohighlight"&gt;\(\{Z_t,X_t\}\)&lt;/span&gt; to learn the true distribution &lt;span class="math notranslate nohighlight"&gt;\(Q_*(X)\)&lt;/span&gt; of a partially-observed Markov process &lt;span class="math notranslate nohighlight"&gt;\(\{X_t\}\)&lt;/span&gt;. The recipe returns a generative distribution &lt;span class="math notranslate nohighlight"&gt;\(P(Z,X)\)&lt;/span&gt; whose marginal &lt;span class="math notranslate nohighlight"&gt;\(P(X)\)&lt;/span&gt; approximates &lt;span class="math notranslate nohighlight"&gt;\(Q_*(X).\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The goal of this post is to derive a general online learning recipe for training a &lt;a class="reference internal" href="#2021-03-22-relative-inference-with-mutable-processes/#what-is-a-mutable-process"&gt;&lt;span class="xref myst"&gt;mutable&lt;/span&gt;&lt;/a&gt; process &lt;span class="math notranslate nohighlight"&gt;\(\{Z_t,X_t\}\)&lt;/span&gt; to learn the true distribution &lt;span class="math notranslate nohighlight"&gt;\(Q_*(X)\)&lt;/span&gt; of a partially-observed Markov process &lt;span class="math notranslate nohighlight"&gt;\(\{X_t\}\)&lt;/span&gt;. The recipe returns a generative distribution &lt;span class="math notranslate nohighlight"&gt;\(P(Z,X)\)&lt;/span&gt; whose marginal &lt;span class="math notranslate nohighlight"&gt;\(P(X)\)&lt;/span&gt; approximates &lt;span class="math notranslate nohighlight"&gt;\(Q_*(X).\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;The variables &lt;span class="math notranslate nohighlight"&gt;\(Z\)&lt;/span&gt; of the mutable process are auxiliary variables that assist in inference and computation. During training, the distribution of &lt;span class="math notranslate nohighlight"&gt;\(Z\)&lt;/span&gt; given &lt;span class="math notranslate nohighlight"&gt;\(X\)&lt;/span&gt; is controlled by a discriminative model &lt;span class="math notranslate nohighlight"&gt;\(\{Q(Z\vert X)\}.\)&lt;/span&gt; Our method works in both discrete time and continuous time. We assume in the mutable process that for each time &lt;span class="math notranslate nohighlight"&gt;\(t,\)&lt;/span&gt; the variables &lt;span class="math notranslate nohighlight"&gt;\(Z_t\)&lt;/span&gt; and &lt;span class="math notranslate nohighlight"&gt;\(X_t\)&lt;/span&gt; are conditionally independent of each other given their past.&lt;/p&gt;
 &lt;/div&gt;
 </content>
@@ -340,7 +340,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <title>Convergence of biased stochastic approximation</title>
     <updated>2021-06-01T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;Using techniques from &lt;span class="xref myst"&gt;biased&lt;/span&gt; stochastic approximation &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2021-06-05-spiking-neural-networks/#id51" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019."&gt;KMMW19&lt;/a&gt;]&lt;/span&gt;, we prove under some regularity conditions the convergence of the online learning algorithm proposed &lt;span class="xref myst"&gt;previously&lt;/span&gt; for mutable Markov processes.&lt;/p&gt;
+&lt;p&gt;Using techniques from &lt;a class="reference internal" href="#2020-12-01-biased-stochastic-approximation/"&gt;&lt;span class="xref myst"&gt;biased&lt;/span&gt;&lt;/a&gt; stochastic approximation &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2021-06-05-spiking-neural-networks/#id51" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019."&gt;KMMW19&lt;/a&gt;]&lt;/span&gt;, we prove under some regularity conditions the convergence of the online learning algorithm proposed &lt;a class="reference internal" href="#2021-03-23-biased-stochastic-approximation-with-mutable-processes/"&gt;&lt;span class="xref myst"&gt;previously&lt;/span&gt;&lt;/a&gt; for mutable Markov processes.&lt;/p&gt;
 &lt;p&gt;Recall that the algorithm is described by the following updates.&lt;/p&gt;
 &lt;/div&gt;
 </content>
@@ -353,8 +353,8 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <title>Spiking neural networks</title>
     <updated>2021-06-05T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;In this post, we study a class of spiking network models based on continuous-time &lt;span class="xref myst"&gt;Markov&lt;/span&gt; chains with &lt;span class="xref myst"&gt;mutable&lt;/span&gt;  variables.&lt;/p&gt;
-&lt;p&gt;Using a &lt;span class="xref myst"&gt;relative inference&lt;/span&gt; recipe for online learning, we derive local Hebbian learning rules for the spiking network which are provably convergent to local minima of the relative information objective.&lt;/p&gt;
+&lt;p&gt;In this post, we study a class of spiking network models based on continuous-time &lt;a class="reference internal" href="#2020-10-14-path-integrals-and-continuous-time-markov-chains/#what-is-a-continuous-time-markov-chain"&gt;&lt;span class="xref myst"&gt;Markov&lt;/span&gt;&lt;/a&gt; chains with &lt;a class="reference internal" href="#2021-03-22-relative-inference-with-mutable-processes/#what-is-a-mutable-process"&gt;&lt;span class="xref myst"&gt;mutable&lt;/span&gt;&lt;/a&gt;  variables.&lt;/p&gt;
+&lt;p&gt;Using a &lt;a class="reference internal" href="#2021-06-01-convergence-of-biased-stochastic-approximation/"&gt;&lt;span class="xref myst"&gt;relative inference&lt;/span&gt;&lt;/a&gt; recipe for online learning, we derive local Hebbian learning rules for the spiking network which are provably convergent to local minima of the relative information objective.&lt;/p&gt;
 &lt;/div&gt;
 </content>
     <link href="https://shaoweilin.github.io/posts/2021-06-05-spiking-neural-networks/"/>
@@ -392,7 +392,7 @@ This book covers combinatorics and stuff. For undergraduates. Might be too easy.
     <title>Parametric typeclasses aid generalization in program synthesis</title>
     <updated>2022-01-22T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;We envision programming being done in top-down fashion. The human describes the goal (e.g. sorting), and the machine reduces it to smaller subgoals based on well-known heuristics (e.g. divide and conquer). The easier subgoals could even be fulfilled automatically. This top-down heuristics approach will be more amenable to machine learning. See my &lt;a class="reference download internal" download="" href="../_downloads/0d6c348fef680eeb3dae84dfe053bb53/2021-04-22-proofs-as-programs-challenges-and-strategies-for-program-synthesis.md"&gt;&lt;span class="xref download myst"&gt;Topos Institute talk&lt;/span&gt;&lt;/a&gt; for more info.&lt;/p&gt;
+&lt;p&gt;We envision programming being done in top-down fashion. The human describes the goal (e.g. sorting), and the machine reduces it to smaller subgoals based on well-known heuristics (e.g. divide and conquer). The easier subgoals could even be fulfilled automatically. This top-down heuristics approach will be more amenable to machine learning. See my &lt;a class="reference internal" href="../posts/2021-04-22-proofs-as-programs-challenges-and-strategies-for-program-synthesis/"&gt;&lt;span class="std std-doc"&gt;Topos Institute talk&lt;/span&gt;&lt;/a&gt; for more info.&lt;/p&gt;
 &lt;p&gt;The problem with the current approach in type theory is as follows.&lt;/p&gt;
 &lt;/div&gt;
 </content>
@@ -574,11 +574,24 @@ relative information and their transforms.Singular Learning Theory and Alignment
     <updated>2024-10-16T00:00:00+00:00</updated>
     <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
 &lt;p&gt;Relative information (Kullback-Leibler divergence) is a fundamental concept in statistics, machine learning and information theory. In the first half of the talk, I will define conditional relative information, list its axiomatic properties, and describe how it is used in machine learning. For example, according to Sumio Watanabe’s Singular Learning Theory, the generalization error of a learning algorithm depends on the structure of algebraic geometric singularities of relative information. In the second half of the talk, I will define the rig category Info of random variables and their conditional maps, as well as the rig category R(e) of dual numbers. Relative information can then be constructed, up to a scalar multiple, via rig monoidal functors from Info to R(e). If time permits, I may discuss how this construction relates to the information cohomology of Baudot, Bennequin and Vigneaux, and to the operad derivations of Bradley.&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://www.ipam.ucla.edu/abstract/?tid=20677&amp;amp;pcode=MOIWS2"&gt;IPAM Theory and Practice of Deep Learning Workshop&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.ipam.ucla.edu/abstract/?tid=20677&amp;amp;amp;pcode=MOIWS2"&gt;IPAM Theory and Practice of Deep Learning Workshop&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </content>
     <link href="https://shaoweilin.github.io/posts/2024-10-16-singular-learning-relative-information-and-the-dual-numbers/"/>
     <summary>Relative information (Kullback-Leibler divergence) is a fundamental concept in statistics, machine learning and information theory. In the first half of the talk, I will define conditional relative information, list its axiomatic properties, and describe how it is used in machine learning. For example, according to Sumio Watanabe’s Singular Learning Theory, the generalization error of a learning algorithm depends on the structure of algebraic geometric singularities of relative information. In the second half of the talk, I will define the rig category Info of random variables and their conditional maps, as well as the rig category R(e) of dual numbers. Relative information can then be constructed, up to a scalar multiple, via rig monoidal functors from Info to R(e). If time permits, I may discuss how this construction relates to the information cohomology of Baudot, Bennequin and Vigneaux, and to the operad derivations of Bradley.IPAM Theory and Practice of Deep Learning Workshop</summary>
     <published>2024-10-16T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://shaoweilin.github.io/posts/2025-01-10-relative-information-and-the-dual-numbers/</id>
+    <title>Relative information and the dual numbers</title>
+    <updated>2025-01-10T00:00:00+00:00</updated>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;Relative information (Kullback-Leibler divergence) is a key concept in statistics, machine learning and information theory. In fact, singular learning theory tells us that the generalization error of a learning algorithm depends on the structure of algebraic geometric singularities of relative information. This leads us to wonder, what properties of relative information contribute to its ubiquity? In this talk, we will study fundamental characteristics of conditional relative information I_{q||p}(Y|X) where q, p are joint distributions on random variables X, Y. We define the rig category C of random variables and their conditional maps, as well as the rig category R(e) of dual numbers. Relative information can then be constructed, up to a scalar multiple, via rig monoidal functors from C to R(e). Closely related to this construction is the information cohomology of Baudot, Bennequin and Vigneaux.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://jointmathematicsmeetings.org/meetings/national/jmm2025/2314_program_ss13.html"&gt;Joint Mathematics Meetings: AMS Special Session on Algebraic Methods in Machine Learning and Optimization&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://shaoweilin.github.io/posts/2025-01-10-relative-information-and-the-dual-numbers/"/>
+    <summary>Relative information (Kullback-Leibler divergence) is a key concept in statistics, machine learning and information theory. In fact, singular learning theory tells us that the generalization error of a learning algorithm depends on the structure of algebraic geometric singularities of relative information. This leads us to wonder, what properties of relative information contribute to its ubiquity? In this talk, we will study fundamental characteristics of conditional relative information I_{q||p}(Y|X) where q, p are joint distributions on random variables X, Y. We define the rig category C of random variables and their conditional maps, as well as the rig category R(e) of dual numbers. Relative information can then be constructed, up to a scalar multiple, via rig monoidal functors from C to R(e). Closely related to this construction is the information cohomology of Baudot, Bennequin and Vigneaux.Joint Mathematics Meetings: AMS Special Session on Algebraic Methods in Machine Learning and Optimization</summary>
+    <published>2025-01-10T00:00:00+00:00</published>
   </entry>
 </feed>
