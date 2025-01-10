@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://shaoweilin.github.io</id>
   <title>Types from Spikes</title>
-  <updated>2025-01-10T07:13:54.466192+00:00</updated>
+  <updated>2025-01-10T22:40:44.659938+00:00</updated>
   <link href="https://shaoweilin.github.io"/>
   <link href="https://shaoweilin.github.io/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.org/" version="0.10.33.post1">ABlog</generator>
@@ -517,19 +517,6 @@ relative information and their transforms.Singular Learning Theory and Alignment
     <published>2023-12-11T00:00:00+00:00</published>
   </entry>
   <entry>
-    <id>https://shaoweilin.github.io/posts/2024-03-21-prior-work-on-program-synthesis/</id>
-    <title>Program Synthesis</title>
-    <updated>2024-03-21T00:00:00+00:00</updated>
-    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;Here is a list of prior work I did with my collaborators and Ph.D. students on dependent type theory and program synthesis.&lt;/p&gt;
-&lt;p&gt;2024: Shaowei Lin. &lt;a class="reference external" href="https://shaoweilin.github.io/posts/2024-09-24-safety-by-shared-synthesis/"&gt;Safety by shared synthesis&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-</content>
-    <link href="https://shaoweilin.github.io/posts/2024-03-21-prior-work-on-program-synthesis/"/>
-    <summary>Here is a list of prior work I did with my collaborators and Ph.D. students on dependent type theory and program synthesis.2024: Shaowei Lin. Safety by shared synthesis.</summary>
-    <published>2024-03-21T00:00:00+00:00</published>
-  </entry>
-  <entry>
     <id>https://shaoweilin.github.io/posts/2024-05-08-ai-assisted-coding-correct-by-construction-not-by-generation/</id>
     <title>AI-assisted coding: correct by construction, not by generation</title>
     <updated>2024-05-08T00:00:00+00:00</updated>
@@ -567,6 +554,19 @@ relative information and their transforms.Singular Learning Theory and Alignment
     <link href="https://shaoweilin.github.io/posts/2024-09-24-safety-by-shared-synthesis/"/>
     <summary>Today, critical infrastructure is vulnerable to both malicious attacks and unintended failures, and these risks are expected to grow in the foreseeable future. Deploying formal verification (FV) across critical cyber physical systems would dramatically improve safety and security, but has historically been too costly to use outside the simplest or most critical subsystems. AI could allow widespread use of FV in years not decades, shifting cyber risks strongly in favor of defense. In this talk, I will outline our report with Atlas Computing on AI-enabled tools for scaling formal verification (https://atlascomputing.org/ai-assisted-fv-toolchain.pdf). I will also discuss some lessons that I learnt along the way, especially about shared synthesis - the collaborative construction of formal specifications, implementations and proofs.Topos Berkeley Semimar</summary>
     <published>2024-09-24T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://shaoweilin.github.io/posts/2024-10-01-program-synthesis/</id>
+    <title>Program Synthesis</title>
+    <updated>2024-10-01T00:00:00+00:00</updated>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;Here is a list of prior work I did with my collaborators and Ph.D. students on dependent type theory and program synthesis.&lt;/p&gt;
+&lt;p&gt;2024: Shaowei Lin. &lt;a class="reference external" href="https://shaoweilin.github.io/posts/2024-09-24-safety-by-shared-synthesis/"&gt;Safety by shared synthesis&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://shaoweilin.github.io/posts/2024-10-01-program-synthesis/"/>
+    <summary>Here is a list of prior work I did with my collaborators and Ph.D. students on dependent type theory and program synthesis.2024: Shaowei Lin. Safety by shared synthesis.</summary>
+    <published>2024-10-01T00:00:00+00:00</published>
   </entry>
   <entry>
     <id>https://shaoweilin.github.io/posts/2024-10-16-singular-learning-relative-information-and-the-dual-numbers/</id>
