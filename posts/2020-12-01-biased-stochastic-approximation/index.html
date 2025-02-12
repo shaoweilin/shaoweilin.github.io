@@ -1,13 +1,13 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta property="og:title" content="Biased stochastic approximation" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Biased stochastic approximation" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://shaoweilin.github.io/posts/2020-12-01-biased-stochastic-approximation/" />
 <meta property="og:site_name" content="Types from Spikes" />
@@ -24,77 +24,53 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-dropdown.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8a9ddf57" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-dropdown.css?v=995e94df" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.min.css?v=21c0b90a" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/documentation_options.js?v=187304be"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2020-12-01-biased-stochastic-approximation';</script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about/" />
     <link rel="index" title="Index" href="../../genindex/" />
     <link rel="search" title="Search" href="../../search/" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/> 
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" /> 
 <link
   rel="alternate"
   type="application/atom+xml"
   href="../../blog/atom.xml"
   title="Types from Spikes"
 />
- 
-<style type="text/css">
-  ul.ablog-archive {
-    list-style: none;
-    overflow: auto;
-    margin-left: 0px;
-  }
-  ul.ablog-archive li {
-    float: left;
-    margin-right: 5px;
-    font-size: 80%;
-  }
-  ul.postlist a {
-    font-style: italic;
-  }
-  ul.postlist-style-disc {
-    list-style-type: disc;
-  }
-  ul.postlist-style-none {
-    list-style-type: none;
-  }
-  ul.postlist-style-circle {
-    list-style-type: circle;
-  }
-</style>
-
+  
   </head>
   
   
@@ -110,19 +86,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../search/"
       method="get">
@@ -130,7 +95,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search"
          aria-label="Search"
          autocomplete="off"
@@ -138,8 +102,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -206,15 +170,9 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
         </div>
       
       
@@ -234,24 +192,6 @@
         </li>
 </ul></div>
       
-        <div class="navbar-item">
-<form class="bd-search d-flex align-items-center"
-      action="../../search/"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search"
-         aria-label="Search"
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-      
     </div>
     
   </div>
@@ -259,15 +199,9 @@
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
     </div>
   
 
@@ -288,7 +222,8 @@
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -342,136 +277,134 @@
         </li>
 </ul></div>
         
-          <div class="navbar-item">
-<form class="bd-search d-flex align-items-center"
-      action="../../search/"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search"
-         aria-label="Search"
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-        
       </div>
     
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">  
-<h2>
-   <i class="fa fa-calendar"></i>
-  01 December 2020 
-</h2>
-
-<ul>
+        <div class="sidebar-primary-item"> 
+<div class="ablog-sidebar-item ablog__postcard">
+   
+  <h2>
+     
+    <i class="fa fa-calendar"></i>
+    
+    <span>01 December 2020</span>
+    
+  </h2>
+  <ul>
+    <div class="ablog-sidebar-item ablog__postcard2">
         
-</ul>
 </div>
-        <div class="sidebar-primary-item">
-<h3>
-  <a href="../../blog/">Recent Posts</a>
-</h3>
-<ul>
-   
-  <li>
-    <a href="../2025-01-10-relative-information-and-the-dual-numbers/"
-      >10 January - Relative information and the dual numbers</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-10-16-singular-learning-relative-information-and-the-dual-numbers/"
-      >16 October - Singular learning, relative information and the dual numbers</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-10-01-program-synthesis/"
-      >01 October - Program Synthesis</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-09-24-safety-by-shared-synthesis/"
-      >24 September - Safety by shared synthesis</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-05-22-formal-ai-assisted-code-specification-and-synthesis-concrete-steps-towards-safe-sociotechnical-systems/"
-      >22 May - Formal AI-assisted code specification and synthesis: concrete steps towards safe sociotechnical systems</a
-    >
-  </li>
-  
-</ul>
+  </ul>
 </div>
-        <div class="sidebar-primary-item">
-<h3>
-  <a href="../../blog/archive/">Archives</a>
-</h3>
-<ul>
-   
-  <li>
-    <a href="../../blog/2025/">2025 (1)</a>
-  </li>
+</div>
+        <div class="sidebar-primary-item"> 
+<div class="ablog-sidebar-item ablog__recentposts">
+  <h3>
+    <a href="../../blog/">Recent Posts</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../2025-01-10-relative-information-and-the-dual-numbers/">
+        10 January - Relative information and the dual numbers
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2024/">2024 (5)</a>
-  </li>
+    <li>
+      <a href="../2024-10-16-singular-learning-relative-information-and-the-dual-numbers/">
+        16 October - Singular learning, relative information and the dual numbers
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2023/">2023 (5)</a>
-  </li>
+    <li>
+      <a href="../2024-10-01-program-synthesis/">
+        01 October - Program Synthesis
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2022/">2022 (3)</a>
-  </li>
+    <li>
+      <a href="../2024-09-24-safety-by-shared-synthesis/">
+        24 September - Safety by shared synthesis
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2021/">2021 (8)</a>
-  </li>
+    <li>
+      <a href="../2024-05-22-formal-ai-assisted-code-specification-and-synthesis-concrete-steps-towards-safe-sociotechnical-systems/">
+        22 May - Formal AI-assisted code specification and synthesis: concrete steps towards safe sociotechnical systems
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2020/">2020 (12)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2018/">2018 (1)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2017/">2017 (1)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2016/">2016 (3)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2014/">2014 (2)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2012/">2012 (1)</a>
-  </li>
-   
-</ul>
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item"> 
+<div class="ablog-sidebar-item ablog__archive">
+  <h3>
+    <a href="../../blog/archive/">Archives</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../blog/2025/">2025 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2024/">2024 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2023/">2023 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2022/">2022 (3)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2021/">2021 (8)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2020/">2020 (12)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2018/">2018 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2017/">2017 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2016/">2016 (3)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2014/">2014 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2012/">2012 (1)</a>
+    </li>
+     
+  </ul>
+</div>
 </div>
     </div>
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -489,8 +422,6 @@
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -499,7 +430,7 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">Biased...</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Biased stochastic approximation</span></li>
   </ul>
 </nav>
 </div>
@@ -516,12 +447,12 @@
                 
 <div id="searchbox"></div>
                 <article class="bd-article">
-                   <div class="tex2jax_ignore mathjax_ignore section" id="biased-stochastic-approximation">
-<h1>Biased stochastic approximation<a class="headerlink" href="#biased-stochastic-approximation" title="Permalink to this heading">#</a></h1>
+                   <section class="tex2jax_ignore mathjax_ignore" id="biased-stochastic-approximation">
+<h1>Biased stochastic approximation<a class="headerlink" href="#biased-stochastic-approximation" title="Link to this heading">#</a></h1>
 <p>We explore the convergence of continuous-time ordinary differential equations and their discrete-time analogs, such as stochastic approximation and gradient descent, through the lens of Lyapunov theory <span id="id1">[<a class="reference internal" href="#id47" title="Léon Bottou and others. Online learning and stochastic approximations. On-line learning in neural networks, 17(9):142, 1998.">B+98</a>]</span> <span id="id2">[<a class="reference internal" href="#id44" title="Yingshen Li and Mark Rowland. Stochastic approximation theory (slides). http://yingzhenli.net/home/pdf/SA.pdf, 2015.">LR15</a>]</span>. From this perspective, we will study biased stochastic approximation <span id="id3">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id51" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span> where the expectation of the stochastic updates conditioned on the past (which we call the <em>conditional expectation</em>) is not the same as the expectation of the stochastic updates under the stationary distribution (which we call the <em>total expectation</em>).</p>
 <p>This post is a continuation from our <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">series</span></a> on spiking networks, path integrals and motivic information.</p>
-<div class="section" id="continuous-time-dynamics">
-<h2>Continuous-time dynamics<a class="headerlink" href="#continuous-time-dynamics" title="Permalink to this heading">#</a></h2>
+<section id="continuous-time-dynamics">
+<h2>Continuous-time dynamics<a class="headerlink" href="#continuous-time-dynamics" title="Link to this heading">#</a></h2>
 <p>Suppose we have a continuous-time dynamical system with state space <span class="math notranslate nohighlight">\(\mathcal{H} \subset \mathbb{R}^d\)</span> and update rule</p>
 <div class="math notranslate nohighlight">
 \[\dot{\eta} = -h(\eta),\]</div>
@@ -540,9 +471,9 @@
 <div class="math notranslate nohighlight">
 \[\Vert h(\eta) \Vert^2 = \langle \nabla V(\eta), h(\eta)\rangle\]</div>
 <p>which will be strictly positive away from the zeros of <span class="math notranslate nohighlight">\(h.\)</span></p>
-</div>
-<div class="section" id="discrete-time-dynamics">
-<h2>Discrete-time dynamics<a class="headerlink" href="#discrete-time-dynamics" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="discrete-time-dynamics">
+<h2>Discrete-time dynamics<a class="headerlink" href="#discrete-time-dynamics" title="Link to this heading">#</a></h2>
 <p>For discrete-time dynamical systems such as gradient descent or stochastic approximation, the situation is more delicate. The value of the function <span class="math notranslate nohighlight">\(V: \mathcal{H} \rightarrow \mathbb{R}\)</span> may fluctuate up and down with each discrete time step, but the <em>total expectation</em> of <span class="math notranslate nohighlight">\(\Vert h(\eta) \Vert\)</span> or of <span class="math notranslate nohighlight">\(\nabla V(\eta)\)</span> decreases over time so the system converges to a fixed point or to a critical point.</p>
 <p>Specifically, suppose that we have discrete-time stochastic process</p>
 <div class="math notranslate nohighlight">
@@ -581,9 +512,9 @@
 <div class="math notranslate nohighlight">
 \[\displaystyle \sum_{k=0}^n E_{\eta_k}(X_{k+1}).\]</div>
 <p>If the conditional expectation of <span class="math notranslate nohighlight">\(E_{\eta_n}(X_{n+1})\)</span> is zero, then the above stochastic integral is a martingale. To tackle the scenario where the conditional expectation of <span class="math notranslate nohighlight">\(E_{\eta_n}(X_{n+1})\)</span> is non-zero, we will need to find another suitable martingale by solving a Poisson equation, so as to control the behavior of the stochastic integral. We introduce this strategy in the next section.</p>
-</div>
-<div class="section" id="martingales-stochastic-integrals-and-the-poisson-equation">
-<h2>Martingales, stochastic integrals and the Poisson equation<a class="headerlink" href="#martingales-stochastic-integrals-and-the-poisson-equation" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="martingales-stochastic-integrals-and-the-poisson-equation">
+<h2>Martingales, stochastic integrals and the Poisson equation<a class="headerlink" href="#martingales-stochastic-integrals-and-the-poisson-equation" title="Link to this heading">#</a></h2>
 <p>Given a (discrete-time or continuous-time) stochastic process <span class="math notranslate nohighlight">\(\{H_t\}_{0 \leq t},\)</span> let <span class="math notranslate nohighlight">\(\mathcal{F}_s\)</span> denote the filtration (i.e. sequence of sigma algebras with <span class="math notranslate nohighlight">\(\mathcal{F}_s \subseteq \mathcal{F}_t\)</span> for all <span class="math notranslate nohighlight">\(s \leq t\)</span>) generated by the random variations <span class="math notranslate nohighlight">\(\{H_t\}_{0\leq t \leq s}.\)</span> Recall that <span class="math notranslate nohighlight">\(H_t\)</span> is a martingale if for all <span class="math notranslate nohighlight">\(s \leq t,\)</span></p>
 <div class="math notranslate nohighlight">
 \[\mathbb{E}[ H_t \vert  \mathcal{F}_s] = H_s.\]</div>
@@ -622,9 +553,9 @@
 <p>Taking limits as <span class="math notranslate nohighlight">\(t \rightarrow \infty\)</span> and observing that under strong ergodicity <span class="math notranslate nohighlight">\(P^t g(x)\)</span> goes to the total expectation of <span class="math notranslate nohighlight">\(g(x)\)</span> which is zero, the candidate solution follows.</p>
 <p>The strategy for integrals of functions of discrete-time stochastic processes works in a similar way, where solutions to the Poisson equation provide martingales whose expected values vanish. We will use this strategy for analyzing biased stochastic approximation algorithms.</p>
 <p>In a future post, we will explore martingales, stochastic integrals and the Poisson equation through the lens of regularity structures <span id="id7">[<a class="reference internal" href="#id53" title="Martin Hairer. A theory of regularity structures. Inventiones mathematicae, 198(2):269–504, 2014.">Hai14</a>]</span>.</p>
-</div>
-<div class="section" id="biased-updates">
-<h2>Biased updates<a class="headerlink" href="#biased-updates" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="biased-updates">
+<h2>Biased updates<a class="headerlink" href="#biased-updates" title="Link to this heading">#</a></h2>
 <p>For the rest of this post, we assume that our discrete-time parameter-controlled stochastic process <span class="math notranslate nohighlight">\(\{X_n\}_{0 \leq n}\)</span> is Markov. Explicitly, let <span class="math notranslate nohighlight">\((\mathcal{X}, \Sigma)\)</span> be a measurable space. A function <span class="math notranslate nohighlight">\(P:\mathcal{X} \times \Sigma \rightarrow [0,1]\)</span> is a Markov kernel if <span class="math notranslate nohighlight">\(P(x, \cdot): \Sigma \rightarrow [0,1]\)</span> is a distribution for all <span class="math notranslate nohighlight">\(x \in \mathcal{X}\)</span>, and <span class="math notranslate nohighlight">\(P(\cdot, A): \mathcal{X} \rightarrow [0,1]\)</span> is measurable for all <span class="math notranslate nohighlight">\(A \in \Sigma.\)</span> A Markov kernel generalizes the notion of a transition matrix beyond finite-state Markov chains.</p>
 <p>Suppose we have a Markov kernel <span class="math notranslate nohighlight">\(P_\eta\)</span> for each <span class="math notranslate nohighlight">\(\eta \in \mathcal{H}\)</span>. Let <span class="math notranslate nohighlight">\(L_\eta\)</span> be the generator of the process with Markov kernel <span class="math notranslate nohighlight">\(P_\eta\)</span>, i.e. <span class="math notranslate nohighlight">\(L_\eta\)</span> acts on the space of measurable functions such that for any function <span class="math notranslate nohighlight">\(g\)</span> and state <span class="math notranslate nohighlight">\(x,\)</span></p>
 <div class="math notranslate nohighlight">
@@ -698,54 +629,64 @@
 <p>for <span class="math notranslate nohighlight">\(0 \leq k \leq n,\)</span> using step sizes <span class="math notranslate nohighlight">\(\gamma_k = \gamma_0 k^{-1/2}\)</span> for sufficiently small <span class="math notranslate nohighlight">\(\gamma_0 \geq 0,\)</span> and using a random stop time <span class="math notranslate nohighlight">\(0 \leq N \leq n\)</span> with <span class="math notranslate nohighlight">\(\mathbb{P}(N = l) := (\sum_{k=0}^n \gamma_{k+1})^{-1} \gamma_{l+1}.\)</span> Then assuming A1-A6, we have</p>
 <div class="math notranslate nohighlight">
 \[\mathbb{E}(\Vert h(\eta_N) \Vert^2) = O(c_0 + \log n / \sqrt{n} ).\]</div>
-</div>
+</section>
 <hr class="docutils" />
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <div class="docutils container" id="id10">
-<dl class="citation">
-<dt class="label" id="id47"><span class="brackets"><a class="fn-backref" href="#id1">B+98</a></span></dt>
-<dd><p>Léon Bottou and others. Online learning and stochastic approximations. <em>On-line learning in neural networks</em>, 17(9):142, 1998.</p>
-</dd>
-<dt class="label" id="id46"><span class="brackets">CChafaiG12</span><span class="fn-backref">(<a href="#id4">1</a>,<a href="#id6">2</a>)</span></dt>
-<dd><p>Patrick Cattiaux, Djalil Chafaı, and Arnaud Guillin. Central limit theorems for additive functionals of ergodic markov diffusions processes. <em>ALEA</em>, 9(2):337–382, 2012.</p>
-</dd>
-<dt class="label" id="id53"><span class="brackets"><a class="fn-backref" href="#id7">Hai14</a></span></dt>
-<dd><p>Martin Hairer. A theory of regularity structures. <em>Inventiones mathematicae</em>, 198(2):269–504, 2014.</p>
-</dd>
-<dt class="label" id="id45"><span class="brackets">KMMW19</span><span class="fn-backref">(<a href="#id3">1</a>,<a href="#id8">2</a>,<a href="#id9">3</a>)</span></dt>
-<dd><p>Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In <em>Conference on Learning Theory</em>, 1944–1974. PMLR, 2019.</p>
-</dd>
-<dt class="label" id="id44"><span class="brackets"><a class="fn-backref" href="#id2">LR15</a></span></dt>
-<dd><p>Yingshen Li and Mark Rowland. Stochastic approximation theory (slides). <a class="reference external" href="http://yingzhenli.net/home/pdf/SA.pdf">http://yingzhenli.net/home/pdf/SA.pdf</a>, 2015.</p>
-</dd>
-<dt class="label" id="id43"><span class="brackets"><a class="fn-backref" href="#id5">Oks13</a></span></dt>
-<dd><p>Bernt Oksendal. <em>Stochastic differential equations: an introduction with applications</em>. Springer Science &amp; Business Media, 2013.</p>
-</dd>
-</dl>
+<div role="list" class="citation-list">
+<div class="citation" id="id47" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">B+98</a><span class="fn-bracket">]</span></span>
+<p>Léon Bottou and others. Online learning and stochastic approximations. <em>On-line learning in neural networks</em>, 17(9):142, 1998.</p>
+</div>
+<div class="citation" id="id46" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>CChafaiG12<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id4">1</a>,<a role="doc-backlink" href="#id6">2</a>)</span>
+<p>Patrick Cattiaux, Djalil Chafaı, and Arnaud Guillin. Central limit theorems for additive functionals of ergodic markov diffusions processes. <em>ALEA</em>, 9(2):337–382, 2012.</p>
+</div>
+<div class="citation" id="id53" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">Hai14</a><span class="fn-bracket">]</span></span>
+<p>Martin Hairer. A theory of regularity structures. <em>Inventiones mathematicae</em>, 198(2):269–504, 2014.</p>
+</div>
+<div class="citation" id="id45" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>KMMW19<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id3">1</a>,<a role="doc-backlink" href="#id8">2</a>,<a role="doc-backlink" href="#id9">3</a>)</span>
+<p>Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In <em>Conference on Learning Theory</em>, 1944–1974. PMLR, 2019.</p>
+</div>
+<div class="citation" id="id44" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">LR15</a><span class="fn-bracket">]</span></span>
+<p>Yingshen Li and Mark Rowland. Stochastic approximation theory (slides). <a class="reference external" href="http://yingzhenli.net/home/pdf/SA.pdf">http://yingzhenli.net/home/pdf/SA.pdf</a>, 2015.</p>
+</div>
+<div class="citation" id="id43" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">Oks13</a><span class="fn-bracket">]</span></span>
+<p>Bernt Oksendal. <em>Stochastic differential equations: an introduction with applications</em>. Springer Science &amp; Business Media, 2013.</p>
 </div>
 </div>
 </div>
+</section>
+</section>
 
-<div class="section">
-    
-
-<div class="section">
-  <span style="float: left">
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
      
     <a href="../2020-10-23-machine-learning-with-relative-information/">
-      <i class="fa fa-arrow-circle-left"></i> Machine learning with relative information
+      
+      <i class="fa fa-arrow-circle-left"></i>
+      
+      <span>Machine learning with relative information</span>
     </a>
     
   </span>
-  <span>&nbsp;</span>
-  <span style="float: right">
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
      
     <a href="../2021-03-21-process-learning-with-relative-information/">
-      Process learning with relative information <i
-        class="fa fa-arrow-circle-right"
-      ></i
-      >
+      <span>Process learning with relative information</span>
+      
+      <i class="fa fa-arrow-circle-right"></i>
+      
     </a>
     
   </span>
@@ -786,7 +727,8 @@
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -806,13 +748,13 @@
   </nav></div>
 
   <div class="sidebar-secondary-item">
-
-  <div class="tocsection sourcelink">
-    <a href="../../_sources/posts/2020-12-01-biased-stochastic-approximation.md.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/posts/2020-12-01-biased-stochastic-approximation.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
 
 </div></div>
               
@@ -827,8 +769,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -848,7 +790,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
     <br/>
   </p>
 </div>
@@ -861,7 +803,8 @@
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

@@ -1,13 +1,13 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta property="og:title" content="Conditional relative information and its axiomatizations" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Conditional relative information and its axiomatizations" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://shaoweilin.github.io/posts/2020-09-18-conditional-relative-information-and-its-axiomatizations/" />
 <meta property="og:site_name" content="Types from Spikes" />
@@ -24,77 +24,53 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-dropdown.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8a9ddf57" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-dropdown.css?v=995e94df" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.min.css?v=21c0b90a" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/documentation_options.js?v=187304be"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2020-09-18-conditional-relative-information-and-its-axiomatizations';</script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about/" />
     <link rel="index" title="Index" href="../../genindex/" />
     <link rel="search" title="Search" href="../../search/" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/> 
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" /> 
 <link
   rel="alternate"
   type="application/atom+xml"
   href="../../blog/atom.xml"
   title="Types from Spikes"
 />
- 
-<style type="text/css">
-  ul.ablog-archive {
-    list-style: none;
-    overflow: auto;
-    margin-left: 0px;
-  }
-  ul.ablog-archive li {
-    float: left;
-    margin-right: 5px;
-    font-size: 80%;
-  }
-  ul.postlist a {
-    font-style: italic;
-  }
-  ul.postlist-style-disc {
-    list-style-type: disc;
-  }
-  ul.postlist-style-none {
-    list-style-type: none;
-  }
-  ul.postlist-style-circle {
-    list-style-type: circle;
-  }
-</style>
-
+  
   </head>
   
   
@@ -110,19 +86,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../search/"
       method="get">
@@ -130,7 +95,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search"
          aria-label="Search"
          autocomplete="off"
@@ -138,8 +102,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -206,15 +170,9 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
         </div>
       
       
@@ -234,24 +192,6 @@
         </li>
 </ul></div>
       
-        <div class="navbar-item">
-<form class="bd-search d-flex align-items-center"
-      action="../../search/"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search"
-         aria-label="Search"
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-      
     </div>
     
   </div>
@@ -259,15 +199,9 @@
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
     </div>
   
 
@@ -288,7 +222,8 @@
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -342,136 +277,134 @@
         </li>
 </ul></div>
         
-          <div class="navbar-item">
-<form class="bd-search d-flex align-items-center"
-      action="../../search/"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search"
-         aria-label="Search"
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-        
       </div>
     
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">  
-<h2>
-   <i class="fa fa-calendar"></i>
-  18 September 2020 
-</h2>
-
-<ul>
+        <div class="sidebar-primary-item"> 
+<div class="ablog-sidebar-item ablog__postcard">
+   
+  <h2>
+     
+    <i class="fa fa-calendar"></i>
+    
+    <span>18 September 2020</span>
+    
+  </h2>
+  <ul>
+    <div class="ablog-sidebar-item ablog__postcard2">
         
-</ul>
 </div>
-        <div class="sidebar-primary-item">
-<h3>
-  <a href="../../blog/">Recent Posts</a>
-</h3>
-<ul>
-   
-  <li>
-    <a href="../2025-01-10-relative-information-and-the-dual-numbers/"
-      >10 January - Relative information and the dual numbers</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-10-16-singular-learning-relative-information-and-the-dual-numbers/"
-      >16 October - Singular learning, relative information and the dual numbers</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-10-01-program-synthesis/"
-      >01 October - Program Synthesis</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-09-24-safety-by-shared-synthesis/"
-      >24 September - Safety by shared synthesis</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-05-22-formal-ai-assisted-code-specification-and-synthesis-concrete-steps-towards-safe-sociotechnical-systems/"
-      >22 May - Formal AI-assisted code specification and synthesis: concrete steps towards safe sociotechnical systems</a
-    >
-  </li>
-  
-</ul>
+  </ul>
 </div>
-        <div class="sidebar-primary-item">
-<h3>
-  <a href="../../blog/archive/">Archives</a>
-</h3>
-<ul>
-   
-  <li>
-    <a href="../../blog/2025/">2025 (1)</a>
-  </li>
+</div>
+        <div class="sidebar-primary-item"> 
+<div class="ablog-sidebar-item ablog__recentposts">
+  <h3>
+    <a href="../../blog/">Recent Posts</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../2025-01-10-relative-information-and-the-dual-numbers/">
+        10 January - Relative information and the dual numbers
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2024/">2024 (5)</a>
-  </li>
+    <li>
+      <a href="../2024-10-16-singular-learning-relative-information-and-the-dual-numbers/">
+        16 October - Singular learning, relative information and the dual numbers
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2023/">2023 (5)</a>
-  </li>
+    <li>
+      <a href="../2024-10-01-program-synthesis/">
+        01 October - Program Synthesis
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2022/">2022 (3)</a>
-  </li>
+    <li>
+      <a href="../2024-09-24-safety-by-shared-synthesis/">
+        24 September - Safety by shared synthesis
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2021/">2021 (8)</a>
-  </li>
+    <li>
+      <a href="../2024-05-22-formal-ai-assisted-code-specification-and-synthesis-concrete-steps-towards-safe-sociotechnical-systems/">
+        22 May - Formal AI-assisted code specification and synthesis: concrete steps towards safe sociotechnical systems
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2020/">2020 (12)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2018/">2018 (1)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2017/">2017 (1)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2016/">2016 (3)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2014/">2014 (2)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2012/">2012 (1)</a>
-  </li>
-   
-</ul>
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item"> 
+<div class="ablog-sidebar-item ablog__archive">
+  <h3>
+    <a href="../../blog/archive/">Archives</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../blog/2025/">2025 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2024/">2024 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2023/">2023 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2022/">2022 (3)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2021/">2021 (8)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2020/">2020 (12)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2018/">2018 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2017/">2017 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2016/">2016 (3)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2014/">2014 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2012/">2012 (1)</a>
+    </li>
+     
+  </ul>
+</div>
 </div>
     </div>
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -489,8 +422,6 @@
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -499,7 +430,7 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">Conditional...</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Conditional relative information and its axiomatizations</span></li>
   </ul>
 </nav>
 </div>
@@ -516,12 +447,12 @@
                 
 <div id="searchbox"></div>
                 <article class="bd-article">
-                   <div class="tex2jax_ignore mathjax_ignore section" id="conditional-relative-information-and-its-axiomatizations">
-<h1>Conditional relative information and its axiomatizations<a class="headerlink" href="#conditional-relative-information-and-its-axiomatizations" title="Permalink to this heading">#</a></h1>
+                   <section class="tex2jax_ignore mathjax_ignore" id="conditional-relative-information-and-its-axiomatizations">
+<h1>Conditional relative information and its axiomatizations<a class="headerlink" href="#conditional-relative-information-and-its-axiomatizations" title="Link to this heading">#</a></h1>
 <p>In this post, we will study the conditional form of relative information. We will also look at how conditional relative information can be axiomatized and extended to non-real-valued measures.</p>
 <p>This post is a continuation from our <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">series</span></a> on spiking networks, path integrals and motivic information.</p>
-<div class="section" id="what-is-conditional-relative-information">
-<h2>What is conditional relative information?<a class="headerlink" href="#what-is-conditional-relative-information" title="Permalink to this heading">#</a></h2>
+<section id="what-is-conditional-relative-information">
+<h2>What is conditional relative information?<a class="headerlink" href="#what-is-conditional-relative-information" title="Link to this heading">#</a></h2>
 <p>Suppose we have two random variables <span class="math notranslate nohighlight">\(X, Y\)</span> and probability measures <span class="math notranslate nohighlight">\(P, Q\)</span> on <span class="math notranslate nohighlight">\(\Omega\)</span>. We are interested in how far the model conditional <span class="math notranslate nohighlight">\(P_{Y\vert X}\)</span> is to the true conditional <span class="math notranslate nohighlight">\(Q_{Y\vert X}\)</span> on average over <span class="math notranslate nohighlight">\(Q_X\)</span>, and we want to ignore the model marginal <span class="math notranslate nohighlight">\(P_X\)</span>.</p>
 <p>Let <span class="math notranslate nohighlight">\(P_{XY}, Q_{XY}\)</span> be the induced joint distributions for <span class="math notranslate nohighlight">\(X, Y\)</span>. We first construct a distribution <span class="math notranslate nohighlight">\(R_{XY}\)</span> which has the same conditional distribution <span class="math notranslate nohighlight">\(R_{Y\vert X} = P_{Y\vert X}\)</span> as the model but has a marginal <span class="math notranslate nohighlight">\(R_X = Q_X\)</span> equal to that of the true distribution <span id="id1">[<a class="reference internal" href="#id62" title="Robert M Gray. Entropy and information theory. Springer Science &amp; Business Media, 2011.">Gra11</a>]</span>. Namely,</p>
 <div class="math notranslate nohighlight">
@@ -534,17 +465,17 @@
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{rl} I_{Q\Vert P}(Y\vert X) &amp;= \int \int q(y\vert x) \log \frac{q(y\vert x)}{p(y\vert x)}\, dy \,q(x)dx \\ &amp; \\ &amp;= \int \int q(y, x) \log \frac{q(y\vert x)}{p(y\vert x)} \,dy\, dx \end{array}.\end{split}\]</div>
 <p>which is the relative information to <span class="math notranslate nohighlight">\(q(y\vert x)\)</span> from <span class="math notranslate nohighlight">\(p(y\vert x)\)</span> averaged over <span class="math notranslate nohighlight">\(q(x)\)</span>.</p>
-</div>
-<div class="section" id="whats-is-the-chain-rule-for-conditional-relative-information">
-<h2>Whats is the chain rule for conditional relative information?<a class="headerlink" href="#whats-is-the-chain-rule-for-conditional-relative-information" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="whats-is-the-chain-rule-for-conditional-relative-information">
+<h2>Whats is the chain rule for conditional relative information?<a class="headerlink" href="#whats-is-the-chain-rule-for-conditional-relative-information" title="Link to this heading">#</a></h2>
 <p>In statistics and machine learning, we often think of <span class="math notranslate nohighlight">\(Q\)</span> as a true distribution that we are trying to uncover and <span class="math notranslate nohighlight">\(P\)</span> as a model distribution for approximating <span class="math notranslate nohighlight">\(Q\)</span>. The relative information <span class="math notranslate nohighlight">\(I_{Q\Vert P}\)</span> measures how far the model is to the truth.</p>
 <p>To uncover the truth, it makes strategic sense to study different facets <span class="math notranslate nohighlight">\(X, Y\)</span> of reality, and to build up reality one facet at a time. For example, we may want to know how far our model is to reality in modeling <span class="math notranslate nohighlight">\(X\)</span> and focus on modeling <span class="math notranslate nohighlight">\(X\)</span>, before moving on to what our model says about both <span class="math notranslate nohighlight">\(X, Y\)</span>. The chain rule of conditional relative information says that the divergence of our model to reality for <span class="math notranslate nohighlight">\(X, Y\)</span> is simply the sum of the divergences for <span class="math notranslate nohighlight">\(X\)</span> and for <span class="math notranslate nohighlight">\(Y \vert X\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\tag{CR} I_{Q\Vert P}(Y, X) = I_{Q\Vert P}(Y\vert X) + I_{Q\Vert P}(X).\]</div>
 <p>Therefore, to get a good model of <span class="math notranslate nohighlight">\(X, Y\)</span>, we could attempt to minimize the divergences for <span class="math notranslate nohighlight">\(X\)</span> and for <span class="math notranslate nohighlight">\(Y \vert X\)</span> in parallel.</p>
-</div>
-<div class="section" id="how-do-we-derive-conditional-entropy-from-conditional-relative-information">
-<h2>How do we derive conditional entropy from conditional relative information?<a class="headerlink" href="#how-do-we-derive-conditional-entropy-from-conditional-relative-information" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="how-do-we-derive-conditional-entropy-from-conditional-relative-information">
+<h2>How do we derive conditional entropy from conditional relative information?<a class="headerlink" href="#how-do-we-derive-conditional-entropy-from-conditional-relative-information" title="Link to this heading">#</a></h2>
 <p>Just as the entropy of a random variable <span class="math notranslate nohighlight">\(X\)</span> with distribution <span class="math notranslate nohighlight">\(P_X\)</span> can be defined as the relative information to the dependent distribution <span class="math notranslate nohighlight">\(P_{XX}\)</span> from the independent distribution <span class="math notranslate nohighlight">\(P_X \times P_X,\)</span> we will do the same for conditional entropy.</p>
 <p>Given random variables <span class="math notranslate nohighlight">\(X, Y\)</span> with joint distribution <span class="math notranslate nohighlight">\(P_{XY}\)</span>, we define the conditional entropy of <span class="math notranslate nohighlight">\(Y \vert X\)</span> as</p>
 <div class="math notranslate nohighlight">
@@ -556,9 +487,9 @@
 <p>By the definition of entropy in our <a class="reference internal" href="../2020-09-08-building-foundations-of-information-theory-on-relative-information/"><span class="doc std std-doc">introduction</span></a>, the first and third terms are the entropies <span class="math notranslate nohighlight">\(H(Y,X)\)</span> and <span class="math notranslate nohighlight">\(H(X)\)</span> respectively, while the second term is the conditional entropy <span class="math notranslate nohighlight">\(H(Y\vert X)\)</span>. Thus, we recover the classical chain rule for conditional entropy</p>
 <div class="math notranslate nohighlight">
 \[H(Y,X) = H(Y\vert X) +H(X).\]</div>
-</div>
-<div class="section" id="is-there-an-axiomatization-of-conditional-entropy">
-<h2>Is there an axiomatization of conditional entropy?<a class="headerlink" href="#is-there-an-axiomatization-of-conditional-entropy" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="is-there-an-axiomatization-of-conditional-entropy">
+<h2>Is there an axiomatization of conditional entropy?<a class="headerlink" href="#is-there-an-axiomatization-of-conditional-entropy" title="Link to this heading">#</a></h2>
 <p>As described in our <a class="reference internal" href="../2020-09-08-building-foundations-of-information-theory-on-relative-information/"><span class="doc std std-doc">previous post</span></a>, we allow the total measures of <span class="math notranslate nohighlight">\(P, Q\)</span> to be different from one, but we require their total measures to be the same.</p>
 <p>We start with an axiomatizations of conditional entropy with the hope of deriving axiomatizations of conditional relative information. I like the following categorical view of conditional entropy <span id="id2">[<a class="reference internal" href="#id60" title="John C Baez, Tobias Fritz, and Tom Leinster. A characterization of entropy in terms of information loss. Entropy, 13(11):1945–1957, 2011.">BFL11</a>]</span>. I’ve taken the liberty of rewriting it in our notations.</p>
 <p>Given a measured space <span class="math notranslate nohighlight">\((\Omega, \mathcal{B}, P)\)</span>, a finite measurable function <span class="math notranslate nohighlight">\(Y : \Omega \rightarrow S_Y\)</span> and a morphism <span class="math notranslate nohighlight">\(f :S_Y \rightarrow S_X\)</span> between finite sets, let <span class="math notranslate nohighlight">\(X = f \circ Y\)</span> and let <span class="math notranslate nohighlight">\(P_Y, P_X\)</span> be the induced measures on <span class="math notranslate nohighlight">\(S_Y, S_X\)</span>.</p>
@@ -577,9 +508,9 @@
 <p>Then, <span class="math notranslate nohighlight">\(F_P(f)\)</span> must be <span class="math notranslate nohighlight">\(c H(Y\vert X)\)</span> for some constant <span class="math notranslate nohighlight">\(c \geq 0\)</span>.</p>
 <p>Given a classical conditional entropy <span class="math notranslate nohighlight">\(H(Y\vert X)\)</span>, we can now write this as <span class="math notranslate nohighlight">\(F_P(f)\)</span> where <span class="math notranslate nohighlight">\(f\)</span> is the projection <span class="math notranslate nohighlight">\((Y,X) \mapsto X\)</span>.</p>
 <p>The nice thing about the above categorical axiomatization of conditional entropy is that it fits into the view where the objects of study are spaces <span class="math notranslate nohighlight">\(E, B\)</span> and fibrations <span class="math notranslate nohighlight">\(\pi: E \rightarrow B\)</span> equipped with measures. The conditional entropy is the sum of the entropies of the fibers <span class="math notranslate nohighlight">\(\pi^{-1}(b)\)</span> weighted by <span class="math notranslate nohighlight">\(P_B(b)\)</span>.</p>
-</div>
-<div class="section" id="is-there-an-axiomatization-of-conditional-relative-information">
-<h2>Is there an axiomatization of conditional relative information?<a class="headerlink" href="#is-there-an-axiomatization-of-conditional-relative-information" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="is-there-an-axiomatization-of-conditional-relative-information">
+<h2>Is there an axiomatization of conditional relative information?<a class="headerlink" href="#is-there-an-axiomatization-of-conditional-relative-information" title="Link to this heading">#</a></h2>
 <p>We prefer to work with conditional relative information rather than conditional entropy. Its axiomatization should tell us how it behaves with respect to products and coproducts of the measures being compared.</p>
 <p>Our axioms. Note the addition of the product rule. I’m not sure if the product axiom can be derived from the others when the state spaces are not finite. Perhaps it will follow from continuity and the fact that the limit of coproducts is the product of limits.</p>
 <ol class="arabic simple">
@@ -594,41 +525,45 @@
 <div class="math notranslate nohighlight">
 \[F_{P_X}(f) = G_{TP_{XX} \Vert P_X \times P_X} (f)\]</div>
 <p>where <span class="math notranslate nohighlight">\(T\)</span> is the total measure of <span class="math notranslate nohighlight">\(P_X\)</span>.</p>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <div class="docutils container" id="id3">
-<dl class="citation">
-<dt class="label" id="id60"><span class="brackets"><a class="fn-backref" href="#id2">BFL11</a></span></dt>
-<dd><p>John C Baez, Tobias Fritz, and Tom Leinster. A characterization of entropy in terms of information loss. <em>Entropy</em>, 13(11):1945–1957, 2011.</p>
-</dd>
-<dt class="label" id="id62"><span class="brackets"><a class="fn-backref" href="#id1">Gra11</a></span></dt>
-<dd><p>Robert M Gray. <em>Entropy and information theory</em>. Springer Science &amp; Business Media, 2011.</p>
-</dd>
-</dl>
+<div role="list" class="citation-list">
+<div class="citation" id="id60" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">BFL11</a><span class="fn-bracket">]</span></span>
+<p>John C Baez, Tobias Fritz, and Tom Leinster. A characterization of entropy in terms of information loss. <em>Entropy</em>, 13(11):1945–1957, 2011.</p>
+</div>
+<div class="citation" id="id62" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">Gra11</a><span class="fn-bracket">]</span></span>
+<p>Robert M Gray. <em>Entropy and information theory</em>. Springer Science &amp; Business Media, 2011.</p>
 </div>
 </div>
 </div>
+</section>
+</section>
 
-<div class="section">
-    
-
-<div class="section">
-  <span style="float: left">
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
      
     <a href="../2020-09-08-building-foundations-of-information-theory-on-relative-information/">
-      <i class="fa fa-arrow-circle-left"></i> Building foundations of information theory on relative information
+      
+      <i class="fa fa-arrow-circle-left"></i>
+      
+      <span>Building foundations of information theory on relative information</span>
     </a>
     
   </span>
-  <span>&nbsp;</span>
-  <span style="float: right">
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
      
     <a href="../2020-10-05-zeta-functions-mellin-transforms-and-the-gelfand-leray-form/">
-      Zeta functions, Mellin transforms and the Gelfand-Leray form <i
-        class="fa fa-arrow-circle-right"
-      ></i
-      >
+      <span>Zeta functions, Mellin transforms and the Gelfand-Leray form</span>
+      
+      <i class="fa fa-arrow-circle-right"></i>
+      
     </a>
     
   </span>
@@ -669,7 +604,8 @@
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -690,13 +626,13 @@
   </nav></div>
 
   <div class="sidebar-secondary-item">
-
-  <div class="tocsection sourcelink">
-    <a href="../../_sources/posts/2020-09-18-conditional-relative-information-and-its-axiomatizations.md.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/posts/2020-09-18-conditional-relative-information-and-its-axiomatizations.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
 
 </div></div>
               
@@ -711,8 +647,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -732,7 +668,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
     <br/>
   </p>
 </div>
@@ -745,7 +681,8 @@
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

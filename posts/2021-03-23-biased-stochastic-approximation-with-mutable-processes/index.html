@@ -1,13 +1,13 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta property="og:title" content="Biased stochastic approximation with mutable processes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Biased stochastic approximation with mutable processes" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://shaoweilin.github.io/posts/2021-03-23-biased-stochastic-approximation-with-mutable-processes/" />
 <meta property="og:site_name" content="Types from Spikes" />
@@ -24,77 +24,53 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-dropdown.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8a9ddf57" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-dropdown.css?v=995e94df" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.min.css?v=21c0b90a" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/documentation_options.js?v=187304be"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2021-03-23-biased-stochastic-approximation-with-mutable-processes';</script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about/" />
     <link rel="index" title="Index" href="../../genindex/" />
     <link rel="search" title="Search" href="../../search/" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/> 
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" /> 
 <link
   rel="alternate"
   type="application/atom+xml"
   href="../../blog/atom.xml"
   title="Types from Spikes"
 />
- 
-<style type="text/css">
-  ul.ablog-archive {
-    list-style: none;
-    overflow: auto;
-    margin-left: 0px;
-  }
-  ul.ablog-archive li {
-    float: left;
-    margin-right: 5px;
-    font-size: 80%;
-  }
-  ul.postlist a {
-    font-style: italic;
-  }
-  ul.postlist-style-disc {
-    list-style-type: disc;
-  }
-  ul.postlist-style-none {
-    list-style-type: none;
-  }
-  ul.postlist-style-circle {
-    list-style-type: circle;
-  }
-</style>
-
+  
   </head>
   
   
@@ -110,19 +86,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../search/"
       method="get">
@@ -130,7 +95,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search"
          aria-label="Search"
          autocomplete="off"
@@ -138,8 +102,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -206,15 +170,9 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
         </div>
       
       
@@ -234,24 +192,6 @@
         </li>
 </ul></div>
       
-        <div class="navbar-item">
-<form class="bd-search d-flex align-items-center"
-      action="../../search/"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search"
-         aria-label="Search"
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-      
     </div>
     
   </div>
@@ -259,15 +199,9 @@
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
     </div>
   
 
@@ -288,7 +222,8 @@
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -342,136 +277,134 @@
         </li>
 </ul></div>
         
-          <div class="navbar-item">
-<form class="bd-search d-flex align-items-center"
-      action="../../search/"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search"
-         aria-label="Search"
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-        
       </div>
     
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">  
-<h2>
-   <i class="fa fa-calendar"></i>
-  23 March 2021 
-</h2>
-
-<ul>
+        <div class="sidebar-primary-item"> 
+<div class="ablog-sidebar-item ablog__postcard">
+   
+  <h2>
+     
+    <i class="fa fa-calendar"></i>
+    
+    <span>23 March 2021</span>
+    
+  </h2>
+  <ul>
+    <div class="ablog-sidebar-item ablog__postcard2">
         
-</ul>
 </div>
-        <div class="sidebar-primary-item">
-<h3>
-  <a href="../../blog/">Recent Posts</a>
-</h3>
-<ul>
-   
-  <li>
-    <a href="../2025-01-10-relative-information-and-the-dual-numbers/"
-      >10 January - Relative information and the dual numbers</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-10-16-singular-learning-relative-information-and-the-dual-numbers/"
-      >16 October - Singular learning, relative information and the dual numbers</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-10-01-program-synthesis/"
-      >01 October - Program Synthesis</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-09-24-safety-by-shared-synthesis/"
-      >24 September - Safety by shared synthesis</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-05-22-formal-ai-assisted-code-specification-and-synthesis-concrete-steps-towards-safe-sociotechnical-systems/"
-      >22 May - Formal AI-assisted code specification and synthesis: concrete steps towards safe sociotechnical systems</a
-    >
-  </li>
-  
-</ul>
+  </ul>
 </div>
-        <div class="sidebar-primary-item">
-<h3>
-  <a href="../../blog/archive/">Archives</a>
-</h3>
-<ul>
-   
-  <li>
-    <a href="../../blog/2025/">2025 (1)</a>
-  </li>
+</div>
+        <div class="sidebar-primary-item"> 
+<div class="ablog-sidebar-item ablog__recentposts">
+  <h3>
+    <a href="../../blog/">Recent Posts</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../2025-01-10-relative-information-and-the-dual-numbers/">
+        10 January - Relative information and the dual numbers
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2024/">2024 (5)</a>
-  </li>
+    <li>
+      <a href="../2024-10-16-singular-learning-relative-information-and-the-dual-numbers/">
+        16 October - Singular learning, relative information and the dual numbers
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2023/">2023 (5)</a>
-  </li>
+    <li>
+      <a href="../2024-10-01-program-synthesis/">
+        01 October - Program Synthesis
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2022/">2022 (3)</a>
-  </li>
+    <li>
+      <a href="../2024-09-24-safety-by-shared-synthesis/">
+        24 September - Safety by shared synthesis
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2021/">2021 (8)</a>
-  </li>
+    <li>
+      <a href="../2024-05-22-formal-ai-assisted-code-specification-and-synthesis-concrete-steps-towards-safe-sociotechnical-systems/">
+        22 May - Formal AI-assisted code specification and synthesis: concrete steps towards safe sociotechnical systems
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2020/">2020 (12)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2018/">2018 (1)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2017/">2017 (1)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2016/">2016 (3)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2014/">2014 (2)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2012/">2012 (1)</a>
-  </li>
-   
-</ul>
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item"> 
+<div class="ablog-sidebar-item ablog__archive">
+  <h3>
+    <a href="../../blog/archive/">Archives</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../blog/2025/">2025 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2024/">2024 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2023/">2023 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2022/">2022 (3)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2021/">2021 (8)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2020/">2020 (12)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2018/">2018 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2017/">2017 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2016/">2016 (3)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2014/">2014 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2012/">2012 (1)</a>
+    </li>
+     
+  </ul>
+</div>
 </div>
     </div>
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -489,8 +422,6 @@
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -499,7 +430,7 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">Biased...</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Biased stochastic approximation with mutable processes</span></li>
   </ul>
 </nav>
 </div>
@@ -516,15 +447,15 @@
                 
 <div id="searchbox"></div>
                 <article class="bd-article">
-                   <div class="tex2jax_ignore mathjax_ignore section" id="biased-stochastic-approximation-with-mutable-processes">
-<h1>Biased stochastic approximation with mutable processes<a class="headerlink" href="#biased-stochastic-approximation-with-mutable-processes" title="Permalink to this heading">#</a></h1>
+                   <section class="tex2jax_ignore mathjax_ignore" id="biased-stochastic-approximation-with-mutable-processes">
+<h1>Biased stochastic approximation with mutable processes<a class="headerlink" href="#biased-stochastic-approximation-with-mutable-processes" title="Link to this heading">#</a></h1>
 <p>The goal of this post is to derive a general online learning recipe for training a <a class="reference internal" href="#2021-03-22-relative-inference-with-mutable-processes/#what-is-a-mutable-process"><span class="xref myst">mutable</span></a> process <span class="math notranslate nohighlight">\(\{Z_t,X_t\}\)</span> to learn the true distribution <span class="math notranslate nohighlight">\(Q_*(X)\)</span> of a partially-observed Markov process <span class="math notranslate nohighlight">\(\{X_t\}\)</span>. The recipe returns a generative distribution <span class="math notranslate nohighlight">\(P(Z,X)\)</span> whose marginal <span class="math notranslate nohighlight">\(P(X)\)</span> approximates <span class="math notranslate nohighlight">\(Q_*(X).\)</span></p>
 <p>The variables <span class="math notranslate nohighlight">\(Z\)</span> of the mutable process are auxiliary variables that assist in inference and computation. During training, the distribution of <span class="math notranslate nohighlight">\(Z\)</span> given <span class="math notranslate nohighlight">\(X\)</span> is controlled by a discriminative model <span class="math notranslate nohighlight">\(\{Q(Z\vert X)\}.\)</span> Our method works in both discrete time and continuous time. We assume in the mutable process that for each time <span class="math notranslate nohighlight">\(t,\)</span> the variables <span class="math notranslate nohighlight">\(Z_t\)</span> and <span class="math notranslate nohighlight">\(X_t\)</span> are conditionally independent of each other given their past.</p>
 <p>Our strategy is relative inference, where we use a relative information objective that measures the divergence between the discriminative distribution <span class="math notranslate nohighlight">\(Q(Z,X)\)</span> and the generative distribution <span class="math notranslate nohighlight">\(P(Z,X).\)</span> We minimize this objective by coordinate-wise updates to the discriminative and generative distributions using stochastic gradients.</p>
 <p>We will be using <a class="reference internal" href="../2020-12-01-biased-stochastic-approximation/"><span class="doc std std-doc">biased</span></a> stochastic approximation <span id="id1">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id51" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span> where the stochastic updates are dependent on the past but the conditional expectation of the stochastic updates given the past is not equal to the mean field. These biased stochastic approximation schemes for mutable processes generalize the classical expectation maximization algorithm for mutable models.</p>
 <p>This post is a continuation from our <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">series</span></a> on spiking networks, path integrals and motivic information.</p>
-<div class="section" id="what-do-we-assume-about-the-true-distribution-the-model-and-the-learning-objective">
-<h2>What do we assume about the true distribution, the model and the learning objective?<a class="headerlink" href="#what-do-we-assume-about-the-true-distribution-the-model-and-the-learning-objective" title="Permalink to this heading">#</a></h2>
+<section id="what-do-we-assume-about-the-true-distribution-the-model-and-the-learning-objective">
+<h2>What do we assume about the true distribution, the model and the learning objective?<a class="headerlink" href="#what-do-we-assume-about-the-true-distribution-the-model-and-the-learning-objective" title="Link to this heading">#</a></h2>
 <p>As <a class="reference internal" href="../2021-03-22-relative-inference-with-mutable-processes/"><span class="doc std std-doc">before</span></a>, we assume that the universe is a Markov process <span class="math notranslate nohighlight">\(\{X_t\},\)</span> and let its true distribution be the path measure <span class="math notranslate nohighlight">\(Q_*.\)</span></p>
 <p>Suppose that we have a parametric discriminative model <span class="math notranslate nohighlight">\(\{Q_\lambda : \lambda \in \Lambda\}\)</span> and a parametric generative model <span class="math notranslate nohighlight">\(\{P_\theta : \theta \in \Theta\}\)</span> where the distributions <span class="math notranslate nohighlight">\(Q_\lambda\)</span> and <span class="math notranslate nohighlight">\(P_\theta\)</span> are path measures on some joint process <span class="math notranslate nohighlight">\(\{(Z_t, X_t)\}.\)</span> The random variables <span class="math notranslate nohighlight">\(Z_t\)</span> represent computational states in this discriminative-generative model. We can also interpret the <span class="math notranslate nohighlight">\(Z_t\)</span> as sample beliefs from belief distributions <span class="math notranslate nohighlight">\(Q_\lambda(Z_t\vert Z_{t-1},X_{t-1}).\)</span></p>
 <p>We assume that in both models, the distributions are Markov and each <span class="math notranslate nohighlight">\(Z_t\)</span> and <span class="math notranslate nohighlight">\(X_t\)</span> are conditionally independent given their past.  We also assume that marginals <span class="math notranslate nohighlight">\(Q(X_{0\ldots T})\)</span> of the discriminative model distributions <span class="math notranslate nohighlight">\(Q_\lambda(Z_{0 \ldots T}, X_{0\ldots T})\)</span> are all equal to the true distribution <span class="math notranslate nohighlight">\(Q_*(X_{0\ldots T}).\)</span></p>
@@ -542,9 +473,9 @@
 <div class="math notranslate nohighlight">
 \[ \displaystyle
 \lim_{n \rightarrow \infty} I_{Q_\lambda \Vert P_\theta}(Z_{n+1}, X_{n+1} \vert Z_{n}, X_{n}) = I_{\bar{Q}_\lambda \Vert P_\theta}(Z_1, X_1 \vert Z_0, X_0).\]</div>
-</div>
-<div class="section" id="what-is-the-general-intuition-behind-online-learning-for-mutable-processes">
-<h2>What is the general intuition behind online learning for mutable processes?<a class="headerlink" href="#what-is-the-general-intuition-behind-online-learning-for-mutable-processes" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="what-is-the-general-intuition-behind-online-learning-for-mutable-processes">
+<h2>What is the general intuition behind online learning for mutable processes?<a class="headerlink" href="#what-is-the-general-intuition-behind-online-learning-for-mutable-processes" title="Link to this heading">#</a></h2>
 <p>To minimize the relative information objective, we adopt an approach similar to the expectation-maximization (EM) or exponential-mixture (em) <a class="reference internal" href="../2020-10-23-machine-learning-with-relative-information/"><span class="doc std std-doc">algorithm</span></a>. Specifically, we perform coordinate-wise minimization for the discriminative distribution <span class="math notranslate nohighlight">\(Q_\lambda\)</span> and for the generative distribution <span class="math notranslate nohighlight">\(P_\theta\)</span>, updating one distribution while holding the other constant.</p>
 <p>First, we pick some initial generative model distribution <span class="math notranslate nohighlight">\(P_{\theta_0}\)</span> and discriminative model distribution <span class="math notranslate nohighlight">\(Q_{\lambda_0}.\)</span> Then, for <span class="math notranslate nohighlight">\(n = 0, 1, \ldots,\)</span> we repeat the next two steps. Here, we will perform both steps in parallel rather than in an alternating fashion.</p>
 <hr class="docutils" />
@@ -584,10 +515,10 @@ I_{\bar{Q}_{\lambda_{n}}\Vert P_{\theta}}(Z_1, X_1 \vert Z_0, X_0)
 = \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+1)},X_{0..(T+1)})} \Bigg[ \left( \log \frac{Q_\lambda(Z_{T+1}, X_{T+1}\vert Z_{T},X_{T})}{P_\theta(Z_{T+1},X_{T+1}\vert Z_{T},X_{T})} \right)
 \\ &amp; \\ &amp; \quad\quad \displaystyle \times \sum_{t=0}^{T} \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \Bigg]
 . \end{array}\end{split}\]</div>
-</div>
+</section>
 <hr class="docutils" />
-<div class="section" id="is-there-a-stochastic-approximation-of-the-above-procedure">
-<h2>Is there a stochastic approximation of the above procedure?<a class="headerlink" href="#is-there-a-stochastic-approximation-of-the-above-procedure" title="Permalink to this heading">#</a></h2>
+<section id="is-there-a-stochastic-approximation-of-the-above-procedure">
+<h2>Is there a stochastic approximation of the above procedure?<a class="headerlink" href="#is-there-a-stochastic-approximation-of-the-above-procedure" title="Link to this heading">#</a></h2>
 <p>In the above two-step procedure, the term</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} \begin{array}{rl} &amp;
@@ -640,9 +571,9 @@ Z_{n+1} \sim Q_{\lambda_{n}}(Z_{n+1} \vert Z_{n}, X_{n})\]</div>
 <p>Before we make some preliminary observations about this stochastic approximation, let us introduce some terminology. Given <span class="math notranslate nohighlight">\((Z_{n}, X_{n}),\)</span> suppose we sample <span class="math notranslate nohighlight">\((Z_{n+1}, X_{n+1})\)</span> from <span class="math notranslate nohighlight">\(Q_\lambda(Z_{n+1},X_{n+1} \vert Z_{n}, X_{n}).\)</span> The <em>conditional expectation</em> of a function <span class="math notranslate nohighlight">\(r(Z_{n+1}, X_{n+1}, Z_{n}, X_{n})\)</span> is the expectation of <span class="math notranslate nohighlight">\(r\)</span> conditioned on some given values of <span class="math notranslate nohighlight">\((Z_{n}, X_{n}).\)</span> The <em>mean field</em> or <em>total expectation</em> of <span class="math notranslate nohighlight">\(r\)</span> is the expectation of its conditional expectation over the stationary distribution <span class="math notranslate nohighlight">\(\bar{\pi}_\lambda\)</span> on <span class="math notranslate nohighlight">\((Z_{n}, X_{n}).\)</span></p>
 <p>If the conditional expectations of the updates are independent of <span class="math notranslate nohighlight">\((Z_{n}, X_{n})\)</span>, then they will be equal to their mean fields. In this case, we say that the stochastic approximation is <em>unbiased</em>. On the other hand, if the conditional expectations depend on <span class="math notranslate nohighlight">\((Z_{n}, X_{n})\)</span>, we say that the stochastic approximation is <em>biased</em>.</p>
 <p>In continuous time, the mean fields will be derivatives of relative information rates. The conditional expectations which depend on the current states <span class="math notranslate nohighlight">\((Z_t,X_t)\)</span> will be biased estimates of the mean fields.</p>
-</div>
-<div class="section" id="how-can-we-interpret-the-discriminative-model-update">
-<h2>How can we interpret the discriminative model update?<a class="headerlink" href="#how-can-we-interpret-the-discriminative-model-update" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="how-can-we-interpret-the-discriminative-model-update">
+<h2>How can we interpret the discriminative model update?<a class="headerlink" href="#how-can-we-interpret-the-discriminative-model-update" title="Link to this heading">#</a></h2>
 <p>For a fixed generative model <span class="math notranslate nohighlight">\(P_\theta,\)</span> the discriminative model update looks for a distribution <span class="math notranslate nohighlight">\(Q_\lambda(Z_{n+1}\vert Z_{n},X_{n})\)</span> that minimizes the learning objective <span class="math notranslate nohighlight">\(I_{\bar{Q}_\lambda \Vert P_\theta}(Z_{n+1}, X_{n+1} \vert Z_{n}, X_{n}).\)</span> Intuitively, we can think of the update as looking for good belief <span class="math notranslate nohighlight">\(Z_{n+1}\)</span> given the previous belief <span class="math notranslate nohighlight">\(Z_{n}\)</span> and observation <span class="math notranslate nohighlight">\(X_{n}.\)</span></p>
 <p>Because <span class="math notranslate nohighlight">\(Z_{n+1}\)</span> and <span class="math notranslate nohighlight">\(X_{n+1}\)</span> are conditionally independent given the past, the learning objective decomposes as a sum of two terms.</p>
 <div class="math notranslate nohighlight">
@@ -681,9 +612,9 @@ I_{\bar{Q}_\lambda \Vert P_\theta}(X_{n+1} \vert Z_n, X_n)
 <p>In <span id="id2">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id46" title="Danilo Jimenez Rezende and Wulfram Gerstner. Stochastic variational learning in recurrent spiking networks. Frontiers in computational neuroscience, 8:38, 2014.">RG14</a>]</span>, this strong signal was called <em>novelty</em> or <em>surprise</em>. The authors hypothesized that biological neural networks could implement this signal using neuromodulation.</p>
 <p>In <span id="id3">[<a class="reference internal" href="#id36" title="Isabella Pozzi, Sander Bohte, and Pieter Roelfsema. Attention-gated brain propagation: how the brain can implement reward-based error backpropagation. Advances in Neural Information Processing Systems, 33:2516–2526, 2020.">PBR20</a>]</span>, a reinforcement learning scheme for training multilayer neural networks was derived. To implement the weight updates, besides computing the usual feedforward signals, the scheme also computes feedback signals using feedback connections, a global modulating signal representing the reward prediction error, and a local gating signal representing top-down attention. The resulting weight updates are Hebbian.</p>
 <p>While there are many interesting similarities between their scheme and our algorithm, one major difference is that we do not require the feedback weights to be the same as the feedforward weights. In our algorithm, the feedback weights are represented by the parameter <span class="math notranslate nohighlight">\(\lambda\)</span> and the feedforward weights by <span class="math notranslate nohighlight">\(\theta\)</span>. At the end of training,  the feedback weights will tend towards the feedforward weights because of the tendency to exploit. However, tying the weights together at the start of training could be detrimental to learning due to the need of the neural network to explore.</p>
-</div>
-<div class="section" id="appendix-discriminative-model-update">
-<h2>Appendix: Discriminative model update<a class="headerlink" href="#appendix-discriminative-model-update" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="appendix-discriminative-model-update">
+<h2>Appendix: Discriminative model update<a class="headerlink" href="#appendix-discriminative-model-update" title="Link to this heading">#</a></h2>
 <p>In this appendix, we derive the gradient</p>
 <div class="math notranslate nohighlight">
 \[ \displaystyle
@@ -771,47 +702,55 @@ Q_\lambda(Z_{n+1},X_{n+1}\vert Z_n, X_n)
 \displaystyle \lim_{T\rightarrow \infty} \mathbb{E}_{Q_\lambda(Z_{0..(T+1)},X_{0..(T+1)})} \Bigg[ \left( \log \frac{Q_\lambda(Z_{T+1},X_{T+1}\vert Z_T,X_T)}{P_\theta(Z_{T+1},X_{T+1}\vert Z_T,X_T)} \right)  \sum_{t=0}^T \frac{d}{d\lambda} \log Q_\lambda(Z_{t+1} \vert  Z_{t},X_{t}) \Bigg]
 \end{array}\end{split}\]</div>
 <p>where the last equality follows because the limit does not depend on the initial distribution of <span class="math notranslate nohighlight">\((Z_0, X_0).\)</span></p>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <div class="docutils container" id="id7">
-<dl class="citation">
-<dt class="label" id="id38"><span class="brackets">BB01</span><span class="fn-backref">(<a href="#id4">1</a>,<a href="#id5">2</a>)</span></dt>
-<dd><p>Jonathan Baxter and Peter L Bartlett. Infinite-horizon policy-gradient estimation. <em>Journal of Artificial Intelligence Research</em>, 15:319–350, 2001.</p>
-</dd>
-<dt class="label" id="id42"><span class="brackets">KMMW19</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id6">2</a>)</span></dt>
-<dd><p>Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In <em>Conference on Learning Theory</em>, 1944–1974. PMLR, 2019.</p>
-</dd>
-<dt class="label" id="id36"><span class="brackets"><a class="fn-backref" href="#id3">PBR20</a></span></dt>
-<dd><p>Isabella Pozzi, Sander Bohte, and Pieter Roelfsema. Attention-gated brain propagation: how the brain can implement reward-based error backpropagation. <em>Advances in Neural Information Processing Systems</em>, 33:2516–2526, 2020.</p>
-</dd>
-<dt class="label" id="id37"><span class="brackets"><a class="fn-backref" href="#id2">RG14</a></span></dt>
-<dd><p>Danilo Jimenez Rezende and Wulfram Gerstner. Stochastic variational learning in recurrent spiking networks. <em>Frontiers in computational neuroscience</em>, 8:38, 2014.</p>
-</dd>
-</dl>
+<div role="list" class="citation-list">
+<div class="citation" id="id38" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>BB01<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id4">1</a>,<a role="doc-backlink" href="#id5">2</a>)</span>
+<p>Jonathan Baxter and Peter L Bartlett. Infinite-horizon policy-gradient estimation. <em>Journal of Artificial Intelligence Research</em>, 15:319–350, 2001.</p>
+</div>
+<div class="citation" id="id42" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>KMMW19<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id6">2</a>)</span>
+<p>Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In <em>Conference on Learning Theory</em>, 1944–1974. PMLR, 2019.</p>
+</div>
+<div class="citation" id="id36" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">PBR20</a><span class="fn-bracket">]</span></span>
+<p>Isabella Pozzi, Sander Bohte, and Pieter Roelfsema. Attention-gated brain propagation: how the brain can implement reward-based error backpropagation. <em>Advances in Neural Information Processing Systems</em>, 33:2516–2526, 2020.</p>
+</div>
+<div class="citation" id="id37" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">RG14</a><span class="fn-bracket">]</span></span>
+<p>Danilo Jimenez Rezende and Wulfram Gerstner. Stochastic variational learning in recurrent spiking networks. <em>Frontiers in computational neuroscience</em>, 8:38, 2014.</p>
 </div>
 </div>
 </div>
+</section>
+</section>
 
-<div class="section">
-    
-
-<div class="section">
-  <span style="float: left">
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
      
     <a href="../2021-03-22-relative-inference-with-mutable-processes/">
-      <i class="fa fa-arrow-circle-left"></i> Relative inference with mutable processes
+      
+      <i class="fa fa-arrow-circle-left"></i>
+      
+      <span>Relative inference with mutable processes</span>
     </a>
     
   </span>
-  <span>&nbsp;</span>
-  <span style="float: right">
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
      
     <a href="../2021-04-22-proofs-as-programs-challenges-and-strategies-for-program-synthesis/">
-      Proofs as programs - challenges and strategies for program synthesis <i
-        class="fa fa-arrow-circle-right"
-      ></i
-      >
+      <span>Proofs as programs - challenges and strategies for program synthesis</span>
+      
+      <i class="fa fa-arrow-circle-right"></i>
+      
     </a>
     
   </span>
@@ -852,7 +791,8 @@ Q_\lambda(Z_{n+1},X_{n+1}\vert Z_n, X_n)
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -873,13 +813,13 @@ Q_\lambda(Z_{n+1},X_{n+1}\vert Z_n, X_n)
   </nav></div>
 
   <div class="sidebar-secondary-item">
-
-  <div class="tocsection sourcelink">
-    <a href="../../_sources/posts/2021-03-23-biased-stochastic-approximation-with-mutable-processes.md.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/posts/2021-03-23-biased-stochastic-approximation-with-mutable-processes.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
 
 </div></div>
               
@@ -894,8 +834,8 @@ Q_\lambda(Z_{n+1},X_{n+1}\vert Z_n, X_n)
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -915,7 +855,7 @@ Q_\lambda(Z_{n+1},X_{n+1}\vert Z_n, X_n)
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
     <br/>
   </p>
 </div>
@@ -928,7 +868,8 @@ Q_\lambda(Z_{n+1},X_{n+1}\vert Z_n, X_n)
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

@@ -1,13 +1,13 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta property="og:title" content="Machine learning with relative information" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Machine learning with relative information" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://shaoweilin.github.io/posts/2020-10-23-machine-learning-with-relative-information/" />
 <meta property="og:site_name" content="Types from Spikes" />
@@ -24,77 +24,53 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-dropdown.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8a9ddf57" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-dropdown.css?v=995e94df" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.min.css?v=21c0b90a" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/documentation_options.js?v=187304be"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2020-10-23-machine-learning-with-relative-information';</script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about/" />
     <link rel="index" title="Index" href="../../genindex/" />
     <link rel="search" title="Search" href="../../search/" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/> 
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" /> 
 <link
   rel="alternate"
   type="application/atom+xml"
   href="../../blog/atom.xml"
   title="Types from Spikes"
 />
- 
-<style type="text/css">
-  ul.ablog-archive {
-    list-style: none;
-    overflow: auto;
-    margin-left: 0px;
-  }
-  ul.ablog-archive li {
-    float: left;
-    margin-right: 5px;
-    font-size: 80%;
-  }
-  ul.postlist a {
-    font-style: italic;
-  }
-  ul.postlist-style-disc {
-    list-style-type: disc;
-  }
-  ul.postlist-style-none {
-    list-style-type: none;
-  }
-  ul.postlist-style-circle {
-    list-style-type: circle;
-  }
-</style>
-
+  
   </head>
   
   
@@ -110,19 +86,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../search/"
       method="get">
@@ -130,7 +95,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search"
          aria-label="Search"
          autocomplete="off"
@@ -138,8 +102,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -206,15 +170,9 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
         </div>
       
       
@@ -234,24 +192,6 @@
         </li>
 </ul></div>
       
-        <div class="navbar-item">
-<form class="bd-search d-flex align-items-center"
-      action="../../search/"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search"
-         aria-label="Search"
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-      
     </div>
     
   </div>
@@ -259,15 +199,9 @@
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
     </div>
   
 
@@ -288,7 +222,8 @@
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -342,136 +277,134 @@
         </li>
 </ul></div>
         
-          <div class="navbar-item">
-<form class="bd-search d-flex align-items-center"
-      action="../../search/"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search"
-         aria-label="Search"
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-        
       </div>
     
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">  
-<h2>
-   <i class="fa fa-calendar"></i>
-  23 October 2020 
-</h2>
-
-<ul>
+        <div class="sidebar-primary-item"> 
+<div class="ablog-sidebar-item ablog__postcard">
+   
+  <h2>
+     
+    <i class="fa fa-calendar"></i>
+    
+    <span>23 October 2020</span>
+    
+  </h2>
+  <ul>
+    <div class="ablog-sidebar-item ablog__postcard2">
         
-</ul>
 </div>
-        <div class="sidebar-primary-item">
-<h3>
-  <a href="../../blog/">Recent Posts</a>
-</h3>
-<ul>
-   
-  <li>
-    <a href="../2025-01-10-relative-information-and-the-dual-numbers/"
-      >10 January - Relative information and the dual numbers</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-10-16-singular-learning-relative-information-and-the-dual-numbers/"
-      >16 October - Singular learning, relative information and the dual numbers</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-10-01-program-synthesis/"
-      >01 October - Program Synthesis</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-09-24-safety-by-shared-synthesis/"
-      >24 September - Safety by shared synthesis</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-05-22-formal-ai-assisted-code-specification-and-synthesis-concrete-steps-towards-safe-sociotechnical-systems/"
-      >22 May - Formal AI-assisted code specification and synthesis: concrete steps towards safe sociotechnical systems</a
-    >
-  </li>
-  
-</ul>
+  </ul>
 </div>
-        <div class="sidebar-primary-item">
-<h3>
-  <a href="../../blog/archive/">Archives</a>
-</h3>
-<ul>
-   
-  <li>
-    <a href="../../blog/2025/">2025 (1)</a>
-  </li>
+</div>
+        <div class="sidebar-primary-item"> 
+<div class="ablog-sidebar-item ablog__recentposts">
+  <h3>
+    <a href="../../blog/">Recent Posts</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../2025-01-10-relative-information-and-the-dual-numbers/">
+        10 January - Relative information and the dual numbers
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2024/">2024 (5)</a>
-  </li>
+    <li>
+      <a href="../2024-10-16-singular-learning-relative-information-and-the-dual-numbers/">
+        16 October - Singular learning, relative information and the dual numbers
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2023/">2023 (5)</a>
-  </li>
+    <li>
+      <a href="../2024-10-01-program-synthesis/">
+        01 October - Program Synthesis
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2022/">2022 (3)</a>
-  </li>
+    <li>
+      <a href="../2024-09-24-safety-by-shared-synthesis/">
+        24 September - Safety by shared synthesis
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2021/">2021 (8)</a>
-  </li>
+    <li>
+      <a href="../2024-05-22-formal-ai-assisted-code-specification-and-synthesis-concrete-steps-towards-safe-sociotechnical-systems/">
+        22 May - Formal AI-assisted code specification and synthesis: concrete steps towards safe sociotechnical systems
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2020/">2020 (12)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2018/">2018 (1)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2017/">2017 (1)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2016/">2016 (3)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2014/">2014 (2)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2012/">2012 (1)</a>
-  </li>
-   
-</ul>
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item"> 
+<div class="ablog-sidebar-item ablog__archive">
+  <h3>
+    <a href="../../blog/archive/">Archives</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../blog/2025/">2025 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2024/">2024 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2023/">2023 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2022/">2022 (3)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2021/">2021 (8)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2020/">2020 (12)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2018/">2018 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2017/">2017 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2016/">2016 (3)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2014/">2014 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2012/">2012 (1)</a>
+    </li>
+     
+  </ul>
+</div>
 </div>
     </div>
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -489,8 +422,6 @@
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -499,7 +430,7 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">Machine...</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Machine learning with relative information</span></li>
   </ul>
 </nav>
 </div>
@@ -516,28 +447,28 @@
                 
 <div id="searchbox"></div>
                 <article class="bd-article">
-                   <div class="tex2jax_ignore mathjax_ignore section" id="machine-learning-with-relative-information">
-<h1>Machine learning with relative information<a class="headerlink" href="#machine-learning-with-relative-information" title="Permalink to this heading">#</a></h1>
+                   <section class="tex2jax_ignore mathjax_ignore" id="machine-learning-with-relative-information">
+<h1>Machine learning with relative information<a class="headerlink" href="#machine-learning-with-relative-information" title="Link to this heading">#</a></h1>
 <p>We will reframe some common machine learning paradigms, such as maximum likelihood, stochastic gradients, stochastic approximation and variational inference, in terms of relative information.</p>
 <p>This post is a continuation from our <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">series</span></a> on spiking networks, path integrals and motivic information.</p>
-<div class="section" id="what-is-a-statistical-model">
-<h2>What is a statistical model?<a class="headerlink" href="#what-is-a-statistical-model" title="Permalink to this heading">#</a></h2>
+<section id="what-is-a-statistical-model">
+<h2>What is a statistical model?<a class="headerlink" href="#what-is-a-statistical-model" title="Link to this heading">#</a></h2>
 <p>Given a measurable space <span class="math notranslate nohighlight">\((\Omega, \mathcal{B})\)</span>, let <span class="math notranslate nohighlight">\(\Delta_\Omega\)</span> denote the set of distributions or probability measures on <span class="math notranslate nohighlight">\(\Omega\)</span>. A statistical model is a family <span class="math notranslate nohighlight">\(\{P_\theta\}\)</span> of distributions</p>
 <div class="math notranslate nohighlight">
 \[P_\theta : \Delta_{\Omega}, \quad \theta\in \Theta\]</div>
 <p>parametrized by some space <span class="math notranslate nohighlight">\(\Theta.\)</span></p>
 <p>Suppose that the true distribution is some unknown <span class="math notranslate nohighlight">\(Q_* \in \Delta_\Omega.\)</span> The goal of statistical learning is to approximation <span class="math notranslate nohighlight">\(Q_*\)</span> with some model distribution <span class="math notranslate nohighlight">\(P_\theta.\)</span></p>
-</div>
-<div class="section" id="how-do-we-search-for-the-best-model">
-<h2>How do we search for the best model?<a class="headerlink" href="#how-do-we-search-for-the-best-model" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="how-do-we-search-for-the-best-model">
+<h2>How do we search for the best model?<a class="headerlink" href="#how-do-we-search-for-the-best-model" title="Link to this heading">#</a></h2>
 <p>Finding the best model is a common problem not just in machine learning but also in science. We want a model that explains reality well, but also with as few parameters as possible. This latter requirement is called Occam’s Razor. It says that the simplest explanation is most likely the best one.</p>
 <p>Finding the simplest explanation is easier said than done. We want to explain the observed data well, but we do not want to overfit the data. At the same time, we also do not want a model that is too overly simplistic, e.g. the uniform distribution. Many modern strategies use a complexity score or regularizer that penalizes the model based on the number of parameters or the dimension of the model. However, the choice of regularizer can seem rather arbitrary at times.</p>
 <p>If we have access to the true distribution <span class="math notranslate nohighlight">\(Q_* \in \Delta_\Omega,\)</span> life would be a lot easier. We could try to measure the distance of a model distribution <span class="math notranslate nohighlight">\(P_\theta\)</span> to the true distribution, and attempt to minimize this distance. A natural choice for the distance is the relative information to <span class="math notranslate nohighlight">\(Q_*\)</span> from <span class="math notranslate nohighlight">\(P_\theta\)</span>.</p>
 <p>We may also interpret the relative information as the average number of informational bits required to encode data from true distribution using the model, up to some additive constant (see Minimum Description Length, Kolmogorov Complexity and Stochastic Complexity for related concepts). Therefore, minimizing relative information is beneficial from the computational resource management point of view.</p>
 <p>However, we do not have access to the true distribution. There are two general strategies for overcoming this obstacle. For simplicity, let us assume there is a probability measure <span class="math notranslate nohighlight">\(M\)</span> such that <span class="math notranslate nohighlight">\(Q_* \ll M\)</span> and <span class="math notranslate nohighlight">\(P_\theta \ll M\)</span>, i.e. both <span class="math notranslate nohighlight">\(Q_*\)</span> and <span class="math notranslate nohighlight">\(P_\theta\)</span> are absolutely continuous with respect to <span class="math notranslate nohighlight">\(M\)</span>. In this case, the densities <span class="math notranslate nohighlight">\(dQ_*/dM\)</span> and <span class="math notranslate nohighlight">\(dP_\theta/dM\)</span> exist.</p>
-</div>
-<div class="section" id="first-method-maximum-likelihood">
-<h2>First method (maximum likelihood)<a class="headerlink" href="#first-method-maximum-likelihood" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="first-method-maximum-likelihood">
+<h2>First method (maximum likelihood)<a class="headerlink" href="#first-method-maximum-likelihood" title="Link to this heading">#</a></h2>
 <p>We estimate the relative information from the observed data. We may therefore write the relative information as</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\displaystyle \begin{array}{rl} I_{Q_* \Vert P_\theta} &amp;=\displaystyle\int \log \frac{dQ_*/dM}{dP_\theta/dM} dQ_* \\ &amp; \\&amp;= \displaystyle\mathbb{E}_{X\sim Q_*} \left[ \log \frac{dQ_*}{dM}(X) \right] - \mathbb{E}_{X\sim Q_*} \left[ \log \frac{dP_\theta}{dM}(X) \right]. \end{array}\end{split}\]</div>
@@ -546,9 +477,9 @@
 \[\displaystyle \mathbb{E}_{X\sim Q_*} \left[ \log P_\theta(X) \right] = \frac{1}{\left\vert  \mathcal{D}\right\vert }\sum_{x \in \mathcal{D}} \log P_\theta (x)\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> is a finite i.i.d. sample of <span class="math notranslate nohighlight">\(Q_*\)</span>. This approximation is called the <em>log -likelihood</em> of the data set <span class="math notranslate nohighlight">\(\mathcal{D}\)</span>. The best model parameter <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> may be estimated by maximizing the log-likelihood. The resulting algorithm is known as the <em>maximum likelihood</em> method.</p>
 <p>If the true distribution can be represented by <span class="math notranslate nohighlight">\(Q_* = P_{\theta^*}\)</span> for some parameter <span class="math notranslate nohighlight">\(\theta^*,\)</span> it can be shown that as the sample size grows to infinity, the estimated parameter <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> converges quickly to the true parameter <span class="math notranslate nohighlight">\(\theta^*.\)</span> The asymptotic behavior of the maximum likelihood method is analyzed in <span id="id1">[<a class="reference internal" href="#id58" title="Sumio Watanabe. Algebraic geometry and statistical learning theory. Number 25. Cambridge university press, 2009.">Wat09</a>]</span>.</p>
-</div>
-<div class="section" id="second-method-stochastic-gradient">
-<h2>Second method (stochastic gradient)<a class="headerlink" href="#second-method-stochastic-gradient" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="second-method-stochastic-gradient">
+<h2>Second method (stochastic gradient)<a class="headerlink" href="#second-method-stochastic-gradient" title="Link to this heading">#</a></h2>
 <p>We estimate the <em>gradient</em> of the relative information from observed data. This gradient can be written as</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{rl} \displaystyle \frac{d}{d\theta} I_{Q_* \Vert P_\theta} &amp;= \displaystyle \frac{d}{d\theta} \mathbb{E}_{X\sim Q_*} \left[ \log \frac{dQ_*}{dM}(X) \right] - \frac{d}{d\theta} \mathbb{E}_{X\sim Q_*} \left[ \log \frac{dP_\theta}{dM}(X) \right] \\ &amp; \\&amp;= \displaystyle- \mathbb{E}_{X\sim Q_*} \left[\frac{d}{d\theta} \log \frac{dP_\theta}{dM}(X) \right] \end{array}\end{split}\]</div>
@@ -557,9 +488,9 @@
 \[\displaystyle \mathbb{E}_{X\sim Q_*} \left[ \frac{d}{d\theta} \log P_\theta(X) \right] = \frac{1}{\left\vert  \mathcal{B}\right\vert }\sum_{x \in \mathcal{B}} \frac{d}{d\theta} \log P_\theta (x)\]</div>
 <p>where the <em>batch</em> <span class="math notranslate nohighlight">\(\mathcal{B}\)</span> is a finite i.i.d. sample of <span class="math notranslate nohighlight">\(Q_*\)</span>. This approximation is called the <em>score</em>. We often sample batches of a small fixed size with replacement from a large data set <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> and perform gradient ascent via the batch score. The resulting algorithm is known as the <em>stochastic gradient</em> method.</p>
 <p>Batch stochastic gradients have a regularizing effect on the estimator <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> as compared to the gradient of the log-likelihood of the full data set. They ensure that the estimator does not get stuck in a local minima of the log-likelihood function, which corresponds to overfitting of the model to the full data set. The asymptotic behavior of the stochastic gradient method is analyzed in <span id="id2">[<a class="reference internal" href="#id58" title="Sumio Watanabe. Algebraic geometry and statistical learning theory. Number 25. Cambridge university press, 2009.">Wat09</a>]</span>.</p>
-</div>
-<div class="section" id="how-do-we-apply-stochastic-approximation-via-relative-information">
-<h2>How do we apply stochastic approximation via relative information?<a class="headerlink" href="#how-do-we-apply-stochastic-approximation-via-relative-information" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="how-do-we-apply-stochastic-approximation-via-relative-information">
+<h2>How do we apply stochastic approximation via relative information?<a class="headerlink" href="#how-do-we-apply-stochastic-approximation-via-relative-information" title="Link to this heading">#</a></h2>
 <p>In the stochastic approximation theory of Robbins-Monro, given an increasing function <span class="math notranslate nohighlight">\(f(\theta)\)</span> which cannot be observed directly and has a unique root</p>
 <div class="math notranslate nohighlight">
 \[f(\theta^*) = 0,\]</div>
@@ -581,9 +512,9 @@
 <div class="math notranslate nohighlight">
 \[\displaystyle G = \log \frac{dP_\theta}{dM}\]</div>
 <p>where <span class="math notranslate nohighlight">\(P_\theta\)</span> and <span class="math notranslate nohighlight">\(M\)</span> were defined above for stochastic gradients. As a result, we get a proof that the stochastic gradient algorithm is consistent, i.e. the parameter updates <span class="math notranslate nohighlight">\(\theta_n\)</span> tend to the true parameter <span class="math notranslate nohighlight">\(\theta^*\)</span>. Stronger results may be attained if the model distributions <span class="math notranslate nohighlight">\(P_\theta\)</span> satisfy additional regularity conditions.</p>
-</div>
-<div class="section" id="how-do-we-frame-variational-inference-in-terms-of-relative-information">
-<h2>How do we frame variational inference in terms of relative information?<a class="headerlink" href="#how-do-we-frame-variational-inference-in-terms-of-relative-information" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="how-do-we-frame-variational-inference-in-terms-of-relative-information">
+<h2>How do we frame variational inference in terms of relative information?<a class="headerlink" href="#how-do-we-frame-variational-inference-in-terms-of-relative-information" title="Link to this heading">#</a></h2>
 <p>A latent variable is a random variable for which we have no data. A latent variable model is a statistical model <span class="math notranslate nohighlight">\(\{P_\theta\}\)</span> with some observed variable <span class="math notranslate nohighlight">\(X\)</span> and some latent variable <span class="math notranslate nohighlight">\(Z\)</span>. The marginal distribution of <span class="math notranslate nohighlight">\(X\)</span> is given by the integral</p>
 <div class="math notranslate nohighlight">
 \[P_\theta(X) = \int P_\theta(X,Z) dZ.\]</div>
@@ -624,12 +555,12 @@
 <p>In information geometry <span id="id3">[<a class="reference internal" href="#id48" title="Shun-ichi Amari. Information geometry of the em and em algorithms for neural networks. Neural networks, 8(9):1379–1408, 1995.">Ama95</a>]</span>, the first step is called <em>exponential projection</em> (e-projection) while the second step is called <em>mixture projection</em> (m-projection) (of the log-likelihood, as opposed to minimization of the relative information). This <em>exponential-mixture algorithm</em> (em algorithm) is also related to the <em>expectation-maximization algorithm</em> (EM algorithm) <span id="id4">[<a class="reference internal" href="#id46" title="Arthur P Dempster, Nan M Laird, and Donald B Rubin. Maximum likelihood from incomplete data via the em algorithm. Journal of the Royal Statistical Society: Series B (Methodological), 39(1):1–22, 1977.">DLR77</a>]</span>.</p>
 <p>Sometimes, the variational parameter <span class="math notranslate nohighlight">\(Q(Z\vert X)\)</span> is constrained to a space of tractable conditional distributions, or a space of distributions for which the maximization step has an exact solution. In these cases, the optimal value of <span class="math notranslate nohighlight">\(I_{Q\Vert P_\theta}(Z, X)\)</span> may not equal the optimal value of <span class="math notranslate nohighlight">\(I_{Q_* \Vert P_\theta}(X)\)</span>, but it will be an upper bound to the latter. The em algorithm becomes an approximate inference technique, because it minimizes an upper bound and not the desired relative information itself.</p>
 <p>From a computational point of view, gaining efficiency in inference at the cost of approximation is a good thing, especially if there are performance guarantees in the form of an upper bound.</p>
-</div>
-<div class="section" id="how-do-we-interpret-the-variational-parameter-q-z-vert-x">
-<h2>How do we interpret the variational parameter <span class="math notranslate nohighlight">\(Q(Z\vert X)\)</span>?<a class="headerlink" href="#how-do-we-interpret-the-variational-parameter-q-z-vert-x" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="how-do-we-interpret-the-variational-parameter-q-z-vert-x">
+<h2>How do we interpret the variational parameter <span class="math notranslate nohighlight">\(Q(Z\vert X)\)</span>?<a class="headerlink" href="#how-do-we-interpret-the-variational-parameter-q-z-vert-x" title="Link to this heading">#</a></h2>
 <p>We consider a variety of contexts where the interpretations of <span class="math notranslate nohighlight">\(Q(Z\vert X)\)</span> are different.</p>
-<div class="section" id="context-of-bayesian-statistics">
-<h3>Context of Bayesian statistics<a class="headerlink" href="#context-of-bayesian-statistics" title="Permalink to this heading">#</a></h3>
+<section id="context-of-bayesian-statistics">
+<h3>Context of Bayesian statistics<a class="headerlink" href="#context-of-bayesian-statistics" title="Link to this heading">#</a></h3>
 <p>Historically, variational inference was introduced <span id="id5">[<a class="reference internal" href="#id45" title="Michael I Jordan, Zoubin Ghahramani, Tommi S Jaakkola, and Lawrence K Saul. An introduction to variational methods for graphical models. Machine learning, 37(2):183–233, 1999.">JGJS99</a>]</span> to approximate posterior distributions in the context of Bayesian statistics, as an alternative to Markov chain Monte Carlo methods <span id="id6">[<a class="reference internal" href="#id47" title="David M Blei, Alp Kucukelbir, and Jon D McAuliffe. Variational inference: a review for statisticians. Journal of the American statistical Association, 112(518):859–877, 2017.">BKM17</a>]</span>.</p>
 <p>Suppose we have a distribution <span class="math notranslate nohighlight">\(P(X\vert Z)\)</span> and prior <span class="math notranslate nohighlight">\(P(Z)\)</span> for some observed variable <span class="math notranslate nohighlight">\(X\)</span> and some latent variable <span class="math notranslate nohighlight">\(Z.\)</span> The goal is to find the posterior distribution <span class="math notranslate nohighlight">\(P(Z\vert X_*)\)</span> given some data <span class="math notranslate nohighlight">\(X_*.\)</span></p>
 <p>Variational inference frames this goal as an optimization problem. Let <span class="math notranslate nohighlight">\(Q_*(X)\)</span> be the atomic distribution with <span class="math notranslate nohighlight">\(Q_*(X_*)=1.\)</span> Let <span class="math notranslate nohighlight">\(\Delta\)</span> be the space of joint distributions on <span class="math notranslate nohighlight">\(Z\)</span> and <span class="math notranslate nohighlight">\(X\)</span> which factors as</p>
@@ -647,30 +578,30 @@
 <p>Often, we only want to consider distributions <span class="math notranslate nohighlight">\(Q(Z\vert X)\)</span> which approximate the posterior <span class="math notranslate nohighlight">\(P(Z\vert X)\)</span> and have good computational properties. For example, we may want to store <span class="math notranslate nohighlight">\(Q(Z\vert X)\)</span> efficiently in a low-dimensional space, or we may want to compute <span class="math notranslate nohighlight">\(Q(Z\vert X)\)</span> quickly as a composition of simple functions. Through variational inference, we may find this approximation by
 optimizing over a smaller space <span class="math notranslate nohighlight">\(\Delta'\)</span> of distributions with the desired computational properties.</p>
 <p>In the context of Bayesian statistics, the variational parameter <span class="math notranslate nohighlight">\(Q(Z\vert X)\)</span> is a computationally-efficient approximation of the model posterior <span class="math notranslate nohighlight">\(P(Z\vert X).\)</span></p>
-</div>
-<div class="section" id="context-of-statistical-learning">
-<h3>Context of statistical learning<a class="headerlink" href="#context-of-statistical-learning" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="context-of-statistical-learning">
+<h3>Context of statistical learning<a class="headerlink" href="#context-of-statistical-learning" title="Link to this heading">#</a></h3>
 <p>A second context we may consider is the goal of learning the true distribution <span class="math notranslate nohighlight">\(Q_*(X).\)</span> We solve this problem by proposing two models - a generative model <span class="math notranslate nohighlight">\(\{P(Z,X)\}\)</span> where the marginals <span class="math notranslate nohighlight">\(P(X)\)</span> <em>approximates</em> <span class="math notranslate nohighlight">\(Q_*(X),\)</span> and a discriminative model <span class="math notranslate nohighlight">\(\{Q(Z\vert X)\}\)</span>. From the discriminative model, we define joint distributions <span class="math notranslate nohighlight">\(Q(Z,X) = Q_*(X)Q(Z\vert X)\)</span> which factor through the true distribution <span class="math notranslate nohighlight">\(Q_*(X).\)</span> Note that the marginal <span class="math notranslate nohighlight">\(Q(X)\)</span> <em>equals</em> the true distribution <span class="math notranslate nohighlight">\(Q_*(X)\)</span>. Abusing terminology, we will also call <span class="math notranslate nohighlight">\(\{Q(Z,X)\}\)</span> a <em>discriminative</em> model.</p>
 <p>Variational inference is then a joint search over the space of pairs of models. It provides bounds on the distance to <span class="math notranslate nohighlight">\(Q_*(X)\)</span> from <span class="math notranslate nohighlight">\(P(X),\)</span> and it limits the search to computationally efficient discriminative models <span class="math notranslate nohighlight">\(\{Q(Z, X)\}\)</span> and computationally efficient generative models <span class="math notranslate nohighlight">\(\{P(Z,X)\}.\)</span> Variational inference also supplies a distribution <span class="math notranslate nohighlight">\(Q(Z\vert X)\)</span> for approximate inference of <span class="math notranslate nohighlight">\(Z\)</span> from <span class="math notranslate nohighlight">\(X,\)</span> and a distribution <span class="math notranslate nohighlight">\(P(Z,X)\)</span> for approximate sampling from <span class="math notranslate nohighlight">\(Q_*(X).\)</span></p>
 <p>In this context, the variational parameter <span class="math notranslate nohighlight">\(Q(Z\vert X)\)</span> is therefore interpreted as a disciminative computational model trained on the true distribution.</p>
-</div>
-<div class="section" id="context-of-optimization">
-<h3>Context of optimization<a class="headerlink" href="#context-of-optimization" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="context-of-optimization">
+<h3>Context of optimization<a class="headerlink" href="#context-of-optimization" title="Link to this heading">#</a></h3>
 <p>A third context we may consider is the goal of optimizing a distance function over some rough low-dimensional landscape. The distance to <span class="math notranslate nohighlight">\(Q_*(X)\)</span> from <span class="math notranslate nohighlight">\(P(X)\)</span> is minimized over the space <span class="math notranslate nohighlight">\(\Lambda\)</span> of pairs of distributions <span class="math notranslate nohighlight">\((Q_*(X),P(X))\)</span> where the first component <span class="math notranslate nohighlight">\(Q_*(X)\)</span> is fixed and the second component <span class="math notranslate nohighlight">\(P(X)\)</span> is the marginalization of some joint distribution <span class="math notranslate nohighlight">\(P(Z,X).\)</span></p>
 <p>Variational inference overcomes the roughness of the low-dimensional landscape by lifting the optimization problem to a higher dimensional space where the landscape is smoother. It considers instead the distance to <span class="math notranslate nohighlight">\(Q(Z,X) = Q_*(X)Q(Z\vert X)\)</span> from <span class="math notranslate nohighlight">\(P(Z,X)\)</span> which is minimized over the space <span class="math notranslate nohighlight">\(\Lambda'\)</span> of pairs of distributions <span class="math notranslate nohighlight">\((Q(Z,X),P(Z,X)).\)</span> This space <span class="math notranslate nohighlight">\(\Lambda'\)</span> is of a higher dimension than the original space <span class="math notranslate nohighlight">\(\Lambda\)</span>, and could be infinite-dimensional if <span class="math notranslate nohighlight">\(Q(Z\vert X)\)</span> is variational.</p>
 <p>In this context, instead of projecting <span class="math notranslate nohighlight">\(P(Z,X)\)</span> to the base space of distributions on <span class="math notranslate nohighlight">\(X\)</span> and optimizing the distance between <span class="math notranslate nohighlight">\(Q_*(X)\)</span> and <span class="math notranslate nohighlight">\(P(X)\)</span> in the base space, the disciminative model distribution <span class="math notranslate nohighlight">\(Q(Z\vert X)\)</span> enables us to lift <span class="math notranslate nohighlight">\(Q_*(X)\)</span> from the base space to a section <span class="math notranslate nohighlight">\(Q(Z,X)\)</span> in the bundle of distributions on <span class="math notranslate nohighlight">\((Z,X)\)</span> so that we can optimize the distance between <span class="math notranslate nohighlight">\(Q(Z,X)\)</span> and <span class="math notranslate nohighlight">\(P(Z,X).\)</span></p>
-</div>
-</div>
-<div class="section" id="why-do-we-need-a-better-name-for-variational-inference">
-<h2>Why do we need a better name for variational inference?<a class="headerlink" href="#why-do-we-need-a-better-name-for-variational-inference" title="Permalink to this heading">#</a></h2>
+</section>
+</section>
+<section id="why-do-we-need-a-better-name-for-variational-inference">
+<h2>Why do we need a better name for variational inference?<a class="headerlink" href="#why-do-we-need-a-better-name-for-variational-inference" title="Link to this heading">#</a></h2>
 <p>In the statistical learning community, variational inference is sometimes called <em>approximate inference</em> because we are inferring the latent <span class="math notranslate nohighlight">\(Z\)</span> from the observed <span class="math notranslate nohighlight">\(X\)</span> and approximating the Bayes posterior <span class="math notranslate nohighlight">\(P(Z\vert X)\)</span> by solving an variational optimization problem over a space of functions <span class="math notranslate nohighlight">\(Q(Z\vert X).\)</span> For the same reason, it is also called <em>variational Bayes</em>.</p>
 <p>In recent work, such as with variational autoencoders, the optimization is performed not over an infinite-dimensional variational space of functions but over a finite-dimensional parametric space of functions. It seems strange to continue using the word <em>variational</em> in describing these techniques.</p>
 <p>In other work, the goal has shifted away from inferring the Bayes posterior to inferring model parameters that give the best approximation of the true distribution. Here, it seems strange to continue using the word <em>Bayes</em> in describing these approaches.</p>
 <p>Since the goal at hand is still inference and since all of these methods hinge on the use of relative information, specifically on measuring the information loss between the discriminative model and the generative model, I propose that we use the name <em>relative inference</em> instead.</p>
 <p>Moreover, instead of calling <span class="math notranslate nohighlight">\(Q(Z\vert X)\)</span> the <em>variational</em> parameter, I propose calling it and the related joint distribution <span class="math notranslate nohighlight">\(Q(Z,X) = Q(Z\vert X)Q_*(X)\)</span> the <em>discriminative</em> model, to distinguish it from the generative model <span class="math notranslate nohighlight">\(P(Z,X).\)</span></p>
-</div>
-<div class="section" id="why-should-we-consider-mutable-variables-rather-than-latent-variables">
-<h2>Why should we consider mutable variables rather than latent variables?<a class="headerlink" href="#why-should-we-consider-mutable-variables-rather-than-latent-variables" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="why-should-we-consider-mutable-variables-rather-than-latent-variables">
+<h2>Why should we consider mutable variables rather than latent variables?<a class="headerlink" href="#why-should-we-consider-mutable-variables-rather-than-latent-variables" title="Link to this heading">#</a></h2>
 <p>In this section, we consider models that contain distributions which are only partially known. For example, in the discriminative model of distributions <span class="math notranslate nohighlight">\(Q(Z,X)\)</span> described above, the marginals <span class="math notranslate nohighlight">\(Q(X)\)</span> are all equal to the true distribution <span class="math notranslate nohighlight">\(Q_*(X)\)</span> which is unknown.</p>
 <p>Suppose we have a model and random variables <span class="math notranslate nohighlight">\(Z, X\)</span> in the model. We say that <span class="math notranslate nohighlight">\(Z\)</span> is <em>mutable</em> given <span class="math notranslate nohighlight">\(X\)</span> if the conditional distribution <span class="math notranslate nohighlight">\(Q(Z \vert X)\)</span> is known in the model and if there exists at least two distributions where <span class="math notranslate nohighlight">\(Q(Z \vert X)\)</span> is different. This terminology matches with the idea of mutability in data storage systems where a file is mutable if it has at least two different states and it can be changed to any desired state in a reliable way.</p>
 <p>We say that the model is <em>mutable</em> if it contains variables <span class="math notranslate nohighlight">\(Z ,X\)</span> such that <span class="math notranslate nohighlight">\(Z\)</span> is mutable given <span class="math notranslate nohighlight">\(X\)</span>. Otherwise, the model is <em>immutable</em>. Likewise, a model for a process <span class="math notranslate nohighlight">\(\{Y_t\}\)</span> is <em>mutable</em> if <span class="math notranslate nohighlight">\(\{Y_t\}\)</span> contains subprocesses <span class="math notranslate nohighlight">\(\{Z_t\}, \{X_t\}\)</span> such that <span class="math notranslate nohighlight">\(\{Z_t\}\)</span> is mutable given <span class="math notranslate nohighlight">\(\{X_t\}.\)</span> When the model is clear from the context, we abuse notation and say that the process itself is mutable.</p>
@@ -680,50 +611,58 @@ optimizing over a smaller space <span class="math notranslate nohighlight">\(\De
 <p>In other applications, such as in modelling spiking neural networks, we represent the universe with a random variable <span class="math notranslate nohighlight">\(X\)</span> which may not be fully observed by the spiking network. In other words, there may be components of <span class="math notranslate nohighlight">\(X\)</span> which are hidden or latent. The only assumption we make about the distribution of <span class="math notranslate nohighlight">\(X\)</span> is that it cannot be changed to a desired distribution in a reliable way.</p>
 <p>Our goal for spiking networks is to learn a generative model <span class="math notranslate nohighlight">\(P(Z,X)\)</span> with the help of computational units <span class="math notranslate nohighlight">\(Z\)</span> such that the marginal <span class="math notranslate nohighlight">\(P(X)\)</span> approximates the true distribution. We are not interested in getting guarantees that the variables <span class="math notranslate nohighlight">\(Z\)</span> reflect actual latent variables in the universe <span class="math notranslate nohighlight">\(X\)</span>. To accomplish our goal, we will assume that in the discriminative model <span class="math notranslate nohighlight">\(Q(Z,X),\)</span> the variables <span class="math notranslate nohighlight">\(Z\)</span> are mutable given <span class="math notranslate nohighlight">\(X,\)</span> i.e. the conditionals <span class="math notranslate nohighlight">\(Q(Z\vert X)\)</span> are controllable (changeable in a known way).</p>
 <p>For the rest of this <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">series</span></a>, we will talk more generally of learning <em>by using mutable processes</em>, as opposed to just learning <em>to uncover latent processes</em>.</p>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <div class="docutils container" id="id7">
-<dl class="citation">
-<dt class="label" id="id48"><span class="brackets"><a class="fn-backref" href="#id3">Ama95</a></span></dt>
-<dd><p>Shun-ichi Amari. Information geometry of the em and em algorithms for neural networks. <em>Neural networks</em>, 8(9):1379–1408, 1995.</p>
-</dd>
-<dt class="label" id="id47"><span class="brackets"><a class="fn-backref" href="#id6">BKM17</a></span></dt>
-<dd><p>David M Blei, Alp Kucukelbir, and Jon D McAuliffe. Variational inference: a review for statisticians. <em>Journal of the American statistical Association</em>, 112(518):859–877, 2017.</p>
-</dd>
-<dt class="label" id="id46"><span class="brackets"><a class="fn-backref" href="#id4">DLR77</a></span></dt>
-<dd><p>Arthur P Dempster, Nan M Laird, and Donald B Rubin. Maximum likelihood from incomplete data via the em algorithm. <em>Journal of the Royal Statistical Society: Series B (Methodological)</em>, 39(1):1–22, 1977.</p>
-</dd>
-<dt class="label" id="id45"><span class="brackets"><a class="fn-backref" href="#id5">JGJS99</a></span></dt>
-<dd><p>Michael I Jordan, Zoubin Ghahramani, Tommi S Jaakkola, and Lawrence K Saul. An introduction to variational methods for graphical models. <em>Machine learning</em>, 37(2):183–233, 1999.</p>
-</dd>
-<dt class="label" id="id58"><span class="brackets">Wat09</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>)</span></dt>
-<dd><p>Sumio Watanabe. <em>Algebraic geometry and statistical learning theory</em>. Number 25. Cambridge university press, 2009.</p>
-</dd>
-</dl>
+<div role="list" class="citation-list">
+<div class="citation" id="id48" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">Ama95</a><span class="fn-bracket">]</span></span>
+<p>Shun-ichi Amari. Information geometry of the em and em algorithms for neural networks. <em>Neural networks</em>, 8(9):1379–1408, 1995.</p>
+</div>
+<div class="citation" id="id47" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">BKM17</a><span class="fn-bracket">]</span></span>
+<p>David M Blei, Alp Kucukelbir, and Jon D McAuliffe. Variational inference: a review for statisticians. <em>Journal of the American statistical Association</em>, 112(518):859–877, 2017.</p>
+</div>
+<div class="citation" id="id46" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">DLR77</a><span class="fn-bracket">]</span></span>
+<p>Arthur P Dempster, Nan M Laird, and Donald B Rubin. Maximum likelihood from incomplete data via the em algorithm. <em>Journal of the Royal Statistical Society: Series B (Methodological)</em>, 39(1):1–22, 1977.</p>
+</div>
+<div class="citation" id="id45" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">JGJS99</a><span class="fn-bracket">]</span></span>
+<p>Michael I Jordan, Zoubin Ghahramani, Tommi S Jaakkola, and Lawrence K Saul. An introduction to variational methods for graphical models. <em>Machine learning</em>, 37(2):183–233, 1999.</p>
+</div>
+<div class="citation" id="id58" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Wat09<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id2">2</a>)</span>
+<p>Sumio Watanabe. <em>Algebraic geometry and statistical learning theory</em>. Number 25. Cambridge university press, 2009.</p>
 </div>
 </div>
 </div>
+</section>
+</section>
 
-<div class="section">
-    
-
-<div class="section">
-  <span style="float: left">
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
      
     <a href="../2020-10-14-path-integrals-and-continuous-time-markov-chains/">
-      <i class="fa fa-arrow-circle-left"></i> Path integrals and continuous-time Markov chains
+      
+      <i class="fa fa-arrow-circle-left"></i>
+      
+      <span>Path integrals and continuous-time Markov chains</span>
     </a>
     
   </span>
-  <span>&nbsp;</span>
-  <span style="float: right">
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
      
     <a href="../2020-12-01-biased-stochastic-approximation/">
-      Biased stochastic approximation <i
-        class="fa fa-arrow-circle-right"
-      ></i
-      >
+      <span>Biased stochastic approximation</span>
+      
+      <i class="fa fa-arrow-circle-right"></i>
+      
     </a>
     
   </span>
@@ -764,7 +703,8 @@ optimizing over a smaller space <span class="math notranslate nohighlight">\(\De
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -794,13 +734,13 @@ optimizing over a smaller space <span class="math notranslate nohighlight">\(\De
   </nav></div>
 
   <div class="sidebar-secondary-item">
-
-  <div class="tocsection sourcelink">
-    <a href="../../_sources/posts/2020-10-23-machine-learning-with-relative-information.md.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/posts/2020-10-23-machine-learning-with-relative-information.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
 
 </div></div>
               
@@ -815,8 +755,8 @@ optimizing over a smaller space <span class="math notranslate nohighlight">\(\De
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -836,7 +776,7 @@ optimizing over a smaller space <span class="math notranslate nohighlight">\(\De
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
     <br/>
   </p>
 </div>
@@ -849,7 +789,8 @@ optimizing over a smaller space <span class="math notranslate nohighlight">\(\De
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

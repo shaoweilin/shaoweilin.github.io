@@ -1,9 +1,8 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
@@ -16,75 +15,51 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-dropdown.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8a9ddf57" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-dropdown.css?v=995e94df" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.min.css?v=21c0b90a" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/documentation_options.js?v=187304be"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'blog/2020';</script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about/" />
     <link rel="index" title="Index" href="../../genindex/" />
     <link rel="search" title="Search" href="../../search/" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/> 
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" /> 
 <link
   rel="alternate"
   type="application/atom+xml"
   href="../../blog/atom.xml"
   title="Posted in 2020"
 />
- 
-<style type="text/css">
-  ul.ablog-archive {
-    list-style: none;
-    overflow: auto;
-    margin-left: 0px;
-  }
-  ul.ablog-archive li {
-    float: left;
-    margin-right: 5px;
-    font-size: 80%;
-  }
-  ul.postlist a {
-    font-style: italic;
-  }
-  ul.postlist-style-disc {
-    list-style-type: disc;
-  }
-  ul.postlist-style-none {
-    list-style-type: none;
-  }
-  ul.postlist-style-circle {
-    list-style-type: circle;
-  }
-</style>
-
+  
   </head>
   
   
@@ -100,19 +75,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../search/"
       method="get">
@@ -120,7 +84,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search"
          aria-label="Search"
          autocomplete="off"
@@ -128,8 +91,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -196,15 +159,9 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
         </div>
       
       
@@ -224,24 +181,6 @@
         </li>
 </ul></div>
       
-        <div class="navbar-item">
-<form class="bd-search d-flex align-items-center"
-      action="../../search/"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search"
-         aria-label="Search"
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-      
     </div>
     
   </div>
@@ -249,15 +188,9 @@
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
     </div>
   
 
@@ -274,7 +207,8 @@
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -328,126 +262,117 @@
         </li>
 </ul></div>
         
-          <div class="navbar-item">
-<form class="bd-search d-flex align-items-center"
-      action="../../search/"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search"
-         aria-label="Search"
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-        
       </div>
     
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-<h3>
-  <a href="../">Recent Posts</a>
-</h3>
-<ul>
-   
-  <li>
-    <a href="../../posts/2025-01-10-relative-information-and-the-dual-numbers/"
-      >10 January - Relative information and the dual numbers</a
-    >
-  </li>
-  
-  <li>
-    <a href="../../posts/2024-10-16-singular-learning-relative-information-and-the-dual-numbers/"
-      >16 October - Singular learning, relative information and the dual numbers</a
-    >
-  </li>
-  
-  <li>
-    <a href="../../posts/2024-10-01-program-synthesis/"
-      >01 October - Program Synthesis</a
-    >
-  </li>
-  
-  <li>
-    <a href="../../posts/2024-09-24-safety-by-shared-synthesis/"
-      >24 September - Safety by shared synthesis</a
-    >
-  </li>
-  
-  <li>
-    <a href="../../posts/2024-05-22-formal-ai-assisted-code-specification-and-synthesis-concrete-steps-towards-safe-sociotechnical-systems/"
-      >22 May - Formal AI-assisted code specification and synthesis: concrete steps towards safe sociotechnical systems</a
-    >
-  </li>
-  
-</ul>
+        <div class="sidebar-primary-item"> 
+<div class="ablog-sidebar-item ablog__recentposts">
+  <h3>
+    <a href="../">Recent Posts</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../posts/2025-01-10-relative-information-and-the-dual-numbers/">
+        10 January - Relative information and the dual numbers
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../posts/2024-10-16-singular-learning-relative-information-and-the-dual-numbers/">
+        16 October - Singular learning, relative information and the dual numbers
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../posts/2024-10-01-program-synthesis/">
+        01 October - Program Synthesis
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../posts/2024-09-24-safety-by-shared-synthesis/">
+        24 September - Safety by shared synthesis
+      </a>
+    </li>
+    
+    <li>
+      <a href="../../posts/2024-05-22-formal-ai-assisted-code-specification-and-synthesis-concrete-steps-towards-safe-sociotechnical-systems/">
+        22 May - Formal AI-assisted code specification and synthesis: concrete steps towards safe sociotechnical systems
+      </a>
+    </li>
+    
+  </ul>
 </div>
-        <div class="sidebar-primary-item">
-<h3>
-  <a href="../archive/">Archives</a>
-</h3>
-<ul>
-   
-  <li>
-    <a href="../2025/">2025 (1)</a>
-  </li>
-    
-  <li>
-    <a href="../2024/">2024 (5)</a>
-  </li>
-    
-  <li>
-    <a href="../2023/">2023 (5)</a>
-  </li>
-    
-  <li>
-    <a href="../2022/">2022 (3)</a>
-  </li>
-    
-  <li>
-    <a href="../2021/">2021 (8)</a>
-  </li>
-    
-  <li>
-    <a href="#">2020 (12)</a>
-  </li>
-    
-  <li>
-    <a href="../2018/">2018 (1)</a>
-  </li>
-    
-  <li>
-    <a href="../2017/">2017 (1)</a>
-  </li>
-    
-  <li>
-    <a href="../2016/">2016 (3)</a>
-  </li>
-    
-  <li>
-    <a href="../2014/">2014 (2)</a>
-  </li>
-    
-  <li>
-    <a href="../2012/">2012 (1)</a>
-  </li>
-   
-</ul>
+</div>
+        <div class="sidebar-primary-item"> 
+<div class="ablog-sidebar-item ablog__archive">
+  <h3>
+    <a href="../archive/">Archives</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../2025/">2025 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../2024/">2024 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../2023/">2023 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../2022/">2022 (3)</a>
+    </li>
+      
+    <li>
+      <a href="../2021/">2021 (8)</a>
+    </li>
+      
+    <li>
+      <a href="#">2020 (12)</a>
+    </li>
+      
+    <li>
+      <a href="../2018/">2018 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../2017/">2017 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../2016/">2016 (3)</a>
+    </li>
+      
+    <li>
+      <a href="../2014/">2014 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../2012/">2012 (1)</a>
+    </li>
+     
+  </ul>
+</div>
 </div>
     </div>
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -465,8 +390,6 @@
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -475,7 +398,7 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">Posted in 2020</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Posted in 2020</span></li>
   </ul>
 </nav>
 </div>
@@ -492,264 +415,325 @@
                 
 <div id="searchbox"></div>
                 <article class="bd-article">
-                  
-
-<div class="section">
+                   
+<div class="section ablog__collection">
   <h1>
-     Posted in  2020 
+    
+    <span
+      >Posted in  2020 
+    </span>
   </h1>
    
-
   <div class="section ablog-post">
     <h2 class="ablog-post-title">
       <a href="../../posts/2020-12-01-biased-stochastic-approximation/">Biased stochastic approximation</a>
     </h2>
-
     <ul class="ablog-archive">
       <li>
-         <i class="fa fa-calendar"></i> 01 December 2020 
+         
+        <i class="fa fa-calendar"></i>
+        
+        <span>01 December 2020</span>
+        
       </li>
-            
-    </ul>
-    <div class="ablog-post-excerpt docutils container">
-<p>We explore the convergence of continuous-time ordinary differential equations and their discrete-time analogs, such as stochastic approximation and gradient descent, through the lens of Lyapunov theory <span id="id1">[<a class="reference internal" href="../../posts/2020-12-01-biased-stochastic-approximation/#id47" title="Léon Bottou and others. Online learning and stochastic approximations. On-line learning in neural networks, 17(9):142, 1998.">B+98</a>]</span> <span id="id2">[<a class="reference internal" href="../../posts/2020-12-01-biased-stochastic-approximation/#id44" title="Yingshen Li and Mark Rowland. Stochastic approximation theory (slides). http://yingzhenli.net/home/pdf/SA.pdf, 2015.">LR15</a>]</span>. From this perspective, we will study biased stochastic approximation <span id="id3">[<a class="reference internal" href="../../posts/2021-06-05-spiking-neural-networks/#id51" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span> where the expectation of the stochastic updates conditioned on the past (which we call the <em>conditional expectation</em>) is not the same as the expectation of the stochastic updates under the stationary distribution (which we call the <em>total expectation</em>).</p>
-<p>This post is a continuation from our <a class="reference internal" href="#2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="xref myst">series</span></a> on spiking networks, path integrals and motivic information.</p>
+      <div class="ablog-sidebar-item ablog__postcard2">
+        
 </div>
+    </ul>
+    <p class="ablog-post-excerpt"><p>We explore the convergence of continuous-time ordinary differential equations and their discrete-time analogs, such as stochastic approximation and gradient descent, through the lens of Lyapunov theory <span id="id1">[<a class="reference internal" href="../../posts/2020-12-01-biased-stochastic-approximation/#id47" title="Léon Bottou and others. Online learning and stochastic approximations. On-line learning in neural networks, 17(9):142, 1998.">B+98</a>]</span> <span id="id2">[<a class="reference internal" href="../../posts/2020-12-01-biased-stochastic-approximation/#id44" title="Yingshen Li and Mark Rowland. Stochastic approximation theory (slides). http://yingzhenli.net/home/pdf/SA.pdf, 2015.">LR15</a>]</span>. From this perspective, we will study biased stochastic approximation <span id="id3">[<a class="reference internal" href="../../posts/2021-06-05-spiking-neural-networks/#id51" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span> where the expectation of the stochastic updates conditioned on the past (which we call the <em>conditional expectation</em>) is not the same as the expectation of the stochastic updates under the stationary distribution (which we call the <em>total expectation</em>).</p>
+<p>This post is a continuation from our <a class="reference internal" href="#2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="xref myst">series</span></a> on spiking networks, path integrals and motivic information.</p>
+</p>
 
-    <p class="ablog-post-expand"><a href="../../posts/2020-12-01-biased-stochastic-approximation/"><em>Read more ...</em></a></p>
-    <hr/>
+    <p class="ablog-post-expand">
+      <a href="../../posts/2020-12-01-biased-stochastic-approximation/"><em>Read more ...</em></a>
+    </p>
+    <hr />
   </div>
   
-
   <div class="section ablog-post">
     <h2 class="ablog-post-title">
       <a href="../../posts/2020-10-23-machine-learning-with-relative-information/">Machine learning with relative information</a>
     </h2>
-
     <ul class="ablog-archive">
       <li>
-         <i class="fa fa-calendar"></i> 23 October 2020 
+         
+        <i class="fa fa-calendar"></i>
+        
+        <span>23 October 2020</span>
+        
       </li>
-            
-    </ul>
-    <div class="ablog-post-excerpt docutils container">
-<p>We will reframe some common machine learning paradigms, such as maximum likelihood, stochastic gradients, stochastic approximation and variational inference, in terms of relative information.</p>
-<p>This post is a continuation from our <a class="reference internal" href="#2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="xref myst">series</span></a> on spiking networks, path integrals and motivic information.</p>
+      <div class="ablog-sidebar-item ablog__postcard2">
+        
 </div>
+    </ul>
+    <p class="ablog-post-excerpt"><p>We will reframe some common machine learning paradigms, such as maximum likelihood, stochastic gradients, stochastic approximation and variational inference, in terms of relative information.</p>
+<p>This post is a continuation from our <a class="reference internal" href="#2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="xref myst">series</span></a> on spiking networks, path integrals and motivic information.</p>
+</p>
 
-    <p class="ablog-post-expand"><a href="../../posts/2020-10-23-machine-learning-with-relative-information/"><em>Read more ...</em></a></p>
-    <hr/>
+    <p class="ablog-post-expand">
+      <a href="../../posts/2020-10-23-machine-learning-with-relative-information/"><em>Read more ...</em></a>
+    </p>
+    <hr />
   </div>
   
-
   <div class="section ablog-post">
     <h2 class="ablog-post-title">
       <a href="../../posts/2020-10-14-path-integrals-and-continuous-time-markov-chains/">Path integrals and continuous-time Markov chains</a>
     </h2>
-
     <ul class="ablog-archive">
       <li>
-         <i class="fa fa-calendar"></i> 14 October 2020 
+         
+        <i class="fa fa-calendar"></i>
+        
+        <span>14 October 2020</span>
+        
       </li>
-            
-    </ul>
-    <div class="ablog-post-excerpt docutils container">
-<p>We give an introduction to continuous-time Markov chains, and define path measures for these objects.</p>
-<p>This post is a continuation from our <a class="reference internal" href="#2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="xref myst">series</span></a> on spiking networks, path integrals and motivic information.</p>
+      <div class="ablog-sidebar-item ablog__postcard2">
+        
 </div>
+    </ul>
+    <p class="ablog-post-excerpt"><p>We give an introduction to continuous-time Markov chains, and define path measures for these objects.</p>
+<p>This post is a continuation from our <a class="reference internal" href="#2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="xref myst">series</span></a> on spiking networks, path integrals and motivic information.</p>
+</p>
 
-    <p class="ablog-post-expand"><a href="../../posts/2020-10-14-path-integrals-and-continuous-time-markov-chains/"><em>Read more ...</em></a></p>
-    <hr/>
+    <p class="ablog-post-expand">
+      <a href="../../posts/2020-10-14-path-integrals-and-continuous-time-markov-chains/"><em>Read more ...</em></a>
+    </p>
+    <hr />
   </div>
   
-
   <div class="section ablog-post">
     <h2 class="ablog-post-title">
       <a href="../../posts/2020-10-07-motivic-relative-information/">Motivic relative information</a>
     </h2>
-
     <ul class="ablog-archive">
       <li>
-         <i class="fa fa-calendar"></i> 07 October 2020 
+         
+        <i class="fa fa-calendar"></i>
+        
+        <span>07 October 2020</span>
+        
       </li>
-            
-    </ul>
-    <div class="ablog-post-excerpt docutils container">
-<p>So far, our definition of relative information studies the divergence between real-valued measures. In this post, we will explore motivic measures which take values more generally in some ring <span class="math notranslate nohighlight">\(R\)</span>, and have some fun applying motivic relative information to zeta functions.</p>
-<p>This post is a continuation from our <a class="reference internal" href="#2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="xref myst">series</span></a> on spiking networks, path integrals and motivic information.</p>
+      <div class="ablog-sidebar-item ablog__postcard2">
+        
 </div>
+    </ul>
+    <p class="ablog-post-excerpt"><p>So far, our definition of relative information studies the divergence between real-valued measures. In this post, we will explore motivic measures which take values more generally in some ring <span class="math notranslate nohighlight">\(R\)</span>, and have some fun applying motivic relative information to zeta functions.</p>
+<p>This post is a continuation from our <a class="reference internal" href="#2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="xref myst">series</span></a> on spiking networks, path integrals and motivic information.</p>
+</p>
 
-    <p class="ablog-post-expand"><a href="../../posts/2020-10-07-motivic-relative-information/"><em>Read more ...</em></a></p>
-    <hr/>
+    <p class="ablog-post-expand">
+      <a href="../../posts/2020-10-07-motivic-relative-information/"><em>Read more ...</em></a>
+    </p>
+    <hr />
   </div>
   
-
   <div class="section ablog-post">
     <h2 class="ablog-post-title">
       <a href="../../posts/2020-10-05-zeta-functions-mellin-transforms-and-the-gelfand-leray-form/">Zeta functions, Mellin transforms and the Gelfand-Leray form</a>
     </h2>
-
     <ul class="ablog-archive">
       <li>
-         <i class="fa fa-calendar"></i> 05 October 2020 
+         
+        <i class="fa fa-calendar"></i>
+        
+        <span>05 October 2020</span>
+        
       </li>
-            
-    </ul>
-    <div class="ablog-post-excerpt docutils container">
-<p>We outline the similarities between zeta functions appearing in number theory and in statistical learning.</p>
-<p>This post is a continuation from our <a class="reference internal" href="#2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="xref myst">series</span></a> on spiking networks, path integrals and motivic information.</p>
+      <div class="ablog-sidebar-item ablog__postcard2">
+        
 </div>
+    </ul>
+    <p class="ablog-post-excerpt"><p>We outline the similarities between zeta functions appearing in number theory and in statistical learning.</p>
+<p>This post is a continuation from our <a class="reference internal" href="#2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="xref myst">series</span></a> on spiking networks, path integrals and motivic information.</p>
+</p>
 
-    <p class="ablog-post-expand"><a href="../../posts/2020-10-05-zeta-functions-mellin-transforms-and-the-gelfand-leray-form/"><em>Read more ...</em></a></p>
-    <hr/>
+    <p class="ablog-post-expand">
+      <a href="../../posts/2020-10-05-zeta-functions-mellin-transforms-and-the-gelfand-leray-form/"><em>Read more ...</em></a>
+    </p>
+    <hr />
   </div>
   
-
   <div class="section ablog-post">
     <h2 class="ablog-post-title">
       <a href="../../posts/2020-09-18-conditional-relative-information-and-its-axiomatizations/">Conditional relative information and its axiomatizations</a>
     </h2>
-
     <ul class="ablog-archive">
       <li>
-         <i class="fa fa-calendar"></i> 18 September 2020 
+         
+        <i class="fa fa-calendar"></i>
+        
+        <span>18 September 2020</span>
+        
       </li>
-            
-    </ul>
-    <div class="ablog-post-excerpt docutils container">
-<p>In this post, we will study the conditional form of relative information. We will also look at how conditional relative information can be axiomatized and extended to non-real-valued measures.</p>
-<p>This post is a continuation from our <a class="reference internal" href="#2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="xref myst">series</span></a> on spiking networks, path integrals and motivic information.</p>
+      <div class="ablog-sidebar-item ablog__postcard2">
+        
 </div>
+    </ul>
+    <p class="ablog-post-excerpt"><p>In this post, we will study the conditional form of relative information. We will also look at how conditional relative information can be axiomatized and extended to non-real-valued measures.</p>
+<p>This post is a continuation from our <a class="reference internal" href="#2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="xref myst">series</span></a> on spiking networks, path integrals and motivic information.</p>
+</p>
 
-    <p class="ablog-post-expand"><a href="../../posts/2020-09-18-conditional-relative-information-and-its-axiomatizations/"><em>Read more ...</em></a></p>
-    <hr/>
+    <p class="ablog-post-expand">
+      <a href="../../posts/2020-09-18-conditional-relative-information-and-its-axiomatizations/"><em>Read more ...</em></a>
+    </p>
+    <hr />
   </div>
   
-
   <div class="section ablog-post">
     <h2 class="ablog-post-title">
       <a href="../../posts/2020-09-08-building-foundations-of-information-theory-on-relative-information/">Building foundations of information theory on relative information</a>
     </h2>
-
     <ul class="ablog-archive">
       <li>
-         <i class="fa fa-calendar"></i> 08 September 2020 
+         
+        <i class="fa fa-calendar"></i>
+        
+        <span>08 September 2020</span>
+        
       </li>
-            
-    </ul>
-    <div class="ablog-post-excerpt docutils container">
-<p>The relative information <span id="id1">[<a class="reference internal" href="../../posts/2022-01-22-information-topos-theory-motivation/#id66" title="JC Baez and T Fritz. A bayesian characterization of relative entropy. Theory and Applications of Categories, 29:422–456, 2014.">BF14</a>]</span> (also known as relative entropy or Kullback-Leibler divergence) is an important object in information theory for measuring how far a probability measure <span class="math notranslate nohighlight">\(Q\)</span> is from another probability measure <span class="math notranslate nohighlight">\(P.\)</span> Here, <span class="math notranslate nohighlight">\(Q\)</span> is usually the true distribution of some real phenomenon, and <span class="math notranslate nohighlight">\(P\)</span> is some model distribution.</p>
-<p>In this post, we emphasize that the relative information is fundamental in the sense that all other interesting information-theoretic objects may be derived from it. We also outline how relative information can be defined without probability mass functions or probability density functions, or even in the absence of absolute continuity.</p>
+      <div class="ablog-sidebar-item ablog__postcard2">
+        
 </div>
+    </ul>
+    <p class="ablog-post-excerpt"><p>The relative information <span id="id1">[<a class="reference internal" href="../../posts/2022-01-22-information-topos-theory-motivation/#id66" title="JC Baez and T Fritz. A bayesian characterization of relative entropy. Theory and Applications of Categories, 29:422–456, 2014.">BF14</a>]</span> (also known as relative entropy or Kullback-Leibler divergence) is an important object in information theory for measuring how far a probability measure <span class="math notranslate nohighlight">\(Q\)</span> is from another probability measure <span class="math notranslate nohighlight">\(P.\)</span> Here, <span class="math notranslate nohighlight">\(Q\)</span> is usually the true distribution of some real phenomenon, and <span class="math notranslate nohighlight">\(P\)</span> is some model distribution.</p>
+<p>In this post, we emphasize that the relative information is fundamental in the sense that all other interesting information-theoretic objects may be derived from it. We also outline how relative information can be defined without probability mass functions or probability density functions, or even in the absence of absolute continuity.</p>
+</p>
 
-    <p class="ablog-post-expand"><a href="../../posts/2020-09-08-building-foundations-of-information-theory-on-relative-information/"><em>Read more ...</em></a></p>
-    <hr/>
+    <p class="ablog-post-expand">
+      <a href="../../posts/2020-09-08-building-foundations-of-information-theory-on-relative-information/"><em>Read more ...</em></a>
+    </p>
+    <hr />
   </div>
   
-
   <div class="section ablog-post">
     <h2 class="ablog-post-title">
       <a href="../../posts/2020-08-28-motivic-information-path-integrals-and-spiking-networks/">Motivic information, path integrals and spiking networks</a>
     </h2>
-
     <ul class="ablog-archive">
       <li>
-         <i class="fa fa-calendar"></i> 28 August 2020 
+         
+        <i class="fa fa-calendar"></i>
+        
+        <span>28 August 2020</span>
+        
       </li>
-            
-    </ul>
-    <div class="ablog-post-excerpt docutils container">
-<p>I’m writing a series of posts that will explore the connections between these topics. Here is a rough outline of the series, which I will fill in slowly over time.</p>
-<p><a class="reference internal" href="#2020-09-08-building-foundations-of-information-theory-on-relative-information/"><span class="xref myst">Building foundations of information theory on relative information</span></a></p>
+      <div class="ablog-sidebar-item ablog__postcard2">
+        
 </div>
+    </ul>
+    <p class="ablog-post-excerpt"><p>I’m writing a series of posts that will explore the connections between these topics. Here is a rough outline of the series, which I will fill in slowly over time.</p>
+<p><a class="reference internal" href="#2020-09-08-building-foundations-of-information-theory-on-relative-information/"><span class="xref myst">Building foundations of information theory on relative information</span></a></p>
+</p>
 
-    <p class="ablog-post-expand"><a href="../../posts/2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><em>Read more ...</em></a></p>
-    <hr/>
+    <p class="ablog-post-expand">
+      <a href="../../posts/2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><em>Read more ...</em></a>
+    </p>
+    <hr />
   </div>
   
-
   <div class="section ablog-post">
     <h2 class="ablog-post-title">
       <a href="../../posts/2020-08-07-processes-and-variety-maximization/">Processes and variety maximization</a>
     </h2>
-
     <ul class="ablog-archive">
       <li>
-         <i class="fa fa-calendar"></i> 07 August 2020 
+         
+        <i class="fa fa-calendar"></i>
+        
+        <span>07 August 2020</span>
+        
       </li>
-            
-    </ul>
-    <div class="ablog-post-excerpt docutils container">
-<p>“It’s a theory about processes, about the sequences and causal relations among <em>things that happen</em>, not the inherent properties of <em>things that are.</em> The fundamental ingredient is what we call an “event.” Events are things that happen at a single place and time; at each event there’s some momentum, energy, charge or other various physical quantity that’s measurable. The event has relations with the rest of the universe, and that set of relations constitutes its “view” of the universe. Rather than describing an isolated system in terms of things that are measured from the outside, we’re taking the universe as constituted of relations among events. The idea is to try to reformulate physics in terms of these views from the inside, what it looks like from inside the universe.”</p>
-<p>“There are many views, and each one has only partial information about the rest of the universe. We propose as a principle of dynamics that each view should be unique. That idea comes from Leibniz’s principle of the identity of indiscernibles. Two events whose views are exactly mappable onto each other are the same event, by definition. So each view is unique, and you can measure how distinct one is from another by defining a quantity called the “variety.” If you think of a node on a graph, you can go one step out, two steps out, three steps out. Each step gives you a neighborhood — the one-step neighborhood, the two-step neighborhood, the three-step neighborhood. So for any two events you can ask: How many steps do you have to go out until their views diverge? In what neighborhood are they different? The fewer steps you have to go, the more distinguishable the views are from one another. The idea in this theory is that the laws of physics — the dynamics of the system — work to maximize variety. That principle — that nature wants to maximize variety — actually leads, within the framework I’ve been describing, to the Schrödinger equation, and hence to a recovery, in an appropriate limit, of quantum mechanics.” - Les Smolin</p>
+      <div class="ablog-sidebar-item ablog__postcard2">
+        
 </div>
+    </ul>
+    <p class="ablog-post-excerpt"><p>“It’s a theory about processes, about the sequences and causal relations among <em>things that happen</em>, not the inherent properties of <em>things that are.</em> The fundamental ingredient is what we call an “event.” Events are things that happen at a single place and time; at each event there’s some momentum, energy, charge or other various physical quantity that’s measurable. The event has relations with the rest of the universe, and that set of relations constitutes its “view” of the universe. Rather than describing an isolated system in terms of things that are measured from the outside, we’re taking the universe as constituted of relations among events. The idea is to try to reformulate physics in terms of these views from the inside, what it looks like from inside the universe.”</p>
+<p>“There are many views, and each one has only partial information about the rest of the universe. We propose as a principle of dynamics that each view should be unique. That idea comes from Leibniz’s principle of the identity of indiscernibles. Two events whose views are exactly mappable onto each other are the same event, by definition. So each view is unique, and you can measure how distinct one is from another by defining a quantity called the “variety.” If you think of a node on a graph, you can go one step out, two steps out, three steps out. Each step gives you a neighborhood — the one-step neighborhood, the two-step neighborhood, the three-step neighborhood. So for any two events you can ask: How many steps do you have to go out until their views diverge? In what neighborhood are they different? The fewer steps you have to go, the more distinguishable the views are from one another. The idea in this theory is that the laws of physics — the dynamics of the system — work to maximize variety. That principle — that nature wants to maximize variety — actually leads, within the framework I’ve been describing, to the Schrödinger equation, and hence to a recovery, in an appropriate limit, of quantum mechanics.” - Les Smolin</p>
+</p>
 
-    <p class="ablog-post-expand"><a href="../../posts/2020-08-07-processes-and-variety-maximization/"><em>Read more ...</em></a></p>
-    <hr/>
+    <p class="ablog-post-expand">
+      <a href="../../posts/2020-08-07-processes-and-variety-maximization/"><em>Read more ...</em></a>
+    </p>
+    <hr />
   </div>
   
-
   <div class="section ablog-post">
     <h2 class="ablog-post-title">
       <a href="../../posts/2020-07-23-adjunctions/">Adjunctions</a>
     </h2>
-
     <ul class="ablog-archive">
       <li>
-         <i class="fa fa-calendar"></i> 23 July 2020 
+         
+        <i class="fa fa-calendar"></i>
+        
+        <span>23 July 2020</span>
+        
       </li>
-            
-    </ul>
-    <div class="ablog-post-excerpt docutils container">
-<p>Read about the Curry-Howard-Lambek correspondence. Some call it the holy trinity of Logic, Computation and Categories. Lambek adds the “objects as propositions” and “arrows as proofs” part to the mix. You may need to learn some basic category theory.</p>
-<p><a class="reference external" href="http://arca.di.uminho.pt/quantum-logic-1920/CategoriesAndLogic.pdf">http://arca.di.uminho.pt/quantum-logic-1920/CategoriesAndLogic.pdf</a></p>
+      <div class="ablog-sidebar-item ablog__postcard2">
+        
 </div>
+    </ul>
+    <p class="ablog-post-excerpt"><p>Read about the Curry-Howard-Lambek correspondence. Some call it the holy trinity of Logic, Computation and Categories. Lambek adds the “objects as propositions” and “arrows as proofs” part to the mix. You may need to learn some basic category theory.</p>
+<p><a class="reference external" href="http://arca.di.uminho.pt/quantum-logic-1920/CategoriesAndLogic.pdf">http://arca.di.uminho.pt/quantum-logic-1920/CategoriesAndLogic.pdf</a></p>
+</p>
 
-    <p class="ablog-post-expand"><a href="../../posts/2020-07-23-adjunctions/"><em>Read more ...</em></a></p>
-    <hr/>
+    <p class="ablog-post-expand">
+      <a href="../../posts/2020-07-23-adjunctions/"><em>Read more ...</em></a>
+    </p>
+    <hr />
   </div>
   
-
   <div class="section ablog-post">
     <h2 class="ablog-post-title">
       <a href="../../posts/2020-05-26-directed-spaces-and-types/">Directed spaces and types</a>
     </h2>
-
     <ul class="ablog-archive">
       <li>
-         <i class="fa fa-calendar"></i> 26 May 2020 
+         
+        <i class="fa fa-calendar"></i>
+        
+        <span>26 May 2020</span>
+        
       </li>
-            
-    </ul>
-    <div class="ablog-post-excerpt docutils container">
-<p>Joint work with Jin Xing Lim, Liang Ze Wong, Georgios Piliouras.</p>
-<p>There is a concept of <a class="reference external" href="https://ncatlab.org/nlab/show/directed+topological+space">Directed Spaces</a>. Since Types can be thought of as Spaces, the question is what kind of additional information we would need to construct such a Type (e.g. for undirected types, we can construct these types using identity types as additional information).</p>
+      <div class="ablog-sidebar-item ablog__postcard2">
+        
 </div>
+    </ul>
+    <p class="ablog-post-excerpt"><p>Joint work with Jin Xing Lim, Liang Ze Wong, Georgios Piliouras.</p>
+<p>There is a concept of <a class="reference external" href="https://ncatlab.org/nlab/show/directed+topological+space">Directed Spaces</a>. Since Types can be thought of as Spaces, the question is what kind of additional information we would need to construct such a Type (e.g. for undirected types, we can construct these types using identity types as additional information).</p>
+</p>
 
-    <p class="ablog-post-expand"><a href="../../posts/2020-05-26-directed-spaces-and-types/"><em>Read more ...</em></a></p>
-    <hr/>
+    <p class="ablog-post-expand">
+      <a href="../../posts/2020-05-26-directed-spaces-and-types/"><em>Read more ...</em></a>
+    </p>
+    <hr />
   </div>
   
-
   <div class="section ablog-post">
     <h2 class="ablog-post-title">
       <a href="../../posts/2020-05-21-logical-frameworks/">Logical frameworks</a>
     </h2>
-
     <ul class="ablog-archive">
       <li>
-         <i class="fa fa-calendar"></i> 21 May 2020 
+         
+        <i class="fa fa-calendar"></i>
+        
+        <span>21 May 2020</span>
+        
       </li>
-            
-    </ul>
-    <div class="ablog-post-excerpt docutils container">
-<p>Logical frameworks are formal meta-languages for specifying different kinds of object theories (e.g. logical theories and type theories).</p>
-<p>LF is a logical framework <span id="id1">[<a class="reference internal" href="../../posts/2020-05-21-logical-frameworks/#id73" title="Robert Harper, Furio Honsell, and Gordon Plotkin. A framework for defining logics. Journal of the ACM (JACM), 40(1):143–184, 1993.">HHP93</a>]</span> that formalizes Martin-Lof’s logical framework and is itself based on type theory. It was designed to unify similarities between two forms of judgments.</p>
-<img alt="logical-framework-rules" src="../../_images/logical-framework-rules.png" />
+      <div class="ablog-sidebar-item ablog__postcard2">
+        
 </div>
+    </ul>
+    <p class="ablog-post-excerpt"><p>Logical frameworks are formal meta-languages for specifying different kinds of object theories (e.g. logical theories and type theories).</p>
+<p>LF is a logical framework <span id="id1">[<a class="reference internal" href="../../posts/2020-05-21-logical-frameworks/#id73" title="Robert Harper, Furio Honsell, and Gordon Plotkin. A framework for defining logics. Journal of the ACM (JACM), 40(1):143–184, 1993.">HHP93</a>]</span> that formalizes Martin-Lof’s logical framework and is itself based on type theory. It was designed to unify similarities between two forms of judgments.</p>
+<img alt="logical-framework-rules" src="../../_images/logical-framework-rules.png" /></p>
 
-    <p class="ablog-post-expand"><a href="../../posts/2020-05-21-logical-frameworks/"><em>Read more ...</em></a></p>
-    <hr/>
+    <p class="ablog-post-expand">
+      <a href="../../posts/2020-05-21-logical-frameworks/"><em>Read more ...</em></a>
+    </p>
+    <hr />
   </div>
    
 </div>
@@ -798,8 +782,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -819,7 +803,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
     <br/>
   </p>
 </div>
@@ -832,7 +816,8 @@
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

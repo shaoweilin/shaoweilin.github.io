@@ -1,13 +1,13 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta property="og:title" content="Spiking neural networks" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Spiking neural networks" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://shaoweilin.github.io/posts/2021-06-05-spiking-neural-networks/" />
 <meta property="og:site_name" content="Types from Spikes" />
@@ -24,77 +24,53 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-dropdown.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8a9ddf57" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-dropdown.css?v=995e94df" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.min.css?v=21c0b90a" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/documentation_options.js?v=187304be"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2021-06-05-spiking-neural-networks';</script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about/" />
     <link rel="index" title="Index" href="../../genindex/" />
     <link rel="search" title="Search" href="../../search/" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/> 
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" /> 
 <link
   rel="alternate"
   type="application/atom+xml"
   href="../../blog/atom.xml"
   title="Types from Spikes"
 />
- 
-<style type="text/css">
-  ul.ablog-archive {
-    list-style: none;
-    overflow: auto;
-    margin-left: 0px;
-  }
-  ul.ablog-archive li {
-    float: left;
-    margin-right: 5px;
-    font-size: 80%;
-  }
-  ul.postlist a {
-    font-style: italic;
-  }
-  ul.postlist-style-disc {
-    list-style-type: disc;
-  }
-  ul.postlist-style-none {
-    list-style-type: none;
-  }
-  ul.postlist-style-circle {
-    list-style-type: circle;
-  }
-</style>
-
+  
   </head>
   
   
@@ -110,19 +86,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../search/"
       method="get">
@@ -130,7 +95,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search"
          aria-label="Search"
          autocomplete="off"
@@ -138,8 +102,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -206,15 +170,9 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
         </div>
       
       
@@ -234,24 +192,6 @@
         </li>
 </ul></div>
       
-        <div class="navbar-item">
-<form class="bd-search d-flex align-items-center"
-      action="../../search/"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search"
-         aria-label="Search"
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-      
     </div>
     
   </div>
@@ -259,15 +199,9 @@
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
     </div>
   
 
@@ -288,7 +222,8 @@
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -342,136 +277,134 @@
         </li>
 </ul></div>
         
-          <div class="navbar-item">
-<form class="bd-search d-flex align-items-center"
-      action="../../search/"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search"
-         aria-label="Search"
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-        
       </div>
     
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">  
-<h2>
-   <i class="fa fa-calendar"></i>
-  05 June 2021 
-</h2>
-
-<ul>
+        <div class="sidebar-primary-item"> 
+<div class="ablog-sidebar-item ablog__postcard">
+   
+  <h2>
+     
+    <i class="fa fa-calendar"></i>
+    
+    <span>05 June 2021</span>
+    
+  </h2>
+  <ul>
+    <div class="ablog-sidebar-item ablog__postcard2">
         
-</ul>
 </div>
-        <div class="sidebar-primary-item">
-<h3>
-  <a href="../../blog/">Recent Posts</a>
-</h3>
-<ul>
-   
-  <li>
-    <a href="../2025-01-10-relative-information-and-the-dual-numbers/"
-      >10 January - Relative information and the dual numbers</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-10-16-singular-learning-relative-information-and-the-dual-numbers/"
-      >16 October - Singular learning, relative information and the dual numbers</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-10-01-program-synthesis/"
-      >01 October - Program Synthesis</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-09-24-safety-by-shared-synthesis/"
-      >24 September - Safety by shared synthesis</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-05-22-formal-ai-assisted-code-specification-and-synthesis-concrete-steps-towards-safe-sociotechnical-systems/"
-      >22 May - Formal AI-assisted code specification and synthesis: concrete steps towards safe sociotechnical systems</a
-    >
-  </li>
-  
-</ul>
+  </ul>
 </div>
-        <div class="sidebar-primary-item">
-<h3>
-  <a href="../../blog/archive/">Archives</a>
-</h3>
-<ul>
-   
-  <li>
-    <a href="../../blog/2025/">2025 (1)</a>
-  </li>
+</div>
+        <div class="sidebar-primary-item"> 
+<div class="ablog-sidebar-item ablog__recentposts">
+  <h3>
+    <a href="../../blog/">Recent Posts</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../2025-01-10-relative-information-and-the-dual-numbers/">
+        10 January - Relative information and the dual numbers
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2024/">2024 (5)</a>
-  </li>
+    <li>
+      <a href="../2024-10-16-singular-learning-relative-information-and-the-dual-numbers/">
+        16 October - Singular learning, relative information and the dual numbers
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2023/">2023 (5)</a>
-  </li>
+    <li>
+      <a href="../2024-10-01-program-synthesis/">
+        01 October - Program Synthesis
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2022/">2022 (3)</a>
-  </li>
+    <li>
+      <a href="../2024-09-24-safety-by-shared-synthesis/">
+        24 September - Safety by shared synthesis
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2021/">2021 (8)</a>
-  </li>
+    <li>
+      <a href="../2024-05-22-formal-ai-assisted-code-specification-and-synthesis-concrete-steps-towards-safe-sociotechnical-systems/">
+        22 May - Formal AI-assisted code specification and synthesis: concrete steps towards safe sociotechnical systems
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2020/">2020 (12)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2018/">2018 (1)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2017/">2017 (1)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2016/">2016 (3)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2014/">2014 (2)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2012/">2012 (1)</a>
-  </li>
-   
-</ul>
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item"> 
+<div class="ablog-sidebar-item ablog__archive">
+  <h3>
+    <a href="../../blog/archive/">Archives</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../blog/2025/">2025 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2024/">2024 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2023/">2023 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2022/">2022 (3)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2021/">2021 (8)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2020/">2020 (12)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2018/">2018 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2017/">2017 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2016/">2016 (3)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2014/">2014 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2012/">2012 (1)</a>
+    </li>
+     
+  </ul>
+</div>
 </div>
     </div>
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -489,8 +422,6 @@
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -499,7 +430,7 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">Spiking...</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Spiking neural networks</span></li>
   </ul>
 </nav>
 </div>
@@ -516,14 +447,14 @@
                 
 <div id="searchbox"></div>
                 <article class="bd-article">
-                   <div class="tex2jax_ignore mathjax_ignore section" id="spiking-neural-networks">
-<h1>Spiking neural networks<a class="headerlink" href="#spiking-neural-networks" title="Permalink to this heading">#</a></h1>
+                   <section class="tex2jax_ignore mathjax_ignore" id="spiking-neural-networks">
+<h1>Spiking neural networks<a class="headerlink" href="#spiking-neural-networks" title="Link to this heading">#</a></h1>
 <p>In this post, we study a class of spiking network models based on continuous-time <a class="reference internal" href="#2020-10-14-path-integrals-and-continuous-time-markov-chains/#what-is-a-continuous-time-markov-chain"><span class="xref myst">Markov</span></a> chains with <a class="reference internal" href="#2021-03-22-relative-inference-with-mutable-processes/#what-is-a-mutable-process"><span class="xref myst">mutable</span></a>  variables.</p>
 <p>Using a <a class="reference internal" href="../2021-06-01-convergence-of-biased-stochastic-approximation/"><span class="doc std std-doc">relative inference</span></a> recipe for online learning, we derive local Hebbian learning rules for the spiking network which are provably convergent to local minima of the relative information objective.</p>
 <p>This post is a continuation from our <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">series</span></a> on spiking networks, path integrals and motivic information.</p>
 <p>For background material in statistical learning, relative information, relative inference, process learning, mutable processes and biased stochastic approximation, you may follow the recommended sequence of posts under <em>Spiking Networks</em> in this <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">outline</span></a>.</p>
-<div class="section" id="what-are-the-states-and-parameters-of-the-spiking-network-model">
-<h2>What are the states and parameters of the spiking network model?<a class="headerlink" href="#what-are-the-states-and-parameters-of-the-spiking-network-model" title="Permalink to this heading">#</a></h2>
+<section id="what-are-the-states-and-parameters-of-the-spiking-network-model">
+<h2>What are the states and parameters of the spiking network model?<a class="headerlink" href="#what-are-the-states-and-parameters-of-the-spiking-network-model" title="Link to this heading">#</a></h2>
 <p>Let <span class="math notranslate nohighlight">\(\mathcal{V}_X\)</span> be a finite set representing the collection of random variables which capture the state of the environment or universe. For <a class="reference internal" href="#2021-03-23-biased-stochastic-approximation-with-mutable-processes/#what-do-we-assume-about-the-true-distribution-the-model-and-the-learning-objective"><span class="xref myst">simplicity</span></a>, we assume that each of these variables have the same state space as the neurons in our model, so we will call them <em>environment neurons</em> for convenience. We also assume that these neurons contain enough information about the environment such that its true distribution is Markov. A subset of these neurons will be observed for inference and learning; the other neurons could remain unobserved or inaccessible.</p>
 <p>Let <span class="math notranslate nohighlight">\(\mathcal{V}_Z\)</span> be a finite set representing the collection of <a class="reference internal" href="#2021-03-22-relative-inference-with-mutable-processes/#what-is-a-mutable-process"><span class="xref myst">mutable</span></a> neurons which assist the spiking network computationally in learning an approximation of the true distribution. The states of these mutable neurons represent samples of beliefs that the spiking network has about the current state of the environment. Together, they act as the memory of the spiking network, so we will call them <em>memory neurons</em>.</p>
 <p>At each time <span class="math notranslate nohighlight">\(t \geq 0\)</span> and for each neuron <span class="math notranslate nohighlight">\(i \in \mathcal{V}:=\mathcal{V}_Z \cup \mathcal{V}_X,\)</span> we have a signed state</p>
@@ -555,9 +486,9 @@
 <div class="math notranslate nohighlight">
 \[w^{(P)} := (w^{(P)}_{e} : e \in \mathcal{E}_P).\]</div>
 <p>We now describe the transitions allowed in our spiking network model. We require the states <span class="math notranslate nohighlight">\((R_t,S_t)\)</span> to be piecewise constant in time, with only finitely many transitions in any finite time interval. If we have a transition from <span class="math notranslate nohighlight">\((R,S)\)</span> to <span class="math notranslate nohighlight">\((R',S'),\)</span> and <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(S'\)</span> differ at exactly <span class="math notranslate nohighlight">\(k\)</span> different neurons, then we say the transition is <em><span class="math notranslate nohighlight">\(k\)</span>-hop</em>. For the environment process <span class="math notranslate nohighlight">\(\{X_t\},\)</span> we will allow multi-hop transitions, even if such coupling of neurons is biologically rare or impossible.</p>
-</div>
-<div class="section" id="what-are-the-dynamics-of-the-generative-model">
-<h2>What are the dynamics of the generative model?<a class="headerlink" href="#what-are-the-dynamics-of-the-generative-model" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="what-are-the-dynamics-of-the-generative-model">
+<h2>What are the dynamics of the generative model?<a class="headerlink" href="#what-are-the-dynamics-of-the-generative-model" title="Link to this heading">#</a></h2>
 <p>Suppose we fix the parameters <span class="math notranslate nohighlight">\(w^{(P)}\)</span> and drop the <span class="math notranslate nohighlight">\((P)\)</span> annotation for convenience. We now define the generative model distribution <span class="math notranslate nohighlight">\(P_w\)</span> as a <span class="math notranslate nohighlight">\(w\)</span>-controlled continuous-time <a class="reference internal" href="#2020-10-14-path-integrals-and-continuous-time-markov-chains/#what-is-a-continuous-time-markov-chain"><span class="xref myst">Markov</span></a> chain with rate kernel <span class="math notranslate nohighlight">\(\Gamma\)</span> and a countable state space</p>
 <div class="math notranslate nohighlight">
 \[(R_t, S_t) \quad \in \quad \mathbb{N}^{\lvert \mathcal{V} \rvert \times \lvert \mathcal{V} \rvert} \times \mathbb{S}^{\lvert \mathcal{V} \rvert}. \]</div>
@@ -596,9 +527,9 @@ R_{jkt'} = R_{jkt}+1 \quad \text{for all }k \in \mathcal{V}.\]</div>
 \[\displaystyle
 \mathbb{P}(j | Y) = \frac{\rho_{jt}}{\rho_{*t}}.\]</div>
 <p>As mentioned previously, models typically represent the spiking of the neurons as a deterministic process, with the neurons firing when the membrane potential exceeds a fixed threshold. In our model, the membrane potentials <span class="math notranslate nohighlight">\(U_{jt}\)</span> should be interpreted as the mean potential of neuron <span class="math notranslate nohighlight">\(j\)</span> conditioned on the history of incoming spikes and the strength of synaptic connections.</p>
-</div>
-<div class="section" id="why-does-the-recovery-rate-vary-inversely-with-the-membrane-potential-in-the-refractory-state">
-<h2>Why does the recovery rate vary inversely with the membrane potential in the refractory state?<a class="headerlink" href="#why-does-the-recovery-rate-vary-inversely-with-the-membrane-potential-in-the-refractory-state" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="why-does-the-recovery-rate-vary-inversely-with-the-membrane-potential-in-the-refractory-state">
+<h2>Why does the recovery rate vary inversely with the membrane potential in the refractory state?<a class="headerlink" href="#why-does-the-recovery-rate-vary-inversely-with-the-membrane-potential-in-the-refractory-state" title="Link to this heading">#</a></h2>
 <p>We give three distinct reasons for introducing this inverse relationship in our model.</p>
 <p>The first reason is statistical. Suppose the goal is to model the timings of certain point events. Let us represent each point event <span class="math notranslate nohighlight">\(j\)</span> with a neuron <span class="math notranslate nohighlight">\(j,\)</span> with the spiking of the neuron indicating the beginning of a time interval during which we have confidence event <span class="math notranslate nohighlight">\(j\)</span> occurred, and the recovery of the neuron indicating the end of that interval.</p>
 <p>Suppose we are interested in information or evidence that event <span class="math notranslate nohighlight">\(j\)</span> has not occurred yet but will be occurring soon, and let us represent the amount of evidence with the membrane potential of neuron <span class="math notranslate nohighlight">\(j.\)</span> If we know that some event <span class="math notranslate nohighlight">\(i\)</span> is a strong predictor that event <span class="math notranslate nohighlight">\(j\)</span> did not happen before but will happen soon after, and if event <span class="math notranslate nohighlight">\(i\)</span> is represented by neuron <span class="math notranslate nohighlight">\(i,\)</span> we may instruct the membrane potential of neuron <span class="math notranslate nohighlight">\(j\)</span> to increase by some fixed weight <span class="math notranslate nohighlight">\(w\)</span> with every spike from neuron <span class="math notranslate nohighlight">\(i.\)</span></p>
@@ -606,9 +537,9 @@ R_{jkt'} = R_{jkt}+1 \quad \text{for all }k \in \mathcal{V}.\]</div>
 <p>After the neuron spikes, the information in the membrane potential is deemed to be used in producing that estimate of the start of the confidence interval, so the neuron resets its potential. Now the neuron is in the refractory state. If the membrane potential continues to increase due to incoming spikes, the neuron will have strong reasons to believe that it was too early with its estimate of the start of the confidence time interval. It should try to drag out the length of the interval by reducing its transition rate, so that the interval has a higher chance of capturing the actual timing of event <span class="math notranslate nohighlight">\(j.\)</span> Therefore the recovery rate varies inversely with the membrane potential.</p>
 <p>The second reason is direct biological evidence from sodium channel studies. Early studies <span id="id3">[<a class="reference internal" href="#id39" title="Alan L Hodgkin and Andrew F Huxley. A quantitative description of membrane current and its application to conduction and excitation in nerve. The Journal of physiology, 117(4):500, 1952.">HH52</a>]</span> described the time to recovery of the channels from inactivation as exponentially distributed  with faster rates at more negative voltages. More recent studies <span id="id4">[<a class="reference internal" href="#id38" title="Chung-Chin Kuo and Bruce P Bean. Na+ channels must deactivate to recover from inactivation. Neuron, 12(4):819–829, 1994.">KB94</a>]</span> proposed mechanisms to explain this inverse relationship.</p>
 <p>The third reason is indirect biological evidence from Spike Timing Dependent Plasticity (STDP). When the presynaptic neuron spikes <em>after</em> the postsynaptic neuron, there is a weakening in the synaptic strength between the neurons. Moreover, as the time interval between the presynaptic and postsynaptic spikes become shorter, the amount of weakening becomes exponentially greater. If STDP is the neural network’s algorithm for reinforcement learning, then this weakening must be reinforcing the effect that the synaptic weight has on reducing the recovery time. More precisely, as the interspike timings become shorter, the need to decrease the weights become greater, so decreasing the weights probably has the effect of further reducing the recovery time. In other words, decreasing the membrane potential increases the recovery rate.</p>
-</div>
-<div class="section" id="how-does-our-spiking-network-model-compare-to-others-in-the-literature">
-<h2>How does our spiking network model compare to others in the literature?<a class="headerlink" href="#how-does-our-spiking-network-model-compare-to-others-in-the-literature" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="how-does-our-spiking-network-model-compare-to-others-in-the-literature">
+<h2>How does our spiking network model compare to others in the literature?<a class="headerlink" href="#how-does-our-spiking-network-model-compare-to-others-in-the-literature" title="Link to this heading">#</a></h2>
 <p>Compared to the spiking network model of <span id="id5">[<a class="reference internal" href="#id46" title="Danilo Jimenez Rezende and Wulfram Gerstner. Stochastic variational learning in recurrent spiking networks. Frontiers in computational neuroscience, 8:38, 2014.">RG14</a>]</span>, our model is different in the following ways.</p>
 <ol class="arabic simple">
 <li><p>Their model adds an exponential filter to the adaptation potentials (decrease in potential after a neuron spikes) and evoked potentials (incoming potentials from neighboring neurons). We do not have this exponential filter explicitly. Instead, the exponential filter will turn out to be a consequence of the learning algorithm.</p></li>
@@ -616,9 +547,9 @@ R_{jkt'} = R_{jkt}+1 \quad \text{for all }k \in \mathcal{V}.\]</div>
 <li><p>In their model, the membrane potential at time <span class="math notranslate nohighlight">\(t\)</span> depends on the full history of spikes from time <span class="math notranslate nohighlight">\(0\)</span> to time <span class="math notranslate nohighlight">\(t\)</span> so it is not Markov. In our Markov model, the membrane potential <span class="math notranslate nohighlight">\(U_{jt}\)</span> of neuron <span class="math notranslate nohighlight">\(j\)</span> at time <span class="math notranslate nohighlight">\(t\)</span> depends on the incoming synaptic spike counts <span class="math notranslate nohighlight">\(R_{ijt}\)</span> which reset with every outgoing spike. These spike counts can be implemented biologically by neuromodulator concentrations that are local to each synapse. Hence, the membrane potential only depends on incoming spikes since the last outgoing spike.</p></li>
 <li><p>Because of the inverse relationship between the membrane potential and refractory period, we will be able to prove directly that our learning updates satisfy the full Spike Timing Dependent Plasticity (STDP). In <span id="id6">[<a class="reference internal" href="#id35" title="Jean-Pascal Pfister, Taro Toyoizumi, David Barber, and Wulfram Gerstner. Optimal spike-timing-dependent plasticity for precise action potential firing in supervised learning. Neural computation, 18(6):1318–1348, 2006.">PTBG06</a>]</span>, the learning updates satisfy only a simplified kind of STDP unless some form of out-of-model regularization is added to the objective function.</p></li>
 </ol>
-</div>
-<div class="section" id="what-are-the-dynamics-of-the-discriminative-model">
-<h2>What are the dynamics of the discriminative model?<a class="headerlink" href="#what-are-the-dynamics-of-the-discriminative-model" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="what-are-the-dynamics-of-the-discriminative-model">
+<h2>What are the dynamics of the discriminative model?<a class="headerlink" href="#what-are-the-dynamics-of-the-discriminative-model" title="Link to this heading">#</a></h2>
 <p>For the discriminative model <span class="math notranslate nohighlight">\(Q_w\)</span> with parameters <span class="math notranslate nohighlight">\(w = w^{(Q)},\)</span> we start by characterizing the true distribution <span class="math notranslate nohighlight">\(Q_*(X).\)</span> Because <span class="math notranslate nohighlight">\(\{X_t\}\)</span> is a continuous-time Markov chain by assumption, it has a rate kernel <span class="math notranslate nohighlight">\(\Gamma^{(X)}.\)</span> Recall that we allow multi-hop transitions in <span class="math notranslate nohighlight">\(\{X_t\}\)</span>.</p>
 <p>Intuitively, the dynamics of the discriminative process is very similar to that of the generative process, except that the environment states <span class="math notranslate nohighlight">\(X_t\)</span> cannot be controlled. For each spike in an environment or memory neuron, we update the synaptic counts in the possibly outgoing edges of the neuron. For each recovery in a memory neuron, we reset the synaptic counts in the possibly incoming edges of the neuron.</p>
 <p>We now define the rate kernel <span class="math notranslate nohighlight">\(\Gamma\)</span> of the full process <span class="math notranslate nohighlight">\(\{Z_t,X_t\}\)</span> in terms of <span class="math notranslate nohighlight">\(\Gamma_X\)</span> and model parameters <span class="math notranslate nohighlight">\(w.\)</span> We consider two kinds of transitions: environment transitions where the signed states of <span class="math notranslate nohighlight">\(X_t\)</span> changes but not that of <span class="math notranslate nohighlight">\(Z_t,\)</span> and memory transitions where the signed states of <span class="math notranslate nohighlight">\(Z_t\)</span> changes but not that of <span class="math notranslate nohighlight">\(X_t.\)</span></p>
@@ -664,9 +595,9 @@ R_{jkt'} = R_{jkt}+1 \quad \text{for all }k \in \mathcal{V}.\]</div>
 <div class="math notranslate nohighlight">
 \[\rho_{*} = \sum_{j \in \mathcal{V}_Z} \rho_j.\]</div>
 <p>All other transition rates are defined to be zero.</p>
-</div>
-<div class="section" id="how-do-we-simulate-the-continuous-time-spiking-neural-networks-on-a-discrete-time-digital-computer">
-<h2>How do we simulate the continuous-time spiking neural networks on a discrete-time digital computer?<a class="headerlink" href="#how-do-we-simulate-the-continuous-time-spiking-neural-networks-on-a-discrete-time-digital-computer" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="how-do-we-simulate-the-continuous-time-spiking-neural-networks-on-a-discrete-time-digital-computer">
+<h2>How do we simulate the continuous-time spiking neural networks on a discrete-time digital computer?<a class="headerlink" href="#how-do-we-simulate-the-continuous-time-spiking-neural-networks-on-a-discrete-time-digital-computer" title="Link to this heading">#</a></h2>
 <p>We have presented the discriminative model <span class="math notranslate nohighlight">\(Q\)</span> and generative model <span class="math notranslate nohighlight">\(P\)</span> as parametric spiking neural networks in continuous time. We have a relative inference <a class="reference internal" href="../2021-06-01-convergence-of-biased-stochastic-approximation/"><span class="doc std std-doc">recipe</span></a> for online learning that updates the parameters in continuous time.</p>
 <p>For efficient simulation on a discrete-time digital computer, we could consider for each continuous-time Markov chain (CTMC) its <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_chain#Embedded_Markov_chain">embedded</a> discrete-time Markov chain (DTMC) which records the transitions and the holding times between transitions at each integer time step. However, the above recipe for deriving learning algorithms will not apply. This is because the resulting pair <span class="math notranslate nohighlight">\((\hat{Z}_n,\hat{X}_n)\)</span> of variables is always exactly one environment transition or one memory transition from <span class="math notranslate nohighlight">\((\hat{Z}_{n-1},\hat{X}_{n-1}),\)</span> so their states are coupled. This means that <span class="math notranslate nohighlight">\(\hat{Z}_n\)</span> and <span class="math notranslate nohighlight">\(\hat{X}_n\)</span> are not independent given their past in the DTMC, a condition that is needed for the recipe to work.</p>
 <p>Alternatively, we could use the <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_chain#Embedded_Markov_chain"><span class="math notranslate nohighlight">\(\delta\)</span>-skeletions</a> of the CTMCs, where we impose a fixed wait time <span class="math notranslate nohighlight">\(\delta\)</span> between observations. The issue here is that as <span class="math notranslate nohighlight">\(\delta\)</span> tends to zero, some of the probabilistic integrals diverge and the original CTMC is not the limit of the <span class="math notranslate nohighlight">\(\delta\)</span>-skeletons.</p>
@@ -753,9 +684,9 @@ R_{jkt'} = R_{jkt}+1 \quad \text{for all }k \in \mathcal{V}.\]</div>
 \hat{R}_{ij(n+1)} = \text{Fire}(\hat{R}_{ijn},\hat{S}_n,\hat{S}_{n+1}).\]</div>
 <p>The discrete-time Bernoulli model for the discriminative process is similarly defined, except that we update only the memory states <span class="math notranslate nohighlight">\(\hat{R}_Z\)</span> and <span class="math notranslate nohighlight">\(\hat{S}_Z\)</span> and that the probabilities of the signed states of only the memory neurons are known.</p>
 <p>Finally, let the environment and memory components of <span class="math notranslate nohighlight">\(\hat{Y}_n\)</span> be <span class="math notranslate nohighlight">\(\hat{X}_n\)</span> and <span class="math notranslate nohighlight">\(\hat{Z}_n.\)</span> Let <span class="math notranslate nohighlight">\(\{\hat{Q}\}\)</span> and <span class="math notranslate nohighlight">\(\{\hat{P}\}\)</span> denote the discrete-time discrimative and generative Bernoulli models derived from the continuous-time models <span class="math notranslate nohighlight">\(\{Q\}\)</span> and <span class="math notranslate nohighlight">\(\{P\}\)</span> respectively.</p>
-</div>
-<div class="section" id="what-are-the-learning-updates-in-discrete-time">
-<h2>What are the learning updates in discrete time?<a class="headerlink" href="#what-are-the-learning-updates-in-discrete-time" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="what-are-the-learning-updates-in-discrete-time">
+<h2>What are the learning updates in discrete time?<a class="headerlink" href="#what-are-the-learning-updates-in-discrete-time" title="Link to this heading">#</a></h2>
 <p>Let <span class="math notranslate nohighlight">\(\bar{\pi}_*\)</span> be the stationary distribution of the true distribution <span class="math notranslate nohighlight">\(\hat{Q}_*\)</span> of the environment <span class="math notranslate nohighlight">\(\{\hat{X}_n\}\)</span> and <span class="math notranslate nohighlight">\(\bar{\pi}_Q\)</span> the stationary distribution of the full discriminative <span class="math notranslate nohighlight">\(\hat{Q}.\)</span> Let <span class="math notranslate nohighlight">\(\bar{Q}\)</span> be the discrete-time Markov chain with initial distribution <span class="math notranslate nohighlight">\(\bar{\pi}_Q\)</span> and the same transition probabilities as <span class="math notranslate nohighlight">\(\hat{Q}.\)</span></p>
 <p>Using our relative inference <a class="reference internal" href="../2021-06-01-convergence-of-biased-stochastic-approximation/"><span class="doc std std-doc">recipe</span></a> for online learning, the learning objective is the conditional relative information</p>
 <div class="math notranslate nohighlight">
@@ -913,9 +844,9 @@ w^{(Q)}_{en} - \eta_{n+1}\, \alpha^{(Q)}_{e(n+1)} \gamma  &amp;\text{for all }e\
 \[ \displaystyle
 \mathbb{E}\left[\left\Vert \,\nabla V\left(w^{(Q)}_N, w^{(P)}_N\right)\, \right\Vert^2\right] = O(T^{-1/2}\log T)\]</div>
 <p>where <span class="math notranslate nohighlight">\(N\)</span> is the random stop time and <span class="math notranslate nohighlight">\(T\)</span> is the maximum time horizon for the algorithm as described in this <a class="reference internal" href="../2021-06-01-convergence-of-biased-stochastic-approximation/"><span class="doc std std-doc">post</span></a>.</p>
-</div>
-<div class="section" id="what-are-the-learning-updates-in-continuous-time">
-<h2>What are the learning updates in continuous time?<a class="headerlink" href="#what-are-the-learning-updates-in-continuous-time" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="what-are-the-learning-updates-in-continuous-time">
+<h2>What are the learning updates in continuous time?<a class="headerlink" href="#what-are-the-learning-updates-in-continuous-time" title="Link to this heading">#</a></h2>
 <p>In continuous time, we may derive the learning updates directly from our relative inference recipe, or in this case we may derive them from the discrete-time updates by considering the limit <span class="math notranslate nohighlight">\(\delta \rightarrow 0.\)</span></p>
 <p>The dynamics of the <span class="math notranslate nohighlight">\(w_t\)</span>-controlled continuous-time Markov chain is similar to the continuous-time dynamics described previously, except that the control parameter <span class="math notranslate nohighlight">\(w_t\)</span> changes with time. As before, the environment process <span class="math notranslate nohighlight">\(\{X_t\}\)</span> evolves with some fixed rate kernel <span class="math notranslate nohighlight">\(\Gamma^{(X)}\)</span> that is unaffected by the parameter <span class="math notranslate nohighlight">\(w_t.\)</span> The discriminative process <span class="math notranslate nohighlight">\(\{Z_t\}\)</span> evolves with the <span class="math notranslate nohighlight">\(w_t\)</span>-controlled membrane potentials and transition rates</p>
 <div class="math notranslate nohighlight">
@@ -1053,9 +984,9 @@ w^{(Q)}_{et_-} - \eta_{t}\, \alpha^{(Q)}_{et} \gamma^{(T)}  &amp;\text{for all }
 \[ \displaystyle
 \mathbb{E}\left[\left\Vert \,\nabla V\left(w^{(Q)}_N, w^{(P)}_N\right)\, \right\Vert^2\right] = O(T^{-1/2}\log T)\]</div>
 <p>where <span class="math notranslate nohighlight">\(N\)</span> and <span class="math notranslate nohighlight">\(T\)</span> are continuous-time analogues of the random stop time and maximum time horizon described in this <a class="reference internal" href="../2021-06-01-convergence-of-biased-stochastic-approximation/"><span class="doc std std-doc">post</span></a>.</p>
-</div>
-<div class="section" id="how-nature-could-derive-such-a-complex-learning-algorithm">
-<h2>How nature could derive such a complex learning algorithm?<a class="headerlink" href="#how-nature-could-derive-such-a-complex-learning-algorithm" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="how-nature-could-derive-such-a-complex-learning-algorithm">
+<h2>How nature could derive such a complex learning algorithm?<a class="headerlink" href="#how-nature-could-derive-such-a-complex-learning-algorithm" title="Link to this heading">#</a></h2>
 <p>In the previous section, we derived a statistically-sound online learning algorithm for updating parameters <span class="math notranslate nohighlight">\(w\)</span> such that the given <span class="math notranslate nohighlight">\(w\)</span>-controlled stochastic process would eventually learn a good approximation of the true distribution.</p>
 <p>We then hypothesized how biological neural networks could be implementing this learning algorithm, assuming that the given <span class="math notranslate nohighlight">\(w\)</span>-controlled stochastic process is a good model of actual neural dynamics. If our hypothesis is correct, it would imply that the biological algorithms are effective at learning the true distribution.</p>
 <p>However, we are left with the meta-question of how biological networks could arrive at such a specific learning algorithm in the first place. There are two possible explanations.</p>
@@ -1064,9 +995,9 @@ w^{(Q)}_{et_-} - \eta_{t}\, \alpha^{(Q)}_{et} \gamma^{(T)}  &amp;\text{for all }
 <blockquote>
 <div><p>“All these contrived, anthropomorphized explanations of purpose and survival and the like all seemed to just peel away, and the thing you were observing just was. In the sense that it could be no other way.”</p>
 </div></blockquote>
-</div>
-<div class="section" id="unfinished-tasks">
-<h2>Unfinished tasks<a class="headerlink" href="#unfinished-tasks" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="unfinished-tasks">
+<h2>Unfinished tasks<a class="headerlink" href="#unfinished-tasks" title="Link to this heading">#</a></h2>
 <p>The <span class="math notranslate nohighlight">\(\alpha^{(Q)}_e\)</span> updates described above may cause the learning algorithm to be numerically unstable and prevent the parameter updates from converging. This instability can be seen in the <a class="reference internal" href="../2021-06-01-convergence-of-biased-stochastic-approximation/"><span class="doc std std-doc">condition</span></a> C5 that has to be satisfied by the corresponding Poisson equation solutions for the discriminative correction terms.</p>
 <p>Instead, we propose the following updates, based on techniques in variance reduction.</p>
 <div class="math notranslate nohighlight">
@@ -1178,65 +1109,80 @@ w^{(Q)}_{e(n+1)} = w^{(Q)}_{e(n+1)} - \eta_{n+1}\alpha^{(Q)}_{e(n+1)} \left( \lo
 <li><p>Learning rate <span class="math notranslate nohighlight">\(\eta_n\)</span> at <span class="math notranslate nohighlight">\(n\)</span>-th iteration of algorithm</p></li>
 </ol>
 <p>The analogy is not perfect, since the rewards in our problem depend on generative parameters <span class="math notranslate nohighlight">\(w^{(P)}\)</span> that also need to be optimized, but the proof ideas are similar.</p>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <div class="docutils container" id="id16">
-<dl class="citation">
-<dt class="label" id="id41"><span class="brackets"><a class="fn-backref" href="#id11">Fri10</a></span></dt>
-<dd><p>Karl Friston. The free-energy principle: a unified brain theory? <em>Nature reviews neuroscience</em>, 11(2):127–138, 2010.</p>
-</dd>
-<dt class="label" id="id60"><span class="brackets"><a class="fn-backref" href="#id7">GZ02</a></span></dt>
-<dd><p>Tepper L Gill and WW Zachary. Foundations for relativistic quantum theory. i. feynman’s operator calculus and the dyson conjectures. <em>Journal of Mathematical Physics</em>, 43(1):69–93, 2002.</p>
-</dd>
-<dt class="label" id="id39"><span class="brackets"><a class="fn-backref" href="#id3">HH52</a></span></dt>
-<dd><p>Alan L Hodgkin and Andrew F Huxley. A quantitative description of membrane current and its application to conduction and excitation in nerve. <em>The Journal of physiology</em>, 117(4):500, 1952.</p>
-</dd>
-<dt class="label" id="id51"><span class="brackets">KMMW19</span><span class="fn-backref">(<a href="#id13">1</a>,<a href="#id15">2</a>)</span></dt>
-<dd><p>Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In <em>Conference on Learning Theory</em>, 1944–1974. PMLR, 2019.</p>
-</dd>
-<dt class="label" id="id38"><span class="brackets"><a class="fn-backref" href="#id4">KB94</a></span></dt>
-<dd><p>Chung-Chin Kuo and Bruce P Bean. Na+ channels must deactivate to recover from inactivation. <em>Neuron</em>, 12(4):819–829, 1994.</p>
-</dd>
-<dt class="label" id="id36"><span class="brackets"><a class="fn-backref" href="#id8">LL19</a></span></dt>
-<dd><p>Jussi Lindgren and Jukka Liukkonen. Quantum mechanics can be understood through stochastic optimization on spacetimes. <em>Scientific reports</em>, 9(1):1–8, 2019.</p>
-</dd>
-<dt class="label" id="id37"><span class="brackets"><a class="fn-backref" href="#id14">LCHL20</a></span></dt>
-<dd><p>Zuozhu Liu, Thiparat Chotibut, Christopher Hillar, and Shaowei Lin. Biologically plausible sequence learning with spiking neural networks. In <em>Proceedings of the AAAI Conference on Artificial Intelligence</em>, volume 34, 1316–1323. 2020.</p>
-</dd>
-<dt class="label" id="id35"><span class="brackets">PTBG06</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id6">2</a>)</span></dt>
-<dd><p>Jean-Pascal Pfister, Taro Toyoizumi, David Barber, and Wulfram Gerstner. Optimal spike-timing-dependent plasticity for precise action potential firing in supervised learning. <em>Neural computation</em>, 18(6):1318–1348, 2006.</p>
-</dd>
-<dt class="label" id="id34"><span class="brackets"><a class="fn-backref" href="#id12">Rav18</a></span></dt>
-<dd><p>S Raviv. The genius neuroscientist who might hold the key to true ai. <em>Wired.[(accessed on 18 February 2021)]</em>, 2018.</p>
-</dd>
-<dt class="label" id="id46"><span class="brackets">RG14</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id5">2</a>,<a href="#id9">3</a>,<a href="#id10">4</a>)</span></dt>
-<dd><p>Danilo Jimenez Rezende and Wulfram Gerstner. Stochastic variational learning in recurrent spiking networks. <em>Frontiers in computational neuroscience</em>, 8:38, 2014.</p>
-</dd>
-</dl>
+<div role="list" class="citation-list">
+<div class="citation" id="id41" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id11">Fri10</a><span class="fn-bracket">]</span></span>
+<p>Karl Friston. The free-energy principle: a unified brain theory? <em>Nature reviews neuroscience</em>, 11(2):127–138, 2010.</p>
+</div>
+<div class="citation" id="id60" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">GZ02</a><span class="fn-bracket">]</span></span>
+<p>Tepper L Gill and WW Zachary. Foundations for relativistic quantum theory. i. feynman’s operator calculus and the dyson conjectures. <em>Journal of Mathematical Physics</em>, 43(1):69–93, 2002.</p>
+</div>
+<div class="citation" id="id39" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">HH52</a><span class="fn-bracket">]</span></span>
+<p>Alan L Hodgkin and Andrew F Huxley. A quantitative description of membrane current and its application to conduction and excitation in nerve. <em>The Journal of physiology</em>, 117(4):500, 1952.</p>
+</div>
+<div class="citation" id="id51" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>KMMW19<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id13">1</a>,<a role="doc-backlink" href="#id15">2</a>)</span>
+<p>Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In <em>Conference on Learning Theory</em>, 1944–1974. PMLR, 2019.</p>
+</div>
+<div class="citation" id="id38" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">KB94</a><span class="fn-bracket">]</span></span>
+<p>Chung-Chin Kuo and Bruce P Bean. Na+ channels must deactivate to recover from inactivation. <em>Neuron</em>, 12(4):819–829, 1994.</p>
+</div>
+<div class="citation" id="id36" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">LL19</a><span class="fn-bracket">]</span></span>
+<p>Jussi Lindgren and Jukka Liukkonen. Quantum mechanics can be understood through stochastic optimization on spacetimes. <em>Scientific reports</em>, 9(1):1–8, 2019.</p>
+</div>
+<div class="citation" id="id37" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id14">LCHL20</a><span class="fn-bracket">]</span></span>
+<p>Zuozhu Liu, Thiparat Chotibut, Christopher Hillar, and Shaowei Lin. Biologically plausible sequence learning with spiking neural networks. In <em>Proceedings of the AAAI Conference on Artificial Intelligence</em>, volume 34, 1316–1323. 2020.</p>
+</div>
+<div class="citation" id="id35" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>PTBG06<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id6">2</a>)</span>
+<p>Jean-Pascal Pfister, Taro Toyoizumi, David Barber, and Wulfram Gerstner. Optimal spike-timing-dependent plasticity for precise action potential firing in supervised learning. <em>Neural computation</em>, 18(6):1318–1348, 2006.</p>
+</div>
+<div class="citation" id="id34" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id12">Rav18</a><span class="fn-bracket">]</span></span>
+<p>S Raviv. The genius neuroscientist who might hold the key to true ai. <em>Wired.[(accessed on 18 February 2021)]</em>, 2018.</p>
+</div>
+<div class="citation" id="id46" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>RG14<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id2">1</a>,<a role="doc-backlink" href="#id5">2</a>,<a role="doc-backlink" href="#id9">3</a>,<a role="doc-backlink" href="#id10">4</a>)</span>
+<p>Danilo Jimenez Rezende and Wulfram Gerstner. Stochastic variational learning in recurrent spiking networks. <em>Frontiers in computational neuroscience</em>, 8:38, 2014.</p>
 </div>
 </div>
 </div>
+</section>
+</section>
 
-<div class="section">
-    
-
-<div class="section">
-  <span style="float: left">
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
      
     <a href="../2021-06-01-convergence-of-biased-stochastic-approximation/">
-      <i class="fa fa-arrow-circle-left"></i> Convergence of biased stochastic approximation
+      
+      <i class="fa fa-arrow-circle-left"></i>
+      
+      <span>Convergence of biased stochastic approximation</span>
     </a>
     
   </span>
-  <span>&nbsp;</span>
-  <span style="float: right">
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
      
     <a href="../2021-09-09-all-you-need-is-relative-information/">
-      All you need is relative information <i
-        class="fa fa-arrow-circle-right"
-      ></i
-      >
+      <span>All you need is relative information</span>
+      
+      <i class="fa fa-arrow-circle-right"></i>
+      
     </a>
     
   </span>
@@ -1277,7 +1223,8 @@ w^{(Q)}_{e(n+1)} = w^{(Q)}_{e(n+1)} - \eta_{n+1}\alpha^{(Q)}_{e(n+1)} \left( \lo
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1303,13 +1250,13 @@ w^{(Q)}_{e(n+1)} = w^{(Q)}_{e(n+1)} - \eta_{n+1}\alpha^{(Q)}_{e(n+1)} \left( \lo
   </nav></div>
 
   <div class="sidebar-secondary-item">
-
-  <div class="tocsection sourcelink">
-    <a href="../../_sources/posts/2021-06-05-spiking-neural-networks.md.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/posts/2021-06-05-spiking-neural-networks.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
 
 </div></div>
               
@@ -1324,8 +1271,8 @@ w^{(Q)}_{e(n+1)} = w^{(Q)}_{e(n+1)} - \eta_{n+1}\alpha^{(Q)}_{e(n+1)} \left( \lo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1345,7 +1292,7 @@ w^{(Q)}_{e(n+1)} = w^{(Q)}_{e(n+1)} - \eta_{n+1}\alpha^{(Q)}_{e(n+1)} \left( \lo
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
     <br/>
   </p>
 </div>
@@ -1358,7 +1305,8 @@ w^{(Q)}_{e(n+1)} = w^{(Q)}_{e(n+1)} - \eta_{n+1}\alpha^{(Q)}_{e(n+1)} \left( \lo
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

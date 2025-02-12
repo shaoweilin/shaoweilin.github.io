@@ -1,13 +1,13 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta property="og:title" content="Likelihood, greed and temperature in sequence learning" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Likelihood, greed and temperature in sequence learning" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://shaoweilin.github.io/posts/2022-05-28-likelihood-greed-and-temperature-in-sequence-learning/" />
 <meta property="og:site_name" content="Types from Spikes" />
@@ -24,77 +24,53 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-dropdown.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8a9ddf57" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-dropdown.css?v=995e94df" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.min.css?v=21c0b90a" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/documentation_options.js?v=187304be"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2022-05-28-likelihood-greed-and-temperature-in-sequence-learning';</script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about/" />
     <link rel="index" title="Index" href="../../genindex/" />
     <link rel="search" title="Search" href="../../search/" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/> 
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" /> 
 <link
   rel="alternate"
   type="application/atom+xml"
   href="../../blog/atom.xml"
   title="Types from Spikes"
 />
- 
-<style type="text/css">
-  ul.ablog-archive {
-    list-style: none;
-    overflow: auto;
-    margin-left: 0px;
-  }
-  ul.ablog-archive li {
-    float: left;
-    margin-right: 5px;
-    font-size: 80%;
-  }
-  ul.postlist a {
-    font-style: italic;
-  }
-  ul.postlist-style-disc {
-    list-style-type: disc;
-  }
-  ul.postlist-style-none {
-    list-style-type: none;
-  }
-  ul.postlist-style-circle {
-    list-style-type: circle;
-  }
-</style>
-
+  
   </head>
   
   
@@ -110,19 +86,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../search/"
       method="get">
@@ -130,7 +95,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search"
          aria-label="Search"
          autocomplete="off"
@@ -138,8 +102,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -206,15 +170,9 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
         </div>
       
       
@@ -234,24 +192,6 @@
         </li>
 </ul></div>
       
-        <div class="navbar-item">
-<form class="bd-search d-flex align-items-center"
-      action="../../search/"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search"
-         aria-label="Search"
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-      
     </div>
     
   </div>
@@ -259,15 +199,9 @@
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
     </div>
   
 
@@ -288,7 +222,8 @@
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -342,136 +277,134 @@
         </li>
 </ul></div>
         
-          <div class="navbar-item">
-<form class="bd-search d-flex align-items-center"
-      action="../../search/"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search"
-         aria-label="Search"
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-        
       </div>
     
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">  
-<h2>
-   <i class="fa fa-calendar"></i>
-  28 May 2022 
-</h2>
-
-<ul>
+        <div class="sidebar-primary-item"> 
+<div class="ablog-sidebar-item ablog__postcard">
+   
+  <h2>
+     
+    <i class="fa fa-calendar"></i>
+    
+    <span>28 May 2022</span>
+    
+  </h2>
+  <ul>
+    <div class="ablog-sidebar-item ablog__postcard2">
         
-</ul>
 </div>
-        <div class="sidebar-primary-item">
-<h3>
-  <a href="../../blog/">Recent Posts</a>
-</h3>
-<ul>
-   
-  <li>
-    <a href="../2025-01-10-relative-information-and-the-dual-numbers/"
-      >10 January - Relative information and the dual numbers</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-10-16-singular-learning-relative-information-and-the-dual-numbers/"
-      >16 October - Singular learning, relative information and the dual numbers</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-10-01-program-synthesis/"
-      >01 October - Program Synthesis</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-09-24-safety-by-shared-synthesis/"
-      >24 September - Safety by shared synthesis</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-05-22-formal-ai-assisted-code-specification-and-synthesis-concrete-steps-towards-safe-sociotechnical-systems/"
-      >22 May - Formal AI-assisted code specification and synthesis: concrete steps towards safe sociotechnical systems</a
-    >
-  </li>
-  
-</ul>
+  </ul>
 </div>
-        <div class="sidebar-primary-item">
-<h3>
-  <a href="../../blog/archive/">Archives</a>
-</h3>
-<ul>
-   
-  <li>
-    <a href="../../blog/2025/">2025 (1)</a>
-  </li>
+</div>
+        <div class="sidebar-primary-item"> 
+<div class="ablog-sidebar-item ablog__recentposts">
+  <h3>
+    <a href="../../blog/">Recent Posts</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../2025-01-10-relative-information-and-the-dual-numbers/">
+        10 January - Relative information and the dual numbers
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2024/">2024 (5)</a>
-  </li>
+    <li>
+      <a href="../2024-10-16-singular-learning-relative-information-and-the-dual-numbers/">
+        16 October - Singular learning, relative information and the dual numbers
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2023/">2023 (5)</a>
-  </li>
+    <li>
+      <a href="../2024-10-01-program-synthesis/">
+        01 October - Program Synthesis
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2022/">2022 (3)</a>
-  </li>
+    <li>
+      <a href="../2024-09-24-safety-by-shared-synthesis/">
+        24 September - Safety by shared synthesis
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2021/">2021 (8)</a>
-  </li>
+    <li>
+      <a href="../2024-05-22-formal-ai-assisted-code-specification-and-synthesis-concrete-steps-towards-safe-sociotechnical-systems/">
+        22 May - Formal AI-assisted code specification and synthesis: concrete steps towards safe sociotechnical systems
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2020/">2020 (12)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2018/">2018 (1)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2017/">2017 (1)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2016/">2016 (3)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2014/">2014 (2)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2012/">2012 (1)</a>
-  </li>
-   
-</ul>
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item"> 
+<div class="ablog-sidebar-item ablog__archive">
+  <h3>
+    <a href="../../blog/archive/">Archives</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../blog/2025/">2025 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2024/">2024 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2023/">2023 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2022/">2022 (3)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2021/">2021 (8)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2020/">2020 (12)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2018/">2018 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2017/">2017 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2016/">2016 (3)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2014/">2014 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2012/">2012 (1)</a>
+    </li>
+     
+  </ul>
+</div>
 </div>
     </div>
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -489,8 +422,6 @@
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -499,7 +430,7 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">Likelihood,...</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Likelihood, greed and temperature in sequence learning</span></li>
   </ul>
 </nav>
 </div>
@@ -516,8 +447,8 @@
                 
 <div id="searchbox"></div>
                 <article class="bd-article">
-                   <div class="tex2jax_ignore mathjax_ignore section" id="likelihood-greed-and-temperature-in-sequence-learning">
-<h1>Likelihood, greed and temperature in sequence learning<a class="headerlink" href="#likelihood-greed-and-temperature-in-sequence-learning" title="Permalink to this heading">#</a></h1>
+                   <section class="tex2jax_ignore mathjax_ignore" id="likelihood-greed-and-temperature-in-sequence-learning">
+<h1>Likelihood, greed and temperature in sequence learning<a class="headerlink" href="#likelihood-greed-and-temperature-in-sequence-learning" title="Link to this heading">#</a></h1>
 <p>Imagine we have a model <span class="math notranslate nohighlight">\(D(w)\)</span> of a dynamical system with states <span class="math notranslate nohighlight">\(s \in S,\)</span> that is parametrized by some weight <span class="math notranslate nohighlight">\(w \in W\)</span>. Each state <span class="math notranslate nohighlight">\(s\)</span> comes with a set <span class="math notranslate nohighlight">\(N(s) \subset S\)</span> of neighbors and an associated energy function <span class="math notranslate nohighlight">\(E(s'|s,w) \in \mathbb{R}\)</span> that assigns an energy to each neighbor <span class="math notranslate nohighlight">\(s' \in N(s)\)</span>.</p>
 <p>For simplicity, we assume the following dynamics: when the system is in state <span class="math notranslate nohighlight">\(s\)</span>, it picks the neighbor <span class="math notranslate nohighlight">\(s'\)</span> with the lowest energy <span class="math notranslate nohighlight">\(E(s'|s,w)\)</span> and jumps to state <span class="math notranslate nohighlight">\(s'\)</span> in the next time step (more to come later about what we mean by <em>time step</em>).</p>
 <p>Suppose also that we have an observed sequence <span class="math notranslate nohighlight">\(\{\hat{s}_t\}\)</span> with each <span class="math notranslate nohighlight">\(t\in \{0, 1, \ldots, T\}.\)</span> Roughly, the goal is to find a dynamical system <span class="math notranslate nohighlight">\(D(\hat{w})\)</span> that is able to reproduce <span class="math notranslate nohighlight">\(\hat{s}_t\)</span>. This is the <em>sequence learning</em> problem for the model <span class="math notranslate nohighlight">\(D(w)\)</span>.</p>
@@ -529,8 +460,8 @@
 <li><p>How is the greedy method related to the likelihood method?</p></li>
 <li><p>Are there other dynamical systems more suited for natural language processing or reinforcement learning?</p></li>
 </ol>
-<div class="section" id="likelihood-method-in-discrete-time">
-<h2>Likelihood method in discrete time<a class="headerlink" href="#likelihood-method-in-discrete-time" title="Permalink to this heading">#</a></h2>
+<section id="likelihood-method-in-discrete-time">
+<h2>Likelihood method in discrete time<a class="headerlink" href="#likelihood-method-in-discrete-time" title="Link to this heading">#</a></h2>
 <p>Given the (conditional) energy function <span class="math notranslate nohighlight">\(E(s'|s,w),\)</span> we consider a discrete-time Markov chain with transition probabilities</p>
 <div class="math notranslate nohighlight">
 \[
@@ -554,9 +485,9 @@ L(w) = \prod_{t=0}^{T-1} P(\hat{s}_{t+1}|\hat{s}_t, w).
 &amp;= \displaystyle \sum_{t=0}^{T-1} \log \sum_{s' \in N(\hat{s}_t)} e^{-\beta E(s'|\hat{s}_t,w)}+\beta \sum_{t=0}^{T-1} E(\hat{s}_{t+1}|\hat{s}_t, w) 
 \end{align*}\]</div>
 <p>The tricky issue here is the intractable logarithmic partition function <span class="math notranslate nohighlight">\(\log Z(s,w)\)</span> when we have a large number of neighboring states.</p>
-</div>
-<div class="section" id="likelihood-method-in-continuous-time">
-<h2>Likelihood method in continuous time<a class="headerlink" href="#likelihood-method-in-continuous-time" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="likelihood-method-in-continuous-time">
+<h2>Likelihood method in continuous time<a class="headerlink" href="#likelihood-method-in-continuous-time" title="Link to this heading">#</a></h2>
 <p>To overcome the intractable partition function, we could consider a continuous-time Markov chain with off-diagonal transition rates</p>
 <div class="math notranslate nohighlight">
 \[
@@ -587,13 +518,13 @@ Z(\hat{s}_{t},w) \exp \big(-\delta Z(\hat{s}_t,w) \big) \, \displaystyle \frac{\
 \ell(w) &amp;= \displaystyle\delta \sum_{t=0}^{T-1} Z(\hat{s}_t,w) +\beta \sum_{t=0}^{T-1} E(\hat{s}_{t+1}|\hat{s}_t, w)\\ &amp;= \displaystyle\delta\sum_{t=0}^{T-1} \sum_{s' \in N(\hat{s}_t)} e^{-\beta E(s'|\hat{s}_t,w)} +\beta \sum_{t=0}^{T-1} E(\hat{s}_{t+1}|\hat{s}_t, w).
 \end{align*}\]</div>
 <p>Again, the intractable partition function appears but without a logarithm, so it is easier to differentiate under the sum over the neighboring states. We can reduce its contribution by either making <span class="math notranslate nohighlight">\(\beta\)</span> large or making <span class="math notranslate nohighlight">\(\delta\)</span> small. Note that we cannot make the hyperparameter <span class="math notranslate nohighlight">\(\delta\)</span> go away  in the objective function just by scaling <span class="math notranslate nohighlight">\(\beta.\)</span></p>
-</div>
-<div class="section" id="relative-information">
-<h2>Relative information<a class="headerlink" href="#relative-information" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="relative-information">
+<h2>Relative information<a class="headerlink" href="#relative-information" title="Link to this heading">#</a></h2>
 <p>The negative log-likelihoods for both the discrete-time and continuous-time models can be interpreted in terms of (conditional) relative information. See <a class="reference external" href="https://shaoweilin.github.io/posts/2020-10-23-machine-learning-with-relative-information/">this post</a> for more details. These <em>energy-based</em> methods can be thought of as <em>information-based</em> methods.</p>
-</div>
-<div class="section" id="greedy-method">
-<h2>Greedy method<a class="headerlink" href="#greedy-method" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="greedy-method">
+<h2>Greedy method<a class="headerlink" href="#greedy-method" title="Link to this heading">#</a></h2>
 <p>In the naive greedy method, we simply look for a weight <span class="math notranslate nohighlight">\(\hat{w}\)</span> such that the following inequalities are satisfied for all <span class="math notranslate nohighlight">\(t\in \{0, \ldots, T-1\}\)</span> and <span class="math notranslate nohighlight">\(s' \in N(\hat{s}_t), s' \neq \hat{s}_{t+1}:\)</span></p>
 <div class="math notranslate nohighlight">
 \[
@@ -603,9 +534,9 @@ E(s'|\hat{s}_t, w) \leq E(\hat{s}_{t-1}|\hat{s}_t, w).
 <p>If such a weight <span class="math notranslate nohighlight">\(\hat{w}\)</span> is not faithful to <span class="math notranslate nohighlight">\(\{\hat{s}_t\}\)</span>, then we need to fall back to the likelihood methods to find a dynamical system <span class="math notranslate nohighlight">\(D(\hat{w})\)</span> that best approximates the observed sequence.</p>
 <p>How is the greedy method related to the likelihood methods?</p>
 <p>Given a weight <span class="math notranslate nohighlight">\(w \in W\)</span> and state <span class="math notranslate nohighlight">\(s_t \in S\)</span> at time <span class="math notranslate nohighlight">\(t,\)</span> let <span class="math notranslate nohighlight">\(s^*_{t+1} \in N(s_t)\)</span> denote a neighboring state at time <span class="math notranslate nohighlight">\(t+1\)</span> that minimizes the energy <span class="math notranslate nohighlight">\(E(s^*_{t+1}|s_t,w).\)</span> We consider what happens in the discrete-time and continuous-time models as the inverse temperature <span class="math notranslate nohighlight">\(\beta\)</span> tends to infinity.</p>
-</div>
-<div class="section" id="temperature-in-discrete-time">
-<h2>Temperature in discrete time<a class="headerlink" href="#temperature-in-discrete-time" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="temperature-in-discrete-time">
+<h2>Temperature in discrete time<a class="headerlink" href="#temperature-in-discrete-time" title="Link to this heading">#</a></h2>
 <p>In the discrete-time model, the transition probability <span class="math notranslate nohighlight">\(P(s^*_{t+1}|s_t, w)\)</span> will tend to <span class="math notranslate nohighlight">\(1,\)</span> while the transition probabilities of other neighbors of <span class="math notranslate nohighlight">\(s_t\)</span> will tend to <span class="math notranslate nohighlight">\(0\)</span>.</p>
 <p>If <span class="math notranslate nohighlight">\(w\)</span> is faithful the the observed sequence <span class="math notranslate nohighlight">\(\{\hat{s}_t\},\)</span> then the likelihood <span class="math notranslate nohighlight">\(L(w)\)</span> will tend to <span class="math notranslate nohighlight">\(1\)</span> as <span class="math notranslate nohighlight">\(\beta\)</span> goes to infinity. If <span class="math notranslate nohighlight">\(w\)</span> is not faithful, then <span class="math notranslate nohighlight">\(L(w)\)</span> will tend to <span class="math notranslate nohighlight">\(0.\)</span> If the region of faithful weights is non-empty, then as the maximum likelihood estimate <span class="math notranslate nohighlight">\(\hat{w}\)</span> will lie in this region for sufficiently large <span class="math notranslate nohighlight">\(\beta.\)</span></p>
 <p>The log partition function</p>
@@ -620,9 +551,9 @@ E(s'|\hat{s}_t, w) \leq E(\hat{s}_{t-1}|\hat{s}_t, w).
 \]</div>
 <p>which is <span class="math notranslate nohighlight">\(0\)</span> if <span class="math notranslate nohighlight">\(w\)</span> is faithful to the sequence but positive if <span class="math notranslate nohighlight">\(w\)</span> is not faithful.</p>
 <p>In the large <span class="math notranslate nohighlight">\(\beta\)</span> limit, we generate an optimal sequence or path by running the dynamical system described at the beginning of this post - namely, at each state <span class="math notranslate nohighlight">\(s\)</span>, we pick the next state <span class="math notranslate nohighlight">\(s'\)</span> that minimizes the energy <span class="math notranslate nohighlight">\(E(s'|s,w),\)</span> and we repeat this for <span class="math notranslate nohighlight">\(T\)</span> time steps. We say that the optimal path is generated by <em>stepwise energy minimization</em>.</p>
-</div>
-<div class="section" id="temperature-in-continuous-time">
-<h2>Temperature in continuous time<a class="headerlink" href="#temperature-in-continuous-time" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="temperature-in-continuous-time">
+<h2>Temperature in continuous time<a class="headerlink" href="#temperature-in-continuous-time" title="Link to this heading">#</a></h2>
 <p>In the continuous-time model, as <span class="math notranslate nohighlight">\(\beta\)</span> goes to infinity, the transition probability <span class="math notranslate nohighlight">\(P(s^*_{t+1}|s_t, w)\)</span> tends to <span class="math notranslate nohighlight">\(1\)</span> while the transition probability of other neighbors <span class="math notranslate nohighlight">\(s'_{t+1}\)</span> given <span class="math notranslate nohighlight">\(s_t\)</span> tends to <span class="math notranslate nohighlight">\(0,\)</span> just like in the discrete-time case. As seen previously, the negative log probability grows like <span class="math notranslate nohighlight">\(\beta \big( E(\hat{s}_{t+1}|\hat{s}_t, w) - E(\hat{s}^*_{t+1}|\hat{s}_t, w) \big) \)</span> for large <span class="math notranslate nohighlight">\(\beta.\)</span></p>
 <p>The holding rates <span class="math notranslate nohighlight">\(Z(s_t, w)\)</span> will, however, tend to <span class="math notranslate nohighlight">\(0.\)</span> This means that the time held in state <span class="math notranslate nohighlight">\(s_t\)</span> will increase to infinity as <span class="math notranslate nohighlight">\(\beta\)</span> increases.</p>
 <p>In fact, for large <span class="math notranslate nohighlight">\(\beta,\)</span> the negative log density</p>
@@ -644,9 +575,9 @@ subtracts the minimal transition energy from each time step.</p>
 \sum_{t=0}^n \delta_t Z(s_t,w) + \beta \sum_{t=0}^{n-1} E(s_{t+1}|s_t,w).
 \]</div>
 <p>For large <span class="math notranslate nohighlight">\(\beta\)</span>, the latter summand dominates the log density, and the optimal paths are determined by <em>pathwise energy minimization</em>. This pathwise minimization is analogous to the principle of least action in classical or quantum physics.</p>
-</div>
-<div class="section" id="stepwise-vs-pathwise-minimization">
-<h2>Stepwise vs pathwise minimization<a class="headerlink" href="#stepwise-vs-pathwise-minimization" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="stepwise-vs-pathwise-minimization">
+<h2>Stepwise vs pathwise minimization<a class="headerlink" href="#stepwise-vs-pathwise-minimization" title="Link to this heading">#</a></h2>
 <p>The following Markov chain demonstrates the difference between stepwise and pathwise energy minimization. It has four states <span class="math notranslate nohighlight">\(A,B,C,D\)</span> and an arrow between states from state <span class="math notranslate nohighlight">\(i\)</span> to state <span class="math notranslate nohighlight">\(j\)</span> with weight <span class="math notranslate nohighlight">\(w\)</span> indicates that the energy is <span class="math notranslate nohighlight">\(E(j|i) = w\)</span>.</p>
 <div align="center" class="align-center"><div class="graphviz"><object data="../../_images/graphviz-ee1a898a0ea60906b3855635a445005d6465cc57.svg" type="image/svg+xml" class="graphviz">
 <p class="warning">digraph markov_chain {
@@ -680,9 +611,9 @@ subtracts the minimal transition energy from each time step.</p>
 \end{align*}
 \end{split}\]</div>
 <p>for all states <span class="math notranslate nohighlight">\(x\)</span> and lengths <span class="math notranslate nohighlight">\(n,\)</span> where <span class="math notranslate nohighlight">\(x \rightarrow p\)</span> denotes the prepending of a state <span class="math notranslate nohighlight">\(x\)</span> to a path <span class="math notranslate nohighlight">\(p\)</span>.</p>
-</div>
-<div class="section" id="natural-language-processing">
-<h2>Natural language processing<a class="headerlink" href="#natural-language-processing" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="natural-language-processing">
+<h2>Natural language processing<a class="headerlink" href="#natural-language-processing" title="Link to this heading">#</a></h2>
 <p>The difference between stepwise energy minimization and pathwise energy minimization is easily seen in natural language processing.</p>
 <p>In his blog <span id="id2">[<a class="reference internal" href="#id14" title="Andrej Karpathy Blog. The unreasonable effectiveness of recurrent neural networks. URL: http://karpathy. github. io/2015/05/21/rnn-effectiveness/dated May, 21:33, 2015.">Blo15</a>]</span> about the unreasonable effectiveness of recurrent neural networks (RNN), Karpathy trained a small character-level LSTM (long short-term memory) network on the writings of Paul Graham.</p>
 <p>He found that for large inverse temperatures <span class="math notranslate nohighlight">\(\beta,\)</span> the network generated the following stepwise greedy sequence of words:</p>
@@ -692,16 +623,16 @@ subtracts the minimal transition energy from each time step.</p>
 <p>Granted that at lower inverse temperatures the network produced sentences with greater variation and that the network is technically not a Markov chain, the above example shows us what could go wrong with extreme stepwise greedy sentence generation.</p>
 <p>Perhaps our minds behave more like networks that churn out sentences with small pathwise energies.</p>
 <p>Why would nature choose such a strategy over the simpler stepwise greedy approach, in natural language processing and, more generally, in reinforcement learning?</p>
-</div>
-<div class="section" id="reinforcement-learning">
-<h2>Reinforcement learning<a class="headerlink" href="#reinforcement-learning" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="reinforcement-learning">
+<h2>Reinforcement learning<a class="headerlink" href="#reinforcement-learning" title="Link to this heading">#</a></h2>
 <p>One possible answer is that many natural problems are best solved by <em>trial and error</em>. One has to try many <em>likely</em> solutions in a short period of time, as opposed to getting the correct solution but only after a long deliberation.</p>
 <p>In a continuous-time Markov chain, a path with optimal stepwise energy may suffer from large minimal transition energies <span class="math notranslate nohighlight">\(E(\hat{s}^*_{t+1}|\hat{s}_t, w)\)</span> which lead to long holding times.</p>
 <p>On the other hand, a path with optimal pathwise energy may have non-optimal transitions, but the system can generate many such paths quickly because of their short holding times. One of these paths could be the key to the problem at hand.</p>
 <p>Even in problems where small mistakes are catastrophic, the ability to brainstorm and quickly generate many possible solutions is critical. We can reason about the correctness of the solutions before testing them out. We can choose the best potential solution with the smallest risk.</p>
-</div>
-<div class="section" id="minimum-energy-flow">
-<h2>Minimum energy flow<a class="headerlink" href="#minimum-energy-flow" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="minimum-energy-flow">
+<h2>Minimum energy flow<a class="headerlink" href="#minimum-energy-flow" title="Link to this heading">#</a></h2>
 <p>We end with an interesting connection between the continuous-time likelihood method for sequence learning and the minimum energy flow (MEF) method for training Hopfield networks efficiently <span id="id3">[<a class="reference internal" href="#id15" title="Christopher Hillar, Tenzin Chan, Rachel Taubman, and David Rolnick. Hidden hypergraphs, error-correcting codes, and critical learning in hopfield networks. Entropy, 23(11):1494, 2021.">HCTR21</a>]</span>.</p>
 <p>Recall that the negative log likelihood is</p>
 <div class="math notranslate nohighlight">
@@ -716,44 +647,49 @@ subtracts the minimal transition energy from each time step.</p>
 <p>which is proportional to the limit of <span class="math notranslate nohighlight">\(\ell(w)\)</span> at <span class="math notranslate nohighlight">\(\beta =1\)</span> as <span class="math notranslate nohighlight">\(\delta\)</span> tends to infinity.</p>
 <p>This limit makes sense because energy flow is used in the paper for training Hopfield networks with attractor dynamics. The observed data <span class="math notranslate nohighlight">\(\{\hat{s}_t\}\)</span> is not actually a sequence, but a list of attractors. Each  attractor may be thought of as a one-state sequence with infinite holding time <span class="math notranslate nohighlight">\(\delta\)</span>.</p>
 <p>The negative log likelihood <span class="math notranslate nohighlight">\(\ell(w)\)</span> provides a family of objective functions with hyperparameters <span class="math notranslate nohighlight">\(\delta\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> that could be used in sequence learning.</p>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <div class="docutils container" id="id4">
-<dl class="citation">
-<dt class="label" id="id14"><span class="brackets"><a class="fn-backref" href="#id2">Blo15</a></span></dt>
-<dd><p>Andrej Karpathy Blog. The unreasonable effectiveness of recurrent neural networks. <em>URL: http://karpathy. github. io/2015/05/21/rnn-effectiveness/dated May</em>, 21:33, 2015.</p>
-</dd>
-<dt class="label" id="id15"><span class="brackets"><a class="fn-backref" href="#id3">HCTR21</a></span></dt>
-<dd><p>Christopher Hillar, Tenzin Chan, Rachel Taubman, and David Rolnick. Hidden hypergraphs, error-correcting codes, and critical learning in hopfield networks. <em>Entropy</em>, 23(11):1494, 2021.</p>
-</dd>
-<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="#id1">WF17</a></span></dt>
-<dd><p>Markus F Weber and Erwin Frey. Master equations and the theory of stochastic path integrals. <em>Reports on Progress in Physics</em>, 80(4):046601, 2017.</p>
-</dd>
-</dl>
+<div role="list" class="citation-list">
+<div class="citation" id="id14" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">Blo15</a><span class="fn-bracket">]</span></span>
+<p>Andrej Karpathy Blog. The unreasonable effectiveness of recurrent neural networks. <em>URL: http://karpathy. github. io/2015/05/21/rnn-effectiveness/dated May</em>, 21:33, 2015.</p>
+</div>
+<div class="citation" id="id15" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">HCTR21</a><span class="fn-bracket">]</span></span>
+<p>Christopher Hillar, Tenzin Chan, Rachel Taubman, and David Rolnick. Hidden hypergraphs, error-correcting codes, and critical learning in hopfield networks. <em>Entropy</em>, 23(11):1494, 2021.</p>
+</div>
+<div class="citation" id="id13" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">WF17</a><span class="fn-bracket">]</span></span>
+<p>Markus F Weber and Erwin Frey. Master equations and the theory of stochastic path integrals. <em>Reports on Progress in Physics</em>, 80(4):046601, 2017.</p>
 </div>
 </div>
 </div>
+</section>
+</section>
 
-<div class="section">
-    
-
-<div class="section">
-  <span style="float: left">
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
      
     <a href="../2022-05-08-parametric-typeclasses-aid-generalization-in-program-synthesis/">
-      <i class="fa fa-arrow-circle-left"></i> Parametric typeclasses aid generalization in program synthesis
+      
+      <i class="fa fa-arrow-circle-left"></i>
+      
+      <span>Parametric typeclasses aid generalization in program synthesis</span>
     </a>
     
   </span>
-  <span>&nbsp;</span>
-  <span style="float: right">
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
      
     <a href="../2023-04-01-relative-information-is-motivic/">
-      Relative information is motivic <i
-        class="fa fa-arrow-circle-right"
-      ></i
-      >
+      <span>Relative information is motivic</span>
+      
+      <i class="fa fa-arrow-circle-right"></i>
+      
     </a>
     
   </span>
@@ -794,7 +730,8 @@ subtracts the minimal transition energy from each time step.</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -820,13 +757,13 @@ subtracts the minimal transition energy from each time step.</p>
   </nav></div>
 
   <div class="sidebar-secondary-item">
-
-  <div class="tocsection sourcelink">
-    <a href="../../_sources/posts/2022-05-28-likelihood-greed-and-temperature-in-sequence-learning.md.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/posts/2022-05-28-likelihood-greed-and-temperature-in-sequence-learning.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
 
 </div></div>
               
@@ -841,8 +778,8 @@ subtracts the minimal transition energy from each time step.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -862,7 +799,7 @@ subtracts the minimal transition energy from each time step.</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
     <br/>
   </p>
 </div>
@@ -875,7 +812,8 @@ subtracts the minimal transition energy from each time step.</p>
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

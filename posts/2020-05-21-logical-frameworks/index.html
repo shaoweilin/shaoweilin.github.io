@@ -1,13 +1,13 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta property="og:title" content="Logical frameworks" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Logical frameworks" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://shaoweilin.github.io/posts/2020-05-21-logical-frameworks/" />
 <meta property="og:site_name" content="Types from Spikes" />
@@ -24,77 +24,53 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-dropdown.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8a9ddf57" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-dropdown.css?v=995e94df" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.min.css?v=21c0b90a" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/documentation_options.js?v=187304be"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2020-05-21-logical-frameworks';</script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about/" />
     <link rel="index" title="Index" href="../../genindex/" />
     <link rel="search" title="Search" href="../../search/" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/> 
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" /> 
 <link
   rel="alternate"
   type="application/atom+xml"
   href="../../blog/atom.xml"
   title="Types from Spikes"
 />
- 
-<style type="text/css">
-  ul.ablog-archive {
-    list-style: none;
-    overflow: auto;
-    margin-left: 0px;
-  }
-  ul.ablog-archive li {
-    float: left;
-    margin-right: 5px;
-    font-size: 80%;
-  }
-  ul.postlist a {
-    font-style: italic;
-  }
-  ul.postlist-style-disc {
-    list-style-type: disc;
-  }
-  ul.postlist-style-none {
-    list-style-type: none;
-  }
-  ul.postlist-style-circle {
-    list-style-type: circle;
-  }
-</style>
-
+  
   </head>
   
   
@@ -110,19 +86,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../search/"
       method="get">
@@ -130,7 +95,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search"
          aria-label="Search"
          autocomplete="off"
@@ -138,8 +102,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -206,15 +170,9 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
         </div>
       
       
@@ -234,24 +192,6 @@
         </li>
 </ul></div>
       
-        <div class="navbar-item">
-<form class="bd-search d-flex align-items-center"
-      action="../../search/"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search"
-         aria-label="Search"
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-      
     </div>
     
   </div>
@@ -259,15 +199,9 @@
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
     </div>
   
 
@@ -288,7 +222,8 @@
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -342,136 +277,134 @@
         </li>
 </ul></div>
         
-          <div class="navbar-item">
-<form class="bd-search d-flex align-items-center"
-      action="../../search/"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search"
-         aria-label="Search"
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-        
       </div>
     
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">  
-<h2>
-   <i class="fa fa-calendar"></i>
-  21 May 2020 
-</h2>
-
-<ul>
+        <div class="sidebar-primary-item"> 
+<div class="ablog-sidebar-item ablog__postcard">
+   
+  <h2>
+     
+    <i class="fa fa-calendar"></i>
+    
+    <span>21 May 2020</span>
+    
+  </h2>
+  <ul>
+    <div class="ablog-sidebar-item ablog__postcard2">
         
-</ul>
 </div>
-        <div class="sidebar-primary-item">
-<h3>
-  <a href="../../blog/">Recent Posts</a>
-</h3>
-<ul>
-   
-  <li>
-    <a href="../2025-01-10-relative-information-and-the-dual-numbers/"
-      >10 January - Relative information and the dual numbers</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-10-16-singular-learning-relative-information-and-the-dual-numbers/"
-      >16 October - Singular learning, relative information and the dual numbers</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-10-01-program-synthesis/"
-      >01 October - Program Synthesis</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-09-24-safety-by-shared-synthesis/"
-      >24 September - Safety by shared synthesis</a
-    >
-  </li>
-  
-  <li>
-    <a href="../2024-05-22-formal-ai-assisted-code-specification-and-synthesis-concrete-steps-towards-safe-sociotechnical-systems/"
-      >22 May - Formal AI-assisted code specification and synthesis: concrete steps towards safe sociotechnical systems</a
-    >
-  </li>
-  
-</ul>
+  </ul>
 </div>
-        <div class="sidebar-primary-item">
-<h3>
-  <a href="../../blog/archive/">Archives</a>
-</h3>
-<ul>
-   
-  <li>
-    <a href="../../blog/2025/">2025 (1)</a>
-  </li>
+</div>
+        <div class="sidebar-primary-item"> 
+<div class="ablog-sidebar-item ablog__recentposts">
+  <h3>
+    <a href="../../blog/">Recent Posts</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../2025-01-10-relative-information-and-the-dual-numbers/">
+        10 January - Relative information and the dual numbers
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2024/">2024 (5)</a>
-  </li>
+    <li>
+      <a href="../2024-10-16-singular-learning-relative-information-and-the-dual-numbers/">
+        16 October - Singular learning, relative information and the dual numbers
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2023/">2023 (5)</a>
-  </li>
+    <li>
+      <a href="../2024-10-01-program-synthesis/">
+        01 October - Program Synthesis
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2022/">2022 (3)</a>
-  </li>
+    <li>
+      <a href="../2024-09-24-safety-by-shared-synthesis/">
+        24 September - Safety by shared synthesis
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2021/">2021 (8)</a>
-  </li>
+    <li>
+      <a href="../2024-05-22-formal-ai-assisted-code-specification-and-synthesis-concrete-steps-towards-safe-sociotechnical-systems/">
+        22 May - Formal AI-assisted code specification and synthesis: concrete steps towards safe sociotechnical systems
+      </a>
+    </li>
     
-  <li>
-    <a href="../../blog/2020/">2020 (12)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2018/">2018 (1)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2017/">2017 (1)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2016/">2016 (3)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2014/">2014 (2)</a>
-  </li>
-    
-  <li>
-    <a href="../../blog/2012/">2012 (1)</a>
-  </li>
-   
-</ul>
+  </ul>
+</div>
+</div>
+        <div class="sidebar-primary-item"> 
+<div class="ablog-sidebar-item ablog__archive">
+  <h3>
+    <a href="../../blog/archive/">Archives</a>
+  </h3>
+  <ul>
+     
+    <li>
+      <a href="../../blog/2025/">2025 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2024/">2024 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2023/">2023 (5)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2022/">2022 (3)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2021/">2021 (8)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2020/">2020 (12)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2018/">2018 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2017/">2017 (1)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2016/">2016 (3)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2014/">2014 (2)</a>
+    </li>
+      
+    <li>
+      <a href="../../blog/2012/">2012 (1)</a>
+    </li>
+     
+  </ul>
+</div>
 </div>
     </div>
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -489,8 +422,6 @@
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -499,7 +430,7 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">Logical frameworks</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Logical frameworks</span></li>
   </ul>
 </nav>
 </div>
@@ -516,11 +447,11 @@
                 
 <div id="searchbox"></div>
                 <article class="bd-article">
-                   <div class="tex2jax_ignore mathjax_ignore section" id="logical-frameworks">
-<h1>Logical frameworks<a class="headerlink" href="#logical-frameworks" title="Permalink to this heading">#</a></h1>
+                   <section class="tex2jax_ignore mathjax_ignore" id="logical-frameworks">
+<h1>Logical frameworks<a class="headerlink" href="#logical-frameworks" title="Link to this heading">#</a></h1>
 <p>Logical frameworks are formal meta-languages for specifying different kinds of object theories (e.g. logical theories and type theories).</p>
-<div class="section" id="what-is-lf">
-<h2>What is LF?<a class="headerlink" href="#what-is-lf" title="Permalink to this heading">#</a></h2>
+<section id="what-is-lf">
+<h2>What is LF?<a class="headerlink" href="#what-is-lf" title="Link to this heading">#</a></h2>
 <p>LF is a logical framework <span id="id1">[<a class="reference internal" href="#id73" title="Robert Harper, Furio Honsell, and Gordon Plotkin. A framework for defining logics. Journal of the ACM (JACM), 40(1):143–184, 1993.">HHP93</a>]</span> that formalizes Martin-Lof’s logical framework and is itself based on type theory. It was designed to unify similarities between two forms of judgments.</p>
 <ul class="simple">
 <li><p>hypothetical judgments (<span class="math notranslate nohighlight">\(J_1,\ldots, J_n \vdash J\)</span>)</p></li>
@@ -529,9 +460,9 @@
 <p>Hence, LF may be thought of as a meta-language for judgments. Here, the <span class="math notranslate nohighlight">\(X_i\)</span> are <em>syntactic categories</em>, i.e. collections of strings. When we use the word <em>syntax</em>, we mean that we are referring to the strings in the language and their grammatical structures.</p>
 <p>The logical theory or type theory that we describe with LF will be called the <em>object language</em>.</p>
 <p>We will be using the presentation in <span id="id2">[<a class="reference internal" href="#id72" title="Zhaohui Luo. A unifying theory of dependent types: the schematic approach. In International Symposium on Logical Foundations of Computer Science, 293–304. Springer, 1992.">Luo92</a>]</span>, the paper where Unified Type Theory (UTT) was introduced. This presentation sticks closely to the original logical framework by Martin-Lof. Do note, however, that since Martin-Lof’s framework, there has been newer versions such as Canonical LF which incorporates signatures and canonical forms. We follow the presentation in <span id="id3">[<a class="reference internal" href="#id72" title="Zhaohui Luo. A unifying theory of dependent types: the schematic approach. In International Symposium on Logical Foundations of Computer Science, 293–304. Springer, 1992.">Luo92</a>]</span> to keep this introduction simple.</p>
-</div>
-<div class="section" id="what-are-the-rules-of-lf">
-<h2>What are the rules of LF?<a class="headerlink" href="#what-are-the-rules-of-lf" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="what-are-the-rules-of-lf">
+<h2>What are the rules of LF?<a class="headerlink" href="#what-are-the-rules-of-lf" title="Link to this heading">#</a></h2>
 <p>We first present the rules <span id="id4">[<a class="reference internal" href="#id72" title="Zhaohui Luo. A unifying theory of dependent types: the schematic approach. In International Symposium on Logical Foundations of Computer Science, 293–304. Springer, 1992.">Luo92</a>]</span> before describing their semantics.</p>
 <p><img alt="logical-framework-rules" src="../../_images/logical-framework-rules.png" /></p>
 <p>There are four forms of expressions - LF-kinds <span class="math notranslate nohighlight">\(K\)</span>, LF-types <span class="math notranslate nohighlight">\(A\)</span> and LF-constants <span class="math notranslate nohighlight">\(x\)</span>. We prefix them with LF to distinguish them from the types and constants of the object language. The LF-types and LF-constants are essentially the types and terms of the LF language, while the LF-kinds are type families such as the dependent product kind <span class="math notranslate nohighlight">\((x:K_1)K_2\)</span></p>
@@ -546,22 +477,22 @@
 </ul>
 <p>There is a special LF-kind called <span class="math notranslate nohighlight">\(\textbf{Type}\)</span> which is the LF-kind of all LF-types. There is a Tarski operator <span class="math notranslate nohighlight">\(El\)</span> that lifts an LF-type <span class="math notranslate nohighlight">\(\Gamma \vdash A : \textbf{Type}\)</span> to an LF-kind <span class="math notranslate nohighlight">\(\Gamma \vdash El(A) \text{ kind}\)</span>. We will omit this lifting operator when it is obvious from the expression.</p>
 <p>From the rules, it is interesting that dependent product kinds are all that is needed to specify the logical framework <span id="id5">[<a class="reference internal" href="#id71" title="nLab. Logical framework. https://ncatlab.org/nlab/show/logical+framework. Accessed: 2020.">nLa</a>]</span>.</p>
-</div>
-<div class="section" id="is-lf-consistent">
-<h2>Is LF consistent?<a class="headerlink" href="#is-lf-consistent" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="is-lf-consistent">
+<h2>Is LF consistent?<a class="headerlink" href="#is-lf-consistent" title="Link to this heading">#</a></h2>
 <p>Since LF is just a meta-language for specifying object languages, consistency is not a concern at the level of the framework, but only relevant at the level of the object language. Moreover, it is not possible to define consistency for LF in the same way we define consistency for object languages via the ability to construct a term of the empty type.</p>
-</div>
-<div class="section" id="what-role-do-universes-play-in-the-object-languages-of-lf">
-<h2>What role do universes play in the object languages of LF?<a class="headerlink" href="#what-role-do-universes-play-in-the-object-languages-of-lf" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="what-role-do-universes-play-in-the-object-languages-of-lf">
+<h2>What role do universes play in the object languages of LF?<a class="headerlink" href="#what-role-do-universes-play-in-the-object-languages-of-lf" title="Link to this heading">#</a></h2>
 <p>A universe <span class="math notranslate nohighlight">\(U : \textbf{Type}\)</span> can be thought of as syntactic category that puts a collection of LF-kinds into a neat package after the LF-kinds have been defined. For example, suppose we have LF-kinds</p>
 <div class="math notranslate nohighlight">
 \[Nat \text{ kind}\]</div>
 <div class="math notranslate nohighlight">
 \[Bool \text{ kind}\]</div>
 <p>Instead of putting the LF-constants <span class="math notranslate nohighlight">\(nat\)</span> and <span class="math notranslate nohighlight">\(bool\)</span>  in <span class="math notranslate nohighlight">\(\textbf{Type}\)</span>, we could package them in <span class="math notranslate nohighlight">\(U\)</span> so <span class="math notranslate nohighlight">\(nat : El(U)\)</span> and <span class="math notranslate nohighlight">\(bool : El(U)\)</span> while <span class="math notranslate nohighlight">\(U : \textbf{Type}\)</span>. We will need a new lifting operator <span class="math notranslate nohighlight">\(T\)</span>, so that <span class="math notranslate nohighlight">\(T(nat) : \textbf{Type}, T(bool) : \textbf{Type}\)</span> and <span class="math notranslate nohighlight">\(Nat = El(T(nat)), Bool = El(T(bool))\)</span>.  Every LF-constant representing a type eventually lifts up to some LF-kind. Thus, we can think of universe management as a way of organizing a large collection of LF-kinds to retain consistency, among other goals.</p>
-</div>
-<div class="section" id="what-issues-does-lf-have-and-how-do-recent-extensions-of-lf-deal-with-them">
-<h2>What issues does LF have, and how do recent extensions of LF deal with them?<a class="headerlink" href="#what-issues-does-lf-have-and-how-do-recent-extensions-of-lf-deal-with-them" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="what-issues-does-lf-have-and-how-do-recent-extensions-of-lf-deal-with-them">
+<h2>What issues does LF have, and how do recent extensions of LF deal with them?<a class="headerlink" href="#what-issues-does-lf-have-and-how-do-recent-extensions-of-lf-deal-with-them" title="Link to this heading">#</a></h2>
 <p>In more recent logical frameworks, signatures have also been introduced in addition to contexts. These signature store constants which may be expanded to longer terms by definition.</p>
 <p>We also want the logical framework to faithfully represent types from the object language. In other words, object types in the object language should have a corresponding LF-kind in the logical framework. However, there could be several LF-kinds mapping the same object type, because of eta-conversions, such as <span class="math notranslate nohighlight">\(\text{suc}\)</span> and <span class="math notranslate nohighlight">\([x:Nat](\text{suc } x)\)</span> both mapping to the successor function in the object language. The unique LF-representation would be called a <em>canonical form</em>. To solve this problem, LF-kinds are constrained to only contain <em>LF-families</em>, and LF-families contain LF-objects. The judgments are refined to be of the following forms <span id="id6">[<a class="reference internal" href="#id74" title="Robert Harper. Notes on logical frameworks. Lecture notes, Institute for Advanced Study, Nov, 29:34, 2012.">Har12</a>]</span>.</p>
 <ul class="simple">
@@ -573,58 +504,67 @@
 </ul>
 <p>Of course, these judgments are not enough to solve the problem of canonical forms, but they are the starting point. The usual substitution rules need to be adjusted to depend on the type of the replacement object.</p>
 <p>These recent frameworks also have bidirectional type-checking. More precisely, instead of just having the judgement <span class="math notranslate nohighlight">\(a:A\)</span>, we have judgements <span class="math notranslate nohighlight">\(a \Rightarrow A\)</span> (when A is not given, we may infer that the type of <span class="math notranslate nohighlight">\(a\)</span> is <span class="math notranslate nohighlight">\(A\)</span>) and <span class="math notranslate nohighlight">\(a \Leftarrow A\)</span> (when A is given, we verify that <span class="math notranslate nohighlight">\(a\)</span> is of type <span class="math notranslate nohighlight">\(A\)</span>).</p>
-</div>
-<div class="section" id="should-we-use-lf-s-type-checking-capabilities-to-perform-type-checks-for-the-object-language">
-<h2>Should we use LF’s type-checking capabilities to perform type-checks for the object language?<a class="headerlink" href="#should-we-use-lf-s-type-checking-capabilities-to-perform-type-checks-for-the-object-language" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="should-we-use-lf-s-type-checking-capabilities-to-perform-type-checks-for-the-object-language">
+<h2>Should we use LF’s type-checking capabilities to perform type-checks for the object language?<a class="headerlink" href="#should-we-use-lf-s-type-checking-capabilities-to-perform-type-checks-for-the-object-language" title="Link to this heading">#</a></h2>
 <p>This is known as the <em>analytic presentation</em> of the object language, as opposed to the <em>syntactic presentation</em> of the object language <span id="id7">[<a class="reference internal" href="#id74" title="Robert Harper. Notes on logical frameworks. Lecture notes, Institute for Advanced Study, Nov, 29:34, 2012.">Har12</a>]</span>. Analytic presentations are useful for computations, but they cause problems when we are trying to prove certain properties of the object language. In particular, when there are certain definitional equalities such as beta or eta reductions in the object language, we will need to represent them as equalities of the logical framework, so that type checking can proceed correctly. However, such representations make it difficult to prove properties of the object language that depend on these equalities. A hybrid syntactic-analytic approach is also possible, where we represent equalities using identity types.</p>
-</div>
-<div class="section" id="what-about-equations-satisfied-by-the-generators-of-the-object-language">
-<h2>What about equations satisfied by the generators of the object language?<a class="headerlink" href="#what-about-equations-satisfied-by-the-generators-of-the-object-language" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="what-about-equations-satisfied-by-the-generators-of-the-object-language">
+<h2>What about equations satisfied by the generators of the object language?<a class="headerlink" href="#what-about-equations-satisfied-by-the-generators-of-the-object-language" title="Link to this heading">#</a></h2>
 <p>Robert Harper has some notes about a <em>semantic logical framework</em> that allows for such equations <span id="id8">[<a class="reference internal" href="#id75" title="Robert Harper. A semantic logical framework. Unpublished draft. Dec.(cit. on p.), 2020.">Har20</a>]</span>.</p>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <div class="docutils container" id="id9">
-<dl class="citation">
-<dt class="label" id="id74"><span class="brackets">Har12</span><span class="fn-backref">(<a href="#id6">1</a>,<a href="#id7">2</a>)</span></dt>
-<dd><p>Robert Harper. Notes on logical frameworks. <em>Lecture notes, Institute for Advanced Study, Nov</em>, 29:34, 2012.</p>
-</dd>
-<dt class="label" id="id75"><span class="brackets"><a class="fn-backref" href="#id8">Har20</a></span></dt>
-<dd><p>Robert Harper. A semantic logical framework. <em>Unpublished draft. Dec.(cit. on p.)</em>, 2020.</p>
-</dd>
-<dt class="label" id="id73"><span class="brackets"><a class="fn-backref" href="#id1">HHP93</a></span></dt>
-<dd><p>Robert Harper, Furio Honsell, and Gordon Plotkin. A framework for defining logics. <em>Journal of the ACM (JACM)</em>, 40(1):143–184, 1993.</p>
-</dd>
-<dt class="label" id="id72"><span class="brackets">Luo92</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id3">2</a>,<a href="#id4">3</a>)</span></dt>
-<dd><p>Zhaohui Luo. A unifying theory of dependent types: the schematic approach. In <em>International Symposium on Logical Foundations of Computer Science</em>, 293–304. Springer, 1992.</p>
-</dd>
-<dt class="label" id="id71"><span class="brackets"><a class="fn-backref" href="#id5">nLa</a></span></dt>
-<dd><p>nLab. Logical framework. <a class="reference external" href="https://ncatlab.org/nlab/show/logical+framework">https://ncatlab.org/nlab/show/logical+framework</a>. Accessed: 2020.</p>
-</dd>
-</dl>
+<div role="list" class="citation-list">
+<div class="citation" id="id74" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Har12<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id6">1</a>,<a role="doc-backlink" href="#id7">2</a>)</span>
+<p>Robert Harper. Notes on logical frameworks. <em>Lecture notes, Institute for Advanced Study, Nov</em>, 29:34, 2012.</p>
+</div>
+<div class="citation" id="id75" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">Har20</a><span class="fn-bracket">]</span></span>
+<p>Robert Harper. A semantic logical framework. <em>Unpublished draft. Dec.(cit. on p.)</em>, 2020.</p>
+</div>
+<div class="citation" id="id73" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">HHP93</a><span class="fn-bracket">]</span></span>
+<p>Robert Harper, Furio Honsell, and Gordon Plotkin. A framework for defining logics. <em>Journal of the ACM (JACM)</em>, 40(1):143–184, 1993.</p>
+</div>
+<div class="citation" id="id72" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Luo92<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id2">1</a>,<a role="doc-backlink" href="#id3">2</a>,<a role="doc-backlink" href="#id4">3</a>)</span>
+<p>Zhaohui Luo. A unifying theory of dependent types: the schematic approach. In <em>International Symposium on Logical Foundations of Computer Science</em>, 293–304. Springer, 1992.</p>
+</div>
+<div class="citation" id="id71" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">nLa</a><span class="fn-bracket">]</span></span>
+<p>nLab. Logical framework. <a class="reference external" href="https://ncatlab.org/nlab/show/logical+framework">https://ncatlab.org/nlab/show/logical+framework</a>. Accessed: 2020.</p>
 </div>
 </div>
 </div>
+</section>
+</section>
 
-<div class="section">
-    
-
-<div class="section">
-  <span style="float: left">
+<div class="section ablog__blog_comments">
+     
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
      
     <a href="../2018-05-26-machine-reasoning-and-deep-spiking-networks/">
-      <i class="fa fa-arrow-circle-left"></i> Machine reasoning and deep spiking networks
+      
+      <i class="fa fa-arrow-circle-left"></i>
+      
+      <span>Machine reasoning and deep spiking networks</span>
     </a>
     
   </span>
-  <span>&nbsp;</span>
-  <span style="float: right">
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
      
     <a href="../2020-05-26-directed-spaces-and-types/">
-      Directed spaces and types <i
-        class="fa fa-arrow-circle-right"
-      ></i
-      >
+      <span>Directed spaces and types</span>
+      
+      <i class="fa fa-arrow-circle-right"></i>
+      
     </a>
     
   </span>
@@ -665,7 +605,8 @@
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -688,13 +629,13 @@
   </nav></div>
 
   <div class="sidebar-secondary-item">
-
-  <div class="tocsection sourcelink">
-    <a href="../../_sources/posts/2020-05-21-logical-frameworks.md.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/posts/2020-05-21-logical-frameworks.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
 
 </div></div>
               
@@ -709,8 +650,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -730,7 +671,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
     <br/>
   </p>
 </div>
@@ -743,7 +684,8 @@
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>
