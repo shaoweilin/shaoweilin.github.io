@@ -57,8 +57,8 @@ html_theme = 'pydata_sphinx_theme'
 
 html_theme_options = {
   "github_url": "https://github.com/shaoweilin/",
-  "search_bar_text": "Search this site...",
-  "navbar_end": ["search-field.html", "navbar-icon-links"],
+  "search_bar_text": "Search...",
+  "navbar_end": ["navbar-icon-links"],
   "logo": {
     "text": "Types from Spikes",
   },
@@ -76,7 +76,8 @@ html_sidebars = {
     "about": ["hello.html"],
     "posts/**": ['postcard.html', 'recentposts.html', 'archives.html'],
     "blog": ['tagcloud.html', 'archives.html'],
-    "blog/**": ['postcard.html', 'recentposts.html', 'archives.html']
+    "blog/**": ['postcard.html', 'recentposts.html', 'archives.html'],
+    "**": ["search-field.html"]
 }
 blog_baseurl = "https://shaoweilin.github.io"
 blog_title = "Types from Spikes"
