@@ -58,7 +58,8 @@ html_theme = 'pydata_sphinx_theme'
 html_theme_options = {
   "github_url": "https://github.com/shaoweilin/",
   "search_bar_text": "Search",
-  "navbar_end": ["navbar-icon-links", "search-field.html"],
+  "navbar_end": ["navbar-icon-links"],
+  "navbar_persistent": ["search-button"],
   "logo": {
     "text": "Types from Spikes",
   },
