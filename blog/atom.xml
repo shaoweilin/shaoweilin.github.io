@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://shaoweilin.github.io</id>
   <title>Types from Spikes</title>
-  <updated>2025-02-12T18:27:27.210310+00:00</updated>
+  <updated>2025-03-17T03:37:35.327182+00:00</updated>
   <link href="https://shaoweilin.github.io"/>
   <link href="https://shaoweilin.github.io/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
@@ -34,12 +34,11 @@
     <id>https://shaoweilin.github.io/posts/2024-10-01-program-synthesis/</id>
     <title>Program Synthesis</title>
     <updated>2024-10-01T00:00:00+00:00</updated>
-    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Here is a list of prior work I did with my collaborators and Ph.D. students on dependent type theory and program synthesis.&lt;/p&gt;
-&lt;p&gt;2024: Shaowei Lin. &lt;a class="reference external" href="https://shaoweilin.github.io/posts/2024-09-24-safety-by-shared-synthesis/"&gt;Safety by shared synthesis&lt;/a&gt;.&lt;/p&gt;
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;A list of prior work I did with my collaborators and Ph.D. students on dependent type theory and program synthesis: &lt;a class="reference internal" href="../synthesis/"&gt;&lt;span class="doc std std-doc"&gt;Program Synthesis&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;/p&gt;
 </content>
     <link href="https://shaoweilin.github.io/posts/2024-10-01-program-synthesis/"/>
-    <summary>Here is a list of prior work I did with my collaborators and Ph.D. students on dependent type theory and program synthesis.2024: Shaowei Lin. Safety by shared synthesis.</summary>
+    <summary>A list of prior work I did with my collaborators and Ph.D. students on dependent type theory and program synthesis: Program Synthesis.</summary>
     <published>2024-10-01T00:00:00+00:00</published>
   </entry>
   <entry>
