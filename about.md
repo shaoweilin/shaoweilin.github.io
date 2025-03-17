@@ -19,6 +19,7 @@ I am a mathematician working on the statistical learning theory of spiking neura
 - [Blog](blog/)
 - [PhD Thesis](https://w3id.org/people/shaoweilin/public/swthesis.pdf)
 - [Singular Learning](singular/)
+- [Program Synthesis](synthesis/)
 - [Personal Blog](http://bananaguy.blogspot.com)
 
 ## Talks
