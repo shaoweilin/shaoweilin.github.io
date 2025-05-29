@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="slides_files/libs/clipboard/clipboard.min.js"></script>
-<script src="slides_files/libs/quarto-html/tabby.min.js"></script>
-<script src="slides_files/libs/quarto-html/popper.min.js"></script>
-<script src="slides_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="slides_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="20250530-relatorium_files/libs/clipboard/clipboard.min.js"></script>
+<script src="20250530-relatorium_files/libs/quarto-html/tabby.min.js"></script>
+<script src="20250530-relatorium_files/libs/quarto-html/popper.min.js"></script>
+<script src="20250530-relatorium_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="20250530-relatorium_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="20250530-relatorium_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="20250530-relatorium_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.40">
 
   <meta name="author" content="Shaowei Lin">
   <meta name="dcterms.date" content="2025-05-30">
-  <title>Refine you a code  for great good!</title>
+  <title>Refine yourself a code  for great good!</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="20250530-relatorium_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="20250530-relatorium_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -29,13 +29,77 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/theme/quarto-bbe7401fe57d4b791b917637bb662036.css">
-  <link rel="stylesheet" href="style.css">
-  <link href="slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="slides_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="20250530-relatorium_files/libs/revealjs/dist/theme/quarto-bbe7401fe57d4b791b917637bb662036.css">
+  <link href="20250530-relatorium_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="20250530-relatorium_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="20250530-relatorium_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="20250530-relatorium_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
@@ -123,15 +187,16 @@
       margin-right: 0; 
     }
   </style>
+  <style> .reveal .slide aside {font-size: 0.3em;} </style>
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Refine you a code <br> for great good!</h1>
+  <h1 class="title">Refine yourself a code <br> for great good!</h1>
   <p class="subtitle">
-    <img src="title-image.png" width="200" height="200">
+    <img src="20250530-relatorium_files/imgs/cartoon-octopus.png" width="200" height="200">
   </p>
 
 <div class="quarto-title-authors">
@@ -157,18 +222,11 @@
           
   </p> 
 </section>
-<section id="test" class="slide level2">
-<h2>Test</h2>
-<p>This is a playground for <span class="column-margin margin-aside">Quarto</span>.</p>
-
-<aside><div>
-<p>More aside.</p>
-</div></aside></section>
 <section id="recreational-vibe-coding" class="slide level2">
 <h2>Recreational Vibe Coding</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><a href="https://x.com/karpathy/status/1886192184808149383?lang=en"><img data-src="slides_files/imgs/vibe-coding-recreational.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></a></p>
+<p><a href="https://x.com/karpathy/status/1886192184808149383?lang=en"><img data-src="20250530-relatorium_files/imgs/vibe-coding-recreational.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></a></p>
 </figure>
 </div>
 </section>
@@ -176,7 +234,7 @@
 <h2>Professional Vibe Coding</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><a href="https://x.com/karpathy/status/1915581920022585597"><img data-src="slides_files/imgs/vibe-coding-professional.png" class="quarto-figure quarto-figure-center"></a></p>
+<p><a href="https://x.com/karpathy/status/1915581920022585597"><img data-src="20250530-relatorium_files/imgs/vibe-coding-professional.png" class="quarto-figure quarto-figure-center"></a></p>
 </figure>
 </div>
 </section>
@@ -184,57 +242,74 @@
 <h2>Vibe Coding in Cursor</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><video data-src="slides_files/imgs/vibe-coding-cursor.mp4" class="quarto-figure quarto-figure-center" controls=""><a href="slides_files/imgs/vibe-coding-cursor.mp4">Video</a></video></p>
+<p><video data-src="20250530-relatorium_files/imgs/vibe-coding-cursor.mp4" class="quarto-figure quarto-figure-center" controls=""><a href="20250530-relatorium_files/imgs/vibe-coding-cursor.mp4">Video</a></video></p>
 </figure>
 </div>
 </section>
-<section id="goals" class="slide level2">
-<h2>Goals</h2>
-<p>Scale verified coding - for a human - for a human with AI assistance - for a team of humans with AI assistance</p>
+<section id="for-great-good" class="slide level2">
+<h2>For Great Good!</h2>
+<p><br></p>
+<p>Scale <em>verified</em> coding for</p>
+<ul>
+<li><p>a human</p></li>
+<li><p>a human with AI assistance</p></li>
+<li><p>a team of humans with AI assistance</p></li>
+</ul>
 </section>
 <section id="refinements" class="slide level2">
 <h2>Refinements</h2>
 <div style="text-align:center;">
-<p><img data-src="slides_files/imgs/refinement-tactics.png" style="width:100.0%"></p>
+<p><img data-src="20250530-relatorium_files/imgs/refinement-tactics.png" style="width:100.0%"></p>
 </div>
 
 <!-- refinement types? -->
 <aside><div>
 <p>Delaware, B., Pit-Claudel, C., Gross, J., &amp; Chlipala, A. (2015). <a href="https://www.cs.purdue.edu/homes/bendy/Fiat/Fiat.pdf">Fiat: Deductive synthesis of abstract data types in a proof assistant.</a> ACM Sigplan Notices, 50(1), 689-700.</p>
 </div></aside></section>
+<section id="insert-function---signature" class="slide level2">
+<h2>Insert Function - Signature</h2>
+
+<img data-src="20250530-relatorium_files/imgs/insert-refinement-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
+<section id="insert-function---refinement" class="slide level2">
+<h2>Insert Function - Refinement</h2>
+
+<img data-src="20250530-relatorium_files/imgs/insert-refinement-2.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
+<section id="insert-function---refinement-1" class="slide level2">
+<h2>Insert Function - Refinement</h2>
+
+<img data-src="20250530-relatorium_files/imgs/insert-refinement-3.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
+<section id="insert-function---finished" class="slide level2">
+<h2>Insert Function - Finished</h2>
+
+<img data-src="20250530-relatorium_files/imgs/insert-refinement-4.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
 <section id="poset-of-refinements" class="slide level2">
 <h2>Poset of Refinements</h2>
-<div style="text-align:center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_files/imgs/refinement-fiat.png"></p>
-<figcaption>Possible refinements of the <code>insert</code> function, which inserts <br> a key-value pair <code>(k,v)</code> into a cache or list <code>l</code> of existing pairs</figcaption>
-</figure>
-</div>
-</div>
+<ul>
+<li>Backtrack when the refinement resists implementation</li>
+<li>Backtrack when the original intent is updated</li>
+<li>Add code checkpoints with git commits and branches</li>
+</ul>
 
-<aside><div>
-<p>Delaware, B., Pit-Claudel, C., Gross, J., &amp; Chlipala, A. (2015). <a href="https://www.cs.purdue.edu/homes/bendy/Fiat/Fiat.pdf">Fiat: Deductive synthesis of abstract data types in a proof assistant.</a> ACM Sigplan Notices, 50(1), 689-700.</p>
-</div></aside></section>
+<img data-src="20250530-relatorium_files/imgs/refinement-fiat.png" class="quarto-figure quarto-figure-&quot;center r-stretch"></section>
 <section id="open-systems" class="slide level2">
 <h2>Open Systems</h2>
 <div style="text-align:center;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/imgs/wiring-diagrams.png" style="width:80.0%"></p>
+<p><img data-src="20250530-relatorium_files/imgs/wiring-diagrams.png" style="width:80.0%"></p>
 <figcaption>Open systems (wiring diagrams) with their external interfaces and internal holes. Composition of open systems occurs through hole filling or nesting</figcaption>
 </figure>
 </div>
 </div>
 
 <aside><div>
-<p>Myers, David Jaz. <a href="https://www.davidjaz.com/Papers/DynamicalBook.pdf">Categorical systems theory.</a> Manuscript in preparation (2022).</p>
+<p>Myers, David Jaz. <a href="https://www.davidjaz.com/Papers/DynamicalBook.pdf">Categorical systems theory.</a> Manuscript in preparation.<br> Courser, K. A. <a href="https://arxiv.org/abs/2008.02394">Open systems: A double categorical perspective.</a> University of California, Riverside (2020).</p>
 </div></aside></section>
 <section id="interfaces-and-interactions" class="slide level2">
 <h2>Interfaces and Interactions</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/imgs/interface-interaction.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
+<p><img data-src="20250530-relatorium_files/imgs/interface-interaction.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
 </figure>
 </div>
 
@@ -244,42 +319,105 @@
 <section id="theorem-proving" class="slide level2">
 <h2>Theorem Proving</h2>
 <ul>
-<li>Induction</li>
+<li>Tactics refine goals into subgoals</li>
+<li>Under the hood, a partial proof term eventually glues proofs of the subgoals into a proof of the original goal</li>
 </ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="20250530-relatorium_files/imgs/theorem-proving.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
+</figure>
+</div>
+
+<aside><div>
+
+</div></aside></section>
+<section id="theorem-proving-1" class="slide level2">
+<h2>Theorem Proving</h2>
+<p><strong>Example.</strong> The <code>induction</code> tactic</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource {lean} number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href=""></a>theorem plusR_zero_left (k : Nat) : k = Nat.add 0 k := by</span>
+<span id="cb1-2"><a href=""></a>  induction k </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>generates the following two subgoals</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource {lean} number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href=""></a>⊢ 0 = Nat.add 0 0</span>
+<span id="cb2-2"><a href=""></a></span>
+<span id="cb2-3"><a href=""></a>n✝ : Nat</span>
+<span id="cb2-4"><a href=""></a>a✝ : n✝ = Nat.add 0 n✝</span>
+<span id="cb2-5"><a href=""></a>⊢ n✝ + 1 = Nat.add 0 (n✝ + 1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and the partial proof term</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource {lean} number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href=""></a>fun k =&gt; Nat.recAux ( ) ( ) k</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="double-category" class="slide level2">
-<h2>Double Category</h2>
+<section id="maps-between-interfaces" class="slide level2">
+<h2>Maps between Interfaces</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="20250530-relatorium_files/imgs/small-scale-reflection.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+
+<aside><div>
+<p>Gladshtein, V., Pîrlea, G. and Sergey, I. <a href="https://arxiv.org/pdf/2403.12733">Small Scale Reflection for the Working Lean User.</a> arXiv:2403.12733 (2024). <br> Mahboubi, A., &amp; Tassi, E. Mathematical components. Online book (2021).</p>
+</div></aside></section>
+<section id="double-categories" class="slide level2">
+<h2>Double Categories</h2>
+<p>A <em>(pseudo-)double category</em> is a category internal to <span class="math inline">\(\text{Cat}\)</span>, i.e.</p>
+<ul>
+<li><p>category <span class="math inline">\(C_0\)</span> of objects</p></li>
+<li><p>category <span class="math inline">\(C_1\)</span> of morphisms</p></li>
+<li><p>source, target functors <span class="math inline">\(s, t: C_1 \rightarrow C_0\)</span></p></li>
+<li><p>identity-assigning functor <span class="math inline">\(e: C_0 \rightarrow C_1\)</span></p></li>
+<li><p>composition <span class="math inline">\(c: C_1 \times_{C_0} C_1 \rightarrow C_1\)</span></p></li>
+</ul>
+
+<aside><div>
+<p>catcolab, lambert and patterson</p>
+</div></aside></section>
+<section id="double-categories-1" class="slide level2">
+<h2>Double Categories</h2>
+<p>Morphisms in <span class="math inline">\(C_0\)</span> are called <em>tight morphisms</em>.</p>
+<p>Objects in <span class="math inline">\(C_1\)</span> are called <em>loose morphisms</em>, because we only assume associativity holds up to coherent isomorphism.</p>
 
 <aside><div>
 <p>catcolab, lambert and patterson</p>
 </div></aside></section>
 <section id="system-interface-interaction-maps" class="slide level2">
 <h2>System, Interface, Interaction Maps</h2>
-</section>
-<section id="transport" class="slide level2">
-<h2>Transport</h2>
-<ul>
-<li>Decidable equality</li>
-</ul>
-
-<!-- ## Mathematical Components
-
-- Eq typeclass
-- tactics that decompose a goal
-- tactics that project into Eq class -->
 <!-- ## Vibe Coding Characteristics
 
 - incremental changes
 - version control important -->
-<aside><div>
-<p>mathematical components</p>
-</div></aside></section>
+</section>
 <section id="intentional-software" class="slide level2">
 <h2>Intentional Software</h2>
 <ul>
 <li>transforms</li>
 <li>projections</li>
 </ul>
+</section>
+<section id="human-with-ai-assistance" class="slide level2">
+<h2>Human with AI Assistance</h2>
+<ul>
+<li>Code synthesis via refinement, not token-generation</li>
+<li>Correct-by-construction through proof-carrying</li>
+<li>Proofs verified by small trusted kernel</li>
+</ul>
+</section>
+<section id="teams-with-ai-assistance" class="slide level2">
+<h2>Teams with AI Assistance</h2>
+<ul>
+<li>Refinement produces subgoals for decentralized collaboration</li>
+<li>Partial code and proofs provide trusted composition of individual contributions</li>
+</ul>
+</section>
+<section id="blueprint" class="slide level2">
+<h2>Blueprint</h2>
+<ul>
+<li>Show interfaces, interactions and maps</li>
+</ul>
+</section>
+<section id="verilib" class="slide level2">
+<h2>VeriLib</h2>
+</section>
+<section id="spec-ide" class="slide level2">
+<h2>Spec IDE</h2>
 </section>
 <section id="catcolab" class="slide level2">
 <h2>CatColab</h2>
@@ -309,19 +447,19 @@ Moderator: The talk will be moderated by Daniel Filonik. Daniel specializes in d
 </div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="slides_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="20250530-relatorium_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="slides_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="slides_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="slides_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="20250530-relatorium_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="20250530-relatorium_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="20250530-relatorium_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="20250530-relatorium_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="20250530-relatorium_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="slides_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="slides_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="slides_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="slides_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="20250530-relatorium_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="20250530-relatorium_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="20250530-relatorium_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="20250530-relatorium_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
