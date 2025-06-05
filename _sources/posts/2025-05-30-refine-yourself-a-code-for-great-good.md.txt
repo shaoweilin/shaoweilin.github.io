@@ -16,4 +16,4 @@ In this talk, I hope to share some concrete examples of this refinement-centric 
 ## Details
 [Relatorium Seminar](https://www.youtube.com/watch?v=RvXWabNoWrc)
 
-[Slides](https://w3id.org/people/shaoweilin/public/20250530-relatorium.html)
+[Slides](https://w3id.org/people/shaoweilin/public/20250530-relatorium/slides.html)
