@@ -4,7 +4,11 @@ I am a mathematician working on the statistical learning theory of spiking neura
 
 ## Identity
 - PURL [https://w3id.org/people/shaoweilin](https://w3id.org/people/shaoweilin)
-- ORCID [0000-0002-8176-8868](https://orcid.org/0000-0002-8176-8868)
+- [ORCID](https://orcid.org/0000-0002-8176-8868)
+- [LinkedIn](https://www.linkedin.com/in/shaoweilin/)
+- [DBLP](https://dblp.org/pid/00/1006)
+- [Semantic Scholar](https://www.semanticscholar.org/author/Shaowei-Lin/2047908196)
+- [Google Scholar](https://scholar.google.com/citations?user=jCYmZFEAAAAJ)
 
 ## Biography
 - [Curriculum Vitae](https://w3id.org/people/shaoweilin/public/vitae.pdf)
