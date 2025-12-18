@@ -1,6 +1,5 @@
 ---
 date: 2024-05-22
-excerpts: 1
 ---
 
 # Formal AI-assisted code specification and synthesis: concrete steps towards safe sociotechnical systems

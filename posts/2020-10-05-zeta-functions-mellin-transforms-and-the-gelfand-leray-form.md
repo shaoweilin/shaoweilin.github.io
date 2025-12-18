@@ -1,6 +1,5 @@
 ---
 date: 2020-10-05
-excerpts: 2
 ---
 
 # Zeta functions, Mellin transforms and the Gelfand-Leray form

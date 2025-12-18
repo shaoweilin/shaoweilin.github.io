@@ -1,6 +1,5 @@
 ---
 date: 2020-10-07
-excerpts: 2
 ---
 
 # Motivic relative information

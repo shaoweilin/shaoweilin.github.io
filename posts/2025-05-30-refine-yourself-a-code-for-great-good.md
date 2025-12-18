@@ -12,8 +12,6 @@ The central objects in refinement are partially implemented programs. Partial pr
 
 In this talk, I hope to share some concrete examples of this refinement-centric approach in formal verification, program synthesis and theorem proving. I believe that this approach can help us to leverage AI assistance in coding, to decentralize and democratize coding, and to build safe, secure and sustainable software systems.
 
-<!-- more -->
-
 ## Details
 [Relatorium Seminar](https://www.youtube.com/watch?v=RvXWabNoWrc)
 

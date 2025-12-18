@@ -1,6 +1,5 @@
 ---
 date: 2022-01-22
-excerpts: 6
 ---
 
 # Information topos theory - motivation

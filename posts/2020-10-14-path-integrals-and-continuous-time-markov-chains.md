@@ -1,6 +1,5 @@
 ---
 date: 2020-10-14
-excerpts: 2
 ---
 
 # Path integrals and continuous-time Markov chains

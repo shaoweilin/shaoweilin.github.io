@@ -1,6 +1,5 @@
 ---
 date: 2021-03-22
-excerpts: 3
 ---
 
 # Relative inference with mutable processes

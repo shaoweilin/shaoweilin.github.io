@@ -1,6 +1,5 @@
 ---
 date: 2020-05-21
-excerpts: 1
 ---
 
 # Logical frameworks

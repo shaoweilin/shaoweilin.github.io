@@ -1,6 +1,5 @@
 ---
 date: 2022-05-28
-excerpts: 4
 ---
 
 # Likelihood, greed and temperature in sequence learning

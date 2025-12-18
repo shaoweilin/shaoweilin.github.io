@@ -1,6 +1,5 @@
 ---
 date: 2025-01-10
-excerpts: 1
 ---
 
 # Relative information and the dual numbers

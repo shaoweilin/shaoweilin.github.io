@@ -1,6 +1,5 @@
 ---
 date: 2024-05-08
-excerpts: 1
 ---
 
 # AI-assisted coding: correct by construction, not by generation

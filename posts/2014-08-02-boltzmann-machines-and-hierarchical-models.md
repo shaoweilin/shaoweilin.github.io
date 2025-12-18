@@ -1,6 +1,5 @@
 ---
 date: 2014-08-02
-excerpts: 1
 ---
 
 # Boltzmann machines and hierarchical models

@@ -1,6 +1,5 @@
 ---
 date: 2014-08-13
-excerpts: 1
 ---
 
 # Statistics and machine learning

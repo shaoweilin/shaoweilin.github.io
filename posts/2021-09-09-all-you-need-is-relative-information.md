@@ -1,6 +1,5 @@
 ---
 date: 2021-09-09
-excerpts: 3
 ---
 
 # All you need is relative information

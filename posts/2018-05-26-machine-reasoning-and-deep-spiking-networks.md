@@ -1,6 +1,5 @@
 ---
 date: 2018-05-26
-excerpts: 1
 ---
 
 # Machine reasoning and deep spiking networks

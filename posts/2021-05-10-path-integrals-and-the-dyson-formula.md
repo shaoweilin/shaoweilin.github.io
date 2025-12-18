@@ -1,6 +1,5 @@
 ---
 date: 2021-05-10
-excerpts: 4
 ---
 
 # Path integrals and the Dyson formula

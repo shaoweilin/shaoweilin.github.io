@@ -1,6 +1,5 @@
 ---
 date: 2020-09-18
-excerpts: 2
 ---
 
 # Conditional relative information and its axiomatizations
