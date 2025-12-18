@@ -11,10 +11,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://shaoweilin.github.io/posts/2021-05-10-path-integrals-and-the-dyson-formula/" />
 <meta property="og:site_name" content="Types from Spikes" />
-<meta property="og:description" content="One of the deepest results in quantum field theory, to me, is the Dyson formula[ nLa]. It describes the solution to the differential equation$ i\frac{\partial}{\partial t} \Psi(t) = A(t)\Psi(t) in ..." />
+<meta property="og:description" content="One of the deepest results in quantum field theory, to me, is the Dyson formula[ nLa]. It describes the solution to the differential equation i\frac{\partial}{\partial t} \Psi(t) = A(t)\Psi(t) in t..." />
 <meta property="og:image" content="https://shaoweilin.github.io/_static/profile.jpg" />
 <meta property="og:image:alt" content="Types from Spikes" />
-<meta name="description" content="One of the deepest results in quantum field theory, to me, is the Dyson formula[ nLa]. It describes the solution to the differential equation$ i\frac{\partial}{\partial t} \Psi(t) = A(t)\Psi(t) in ..." />
+<meta name="description" content="One of the deepest results in quantum field theory, to me, is the Dyson formula[ nLa]. It describes the solution to the differential equation i\frac{\partial}{\partial t} \Psi(t) = A(t)\Psi(t) in t..." />
 
     <title>Path integrals and the Dyson formula &#8212; Types from Spikes  documentation</title>
   
@@ -449,19 +449,22 @@
                 <article class="bd-article">
                    <section class="tex2jax_ignore mathjax_ignore" id="path-integrals-and-the-dyson-formula">
 <h1>Path integrals and the Dyson formula<a class="headerlink" href="#path-integrals-and-the-dyson-formula" title="Link to this heading">#</a></h1>
-<p>One of the deepest results in quantum field theory, to me, is the Dyson formula <span id="id1">[<a class="reference internal" href="#id32" title="nLab. Dyson formula. https://ncatlab.org/nlab/show/Dyson+formula. Accessed: 2021.">nLa</a>]</span>. It describes the solution to the differential equation
-$<span class="math notranslate nohighlight">\( i\frac{\partial}{\partial t} \Psi(t) = A(t)\Psi(t) \)</span><span class="math notranslate nohighlight">\(
-in terms of the exponential of the path integral of the operator \)</span>A(t)<span class="math notranslate nohighlight">\(,
-\)</span><span class="math notranslate nohighlight">\(\begin{array}{rl} \Psi(t) &amp; = U(t,0) \, \Psi(0) \\ &amp; \\
-U(t,0) &amp; = \displaystyle \mathcal{T}\exp \left\{ i\int_0^t A(s) ds \right\} \end{array} \)</span><span class="math notranslate nohighlight">\(
-where \)</span>\mathcal{T}<span class="math notranslate nohighlight">\( is the time-ordering operator. Here, \)</span>U(t,0)$ is known as the <em>time-evolution operator</em>.</p>
+<p>One of the deepest results in quantum field theory, to me, is the Dyson formula <span id="id1">[<a class="reference internal" href="#id32" title="nLab. Dyson formula. https://ncatlab.org/nlab/show/Dyson+formula. Accessed: 2021.">nLa</a>]</span>. It describes the solution to the differential equation</p>
+<div class="math notranslate nohighlight">
+\[ i\frac{\partial}{\partial t} \Psi(t) = A(t)\Psi(t) \]</div>
+<p>in terms of the exponential of the path integral of the operator <span class="math notranslate nohighlight">\(A(t)\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{rl} \Psi(t) &amp; = U(t,0) \, \Psi(0) \\ &amp; \\
+U(t,0) &amp; = \displaystyle \mathcal{T}\exp \left\{ i\int_0^t A(s) ds \right\} \end{array} \end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> is the time-ordering operator. Here, <span class="math notranslate nohighlight">\(U(t,0)\)</span> is known as the <em>time-evolution operator</em>.</p>
 <p>The proof of this formula is given by Picard integration and iterated integrals <span id="id2">[<a class="reference internal" href="#id31" title="Francis Brown. Iterated integrals in quantum field theory. 6th Summer School on Geometric and Topological Methods for Quantum Field Theory, pages 188–240, 2013.">Bro13</a>]</span>.</p>
-<p>On the other hand, we have the Feynman path integral
-$<span class="math notranslate nohighlight">\( \begin{array}{rl}
+<p>On the other hand, we have the Feynman path integral</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{rl}
 \psi(y,t) &amp; = K(y,t; x,0)  \, \psi(x,0) \\ &amp; \\ 
 K(y,t; x,0) &amp; = \displaystyle \int \exp\left\{iS(q,\dot{q})\right\} Dq \\ &amp; \\ &amp;  = \langle y \vert \, U(t,0)  \, \vert x\rangle\end{array}
-\)</span><span class="math notranslate nohighlight">\(
-where \)</span>\psi(y,t)<span class="math notranslate nohighlight">\( is the value of the state vector \)</span>\Psi(t)<span class="math notranslate nohighlight">\( at position \)</span>y,<span class="math notranslate nohighlight">\( \)</span>\int Dq<span class="math notranslate nohighlight">\( is an integral over all paths \)</span>q<span class="math notranslate nohighlight">\( from \)</span>x<span class="math notranslate nohighlight">\( to \)</span>y<span class="math notranslate nohighlight">\(, and \)</span>S(q,\dot{q})<span class="math notranslate nohighlight">\( is the action of the path \)</span>q.<span class="math notranslate nohighlight">\( Here, \)</span>K(y,t;x,0)$ is known as the <em>kernel</em> or <em>propagator</em>.</p>
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\psi(y,t)\)</span> is the value of the state vector <span class="math notranslate nohighlight">\(\Psi(t)\)</span> at position <span class="math notranslate nohighlight">\(y,\)</span> <span class="math notranslate nohighlight">\(\int Dq\)</span> is an integral over all paths <span class="math notranslate nohighlight">\(q\)</span> from <span class="math notranslate nohighlight">\(x\)</span> to <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(S(q,\dot{q})\)</span> is the action of the path <span class="math notranslate nohighlight">\(q.\)</span> Here, <span class="math notranslate nohighlight">\(K(y,t;x,0)\)</span> is known as the <em>kernel</em> or <em>propagator</em>.</p>
 <p>The time-ordered exponential in the Dyson series can be related to the Feynman path integral by viewing the Hamiltonian operators in a von Neumann infinite tensor product Hilbert space <span id="id3">[<a class="reference internal" href="#id30" title="Tepper L Gill. The feynman-dyson view. In Journal of Physics: Conference Series, volume 845, 012023. IOP Publishing, 2017.">Gil17</a>]</span>.</p>
 <p>The Dyson formula frames the dynamics of the system in terms of the time-evolution operator, while the path integral frames the dynamics in terms of the kernel.</p>
 <p>The action gives a “particle” interpretation to the quantum or stochastic dynamical system. These “particles” are real only to the extent that this action is well-defined.</p>
