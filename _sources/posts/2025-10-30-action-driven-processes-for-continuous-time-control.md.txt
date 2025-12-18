@@ -10,8 +10,6 @@ At the heart of reinforcement learning are actions -- decisions made in response
 
 (Joint work with Ruimin He)
 
-<!-- more -->
-
 ## Details
 
 [Paper](https://arxiv.org/abs/2510.26672)

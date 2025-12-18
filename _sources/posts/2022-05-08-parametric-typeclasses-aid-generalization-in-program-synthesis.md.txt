@@ -1,6 +1,5 @@
 ---
 date: 2022-01-22
-excerpts: 1
 ---
 
 # Parametric typeclasses aid generalization in program synthesis

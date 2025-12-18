@@ -1,6 +1,5 @@
 ---
 date: 2020-12-01
-excerpts: 2
 ---
 
 # Biased stochastic approximation

@@ -11,8 +11,6 @@ We present and test the largest benchmark for vericoding, LLM-generation of form
 
 (Joint work with Sergiu Bursuc (BAIF), Theodore Ehrenborg (BAIF), Lacramioara Astefanoaei (BAIF), Ionel Emilian Chiosa (MIT), Jure Kukovec (BAIF), Alok Singh (BAIF), Oliver Butterley (BAIF), Adem Bizid (BAIF), Quinn Dougherty (BAIF), Miranda Zhao (MIT), Max Tan (MIT), Max Tegmark (MIT))
 
-<!-- more -->
-
 ## Details
 
 [Paper](https://arxiv.org/abs/2509.22908)
