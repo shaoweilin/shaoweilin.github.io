@@ -7,16 +7,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:title" content="Machine reasoning and deep spiking networks" />
+<meta property="og:title" content="A benchmark for vericoding: formally verified program synthesis" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://shaoweilin.github.io/posts/2018-05-26-machine-reasoning-and-deep-spiking-networks/" />
+<meta property="og:url" content="https://shaoweilin.github.io/posts/2025-09-26-a-benchmark-for-vericoding-formally-verified-program-synthesis/" />
 <meta property="og:site_name" content="Types from Spikes" />
-<meta property="og:description" content="Abstract: This is a short presentation which I shared at the Visions of AI Futures workshop organized by AI Singapore. I talked about the goal of building next-generation machine intelligence, thro..." />
+<meta property="og:description" content="Abstract: We present and test the largest benchmark for vericoding, LLM-generation of formally verified code from formal specifications - in contrast to vibe coding, which generates potentially bug..." />
 <meta property="og:image" content="https://shaoweilin.github.io/_static/profile.jpg" />
 <meta property="og:image:alt" content="Types from Spikes" />
-<meta name="description" content="Abstract: This is a short presentation which I shared at the Visions of AI Futures workshop organized by AI Singapore. I talked about the goal of building next-generation machine intelligence, thro..." />
+<meta name="description" content="Abstract: We present and test the largest benchmark for vericoding, LLM-generation of formally verified code from formal specifications - in contrast to vibe coding, which generates potentially bug..." />
 
-    <title>Machine reasoning and deep spiking networks &#8212; Types from Spikes  documentation</title>
+    <title>A benchmark for vericoding: formally verified program synthesis &#8212; Types from Spikes  documentation</title>
   
   
   
@@ -54,7 +54,7 @@
     <script src="../../_static/documentation_options.js?v=187304be"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2018-05-26-machine-reasoning-and-deep-spiking-networks';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2025-09-26-a-benchmark-for-vericoding-formally-verified-program-synthesis';</script>
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about/" />
     <link rel="index" title="Index" href="../../genindex/" />
@@ -287,7 +287,7 @@
      
     <i class="fa fa-calendar"></i>
     
-    <span>26 May 2018</span>
+    <span>26 September 2025</span>
     
   </h2>
   <ul>
@@ -311,12 +311,6 @@
     </li>
     
     <li>
-      <a href="../2025-09-26-a-benchmark-for-vericoding-formally-verified-program-synthesis/">
-        26 September - A benchmark for vericoding: formally verified program synthesis
-      </a>
-    </li>
-    
-    <li>
       <a href="../2025-05-30-refine-yourself-a-code-for-great-good/">
         30 May - Refine yourself a code for great good!
       </a>
@@ -331,6 +325,12 @@
     <li>
       <a href="../2024-10-16-singular-learning-relative-information-and-the-dual-numbers/">
         16 October - Singular learning, relative information and the dual numbers
+      </a>
+    </li>
+    
+    <li>
+      <a href="../2024-10-01-program-synthesis/">
+        01 October - Program Synthesis
       </a>
     </li>
     
@@ -428,7 +428,7 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Machine reasoning and deep spiking networks</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">A benchmark for vericoding: formally verified program synthesis</span></li>
   </ul>
 </nav>
 </div>
@@ -445,16 +445,16 @@
                 
 <div id="searchbox"></div>
                 <article class="bd-article">
-                   <section class="tex2jax_ignore mathjax_ignore" id="machine-reasoning-and-deep-spiking-networks">
-<h1>Machine reasoning and deep spiking networks<a class="headerlink" href="#machine-reasoning-and-deep-spiking-networks" title="Link to this heading">#</a></h1>
+                   <section class="tex2jax_ignore mathjax_ignore" id="a-benchmark-for-vericoding-formally-verified-program-synthesis">
+<h1>A benchmark for vericoding: formally verified program synthesis<a class="headerlink" href="#a-benchmark-for-vericoding-formally-verified-program-synthesis" title="Link to this heading">#</a></h1>
 <section id="abstract">
 <h2>Abstract<a class="headerlink" href="#abstract" title="Link to this heading">#</a></h2>
-<p>This is a short presentation which I shared at the Visions of AI Futures workshop organized by AI Singapore. I talked about the goal of building next-generation machine intelligence, through neural and symbolic modules that work seamlessly together to accomplish intuitive reasoning, as well as efficient, effective neural chips for every device.</p>
+<p>We present and test the largest benchmark for vericoding, LLM-generation of formally verified code from formal specifications - in contrast to vibe coding, which generates potentially buggy code from a natural language description. Our benchmark contains 12,504 formal specifications, with 3,029 in Dafny, 2,334 in Verus/Rust and 7,141 in Lean. Of these, 6,174 are new unseen problems. We find vericoding success rates of 27% in Lean, 44% in Verus/Rust and 82% in Dafny using off-the-shelf LLMs. Adding natural-language descriptions does not significantly improve performance. We also find that LLM progress has improved progress on pure Dafny verification from 68% to 96% over the past year. The benchmark and vericoding results are shared at <a class="reference external" href="https://github.com/Beneficial-AI-Foundation/vericoding-benchmark">this https URL</a>.</p>
+<p>(Joint work with Sergiu Bursuc (BAIF), Theodore Ehrenborg (BAIF), Lacramioara Astefanoaei (BAIF), Ionel Emilian Chiosa (MIT), Jure Kukovec (BAIF), Alok Singh (BAIF), Oliver Butterley (BAIF), Adem Bizid (BAIF), Quinn Dougherty (BAIF), Miranda Zhao (MIT), Max Tan (MIT), Max Tegmark (MIT))</p>
 </section>
 <section id="details">
 <h2>Details<a class="headerlink" href="#details" title="Link to this heading">#</a></h2>
-<p><a class="reference external" href="https://www.aisingapore.org/event/visions-of-ai-futures/">Visions of AI Futures</a></p>
-<p><a class="reference external" href="https://w3id.org/people/shaoweilin/public/20180526-aisg.pdf">Slides</a></p>
+<p><a class="reference external" href="https://arxiv.org/abs/2509.22908">Paper</a></p>
 </section>
 </section>
 
@@ -463,19 +463,19 @@
 <div class="section ablog__prev-next">
   <span class="ablog__prev">
      
-    <a href="../2017-05-08-artificial-general-intelligence-for-the-internet-of-things/">
+    <a href="../2025-05-30-refine-yourself-a-code-for-great-good/">
       
       <i class="fa fa-arrow-circle-left"></i>
       
-      <span>Artificial general intelligence for the internet of things</span>
+      <span>Refine yourself a code for great good!</span>
     </a>
     
   </span>
   <span class="ablog__spacer">&nbsp;</span>
   <span class="ablog__next">
      
-    <a href="../2020-05-21-logical-frameworks/">
-      <span>Logical frameworks</span>
+    <a href="../2025-10-30-action-driven-processes-for-continuous-time-control/">
+      <span>Action-driven processes for continuous-time control</span>
       
       <i class="fa fa-arrow-circle-right"></i>
       
@@ -540,7 +540,7 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../_sources/posts/2018-05-26-machine-reasoning-and-deep-spiking-networks.md.txt"
+      <li><a href="../../_sources/posts/2025-09-26-a-benchmark-for-vericoding-formally-verified-program-synthesis.md.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div></div>
