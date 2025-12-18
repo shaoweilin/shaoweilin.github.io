@@ -1,6 +1,6 @@
 ---
 date: 2023-10-25
-excerpts: 2
+excerpts: 3
 ---
 
 # Relative Information and the Dual Numbers

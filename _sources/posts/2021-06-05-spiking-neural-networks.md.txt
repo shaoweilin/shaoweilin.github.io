@@ -1,6 +1,6 @@
 ---
 date: 2021-06-05
-excerpts: 2
+excerpts: 4
 ---
 
 # Spiking neural networks

@@ -1,6 +1,6 @@
 ---
 date: 2020-07-23
-excerpts: 2
+excerpts: 4
 ---
 
 # Adjunctions

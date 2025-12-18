@@ -408,7 +408,10 @@ relative information and their transforms.</p>
 </li>
 <li class="ablog-post"><p class="ablog-post-title">2022-01-22 <a class="reference internal" href="posts/2022-01-22-information-topos-theory-motivation/">Information topos theory - motivation</a></p>
 <p class="ablog-post-excerpt">Relative information (also known as the Kullback-Leibler divergence) is an important fundamental concept in statistical learning and information theory.</p>
-<p class="ablog-post-excerpt">The (conditional) relative information</p>
+<p class="ablog-post-excerpt">The (conditional) relative information
+$<span class="math notranslate nohighlight">\( \displaystyle
+I_{q \Vert p}(Z|X) = \int q(X) \int q(Z|X) \log \frac{q(Z|X)}{p(Z|X)} dZ\, dX\)</span><span class="math notranslate nohighlight">\(
+gives the weighted divergence from a *model* conditional distribution \)</span>p(Z \vert X)<span class="math notranslate nohighlight">\( to the *true* conditional distribution \)</span>q(Z \vert X),<span class="math notranslate nohighlight">\( where the weighting is given by the true distribution \)</span>q(X.)<span class="math notranslate nohighlight">\( We call it a *divergence* rather than a *distance* because it is not symmetric with respect to \)</span>q<span class="math notranslate nohighlight">\( and \)</span>p.$</p>
 </li>
 <li class="ablog-post"><p class="ablog-post-title">2021-09-09 <a class="reference internal" href="posts/2021-09-09-all-you-need-is-relative-information/">All you need is relative information</a></p>
 <p class="ablog-post-excerpt">Relative information (relative entropy, KL divergence) and variational inference are powerful tools for deriving learning algorithms and their asymptotic properties, for both static systems and dynamic systems. The goal of this talk is to motivate a general online stochastic learning algorithm for stochastic processes with latent variables or memory, that provably converges under some regularity conditions. Please visit <a class="reference external" href="https://bit.ly/3kmovql">https://bit.ly/3kmovql</a> for details.</p>
@@ -423,8 +426,13 @@ relative information and their transforms.</p>
 <p class="ablog-post-excerpt">Recall that the algorithm is described by the following updates.</p>
 </li>
 <li class="ablog-post"><p class="ablog-post-title">2021-05-10 <a class="reference internal" href="posts/2021-05-10-path-integrals-and-the-dyson-formula/">Path integrals and the Dyson formula</a></p>
-<p class="ablog-post-excerpt">One of the deepest results in quantum field theory, to me, is the Dyson formula <span id="id1">[<a class="reference internal" href="posts/2021-05-10-path-integrals-and-the-dyson-formula/#id32" title="nLab. Dyson formula. https://ncatlab.org/nlab/show/Dyson+formula. Accessed: 2021.">nLa</a>]</span>. It describes the solution to the differential equation</p>
-<p class="ablog-post-excerpt">in terms of the exponential of the path integral of the operator <span class="math notranslate nohighlight">\(A(t)\)</span>,</p>
+<p class="ablog-post-excerpt">One of the deepest results in quantum field theory, to me, is the Dyson formula <span id="id1">[<a class="reference internal" href="posts/2021-05-10-path-integrals-and-the-dyson-formula/#id32" title="nLab. Dyson formula. https://ncatlab.org/nlab/show/Dyson+formula. Accessed: 2021.">nLa</a>]</span>. It describes the solution to the differential equation
+$<span class="math notranslate nohighlight">\( i\frac{\partial}{\partial t} \Psi(t) = A(t)\Psi(t) \)</span><span class="math notranslate nohighlight">\(
+in terms of the exponential of the path integral of the operator \)</span>A(t)<span class="math notranslate nohighlight">\(,
+\)</span><span class="math notranslate nohighlight">\(\begin{array}{rl} \Psi(t) &amp; = U(t,0) \, \Psi(0) \\ &amp; \\
+U(t,0) &amp; = \displaystyle \mathcal{T}\exp \left\{ i\int_0^t A(s) ds \right\} \end{array} \)</span><span class="math notranslate nohighlight">\(
+where \)</span>\mathcal{T}<span class="math notranslate nohighlight">\( is the time-ordering operator. Here, \)</span>U(t,0)$ is known as the <em>time-evolution operator</em>.</p>
+<p class="ablog-post-excerpt">The proof of this formula is given by Picard integration and iterated integrals <span id="id2">[<a class="reference internal" href="posts/2021-05-10-path-integrals-and-the-dyson-formula/#id31" title="Francis Brown. Iterated integrals in quantum field theory. 6th Summer School on Geometric and Topological Methods for Quantum Field Theory, pages 188–240, 2013.">Bro13</a>]</span>.</p>
 </li>
 <li class="ablog-post"><p class="ablog-post-title">2021-04-22 <a class="reference internal" href="posts/2021-04-22-proofs-as-programs-challenges-and-strategies-for-program-synthesis/">Proofs as programs - challenges and strategies for program synthesis</a></p>
 <p class="ablog-post-excerpt">The Curry-Howard correspondence between proofs and programs suggests that we can exploit proof assistants for writing software. I will discuss the challenges behind a naïve execution of this idea, and some preliminary strategies for overcoming them. As an example, we will organize higher-order information in knowledge graphs using dependent type theory, and automate the answering of queries using a proof assistant. In another example, we will explore how decentralized proof assistants can enable mathematicians or programmers to work collaboratively on a theorem or application. If time permits, I will outline connections to canonical structures, reflection (ssreflect), transport, unification and universe management.</p>

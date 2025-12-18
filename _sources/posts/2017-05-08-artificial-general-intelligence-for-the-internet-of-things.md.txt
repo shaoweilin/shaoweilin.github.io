@@ -1,6 +1,6 @@
 ---
 date: 2017-05-08
-excerpts: 2
+excerpts: 1
 ---
 
 # Artificial general intelligence for the internet of things

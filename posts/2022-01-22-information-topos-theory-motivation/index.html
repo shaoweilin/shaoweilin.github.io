@@ -11,10 +11,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://shaoweilin.github.io/posts/2022-01-22-information-topos-theory-motivation/" />
 <meta property="og:site_name" content="Types from Spikes" />
-<meta property="og:description" content="Relative information (also known as the Kullback-Leibler divergence) is an important fundamental concept in statistical learning and information theory. The (conditional) relative information\displ..." />
+<meta property="og:description" content="Relative information (also known as the Kullback-Leibler divergence) is an important fundamental concept in statistical learning and information theory. The (conditional) relative information$\disp..." />
 <meta property="og:image" content="https://shaoweilin.github.io/_static/profile.jpg" />
 <meta property="og:image:alt" content="Types from Spikes" />
-<meta name="description" content="Relative information (also known as the Kullback-Leibler divergence) is an important fundamental concept in statistical learning and information theory. The (conditional) relative information\displ..." />
+<meta name="description" content="Relative information (also known as the Kullback-Leibler divergence) is an important fundamental concept in statistical learning and information theory. The (conditional) relative information$\disp..." />
 
     <title>Information topos theory - motivation &#8212; Types from Spikes  documentation</title>
   
@@ -450,11 +450,10 @@
                    <section class="tex2jax_ignore mathjax_ignore" id="information-topos-theory-motivation">
 <h1>Information topos theory - motivation<a class="headerlink" href="#information-topos-theory-motivation" title="Link to this heading">#</a></h1>
 <p>Relative information (also known as the Kullback-Leibler divergence) is an important fundamental concept in statistical learning and information theory.</p>
-<p>The (conditional) relative information</p>
-<div class="math notranslate nohighlight">
-\[ \displaystyle
-I_{q \Vert p}(Z|X) = \int q(X) \int q(Z|X) \log \frac{q(Z|X)}{p(Z|X)} dZ\, dX\]</div>
-<p>gives the weighted divergence from a <em>model</em> conditional distribution <span class="math notranslate nohighlight">\(p(Z \vert X)\)</span> to the <em>true</em> conditional distribution <span class="math notranslate nohighlight">\(q(Z \vert X),\)</span> where the weighting is given by the true distribution <span class="math notranslate nohighlight">\(q(X.)\)</span> We call it a <em>divergence</em> rather than a <em>distance</em> because it is not symmetric with respect to <span class="math notranslate nohighlight">\(q\)</span> and <span class="math notranslate nohighlight">\(p.\)</span></p>
+<p>The (conditional) relative information
+$<span class="math notranslate nohighlight">\( \displaystyle
+I_{q \Vert p}(Z|X) = \int q(X) \int q(Z|X) \log \frac{q(Z|X)}{p(Z|X)} dZ\, dX\)</span><span class="math notranslate nohighlight">\(
+gives the weighted divergence from a *model* conditional distribution \)</span>p(Z \vert X)<span class="math notranslate nohighlight">\( to the *true* conditional distribution \)</span>q(Z \vert X),<span class="math notranslate nohighlight">\( where the weighting is given by the true distribution \)</span>q(X.)<span class="math notranslate nohighlight">\( We call it a *divergence* rather than a *distance* because it is not symmetric with respect to \)</span>q<span class="math notranslate nohighlight">\( and \)</span>p.$</p>
 <p>Relative information has two key aspects: divergence and conditioning. As a divergence, it says that the amount of information is relative, not absolute. As a function of a conditional relationship, it says that we should study the amount of information in something unknown while factoring in what we do know.</p>
 <p>An (elementary) topos is a category that has just enough basic properties for us to do both geometry and logic. When studying morphisms between logical spaces in topoi, it might be useful to have a measure of information that is relative (giving us distances or divergences between points) and conditional (giving us the change in information through a morphism). Over the next few posts, we will explore examples of such uses in statistics, algebra, number theory and quantum physics.</p>
 <p>In the same way that a Riemannian metric on a smooth manifold allows us to study curvatures and ultimately dynamical systems in general relativity via Riemannian geometry, and in the same way that the Fisher information metric on a smooth manifold allows us to study generalization and ultimately learning algorithms in statistics via information geometry, we think of information topos theory as a systematic way of associating an appropriate metric to a geometric topos space. Ultimately, the hope is to use this metric topos as a space-time substitute for understanding quantum mechanics and gravity.</p>

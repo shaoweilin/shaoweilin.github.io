@@ -1,6 +1,6 @@
 ---
 date: 2016-02-04
-excerpts: 2
+excerpts: 3
 ---
 
 # Hashing

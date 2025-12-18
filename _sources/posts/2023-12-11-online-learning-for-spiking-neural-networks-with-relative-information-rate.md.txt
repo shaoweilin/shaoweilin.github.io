@@ -1,6 +1,6 @@
 ---
 date: 2023-12-11
-excerpts: 2
+excerpts: 1
 ---
 
 # Online learning for spiking neural networks with relative information rate

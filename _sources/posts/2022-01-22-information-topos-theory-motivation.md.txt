@@ -1,6 +1,6 @@
 ---
 date: 2022-01-22
-excerpts: 2
+excerpts: 6
 ---
 
 # Information topos theory - motivation
@@ -8,10 +8,8 @@ excerpts: 2
 Relative information (also known as the Kullback-Leibler divergence) is an important fundamental concept in statistical learning and information theory. 
 
 The (conditional) relative information
-
 $$ \displaystyle
 I_{q \Vert p}(Z|X) = \int q(X) \int q(Z|X) \log \frac{q(Z|X)}{p(Z|X)} dZ\, dX$$
-
 gives the weighted divergence from a *model* conditional distribution $p(Z \vert X)$ to the *true* conditional distribution $q(Z \vert X),$ where the weighting is given by the true distribution $q(X.)$ We call it a *divergence* rather than a *distance* because it is not symmetric with respect to $q$ and $p.$
 
 Relative information has two key aspects: divergence and conditioning. As a divergence, it says that the amount of information is relative, not absolute. As a function of a conditional relationship, it says that we should study the amount of information in something unknown while factoring in what we do know.

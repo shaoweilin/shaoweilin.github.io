@@ -1,6 +1,6 @@
 ---
 date: 2021-03-21
-excerpts: 2
+excerpts: 4
 ---
 
 # Process learning with relative information

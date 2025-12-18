@@ -1,6 +1,6 @@
 ---
 date: 2023-08-20
-excerpts: 2
+excerpts: 8
 ---
 
 # References on information cohomology

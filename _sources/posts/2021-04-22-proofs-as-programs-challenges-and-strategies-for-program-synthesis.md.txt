@@ -1,6 +1,6 @@
 ---
 date: 2021-04-22
-excerpts: 2
+excerpts: 1
 ---
 
 # Proofs as programs - challenges and strategies for program synthesis

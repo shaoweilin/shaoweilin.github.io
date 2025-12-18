@@ -1,6 +1,6 @@
 ---
 date: 2024-10-01
-excerpts: 2
+excerpts: 1
 ---
 
 # Program Synthesis

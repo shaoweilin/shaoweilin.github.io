@@ -1,6 +1,6 @@
 ---
 date: 2012-07-13
-excerpts: 2
+excerpts: 1
 ---
 
 # Studying model asymptotics with singular learning theory

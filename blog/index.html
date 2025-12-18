@@ -781,7 +781,10 @@ relative information and their transforms.</p>
 </div>
     </ul>
     <p class="ablog-post-excerpt"><p>Relative information (also known as the Kullback-Leibler divergence) is an important fundamental concept in statistical learning and information theory.</p>
-<p>The (conditional) relative information</p>
+<p>The (conditional) relative information
+$<span class="math notranslate nohighlight">\( \displaystyle
+I_{q \Vert p}(Z|X) = \int q(X) \int q(Z|X) \log \frac{q(Z|X)}{p(Z|X)} dZ\, dX\)</span><span class="math notranslate nohighlight">\(
+gives the weighted divergence from a *model* conditional distribution \)</span>p(Z \vert X)<span class="math notranslate nohighlight">\( to the *true* conditional distribution \)</span>q(Z \vert X),<span class="math notranslate nohighlight">\( where the weighting is given by the true distribution \)</span>q(X.)<span class="math notranslate nohighlight">\( We call it a *divergence* rather than a *distance* because it is not symmetric with respect to \)</span>q<span class="math notranslate nohighlight">\( and \)</span>p.$</p>
 </p>
 
     <p class="ablog-post-expand">
@@ -884,8 +887,13 @@ relative information and their transforms.</p>
         
 </div>
     </ul>
-    <p class="ablog-post-excerpt"><p>One of the deepest results in quantum field theory, to me, is the Dyson formula <span id="id1">[<a class="reference internal" href="../posts/2021-05-10-path-integrals-and-the-dyson-formula/#id32" title="nLab. Dyson formula. https://ncatlab.org/nlab/show/Dyson+formula. Accessed: 2021.">nLa</a>]</span>. It describes the solution to the differential equation</p>
-<p>in terms of the exponential of the path integral of the operator <span class="math notranslate nohighlight">\(A(t)\)</span>,</p>
+    <p class="ablog-post-excerpt"><p>One of the deepest results in quantum field theory, to me, is the Dyson formula <span id="id1">[<a class="reference internal" href="../posts/2021-05-10-path-integrals-and-the-dyson-formula/#id32" title="nLab. Dyson formula. https://ncatlab.org/nlab/show/Dyson+formula. Accessed: 2021.">nLa</a>]</span>. It describes the solution to the differential equation
+$<span class="math notranslate nohighlight">\( i\frac{\partial}{\partial t} \Psi(t) = A(t)\Psi(t) \)</span><span class="math notranslate nohighlight">\(
+in terms of the exponential of the path integral of the operator \)</span>A(t)<span class="math notranslate nohighlight">\(,
+\)</span><span class="math notranslate nohighlight">\(\begin{array}{rl} \Psi(t) &amp; = U(t,0) \, \Psi(0) \\ &amp; \\
+U(t,0) &amp; = \displaystyle \mathcal{T}\exp \left\{ i\int_0^t A(s) ds \right\} \end{array} \)</span><span class="math notranslate nohighlight">\(
+where \)</span>\mathcal{T}<span class="math notranslate nohighlight">\( is the time-ordering operator. Here, \)</span>U(t,0)$ is known as the <em>time-evolution operator</em>.</p>
+<p>The proof of this formula is given by Picard integration and iterated integrals <span id="id2">[<a class="reference internal" href="../posts/2021-05-10-path-integrals-and-the-dyson-formula/#id31" title="Francis Brown. Iterated integrals in quantum field theory. 6th Summer School on Geometric and Topological Methods for Quantum Field Theory, pages 188–240, 2013.">Bro13</a>]</span>.</p>
 </p>
 
     <p class="ablog-post-expand">

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://shaoweilin.github.io</id>
   <title>Types from Spikes</title>
-  <updated>2025-09-06T17:40:54.454834+00:00</updated>
+  <updated>2025-12-18T21:07:00.759297+00:00</updated>
   <link href="https://shaoweilin.github.io"/>
   <link href="https://shaoweilin.github.io/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
@@ -216,11 +216,17 @@ relative information and their transforms.Singular Learning Theory and Alignment
     <title>Information topos theory - motivation</title>
     <updated>2022-01-22T00:00:00+00:00</updated>
     <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Relative information (also known as the Kullback-Leibler divergence) is an important fundamental concept in statistical learning and information theory.&lt;/p&gt;
-&lt;p&gt;The (conditional) relative information&lt;/p&gt;
+&lt;p&gt;The (conditional) relative information
+$&lt;span class="math notranslate nohighlight"&gt;\( \displaystyle
+I_{q \Vert p}(Z|X) = \int q(X) \int q(Z|X) \log \frac{q(Z|X)}{p(Z|X)} dZ\, dX\)&lt;/span&gt;&lt;span class="math notranslate nohighlight"&gt;\(
+gives the weighted divergence from a *model* conditional distribution \)&lt;/span&gt;p(Z \vert X)&lt;span class="math notranslate nohighlight"&gt;\( to the *true* conditional distribution \)&lt;/span&gt;q(Z \vert X),&lt;span class="math notranslate nohighlight"&gt;\( where the weighting is given by the true distribution \)&lt;/span&gt;q(X.)&lt;span class="math notranslate nohighlight"&gt;\( We call it a *divergence* rather than a *distance* because it is not symmetric with respect to \)&lt;/span&gt;q&lt;span class="math notranslate nohighlight"&gt;\( and \)&lt;/span&gt;p.$&lt;/p&gt;
 &lt;/p&gt;
 </content>
     <link href="https://shaoweilin.github.io/posts/2022-01-22-information-topos-theory-motivation/"/>
-    <summary>Relative information (also known as the Kullback-Leibler divergence) is an important fundamental concept in statistical learning and information theory.The (conditional) relative information</summary>
+    <summary>Relative information (also known as the Kullback-Leibler divergence) is an important fundamental concept in statistical learning and information theory.The (conditional) relative information
+$ \displaystyle
+I_{q \Vert p}(Z|X) = \int q(X) \int q(Z|X) \log \frac{q(Z|X)}{p(Z|X)} dZ\, dX
+gives the weighted divergence from a *model* conditional distribution p(Z \vert X) to the *true* conditional distribution q(Z \vert X), where the weighting is given by the true distribution q(X.) We call it a *divergence* rather than a *distance* because it is not symmetric with respect to q and p.$</summary>
     <published>2022-01-22T00:00:00+00:00</published>
   </entry>
   <entry>
@@ -263,12 +269,22 @@ relative information and their transforms.Singular Learning Theory and Alignment
     <id>https://shaoweilin.github.io/posts/2021-05-10-path-integrals-and-the-dyson-formula/</id>
     <title>Path integrals and the Dyson formula</title>
     <updated>2021-05-10T00:00:00+00:00</updated>
-    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;One of the deepest results in quantum field theory, to me, is the Dyson formula &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2021-05-10-path-integrals-and-the-dyson-formula/#id32" title="nLab. Dyson formula. https://ncatlab.org/nlab/show/Dyson+formula. Accessed: 2021."&gt;nLa&lt;/a&gt;]&lt;/span&gt;. It describes the solution to the differential equation&lt;/p&gt;
-&lt;p&gt;in terms of the exponential of the path integral of the operator &lt;span class="math notranslate nohighlight"&gt;\(A(t)\)&lt;/span&gt;,&lt;/p&gt;
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;One of the deepest results in quantum field theory, to me, is the Dyson formula &lt;span id="id1"&gt;[&lt;a class="reference internal" href="../posts/2021-05-10-path-integrals-and-the-dyson-formula/#id32" title="nLab. Dyson formula. https://ncatlab.org/nlab/show/Dyson+formula. Accessed: 2021."&gt;nLa&lt;/a&gt;]&lt;/span&gt;. It describes the solution to the differential equation
+$&lt;span class="math notranslate nohighlight"&gt;\( i\frac{\partial}{\partial t} \Psi(t) = A(t)\Psi(t) \)&lt;/span&gt;&lt;span class="math notranslate nohighlight"&gt;\(
+in terms of the exponential of the path integral of the operator \)&lt;/span&gt;A(t)&lt;span class="math notranslate nohighlight"&gt;\(,
+\)&lt;/span&gt;&lt;span class="math notranslate nohighlight"&gt;\(\begin{array}{rl} \Psi(t) &amp;amp; = U(t,0) \, \Psi(0) \\ &amp;amp; \\
+U(t,0) &amp;amp; = \displaystyle \mathcal{T}\exp \left\{ i\int_0^t A(s) ds \right\} \end{array} \)&lt;/span&gt;&lt;span class="math notranslate nohighlight"&gt;\(
+where \)&lt;/span&gt;\mathcal{T}&lt;span class="math notranslate nohighlight"&gt;\( is the time-ordering operator. Here, \)&lt;/span&gt;U(t,0)$ is known as the &lt;em&gt;time-evolution operator&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;The proof of this formula is given by Picard integration and iterated integrals &lt;span id="id2"&gt;[&lt;a class="reference internal" href="../posts/2021-05-10-path-integrals-and-the-dyson-formula/#id31" title="Francis Brown. Iterated integrals in quantum field theory. 6th Summer School on Geometric and Topological Methods for Quantum Field Theory, pages 188–240, 2013."&gt;Bro13&lt;/a&gt;]&lt;/span&gt;.&lt;/p&gt;
 &lt;/p&gt;
 </content>
     <link href="https://shaoweilin.github.io/posts/2021-05-10-path-integrals-and-the-dyson-formula/"/>
-    <summary>One of the deepest results in quantum field theory, to me, is the Dyson formula nlab2021dysonformula. It describes the solution to the differential equationin terms of the exponential of the path integral of the operator A(t),</summary>
+    <summary>One of the deepest results in quantum field theory, to me, is the Dyson formula nlab2021dysonformula. It describes the solution to the differential equation
+$ i\frac{\partial}{\partial t} \Psi(t) = A(t)\Psi(t) 
+in terms of the exponential of the path integral of the operator A(t),
+\begin{array}{rl} \Psi(t) &amp; = U(t,0) \, \Psi(0) \\ &amp; \\
+U(t,0) &amp; = \displaystyle \mathcal{T}\exp \left\{ i\int_0^t A(s) ds \right\} \end{array} 
+where \mathcal{T} is the time-ordering operator. Here, U(t,0)$ is known as the time-evolution operator.The proof of this formula is given by Picard integration and iterated integrals brown2013iterated.</summary>
     <published>2021-05-10T00:00:00+00:00</published>
   </entry>
   <entry>

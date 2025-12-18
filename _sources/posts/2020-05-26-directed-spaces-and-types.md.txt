@@ -1,6 +1,6 @@
 ---
 date: 2020-05-26
-excerpts: 2
+excerpts: 3
 ---
 
 # Directed spaces and types
