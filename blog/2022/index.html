@@ -441,7 +441,6 @@
 </div>
     </ul>
     <p class="ablog-post-excerpt"><p>Imagine we have a model <span class="math notranslate nohighlight">\(D(w)\)</span> of a dynamical system with states <span class="math notranslate nohighlight">\(s \in S,\)</span> that is parametrized by some weight <span class="math notranslate nohighlight">\(w \in W\)</span>. Each state <span class="math notranslate nohighlight">\(s\)</span> comes with a set <span class="math notranslate nohighlight">\(N(s) \subset S\)</span> of neighbors and an associated energy function <span class="math notranslate nohighlight">\(E(s'|s,w) \in \mathbb{R}\)</span> that assigns an energy to each neighbor <span class="math notranslate nohighlight">\(s' \in N(s)\)</span>.</p>
-<p>For simplicity, we assume the following dynamics: when the system is in state <span class="math notranslate nohighlight">\(s\)</span>, it picks the neighbor <span class="math notranslate nohighlight">\(s'\)</span> with the lowest energy <span class="math notranslate nohighlight">\(E(s'|s,w)\)</span> and jumps to state <span class="math notranslate nohighlight">\(s'\)</span> in the next time step (more to come later about what we mean by <em>time step</em>).</p>
 </p>
 
     <p class="ablog-post-expand">
@@ -467,7 +466,6 @@
 </div>
     </ul>
     <p class="ablog-post-excerpt"><p>We envision programming being done in top-down fashion. The human describes the goal (e.g. sorting), and the machine reduces it to smaller subgoals based on well-known heuristics (e.g. divide and conquer). The easier subgoals could even be fulfilled automatically. This top-down heuristics approach will be more amenable to machine learning. See my <a class="reference internal" href="../../posts/2021-04-22-proofs-as-programs-challenges-and-strategies-for-program-synthesis/"><span class="std std-doc">Topos Institute talk</span></a> for more info.</p>
-<p>The problem with the current approach in type theory is as follows.</p>
 </p>
 
     <p class="ablog-post-expand">
@@ -493,10 +491,6 @@
 </div>
     </ul>
     <p class="ablog-post-excerpt"><p>Relative information (also known as the Kullback-Leibler divergence) is an important fundamental concept in statistical learning and information theory.</p>
-<p>The (conditional) relative information
-$<span class="math notranslate nohighlight">\( \displaystyle
-I_{q \Vert p}(Z|X) = \int q(X) \int q(Z|X) \log \frac{q(Z|X)}{p(Z|X)} dZ\, dX\)</span><span class="math notranslate nohighlight">\(
-gives the weighted divergence from a *model* conditional distribution \)</span>p(Z \vert X)<span class="math notranslate nohighlight">\( to the *true* conditional distribution \)</span>q(Z \vert X),<span class="math notranslate nohighlight">\( where the weighting is given by the true distribution \)</span>q(X.)<span class="math notranslate nohighlight">\( We call it a *divergence* rather than a *distance* because it is not symmetric with respect to \)</span>q<span class="math notranslate nohighlight">\( and \)</span>p.$</p>
 </p>
 
     <p class="ablog-post-expand">
