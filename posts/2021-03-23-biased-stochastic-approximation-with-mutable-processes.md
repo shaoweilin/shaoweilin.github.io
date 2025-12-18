@@ -1,6 +1,6 @@
 ---
 date: 2021-03-23
-excerpts: 2
+excerpts: 5
 ---
 
 # Biased stochastic approximation with mutable processes

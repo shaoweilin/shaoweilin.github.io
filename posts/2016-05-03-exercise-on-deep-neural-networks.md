@@ -1,6 +1,6 @@
 ---
 date: 2016-05-03
-excerpts: 2
+excerpts: 1
 ---
 
 # Exercise on deep neural networks

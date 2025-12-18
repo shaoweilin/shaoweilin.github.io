@@ -1,6 +1,6 @@
 ---
 date: 2021-06-01
-excerpts: 2
+excerpts: 1
 ---
 
 # Convergence of biased stochastic approximation

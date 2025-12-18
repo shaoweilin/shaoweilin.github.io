@@ -1,6 +1,6 @@
 ---
 date: 2020-09-08
-excerpts: 2
+excerpts: 3
 ---
 
 # Building foundations of information theory on relative information

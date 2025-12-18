@@ -1,6 +1,6 @@
 ---
 date: 2025-05-30
-excerpts: 2
+excerpts: 3
 ---
 
 # Refine yourself a code for great good!

@@ -1,6 +1,6 @@
 ---
 date: 2024-10-16
-excerpts: 2
+excerpts: 1
 ---
 
 # Singular learning, relative information and the dual numbers

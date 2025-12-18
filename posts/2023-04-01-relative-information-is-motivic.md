@@ -1,6 +1,6 @@
 ---
 date: 2023-04-01
-excerpts: 2
+excerpts: 3
 ---
 
 # Relative information is motivic

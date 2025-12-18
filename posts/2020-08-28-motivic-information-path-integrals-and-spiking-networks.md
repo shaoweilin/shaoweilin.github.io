@@ -1,6 +1,6 @@
 ---
 date: 2020-08-28
-excerpts: 2
+excerpts: 1
 ---
 
 # Motivic information, path integrals and spiking networks

@@ -1,6 +1,6 @@
 ---
 date: 2024-09-24
-excerpts: 2
+excerpts: 1
 ---
 
 # Safety by shared synthesis
