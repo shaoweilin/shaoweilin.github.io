@@ -36,7 +36,7 @@ It would be interesting to study the Dyson formula through the algebraic lens of
 
 There should also be a generalization of the Dyson formula or the path integral to coends in category theory.
 
-[Freeman Dyson - Linking the ideas of Feynman, Schwinger and Tomanaga]<https://www.youtube.com/watch?v=i3RcN5UGwgI>
+[Freeman Dyson - Linking the ideas of Feynman, Schwinger and Tomanaga](https://www.youtube.com/watch?v=i3RcN5UGwgI)
 
 ## References
 
