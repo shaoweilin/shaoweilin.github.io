@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 
@@ -35,35 +34,43 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8a9ddf57" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-dropdown.css?v=995e94df" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.min.css?v=21c0b90a" />
   
   <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../_static/scripts/fontawesome.js?digest=18bd87630a240e9c25be"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
     <script src="../../_static/documentation_options.js?v=187304be"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2022-05-28-likelihood-greed-and-temperature-in-sequence-learning';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about/" />
     <link rel="index" title="Index" href="../../genindex/" />
     <link rel="search" title="Search" href="../../search/" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" /> 
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+   
 <link
   rel="alternate"
   type="application/atom+xml"
@@ -72,19 +79,19 @@
 />
   
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -110,9 +117,9 @@
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
   </button>
   
@@ -170,7 +177,7 @@
         <div class="navbar-item navbar-persistent--container">
           
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
         </div>
@@ -187,8 +194,7 @@
           
           
           
-          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
       
@@ -199,14 +205,14 @@
   
     <div class="navbar-persistent--mobile">
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
     </div>
   
 
   
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
     </button>
   
@@ -272,8 +278,7 @@
           
           
           
-          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
         
@@ -569,7 +574,7 @@ E(s'|\hat{s}_t, w) \leq E(\hat{s}_{t-1}|\hat{s}_t, w).
 \]</div>
 <p>the sum of the transition energies. The objective here is different from that in the discrete-time model which
 subtracts the minimal transition energy from each time step.</p>
-<p>Suppose that we have a time interval of length <span class="math notranslate nohighlight">\(T\)</span> and the initial state is <span class="math notranslate nohighlight">\(s_0\)</span>. By the stochastic summation algorithm of Gillespie <span id="id1">[<a class="reference internal" href="#id13" title="Markus F Weber and Erwin Frey. Master equations and the theory of stochastic path integrals. Reports on Progress in Physics, 80(4):046601, 2017.">WF17</a>]</span>, the negative log density of observing a path with states <span class="math notranslate nohighlight">\(s_0, \ldots, s_n\)</span> and holding periods <span class="math notranslate nohighlight">\(\delta_0, \ldots, \delta_n\)</span> satisfying <span class="math notranslate nohighlight">\(\delta_0 + \cdots +\delta_n = T,\)</span> is given by</p>
+<p>Suppose that we have a time interval of length <span class="math notranslate nohighlight">\(T\)</span> and the initial state is <span class="math notranslate nohighlight">\(s_0\)</span>. By the stochastic summation algorithm of Gillespie <span class="bibtex-citation" id="id1">[<a class="reference internal" href="#id13" title="Markus F Weber and Erwin Frey. Master equations and the theory of stochastic path integrals. Reports on Progress in Physics, 80(4):046601, 2017.">WF17</a>]</span>, the negative log density of observing a path with states <span class="math notranslate nohighlight">\(s_0, \ldots, s_n\)</span> and holding periods <span class="math notranslate nohighlight">\(\delta_0, \ldots, \delta_n\)</span> satisfying <span class="math notranslate nohighlight">\(\delta_0 + \cdots +\delta_n = T,\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[
 \sum_{t=0}^n \delta_t Z(s_t,w) + \beta \sum_{t=0}^{n-1} E(s_{t+1}|s_t,w).
@@ -615,7 +620,7 @@ subtracts the minimal transition energy from each time step.</p>
 <section id="natural-language-processing">
 <h2>Natural language processing<a class="headerlink" href="#natural-language-processing" title="Link to this heading">#</a></h2>
 <p>The difference between stepwise energy minimization and pathwise energy minimization is easily seen in natural language processing.</p>
-<p>In his blog <span id="id2">[<a class="reference internal" href="#id14" title="Andrej Karpathy Blog. The unreasonable effectiveness of recurrent neural networks. URL: http://karpathy. github. io/2015/05/21/rnn-effectiveness/dated May, 21:33, 2015.">Blo15</a>]</span> about the unreasonable effectiveness of recurrent neural networks (RNN), Karpathy trained a small character-level LSTM (long short-term memory) network on the writings of Paul Graham.</p>
+<p>In his blog <span class="bibtex-citation" id="id2">[<a class="reference internal" href="#id14" title="Andrej Karpathy Blog. The unreasonable effectiveness of recurrent neural networks. URL: http://karpathy. github. io/2015/05/21/rnn-effectiveness/dated May, 21:33, 2015.">Blo15</a>]</span> about the unreasonable effectiveness of recurrent neural networks (RNN), Karpathy trained a small character-level LSTM (long short-term memory) network on the writings of Paul Graham.</p>
 <p>He found that for large inverse temperatures <span class="math notranslate nohighlight">\(\beta,\)</span> the network generated the following stepwise greedy sequence of words:</p>
 <blockquote>
 <div><p>is that they were all the same thing that was a startup is that they were all the same thing that was a startup is that they were all the same thing that was a startup is that they were all the same…</p>
@@ -633,7 +638,7 @@ subtracts the minimal transition energy from each time step.</p>
 </section>
 <section id="minimum-energy-flow">
 <h2>Minimum energy flow<a class="headerlink" href="#minimum-energy-flow" title="Link to this heading">#</a></h2>
-<p>We end with an interesting connection between the continuous-time likelihood method for sequence learning and the minimum energy flow (MEF) method for training Hopfield networks efficiently <span id="id3">[<a class="reference internal" href="#id15" title="Christopher Hillar, Tenzin Chan, Rachel Taubman, and David Rolnick. Hidden hypergraphs, error-correcting codes, and critical learning in hopfield networks. Entropy, 23(11):1494, 2021.">HCTR21</a>]</span>.</p>
+<p>We end with an interesting connection between the continuous-time likelihood method for sequence learning and the minimum energy flow (MEF) method for training Hopfield networks efficiently <span class="bibtex-citation" id="id3">[<a class="reference internal" href="#id15" title="Christopher Hillar, Tenzin Chan, Rachel Taubman, and David Rolnick. Hidden hypergraphs, error-correcting codes, and critical learning in hopfield networks. Entropy, 23(11):1494, 2021.">HCTR21</a>]</span>.</p>
 <p>Recall that the negative log likelihood is</p>
 <div class="math notranslate nohighlight">
 \[
@@ -740,8 +745,8 @@ subtracts the minimal transition energy from each time step.</p>
     class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
   </div>
-  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-method-in-discrete-time">Likelihood method in discrete time</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-method-in-continuous-time">Likelihood method in continuous time</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relative-information">Relative information</a></li>
@@ -757,13 +762,13 @@ subtracts the minimal transition energy from each time step.</p>
   </nav></div>
 
   <div class="sidebar-secondary-item">
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../../_sources/posts/2022-05-28-likelihood-greed-and-temperature-in-sequence-learning.md.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div></div>
+
+  <div class="tocsection sourcelink">
+    <a href="../../_sources/posts/2022-05-28-likelihood-greed-and-temperature-in-sequence-learning.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
 
 </div></div>
               
@@ -778,8 +783,8 @@ subtracts the minimal transition energy from each time step.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -799,8 +804,7 @@ subtracts the minimal transition energy from each time step.</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
-    <br/>
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
   </p>
 </div>
       
@@ -813,7 +817,7 @@ subtracts the minimal transition energy from each time step.</p>
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.23.0.
 </p></div>
       
     </div>

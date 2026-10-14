@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 
@@ -35,35 +34,43 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8a9ddf57" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-dropdown.css?v=995e94df" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.min.css?v=21c0b90a" />
   
   <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../_static/scripts/fontawesome.js?digest=18bd87630a240e9c25be"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
     <script src="../../_static/documentation_options.js?v=187304be"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2020-12-01-biased-stochastic-approximation';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about/" />
     <link rel="index" title="Index" href="../../genindex/" />
     <link rel="search" title="Search" href="../../search/" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" /> 
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+   
 <link
   rel="alternate"
   type="application/atom+xml"
@@ -72,19 +79,19 @@
 />
   
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -110,9 +117,9 @@
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
   </button>
   
@@ -170,7 +177,7 @@
         <div class="navbar-item navbar-persistent--container">
           
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
         </div>
@@ -187,8 +194,7 @@
           
           
           
-          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
       
@@ -199,14 +205,14 @@
   
     <div class="navbar-persistent--mobile">
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
     </div>
   
 
   
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
     </button>
   
@@ -272,8 +278,7 @@
           
           
           
-          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
         
@@ -449,7 +454,7 @@
                 <article class="bd-article">
                    <section class="tex2jax_ignore mathjax_ignore" id="biased-stochastic-approximation">
 <h1>Biased stochastic approximation<a class="headerlink" href="#biased-stochastic-approximation" title="Link to this heading">#</a></h1>
-<p>We explore the convergence of continuous-time ordinary differential equations and their discrete-time analogs, such as stochastic approximation and gradient descent, through the lens of Lyapunov theory <span id="id1">[<a class="reference internal" href="#id47" title="Léon Bottou and others. Online learning and stochastic approximations. On-line learning in neural networks, 17(9):142, 1998.">B+98</a>]</span> <span id="id2">[<a class="reference internal" href="#id44" title="Yingshen Li and Mark Rowland. Stochastic approximation theory (slides). http://yingzhenli.net/home/pdf/SA.pdf, 2015.">LR15</a>]</span>. From this perspective, we will study biased stochastic approximation <span id="id3">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id51" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span> where the expectation of the stochastic updates conditioned on the past (which we call the <em>conditional expectation</em>) is not the same as the expectation of the stochastic updates under the stationary distribution (which we call the <em>total expectation</em>).</p>
+<p>We explore the convergence of continuous-time ordinary differential equations and their discrete-time analogs, such as stochastic approximation and gradient descent, through the lens of Lyapunov theory <span class="bibtex-citation" id="id1">[<a class="reference internal" href="#id47" title="Léon Bottou and others. Online learning and stochastic approximations. On-line learning in neural networks, 17(9):142, 1998.">B+98</a>]</span> <span class="bibtex-citation" id="id2">[<a class="reference internal" href="#id44" title="Yingshen Li and Mark Rowland. Stochastic approximation theory (slides). http://yingzhenli.net/home/pdf/SA.pdf, 2015.">LR15</a>]</span>. From this perspective, we will study biased stochastic approximation <span class="bibtex-citation" id="id3">[<a class="reference internal" href="#id45" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span> where the expectation of the stochastic updates conditioned on the past (which we call the <em>conditional expectation</em>) is not the same as the expectation of the stochastic updates under the stationary distribution (which we call the <em>total expectation</em>).</p>
 <p>This post is a continuation from our <a class="reference internal" href="../2020-08-28-motivic-information-path-integrals-and-spiking-networks/"><span class="doc std std-doc">series</span></a> on spiking networks, path integrals and motivic information.</p>
 <section id="continuous-time-dynamics">
 <h2>Continuous-time dynamics<a class="headerlink" href="#continuous-time-dynamics" title="Link to this heading">#</a></h2>
@@ -519,7 +524,7 @@
 <div class="math notranslate nohighlight">
 \[\mathbb{E}[ H_t \vert  \mathcal{F}_s] = H_s.\]</div>
 <p>Note that this condition implies that for discrete time stochastic processes, the expectation of the <em>martingale difference</em> <span class="math notranslate nohighlight">\(E_{n+1} = H_{n+1} - H_n\)</span> conditioned on <span class="math notranslate nohighlight">\(\mathcal{F}_n\)</span> is zero.</p>
-<p>Martingales play an important role in stochastic integration <span id="id4">[<a class="reference internal" href="#id46" title="Patrick Cattiaux, Djalil Chafaı, and Arnaud Guillin. Central limit theorems for additive functionals of ergodic markov diffusions processes. ALEA, 9(2):337–382, 2012.">CChafaiG12</a>]</span>. For example, let <span class="math notranslate nohighlight">\(\{X_t\}_{0\leq t}\)</span> be a continuous-time stochastic process driven by Brownian motion, e.g.</p>
+<p>Martingales play an important role in stochastic integration <span class="bibtex-citation" id="id4">[<a class="reference internal" href="#id46" title="Patrick Cattiaux, Djalil Chafaı, and Arnaud Guillin. Central limit theorems for additive functionals of ergodic markov diffusions processes. ALEA, 9(2):337–382, 2012.">CChafaiG12</a>]</span>. For example, let <span class="math notranslate nohighlight">\(\{X_t\}_{0\leq t}\)</span> be a continuous-time stochastic process driven by Brownian motion, e.g.</p>
 <div class="math notranslate nohighlight">
 \[dX_t = b(X_t) dt + \sigma(X_t) dB_t\]</div>
 <p>where <span class="math notranslate nohighlight">\(X_t\)</span> is an <span class="math notranslate nohighlight">\(n\)</span>-dimensional vector, <span class="math notranslate nohighlight">\(B_t\)</span> is <span class="math notranslate nohighlight">\(m\)</span>-dimensional Brownian motion, <span class="math notranslate nohighlight">\(b(X_t)\)</span> is an <span class="math notranslate nohighlight">\(n\)</span>-dimensional vector and <span class="math notranslate nohighlight">\(\sigma(X_t)\)</span> is an <span class="math notranslate nohighlight">\(n \times m\)</span> matrix. Let <span class="math notranslate nohighlight">\(L\)</span> be the infinitesimal generator of this process, i.e. <span class="math notranslate nohighlight">\(L\)</span> acts on the space of measurable functions such that for any measurable function <span class="math notranslate nohighlight">\(g\)</span> and state <span class="math notranslate nohighlight">\(x,\)</span></p>
@@ -529,7 +534,7 @@
 <p>Then, one can show that</p>
 <div class="math notranslate nohighlight">
 \[\displaystyle \int_0^t Lg(X_s) ds = g(X_t) - g(X_0) - \int_0^t \sum_{i} \frac{\partial g}{\partial x_i}(X_s) \sigma_i (X_s) dB_s,\]</div>
-<p>thanks to the Itô formula, e.g. see Lemma 7.3.2 of <span id="id5">[<a class="reference internal" href="#id43" title="Bernt Oksendal. Stochastic differential equations: an introduction with applications. Springer Science &amp; Business Media, 2013.">Oks13</a>]</span>.</p>
+<p>thanks to the Itô formula, e.g. see Lemma 7.3.2 of <span class="bibtex-citation" id="id5">[<a class="reference internal" href="#id43" title="Bernt Oksendal. Stochastic differential equations: an introduction with applications. Springer Science &amp; Business Media, 2013.">Oks13</a>]</span>.</p>
 <p>The last term</p>
 <div class="math notranslate nohighlight">
 \[\displaystyle M_t = \int_0^t \sum_{i} \frac{\partial g}{\partial x_i}(X_s) \sigma_i (X_s) dB_s\]</div>
@@ -547,12 +552,12 @@
 <p>Under some regularity conditions on <span class="math notranslate nohighlight">\(\{X_t\}\)</span> and assuming that the total expectation of <span class="math notranslate nohighlight">\(g(x)\)</span> is zero, a candidate solution to the Poisson equation is</p>
 <div class="math notranslate nohighlight">
 \[\displaystyle g(x) = - \int_0^\infty P^s f(x) ds\]</div>
-<p>if the integral is well-defined <span id="id6">[<a class="reference internal" href="#id46" title="Patrick Cattiaux, Djalil Chafaı, and Arnaud Guillin. Central limit theorems for additive functionals of ergodic markov diffusions processes. ALEA, 9(2):337–382, 2012.">CChafaiG12</a>]</span>. Indeed, if <span class="math notranslate nohighlight">\(Lg = f,\)</span> then</p>
+<p>if the integral is well-defined <span class="bibtex-citation" id="id6">[<a class="reference internal" href="#id46" title="Patrick Cattiaux, Djalil Chafaı, and Arnaud Guillin. Central limit theorems for additive functionals of ergodic markov diffusions processes. ALEA, 9(2):337–382, 2012.">CChafaiG12</a>]</span>. Indeed, if <span class="math notranslate nohighlight">\(Lg = f,\)</span> then</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{rl} P^t g(x) - g(x) &amp;= \displaystyle \int_0^t \partial_s P^s g(x) ds \\ &amp; \\ &amp; = \displaystyle \int_0^t L P^s g (x) ds \\ &amp; \\ &amp; = \displaystyle \int_0^t P^s Lg(x) ds = \displaystyle \int_0^t P^s f(x) ds. \end{array}\end{split}\]</div>
 <p>Taking limits as <span class="math notranslate nohighlight">\(t \rightarrow \infty\)</span> and observing that under strong ergodicity <span class="math notranslate nohighlight">\(P^t g(x)\)</span> goes to the total expectation of <span class="math notranslate nohighlight">\(g(x)\)</span> which is zero, the candidate solution follows.</p>
 <p>The strategy for integrals of functions of discrete-time stochastic processes works in a similar way, where solutions to the Poisson equation provide martingales whose expected values vanish. We will use this strategy for analyzing biased stochastic approximation algorithms.</p>
-<p>In a future post, we will explore martingales, stochastic integrals and the Poisson equation through the lens of regularity structures <span id="id7">[<a class="reference internal" href="#id53" title="Martin Hairer. A theory of regularity structures. Inventiones mathematicae, 198(2):269–504, 2014.">Hai14</a>]</span>.</p>
+<p>In a future post, we will explore martingales, stochastic integrals and the Poisson equation through the lens of regularity structures <span class="bibtex-citation" id="id7">[<a class="reference internal" href="#id53" title="Martin Hairer. A theory of regularity structures. Inventiones mathematicae, 198(2):269–504, 2014.">Hai14</a>]</span>.</p>
 </section>
 <section id="biased-updates">
 <h2>Biased updates<a class="headerlink" href="#biased-updates" title="Link to this heading">#</a></h2>
@@ -576,7 +581,7 @@
 <p>as before. We will primarily be interested in the stochastic integral</p>
 <div class="math notranslate nohighlight">
 \[\displaystyle \sum_{k=0}^n E_{\eta_k}(X_{k+1}).\]</div>
-<p>For simplicity, we first fix the parameters <span class="math notranslate nohighlight">\(\eta_n = \eta\)</span> for all <span class="math notranslate nohighlight">\(n\)</span> and drop the subscripts <span class="math notranslate nohighlight">\(\eta\)</span> in notations such as <span class="math notranslate nohighlight">\(E_\eta,\)</span> <span class="math notranslate nohighlight">\(P_\eta\)</span> and <span class="math notranslate nohighlight">\(L_\eta\)</span>. Later, we will generalize the approach to the case with parameter updates <span id="id8">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id51" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span>.</p>
+<p>For simplicity, we first fix the parameters <span class="math notranslate nohighlight">\(\eta_n = \eta\)</span> for all <span class="math notranslate nohighlight">\(n\)</span> and drop the subscripts <span class="math notranslate nohighlight">\(\eta\)</span> in notations such as <span class="math notranslate nohighlight">\(E_\eta,\)</span> <span class="math notranslate nohighlight">\(P_\eta\)</span> and <span class="math notranslate nohighlight">\(L_\eta\)</span>. Later, we will generalize the approach to the case with parameter updates <span class="bibtex-citation" id="id8">[<a class="reference internal" href="#id45" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span>.</p>
 <p>Suppose that we have a solution <span class="math notranslate nohighlight">\(\hat{H}\)</span> to the Poisson equation <span class="math notranslate nohighlight">\(L \hat{H} = E.\)</span> Then</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{rl} &amp; \displaystyle \sum_{k=0}^n E(X_{k+1}) \\ &amp; \\ &amp;= \displaystyle \sum_{k=0}^n P\hat{H}(X_{k+1}) - \hat{H}(X_{k+1}) \\ &amp; \\ &amp; = \displaystyle P\hat{H}(X_{n+1}) - \hat{H}(X_{1}) + \sum_{k=1}^n P\hat{H}(X_{k}) - \hat{H}(X_{k+1}) \end{array}.\end{split}\]</div>
@@ -600,7 +605,7 @@
 \[S_4 := \sum_{k=1}^n (\gamma_{k} - \gamma_{k+1}) \langle \nabla V(\eta_{k-1}) \vert P_{\eta_{k-1}} \hat{H}_{\eta_{k-1}}(X_{k}) \rangle\]</div>
 <p>Here, the expressions <span class="math notranslate nohighlight">\(S_0\)</span> and <span class="math notranslate nohighlight">\(S_1\)</span> arise naturally from the application of the Poisson equation solutions. In particular, the terms <span class="math notranslate nohighlight">\(P_{\eta_k} \hat{H}_{\eta_k}(X_{k}) - \hat{H}_{\eta_k}(X_{k+1})\)</span> appearing in <span class="math notranslate nohighlight">\(S_1\)</span> are martingale differences so <span class="math notranslate nohighlight">\(S_1\)</span> vanishes under conditional and total expectations.</p>
 <p>The expressions <span class="math notranslate nohighlight">\(S_2,\)</span> <span class="math notranslate nohighlight">\(S_3\)</span> and <span class="math notranslate nohighlight">\(S_4\)</span> are correction terms coming from updates to the parameters and step sizes, and they can be bounded by some suitable assumptions on the regularity of <span class="math notranslate nohighlight">\(P_\eta \hat{H}_\eta(x),\)</span> <span class="math notranslate nohighlight">\(\nabla V (\eta)\)</span> and <span class="math notranslate nohighlight">\(\gamma_{n}\)</span> respectively.</p>
-<p>To summarize, we have the following convergence result for biased stochastic approximation <span id="id9">[<a class="reference internal" href="../2021-06-05-spiking-neural-networks/#id51" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span>, starting with some regularity conditions. Note that <span class="math notranslate nohighlight">\(h(\eta)\)</span> varies like <span class="math notranslate nohighlight">\(\frac{\partial V}{\partial \eta}(\eta)\)</span> so we are guaranteed convergence only to a critical point of the Lyapunov function <span class="math notranslate nohighlight">\(V(\eta).\)</span></p>
+<p>To summarize, we have the following convergence result for biased stochastic approximation <span class="bibtex-citation" id="id9">[<a class="reference internal" href="#id45" title="Belhal Karimi, Blazej Miasojedow, Eric Moulines, and Hoi-To Wai. Non-asymptotic analysis of biased stochastic approximation scheme. In Conference on Learning Theory, 1944–1974. PMLR, 2019.">KMMW19</a>]</span>, starting with some regularity conditions. Note that <span class="math notranslate nohighlight">\(h(\eta)\)</span> varies like <span class="math notranslate nohighlight">\(\frac{\partial V}{\partial \eta}(\eta)\)</span> so we are guaranteed convergence only to a critical point of the Lyapunov function <span class="math notranslate nohighlight">\(V(\eta).\)</span></p>
 <hr class="docutils" />
 <p><strong>A1 (Direction of mean field).</strong> There exists <span class="math notranslate nohighlight">\(c_0 \geq 0, c_1 \geq 0\)</span> such that for all <span class="math notranslate nohighlight">\(\eta \in \mathcal{H},\)</span></p>
 <div class="math notranslate nohighlight">
@@ -737,8 +742,8 @@
     class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
   </div>
-  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-time-dynamics">Continuous-time dynamics</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-time-dynamics">Discrete-time dynamics</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#martingales-stochastic-integrals-and-the-poisson-equation">Martingales, stochastic integrals and the Poisson equation</a></li>
@@ -748,13 +753,13 @@
   </nav></div>
 
   <div class="sidebar-secondary-item">
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../../_sources/posts/2020-12-01-biased-stochastic-approximation.md.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div></div>
+
+  <div class="tocsection sourcelink">
+    <a href="../../_sources/posts/2020-12-01-biased-stochastic-approximation.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
 
 </div></div>
               
@@ -769,8 +774,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -790,8 +795,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
-    <br/>
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
   </p>
 </div>
       
@@ -804,7 +808,7 @@
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.23.0.
 </p></div>
       
     </div>

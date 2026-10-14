@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 
@@ -35,35 +34,43 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8a9ddf57" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-dropdown.css?v=995e94df" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.min.css?v=21c0b90a" />
   
   <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../_static/scripts/fontawesome.js?digest=18bd87630a240e9c25be"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
     <script src="../../_static/documentation_options.js?v=187304be"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2020-10-07-motivic-relative-information';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about/" />
     <link rel="index" title="Index" href="../../genindex/" />
     <link rel="search" title="Search" href="../../search/" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" /> 
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+   
 <link
   rel="alternate"
   type="application/atom+xml"
@@ -72,19 +79,19 @@
 />
   
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -110,9 +117,9 @@
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
   </button>
   
@@ -170,7 +177,7 @@
         <div class="navbar-item navbar-persistent--container">
           
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
         </div>
@@ -187,8 +194,7 @@
           
           
           
-          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
       
@@ -199,14 +205,14 @@
   
     <div class="navbar-persistent--mobile">
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
     </div>
   
 
   
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
     </button>
   
@@ -272,8 +278,7 @@
           
           
           
-          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
         
@@ -463,7 +468,7 @@
 </ol>
 <p>The second axiom follows from the third axiom if at least one set in <span class="math notranslate nohighlight">\(\mathcal{C}\)</span> has finite measure.</p>
 <p>When generalizing the above definition to measures which are non real-valued, there are two additional conditions that we may want to consider. The first is that the measure should be invariant under equivalence between the objects. The second is that the collection <span class="math notranslate nohighlight">\(\mathcal{C}\)</span> should include products of its objects, e.g. the higher-dimensional Cartesian product of one-dimensional intervals on the real line.</p>
-<p>Moreover, as a result of the axioms, generalized measures on collections <span class="math notranslate nohighlight">\(\mathcal{C}\)</span> of objects will factor through some universal ring of values, known as a Grothendieck ring <span id="id1">[<a class="reference internal" href="#id53" title="Thomas Scanlon. Motivic integration: an outsider’s tutorial. https://math.berkeley.edu/ scanlon/papers/scanlon_durham_motivic_integration_outsiders_tutorial.pdf, 2009.">Sca09</a>]</span>, <span id="id2">[<a class="reference internal" href="#id56" title="Thomas Hales. What is motivic measure? Bulletin of the American Mathematical Society, 42(2):119–135, 2005.">Hal05</a>]</span>. Suppose we have a category <span class="math notranslate nohighlight">\(\mathcal{C}\)</span> or universe of objects with some kind of equivalence <span class="math notranslate nohighlight">\(X \sim Y\)</span>, products <span class="math notranslate nohighlight">\(X \times Y\)</span>, coproducts <span class="math notranslate nohighlight">\(X \oplus Y\)</span> and a terminal object <span class="math notranslate nohighlight">\(*\)</span>. Suppose also that <span class="math notranslate nohighlight">\(\times\)</span> distributes over <span class="math notranslate nohighlight">\(\oplus\)</span>, i.e. <span class="math notranslate nohighlight">\(X \times (Y \oplus Z) = X \times Y \oplus X \times Z.\)</span> We consider the <em>Grothendieck ring</em> <span class="math notranslate nohighlight">\(K_0(\mathcal{C})\)</span> freely-generated by the objects modulo the equivalence <span class="math notranslate nohighlight">\(=\)</span> generated by the relations</p>
+<p>Moreover, as a result of the axioms, generalized measures on collections <span class="math notranslate nohighlight">\(\mathcal{C}\)</span> of objects will factor through some universal ring of values, known as a Grothendieck ring <span class="bibtex-citation" id="id1">[<a class="reference internal" href="#id53" title="Thomas Scanlon. Motivic integration: an outsider’s tutorial. https://math.berkeley.edu/ scanlon/papers/scanlon_durham_motivic_integration_outsiders_tutorial.pdf, 2009.">Sca09</a>]</span>, <span class="bibtex-citation" id="id2">[<a class="reference internal" href="#id56" title="Thomas Hales. What is motivic measure? Bulletin of the American Mathematical Society, 42(2):119–135, 2005.">Hal05</a>]</span>. Suppose we have a category <span class="math notranslate nohighlight">\(\mathcal{C}\)</span> or universe of objects with some kind of equivalence <span class="math notranslate nohighlight">\(X \sim Y\)</span>, products <span class="math notranslate nohighlight">\(X \times Y\)</span>, coproducts <span class="math notranslate nohighlight">\(X \oplus Y\)</span> and a terminal object <span class="math notranslate nohighlight">\(*\)</span>. Suppose also that <span class="math notranslate nohighlight">\(\times\)</span> distributes over <span class="math notranslate nohighlight">\(\oplus\)</span>, i.e. <span class="math notranslate nohighlight">\(X \times (Y \oplus Z) = X \times Y \oplus X \times Z.\)</span> We consider the <em>Grothendieck ring</em> <span class="math notranslate nohighlight">\(K_0(\mathcal{C})\)</span> freely-generated by the objects modulo the equivalence <span class="math notranslate nohighlight">\(=\)</span> generated by the relations</p>
 <ol class="arabic simple">
 <li><p><em>Congruence</em>. <span class="math notranslate nohighlight">\([X] = [Y]\)</span> if <span class="math notranslate nohighlight">\(X \sim Y;\)</span></p></li>
 <li><p><em>Coproduct</em>. <span class="math notranslate nohighlight">\([X \oplus Y] = [X] + [Y];\)</span></p></li>
@@ -473,11 +478,11 @@
 <p>The coproduct rule for Grothendieck rings mirrors the additivity rule for classical measures. We can extend the coproduct rule to countable disjoint unions if we consider a completion of the Grothendieck ring. The non-negativity rule for classical measures does not have an analog for Grothendieck rings unless we consider valuation rings. Alternatively, we can work with thermodynamic distributions and exponential families which are discussed in the next section.</p>
 <p>In many categories, the coproduct is just the disjoint union and the product is the Cartesian product. The essence of these Grothendieck rings therefore depends largely on the equivalence <span class="math notranslate nohighlight">\(\sim\)</span> between the objects. For example, if we consider the universe of polygons with <span class="math notranslate nohighlight">\(\sim\)</span> being congruence by rotation, reflection and translation, then we get the classical polygon scissor ring. If we consider the universe of finite sets with <span class="math notranslate nohighlight">\(\sim\)</span> being bijective equivalence, then we get the counting scissor ring which is isomorphic to the integers <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span>. If we consider the category <span class="math notranslate nohighlight">\(\mathcal{V}_k\)</span> of algebraic varieties over a field <span class="math notranslate nohighlight">\(k\)</span> with <span class="math notranslate nohighlight">\(X \sim Y\)</span> being isomorphism of varieties, then we get the Grothendieck ring of varieties <span class="math notranslate nohighlight">\(K_0(\mathcal{V}_k)\)</span>.</p>
 <p>It should also be possible to extend these Grothendieck rings to universes of types, with respect to equivalences, dependent sums and dependent products over these types.</p>
-<p>It may seem advantageous to work directly in the Grothendieck ring <span class="math notranslate nohighlight">\(K_0(\mathcal{C})\)</span> rather than with the motivic measure <span class="math notranslate nohighlight">\(\mu : K_0(\mathcal{C}) \rightarrow R.\)</span> However, the Grothendieck ring is often not well-understood. For example, it was only discovered fairly recently that the Grothendieck ring of varieties <span class="math notranslate nohighlight">\(K_0(\mathcal{V}_k)\)</span> has zero-divisors <span id="id3">[<a class="reference internal" href="#id54" title="Bjorn Poonen. The grothendieck ring of varieties is not a domain. Mathematical research letters, 9(4):493–498, 2002.">Poo02</a>]</span>. On the other hand, a motivic measure lets us tease out a particular aspect of the Grothendieck ring.</p>
+<p>It may seem advantageous to work directly in the Grothendieck ring <span class="math notranslate nohighlight">\(K_0(\mathcal{C})\)</span> rather than with the motivic measure <span class="math notranslate nohighlight">\(\mu : K_0(\mathcal{C}) \rightarrow R.\)</span> However, the Grothendieck ring is often not well-understood. For example, it was only discovered fairly recently that the Grothendieck ring of varieties <span class="math notranslate nohighlight">\(K_0(\mathcal{V}_k)\)</span> has zero-divisors <span class="bibtex-citation" id="id3">[<a class="reference internal" href="#id54" title="Bjorn Poonen. The grothendieck ring of varieties is not a domain. Mathematical research letters, 9(4):493–498, 2002.">Poo02</a>]</span>. On the other hand, a motivic measure lets us tease out a particular aspect of the Grothendieck ring.</p>
 </section>
 <section id="how-do-we-define-the-entropy-of-a-variety-with-respect-to-its-zeta-function">
 <h2>How do we define the entropy of a variety with respect to its zeta function?<a class="headerlink" href="#how-do-we-define-the-entropy-of-a-variety-with-respect-to-its-zeta-function" title="Link to this heading">#</a></h2>
-<p>We follow the work of <span id="id4">[<a class="reference internal" href="#id55" title="Matilde Marcolli. Motivic information. Bollettino dell'Unione Matematica Italiana, 12(1):19–41, 2019.">Mar19</a>]</span> and rewrite her results in our notation.</p>
+<p>We follow the work of <span class="bibtex-citation" id="id4">[<a class="reference internal" href="#id55" title="Matilde Marcolli. Motivic information. Bollettino dell'Unione Matematica Italiana, 12(1):19–41, 2019.">Mar19</a>]</span> and rewrite her results in our notation.</p>
 <p>Recall that in thermodynamics, given a system with finitely many states, the Boltzmann distribution defines the probability of a state <span class="math notranslate nohighlight">\(i\)</span> as</p>
 <div class="math notranslate nohighlight">
 \[P(z,i) = \displaystyle \frac{e^{-z \varepsilon(i)}}{Z(z)}\]</div>
@@ -559,7 +564,7 @@
 </section>
 <section id="what-is-the-relative-information-of-morphisms-between-algebraic-varieties">
 <h2>What is the relative information of morphisms between algebraic varieties?<a class="headerlink" href="#what-is-the-relative-information-of-morphisms-between-algebraic-varieties" title="Link to this heading">#</a></h2>
-<p>We consider the relative information of proper morphisms and flat morphisms as described in §4.5-§4.7 of <span id="id5">[<a class="reference internal" href="#id55" title="Matilde Marcolli. Motivic information. Bollettino dell'Unione Matematica Italiana, 12(1):19–41, 2019.">Mar19</a>]</span>.</p>
+<p>We consider the relative information of proper morphisms and flat morphisms as described in §4.5-§4.7 of <span class="bibtex-citation" id="id5">[<a class="reference internal" href="#id55" title="Matilde Marcolli. Motivic information. Bollettino dell'Unione Matematica Italiana, 12(1):19–41, 2019.">Mar19</a>]</span>.</p>
 <p>First, for each variety <span class="math notranslate nohighlight">\(V\)</span>, we define <span class="math notranslate nohighlight">\(P_V(t)\)</span> be the distribution on <span class="math notranslate nohighlight">\(\mathcal{C}_V\)</span> given by</p>
 <div class="math notranslate nohighlight">
 \[P_V(t,\alpha) = \displaystyle \frac{t^{ \deg(\alpha)}}{Z_V(t)}\]</div>
@@ -685,8 +690,8 @@
     class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
   </div>
-  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-define-measures-which-are-not-real-valued">How do we define measures which are not real-valued?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-define-the-entropy-of-a-variety-with-respect-to-its-zeta-function">How do we define the entropy of a variety with respect to its zeta function?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-extend-relative-information-to-motivic-measures">How do we extend relative information to motivic measures?</a></li>
@@ -696,13 +701,13 @@
   </nav></div>
 
   <div class="sidebar-secondary-item">
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../../_sources/posts/2020-10-07-motivic-relative-information.md.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div></div>
+
+  <div class="tocsection sourcelink">
+    <a href="../../_sources/posts/2020-10-07-motivic-relative-information.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
 
 </div></div>
               
@@ -717,8 +722,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -738,8 +743,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
-    <br/>
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
   </p>
 </div>
       
@@ -752,7 +756,7 @@
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.23.0.
 </p></div>
       
     </div>

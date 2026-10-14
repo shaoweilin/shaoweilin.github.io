@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 
@@ -35,35 +34,43 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8a9ddf57" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-dropdown.css?v=995e94df" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.min.css?v=21c0b90a" />
   
   <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../_static/scripts/fontawesome.js?digest=18bd87630a240e9c25be"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
     <script src="../../_static/documentation_options.js?v=187304be"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'posts/2020-10-05-zeta-functions-mellin-transforms-and-the-gelfand-leray-form';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about/" />
     <link rel="index" title="Index" href="../../genindex/" />
     <link rel="search" title="Search" href="../../search/" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" /> 
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+   
 <link
   rel="alternate"
   type="application/atom+xml"
@@ -72,19 +79,19 @@
 />
   
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -110,9 +117,9 @@
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
   </button>
   
@@ -170,7 +177,7 @@
         <div class="navbar-item navbar-persistent--container">
           
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
         </div>
@@ -187,8 +194,7 @@
           
           
           
-          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
       
@@ -199,14 +205,14 @@
   
     <div class="navbar-persistent--mobile">
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
     </div>
   
 
   
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
     </button>
   
@@ -272,8 +278,7 @@
           
           
           
-          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/shaoweilin/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
 </ul></div>
         
@@ -456,7 +461,7 @@
 <p>Let <span class="math notranslate nohighlight">\(\omega\)</span> be a volume form or a form resulting from a measure on some space <span class="math notranslate nohighlight">\(W\)</span>. Let <span class="math notranslate nohighlight">\(f: W \rightarrow \mathbb{R}\)</span> be a non-negative energy function or a Kullback-Leibler divergence. A <em>Gelfand-Leray form</em> of <span class="math notranslate nohighlight">\(\omega\)</span> is any differential form <span class="math notranslate nohighlight">\(\phi\)</span> that satisfies</p>
 <div class="math notranslate nohighlight">
 \[df \wedge \phi = \omega.\]</div>
-<p>We will denote <span class="math notranslate nohighlight">\(\phi\)</span> by <span class="math notranslate nohighlight">\(\omega /df\)</span>. See <span id="id1">[<a class="reference internal" href="#id63" title="VI Arnold, SM Gusein-Zade, and AN Varchenko. Elementary integrals and the resolution of singularities of the phase. In Singularities of Differentiable Maps, pages 215–232. Springer, 1988.">AGZV88</a>]</span> and §4 of <span id="id2">[<a class="reference internal" href="#id59" title="Matilde Marcolli. Feynman motives. World Scientific, 2010.">Mar10</a>]</span> for expositions about the Gelfand-Leray form.</p>
+<p>We will denote <span class="math notranslate nohighlight">\(\phi\)</span> by <span class="math notranslate nohighlight">\(\omega /df\)</span>. See <span class="bibtex-citation" id="id1">[<a class="reference internal" href="#id63" title="VI Arnold, SM Gusein-Zade, and AN Varchenko. Elementary integrals and the resolution of singularities of the phase. In Singularities of Differentiable Maps, pages 215–232. Springer, 1988.">AGZV88</a>]</span> and §4 of <span class="bibtex-citation" id="id2">[<a class="reference internal" href="#id59" title="Matilde Marcolli. Feynman motives. World Scientific, 2010.">Mar10</a>]</span> for expositions about the Gelfand-Leray form.</p>
 <p>The <em>Gelfand-Leray function</em> is</p>
 <div class="math notranslate nohighlight">
 \[J(t) =\displaystyle \int_{f(w)=t} \frac{\omega}{df}.\]</div>
@@ -490,7 +495,7 @@
 \[\theta(t) = \displaystyle \sum_{\lambda} m_\lambda e^{- \lambda t}.\]</div>
 <p>Here, if we expand each <span class="math notranslate nohighlight">\(e^{-\lambda t}\)</span> by its Taylor series, we see that we can think of it as a kind of Gelfand-Leray function with non-negative integer poles and unit multiplicities.</p>
 <p>However, I do not know if the theta function can actually be expressed as the Gelfand-Leray function of a differential form with respect to an energy function.</p>
-<p>Zeta functions are also useful for defining infinite products <span id="id3">[<a class="reference internal" href="#id60" title="Yuri Manin. Lectures on zeta functions and motives. Astérisque, 228:121–163, 1995.">Man95</a>]</span></p>
+<p>Zeta functions are also useful for defining infinite products <span class="bibtex-citation" id="id3">[<a class="reference internal" href="#id60" title="Yuri Manin. Lectures on zeta functions and motives. Astérisque, 228:121–163, 1995.">Man95</a>]</span></p>
 <div class="math notranslate nohighlight">
 \[Z = \displaystyle \prod_\lambda \lambda^{m_\lambda}\]</div>
 <p>which we define to be</p>
@@ -508,7 +513,7 @@
 <p>In statistical learning, given a prior <span class="math notranslate nohighlight">\(\omega = \psi(w)dw\)</span> on the parameters <span class="math notranslate nohighlight">\(w\)</span> of a statistical model <span class="math notranslate nohighlight">\(p: W \rightarrow \Delta,\)</span> and given the relative information <span class="math notranslate nohighlight">\(K(w)\)</span> to the true distribution <span class="math notranslate nohighlight">\(q\)</span> from the model distribution <span class="math notranslate nohighlight">\(p(w),\)</span> the Gelfand-Leray function</p>
 <div class="math notranslate nohighlight">
 \[J(t) = \displaystyle \frac{d}{dt} \int_{0 \leq K(w) \leq t} \psi(w) dw\]</div>
-<p>is called the state density function <span id="id4">[<a class="reference internal" href="../2020-10-23-machine-learning-with-relative-information/#id58" title="Sumio Watanabe. Algebraic geometry and statistical learning theory. Number 25. Cambridge university press, 2009.">Wat09</a>]</span>.</p>
+<p>is called the state density function <span class="bibtex-citation" id="id4">[<a class="reference internal" href="#id58" title="Sumio Watanabe. Algebraic geometry and statistical learning theory. Number 25. Cambridge university press, 2009.">Wat09</a>]</span>.</p>
 <p>The zeta function of the statistical model is</p>
 <div class="math notranslate nohighlight">
 \[\zeta(z) = \int_W K(w)^z \psi(w) dw = \int_0^\infty t^z J(t)dt\]</div>
@@ -516,7 +521,7 @@
 </section>
 <section id="number-theory">
 <h2>Number Theory<a class="headerlink" href="#number-theory" title="Link to this heading">#</a></h2>
-<p>In number theory, we have the notorious Riemann zeta function which becomes more interesting <span id="id5">[<a class="reference internal" href="#id62" title="John Baez. This week’s finds in mathematical physics (week 217). https://math.ucr.edu/home/baez/week217.html, 2005.">Bae05</a>]</span> if we write it as</p>
+<p>In number theory, we have the notorious Riemann zeta function which becomes more interesting <span class="bibtex-citation" id="id5">[<a class="reference internal" href="#id62" title="John Baez. This week’s finds in mathematical physics (week 217). https://math.ucr.edu/home/baez/week217.html, 2005.">Bae05</a>]</span> if we write it as</p>
 <div class="math notranslate nohighlight">
 \[\zeta(z) = \displaystyle \sum_{n=1}^\infty \left(n^2\right)^{-\frac{z}{2}}.\]</div>
 <p>This representation suggests that we study the infamous Jacobi theta function</p>
@@ -530,7 +535,7 @@
 <div class="math notranslate nohighlight">
 \[\Lambda(z) = \Lambda(1-z)\]</div>
 <p>where <span class="math notranslate nohighlight">\(\Lambda(z) = 2^{-1/2}\pi^{-z/2}\Gamma(z/2)\zeta(z).\)</span></p>
-<p>The function <span class="math notranslate nohighlight">\(\Lambda(z)\)</span> itself can be written <span id="id6">[<a class="reference internal" href="#id61" title="Christopher Deninger. On the γ-factors attached to motives. Inventiones mathematicae, 104(1):245–261, 1991.">Den91</a>]</span> as the infinite product</p>
+<p>The function <span class="math notranslate nohighlight">\(\Lambda(z)\)</span> itself can be written <span class="bibtex-citation" id="id6">[<a class="reference internal" href="#id61" title="Christopher Deninger. On the γ-factors attached to motives. Inventiones mathematicae, 104(1):245–261, 1991.">Den91</a>]</span> as the infinite product</p>
 <div class="math notranslate nohighlight">
 \[(\frac{z}{2\pi})(\frac{z-1}{2\pi})\Lambda(z) = \prod_\rho \frac{z-\rho}{2\pi}\]</div>
 <p>over the zeros of the Riemann zeta function. This infinite product is in turn expressible using another zeta function and theta function.</p>
@@ -656,8 +661,8 @@
     class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
   </div>
-  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gelfand-leray-functions">Gelfand-Leray functions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zeta-functions">Zeta functions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-learning">Statistical Learning</a></li>
@@ -667,13 +672,13 @@
   </nav></div>
 
   <div class="sidebar-secondary-item">
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../../_sources/posts/2020-10-05-zeta-functions-mellin-transforms-and-the-gelfand-leray-form.md.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div></div>
+
+  <div class="tocsection sourcelink">
+    <a href="../../_sources/posts/2020-10-05-zeta-functions-mellin-transforms-and-the-gelfand-leray-form.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
 
 </div></div>
               
@@ -688,8 +693,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -709,8 +714,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
-    <br/>
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
   </p>
 </div>
       
@@ -723,7 +727,7 @@
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.23.0.
 </p></div>
       
     </div>
