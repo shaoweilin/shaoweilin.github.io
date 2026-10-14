@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="slides_files/libs/clipboard/clipboard.min.js"></script>
+<script src="slides_files/libs/quarto-html/tabby.min.js"></script>
+<script src="slides_files/libs/quarto-html/popper.min.js"></script>
+<script src="slides_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="slides_files/libs/quarto-html/quarto-syntax-highlighting-ea1d7ac60288e0f1efdbc993fd8432ae.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.21">
+
+  <meta name="author" content="Shaowei Lin">
+  <meta name="dcterms.date" content="2026-10-15">
+  <title>Introduction to Singular Learning Theory</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link href="slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="slides_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <style> .reveal .slide aside {font-size: 0.3em;} </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Introduction to Singular Learning Theory</h1>
+  <p class="subtitle">
+    <img src="slides_files/imgs/tubular-nbhd.png" width="178" height="120">
+  </p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+<a href="https://shaoweilin.github.io/">Shaowei Lin</a> 
+                <a href="https://www.beneficialaifoundation.org/">
+            [BAIF]
+            </a>
+          </div>
+</div>
+</div>
+
+  <p class="date">
+    2026-10-15 
+     
+            Iliad Intensive
+          
+  </p> 
+</section>
+<section>
+<section id="statistical-learning" class="title-slide slide level1 center">
+<h1>Statistical Learning</h1>
+
+</section>
+<section id="relative-information" class="slide level2 smaller">
+<h2>Relative Information</h2>
+<ul>
+<li>Given probability distributions <span class="math inline">\(q\)</span> and <span class="math inline">\(p\)</span> on a <em>finite</em> set <span class="math inline">\(X\)</span>, the <em>relative information</em> (Kullback-Leibler divergence, relative entropy) from <span class="math inline">\(p\)</span> to <span class="math inline">\(q\)</span> is <span class="math display">\[
+I_{q\Vert p}(X) = \sum_{x\in X} q(x) \log \frac{q(x)}{p(x)}.
+\]</span></li>
+<li>Given probability densities <span class="math inline">\(q\)</span> and <span class="math inline">\(p\)</span> on an <em>infinite</em> set <span class="math inline">\(X\)</span>, the relative information is <span class="math display">\[
+I_{q\Vert p}(X) = \int q(x) \log \frac{q(x)}{p(x)}\, dx.
+\]</span></li>
+<li>Well-defined iff <span class="math inline">\(p(x)=0\)</span> implies <span class="math inline">\(q(x) = 0\)</span> for all <span class="math inline">\(x\)</span> (<em>absolute continuity</em> <span class="math inline">\(q \ll p\)</span>).</li>
+<li>Think of this as the distance of a <em>model</em> distribution <span class="math inline">\(p\)</span> to the <em>true</em> distribution <span class="math inline">\(q\)</span>. This distance is not symmetric, i.e. <span class="math inline">\(I_{q\Vert p}(X) \neq I_{p\Vert q}(X).\)</span></li>
+</ul>
+</section>
+<section id="maximum-likelihood" class="slide level2 smaller">
+<h2>Maximum Likelihood</h2>
+<ul>
+<li>Let <span class="math inline">\(p(x|\omega)\)</span> be the model likelihood of data <span class="math inline">\(x\)</span> given parameters <span class="math inline">\(\omega \in \Omega\)</span>.</li>
+<li>Suppose we observe data <span class="math inline">\(x_{[n]} = (x_1, \ldots, x_n) \in X^n\)</span>.</li>
+<li>(Normalized) negative log-likelihood of the data <span class="math inline">\(L_n(\omega) = -\frac{1}{n}\sum_{i} \log p(x_i|\omega)\)</span>.</li>
+<li>Maximum likelihood estimate <span class="math inline">\(\hat{\omega} = \operatorname*{arg\,min}_{\omega} L_n(\omega)\)</span>.</li>
+<li><strong>Problem.</strong> Overfitting the data. Perhaps we have been doing it wrong.</li>
+</ul>
+
+<img data-src="slides_files/imgs/overfitting.png" class="quarto-figure quarto-figure-center r-stretch" style="width:30.0%"></section>
+<section id="stochastic-gradient-descent" class="slide level2 smaller">
+<h2>Stochastic Gradient Descent</h2>
+<ul>
+<li>Instead, suppose we could minimize the relative information (despite not knowing <span class="math inline">\(q\)</span>). <span class="math display">\[
+I(\omega) := I_{q\Vert p(\cdot\vert\omega)}(X) = \int q(x) \log \frac{q(x)}{p(x|\omega)}\, dx
+\]</span></li>
+<li>Optimize using gradient descent with <span class="math display">\[
+\frac{dI}{d\omega}(\omega) = - \int q(x) \frac{\partial}{\partial\omega} \log p(x|\omega)\, dx.
+\]</span></li>
+<li>Estimate the gradient by sampling <span class="math inline">\(x\)</span> from <span class="math inline">\(q\)</span> (or data <span class="math inline">\(x_{[n]}\)</span>). Note similarity to <span class="math display">\[\frac{dL_n}{d\omega}(\omega) = -\frac{1}{n}\sum_i \frac{d}{d\omega} \log p(x_i|\omega).\]</span></li>
+<li><strong>Advantage.</strong> Popular technique in deep learning. Tends to overfit less. Regularization.</li>
+</ul>
+</section>
+<section id="bayesian-inference" class="slide level2 smaller">
+<h2>Bayesian Inference</h2>
+<ul>
+<li>Initially, let the <em>prior</em> on model parameters be <span class="math inline">\(p(\omega)\)</span>.</li>
+<li>We update our prior to the <em>posterior</em> <span class="math display">\[
+p(\omega|x_{[n]}) = \frac{p(x_{[n]}|\omega)p(\omega) }{p(x_{[n]})}
+= \frac{p(x_{[n]}|\omega)p(\omega) }{\int p(x_{[n]}|\omega)p(\omega)\, d\omega}.
+\]</span></li>
+<li>We infer new data points using the <em>predictive distribution</em> <span class="math display">\[
+p^*(x) := p(x|x_{[n]}) = \int p(x|\omega)p(\omega|x_{[n]})\, d\omega.
+\]</span></li>
+<li>These integrals are difficult to compute or even estimate!</li>
+</ul>
+</section>
+<section id="model-selection" class="slide level2 smaller">
+<h2>Model Selection</h2>
+<ul>
+<li>Which model <span class="math inline">\(M_1, \ldots, M_m\)</span> best describes the data <span class="math inline">\(x_{[n]}\)</span>?</li>
+<li>Assign priors <span class="math inline">\(p(M_j)\)</span> and <span class="math inline">\(p(\omega|M_j)\)</span>, and compute <span class="math display">\[
+p(M_j|x_{[n]}) \propto p(x_{[n]}|M_j)\, p(M_j)
+\]</span> where <span class="math inline">\(Z_n(M_j) = p(x_{[n]}|M_j)\)</span> is the <em>marginal likelihood</em> <span class="math display">\[
+Z_n(M_j) = \int_\Omega e^{-n L_n(\omega \vert M_j)}\, p(\omega|M_j)\,d\omega.
+\]</span></li>
+<li>The <em>free energy</em> or <em>stochastic complexity</em> is <span class="math inline">\(F_n(M_j) = -\log Z_n(M_j)\)</span>.</li>
+<li>Select the model with the smallest free energy.</li>
+</ul>
+</section>
+<section id="likelihood-and-relative-information" class="slide level2 smaller">
+<h2>Likelihood and Relative Information</h2>
+<div style="margin-top: 1.5em;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">empirical</th>
+<th style="text-align: center;">expectation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>negative log-likelihood</em> <span class="math inline">\(L_n(\omega) = -\frac{1}{n}\sum_i \log p(x_i\vert\omega)\)</span></td>
+<td style="text-align: center;"><em>cross-entropy</em><br><span class="math inline">\(L(\omega) = \mathbb{E}[L_n(\omega)]\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><em>empirical entropy</em> <span class="math inline">\(S_n = -\frac{1}{n}\sum_i \log q(x_i)\)</span></td>
+<td style="text-align: center;"><em>entropy</em><br><span class="math inline">\(S = \mathbb{E}[S_n]\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><em>log-likelihood ratio</em> <span class="math inline">\(I_n(\omega) = \frac{1}{n}\sum_i \log \frac{q(x_i)}{p(x_i\vert\omega)}\)</span></td>
+<td style="text-align: center;"><em>relative information</em><br><span class="math inline">\(I(\omega) = \mathbb{E}[I_n(\omega)]\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><em>relationship</em><br><span class="math inline">\(L_n(\omega) = S_n + I_n(\omega)\)</span></td>
+<td style="text-align: center;"><em>relationship</em><br><span class="math inline">\(L(\omega) = S + I(\omega)\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="free-energy-and-relative-information" class="slide level2 smaller">
+<h2>Free Energy and Relative Information</h2>
+<div style="margin-top: 1.5em;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">empirical</th>
+<th style="text-align: center;">expectation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>free energy</em> <span class="math inline">\(F_n = -\log \int_\Omega e^{-n L_n(\omega)}\, p(\omega)\, d\omega = -\log p(x_{[n]})\)</span></td>
+<td style="text-align: center;"><em>cross-entropy</em><br><span class="math inline">\(F = \mathbb{E}[F_n]\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><em>normalized free energy</em> <span class="math inline">\(F^0_n = -\log \int_\Omega e^{-n I_n(\omega)}\, p(\omega)\, d\omega = \log \frac{q(x_{[n]})}{p(x_{[n]})}\)</span></td>
+<td style="text-align: center;"><em>relative information</em><br><span class="math inline">\(I_{q\Vert p}(X^n) = \mathbb{E}[F^0_n]\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><em>relationship</em><br><span class="math inline">\(F_n = n S_n + F^0_n\)</span></td>
+<td style="text-align: center;"><em>relationship</em><br><span class="math inline">\(F = n S + I_{q\Vert p}(X^n)\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="bayesian-information-criterion" class="slide level2 smaller">
+<h2>Bayesian Information Criterion</h2>
+<ul>
+<li>The <em>(empirical) Fisher information matrix</em> is the Hessian of the negative log-likelihood, or equivalently of the log-likelihood ratio, since <span class="math inline">\(S_n\)</span> does not depend on <span class="math inline">\(\omega\)</span>: <span class="math display">\[
+J_n(\omega) = \partial^2 L_n(\omega) = \partial^2 I_n(\omega).
+\]</span></li>
+<li>A model is <em>regular</em> if it is identifiable (<span class="math inline">\(\omega \mapsto p(\cdot|\omega)\)</span> is one-to-one) and its <em>Fisher information matrix</em> <span class="math inline">\(J(\omega) = \mathbb{E}_{x_{[n]} \sim p(\cdot|\omega)}\big[J_n(\omega)\big]\)</span> is invertible for all <span class="math inline">\(\omega\)</span>.</li>
+<li><strong>Laplace approximation.</strong> Suppose the model is regular, with dimension <span class="math inline">\(d = \dim \Omega\)</span>. If <span class="math inline">\(L_n(\omega)\)</span> is uniquely minimized at the MLE <span class="math inline">\(\hat{\omega}\)</span> and <span class="math inline">\(J_n(\hat{\omega})\)</span> is full rank, then as <span class="math inline">\(n \rightarrow \infty\)</span>, <span class="math display">\[
+F_n \approx n L_n(\hat{\omega}) + \frac{d}{2} \log n + O_p(1).
+\]</span></li>
+<li><em>Bayesian information criterion</em> (BIC): select the model minimizing <span class="math inline">\(n L_n(\hat{\omega}) + \frac{d}{2} \log n\)</span>.</li>
+<li>Tradeoff between accuracy (fit to data) and complexity (number of parameters).</li>
+</ul>
+</section>
+<section id="legendre-duality" class="slide level2 smaller">
+<h2>Legendre Duality</h2>
+<ul>
+<li>The <em>log-partition function</em> <span class="math inline">\(\Lambda(f) = \log \int_\Omega e^{f}\, p\, d\omega\)</span> and relative information <span class="math inline">\(q \mapsto I_{q\Vert p}(\Omega)\)</span> are Legendre duals.</li>
+</ul>
+<div style="height: 0.75em;">
+
+</div>
+<div class="columns" style="font-size: 85%;">
+<div class="column" style="width:50%;">
+<p><strong>Theorem (Gibbs variational principle).</strong><br>
+If <span class="math inline">\(\Lambda(f) &lt; \infty\)</span>, then <span class="math display">\[
+\Lambda(f) = \max_{q \ll p}\; \Big\{ \int q\, f\, d\omega - I_{q\Vert p}(\Omega) \Big\},
+\]</span> attained uniquely at the <br> <em>Gibbs density</em> <span class="math inline">\(q = e^{f - \Lambda(f)}\, p\)</span>.</p>
+</div><div class="column" style="width:50%;">
+<p><strong>Theorem (Donsker-Varadhan).</strong><br>
+For every density <span class="math inline">\(q\)</span> on <span class="math inline">\(\Omega\)</span>, over bounded <span class="math inline">\(f\)</span>, <span class="math display">\[
+I_{q\Vert p}(\Omega) = \sup_{f}\; \Big\{ \int q\, f\, d\omega - \Lambda(f) \Big\},
+\]</span> with optimum <span class="math inline">\(f = \log (q / p)\)</span>, <br> up to an additive constant.</p>
+</div></div>
+<div style="height: 0.75em;">
+
+</div>
+<ul>
+<li>Bayesian updating <em>is</em> free energy minimization: with <span class="math inline">\(f = -n L_n\)</span>, the Gibbs density is the posterior <span class="math inline">\(q(\omega) = p(\omega|x_{[n]}).\)</span></li>
+</ul>
+
+<aside><div>
+<p>Donsker, Varadhan. “Asymptotic evaluation of certain Markov process expectations for large time.” <em>CPAM</em> 28, 1975.<br>
+Zellner. “Optimal information processing and Bayes’s theorem.” <em>The American Statistician</em> 42(4), 1988.<br>
+Dupuis, Ellis. <em>A weak convergence approach to the theory of large deviations.</em> Wiley, 1997.</p>
+</div></aside></section>
+<section id="generalization-error" class="slide level2 smaller">
+<h2>Generalization Error</h2>
+<ul>
+<li><em>Generalization error</em> <span class="math inline">\(G_n\)</span> of Bayesian inference is the relative information from predictive distribution <span class="math inline">\(p^*(X)\)</span> to the true distribution <span class="math inline">\(q(X)\)</span>. <span class="math display">\[
+G_n := I_{q\Vert p^*}(X) = \int q(x) \log \frac{q(x)}{p^*(x)}\, dx
+\]</span></li>
+<li><span class="math inline">\(G_n\)</span> is a random variable, because <span class="math inline">\(p^*\)</span> depends on the data.</li>
+<li><em>Training error</em> <span class="math inline">\(T_n = -\frac{1}{n}\sum_i \log p^*(x_i) - S_n\)</span> is its empirical counterpart on the observed data. It underestimates <span class="math inline">\(G_n\)</span>, since the same data trained <span class="math inline">\(p^*\)</span>.</li>
+<li>How fast does <span class="math inline">\(\mathbb{E}[G_n]\)</span> and <span class="math inline">\(\mathbb{E}[T_n]\)</span> decay as <span class="math inline">\(n \rightarrow \infty\)</span>?</li>
+<li><strong>Akaike Information Criterion.</strong> If <span class="math inline">\(q = p(\cdot|\omega_0)\)</span> is realizable and the model is regular at <span class="math inline">\(\omega_0\)</span>, then <span class="math inline">\(\mathbb{E}[G_n] \approx \mathbb{E}[T_n] + \frac{d}{n}\)</span> and <span class="math inline">\(\mathbb{E}[G_n] \approx \frac{d}{2n}\)</span>.</li>
+</ul>
+
+<aside><div>
+<p>Akaike. “A new look at the statistical model identification.” <em>IEEE Trans. Automatic Control</em> 19(6), 1974.</p>
+</div></aside></section>
+<section id="relative-information-is-everywhere" class="slide level2 smaller">
+<h2>Relative Information is Everywhere</h2>
+<div style="height: 1.5em;">
+
+</div>
+<div style="font-size: 90%;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>relative information</th>
+<th>role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>maximum likelihood</td>
+<td><span class="math inline">\(I_n(\omega) = L_n(\omega) - S_n\)</span></td>
+<td>minimized at the MLE <span class="math inline">\(\hat{\omega}\)</span></td>
+</tr>
+<tr class="even">
+<td>stochastic gradients</td>
+<td><span class="math inline">\(I(\omega) = I_{q\Vert p(\cdot\vert\omega)}(X)\)</span></td>
+<td>minimized over <span class="math inline">\(\omega\)</span> by sampling</td>
+</tr>
+<tr class="odd">
+<td>model selection</td>
+<td><span class="math inline">\(\mathbb{E}[F_n] - n S = I_{q\Vert p}(X^n)\)</span></td>
+<td>minimized over models</td>
+</tr>
+<tr class="even">
+<td>BIC</td>
+<td><span class="math inline">\(F^0_n \approx n I_n(\hat{\omega}) + \frac{d}{2} \log n\)</span></td>
+<td>Laplace approximation</td>
+</tr>
+<tr class="odd">
+<td>Bayesian posterior</td>
+<td><span class="math inline">\(\int q\, n L_n\, d\omega + I_{q\Vert p}(\Omega)\)</span></td>
+<td>minimized at the posterior</td>
+</tr>
+<tr class="even">
+<td>generalization error</td>
+<td><span class="math inline">\(G_n = I_{q\Vert p^*}(X)\)</span></td>
+<td>measured, not minimized</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section></section>
+<section>
+<section id="singular-learning" class="title-slide slide level1 center">
+<h1>Singular Learning</h1>
+
+</section>
+<section id="regular-and-singular-models" class="slide level2 smaller">
+<h2>Regular and Singular Models</h2>
+<ul>
+<li>A model <span class="math inline">\(p(x|\omega)\)</span> is <em>identifiable</em> if the map <span class="math inline">\(\omega \mapsto p(\cdot|\omega)\)</span> is one-to-one.</li>
+<li>A model is <em>regular</em> at <span class="math inline">\(\omega\)</span> if its <em>Fisher information matrix</em> <span class="math display">\[
+J(\omega) = \mathbb{E}_{x_{[n]} \sim p(\cdot|\omega)}\big[J_n(\omega)\big]
+\]</span> is invertible. If <span class="math inline">\(q = p(\cdot|\omega_0)\)</span>, then <span class="math inline">\(J(\omega_0) = \partial^2 I(\omega_0)\)</span>.</li>
+<li>A model is <em>regular</em> if it is identifiable and regular at all <span class="math inline">\(\omega\)</span>; otherwise it is <em>singular</em>.</li>
+</ul>
+</section>
+<section id="regular-and-singular-examples" class="slide level2 smaller">
+<h2>Regular and Singular Examples</h2>
+<p>Parameters <span class="math inline">\(\omega = (x, y)\)</span>, data <span class="math inline">\(z\)</span>, true distribution <span class="math inline">\(q = p(\cdot|0, 0)\)</span>.</p>
+<style>
+.ex-table thead { display: none; }
+.ex-table td { vertical-align: middle !important; border: none !important; padding: 0.2em 0.5em !important; }
+.ex-table table { border: none !important; }
+</style>
+<div class="ex-table">
+<table class="caption-top">
+<colgroup>
+<col style="width: 62%">
+<col style="width: 38%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Regular.</strong> <span class="math inline">\(p(z|x, y) = \frac{1}{\pi} e^{-(z_1-x)^2 - (z_2-y)^2}\)</span>, <span class="math inline">\(z \in \mathbb{R}^2\)</span><br><br><span class="math inline">\(I(x, y) = x^2 + y^2\)</span><br><span class="math inline">\(\partial^2 I(0, 0) = \left(\begin{smallmatrix} 2 &amp; 0 \\ 0 &amp; 2 \end{smallmatrix}\right)\)</span></td>
+<td style="text-align: center;"><img data-src="slides_files/imgs/rlct-gaussian.png" width="230"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Singular.</strong> <span class="math inline">\(p(z|x, y) = \frac{1}{\sqrt{\pi}} e^{-(z - y^2 + x^3)^2}\)</span>, <span class="math inline">\(z \in \mathbb{R}\)</span><br><br><span class="math inline">\(I(x, y) = (y^2 - x^3)^2\)</span><br><span class="math inline">\(\partial^2 I(0, 0) = 0\)</span></td>
+<td style="text-align: center;"><img data-src="slides_files/imgs/rlct-cusp.png" width="230"></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<aside><div>
+<p>Zach Furman, “Introduction to Singular Learning Theory”, 2026.<br>
+Shaowei Lin, “Singular Learning Theory, Part II: Real Log Canonical Thresholds”, Notre Dame, 2013.</p>
+</div></aside></section>
+<section id="singular-models-are-everywhere" class="slide level2 smaller">
+<h2>Singular Models Are Everywhere</h2>
+<p><strong>Examples of singular models</strong></p>
+<ul>
+<li>Layered neural networks</li>
+<li>Normal mixtures, mixtures of statistical models</li>
+<li>Reduced rank regressions</li>
+<li>Boltzmann machines, Bayes networks</li>
+<li>Hidden Markov models</li>
+<li>Stochastic context-free grammars</li>
+</ul>
+<p>Models with hierarchical structure or hidden variables are typically singular.</p>
+
+<aside><div>
+<p>Watanabe, Sumio. <em>Algebraic geometry and statistical learning theory.</em> Vol. 25. Cambridge University Press, 2009.<br>
+Zach Furman, “Introduction to Singular Learning Theory”, 2026.</p>
+</div></aside></section>
+<section id="breaking-classical-statistics" class="slide level2 smaller">
+<h2>Breaking Classical Statistics</h2>
+<p><strong>Singular models do not behave like regular models</strong></p>
+<ul>
+<li>Maximum likelihood estimation is not efficient</li>
+<li>The posterior is not asymptotically Gaussian</li>
+<li>BIC: The Laplace approximation is incorrect</li>
+<li>AIC: Generalization error is not proportional to <span class="math inline">\(d = \dim \Omega\)</span></li>
+</ul>
+
+<aside><div>
+<p>Watanabe, Sumio. <em>Algebraic geometry and statistical learning theory.</em> Vol. 25. Cambridge University Press, 2009.<br>
+Zach Furman, “Introduction to Singular Learning Theory”, 2026.</p>
+</div></aside></section>
+<section id="real-log-canonical-threshold-rlct" class="slide level2 smaller">
+<h2>Real Log Canonical Threshold (RLCT)</h2>
+<ul>
+<li>Let <span class="math inline">\(f(\omega)\)</span> be a function with <span class="math inline">\(f(0)=0\)</span>. Let <span class="math inline">\(\Omega\)</span> be a sufficiently small neighborhood of <span class="math inline">\(0\)</span>.</li>
+<li>Asymptotically as <span class="math inline">\(\varepsilon \rightarrow 0\)</span>, the volume <span class="math inline">\(V(\varepsilon)\)</span> of the tubular neighborhood approaches</li>
+</ul>
+<div class="columns">
+<div class="column" style="vertical-align: middle;">
+<p><span class="math display">\[
+\begin{aligned}
+V(\varepsilon) &amp;= \int_{\{\omega \in \Omega \,\mid\, f(\omega)&lt;\varepsilon\}} d\omega \\
+&amp;\rightarrow C\varepsilon^\lambda (-\log \varepsilon)^{\theta-1}.
+\end{aligned}
+\]</span></p>
+</div><div class="column" style="vertical-align: middle;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/tubular-nbhd.png" class="quarto-figure quarto-figure-center" style="width:55.0%"></p>
+</figure>
+</div>
+</div></div>
+<ul>
+<li><em>Resolution of singularities</em> implies that <span class="math inline">\(\lambda\)</span> is a positive rational number (the <em>real log canonical threshold</em> at <span class="math inline">\(f\)</span> at the origin), and <span class="math inline">\(\theta\)</span> is a positive integer (its <em>multiplicity</em>).</li>
+</ul>
+</section>
+<section id="rlct-examples" class="slide level2 smaller">
+<h2>RLCT Examples</h2>
+<div class="ex-table">
+<table class="caption-top">
+<colgroup>
+<col style="width: 44%">
+<col style="width: 55%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Regular.</strong> <span class="math inline">\(f(x,y) = x^2 + y^2\)</span><br><br><span class="math inline">\((\lambda, \theta) = (1, 1)\)</span></td>
+<td style="text-align: center;"><img data-src="slides_files/imgs/rlct-gaussian-pair.png" width="290"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Singular.</strong> <span class="math inline">\(f(x,y) = (xy)^2\)</span><br><br><span class="math inline">\((\lambda, \theta) = (\frac{1}{2}, 2)\)</span></td>
+<td style="text-align: center;"><img data-src="slides_files/imgs/rlct-crossing-pair.png" width="290"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Singular.</strong> <span class="math inline">\(f(x,y) = (y^2 - x^3)^2\)</span><br><br><span class="math inline">\((\lambda, \theta) = (\frac{5}{12}, 1)\)</span></td>
+<td style="text-align: center;"><img data-src="slides_files/imgs/rlct-cusp-pair.png" width="290"></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<aside><div>
+<p>Arnol’d, Guseĭn-Zade, Varchenko. <em>Singularities of Differentiable Maps</em>, Vol. II. Birkhäuser, 1988.<br>
+Shaowei Lin, “Singular Learning Theory, Part II: Real Log Canonical Thresholds”, Notre Dame, 2013.</p>
+</div></aside></section>
+<section id="algebraic-geometry" class="slide level2 smaller">
+<h2>Algebraic Geometry</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/state-density.png" class="quarto-figure quarto-figure-center" style="width:85.0%"></p>
+</figure>
+</div>
+
+<aside><div>
+<p>Jesse Hoogland, “Physics I: The Thermodynamics of Learning”, Singular Learning Theory and Alignment Summit 2023.</p>
+</div></aside></section>
+<section id="resolution-of-singularities" class="slide level2 smaller">
+<h2>Resolution of Singularities</h2>
+<ul>
+<li>A <em>resolution of singularities</em> of <span class="math inline">\(f\)</span> is a proper real analytic map <span class="math inline">\(\rho : U \rightarrow \Omega\)</span>, isomorphic over <span class="math inline">\(\{f \neq 0\}\)</span>, such that on each chart <span class="math inline">\(U_i\)</span> of the manifold <span class="math inline">\(U\)</span>, <span class="math display">\[
+f \circ \rho(\mu) = a(\mu)\, \mu^{\kappa}, \qquad \det \partial\rho(\mu) = b(\mu)\, \mu^{\tau},
+\]</span> where <span class="math inline">\(a, b \neq 0\)</span> on <span class="math inline">\(U_i\)</span> and <span class="math inline">\(\mu^{\kappa} = \mu_1^{\kappa_1} \cdots \mu_d^{\kappa_d}\)</span>.</li>
+<li><strong>Theorem (Hironaka).</strong> Every real analytic function has a resolution of singularities.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/blowup.svg" class="quarto-figure quarto-figure-center" style="width:92.0%"></p>
+</figure>
+</div>
+
+<aside><div>
+<p>Hironaka. “Resolution of singularities of an algebraic variety over a field of characteristic zero.” <em>Annals of Mathematics</em> 79, 1964.<br>
+Shaowei Lin, “Singular Learning Theory, Part II: Real Log Canonical Thresholds”, Notre Dame, 2013.</p>
+</div></aside></section>
+<section id="the-learning-coefficient" class="slide level2 smaller">
+<h2>The Learning Coefficient</h2>
+<ul>
+<li><p>The <em>learning coefficient</em> <span class="math inline">\(\lambda\)</span> of a singular model at a parameter <span class="math inline">\(\omega_0\)</span> with respect to the true distribution <span class="math inline">\(q\)</span> is the RLCT of the relative information <span class="math inline">\(I(w) := I_{q\Vert p(\cdot \vert \omega)}(X)\)</span> at <span class="math inline">\(\omega_0\)</span>.</p></li>
+<li><p>The <em>learning coefficient</em> <span class="math inline">\(\lambda\)</span> of a singular model <em>over</em> <span class="math inline">\(\Omega\)</span> is the minimum of learning coefficients over all <span class="math inline">\(\omega \in \Omega\)</span>. Its multiplicity is the highest one available.</p></li>
+<li><p>Regular models have <span class="math inline">\(\lambda = d/2\)</span>. Singular models have <span class="math inline">\(\lambda \leq d/2\)</span>.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/volume-scaling.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
+</figure>
+</div>
+
+<aside><div>
+<p>Zach Furman, “Introduction to Singular Learning Theory”, 2026. Image credit: Hoogland, Van Wingerden. “You’re measuring model complexity wrong.” Alignment Forum, 2023.</p>
+</div></aside></section>
+<section id="free-energy-formula" class="slide level2 smaller">
+<h2>Free Energy Formula</h2>
+<p><strong>Theorem (Watanabe).</strong> If <span class="math inline">\(q\)</span> is realizable, then the free energy or <em>stochastic complexity</em> has an asymptotic expansion (as <span class="math inline">\(n \rightarrow \infty\)</span>) <span class="math display">\[
+F_n = n S_n + \lambda \log n - (\theta -1) \log \log n + O_p(1)
+\]</span> where <span class="math inline">\(\lambda\)</span> is the learning coefficient over <span class="math inline">\(\Omega\)</span> with respect to <span class="math inline">\(q\)</span>, and <span class="math inline">\(\theta\)</span> its multiplicity.</p>
+<p>For regular models, <span class="math inline">\(\lambda = d/2\)</span> and <span class="math inline">\(\theta = 1\)</span>, recovering the Bayesian Information Criterion.</p>
+
+<aside><div>
+<p>Watanabe, Sumio. “Algebraic analysis for nonidentifiable learning machines.” <em>Neural Computation</em> 13(4), 2001.</p>
+</div></aside></section>
+<section id="generalization-error-formula" class="slide level2 smaller">
+<h2>Generalization Error Formula</h2>
+<p><strong>Theorem (Watanabe).</strong> If <span class="math inline">\(q\)</span> is realizable, then the expectation of the generalization error is asymptotically (as <span class="math inline">\(n \rightarrow \infty\)</span>) <span class="math display">\[
+\mathbb{E}[G_n] = \frac{\lambda}{n} + o\left(\frac{1}{n}\right)
+\]</span> where <span class="math inline">\(\lambda\)</span> is the learning coefficient over <span class="math inline">\(\Omega\)</span> with respect to <span class="math inline">\(q\)</span>.</p>
+<p>For regular models, <span class="math inline">\(\lambda = d/2\)</span>, recovering the Akaike Information Criterion.</p>
+
+<aside><div>
+<p>Watanabe, Sumio. <em>Algebraic geometry and statistical learning theory.</em> Vol. 25. Cambridge University Press, 2009.</p>
+</div></aside></section></section>
+<section>
+<section id="deep-learning" class="title-slide slide level1 center">
+<h1>Deep Learning</h1>
+
+</section>
+<section id="generalization-classical-view" class="slide level2 smaller">
+<h2>Generalization: Classical View</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
+<li>Classical statistical learning theory predicted that deep learning could not work.</li>
+<li>More parameters means more variance: the BIC penalty is <span class="math inline">\(\frac{d}{2}\log n\)</span> and the generalization error is <span class="math inline">\(\frac{d}{2n}\)</span>.</li>
+<li>Models with far more parameters than data points should overfit.</li>
+</ul>
+</div><div class="column" style="width:55%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/bias-variance.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div></div>
+
+<aside><div>
+<p>Zach Furman, “Introduction to Singular Learning Theory”, 2026.</p>
+</div></aside></section>
+<section id="generalization-deep-learning" class="slide level2 smaller">
+<h2>Generalization: Deep Learning</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/double-descent.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+<p><em>Double descent.</em> Test error falls again as width grows past the interpolation threshold.</p>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/grokking.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+<p><em>Grokking.</em> Test accuracy jumps long after the training data is memorized.</p>
+</div></div>
+
+<aside><div>
+<p>Zach Furman, “Introduction to Singular Learning Theory”, 2026; data from Nakkiran et al.&nbsp;“Deep double descent”, 2019; illustration by Pearce et al.&nbsp;“Do machine learning models memorize or generalize?”, 2023.</p>
+</div></aside></section>
+<section id="singularities-and-generalization" class="slide level2 smaller">
+<h2>Singularities and Generalization</h2>
+<ul>
+<li>Neural networks are singular: hierarchical structure generates singularities in parameter space.</li>
+<li>The generalization error is governed by the learning coefficient, not the parameter count: <span class="math display">\[
+\mathbb{E}[G_n] \approx \frac{\lambda}{n}, \qquad \lambda \leq \frac{d}{2}.
+\]</span></li>
+<li>More singular points act as if they have fewer parameters, and generalize better.</li>
+<li>Overparametrization adds singularities: a learning machine with hierarchical structure can approximate many more functions, and its generalization error can still be smaller.</li>
+<li>Gradient descent and the posterior both favor regions of low loss with large volume, i.e.&nbsp;low <span class="math inline">\(\lambda\)</span>.</li>
+</ul>
+
+<aside><div>
+<p>Sumio Watanabe, “Mathematical Background of Artificial Intelligence Alignment”, Singular Learning Theory and Alignment Summit 2023.</p>
+</div></aside></section>
+<section id="bayesian-phase-transitions" class="slide level2 smaller">
+<h2>Bayesian Phase Transitions</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/phase-transition-watanabe.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/phase-transition-curves.png" class="quarto-figure quarto-figure-center" style="width:68.0%"></p>
+</figure>
+</div>
+</div></div>
+<ul>
+<li>Each singularity <span class="math inline">\(\omega^*_\alpha\)</span> contributes <span class="math inline">\(F_n(W_\alpha) \approx n L_\alpha + \lambda_\alpha \log n\)</span>.</li>
+<li>If <span class="math inline">\(L_1 &lt; L_2\)</span> but <span class="math inline">\(\lambda_1 &gt; \lambda_2\)</span>, the simpler phase <span class="math inline">\(W_2\)</span> wins for small <span class="math inline">\(n\)</span>, and the more accurate phase <span class="math inline">\(W_1\)</span> wins once <span class="math inline">\(n (L_2 - L_1) &gt; (\lambda_1 - \lambda_2) \log n\)</span>. At this critical point the posterior jumps from one singularity to another.</li>
+</ul>
+
+<aside><div>
+<p>Sumio Watanabe, “Mathematical Background of Artificial Intelligence Alignment”, 2023; Zach Furman, “Introduction to Singular Learning Theory”, 2026.</p>
+</div></aside></section>
+<section id="posterior-jumps" class="slide level2 smaller">
+<h2>Posterior Jumps</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/posterior-concentration.png" class="quarto-figure quarto-figure-center" style="width:55.0%"></p>
+</figure>
+</div>
+<p>In classical models, the posterior concentrates on the best parameter as <span class="math inline">\(n\)</span> grows: a gradual increase of confidence.</p>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/posterior-jumps.png" class="quarto-figure quarto-figure-center" style="width:48.0%"></p>
+</figure>
+</div>
+<p>In modern learning machines, the posterior jumps from one singularity to another. Even a huge <span class="math inline">\(n\)</span> is far from infinity, so deep learning always remains in a singular state.</p>
+</div></div>
+
+<aside><div>
+<p>Sumio Watanabe, “Mathematical Background of Artificial Intelligence Alignment”, Singular Learning Theory and Alignment Summit 2023.</p>
+</div></aside></section>
+<section id="internal-model-selection" class="slide level2 smaller">
+<h2>Internal Model Selection</h2>
+<div style="font-size: 85%;">
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Restricting the free energy to a region <span class="math inline">\(W_\alpha \subset \Omega\)</span> around a local minimum <span class="math inline">\(\omega^*_\alpha\)</span>, <span class="math display">\[
+F_n(W_\alpha) \approx n L_n(\omega^*_\alpha) + \lambda(\omega^*_\alpha) \log n.
+\]</span></li>
+<li>Tradeoff between accuracy and complexity depends on the dataset size <span class="math inline">\(n\)</span>.</li>
+<li>If <span class="math inline">\(\Omega = W_1 \cup W_2\)</span>, then <span class="math display">\[
+\begin{align*}
+F_n(\Omega) &amp;= -\log\big(e^{-F_n(W_1)} + e^{-F_n(W_2)}\big) \\
+&amp;\approx \min\{F_n(W_1), F_n(W_2)\}.
+\end{align*}
+\]</span></li>
+<li>Bayesian inference implicitly selects between submodels via free energy minimization.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/internal-model-selection.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div></div>
+</div>
+
+<aside><div>
+<p>Zach Furman, “Introduction to Singular Learning Theory”, 2026. Image credit: Jesse Hoogland.</p>
+</div></aside></section>
+<section id="hierarchical-structure" class="slide level2 smaller">
+<h2>Hierarchical Structure</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/watanabe-hierarchical-singularities.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
+</figure>
+</div>
+
+<aside><div>
+<p>Sumio Watanabe, “Mathematical Background of Artificial Intelligence Alignment”, Singular Learning Theory and Alignment Summit 2023.</p>
+</div></aside></section>
+<section id="learning-process-of-modern-machines" class="slide level2 smaller">
+<h2>Learning Process of Modern Machines</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/watanabe-learning-process.png" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
+</figure>
+</div>
+
+<aside><div>
+<p>Sumio Watanabe, “Mathematical Background of Artificial Intelligence Alignment”, Singular Learning Theory and Alignment Summit 2023.</p>
+</div></aside></section>
+<section id="phase-transition-and-critical-point" class="slide level2 smaller">
+<h2>Phase Transition and Critical Point</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/watanabe-critical-points.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
+</figure>
+</div>
+
+<aside><div>
+<p>Sumio Watanabe, “Mathematical Background of Artificial Intelligence Alignment”, Singular Learning Theory and Alignment Summit 2023.</p>
+</div></aside></section>
+<section id="free-energy-is-different-from-generalization-error" class="slide level2 smaller">
+<h2>Free Energy Is Different from Generalization Error</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/watanabe-free-energy-vs-generalization.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
+</figure>
+</div>
+
+<aside><div>
+<p>Sumio Watanabe, “Mathematical Background of Artificial Intelligence Alignment”, Singular Learning Theory and Alignment Summit 2023.</p>
+</div></aside></section>
+<section id="learning-curve-of-complex-model" class="slide level2 smaller">
+<h2>Learning Curve of Complex Model</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/watanabe-learning-curve.png" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
+</figure>
+</div>
+<p>In deep learning, the posterior distribution jumps from one singularity to another. This jump is optimal for the minimum free energy, but not optimal for the minimum generalization error.</p>
+
+<aside><div>
+<p>Sumio Watanabe, “Mathematical Background of Artificial Intelligence Alignment”, Singular Learning Theory and Alignment Summit 2023.</p>
+</div></aside></section>
+<section id="free-energy-vs-generalization" class="slide level2 smaller">
+<h2>Free Energy vs Generalization</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/free-energy-vs-generalization.png" class="quarto-figure quarto-figure-center" style="width:62.0%"></p>
+</figure>
+</div>
+<ul>
+<li>The singularity with the minimum free energy need not be the one with the minimum generalization error.</li>
+</ul>
+
+<aside><div>
+<p>Sumio Watanabe, “Mathematical Background of Artificial Intelligence Alignment”, Singular Learning Theory and Alignment Summit 2023.</p>
+</div></aside></section>
+<section id="local-posterior-sampling" class="slide level2 smaller">
+<h2>Local Posterior Sampling</h2>
+<div style="font-size: 85%;">
+<ul>
+<li>To measure the complexity of a trained network at <span class="math inline">\(\omega^*\)</span>, sample from the <em>localized tempered posterior</em> <span class="math display">\[
+p(\omega;\, \omega^*, \beta, \gamma) \;\propto\; \exp\Big( -n\beta\, L_n(\omega) - \frac{\gamma}{2}\,\Vert \omega - \omega^* \Vert^2 \Big).
+\]</span></li>
+<li><strong>Theorem (WBIC, Watanabe).</strong> At inverse temperature <span class="math inline">\(\beta^* = 1/\log n\)</span>, the posterior average of <span class="math inline">\(nL_n(\omega)\)</span> estimates the free energy <span class="math inline">\(F_n\)</span> to within <span class="math inline">\(O_p(\sqrt{\log n})\)</span>.</li>
+<li><em>Local learning coefficient</em> estimator: <span class="math display">\[
+\hat{\lambda}(\omega^*) = n\beta^* \Big( \mathbb{E}^{\beta^*}_{\omega^*,\gamma}\big[L_n(\omega)\big] - L_n(\omega^*) \Big).
+\]</span></li>
+<li>Sample with <em>stochastic gradient Langevin dynamics</em> (SGLD) on minibatches of size <span class="math inline">\(m\)</span>: <span class="math display">\[
+\Delta\omega_t = -\frac{\epsilon}{2}\Big( n\beta^*\, \nabla L_m(\omega_t) + \gamma(\omega_t - \omega^*) \Big) + \eta_t,
+\qquad \eta_t \sim \mathcal{N}(0, \epsilon I).
+\]</span></li>
+</ul>
+</div>
+
+<aside><div>
+<p>Watanabe, Sumio. “A widely applicable Bayesian information criterion.” <em>JMLR</em> 14, 2013.<br>
+Lau, Furman, Wang, Murfet, Wei. “The local learning coefficient: a singularity-aware complexity measure.” AISTATS 2025.</p>
+</div></aside></section>
+<section id="learning-coefficients-at-scale" class="slide level2 smaller">
+<h2>Learning Coefficients at Scale</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/llc-estimation.png" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<ul>
+<li>In deep linear networks, where the true learning coefficient is known, the SGLD estimate <span class="math inline">\(\hat{\lambda}(\omega^*)\)</span> is accurate up to 100 million parameters.</li>
+<li>The estimator only needs samples near the trained parameter <span class="math inline">\(\omega^*\)</span>, so it scales to large networks.</li>
+</ul>
+</div></div>
+
+<aside><div>
+<p>Furman, Lau. “Estimating the local learning coefficient at scale.” arXiv:2402.03698, 2024.</p>
+</div></aside></section>
+<section id="a-toy-model-of-superposition" class="slide level2 smaller">
+<h2>A Toy Model of Superposition</h2>
+<ul>
+<li>Anthropic’s toy model of superposition: <span class="math display">\[
+f(x, W) = \mathrm{ReLU}(W^\top W x + b), \qquad L_n(W) = \sum_i \Vert x_i - f(x_i, W) \Vert^2.
+\]</span></li>
+<li>Training passes through a sequence of critical points (<span class="math inline">\(k\)</span>-gons) of decreasing loss and increasing local learning coefficient: dynamical transitions mirror Bayesian phase transitions.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/superposition.png" class="quarto-figure quarto-figure-center" style="width:52.0%"></p>
+</figure>
+</div>
+
+<aside><div>
+<p>Elhage et al.&nbsp;“Toy models of superposition.” 2022.<br>
+Chen, Lau, Mendel, Wei, Murfet. “Dynamical versus Bayesian phase transitions in a toy model of superposition.” arXiv:2310.06301, 2023. Image credit: Jesse Hoogland.</p>
+</div></aside></section>
+<section id="stages-of-language-models" class="slide level2 smaller">
+<h2>Stages of Language Models</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/llm-stages.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div><div class="column" style="width:40%;">
+<p><br></p>
+<ul>
+<li>Plateaus and changes in the local learning coefficient <span class="math inline">\(\hat{\lambda}(\omega_t)\)</span> during training divide the training of a small transformer into developmental stages LM1–LM5.</li>
+<li>The learning coefficient shows stage boundaries that are hard to see in the test loss.</li>
+</ul>
+</div></div>
+
+<aside><div>
+<p>Hoogland, Wang, Farrugia-Roberts, Carroll, Wei, Murfet. “The developmental landscape of in-context learning.” arXiv:2402.02364, 2024.</p>
+</div></aside></section>
+<section id="more-resources" class="slide level2 smaller">
+<h2>More Resources</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/watanabe-gray.jpg" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/watanabe-green.jpg" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
+</figure>
+</div>
+</div></div>
+<center>
+<p><a href="https://sites.google.com/view/sumiowatanabe/home" class="uri">https://sites.google.com/view/sumiowatanabe/home</a><br>
+<a href="https://shaoweilin.github.io/singular/" class="uri">https://shaoweilin.github.io/singular/</a><br>
+<a href="https://singularlearningtheory.com/" class="uri">https://singularlearningtheory.com/</a><br>
+<a href="https://timaeus.co/" class="uri">https://timaeus.co/</a></p>
+</center>
+</section></section>
+<section id="thank-you" class="title-slide slide level1 center">
+<h1>Thank you : )</h1>
+<p><a href="https://shaoweilin.github.io/" class="uri">https://shaoweilin.github.io/</a></p>
+<!-- Abstract
+
+Relative information (Kullback-Leibler divergence) is a fundamental concept in statistics, machine
+learning and information theory.
+
+In the first half of the talk, I will define conditional relative information, list its axiomatic
+properties, and describe how it is used in machine learning. For example, the generalization error of
+a learning algorithm depends on the structure of algebraic geometric singularities of relative
+information.
+
+In the second half of the talk, I will define the rig category InfoRig of random variables and their
+conditional maps, as well as the rig category R(e) of dual numbers. Relative information can then be
+constructed, up to a scalar multiple, via rig functors from InfoRig to R(e). If time permits, I may
+discuss how this construction relates to the information cohomology of Baudot, Bennequin and Vigneaux,
+and to the operad derivations of Bradley.
+
+**Prerequisites.** Random variables, probability distribution, conditional probability; category,
+object, morphism, functor; rig (semiring).
+-->
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="slides_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="slides_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
