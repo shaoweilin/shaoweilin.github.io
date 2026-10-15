@@ -323,7 +323,7 @@ I_{q\Vert p}(\Omega) = \sup_{f}\; \Big\{ \int q\, f\, d\omega - \Lambda(f) \Big\
 </ul>
 </div></div>
 <ul>
-<li>Bayesian updating <em>is</em> variational free energy minimization: with <span class="math inline">\(f = -n L_n\)</span>, <span class="math inline">\(\Lambda(f) = -F_n\)</span> and the Gibbs density is the posterior <span class="math inline">\(p(\omega|x_{[n]})\)</span>, which minimizes <span class="math inline">\(\mathcal{F}(q) = \int q\, nL_n\, d\omega + I_{q\Vert p}(\Omega) = F_n + I_{q\Vert p(\cdot|x_{[n]})}(\Omega).\)</span></li>
+<li><strong>Bayesian updating <em>is</em> variational free energy minimization.</strong> <br> With <span class="math inline">\(f = -n L_n\)</span>, <span class="math inline">\(\Lambda(f) = -F_n\)</span> and the Gibbs density is the posterior <span class="math inline">\(p(\omega|x_{[n]})\)</span>, <br> which minimizes <span class="math inline">\(\mathcal{F}(q) = \int q\, nL_n\, d\omega + I_{q\Vert p}(\Omega) = F_n + I_{q\Vert p(\cdot|x_{[n]})}(\Omega).\)</span></li>
 </ul>
 
 <aside><div>
@@ -434,6 +434,7 @@ J(\omega) = \mathbb{E}_{x_{[n]} \sim p(\cdot|\omega)}\big[J_n(\omega)\big]
 .ex-table thead { display: none; }
 .ex-table td { vertical-align: middle !important; border: none !important; padding: 0.2em 0.5em !important; }
 .ex-table table { border: none !important; }
+.ex-table img { margin: 0 !important; }
 .ex-item { display: list-item; list-style: disc outside; margin-left: 1em; }
 </style>
 <div class="ex-table">
@@ -444,16 +445,16 @@ J(\omega) = \mathbb{E}_{x_{[n]} \sim p(\cdot|\omega)}\big[J_n(\omega)\big]
 </colgroup>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><span class="ex-item"><strong>Regular.</strong> <span class="math inline">\(p(z|x, y) = \frac{1}{\pi} e^{-(z_1-x)^2 - (z_2-y)^2}\)</span>, <span class="math inline">\(z \in \mathbb{R}^2\)</span><br><br><span class="math inline">\(I(x, y) = x^2 + y^2\)</span>, <span class="math inline">\(\partial^2 I(0, 0) = \left(\begin{smallmatrix} 2 &amp; 0 \\ 0 &amp; 2 \end{smallmatrix}\right)\)</span></span></td>
-<td style="text-align: center;"><img data-src="slides_files/imgs/rlct-gaussian.png" width="190"></td>
+<td style="text-align: left;"><span class="ex-item"><strong>Regular.</strong> <span class="math inline">\(p(z|x, y) \propto e^{-(z_1-x)^2 - (z_2-y)^2}\)</span>, <span class="math inline">\(z \in \mathbb{R}^2\)</span><br><span class="math inline">\(I(x, y) = x^2 + y^2\)</span>, <span class="math inline">\(\partial^2 I(0, 0) = \left(\begin{smallmatrix} 2 &amp; 0 \\ 0 &amp; 2 \end{smallmatrix}\right)\)</span></span></td>
+<td style="text-align: center;"><img data-src="slides_files/imgs/rlct-gaussian.png" width="170"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><span class="ex-item"><strong>Singular.</strong> <span class="math inline">\(p(z|x, y) = \frac{1}{\sqrt{\pi}} e^{-(z - xy)^2}\)</span>, <span class="math inline">\(z \in \mathbb{R}\)</span><br><br><span class="math inline">\(I(x, y) = (xy)^2\)</span>, <span class="math inline">\(\partial^2 I(0, 0) = 0\)</span></span></td>
-<td style="text-align: center;"><img data-src="slides_files/imgs/rlct-crossing.png" width="190"></td>
+<td style="text-align: left;"><span class="ex-item"><strong>Singular.</strong> <span class="math inline">\(p(z|x, y) \propto e^{-(z - xy)^2}\)</span>, <span class="math inline">\(z \in \mathbb{R}\)</span><br><span class="math inline">\(I(x, y) = (xy)^2\)</span>, <span class="math inline">\(\partial^2 I(0, 0) = 0\)</span></span></td>
+<td style="text-align: center;"><img data-src="slides_files/imgs/rlct-crossing.png" width="170"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><span class="ex-item"><strong>Singular.</strong> <span class="math inline">\(p(z|x, y) = \frac{1}{\sqrt{\pi}} e^{-(z - y^2 + x^3)^2}\)</span>, <span class="math inline">\(z \in \mathbb{R}\)</span><br><br><span class="math inline">\(I(x, y) = (y^2 - x^3)^2\)</span>, <span class="math inline">\(\partial^2 I(0, 0) = 0\)</span></span></td>
-<td style="text-align: center;"><img data-src="slides_files/imgs/rlct-cusp.png" width="190"></td>
+<td style="text-align: left;"><span class="ex-item"><strong>Singular.</strong> <span class="math inline">\(p(z|x, y) \propto e^{-(z - y^2 + x^3)^2}\)</span>, <span class="math inline">\(z \in \mathbb{R}\)</span><br><span class="math inline">\(I(x, y) = (y^2 - x^3)^2\)</span>, <span class="math inline">\(\partial^2 I(0, 0) = 0\)</span></span></td>
+<td style="text-align: center;"><img data-src="slides_files/imgs/rlct-cusp.png" width="170"></td>
 </tr>
 </tbody>
 </table>
@@ -778,14 +779,14 @@ F_n(W_\alpha) \approx n L_n(\omega^*_\alpha) + \lambda(\omega^*_\alpha) \log n.
 <h2>Local Posterior Sampling</h2>
 <div style="font-size: 85%;">
 <ul>
+<li><strong>Theorem (WBIC, Watanabe).</strong> At inverse temperature <span class="math inline">\(\beta^* = 1/\log n\)</span>, the posterior average of <span class="math inline">\(nL_n(\omega)\)</span> estimates the free energy <span class="math inline">\(F_n\)</span> to within <span class="math inline">\(O_p(\sqrt{\log n})\)</span>.</li>
 <li>To measure the complexity of a trained network at <span class="math inline">\(\omega^*\)</span>, sample from the <em>localized tempered posterior</em> <span class="math display">\[
 p(\omega;\, \omega^*, \beta, \gamma) \;\propto\; \exp\Big( -n\beta\, L_n(\omega) - \frac{\gamma}{2}\,\Vert \omega - \omega^* \Vert^2 \Big).
 \]</span></li>
-<li><strong>Theorem (WBIC, Watanabe).</strong> At inverse temperature <span class="math inline">\(\beta^* = 1/\log n\)</span>, the posterior average of <span class="math inline">\(nL_n(\omega)\)</span> estimates the free energy <span class="math inline">\(F_n\)</span> to within <span class="math inline">\(O_p(\sqrt{\log n})\)</span>.</li>
 <li><em>Local learning coefficient</em> estimator: <span class="math display">\[
 \hat{\lambda}(\omega^*) = n\beta^* \Big( \mathbb{E}^{\beta^*}_{\omega^*,\gamma}\big[L_n(\omega)\big] - L_n(\omega^*) \Big).
 \]</span></li>
-<li>Sample with <em>stochastic gradient Langevin dynamics</em> (SGLD) on minibatches of size <span class="math inline">\(m\)</span>: <span class="math display">\[
+<li><em>Stochastic gradient Langevin dynamics</em> (SGLD) on minibatches of size <span class="math inline">\(m\)</span>: <span class="math display">\[
 \Delta\omega_t = -\frac{\epsilon}{2}\Big( n\beta^*\, \nabla L_m(\omega_t) + \gamma(\omega_t - \omega^*) \Big) + \eta_t,
 \qquad \eta_t \sim \mathcal{N}(0, \epsilon I).
 \]</span></li>
@@ -883,6 +884,11 @@ Murfet, Troiani. “Programs as singularities.” arXiv:2504.08075, 2025.</p>
 <section id="thank-you" class="title-slide slide level1 center">
 <h1>Thank you : )</h1>
 <p><a href="https://shaoweilin.github.io/" class="uri">https://shaoweilin.github.io/</a></p>
+<!-- Title: Introduction to Singular Learning Theory
+
+Abstract: Beginning with Bayesian statistical learning, we introduce basic concepts of singular learning theory, and outline how the theory could explain some mysterious aspects of deep learning.
+
+Bio: Shaowei Lin is the Chief Scientist at the Beneficial AI Foundation. His PhD focussed on the algebraic-geometric aspects of singular learning theory. Today, he actively works on deductive program synthesis and on the information theory of spiking networks.  -->
 
 </section>
     </div>
