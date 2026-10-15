@@ -175,7 +175,7 @@ I_{q\Vert p}(X) = \int q(x) \log \frac{q(x)}{p(x)}\, dx.
 <ul>
 <li>Let <span class="math inline">\(p(x|\omega)\)</span> be the model likelihood of data <span class="math inline">\(x\)</span> given parameters <span class="math inline">\(\omega \in \Omega\)</span>.</li>
 <li>Suppose we observe data <span class="math inline">\(x_{[n]} = (x_1, \ldots, x_n) \in X^n\)</span>.</li>
-<li>(Normalized) negative log-likelihood of the data <span class="math inline">\(L_n(\omega) = -\frac{1}{n}\sum_{i} \log p(x_i|\omega)\)</span>.</li>
+<li><em>Loss</em> (normalized negative log-likelihood) <span class="math inline">\(L_n(\omega) = -\frac{1}{n}\sum_{i} \log p(x_i|\omega)\)</span>.</li>
 <li>Maximum likelihood estimate <span class="math inline">\(\hat{\omega} = \operatorname*{arg\,min}_{\omega} L_n(\omega)\)</span>.</li>
 <li><strong>Problem.</strong> Overfitting the data. Perhaps we have been doing it wrong.</li>
 </ul>
@@ -237,11 +237,11 @@ Z_n(M_j) = \int_\Omega e^{-n L_n(\omega \vert M_j)}\, p(\omega|M_j)\,d\omega.
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;"><em>negative log-likelihood</em> <span class="math inline">\(L_n(\omega) = -\frac{1}{n}\sum_i \log p(x_i\vert\omega)\)</span></td>
+<td style="text-align: center;"><em>loss</em> (negative log-likelihood) <span class="math inline">\(L_n(\omega) = -\frac{1}{n}\sum_i \log p(x_i\vert\omega)\)</span></td>
 <td style="text-align: center;"><em>cross-entropy</em><br><span class="math inline">\(L(\omega) = \mathbb{E}[L_n(\omega)]\)</span></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><em>empirical entropy</em> <span class="math inline">\(S_n = -\frac{1}{n}\sum_i \log q(x_i)\)</span></td>
+<td style="text-align: center;"><em>empirical entropy</em><br><span class="math inline">\(S_n = -\frac{1}{n}\sum_i \log q(x_i)\)</span></td>
 <td style="text-align: center;"><em>entropy</em><br><span class="math inline">\(S = \mathbb{E}[S_n]\)</span></td>
 </tr>
 <tr class="odd">
@@ -290,11 +290,11 @@ Z_n(M_j) = \int_\Omega e^{-n L_n(\omega \vert M_j)}\, p(\omega|M_j)\,d\omega.
 <section id="bayesian-information-criterion" class="slide level2 smaller">
 <h2>Bayesian Information Criterion</h2>
 <ul>
-<li>The <em>(empirical) Fisher information matrix</em> is the Hessian of the negative log-likelihood, or equivalently of the log-likelihood ratio, since <span class="math inline">\(S_n\)</span> does not depend on <span class="math inline">\(\omega\)</span>: <span class="math display">\[
+<li>The <em>(empirical) Fisher information matrix</em> is the Hessian of the loss, or equivalently of the log-likelihood ratio, since <span class="math inline">\(S_n\)</span> does not depend on <span class="math inline">\(\omega\)</span>: <span class="math display">\[
 J_n(\omega) = \partial^2 L_n(\omega) = \partial^2 I_n(\omega).
 \]</span></li>
 <li>A model is <em>regular</em> if it is identifiable (<span class="math inline">\(\omega \mapsto p(\cdot|\omega)\)</span> is one-to-one) and its <em>Fisher information matrix</em> <span class="math inline">\(J(\omega) = \mathbb{E}_{x_{[n]} \sim p(\cdot|\omega)}\big[J_n(\omega)\big]\)</span> is invertible for all <span class="math inline">\(\omega\)</span>.</li>
-<li><strong>Laplace approximation.</strong> Suppose the model is regular, with dimension <span class="math inline">\(d = \dim \Omega\)</span>. If <span class="math inline">\(L_n(\omega)\)</span> is uniquely minimized at the MLE <span class="math inline">\(\hat{\omega}\)</span> and <span class="math inline">\(J_n(\hat{\omega})\)</span> is full rank, then as <span class="math inline">\(n \rightarrow \infty\)</span>, <span class="math display">\[
+<li><strong>Laplace approximation.</strong> Suppose the model is regular, with <span class="math inline">\(\dim \Omega = d\)</span>. If the loss <span class="math inline">\(L_n(\omega)\)</span> is uniquely minimized at the MLE <span class="math inline">\(\hat{\omega}\)</span> and <span class="math inline">\(J_n(\hat{\omega})\)</span> is full rank, then as <span class="math inline">\(n \rightarrow \infty\)</span>, <span class="math display">\[
 F_n \approx n L_n(\hat{\omega}) + \frac{d}{2} \log n + O_p(1).
 \]</span></li>
 <li><em>Bayesian information criterion</em> (BIC): select the model minimizing <span class="math inline">\(n L_n(\hat{\omega}) + \frac{d}{2} \log n\)</span>.</li>
@@ -306,26 +306,24 @@ F_n \approx n L_n(\hat{\omega}) + \frac{d}{2} \log n + O_p(1).
 <ul>
 <li>The <em>log-partition function</em> <span class="math inline">\(\Lambda(f) = \log \int_\Omega e^{f}\, p\, d\omega\)</span> and relative information <span class="math inline">\(q \mapsto I_{q\Vert p}(\Omega)\)</span> are Legendre duals.</li>
 </ul>
-<div style="height: 0.75em;">
-
-</div>
 <div class="columns" style="font-size: 85%;">
 <div class="column" style="width:50%;">
-<p><strong>Theorem (Gibbs variational principle).</strong><br>
+<ul>
+<li><strong>Theorem (Gibbs variational principle).</strong><br>
 If <span class="math inline">\(\Lambda(f) &lt; \infty\)</span>, then <span class="math display">\[
 \Lambda(f) = \max_{q \ll p}\; \Big\{ \int q\, f\, d\omega - I_{q\Vert p}(\Omega) \Big\},
-\]</span> attained uniquely at the <br> <em>Gibbs density</em> <span class="math inline">\(q = e^{f - \Lambda(f)}\, p\)</span>.</p>
+\]</span> attained uniquely at the <br> <em>Gibbs density</em> <span class="math inline">\(q = e^{f - \Lambda(f)}\, p\)</span>.</li>
+</ul>
 </div><div class="column" style="width:50%;">
-<p><strong>Theorem (Donsker-Varadhan).</strong><br>
+<ul>
+<li><strong>Theorem (Donsker-Varadhan).</strong><br>
 For every density <span class="math inline">\(q\)</span> on <span class="math inline">\(\Omega\)</span>, over bounded <span class="math inline">\(f\)</span>, <span class="math display">\[
 I_{q\Vert p}(\Omega) = \sup_{f}\; \Big\{ \int q\, f\, d\omega - \Lambda(f) \Big\},
-\]</span> with optimum <span class="math inline">\(f = \log (q / p)\)</span>, <br> up to an additive constant.</p>
+\]</span> with optimum <span class="math inline">\(f = \log (q / p)\)</span>, <br> up to an additive constant.</li>
+</ul>
 </div></div>
-<div style="height: 0.75em;">
-
-</div>
 <ul>
-<li>Bayesian updating <em>is</em> free energy minimization: with <span class="math inline">\(f = -n L_n\)</span>, the Gibbs density is the posterior <span class="math inline">\(q(\omega) = p(\omega|x_{[n]}).\)</span></li>
+<li>Bayesian updating <em>is</em> variational free energy minimization: with <span class="math inline">\(f = -n L_n\)</span>, <span class="math inline">\(\Lambda(f) = -F_n\)</span> and the Gibbs density is the posterior <span class="math inline">\(p(\omega|x_{[n]})\)</span>, which minimizes <span class="math inline">\(\mathcal{F}(q) = \int q\, nL_n\, d\omega + I_{q\Vert p}(\Omega) = F_n + I_{q\Vert p(\cdot|x_{[n]})}(\Omega).\)</span></li>
 </ul>
 
 <aside><div>
@@ -336,17 +334,27 @@ Dupuis, Ellis. <em>A weak convergence approach to the theory of large deviations
 <section id="generalization-error" class="slide level2 smaller">
 <h2>Generalization Error</h2>
 <ul>
-<li><em>Generalization error</em> <span class="math inline">\(G_n\)</span> of Bayesian inference is the relative information from predictive distribution <span class="math inline">\(p^*(X)\)</span> to the true distribution <span class="math inline">\(q(X)\)</span>. <span class="math display">\[
+<li><em>Bayes test error</em> <span class="math inline">\(-\frac{1}{m}\sum_j \log p^*(x'_j) - S'_m\)</span> is the loss of the predictive distribution <span class="math inline">\(p^*\)</span> on a held-out sample <span class="math inline">\(x'_{[m]}\)</span> from <span class="math inline">\(q\)</span>, minus its empirical entropy.</li>
+<li>The constant <span class="math inline">\(S'_m\)</span> is often ignored, since only changes in the test error matter.</li>
+<li><em>Bayes generalization error</em> <span class="math inline">\(G_n\)</span> is the expectation of the Bayes test error over the held-out sample, or equivalently, the relative information from predictive distribution <span class="math inline">\(p^*(X)\)</span> to the true distribution <span class="math inline">\(q(X)\)</span>. <span class="math display">\[
 G_n := I_{q\Vert p^*}(X) = \int q(x) \log \frac{q(x)}{p^*(x)}\, dx
 \]</span></li>
 <li><span class="math inline">\(G_n\)</span> is a random variable, because <span class="math inline">\(p^*\)</span> depends on the data.</li>
-<li><em>Training error</em> <span class="math inline">\(T_n = -\frac{1}{n}\sum_i \log p^*(x_i) - S_n\)</span> is its empirical counterpart on the observed data. It underestimates <span class="math inline">\(G_n\)</span>, since the same data trained <span class="math inline">\(p^*\)</span>.</li>
-<li>How fast does <span class="math inline">\(\mathbb{E}[G_n]\)</span> and <span class="math inline">\(\mathbb{E}[T_n]\)</span> decay as <span class="math inline">\(n \rightarrow \infty\)</span>?</li>
-<li><strong>Akaike Information Criterion.</strong> If <span class="math inline">\(q = p(\cdot|\omega_0)\)</span> is realizable and the model is regular at <span class="math inline">\(\omega_0\)</span>, then <span class="math inline">\(\mathbb{E}[G_n] \approx \mathbb{E}[T_n] + \frac{d}{n}\)</span> and <span class="math inline">\(\mathbb{E}[G_n] \approx \frac{d}{2n}\)</span>.</li>
+</ul>
+</section>
+<section id="akaike-information-criterion" class="slide level2 smaller">
+<h2>Akaike Information Criterion</h2>
+<ul>
+<li><em>Bayes training error</em> <span class="math inline">\(T_n = -\frac{1}{n}\sum_i \log p^*(x_i) - S_n\)</span> is the counterpart of the Bayes test error on the training sample <span class="math inline">\(x_{[n]}\)</span> instead of a held-out sample</li>
+<li>It underestimates <span class="math inline">\(G_n\)</span>, since the same data trained <span class="math inline">\(p^*\)</span>. Can we estimate <span class="math inline">\(\mathbb{E}[G_n]\)</span> with <span class="math inline">\(\mathbb{E}[T_n]\)</span> accurately? How fast does <span class="math inline">\(\mathbb{E}[G_n]\)</span> and <span class="math inline">\(\mathbb{E}[T_n]\)</span> decay as <span class="math inline">\(n \rightarrow \infty\)</span>?</li>
+<li>Suppose <span class="math inline">\(q = p(\cdot|\omega_0)\)</span> is realizable and the model is regular at <span class="math inline">\(\omega_0\)</span>.</li>
+<li><strong>MLE Generalization (Akaike).</strong> The MLE <span class="math inline">\(\hat{\omega}\)</span> satisfies <span class="math inline">\(\mathbb{E}[L(\hat{\omega})] \approx \mathbb{E}[L_n(\hat{\omega})] + \frac{d}{n}\)</span>. <br> <em>AIC</em>: select the model minimizing <span class="math inline">\(n L_n(\hat{\omega}) + d\)</span>.</li>
+<li><strong>Bayes Generalization (Watanabe).</strong> The predictive <span class="math inline">\(p^*\)</span> satisfies <span class="math inline">\(\mathbb{E}[G_n] \approx \mathbb{E}[T_n] + \frac{d}{n}\)</span>, <br> so select the model minimizing <span class="math inline">\(nT_n + d\)</span> (the entropy <span class="math inline">\(S_n\)</span> is the same for all models).</li>
 </ul>
 
 <aside><div>
-<p>Akaike. “A new look at the statistical model identification.” <em>IEEE Trans. Automatic Control</em> 19(6), 1974.</p>
+<p>Akaike. “A new look at the statistical model identification.” <em>IEEE Trans. Automatic Control</em> 19(6), 1974.<br>
+Watanabe. “Asymptotic equivalence of Bayes cross validation and widely applicable information criterion in singular learning theory.” <em>JMLR</em> 11, 2010.</p>
 </div></aside></section>
 <section id="relative-information-is-everywhere" class="slide level2 smaller">
 <h2>Relative Information is Everywhere</h2>
@@ -384,7 +392,7 @@ G_n := I_{q\Vert p^*}(X) = \int q(x) \log \frac{q(x)}{p^*(x)}\, dx
 <td>minimized over models</td>
 </tr>
 <tr class="even">
-<td>BIC</td>
+<td>Bayes information criterion</td>
 <td><span class="math inline">\(F^0_n \approx n I_n(\hat{\omega}) + \frac{d}{2} \log n\)</span></td>
 <td>Laplace approximation</td>
 </tr>
@@ -394,7 +402,7 @@ G_n := I_{q\Vert p^*}(X) = \int q(x) \log \frac{q(x)}{p^*(x)}\, dx
 <td>minimized at the posterior</td>
 </tr>
 <tr class="even">
-<td>generalization error</td>
+<td>Bayes generalization error</td>
 <td><span class="math inline">\(G_n = I_{q\Vert p^*}(X)\)</span></td>
 <td>measured, not minimized</td>
 </tr>
@@ -419,11 +427,14 @@ J(\omega) = \mathbb{E}_{x_{[n]} \sim p(\cdot|\omega)}\big[J_n(\omega)\big]
 </section>
 <section id="regular-and-singular-examples" class="slide level2 smaller">
 <h2>Regular and Singular Examples</h2>
-<p>Parameters <span class="math inline">\(\omega = (x, y)\)</span>, data <span class="math inline">\(z\)</span>, true distribution <span class="math inline">\(q = p(\cdot|0, 0)\)</span>.</p>
+<ul>
+<li>Parameters <span class="math inline">\(\omega = (x, y)\)</span>, data <span class="math inline">\(z\)</span>, true distribution <span class="math inline">\(q = p(\cdot|0, 0)\)</span>.</li>
+</ul>
 <style>
 .ex-table thead { display: none; }
 .ex-table td { vertical-align: middle !important; border: none !important; padding: 0.2em 0.5em !important; }
 .ex-table table { border: none !important; }
+.ex-item { display: list-item; list-style: disc outside; margin-left: 1em; }
 </style>
 <div class="ex-table">
 <table class="caption-top">
@@ -433,12 +444,16 @@ J(\omega) = \mathbb{E}_{x_{[n]} \sim p(\cdot|\omega)}\big[J_n(\omega)\big]
 </colgroup>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><strong>Regular.</strong> <span class="math inline">\(p(z|x, y) = \frac{1}{\pi} e^{-(z_1-x)^2 - (z_2-y)^2}\)</span>, <span class="math inline">\(z \in \mathbb{R}^2\)</span><br><br><span class="math inline">\(I(x, y) = x^2 + y^2\)</span><br><span class="math inline">\(\partial^2 I(0, 0) = \left(\begin{smallmatrix} 2 &amp; 0 \\ 0 &amp; 2 \end{smallmatrix}\right)\)</span></td>
-<td style="text-align: center;"><img data-src="slides_files/imgs/rlct-gaussian.png" width="230"></td>
+<td style="text-align: left;"><span class="ex-item"><strong>Regular.</strong> <span class="math inline">\(p(z|x, y) = \frac{1}{\pi} e^{-(z_1-x)^2 - (z_2-y)^2}\)</span>, <span class="math inline">\(z \in \mathbb{R}^2\)</span><br><br><span class="math inline">\(I(x, y) = x^2 + y^2\)</span>, <span class="math inline">\(\partial^2 I(0, 0) = \left(\begin{smallmatrix} 2 &amp; 0 \\ 0 &amp; 2 \end{smallmatrix}\right)\)</span></span></td>
+<td style="text-align: center;"><img data-src="slides_files/imgs/rlct-gaussian.png" width="190"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong>Singular.</strong> <span class="math inline">\(p(z|x, y) = \frac{1}{\sqrt{\pi}} e^{-(z - y^2 + x^3)^2}\)</span>, <span class="math inline">\(z \in \mathbb{R}\)</span><br><br><span class="math inline">\(I(x, y) = (y^2 - x^3)^2\)</span><br><span class="math inline">\(\partial^2 I(0, 0) = 0\)</span></td>
-<td style="text-align: center;"><img data-src="slides_files/imgs/rlct-cusp.png" width="230"></td>
+<td style="text-align: left;"><span class="ex-item"><strong>Singular.</strong> <span class="math inline">\(p(z|x, y) = \frac{1}{\sqrt{\pi}} e^{-(z - xy)^2}\)</span>, <span class="math inline">\(z \in \mathbb{R}\)</span><br><br><span class="math inline">\(I(x, y) = (xy)^2\)</span>, <span class="math inline">\(\partial^2 I(0, 0) = 0\)</span></span></td>
+<td style="text-align: center;"><img data-src="slides_files/imgs/rlct-crossing.png" width="190"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="ex-item"><strong>Singular.</strong> <span class="math inline">\(p(z|x, y) = \frac{1}{\sqrt{\pi}} e^{-(z - y^2 + x^3)^2}\)</span>, <span class="math inline">\(z \in \mathbb{R}\)</span><br><br><span class="math inline">\(I(x, y) = (y^2 - x^3)^2\)</span>, <span class="math inline">\(\partial^2 I(0, 0) = 0\)</span></span></td>
+<td style="text-align: center;"><img data-src="slides_files/imgs/rlct-cusp.png" width="190"></td>
 </tr>
 </tbody>
 </table>
@@ -450,7 +465,8 @@ Shaowei Lin, “Singular Learning Theory, Part II: Real Log Canonical Thresholds
 </div></aside></section>
 <section id="singular-models-are-everywhere" class="slide level2 smaller">
 <h2>Singular Models Are Everywhere</h2>
-<p><strong>Examples of singular models</strong></p>
+<ul>
+<li>Examples of singular models:
 <ul>
 <li>Layered neural networks</li>
 <li>Normal mixtures, mixtures of statistical models</li>
@@ -458,8 +474,9 @@ Shaowei Lin, “Singular Learning Theory, Part II: Real Log Canonical Thresholds
 <li>Boltzmann machines, Bayes networks</li>
 <li>Hidden Markov models</li>
 <li>Stochastic context-free grammars</li>
+</ul></li>
+<li>Models with hierarchical structure or hidden variables are typically singular.</li>
 </ul>
-<p>Models with hierarchical structure or hidden variables are typically singular.</p>
 
 <aside><div>
 <p>Watanabe, Sumio. <em>Algebraic geometry and statistical learning theory.</em> Vol. 25. Cambridge University Press, 2009.<br>
@@ -467,12 +484,14 @@ Zach Furman, “Introduction to Singular Learning Theory”, 2026.</p>
 </div></aside></section>
 <section id="breaking-classical-statistics" class="slide level2 smaller">
 <h2>Breaking Classical Statistics</h2>
-<p><strong>Singular models do not behave like regular models</strong></p>
+<ul>
+<li>Singular models do not behave like regular models:
 <ul>
 <li>Maximum likelihood estimation is not efficient</li>
 <li>The posterior is not asymptotically Gaussian</li>
 <li>BIC: The Laplace approximation is incorrect</li>
 <li>AIC: Generalization error is not proportional to <span class="math inline">\(d = \dim \Omega\)</span></li>
+</ul></li>
 </ul>
 
 <aside><div>
@@ -514,15 +533,15 @@ V(\varepsilon) &amp;= \int_{\{\omega \in \Omega \,\mid\, f(\omega)&lt;\varepsilo
 </colgroup>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><strong>Regular.</strong> <span class="math inline">\(f(x,y) = x^2 + y^2\)</span><br><br><span class="math inline">\((\lambda, \theta) = (1, 1)\)</span></td>
+<td style="text-align: left;"><span class="ex-item"><strong>Regular.</strong> <span class="math inline">\(f(x,y) = x^2 + y^2\)</span><br><br><span class="math inline">\((\lambda, \theta) = (1, 1)\)</span></span></td>
 <td style="text-align: center;"><img data-src="slides_files/imgs/rlct-gaussian-pair.png" width="290"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong>Singular.</strong> <span class="math inline">\(f(x,y) = (xy)^2\)</span><br><br><span class="math inline">\((\lambda, \theta) = (\frac{1}{2}, 2)\)</span></td>
+<td style="text-align: left;"><span class="ex-item"><strong>Singular.</strong> <span class="math inline">\(f(x,y) = (xy)^2\)</span><br><br><span class="math inline">\((\lambda, \theta) = (\frac{1}{2}, 2)\)</span></span></td>
 <td style="text-align: center;"><img data-src="slides_files/imgs/rlct-crossing-pair.png" width="290"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>Singular.</strong> <span class="math inline">\(f(x,y) = (y^2 - x^3)^2\)</span><br><br><span class="math inline">\((\lambda, \theta) = (\frac{5}{12}, 1)\)</span></td>
+<td style="text-align: left;"><span class="ex-item"><strong>Singular.</strong> <span class="math inline">\(f(x,y) = (y^2 - x^3)^2\)</span><br><br><span class="math inline">\((\lambda, \theta) = (\frac{5}{12}, 1)\)</span></span></td>
 <td style="text-align: center;"><img data-src="slides_files/imgs/rlct-cusp-pair.png" width="290"></td>
 </tr>
 </tbody>
@@ -566,7 +585,7 @@ Shaowei Lin, “Singular Learning Theory, Part II: Real Log Canonical Thresholds
 <h2>The Learning Coefficient</h2>
 <ul>
 <li><p>The <em>learning coefficient</em> <span class="math inline">\(\lambda\)</span> of a singular model at a parameter <span class="math inline">\(\omega_0\)</span> with respect to the true distribution <span class="math inline">\(q\)</span> is the RLCT of the relative information <span class="math inline">\(I(w) := I_{q\Vert p(\cdot \vert \omega)}(X)\)</span> at <span class="math inline">\(\omega_0\)</span>.</p></li>
-<li><p>The <em>learning coefficient</em> <span class="math inline">\(\lambda\)</span> of a singular model <em>over</em> <span class="math inline">\(\Omega\)</span> is the minimum of learning coefficients over all <span class="math inline">\(\omega \in \Omega\)</span>. Its multiplicity is the highest one available.</p></li>
+<li><p>The <em>learning coefficient</em> <span class="math inline">\(\lambda\)</span> of a singular model <em>over</em> <span class="math inline">\(\Omega\)</span> is the minimum of learning coefficients over all <span class="math inline">\(\omega \in \Omega\)</span>. Its multiplicity is the highest one available for <span class="math inline">\(\lambda\)</span>.</p></li>
 <li><p>Regular models have <span class="math inline">\(\lambda = d/2\)</span>. Singular models have <span class="math inline">\(\lambda \leq d/2\)</span>.</p></li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
@@ -580,20 +599,26 @@ Shaowei Lin, “Singular Learning Theory, Part II: Real Log Canonical Thresholds
 </div></aside></section>
 <section id="free-energy-formula" class="slide level2 smaller">
 <h2>Free Energy Formula</h2>
-<p><strong>Theorem (Watanabe).</strong> If <span class="math inline">\(q\)</span> is realizable, then the free energy or <em>stochastic complexity</em> has an asymptotic expansion (as <span class="math inline">\(n \rightarrow \infty\)</span>) <span class="math display">\[
+<ul>
+<li><p><strong>Theorem (Watanabe).</strong> If <span class="math inline">\(q\)</span> is realizable, then the free energy or <em>stochastic complexity</em> has an asymptotic expansion (as <span class="math inline">\(n \rightarrow \infty\)</span>) <span class="math display">\[
 F_n = n S_n + \lambda \log n - (\theta -1) \log \log n + O_p(1)
-\]</span> where <span class="math inline">\(\lambda\)</span> is the learning coefficient over <span class="math inline">\(\Omega\)</span> with respect to <span class="math inline">\(q\)</span>, and <span class="math inline">\(\theta\)</span> its multiplicity.</p>
-<p>For regular models, <span class="math inline">\(\lambda = d/2\)</span> and <span class="math inline">\(\theta = 1\)</span>, recovering the Bayesian Information Criterion.</p>
+\]</span> where <span class="math inline">\(\lambda\)</span> is the learning coefficient over <span class="math inline">\(\Omega\)</span> with respect to <span class="math inline">\(q\)</span>, and <span class="math inline">\(\theta\)</span> its multiplicity.</p></li>
+<li><p>For regular models, <span class="math inline">\(\lambda = d/2\)</span> and <span class="math inline">\(\theta = 1\)</span>. Since <span class="math inline">\(n L_n(\hat{\omega}) = n S_n + O_p(1)\)</span> at the MLE <span class="math inline">\(\hat{\omega}\)</span>, this recovers the Bayesian Information Criterion <span class="math display">\[
+F_n = n L_n(\hat{\omega}) + \frac{d}{2} \log n + O_p(1).
+\]</span></p></li>
+</ul>
 
 <aside><div>
 <p>Watanabe, Sumio. “Algebraic analysis for nonidentifiable learning machines.” <em>Neural Computation</em> 13(4), 2001.</p>
 </div></aside></section>
 <section id="generalization-error-formula" class="slide level2 smaller">
 <h2>Generalization Error Formula</h2>
-<p><strong>Theorem (Watanabe).</strong> If <span class="math inline">\(q\)</span> is realizable, then the expectation of the generalization error is asymptotically (as <span class="math inline">\(n \rightarrow \infty\)</span>) <span class="math display">\[
+<ul>
+<li><strong>Theorem (Watanabe).</strong> If <span class="math inline">\(q\)</span> is realizable, then the expectation of the Bayes generalization error is asymptotically (as <span class="math inline">\(n \rightarrow \infty\)</span>) <span class="math display">\[
 \mathbb{E}[G_n] = \frac{\lambda}{n} + o\left(\frac{1}{n}\right)
-\]</span> where <span class="math inline">\(\lambda\)</span> is the learning coefficient over <span class="math inline">\(\Omega\)</span> with respect to <span class="math inline">\(q\)</span>.</p>
-<p>For regular models, <span class="math inline">\(\lambda = d/2\)</span>, recovering the Akaike Information Criterion.</p>
+\]</span> where <span class="math inline">\(\lambda\)</span> is the learning coefficient over <span class="math inline">\(\Omega\)</span> with respect to <span class="math inline">\(q\)</span>.</li>
+<li>For regular models, <span class="math inline">\(\lambda = d/2\)</span>, recovering the Akaike Information Criterion.</li>
+</ul>
 
 <aside><div>
 <p>Watanabe, Sumio. <em>Algebraic geometry and statistical learning theory.</em> Vol. 25. Cambridge University Press, 2009.</p>
@@ -603,14 +628,14 @@ F_n = n S_n + \lambda \log n - (\theta -1) \log \log n + O_p(1)
 <h1>Deep Learning</h1>
 
 </section>
-<section id="generalization-classical-view" class="slide level2 smaller">
-<h2>Generalization: Classical View</h2>
+<section id="generalization-classical-learning" class="slide level2 smaller">
+<h2>Generalization: Classical Learning</h2>
 <div class="columns">
 <div class="column" style="width:45%;">
 <ul>
-<li>Classical statistical learning theory predicted that deep learning could not work.</li>
-<li>More parameters means more variance: the BIC penalty is <span class="math inline">\(\frac{d}{2}\log n\)</span> and the generalization error is <span class="math inline">\(\frac{d}{2n}\)</span>.</li>
-<li>Models with far more parameters than data points should overfit.</li>
+<li>For regular models, maximum likelihood estimation overfits.</li>
+<li>AIC and BIC deal with overfitting by penalizing the number of parameters: the BIC penalty is <span class="math inline">\(\frac{d}{2}\log n\)</span> <br> and the AIC penalty is <span class="math inline">\(\frac{d}{2}\)</span>.</li>
+<li>These results do not apply to singular models such as deep neural nets.</li>
 </ul>
 </div><div class="column" style="width:55%;">
 <div class="quarto-figure quarto-figure-center">
@@ -623,88 +648,68 @@ F_n = n S_n + \lambda \log n - (\theta -1) \log \log n + O_p(1)
 <aside><div>
 <p>Zach Furman, “Introduction to Singular Learning Theory”, 2026.</p>
 </div></aside></section>
-<section id="generalization-deep-learning" class="slide level2 smaller">
+<section id="gen-deep" class="slide level2 smaller">
 <h2>Generalization: Deep Learning</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
+<style>
+#gen-deep img, #gen-deep figure, #gen-deep .quarto-figure, #gen-deep figure p { margin: 0 !important; }
+</style>
+<div class="columns" style="display: flex; align-items: center;">
+<div class="column" style="width:48%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/imgs/double-descent.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+<p><img data-src="slides_files/imgs/double-descent.png" class="quarto-figure quarto-figure-center" height="280"></p>
 </figure>
 </div>
-<p><em>Double descent.</em> Test error falls again as width grows past the interpolation threshold.</p>
-</div><div class="column" style="width:50%;">
+</div><div class="column" style="width:52%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/imgs/grokking.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+<p><img data-src="slides_files/imgs/grokking.png" class="quarto-figure quarto-figure-center" height="240"></p>
 </figure>
 </div>
+</div></div>
+<div class="columns" style="margin-top: 0.5em;">
+<div class="column" style="width:48%;">
+<p><em>Double descent.</em> Test error falls again as width grows past interpolation threshold.</p>
+</div><div class="column" style="width:52%;">
 <p><em>Grokking.</em> Test accuracy jumps long after the training data is memorized.</p>
 </div></div>
 
 <aside><div>
 <p>Zach Furman, “Introduction to Singular Learning Theory”, 2026; data from Nakkiran et al.&nbsp;“Deep double descent”, 2019; illustration by Pearce et al.&nbsp;“Do machine learning models memorize or generalize?”, 2023.</p>
 </div></aside></section>
-<section id="singularities-and-generalization" class="slide level2 smaller">
-<h2>Singularities and Generalization</h2>
-<ul>
-<li>Neural networks are singular: hierarchical structure generates singularities in parameter space.</li>
-<li>The generalization error is governed by the learning coefficient, not the parameter count: <span class="math display">\[
-\mathbb{E}[G_n] \approx \frac{\lambda}{n}, \qquad \lambda \leq \frac{d}{2}.
-\]</span></li>
-<li>More singular points act as if they have fewer parameters, and generalize better.</li>
-<li>Overparametrization adds singularities: a learning machine with hierarchical structure can approximate many more functions, and its generalization error can still be smaller.</li>
-<li>Gradient descent and the posterior both favor regions of low loss with large volume, i.e.&nbsp;low <span class="math inline">\(\lambda\)</span>.</li>
-</ul>
+<section id="singularities-in-deep-learning" class="slide level2 smaller">
+<h2>Singularities in Deep Learning</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/watanabe-hierarchical-singularities.png" class="quarto-figure quarto-figure-center" style="width:62.0%"></p>
+</figure>
+</div>
 
 <aside><div>
 <p>Sumio Watanabe, “Mathematical Background of Artificial Intelligence Alignment”, Singular Learning Theory and Alignment Summit 2023.</p>
 </div></aside></section>
-<section id="bayesian-phase-transitions" class="slide level2 smaller">
-<h2>Bayesian Phase Transitions</h2>
+<section id="what-happens-during-learning" class="slide level2 smaller">
+<h2>What Happens During Learning?</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/imgs/phase-transition-watanabe.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
+<p><img data-src="slides_files/imgs/posterior-concentration.png" class="quarto-figure quarto-figure-center" height="300"></p>
 </figure>
 </div>
+<p>In regular models, the posterior concentrates on the best parameter as <span class="math inline">\(n\)</span> grows: a gradual increase of confidence.</p>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/imgs/phase-transition-curves.png" class="quarto-figure quarto-figure-center" style="width:68.0%"></p>
+<p><img data-src="slides_files/imgs/posterior-jumps.png" class="quarto-figure quarto-figure-center" height="300"></p>
 </figure>
 </div>
-</div></div>
-<ul>
-<li>Each singularity <span class="math inline">\(\omega^*_\alpha\)</span> contributes <span class="math inline">\(F_n(W_\alpha) \approx n L_\alpha + \lambda_\alpha \log n\)</span>.</li>
-<li>If <span class="math inline">\(L_1 &lt; L_2\)</span> but <span class="math inline">\(\lambda_1 &gt; \lambda_2\)</span>, the simpler phase <span class="math inline">\(W_2\)</span> wins for small <span class="math inline">\(n\)</span>, and the more accurate phase <span class="math inline">\(W_1\)</span> wins once <span class="math inline">\(n (L_2 - L_1) &gt; (\lambda_1 - \lambda_2) \log n\)</span>. At this critical point the posterior jumps from one singularity to another.</li>
-</ul>
-
-<aside><div>
-<p>Sumio Watanabe, “Mathematical Background of Artificial Intelligence Alignment”, 2023; Zach Furman, “Introduction to Singular Learning Theory”, 2026.</p>
-</div></aside></section>
-<section id="posterior-jumps" class="slide level2 smaller">
-<h2>Posterior Jumps</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_files/imgs/posterior-concentration.png" class="quarto-figure quarto-figure-center" style="width:55.0%"></p>
-</figure>
-</div>
-<p>In classical models, the posterior concentrates on the best parameter as <span class="math inline">\(n\)</span> grows: a gradual increase of confidence.</p>
-</div><div class="column" style="width:50%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_files/imgs/posterior-jumps.png" class="quarto-figure quarto-figure-center" style="width:48.0%"></p>
-</figure>
-</div>
-<p>In modern learning machines, the posterior jumps from one singularity to another. Even a huge <span class="math inline">\(n\)</span> is far from infinity, so deep learning always remains in a singular state.</p>
+<p>In singular models, the posterior jumps from one singularity to another. Even a huge <span class="math inline">\(n\)</span> is far from infinity, so deep learning always remains in a singular state.</p>
 </div></div>
 
 <aside><div>
-<p>Sumio Watanabe, “Mathematical Background of Artificial Intelligence Alignment”, Singular Learning Theory and Alignment Summit 2023.</p>
+<p>Sumio Watanabe, “Mathematical Background of Artificial Intelligence Alignment”, Singular Learning Theory and Alignment Summit 2023.<br>
+Chen, Lau, Mendel, Wei, Murfet. “Dynamical versus Bayesian phase transitions in a toy model of superposition.” arXiv:2310.06301, 2023.</p>
 </div></aside></section>
 <section id="internal-model-selection" class="slide level2 smaller">
 <h2>Internal Model Selection</h2>
@@ -712,17 +717,16 @@ F_n = n S_n + \lambda \log n - (\theta -1) \log \log n + O_p(1)
 <div class="columns">
 <div class="column" style="width:50%;">
 <ul>
-<li>Restricting the free energy to a region <span class="math inline">\(W_\alpha \subset \Omega\)</span> around a local minimum <span class="math inline">\(\omega^*_\alpha\)</span>, <span class="math display">\[
-F_n(W_\alpha) \approx n L_n(\omega^*_\alpha) + \lambda(\omega^*_\alpha) \log n.
-\]</span></li>
-<li>Tradeoff between accuracy and complexity depends on the dataset size <span class="math inline">\(n\)</span>.</li>
-<li>If <span class="math inline">\(\Omega = W_1 \cup W_2\)</span>, then <span class="math display">\[
+<li>Suppose <span class="math inline">\(\Omega\)</span> is partitioned into two subspaces <span class="math inline">\(W_1\)</span> and <span class="math inline">\(W_2\)</span>. Then <span class="math display">\[
 \begin{align*}
 F_n(\Omega) &amp;= -\log\big(e^{-F_n(W_1)} + e^{-F_n(W_2)}\big) \\
 &amp;\approx \min\{F_n(W_1), F_n(W_2)\}.
 \end{align*}
 \]</span></li>
-<li>Bayesian inference implicitly selects between submodels via free energy minimization.</li>
+<li>Restricting the free energy to a region <span class="math inline">\(W_\alpha \subset \Omega\)</span> around a local minimum <span class="math inline">\(\omega^*_\alpha\)</span>, <span class="math display">\[
+F_n(W_\alpha) \approx n L_n(\omega^*_\alpha) + \lambda(\omega^*_\alpha) \log n.
+\]</span></li>
+<li>Tradeoff between accuracy and complexity depends on the dataset size <span class="math inline">\(n\)</span>.</li>
 </ul>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
@@ -736,75 +740,39 @@ F_n(\Omega) &amp;= -\log\big(e^{-F_n(W_1)} + e^{-F_n(W_2)}\big) \\
 <aside><div>
 <p>Zach Furman, “Introduction to Singular Learning Theory”, 2026. Image credit: Jesse Hoogland.</p>
 </div></aside></section>
-<section id="hierarchical-structure" class="slide level2 smaller">
-<h2>Hierarchical Structure</h2>
+<section id="free-energy-curves" class="slide level2 smaller">
+<h2>Free Energy Curves</h2>
+<div style="margin: -0.6em 0 -0.4em 0;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/imgs/watanabe-hierarchical-singularities.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
+<p><img data-src="slides_files/imgs/critical-points.png" class="quarto-figure quarto-figure-center" style="width:52.0%"></p>
 </figure>
 </div>
-
-<aside><div>
-<p>Sumio Watanabe, “Mathematical Background of Artificial Intelligence Alignment”, Singular Learning Theory and Alignment Summit 2023.</p>
-</div></aside></section>
-<section id="learning-process-of-modern-machines" class="slide level2 smaller">
-<h2>Learning Process of Modern Machines</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_files/imgs/watanabe-learning-process.png" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
-</figure>
-</div>
-
-<aside><div>
-<p>Sumio Watanabe, “Mathematical Background of Artificial Intelligence Alignment”, Singular Learning Theory and Alignment Summit 2023.</p>
-</div></aside></section>
-<section id="phase-transition-and-critical-point" class="slide level2 smaller">
-<h2>Phase Transition and Critical Point</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_files/imgs/watanabe-critical-points.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
-</figure>
-</div>
-
-<aside><div>
-<p>Sumio Watanabe, “Mathematical Background of Artificial Intelligence Alignment”, Singular Learning Theory and Alignment Summit 2023.</p>
-</div></aside></section>
-<section id="free-energy-is-different-from-generalization-error" class="slide level2 smaller">
-<h2>Free Energy Is Different from Generalization Error</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_files/imgs/watanabe-free-energy-vs-generalization.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
-
-<aside><div>
-<p>Sumio Watanabe, “Mathematical Background of Artificial Intelligence Alignment”, Singular Learning Theory and Alignment Summit 2023.</p>
-</div></aside></section>
-<section id="learning-curve-of-complex-model" class="slide level2 smaller">
-<h2>Learning Curve of Complex Model</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_files/imgs/watanabe-learning-curve.png" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
-</figure>
-</div>
-<p>In deep learning, the posterior distribution jumps from one singularity to another. This jump is optimal for the minimum free energy, but not optimal for the minimum generalization error.</p>
-
-<aside><div>
-<p>Sumio Watanabe, “Mathematical Background of Artificial Intelligence Alignment”, Singular Learning Theory and Alignment Summit 2023.</p>
-</div></aside></section>
-<section id="free-energy-vs-generalization" class="slide level2 smaller">
-<h2>Free Energy vs Generalization</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_files/imgs/free-energy-vs-generalization.png" class="quarto-figure quarto-figure-center" style="width:62.0%"></p>
-</figure>
 </div>
 <ul>
-<li>The singularity with the minimum free energy need not be the one with the minimum generalization error.</li>
+<li>Each submodel has free energy <span class="math inline">\(nL_k + \lambda_k \log n\)</span>: smaller networks have larger loss <span class="math inline">\(L_k\)</span> but smaller <span class="math inline">\(\lambda_k\)</span>. The full model has free energy <span class="math inline">\(F_n \approx \min_k \{nL_k + \lambda_k \log n\}\)</span>.</li>
+<li>At each critical point, a more complex network takes over the minimum free energy, creating a phase transition.</li>
 </ul>
 
 <aside><div>
-<p>Sumio Watanabe, “Mathematical Background of Artificial Intelligence Alignment”, Singular Learning Theory and Alignment Summit 2023.</p>
+<p>Adapted from Sumio Watanabe, “Mathematical Background of Artificial Intelligence Alignment”, Singular Learning Theory and Alignment Summit 2023.</p>
+</div></aside></section>
+<section id="generalization-error-curves" class="slide level2 smaller">
+<h2>Generalization Error Curves</h2>
+<div style="margin: -0.6em 0 -0.4em 0;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/learning-curve.png" class="quarto-figure quarto-figure-center" style="width:55.0%"></p>
+</figure>
+</div>
+</div>
+<ul>
+<li>Each submodel has test error <span class="math inline">\(T_k + \lambda_k/n\)</span>, which is a proxy for the generalization error <span class="math inline">\(\mathbb{E}[G_n] \approx \lambda_k/n\)</span>.</li>
+<li>The Bayes curve jumps at the free energy critical points (red), much later than where the test errors cross (white).</li>
+</ul>
+
+<aside><div>
+<p>Adapted from Sumio Watanabe, “Mathematical Background of Artificial Intelligence Alignment”, Singular Learning Theory and Alignment Summit 2023.</p>
 </div></aside></section>
 <section id="local-posterior-sampling" class="slide level2 smaller">
 <h2>Local Posterior Sampling</h2>
@@ -828,109 +796,93 @@ p(\omega;\, \omega^*, \beta, \gamma) \;\propto\; \exp\Big( -n\beta\, L_n(\omega)
 <p>Watanabe, Sumio. “A widely applicable Bayesian information criterion.” <em>JMLR</em> 14, 2013.<br>
 Lau, Furman, Wang, Murfet, Wei. “The local learning coefficient: a singularity-aware complexity measure.” AISTATS 2025.</p>
 </div></aside></section>
-<section id="learning-coefficients-at-scale" class="slide level2 smaller">
-<h2>Learning Coefficients at Scale</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
+<section id="estimating-learning-coefficients" class="slide level2 smaller">
+<h2>Estimating Learning Coefficients</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/imgs/llc-estimation.png" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
+<p><img data-src="slides_files/imgs/llc-at-scale.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
 </div>
-</div><div class="column" style="width:50%;">
-<p><br></p>
-<ul>
-<li>In deep linear networks, where the true learning coefficient is known, the SGLD estimate <span class="math inline">\(\hat{\lambda}(\omega^*)\)</span> is accurate up to 100 million parameters.</li>
-<li>The estimator only needs samples near the trained parameter <span class="math inline">\(\omega^*\)</span>, so it scales to large networks.</li>
-</ul>
-</div></div>
 
 <aside><div>
-<p>Furman, Lau. “Estimating the local learning coefficient at scale.” arXiv:2402.03698, 2024.</p>
+<p>Furman, Lau. “Estimating the local learning coefficient at scale.” arXiv:2402.03698, 2024.<br>
+Lau, Furman, Wang, Murfet, Wei. “The local learning coefficient: a singularity-aware complexity measure.” AISTATS 2025.</p>
 </div></aside></section>
-<section id="a-toy-model-of-superposition" class="slide level2 smaller">
-<h2>A Toy Model of Superposition</h2>
-<ul>
-<li>Anthropic’s toy model of superposition: <span class="math display">\[
-f(x, W) = \mathrm{ReLU}(W^\top W x + b), \qquad L_n(W) = \sum_i \Vert x_i - f(x_i, W) \Vert^2.
-\]</span></li>
-<li>Training passes through a sequence of critical points (<span class="math inline">\(k\)</span>-gons) of decreasing loss and increasing local learning coefficient: dynamical transitions mirror Bayesian phase transitions.</li>
-</ul>
+<section id="toy-model-of-superposition" class="slide level2 smaller">
+<h2>Toy Model of Superposition</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/imgs/superposition.png" class="quarto-figure quarto-figure-center" style="width:52.0%"></p>
+<p><img data-src="slides_files/imgs/tms-kgons.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
 </div>
 
 <aside><div>
-<p>Elhage et al.&nbsp;“Toy models of superposition.” 2022.<br>
-Chen, Lau, Mendel, Wei, Murfet. “Dynamical versus Bayesian phase transitions in a toy model of superposition.” arXiv:2310.06301, 2023. Image credit: Jesse Hoogland.</p>
+<p>Chen, Lau, Mendel, Wei, Murfet. “Dynamical versus Bayesian phase transitions in a toy model of superposition.” arXiv:2310.06301, 2023. Image credit: Jesse Hoogland.</p>
 </div></aside></section>
 <section id="stages-of-language-models" class="slide level2 smaller">
 <h2>Stages of Language Models</h2>
-<div class="columns">
-<div class="column" style="width:60%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/imgs/llm-stages.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+<p><img data-src="slides_files/imgs/lm-stages-detail.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
 </div>
-</div><div class="column" style="width:40%;">
-<p><br></p>
-<ul>
-<li>Plateaus and changes in the local learning coefficient <span class="math inline">\(\hat{\lambda}(\omega_t)\)</span> during training divide the training of a small transformer into developmental stages LM1–LM5.</li>
-<li>The learning coefficient shows stage boundaries that are hard to see in the test loss.</li>
-</ul>
-</div></div>
 
 <aside><div>
 <p>Hoogland, Wang, Farrugia-Roberts, Carroll, Wei, Murfet. “The developmental landscape of in-context learning.” arXiv:2402.02364, 2024.</p>
 </div></aside></section>
+<section id="beyond-learning-coefficients" class="slide level2 smaller">
+<h2>Beyond Learning Coefficients</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/beyond-llc.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
+</figure>
+</div>
+
+<aside><div>
+<p>Baker, Wang, Hoogland, Murfet. “Structural inference: interpreting small language models with susceptibilities.” arXiv:2504.18274, 2025.<br>
+Adam, Furman, Hoogland. “The loss kernel: a geometric probe for deep learning interpretability.” arXiv:2509.26537, 2025.</p>
+</div></aside></section>
+<section id="deeper-theory" class="slide level2 smaller">
+<h2>Deeper Theory?</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/deeper-theory.png" class="quarto-figure quarto-figure-center" style="width:85.0%"></p>
+</figure>
+</div>
+
+<aside><div>
+<p>Pepin Lehalleur, Hoogland, Farrugia-Roberts, Wei, Gietelink Oldenziel, Wang, Carroll, Murfet. “You are what you eat: AI alignment requires understanding how data shapes structure and generalisation.” arXiv:2502.05475, 2025.<br>
+Murfet, Troiani. “Programs as singularities.” arXiv:2504.08075, 2025.</p>
+</div></aside></section>
 <section id="more-resources" class="slide level2 smaller">
 <h2>More Resources</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="quarto-figure quarto-figure-center">
+<div class="columns" style="display: flex; align-items: center;">
+<div class="column" style="width:25%;">
+<div class="quarto-figure quarto-figure-right">
 <figure>
-<p><img data-src="slides_files/imgs/watanabe-gray.jpg" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
+<p><img data-src="slides_files/imgs/watanabe-gray.jpg" class="quarto-figure quarto-figure-right" style="width:100.0%"></p>
 </figure>
 </div>
-</div><div class="column" style="width:50%;">
-<div class="quarto-figure quarto-figure-center">
+</div><div class="column" style="width:25%;">
+<div class="quarto-figure quarto-figure-left">
 <figure>
-<p><img data-src="slides_files/imgs/watanabe-green.jpg" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
+<p><img data-src="slides_files/imgs/watanabe-green.jpg" class="quarto-figure quarto-figure-left" style="width:100.0%"></p>
 </figure>
 </div>
-</div></div>
-<center>
+</div><div class="column" style="padding-left: 1em; white-space: nowrap; font-size: 70%;">
 <p><a href="https://sites.google.com/view/sumiowatanabe/home" class="uri">https://sites.google.com/view/sumiowatanabe/home</a><br>
 <a href="https://shaoweilin.github.io/singular/" class="uri">https://shaoweilin.github.io/singular/</a><br>
 <a href="https://singularlearningtheory.com/" class="uri">https://singularlearningtheory.com/</a><br>
+<a href="https://devinterp.com/resources" class="uri">https://devinterp.com/resources</a><br>
+<a href="https://devinterp.com/publications" class="uri">https://devinterp.com/publications</a><br>
+<a href="https://devinterp.com/discord" class="uri">https://devinterp.com/discord</a><br>
+<a href="https://github.com/timaeus-research/devinterp/" class="uri">https://github.com/timaeus-research/devinterp/</a><br>
 <a href="https://timaeus.co/" class="uri">https://timaeus.co/</a></p>
-</center>
+</div></div>
 </section></section>
 <section id="thank-you" class="title-slide slide level1 center">
 <h1>Thank you : )</h1>
 <p><a href="https://shaoweilin.github.io/" class="uri">https://shaoweilin.github.io/</a></p>
-<!-- Abstract
-
-Relative information (Kullback-Leibler divergence) is a fundamental concept in statistics, machine
-learning and information theory.
-
-In the first half of the talk, I will define conditional relative information, list its axiomatic
-properties, and describe how it is used in machine learning. For example, the generalization error of
-a learning algorithm depends on the structure of algebraic geometric singularities of relative
-information.
-
-In the second half of the talk, I will define the rig category InfoRig of random variables and their
-conditional maps, as well as the rig category R(e) of dual numbers. Relative information can then be
-constructed, up to a scalar multiple, via rig functors from InfoRig to R(e). If time permits, I may
-discuss how this construction relates to the information cohomology of Baudot, Bennequin and Vigneaux,
-and to the operad derivations of Bradley.
-
-**Prerequisites.** Random variables, probability distribution, conditional probability; category,
-object, morphism, functor; rig (semiring).
--->
 
 </section>
     </div>
