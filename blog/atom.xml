@@ -2,10 +2,21 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://shaoweilin.github.io</id>
   <title>Types from Spikes</title>
-  <updated>2026-10-15T03:56:23.345323+00:00</updated>
+  <updated>2026-10-15T04:07:14.429821+00:00</updated>
   <link href="https://shaoweilin.github.io"/>
   <link href="https://shaoweilin.github.io/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.13">ABlog</generator>
+  <entry>
+    <id>https://shaoweilin.github.io/posts/2026-10-15-introduction-to-singular-learning-theory/</id>
+    <title>Introduction to Singular Learning Theory</title>
+    <updated>2026-10-15T00:00:00+00:00</updated>
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Beginning with Bayesian statistical learning, we introduce basic concepts of singular learning theory, and outline how the theory could explain some mysterious aspects of deep learning.&lt;/p&gt;
+&lt;/p&gt;
+</content>
+    <link href="https://shaoweilin.github.io/posts/2026-10-15-introduction-to-singular-learning-theory/"/>
+    <summary>Beginning with Bayesian statistical learning, we introduce basic concepts of singular learning theory, and outline how the theory could explain some mysterious aspects of deep learning.</summary>
+    <published>2026-10-15T00:00:00+00:00</published>
+  </entry>
   <entry>
     <id>https://shaoweilin.github.io/posts/2025-10-30-action-driven-processes-for-continuous-time-control/</id>
     <title>Action-driven processes for continuous-time control</title>
