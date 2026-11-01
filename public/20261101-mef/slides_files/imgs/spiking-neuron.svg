@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 120" width="144" height="120">
+  <!-- Cartoon of a spiking neuron: dendrites, soma, axon, and a spike on the axon. -->
+  <g stroke="#2b4c7e" stroke-width="3" stroke-linecap="round" fill="none">
+    <!-- dendrites -->
+    <path d="M44 52 L24 30 M24 30 L14 34 M24 30 L22 16"/>
+    <path d="M40 62 L12 62 M20 62 L10 52"/>
+    <path d="M44 72 L26 94 M26 94 L14 92 M26 94 L28 108"/>
+    <!-- axon -->
+    <path d="M70 62 L118 62"/>
+    <!-- axon terminals -->
+    <path d="M118 62 L128 52 M118 62 L128 72 M118 62 L130 62"/>
+  </g>
+  <!-- synaptic boutons -->
+  <g fill="#2b4c7e">
+    <circle cx="129" cy="51" r="3.5"/>
+    <circle cx="131" cy="62" r="3.5"/>
+    <circle cx="129" cy="73" r="3.5"/>
+  </g>
+  <!-- soma -->
+  <circle cx="56" cy="62" r="15" fill="#6c8fc7" stroke="#2b4c7e" stroke-width="3"/>
+  <!-- spike travelling along the axon -->
+  <path d="M84 62 L90 62 L93 44 L96 70 L99 62 L104 62" stroke="#d9534f" stroke-width="2.5"
+        stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+</svg>
