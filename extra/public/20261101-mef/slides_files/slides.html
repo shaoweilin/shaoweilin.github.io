@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="slides_files/libs/clipboard/clipboard.min.js"></script>
+<script src="slides_files/libs/quarto-html/tabby.min.js"></script>
+<script src="slides_files/libs/quarto-html/popper.min.js"></script>
+<script src="slides_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="slides_files/libs/quarto-html/quarto-syntax-highlighting-ea1d7ac60288e0f1efdbc993fd8432ae.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.21">
+
+  <meta name="author" content="Shaowei Lin">
+  <meta name="author" content="Chris Hillar">
+  <meta name="dcterms.date" content="2026-11-01">
+  <title>Minimum Energy Flow</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link href="slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="slides_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <style> .reveal .slide aside {font-size: 0.3em;} </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Minimum Energy Flow</h1>
+  <p class="subtitle">
+    <img src="slides_files/imgs/spiking-neuron.svg" width="144" height="120">
+  </p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+<a href="https://shaoweilin.github.io/">Shaowei Lin</a> 
+</div>
+</div>
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Chris Hillar 
+</div>
+</div>
+</div>
+
+  <p class="date">
+    2026-11-01 
+     
+            GT Math Seminar
+          
+  </p> 
+</section>
+<section>
+<section id="action-driven-processes" class="title-slide slide level1 center">
+<h1>Action-Driven Processes</h1>
+
+</section>
+<section id="action-driven-processes-1" class="slide level2 smaller">
+<h2>Action-Driven Processes</h2>
+<ul>
+<li>States <span class="math inline">\(x \in \mathcal{X}\)</span> and actions <span class="math inline">\(a \in \mathcal{A}\)</span>. At state <span class="math inline">\(x\)</span>, each action <span class="math inline">\(a\)</span> arrives independently at <em>action rate</em> <span class="math inline">\(\lambda_{xa}^\beta\)</span>, where <span class="math inline">\(\beta\)</span> is the <em>inverse temperature</em>.</li>
+<li>The first arrival <span class="math inline">\(a\)</span> triggers a transition <span class="math inline">\(x \to y\)</span> with probability <span class="math inline">\(p_{xay}\)</span>.</li>
+<li>With constant rates and <em>potentials</em> <span class="math inline">\(\rho_{xa} = \log \lambda_{xa}\)</span>, the wait time <span class="math inline">\(W\)</span> and action <span class="math inline">\(A\)</span> from state <span class="math inline">\(x\)</span> have density <span class="math display">\[
+\log \mathbb{P}[W, A \,\vert\, x] = \beta\,\rho_{xA} - W \sum_{a} e^{\beta \rho_{xa}}.
+\]</span></li>
+<li>Paths <span class="math inline">\((w_1, a_1, x_1), (w_2, a_2, x_2), \ldots\)</span> have densities that are products of these and of the <span class="math inline">\(p_{x a y}\)</span>.</li>
+<li>Also known as <em>generalized semi-Markov processes</em>. Spiking networks: one action per neuron.</li>
+</ul>
+
+<aside><div>
+<p>Lin. <em>Relative Information Theory II: Reinforcement Learning</em>, Ch. 2 (in preparation).</p>
+</div></aside></section>
+<section id="binary-flip-processes" class="slide level2 smaller">
+<h2>Binary Flip Processes</h2>
+<ul>
+<li>States <span class="math inline">\(x \in \{0,1\}^d\)</span>, the on/off states of <span class="math inline">\(d\)</span> neurons.</li>
+<li>Actions <span class="math inline">\(a_1, \ldots, a_d\)</span>, where <span class="math inline">\(a_i\)</span> flips bit <span class="math inline">\(i\)</span>: <span class="math inline">\(x \mapsto x^{(i)}\)</span>. Transitions are deterministic, <span class="math inline">\(p_{x a_i y} = \mathbb{1}[y = x^{(i)}]\)</span>.</li>
+<li>Action rates are Boltzmann factors of a <em>pair energy</em> <span class="math inline">\(E(x, y)\)</span>: <span class="math display">\[
+\lambda_{x,i}^\beta = e^{-\beta E(x, x^{(i)})}.
+\]</span></li>
+<li>The result is a continuous-time Markov chain on <span class="math inline">\(2^d\)</span> states with generator <span class="math display">\[
+\Gamma_{x x^{(i)}} = \lambda^\beta_{x,i}, \qquad \Gamma_{xx} = -\sum_i \lambda^\beta_{x,i},
+\qquad \Gamma_{xy} = 0 \text{ otherwise}.
+\]</span></li>
+</ul>
+</section>
+<section id="energies" class="slide level2 smaller">
+<h2>Energies</h2>
+<ul>
+<li>State energies of arbitrary order, with <span class="math inline">\(x_S = \prod_{i \in S} x_i\)</span>: <span class="math display">\[
+E_W(x) = -\sum_{\emptyset \neq S \subseteq [d]} w_S\, x_S, \qquad
+\text{e.g. } E(x) = -\tfrac12 x^\top W x \text{ (using } x_i^2 = x_i).
+\]</span></li>
+<li>Pair energy <span class="math inline">\(E(x, y) = \frac12\big(E(y) - E(x)\big)\)</span>: half the energy change.</li>
+<li><em>Local field</em> <span class="math inline">\(h_i(x) = \sum_{S \ni i} w_S\, x_{S \setminus i}\)</span>, which does not depend on <span class="math inline">\(x_i\)</span>. Flipping bit <span class="math inline">\(i\)</span> lowers the energy by <span class="math display">\[
+\Delta_i(x) = E(x) - E(x^{(i)}) = (1 - 2x_i)\, h_i(x).
+\]</span></li>
+<li>So the action rates are <span class="math inline">\(\lambda^\beta_{x,i} = e^{\beta \Delta_i(x)/2}\)</span>: downhill flips are fast, uphill flips are slow.</li>
+</ul>
+</section>
+<section id="detailed-balance" class="slide level2 smaller">
+<h2>Detailed Balance</h2>
+<ul>
+<li>For <span class="math inline">\(y = x^{(i)}\)</span>, <span class="math display">\[
+e^{-\beta E(x)}\, \Gamma_{xy} = e^{-\beta E(x)}\, e^{\beta(E(x) - E(y))/2}
+= e^{-\beta (E(x) + E(y))/2},
+\]</span> which is symmetric in <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</li>
+<li>So the <em>Gibbs law</em> <span class="math inline">\(\pi_\beta(x) \propto e^{-\beta E(x)}\)</span> satisfies detailed balance, <span class="math inline">\(\pi_\beta(x)\,\Gamma_{xy} = \pi_\beta(y)\,\Gamma_{yx}\)</span>, and the chain is reversible.</li>
+<li>Summing over <span class="math inline">\(x\)</span> gives <span class="math inline">\(\pi_\beta\, \Gamma = 0\)</span>: the Gibbs law is a <em>stationary distribution</em> of the flip process.</li>
+<li>The factor <span class="math inline">\(\frac12\)</span> splits each energy change evenly between the forward and backward rates.</li>
+<li><strong>Question.</strong> What happens as <span class="math inline">\(\beta \to \infty\)</span>?</li>
+</ul>
+</section></section>
+<section>
+<section id="dynamics" class="title-slide slide level1 center">
+<h1>Dynamics</h1>
+
+</section>
+<section id="probabilistic-dynamics" class="slide level2 smaller">
+<h2>Probabilistic Dynamics</h2>
+<ul>
+<li><em>Master equation.</em> The law <span class="math inline">\(p_t\)</span> of the state evolves by <span class="math display">\[
+\frac{d}{dt} p_t = p_t\, \Gamma, \qquad p_t = p_0\, e^{\Gamma t}.
+\]</span></li>
+<li>For <span class="math inline">\(\beta &lt; \infty\)</span>, every flip has a positive rate and the hypercube is connected, so <span class="math inline">\(\pi_\beta\)</span> is the <em>unique</em> stationary distribution and <span class="math inline">\(p_t \to \pi_\beta\)</span> from any <span class="math inline">\(p_0\)</span>.</li>
+<li><em>Simulation.</em> From state <span class="math inline">\(x\)</span>:
+<ol type="1">
+<li>wait for time <span class="math inline">\(W \sim \mathrm{Exp}\big(\sum_i \lambda^\beta_{x,i}\big)\)</span>;</li>
+<li>flip bit <span class="math inline">\(i\)</span> with probability <span class="math inline">\(\lambda^\beta_{x,i} \big/ \sum_j \lambda^\beta_{x,j}\)</span>.</li>
+</ol></li>
+<li><em>Uniformization.</em> Choose <span class="math inline">\(\lambda \geq \max_x \sum_i \lambda^\beta_{x,i}\)</span>. Draw arrivals at rate <span class="math inline">\(\lambda\)</span>, flip bit <span class="math inline">\(i\)</span> with probability <span class="math inline">\(\lambda^\beta_{x,i}/\lambda\)</span>, and do nothing otherwise. This simulates the same process in discrete steps.</li>
+</ul>
+
+<aside><div>
+<p>Lin. <em>Relative Information Theory II: Reinforcement Learning</em>, §§2.3-2.4 (in preparation).</p>
+</div></aside></section>
+<section id="zero-temperature-dynamics" class="slide level2 smaller">
+<h2>Zero-Temperature Dynamics</h2>
+<p>As <span class="math inline">\(\beta \to \infty\)</span>, with rates <span class="math inline">\(e^{\beta \Delta_i(x)/2}\)</span>:</p>
+<ul>
+<li>If <span class="math inline">\(\max_i \Delta_i(x) &gt; 0\)</span>, the total rate diverges and the action probabilities concentrate on <span class="math inline">\(\arg\max_i \Delta_i(x)\)</span>. The steepest energy-lowering bit flips <em>instantly</em>.</li>
+<li>If <span class="math inline">\(\max_i \Delta_i(x) &lt; 0\)</span>, all rates vanish. The state <span class="math inline">\(x\)</span> is <em>absorbing</em>: a strict local minimum of <span class="math inline">\(E\)</span> on the hypercube.</li>
+<li>Ties <span class="math inline">\(\Delta_i(x) = 0\)</span> keep rate <span class="math inline">\(1\)</span>, and ties among the maxima share the probability equally.</li>
+</ul>
+<p>Wait times disappear: the limit is a deterministic stepped process. Each step lowers <span class="math inline">\(E\)</span>, so the state diagram is acyclic and every path ends at a local minimum.</p>
+</section>
+<section id="hopfield-networks" class="slide level2 smaller">
+<h2>Hopfield Networks</h2>
+<ul>
+<li><em>Hopfield update.</em> Pick a neuron <span class="math inline">\(i\)</span> and set <span class="math inline">\(x_i \leftarrow H\big(h_i(x)\big)\)</span>, where <span class="math inline">\(H\)</span> is the Heaviside step function.</li>
+<li>The update changes <span class="math inline">\(x_i\)</span> exactly when <span class="math inline">\(\Delta_i(x) &gt; 0\)</span>, so it never raises the energy.</li>
+<li>The zero-temperature flip process has the <em>same fixed points</em>: the strict local minima of <span class="math inline">\(E\)</span>.</li>
+<li>The schedule differs: Hopfield networks update in a fixed or random order, while the zero-temperature limit always takes the steepest flip.</li>
+<li>The set of energy-lowering flips at each state depends only on the signs of the <span class="math inline">\(h_i(x)\)</span>. The steepest one also depends on their sizes.</li>
+</ul>
+
+<aside><div>
+<p>Hopfield. “Neural networks and physical systems with emergent collective computational abilities.” PNAS 79(8): 2554-2558, 1982.</p>
+</div></aside></section></section>
+<section>
+<section id="learning" class="title-slide slide level1 center">
+<h1>Learning</h1>
+
+</section>
+<section id="relative-information-rate" class="slide level2 smaller">
+<h2>Relative Information Rate</h2>
+<ul>
+<li><em>Truth</em> <span class="math inline">\(Q\)</span>: a Markov chain with rates <span class="math inline">\(\Gamma^Q_{xy}\)</span> and stationary law <span class="math inline">\(\pi^Q\)</span>, e.g.&nbsp;the data.</li>
+<li><em>Model</em> <span class="math inline">\(P\)</span>: a Markov chain with rates <span class="math inline">\(\Gamma^P_{xy}\)</span> and stationary law <span class="math inline">\(\pi^P\)</span>. For the flip process, <span class="math inline">\(\Gamma^P = \Gamma\)</span> and <span class="math inline">\(\pi^P = \pi_\beta\)</span>.</li>
+<li>Learn by minimizing the <em>relative information rate</em> of paths, <span class="math display">\[
+\frac{d}{ds} I_{Q\Vert P}(X_{0..s}) = \sum_x \pi^Q_x \sum_{y \neq x}
+\Big[\Gamma^Q_{xy}\log\frac{\Gamma^Q_{xy}}{\Gamma^P_{xy}} - \Gamma^Q_{xy} + \Gamma^P_{xy}\Big].
+\]</span></li>
+<li>Each summand is a divergence of rates, <span class="math inline">\(a \log\frac{a}{b} - a + b \geq 0\)</span>.</li>
+<li>The rate is finite only if the truth makes no moves that the model cannot, i.e. <span class="math inline">\(\Gamma^Q_{xy} = 0\)</span> unless <span class="math inline">\(y\)</span> is a flip neighbor of <span class="math inline">\(x\)</span>.</li>
+</ul>
+
+<aside><div>
+<p>Lin. <em>Relative Information Theory II: Reinforcement Learning</em>, Ch. 4 (in preparation).</p>
+</div></aside></section>
+<section id="derivation" class="slide level2 smaller">
+<h2>Derivation</h2>
+<ul>
+<li>Given <span class="math inline">\(X_0\)</span>, the log ratio of path densities on <span class="math inline">\([0, s]\)</span>, with escape rates <span class="math inline">\(\Gamma^Q_x = \sum_{y \neq x}\Gamma^Q_{xy}\)</span> and <span class="math inline">\(\Gamma^P_x = -\Gamma^P_{xx}\)</span>, is <span class="math display">\[
+\log \frac{dQ}{dP} = \sum_{\text{jumps } x \to y} \log\frac{\Gamma^Q_{xy}}{\Gamma^P_{xy}}
+- \int_0^s \big(\Gamma^Q_{X_t} - \Gamma^P_{X_t}\big)\, dt.
+\]</span></li>
+<li>Under <span class="math inline">\(Q\)</span>, jumps <span class="math inline">\(x \to y\)</span> occur at rate <span class="math inline">\(\Gamma^Q_{xy}\)</span> while in <span class="math inline">\(x\)</span>. With <span class="math inline">\(\pi^Q_t\)</span> the law of <span class="math inline">\(X_t\)</span> under <span class="math inline">\(Q\)</span>, <span class="math display">\[
+I_{Q\Vert P}(X_{0..s} \,\vert\, X_0) = \int_0^s \sum_x \pi^Q_t(x) \sum_{y \neq x}
+\Big[\Gamma^Q_{xy}\log\frac{\Gamma^Q_{xy}}{\Gamma^P_{xy}} - \Gamma^Q_{xy} + \Gamma^P_{xy}\Big]\, dt.
+\]</span></li>
+<li>If <span class="math inline">\(\pi^Q_0 = \pi^Q\)</span> is stationary for <span class="math inline">\(Q\)</span>, then <span class="math inline">\(\pi^Q_t = \pi^Q\)</span>, and this is exactly <span class="math inline">\(s\)</span> times the rate, for every <span class="math inline">\(s\)</span>.</li>
+<li>Checked numerically against discretized paths on <span class="math inline">\(\{0,1\}^3\)</span>.</li>
+</ul>
+
+<aside><div>
+<p>The density ratio is the Girsanov formula for Markov jump processes (check: a textbook reference). Numerical check: <code>scripts/check_ri_rate.py</code>.</p>
+</div></aside></section>
+<section id="energy-form" class="slide level2 smaller">
+<h2>Energy Form</h2>
+<ul>
+<li>With model rates <span class="math inline">\(\Gamma^P_{x x^{(i)}} = e^{\beta \Delta_i(x)/2}\)</span>, up to a constant <span class="math inline">\(C\)</span> that does not depend on the model, <span class="math display">\[
+\frac{d}{ds} I = \underbrace{\frac{\beta}{2}\sum_x \pi^Q_x \sum_i \Gamma^Q_{x x^{(i)}}
+\big(E(x^{(i)}) - E(x)\big)}_{\text{energy climbed by the true transitions}}
+\; + \; \underbrace{\sum_x \pi^Q_x \sum_i e^{\beta \Delta_i(x)/2}}_{\text{energy flow}} + C.
+\]</span></li>
+<li>The first term rewards energies that make the true transitions downhill.</li>
+<li>The second term is <span class="math inline">\(-\sum_x \pi^Q_x \Gamma^P_{xx}\)</span>, the total rate at which the model escapes from the data. Minimizing it makes the data stable.</li>
+</ul>
+</section>
+<section id="minimum-energy-flow" class="slide level2 smaller">
+<h2>Minimum Energy Flow</h2>
+<ul>
+<li>Suppose the truth never leaves the data: <span class="math inline">\(\Gamma^Q_{xy} = 0\)</span> for all <span class="math inline">\(x\)</span> in the support of <span class="math inline">\(\pi^Q\)</span>. The data are fixed points, i.e.&nbsp;<em>memories</em>.</li>
+<li>Then the relative information rate is the <em>energy flow</em> <span class="math display">\[
+K_\beta(W) = \sum_x \pi^Q_x \sum_{i=1}^d e^{\beta (E_W(x) - E_W(x^{(i)}))/2}.
+\]</span></li>
+<li><em>Minimum energy flow</em> (MEF) minimizes <span class="math inline">\(K_\beta(W)\)</span>. It is convex in <span class="math inline">\(W\)</span>.</li>
+<li>Its ancestor, <em>minimum probability flow</em>, minimizes the relative information between the data and the data evolved by the model dynamics for an infinitesimal time. Here MEF is a relative information <em>rate</em> of paths.</li>
+</ul>
+
+<aside><div>
+<p>Sohl-Dickstein, Battaglino, DeWeese. “New method for parameter estimation in probabilistic models: minimum probability flow.” PRL 107: 220601, 2011.<br>
+Hillar, Sohl-Dickstein, Koepsell. “Efficient and optimal binary Hopfield associative memory storage using minimum probability flow.” arXiv:1204.2916, 2012.<br>
+Hillar, Chan, Taubman, Rolnick. “Hidden hypergraphs, error-correcting codes, and critical learning in Hopfield networks.” Entropy 23: 1494, 2021.</p>
+</div></aside></section>
+<section id="temperature-of-the-model" class="slide level2 smaller">
+<h2>Temperature of the Model</h2>
+<ul>
+<li><span class="math inline">\(E_W\)</span> is linear in <span class="math inline">\(W\)</span>, so <span class="math inline">\(K_\beta(W) = K_1(\beta W)\)</span>. The model temperature is the scale of <span class="math inline">\(W\)</span>.</li>
+<li>As <span class="math inline">\(\beta \to \infty\)</span>, with <span class="math inline">\(\Delta_i(x)\)</span> computed from <span class="math inline">\(E_W\)</span>, <span class="math display">\[
+K_\beta(W) \to \sum_x \pi^Q_x\, \#\{i : \Delta_i(x) = 0\}
+\quad\text{if every } \Delta_i(x) \leq 0 \text{ on the data},
+\]</span> and <span class="math inline">\(K_\beta(W) \to \infty\)</span> otherwise. So <span class="math inline">\(K_\beta(W) \to 0\)</span> if and only if every data point is a strict local minimum of <span class="math inline">\(E_W\)</span>.</li>
+<li>The infimum of <span class="math inline">\(K_1\)</span> is <span class="math inline">\(0\)</span>, approached at infinity: MEF pushes <span class="math inline">\(W\)</span> to infinity in the directions that store the data.</li>
+</ul>
+</section>
+<section id="a-noisy-truth-regularizes" class="slide level2 smaller">
+<h2>A Noisy Truth Regularizes</h2>
+<ul>
+<li>Suppose instead the truth leaves each data point for each neighbor at a small rate <span class="math inline">\(c &gt; 0\)</span>. The relative information rate becomes <span class="math display">\[
+\sum_x \pi^Q_x \sum_i \Big[ e^{h_{x,i}} - c\, h_{x,i} \Big] + C, \qquad h_{x,i} = \tfrac{\beta}{2}\Delta_i(x).
+\]</span></li>
+<li>Each term <span class="math inline">\(e^h - c h\)</span> is minimized at <span class="math inline">\(h = \log c\)</span>, a finite value.</li>
+<li>This is a regularized MEF: the noise rate keeps each energy gap finite. Whether the minimizer over <span class="math inline">\(W\)</span> is finite depends on the data <strong>[open]</strong>.</li>
+</ul>
+</section>
+<section id="empirical-energy-flow" class="slide level2 smaller">
+<h2>Empirical Energy Flow</h2>
+<ul>
+<li>From one long observed path of duration <span class="math inline">\(T\)</span>, with jumps <span class="math inline">\(x \to y\)</span> and fraction of time <span class="math inline">\(\hat\pi^Q_x\)</span> spent in each state <span class="math inline">\(x\)</span>, estimate the relative information rate by <span class="math display">\[
+\frac{1}{T}\sum_{\text{jumps } x \to y} \frac{\beta}{2}\big(E(y) - E(x)\big)
++ \sum_x \hat\pi^Q_x \sum_i e^{\beta \Delta_i(x)/2} + C.
+\]</span></li>
+<li>The first term is the energy climbed along the observed jumps. The second is the energy flow out of the states, weighted by holding times.</li>
+<li>Without jumps, this is MEF with the empirical law <span class="math inline">\(\hat\pi^Q\)</span>.</li>
+</ul>
+</section></section>
+<section>
+<section id="glauber-dynamics" class="title-slide slide level1 center">
+<h1>Glauber Dynamics</h1>
+
+</section>
+<section id="glauber-rates" class="slide level2 smaller">
+<h2>Glauber Rates</h2>
+<ul>
+<li>Any rates <span class="math inline">\(e^{\beta \Delta/2}\, s_{xy}\)</span> with <span class="math inline">\(s_{xy} = s_{yx}\)</span> satisfy detailed balance for <span class="math inline">\(\pi_\beta\)</span>. Three choices, with <span class="math inline">\(\Delta = E(x) - E(y)\)</span> and <span class="math inline">\(\sigma\)</span> the logistic function:</li>
+</ul>
+<div style="font-size: 85%;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">rates</th>
+<th style="text-align: center;"><span class="math inline">\(s_{xy}\)</span></th>
+<th style="text-align: center;">rate</th>
+<th style="text-align: center;"><span class="math inline">\(\beta \to \infty\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">MEF</td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(e^{\beta\Delta/2}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span> if <span class="math inline">\(\Delta &gt; 0\)</span>, <span class="math inline">\(\ 0\)</span> if <span class="math inline">\(\Delta &lt; 0\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Glauber</td>
+<td style="text-align: center;"><span class="math inline">\(1/(2\cosh(\beta\Delta/2))\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sigma(\beta\Delta)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span> if <span class="math inline">\(\Delta &gt; 0\)</span>, <span class="math inline">\(\ 0\)</span> if <span class="math inline">\(\Delta &lt; 0\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Metropolis</td>
+<td style="text-align: center;"><span class="math inline">\(e^{-\beta\vert\Delta\vert/2}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\min(1, e^{\beta\Delta})\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span> if <span class="math inline">\(\Delta &gt; 0\)</span>, <span class="math inline">\(\ 0\)</span> if <span class="math inline">\(\Delta &lt; 0\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><em>Glauber is the Gibbs sampler.</em> Bit <span class="math inline">\(i\)</span> is redrawn at rate <span class="math inline">\(1\)</span> with <span class="math inline">\(\mathbb{P}(x_i = 1) = \sigma(\beta h_i(x))\)</span>. Also <span class="math inline">\(\Gamma^G_{xy} = \Gamma_{xy}/(\Gamma_{xy} + \Gamma_{yx})\)</span>.</li>
+<li><em>At zero temperature,</em> Glauber rates keep time: each unstable bit flips at rate <span class="math inline">\(1\)</span>. This is the random-order Hopfield network. MEF rates lose time.</li>
+<li>We keep MEF rates: they are of the form <span class="math inline">\(\lambda^\beta\)</span>, and they give a convex objective.</li>
+</ul>
+
+<aside><div>
+<p>Glauber. “Time-dependent statistics of the Ising model.” J. Math. Phys. 4(2): 294-307, 1963.<br>
+Metropolis, Rosenbluth, Rosenbluth, Teller, Teller. “Equation of state calculations by fast computing machines.” J. Chem. Phys. 21(6): 1087-1092, 1953.</p>
+</div></aside></section>
+<section id="pseudo-likelihood" class="slide level2 smaller">
+<h2>Pseudo-Likelihood</h2>
+<ul>
+<li>For the Gibbs law, <span class="math inline">\(\mathbb{P}(x_i \,\vert\, x_{-i}) = \sigma(-\beta \Delta_i(x))\)</span>. So the negative pseudo-log-likelihood is <span class="math display">\[
+\mathrm{PL}_\beta(W) = \sum_x \pi^Q_x \sum_i \log\big(1 + e^{\beta \Delta_i(x)}\big).
+\]</span></li>
+<li>Compare MEF, <span class="math inline">\(K_\beta(W) = \sum_x \pi^Q_x \sum_i e^{\beta \Delta_i(x)/2}\)</span>. Both are convex in <span class="math inline">\(W\)</span>, and both are small when the data are deep local minima.</li>
+<li><span class="math inline">\(\sigma(-\beta\Delta_i(x)) = \Gamma^G_{x^{(i)} x}\)</span> is the Glauber rate of flowing <em>back into</em> the data from a neighbor. So pseudo-likelihood sums log-rates of return flows.</li>
+<li><strong>Question [open].</strong> Is <span class="math inline">\(\mathrm{PL}_\beta\)</span>, up to constants, the relative information rate between a Glauber model and a truth that knocks the data out by one flip and restores it?</li>
+</ul>
+
+<aside><div>
+<p>Besag. “Statistical analysis of non-lattice data.” The Statistician 24(3): 179-195, 1975.</p>
+</div></aside></section></section>
+<section>
+<section id="the-tropical-limit" class="title-slide slide level1 center">
+<h1>The Tropical Limit</h1>
+
+</section>
+<section id="base-of-the-logarithm" class="slide level2 smaller">
+<h2>Base of the Logarithm</h2>
+<ul>
+<li>Put <span class="math inline">\(b = e^\beta\)</span>. Then the action rates are <span class="math inline">\(b^{\rho}\)</span> with potentials <span class="math inline">\(\rho\)</span>, and the temperature is <span class="math inline">\(1/\log b\)</span>.</li>
+<li>As <span class="math inline">\(b \to \infty\)</span>, <span class="math display">\[
+\log_b\big(b^u + b^v\big) \to \max(u, v),
+\qquad 0 \leq \log_b\big(b^u + b^v\big) - \max(u, v) \leq \log_b 2.
+\]</span></li>
+<li>So in log-base-<span class="math inline">\(b\)</span> coordinates, <span class="math inline">\((\mathbb{R}_{&gt;0}, +, \times)\)</span> becomes the tropical semiring <span class="math inline">\((\mathbb{R} \cup \{-\infty\}, \max, +)\)</span> as <span class="math inline">\(b \to \infty\)</span>.</li>
+<li>This is <em>Maslov dequantization</em>, with the temperature in the role of Planck’s constant.</li>
+</ul>
+
+<aside><div>
+<p>Litvinov. “Maslov dequantization, idempotent and tropical mathematics: a brief introduction.” J. Math. Sci. 140: 426-444, 2007.</p>
+</div></aside></section>
+<section id="energy-convention" class="slide level2 smaller">
+<h2>Energy Convention</h2>
+<ul>
+<li>In energies <span class="math inline">\(u = -\lambda \log x\)</span> at temperature <span class="math inline">\(\lambda = 1/\beta\)</span>, addition becomes <span class="math display">\[
+u \oplus_\lambda v = -\lambda \log\big(e^{-u/\lambda} + e^{-v/\lambda}\big)
+\;\to\; \min(u, v) \quad (\lambda \to 0).
+\]</span></li>
+<li><span class="math inline">\(K_\lambda = (\mathbb{R} \cup \{\infty\}, \oplus_\lambda, +)\)</span> is the <em>Maslov semifield</em>: isomorphic to <span class="math inline">\(\mathbb{R}_{\geq 0}\)</span> for <span class="math inline">\(\lambda &gt; 0\)</span>, and the tropical semifield <span class="math inline">\(\mathbb{T} = (\mathbb{R} \cup \{\infty\}, \min, +)\)</span> at <span class="math inline">\(\lambda = 0\)</span>.</li>
+<li>The Gibbs law <span class="math inline">\(\pi_\beta(x) = e^{-\beta E(x)} \big/ \sum_y e^{-\beta E(y)}\)</span> has energies <span class="math display">\[
+-\lambda \log \pi_\beta(x) = E(x) - \textstyle\bigoplus_{\lambda,\, y} E(y)
+\;\to\; E(x) - \min_y E(y),
+\]</span> a <em>tropical law</em>: energies normalized so that the ground state has energy <span class="math inline">\(0\)</span>.</li>
+<li>For a partition of the states, each part <span class="math inline">\(A\)</span> gets the marginal energy <span class="math inline">\(E(A) = \bigoplus_{\lambda,\, x \in A} E(x) \to \min_{x \in A} E(x)\)</span>, and the conditional law on <span class="math inline">\(A\)</span> has energies <span class="math inline">\(E(x) - E(A)\)</span>.</li>
+</ul>
+
+<aside><div>
+<p>Lin. <em>Relative Information Theory I: Information Cohomology</em>, §2.6.6 (in preparation).</p>
+</div></aside></section>
+<section id="zero-temperature-is-tropical" class="slide level2 smaller">
+<h2>Zero Temperature Is Tropical</h2>
+<div style="margin-top: 1.0em;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">inverse temperature <span class="math inline">\(\beta = \log b &lt; \infty\)</span></th>
+<th style="text-align: center;">zero temperature <span class="math inline">\(b = \infty\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">total rate <span class="math inline">\(\log_b \sum_i b^{\rho_{x,i}}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\max_i \rho_{x,i}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">action probabilities <span class="math inline">\(b^{\rho_{x,i}} \big/ \sum_j b^{\rho_{x,j}}\)</span></td>
+<td style="text-align: center;">indicator of <span class="math inline">\(\arg\max_i \rho_{x,i}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">some arrival, at a finite rate</td>
+<td style="text-align: center;">instant arrival iff <span class="math inline">\(\max_i \rho_{x,i} &gt; 0\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Glauber log-rate <span class="math inline">\(\log_b \sigma(\beta\Delta)\)</span></td>
+<td style="text-align: center;">Metropolis log-rate <span class="math inline">\(\min(0, \Delta)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Gibbs energies <span class="math inline">\(-\frac{1}{\beta}\log \pi_\beta\)</span></td>
+<td style="text-align: center;">tropical law <span class="math inline">\(E - \min E\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">marginal energy of a part <span class="math inline">\(A\)</span>: <span class="math inline">\(\oplus_\lambda\)</span> over <span class="math inline">\(A\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(E(A) = \min_{x \in A} E(x)\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>The zero-temperature dynamics are the tropical shadow of the flip process.</li>
+<li>The threshold “arrive iff <span class="math inline">\(\rho &gt; 0\)</span>” is the firing threshold of a neuron.</li>
+</ul>
+</section>
+<section id="mef-tropicalizes" class="slide level2 smaller">
+<h2>MEF Tropicalizes</h2>
+<ul>
+<li>In base <span class="math inline">\(b = e^\beta\)</span>, <span class="math display">\[
+\log_b K_\beta(W) = \log_b \sum_x \pi^Q_x \sum_i b^{\Delta_i(x)/2}
+\;\to\; \max_{x \in \mathrm{supp}\, \pi^Q,\ i}\ \tfrac12 \Delta_i(x).
+\]</span></li>
+<li><em>Tropical MEF</em> is a maximum of linear forms in <span class="math inline">\(W\)</span>: convex and piecewise linear.</li>
+<li>It is negative exactly when every data point is a strict local minimum of <span class="math inline">\(E_W\)</span>.</li>
+<li>So its negative set is an open polyhedral cone in parameter space, a union of chambers of a hyperplane arrangement.</li>
+<li>Similarly, pseudo-likelihood tropicalizes to a hinge loss, <span class="math inline">\(\log_b(1 + b^{\Delta}) \to \max(0, \Delta)\)</span>.</li>
+</ul>
+</section>
+<section id="what-is-lost" class="slide level2 smaller">
+<h2>What Is Lost</h2>
+<ul>
+<li>The tropical sum forgets multiplicities: <span class="math display">\[
+\log_b\big(b^u + b^u\big) = u + \log_b 2 \;\to\; u.
+\]</span></li>
+<li>At zero temperature we lose the number of tied steepest flips and of degenerate minima.</li>
+<li>This lost correction is the entropy (Connes-Consani). In information cohomology, the class of the Shannon entropy disappears at zero temperature, unless the multiplicities of the ground states are kept, as in <em>layered</em> tropical laws.</li>
+</ul>
+
+<aside><div>
+<p>Connes, Consani. “Characteristic 1, entropy and the absolute point.” In <em>Noncommutative Geometry, Arithmetic, and Related Topics</em>, 75-139, 2011.<br>
+Lin. <em>Relative Information Theory I: Information Cohomology</em>, §2.6.6 (in preparation).</p>
+</div></aside></section></section>
+<section>
+<section id="chambers-and-stability" class="title-slide slide level1 center">
+<h1>Chambers and Stability</h1>
+
+</section>
+<section id="the-arrangement" class="slide level2 smaller">
+<h2>The Arrangement</h2>
+<ul>
+<li>Parameters <span class="math inline">\(W = (w_S)_{\emptyset \neq S \subseteq [d]}\)</span> form a space of dimension <span class="math inline">\(2^d - 1\)</span>.</li>
+<li>Each local field <span class="math inline">\(h_i(x)\)</span>, for a neuron <span class="math inline">\(i\)</span> and the other states <span class="math inline">\(x_{-i} \in \{0,1\}^{d-1}\)</span>, is a linear form in <span class="math inline">\(W\)</span>. Its zero set is a hyperplane: <span class="math inline">\(d\, 2^{d-1}\)</span> hyperplanes in all.</li>
+<li>A <em>chamber</em> fixes the signs of all <span class="math inline">\(h_i(x)\)</span>, so it fixes the energy-lowering flips at every state, and hence the fixed points. Walls are ties.</li>
+<li>Chambers are counted by the characteristic polynomial <span class="math inline">\(\chi\)</span>: there are <span class="math inline">\(\lvert\chi(-1)\rvert\)</span> of them.
+<ul>
+<li><span class="math inline">\(d = 2\)</span>: <span class="math inline">\(\chi(t) = t^3 - 4t^2 + 6t - 3\)</span>, so <span class="math inline">\(14\)</span> chambers.</li>
+<li><span class="math inline">\(d = 3\)</span>: <span class="math inline">\(12\)</span> hyperplanes in <span class="math inline">\(\mathbb{R}^7\)</span>, so <span class="math inline">\(1862\)</span> chambers.</li>
+</ul></li>
+</ul>
+
+<aside><div>
+<p>Zaslavsky. <em>Facing up to arrangements: face-count formulas for partitions of space by hyperplanes.</em> Mem. AMS 1(154), 1975.<br>
+Chamber counts: <code>scripts/flip_arrangement.py</code>.</p>
+</div></aside></section>
+<section id="two-neurons" class="slide level2 smaller">
+<h2>Two Neurons</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<ul>
+<li><span class="math inline">\(E(x) = -w_1 x_1 - w_2 x_2 - w_{12} x_1 x_2\)</span>.</li>
+<li>Four hyperplanes in <span class="math inline">\((w_1, w_2, w_{12})\)</span>:
+<ul>
+<li><span class="math inline">\(w_1 = 0\)</span> and <span class="math inline">\(w_1 + w_{12} = 0\)</span> (neuron 1, <span class="math inline">\(x_2 = 0, 1\)</span>);</li>
+<li><span class="math inline">\(w_2 = 0\)</span> and <span class="math inline">\(w_2 + w_{12} = 0\)</span> (neuron 2, <span class="math inline">\(x_1 = 0, 1\)</span>).</li>
+</ul></li>
+<li><span class="math inline">\(2^4 = 16\)</span> sign patterns. Two of them give cyclic state diagrams, e.g. <span class="math inline">\(00 \to 01 \to 11 \to 10 \to 00\)</span>, which no energy allows.</li>
+<li>The other <span class="math inline">\(14\)</span> are exactly the <span class="math inline">\(14\)</span> chambers: every acyclic dynamics of two neurons is realized.</li>
+</ul>
+</div><div class="column" style="width:45%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/imgs/two-neuron-arrangement.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="storing-data-is-a-cone" class="slide level2 smaller">
+<h2>Storing Data Is a Cone</h2>
+<ul>
+<li>The parameters that store the data, with every data point a strict local minimum, are <span class="math display">\[
+\mathcal{C}_Q = \big\{ W : \Delta_i(x) &lt; 0 \text{ for all } x \in \mathrm{supp}\, \pi^Q
+\text{ and all } i \big\}.
+\]</span></li>
+<li><span class="math inline">\(\mathcal{C}_Q\)</span> is an open polyhedral cone, a union of chambers, and the negative set of tropical MEF.</li>
+<li>MEF drives <span class="math inline">\(W\)</span> to infinity inside <span class="math inline">\(\mathcal{C}_Q\)</span>. It selects a <em>direction</em>, not a point.</li>
+<li>So which directions in <span class="math inline">\(\mathcal{C}_Q\)</span> are good, and how large is <span class="math inline">\(\mathcal{C}_Q\)</span>?</li>
+</ul>
+</section>
+<section id="stability" class="slide level2 smaller">
+<h2>Stability</h2>
+<ul>
+<li>The arrangement is <em>central</em>: every hyperplane <span class="math inline">\(\{h_i(x) = 0\}\)</span> passes through <span class="math inline">\(W = 0\)</span>. So each chamber <span class="math inline">\(C\)</span> is an open cone, <span class="math inline">\(W \in C \Rightarrow rW \in C\)</span> for <span class="math inline">\(r &gt; 0\)</span>, and the dynamics depend only on the <em>direction</em> <span class="math inline">\(u = W / \lVert W \rVert\)</span>.</li>
+<li><em>Stability.</em> If <span class="math inline">\(W \in C\)</span>, any perturbation <span class="math inline">\(W + \eta\)</span> with <span class="math inline">\(\lVert \eta \rVert\)</span> less than the distance from <span class="math inline">\(W\)</span> to the walls of <span class="math inline">\(C\)</span> keeps the same dynamics. A chamber is stable if most of its directions are far from its walls.</li>
+<li><em>Solid angle.</em> Measure the size of <span class="math inline">\(C\)</span> by <span class="math display">\[
+\omega(C) = \frac{\mathrm{vol}(C \cap B)}{\mathrm{vol}(B)}
+= \mathbb{P}\big(u \in C\big) = \mathbb{P}\big(W \in C\big),
+\]</span> for <span class="math inline">\(B\)</span> the unit ball, <span class="math inline">\(u\)</span> a uniform random direction, or <span class="math inline">\(W\)</span> a standard Gaussian.</li>
+<li>The solid angles of all chambers sum to <span class="math inline">\(1\)</span>: <span class="math inline">\(\omega(C)\)</span> is the chance that a random network has the dynamics of <span class="math inline">\(C\)</span>.</li>
+</ul>
+</section>
+<section id="solid-angles-of-two-neurons" class="slide level2 smaller">
+<h2>Solid Angles of Two Neurons</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<div style="font-size: 85%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;">solid angle</th>
+<th style="text-align: center;">chambers</th>
+<th style="text-align: center;">fixed points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(1/6\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(00\)</span>; <span class="math inline">\(\ 11\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(1/8\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(01\)</span>; <span class="math inline">\(\ 10\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(1/16\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(4\)</span></td>
+<td style="text-align: center;">one each</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(1/24\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\{00, 11\}\)</span>; <span class="math inline">\(\ \{01, 10\}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(1/48\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(4\)</span></td>
+<td style="text-align: center;">one each</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div><div class="column" style="width:45%;">
+<ul>
+<li>Monte Carlo with <span class="math inline">\(2 \times 10^6\)</span> Gaussian samples <strong>[numerical]</strong>; the exact fractions are a guess that fits all <span class="math inline">\(14\)</span> values and sums to <span class="math inline">\(1\)</span>.</li>
+<li>The largest chambers have a single global attractor: all off or all on.</li>
+<li>Storing <em>two</em> memories needs one of two chambers of angle <span class="math inline">\(1/24\)</span>, total <span class="math inline">\(1/12\)</span>.</li>
+</ul>
+</div></div>
+
+<aside><div>
+<p>Solid angles: <code>scripts/flip_solid_angles.py</code>.</p>
+</div></aside></section>
+<section id="projection-volumes" class="slide level2 smaller">
+<h2>Projection Volumes</h2>
+<ul>
+<li>For a cone <span class="math inline">\(C \subseteq \mathbb{R}^n\)</span>, project a Gaussian vector onto <span class="math inline">\(C\)</span>. Let <span class="math inline">\(v_k(C)\)</span> be the probability that the projection lands in the relative interior of a <span class="math inline">\(k\)</span>-dimensional face. Then <span class="math inline">\(\sum_k v_k(C) = 1\)</span>, <span class="math inline">\(v_n(C) = \omega(C)\)</span>, and <span class="math inline">\(v_0(C)\)</span> is the solid angle of the polar cone.</li>
+<li><strong>Theorem</strong> (Klivans-Swartz; conjectured by Drton-Klivans for reflection arrangements). For a central arrangement with characteristic polynomial <span class="math inline">\(\chi(t) = \sum_k a_k t^k\)</span>, <span class="math display">\[
+\sum_{C \text{ chamber}} v_k(C) = \lvert a_k \rvert.
+\]</span></li>
+<li>So the <em>average</em> solid angle is <span class="math inline">\(1 / \#\text{chambers}\)</span>, and the finer projection volumes are counted by <span class="math inline">\(\chi\)</span>. Two neurons: the sums over chambers are <span class="math inline">\(1, 4, 6, 3\)</span> for <span class="math inline">\(k = 3, 2, 1, 0\)</span>, matching <span class="math inline">\(\chi(t) = t^3 - 4t^2 + 6t - 3\)</span> <strong>[numerical]</strong>.</li>
+<li>The distribution of solid angles across chambers, and <span class="math inline">\(\chi\)</span> for all <span class="math inline">\(d\)</span>, are <strong>[open]</strong>.</li>
+</ul>
+
+<aside><div>
+<p>Drton, Klivans. “A geometric interpretation of the characteristic polynomial of reflection arrangements.” Proc. AMS 138(8): 2873-2887, 2010.<br>
+Klivans, Swartz. “Projection volumes of hyperplane arrangements.” Discrete Comput. Geom. 46(3): 417-426, 2011. (check: the exact normalization of <span class="math inline">\(v_k\)</span> and of the identity.)</p>
+</div></aside></section></section>
+<section>
+<section id="singular-learning-theory" class="title-slide slide level1 center">
+<h1>Singular Learning Theory</h1>
+
+</section>
+<section id="tubular-neighborhoods" class="slide level2 smaller">
+<h2>Tubular Neighborhoods</h2>
+<ul>
+<li><em>Singular learning theory.</em> Let <span class="math inline">\(K \geq 0\)</span> be analytic, with zeros inside the compact support of a prior <span class="math inline">\(\varphi &gt; 0\)</span>. The prior volume of the tubular neighborhood <span class="math inline">\(\{K &lt; \varepsilon\}\)</span> satisfies <span class="math display">\[
+V(\varepsilon) = \int_{K(W) &lt; \varepsilon} \varphi(W)\, dW
+= c\, \varepsilon^{\lambda} \big(\log\tfrac{1}{\varepsilon}\big)^{m-1}\big(1 + o(1)\big)
+\qquad (\varepsilon \to 0),
+\]</span> where <span class="math inline">\(\lambda\)</span> is the <em>learning coefficient</em> (real log canonical threshold) and <span class="math inline">\(m\)</span> its multiplicity.</li>
+<li>So the learning coefficient is the limit <span class="math display">\[
+\lambda = \lim_{\varepsilon \to 0} \frac{\log V(\varepsilon)}{\log \varepsilon},
+\qquad
+\log V(\tfrac1n) = -\lambda \log n + (m-1)\log\log n + O(1).
+\]</span></li>
+<li>For MEF, <span class="math inline">\(K_1 &gt; 0\)</span> everywhere and <span class="math inline">\(K_1 \to 0\)</span> only at infinity, inside the cone <span class="math inline">\(\mathcal{C}_Q\)</span>. The hypotheses fail, and the limit behaves differently.</li>
+</ul>
+
+<aside><div>
+<p>Watanabe. <em>Algebraic Geometry and Statistical Learning Theory.</em> Cambridge University Press, 2009 (check: the theorem number for the volume asymptotics).</p>
+</div></aside></section>
+<section id="volumes-at-infinity" class="slide level2 smaller">
+<h2>Volumes at Infinity</h2>
+<ul>
+<li>Write <span class="math inline">\(W = r u\)</span> with <span class="math inline">\(\lVert u \rVert = 1\)</span>, and let <span class="math inline">\(c(u) = -\max_{x,\,i}\ \tfrac12\Delta_i(x)\)</span> at <span class="math inline">\(u\)</span>, over <span class="math inline">\(x \in \mathrm{supp}\,\pi^Q\)</span>: minus tropical MEF, positive exactly on <span class="math inline">\(\mathcal{C}_Q\)</span>.</li>
+<li>Since <span class="math inline">\(\pi^Q_{\min}\, e^{-r c(u)} \leq K_1(r u) \leq d\, e^{-r c(u)}\)</span>, with <span class="math inline">\(L = \log\frac1\varepsilon\)</span>, <span class="math display">\[
+\{K_1 &lt; \varepsilon\} \approx \{ r u : u \in \mathcal{C}_Q,\ r\, c(u) &gt; L \}.
+\]</span></li>
+<li><em>Heavy-tailed prior</em>, radial density <span class="math inline">\(\propto r^{-1-a}\)</span> <strong>[open]</strong>: <span class="math inline">\(V(\varepsilon) \approx C\, L^{-a}\)</span> with <span class="math inline">\(C \propto \int_{\mathcal{C}_Q} c(u)^a\, du\)</span> over unit directions, a solid angle weighted by depth. Then <span class="math inline">\(\log V(\varepsilon) / \log \varepsilon \to 0\)</span>: the limit gives <span class="math inline">\(\lambda = 0\)</span>.</li>
+<li><em>Standard Gaussian prior</em> <strong>[open]</strong>: <span class="math inline">\(\log V(\varepsilon) \approx -\dfrac{L^2}{2\gamma^2}\)</span>, with margin <span class="math inline">\(\gamma = \max_u c(u)\)</span>, a hard-margin SVM problem. Then <span class="math inline">\(\log V(\varepsilon)/\log\varepsilon \approx L/(2\gamma^2) \to \infty\)</span>: no finite <span class="math inline">\(\lambda\)</span>, and the right scale is <span class="math inline">\((\log \varepsilon)^2\)</span>, with coefficient <span class="math inline">\(1/(2\gamma^2)\)</span>.</li>
+</ul>
+</section>
+<section id="temperature-as-a-coordinate" class="slide level2 smaller">
+<h2>Temperature as a Coordinate</h2>
+<ul>
+<li><em>Fixed temperature.</em> On the unit sphere, <span class="math inline">\(u \mapsto K_1(\beta u)\)</span> is generically regular: <span class="math inline">\(\lambda = (D-1)/2\)</span> with <span class="math inline">\(D = 2^d - 1\)</span>, blind to the data <strong>[open]</strong>.</li>
+<li><em>Keep the temperature</em> as <span class="math inline">\(t = e^{-\beta} = 1/b\)</span>, the tropical base. In coordinates <span class="math inline">\((u, t)\)</span>, <span class="math display">\[
+K(u, t) = \sum_k \pi_k\, t^{c_k(u)}, \qquad c_k(u) = -\tfrac12 \Delta_i(x)(u),
+\]</span> and the zero-temperature truth sits at the boundary <span class="math inline">\(t = 0\)</span>.</li>
+<li>With prior <span class="math inline">\(\beta \sim \mathrm{Exp}(h)\)</span> (density <span class="math inline">\(\propto t^{h-1}\)</span>) and a smooth prior on directions, <span class="math inline">\(\lambda = h/\gamma\)</span> <strong>[numerical]</strong>, where <span class="math inline">\(\gamma = \max_{\lVert u \rVert = 1} \min_k c_k(u)\)</span> is the margin of <span class="math inline">\(\mathcal{C}_Q\)</span>.</li>
+<li><span class="math inline">\(K\)</span> is not analytic at <span class="math inline">\(t = 0\)</span>, so Watanabe’s theorem does not apply as stated; the log power in <span class="math inline">\(V(\varepsilon)\)</span> is <strong>[open]</strong>.</li>
+</ul>
+
+<aside><div>
+<p>Numerical check: <code>scripts/mef_learning_coefficient.py</code>.</p>
+</div></aside></section>
+<section id="margins-and-solid-angles" class="slide level2 smaller">
+<h2>Margins and Solid Angles</h2>
+<ul>
+<li>Two neurons, <span class="math inline">\(\beta \sim \mathrm{Exp}(1)\)</span>, uniform directions:</li>
+</ul>
+<div style="font-size: 85%;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">data</th>
+<th style="text-align: center;">margin <span class="math inline">\(\gamma\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(1/\gamma\)</span></th>
+<th style="text-align: center;">fitted <span class="math inline">\(\lambda\)</span></th>
+<th style="text-align: center;">solid angle of <span class="math inline">\(\mathcal{C}_Q\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\{00\}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1/(2\sqrt2)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2.828\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2.838\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1/4\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\{00, 11\}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1/(2\sqrt6)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(4.899\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(4.909\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1/24\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>Two memories are more complex than one: smaller margin, smaller solid angle, larger <span class="math inline">\(\lambda\)</span>.</li>
+<li><span class="math inline">\(\gamma\)</span> is a weighted <em>angular inradius</em>: a cap of angular radius about <span class="math inline">\(\gamma\)</span> fits inside <span class="math inline">\(\mathcal{C}_Q\)</span>. So a small solid angle forces a small margin and a large <span class="math inline">\(\lambda\)</span>.</li>
+<li>Not conversely: a long thin cone can have a sizeable solid angle and a tiny margin. <span class="math inline">\(\lambda\)</span> sees the <em>depth</em> of the cone; the solid angle only bounds it.</li>
+<li>In <span class="math inline">\(V(\varepsilon) \approx C\, \varepsilon^{h/\gamma} (\log\frac1\varepsilon)^{-k}\)</span>, the rate comes from the margin, and <span class="math inline">\(C\)</span> and <span class="math inline">\(k\)</span> from the local shape of the cone at its deepest direction.</li>
+</ul>
+</section></section>
+<section>
+<section id="information-cohomology" class="title-slide slide level1 center">
+<h1>Information Cohomology</h1>
+
+</section>
+<section id="a-semiring-of-refinements" class="slide level2 smaller">
+<h2>A Semiring of Refinements</h2>
+<ul>
+<li>A <em>refinement</em> is a surjection <span class="math inline">\(\pi : Z \to X\)</span> of finite sets, with measures <span class="math inline">\(q \ll p\)</span> on <span class="math inline">\(Z\)</span> and their push-forwards on <span class="math inline">\(X\)</span>. Think of <span class="math inline">\(Z\)</span> as a finer observable than <span class="math inline">\(X\)</span>.</li>
+<li><em>Sum</em>: the disjoint union <span class="math inline">\(\pi_1 + \pi_2 : Z_1 + Z_2 \to X_1 + X_2\)</span>, with <span class="math inline">\(q_1 + q_2\)</span> and <span class="math inline">\(p_1 + p_2\)</span>.</li>
+<li><em>Product</em>: the Cartesian product <span class="math inline">\(\pi_1 \times \pi_2 : Z_1 \times Z_2 \to X_1 \times X_2\)</span>, with product measures <span class="math inline">\(q_1 \times q_2\)</span> and <span class="math inline">\(p_1 \times p_2\)</span>.</li>
+<li>Up to isomorphism, refinements form a commutative semiring <span class="math inline">\(\mathcal{S}\)</span>: zero is the empty map, one is the identity of a point with masses <span class="math inline">\((1, 1)\)</span>, and products distribute over sums.</li>
+<li>Example: forgetting neuron <span class="math inline">\(d\)</span>, <span class="math inline">\(\{0,1\}^d \to \{0,1\}^{d-1}\)</span>, is a refinement. So is <span class="math inline">\(\{0,1\}^d \to \bullet\)</span>, which forgets everything.</li>
+</ul>
+
+<aside><div>
+<p>Lin. “Relative information and the dual numbers.” Joint Mathematics Meetings, 2025.<br>
+Lin. <em>Relative Information Theory I: Information Cohomology</em>, §2.1 (in preparation).</p>
+</div></aside></section>
+<section id="dual-numbers" class="slide level2 smaller">
+<h2>Dual Numbers</h2>
+<ul>
+<li>The semiring of <em>dual numbers</em> is <span class="math inline">\(\mathcal{R} = \mathbb{R}_{\geq 0}[\varepsilon] / \langle
+\varepsilon^2 \rangle\)</span>, with <span class="math display">\[
+\begin{aligned}
+(a + b\varepsilon) + (c + d\varepsilon) &amp;= (a + c) + (b + d)\varepsilon, \\
+(a + b\varepsilon)(c + d\varepsilon) &amp;= ac + (ad + bc)\varepsilon.
+\end{aligned}
+\]</span></li>
+<li>A map <span class="math inline">\(\pi \mapsto a(\pi) + b(\pi)\varepsilon\)</span> is a semiring homomorphism if and only if <span class="math inline">\(a\)</span> is a homomorphism and <span class="math inline">\(b\)</span> is a <em>derivation</em> over <span class="math inline">\(a\)</span>: <span class="math display">\[
+b(\pi_1 + \pi_2) = b(\pi_1) + b(\pi_2), \qquad b(\pi_1 \times \pi_2) = a(\pi_2)\, b(\pi_1) + a(\pi_1)\, b(\pi_2).
+\]</span></li>
+<li><em>Tangent addition</em> <span class="math inline">\((a + b\varepsilon) \circ (a + c\varepsilon) = a + (b + c)\varepsilon\)</span> makes <span class="math inline">\(\mathcal{R}\)</span> a category: objects <span class="math inline">\(a \geq 0\)</span>, morphisms the loops <span class="math inline">\(a + b\varepsilon\)</span> at <span class="math inline">\(a\)</span>.</li>
+</ul>
+</section>
+<section id="relative-information-as-a-semiring-homomorphism" class="slide level2 smaller">
+<h2>Relative Information as a Semiring Homomorphism</h2>
+<ul>
+<li>For a refinement <span class="math inline">\(\pi : Z \to X\)</span>, the <em>conditional relative information</em> is <span class="math display">\[
+I_{q\Vert p}(Z \,\vert\, X) = \sum_{x} q(x) \sum_{z \in \pi^{-1}(x)} q(z \vert x) \log\frac{q(z\vert x)}{p(z \vert x)} \;\geq\; 0.
+\]</span></li>
+<li><strong>Theorem.</strong> <span class="math inline">\(\mathcal{S} \to \mathcal{R}\)</span>, <span class="math inline">\(\ \pi \mapsto T_q + I_{q\Vert p}(Z \,\vert\, X)\,\varepsilon\)</span>, is a semiring homomorphism:
+<ul>
+<li><em>sum rule</em>: <span class="math inline">\(I(\pi_1 + \pi_2) = I(\pi_1) + I(\pi_2)\)</span>;</li>
+<li><em>product rule</em>: <span class="math inline">\(I(\pi_1 \times \pi_2) = T_2\, I(\pi_1) + T_1\, I(\pi_2)\)</span>, the Leibniz rule.</li>
+</ul></li>
+<li>Absolute relative information is the refinement <span class="math inline">\(Z \to \bullet\)</span>. The sum of <span class="math inline">\(Z_1 \to \bullet\)</span> and <span class="math inline">\(Z_2 \to \bullet\)</span> lands in <em>two</em> points, which is why <span class="math inline">\(I(Z)\)</span> alone is additive only when <span class="math inline">\(T_q = T_p\)</span>.</li>
+</ul>
+
+<aside><div>
+<p>Lin. <em>Relative Information Theory I: Information Cohomology</em>, §§2.1-2.3 (in preparation).</p>
+</div></aside></section>
+<section id="relative-information-as-a-functor" class="slide level2 smaller">
+<h2>Relative Information as a Functor</h2>
+<ul>
+<li>Refinements also <em>compose</em>: <span class="math inline">\(Z \xrightarrow{\ \pi\ } X \xrightarrow{\ \sigma\ } Y\)</span>.</li>
+<li>With <span class="math inline">\(F(\pi) = T_q + I_{q\Vert p}(Z \,\vert\, X)\,\varepsilon\)</span>, the chain rule <span class="math display">\[
+I(Z \,\vert\, Y) = I(Z \,\vert\, X) + I(X \,\vert\, Y)
+\]</span> says <span class="math inline">\(F(\sigma \circ \pi) = F(\sigma) \circ F(\pi)\)</span> under tangent addition, and identities map to <span class="math inline">\(T_q + 0\,\varepsilon\)</span>.</li>
+<li>So <span class="math inline">\(F\)</span> is a functor that respects sums and products: relative information is a derivation over total measure, a 1-cocycle.</li>
+<li><em>Uniqueness.</em> The measurable <span class="math inline">\(h(q, p)\)</span> with <span class="math inline">\(h(q_1q_2, p_1p_2) = q_1 h(q_2, p_2) + h(q_1, p_1)\, q_2\)</span> are <span class="math inline">\(q(a\log q + b\log p)\)</span>; those vanishing on the diagonal are the multiples of <span class="math inline">\(q\log\frac{q}{p}\)</span>.</li>
+</ul>
+
+<aside><div>
+<p>Lin. <em>Relative Information Theory I: Information Cohomology</em>, §§2.1-2.3 (in preparation).<br>
+Baez, Fritz. “A Bayesian characterization of relative entropy.” Theory Appl. Categ. 29: 422-456, 2014.</p>
+</div></aside></section></section>
+<section>
+<section id="conclusion" class="title-slide slide level1 center">
+<h1>Conclusion</h1>
+
+</section>
+<section id="summary" class="slide level2 smaller">
+<h2>Summary</h2>
+<ul>
+<li>A <em>binary flip process</em> is an action-driven process on <span class="math inline">\(\{0,1\}^d\)</span> with one flip action per neuron and rates <span class="math inline">\(e^{-\beta E(x, y)}\)</span>, reversible for the Gibbs law.</li>
+<li>At zero temperature it becomes a deterministic descent to the local minima of <span class="math inline">\(E\)</span>, with the same fixed points as a Hopfield network.</li>
+<li>The relative information rate between a true and a model process becomes <em>minimum energy flow</em> when the true transition rates out of the data are zero.</li>
+<li>Zero temperature is the <em>tropical limit</em> <span class="math inline">\(b = e^\beta \to \infty\)</span>. Tropical MEF is a maximum of linear forms whose negative set is the cone of parameters storing the data.</li>
+<li>That cone is a union of chambers of a hyperplane arrangement, whose geometry measures stability.</li>
+<li>Total measure and relative information form a semiring homomorphism into the dual numbers: relative information is a derivation, a 1-cocycle.</li>
+</ul>
+</section>
+<section id="relative-information-is-a-derivation" class="slide level2 smaller">
+<h2>Relative Information Is a Derivation</h2>
+<div style="font-size: 85%;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">refinements <span class="math inline">\(\pi : Z \to X\)</span></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">dual numbers <span class="math inline">\(\mathbb{R}_{\geq 0}[\varepsilon]/\langle\varepsilon^2\rangle\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\pi\)</span>, with measures <span class="math inline">\(q \ll p\)</span> on <span class="math inline">\(Z\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\longmapsto\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(T_q + I_{q\Vert p}(Z \vert X)\,\varepsilon\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">disjoint union <span class="math inline">\(\pi_1 + \pi_2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\longmapsto\)</span></td>
+<td style="text-align: center;">sum: <span class="math inline">\(I\)</span> is additive</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Cartesian product <span class="math inline">\(\pi_1 \times \pi_2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\longmapsto\)</span></td>
+<td style="text-align: center;">product: <span class="math inline">\(I\)</span> obeys the Leibniz rule</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">composition <span class="math inline">\(\sigma \circ \pi\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\longmapsto\)</span></td>
+<td style="text-align: center;">tangent addition: the chain rule</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>Total measure is a semiring homomorphism, and relative information is a <em>derivation</em> over it.</li>
+<li>Absolute relative information is the refinement <span class="math inline">\(Z \to \bullet\)</span> to a point.</li>
+<li>The derivations that vanish when <span class="math inline">\(q = p\)</span> are the multiples of <span class="math inline">\(q \log \frac{q}{p}\)</span>: relative information is a 1-cocycle in <em>information cohomology</em>.</li>
+</ul>
+<p><a href="http://shaoweilin.github.io/public/20261101-mef/slides.html" class="uri">http://shaoweilin.github.io/public/20261101-mef/slides.html</a></p>
+</section>
+<section id="minimum-energy-flow-is-tropical" class="slide level2 smaller">
+<h2>Minimum Energy Flow Is Tropical</h2>
+<div style="font-size: 85%;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">inverse temperature <span class="math inline">\(\beta = \log b\)</span></th>
+<th style="text-align: center;">zero temperature <span class="math inline">\(b \to \infty\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">flip rates <span class="math inline">\(b^{\Delta_i(x)/2}\)</span></td>
+<td style="text-align: center;">instant steepest descent to local minima</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">MEF <span class="math inline">\(\ \log_b \sum_x \pi^Q_x \sum_i b^{\Delta_i(x)/2}\)</span></td>
+<td style="text-align: center;">tropical polynomial <span class="math inline">\(\max_{x, i} \tfrac12 \Delta_i(x)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Gibbs law <span class="math inline">\(\pi_\beta(x) = \dfrac{b^{-E(x)}}{\sum_y b^{-E(y)}}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-\log_b \pi_\beta(x) \to E(x) - \min_y E(y)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">pseudo-likelihood <span class="math inline">\(\log_b(1 + b^{\Delta})\)</span></td>
+<td style="text-align: center;">hinge loss <span class="math inline">\(\max(0, \Delta)\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>MEF is the relative information rate of a flip process when the true transition rates out of the data vanish.</li>
+<li>Zero temperature is Maslov dequantization: the tropical limit <span class="math inline">\(b = e^\beta \to \infty\)</span>.</li>
+<li>Tropical MEF is negative exactly on a polyhedral cone of parameters that store the data, a union of chambers of a hyperplane arrangement. Its margin <span class="math inline">\(\gamma\)</span> gives the learning coefficient <span class="math inline">\(\lambda = h/\gamma\)</span> <strong>[numerical]</strong>.</li>
+</ul>
+<p><a href="http://shaoweilin.github.io/public/20261101-mef/slides.html" class="uri">http://shaoweilin.github.io/public/20261101-mef/slides.html</a></p>
+</section>
+<section id="open-questions" class="slide level2 smaller">
+<h2>Open Questions</h2>
+<ul>
+<li>Which acyclic dynamics are realized by energies of a given order? For <span class="math inline">\(d = 2\)</span>, all of them.</li>
+<li>The characteristic polynomial and chamber volumes of the flip arrangement for all <span class="math inline">\(d\)</span>.</li>
+<li>Prove <span class="math inline">\(\lambda = h/\gamma\)</span> in the coordinates <span class="math inline">\((u, t = e^{-\beta})\)</span>, and find the log power and constant of <span class="math inline">\(V(\varepsilon)\)</span>. Do margins and solid angles predict generalization?</li>
+<li>Is pseudo-likelihood a relative information rate?</li>
+<li>Hidden neurons: is the union of chambers that give the observed dynamics convex?</li>
+</ul>
+</section></section>
+<section id="thank-you" class="title-slide slide level1 center">
+<h1>Thank you : )</h1>
+<p><a href="https://shaoweilin.github.io/" class="uri">https://shaoweilin.github.io/</a></p>
+<!-- Slides follow plan.md. Tags [open] and (check) mark unproved claims and unverified
+references (CLAUDE.md). -->
+<!-- Title: Minimum Energy Flow
+
+Abstract: We discuss algebraic properties of MEF.
+
+-->
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="slides_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="slides_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
